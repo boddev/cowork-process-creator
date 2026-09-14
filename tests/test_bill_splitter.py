@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import copy
 import importlib.util
-import io
 import json
 import subprocess
 import sys
@@ -312,9 +311,8 @@ class BillSplitterTests(unittest.TestCase):
             self.assertTrue(SKILL.joinpath(*pointer.split("/")).is_file())
 
     def test_extracted_package_runs_without_creator_or_creation_evidence(self):
-        payload, _ = builder.assemble(CANDIDATE, "compatible-source")
         installed = self.root / "installed"
-        with zipfile.ZipFile(io.BytesIO(builder.zip_bytes(payload))) as archive:
+        with zipfile.ZipFile(EXAMPLE / "bill-splitter.zip") as archive:
             archive.extractall(installed)
         script = installed / "skills" / "split-restaurant-bill" / "scripts" / "split_bill.py"
         result, target = self.invoke(json.dumps(self.meal), script=script)
@@ -322,6 +320,21 @@ class BillSplitterTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text(encoding="utf-8")), self.expected)
         self.assertFalse((installed / "examples").exists())
         self.assertFalse((installed / "skills" / "create-process-plugin").exists())
+
+    def test_download_and_report_match_the_current_candidate(self):
+        rebuilt = self.root / "rebuilt.zip"
+        report = builder.build(CANDIDATE, rebuilt, self.root / "rebuilt.json", "compatible-source")
+        self.assertEqual((EXAMPLE / "bill-splitter.zip").read_bytes(), rebuilt.read_bytes())
+        published = json.loads((EXAMPLE / "bill-splitter.report.json").read_text(encoding="utf-8"))
+        for field in ("plugin", "target", "sha256", "size_bytes", "files"):
+            with self.subTest(field=field):
+                self.assertEqual(published[field], report[field])
+        self.assertEqual(published["status"], "Draft")
+        self.assertEqual(published["artifact_kind"], "compatible-source-export")
+        self.assertEqual(published["host_acceptance"], "unverified")
+        self.assertEqual(published["native_execution"], "not_attested_by_builder")
+        self.assertEqual(published["manual_invocation"], "unverified")
+        self.assertEqual(published["scheduling"], "not_exercised")
 
 
 if __name__ == "__main__":

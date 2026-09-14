@@ -6,6 +6,10 @@ The runtime skill reads a new receipt, confirms diners and shares, calculates
 exact per-person amounts, and uses existing native spreadsheet facilities to
 create a new workbook. No business connection, sending or scheduling is involved.
 
+For a ready-to-download package and Cowork import instructions, start with the
+[quick start](README.md). End users do not need to run the development commands
+below.
+
 ## Layout and runtime boundary
 
 Like `examples/n00`, this example contains `candidate/plugin-spec.json`,
@@ -15,6 +19,8 @@ and expected-output fixtures. The candidate uses the current
 
 | File | Purpose |
 |---|---|
+| `README.md` | Download link, Cowork quick start and source-build instructions |
+| `bill-splitter.zip` / `bill-splitter.report.json` | Generated runtime-only preview and its source-only build report |
 | `candidate/skills/split-restaurant-bill/SKILL.md` | Receipt-reading, clarification, calculation and workbook workflow |
 | `candidate/skills/split-restaurant-bill/scripts/split_bill.py` | Bounded standard-library JSON-to-JSON arithmetic helper |
 | `candidate/skills/split-restaurant-bill/scripts/safe_json.py` | Owned copy of the bounded JSON pattern, adapted for exact numeric parsing |
@@ -26,8 +32,10 @@ and expected-output fixtures. The candidate uses the current
 The original video and receipt images are creation evidence, not runtime
 dependencies. The original workbook is optional: the owned layout reference
 describes how to recreate it, or a user can supply a template on a future run.
-None of those original attachments, the archive, or workbook lock files is
-included in this contribution or its output package.
+None of those original attachments, the original source archive, or workbook
+lock files is included in this contribution or its output package. The
+downloadable `bill-splitter.zip` is newly built from this adapted candidate,
+not a copy of the original archive.
 
 An invocation requires a new receipt and 1-8 diner names. Confirm the share
 assignments and tip basis before calculating; support at most 20 receipt
@@ -71,7 +79,7 @@ run.
 New-Item -ItemType Directory -Force .local\bill-splitter | Out-Null
 python -B examples\bill-splitter\candidate\skills\split-restaurant-bill\scripts\split_bill.py --input examples\bill-splitter\input-new.json --output .local\bill-splitter\split.json
 python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py validate --source examples\bill-splitter\candidate
-python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py build --source examples\bill-splitter\candidate --target compatible-source --output .local\bill-splitter\bill-splitter.zip --report .local\bill-splitter\build.json
+python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py build --source examples\bill-splitter\candidate --target compatible-source --output .local\bill-splitter\bill-splitter.zip --report .local\bill-splitter\bill-splitter.report.json
 ```
 
 The compatible-source export is **Draft**, not a canonical v1.28 package or
