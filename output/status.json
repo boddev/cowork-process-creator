@@ -1,0 +1,24 @@
+{
+  "implemented_scenario_count": 0,
+  "local_corpus_ready": false,
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "native_complete": false,
+  "native_gate_as_of": "2026-09-14",
+  "provenance": "foundation-generated-pending-matrix",
+  "required_scenario_count": 15,
+  "scenarios": [],
+  "schema_version": 1
+}

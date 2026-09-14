@@ -7,5 +7,5 @@ evals/creator-intent-cases.json -text whitespace=cr-at-eol
 **/learn-mcp-tools-response.txt whitespace=cr-at-eol,-blank-at-eof
 
 # Scenario evidence and native exports are byte-addressed across worktrees.
-scenarios/** -text
-output/** -text
+scenarios/** -text whitespace=cr-at-eol
+output/** -text whitespace=cr-at-eol

@@ -118,6 +118,11 @@ Creator/install/independent-execution instructions with the current blocked
 gate. Do not include private holdout values, expected files, hidden markers,
 or evaluation answers in this public procedure. Demo examples are allowed.
 Native instructions may not rely on the baseline implementation.
+Specify the exact common result envelope below and every business key, value
+type, required artifact's semantic content, row ordering, decimal format, and
+exception code/message in the public procedure. Require the native output
+plugin to emit that complete JSON contract as well as any human-friendly report.
+A matching headline total, filename, or prose summary is not sufficient.
 
 `sources.json` has `schema_version: 1` and `sources`, an array of at least two
 objects with `id`, `title`, `url`, `publisher`, `accessed` (ISO date), `scope`,
