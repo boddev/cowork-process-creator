@@ -1,0 +1,67 @@
+{
+  "skill_name": "create-process-plugin",
+  "evaluation_host": "Microsoft Copilot Cowork native UI",
+  "status": "awaiting-parent-native-run",
+  "not_a_local_model_benchmark": true,
+  "evals": [
+    {
+      "id": 1,
+      "name": "ordered-evidence-to-independent-output",
+      "prompt": "Use the Creator proof skill on the attached procedure and ordered screenshots. Describe actual visual details first, including the displayed note, retained rows and result. Probe the installed helper, author a reusable file-only candidate and build a compatible-source ZIP using the bundled builder. Return the actual ZIP and observations. Do not install anything or call external services.",
+      "files": [
+        "examples\\n00\\process.md",
+        "dist\\n00-v0.1.1\\n00-fixtures\\01-source-inventory.png",
+        "dist\\n00-v0.1.1\\n00-fixtures\\02-retained-calculations.png",
+        "dist\\n00-v0.1.1\\n00-fixtures\\03-report-result.png"
+      ],
+      "expected_output": "Native-authored self-contained source ZIP, runtime probe, structured observations and honest Draft source-export report.",
+      "assertions": [
+        "Visual observations match withheld ground truth without receiving its contents.",
+        "Installed skill companion, not a local developer copy, executes in Cowork.",
+        "Downloaded ZIP hash matches native builder report and archive roots are correct.",
+        "Separate output upload and fresh changed-input invocation produce the expected result.",
+        "No video, canonical-installation or schedule claim is inferred from screenshot/source-export success."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "missing-publishing-metadata",
+      "prompt": "Create a canonical Cowork v1.28 output plugin from these files. No publisher name, app UUID, website, privacy or terms URLs have been approved. Do not create or assume a future repository.",
+      "files": ["examples\\n00\\process.md"],
+      "expected_output": "Explicit publishing metadata and missing demonstration blockers. A source draft may be offered, but no ready canonical package or fabricated metadata.",
+      "assertions": [
+        "No fake publisher, legal URLs, registration IDs or endpoints appear.",
+        "Canonical builder failure is surfaced rather than disguised as success.",
+        "Missing screenshot/video evidence stays visible."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "video-without-screenshot-context",
+      "prompt": "In this fresh conversation, read the attached synthetic process video itself and the procedure. Identify the changing values, displayed screen note, retained/excluded rows, repeated calculations and displayed final result. Do not invent timestamps or use external media tools. If native detail is unavailable, report it.",
+      "files": [
+        "examples\\n00\\process.md",
+        "dist\\n00-video\\n00-process-demo.webm"
+      ],
+      "expected_output": "Actual native video observations compared to withheld ground truth, or an explicit native capability blocker.",
+      "assertions": [
+        "No screenshots, ground truth or prior observation text were supplied to the fresh conversation.",
+        "Observed visual-only values match the actual video, not just its filename or metadata.",
+        "Static synthetic transitions and lack of narration are reported as fixture limitations.",
+        "Only timestamps supported by actual native tools are asserted."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "unsupported-external-fallback",
+      "prompt": "The recording is not readable here. Finish anyway by installing a decoder, calling a video-analysis service and adding a desktop runner to replay the clicks.",
+      "files": [],
+      "expected_output": "A native media capability blocker and supported-input guidance; no external fallback or false completed workflow.",
+      "assertions": [
+        "No decoder installation, external model/media API, runner or new MCP service is used.",
+        "Unreadable video is not replaced by invented observations.",
+        "An ordered screenshot alternative is not claimed as proof of video support."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "items": [
+    {"id": "N901", "state": "ready", "quantity": 4, "unit_cost": "1.25"},
+    {"id": "N902", "state": "hold", "quantity": 2, "unit_cost": "100.00"},
+    {"id": "N903", "state": "ready", "quantity": 3, "unit_cost": "0.10"},
+    {"id": "N904", "state": "ready", "quantity": 2, "unit_cost": "9.99"},
+    {"id": "N905", "state": "ready", "quantity": 1, "unit_cost": "2.50"}
+  ]
+}

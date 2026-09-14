@@ -1,0 +1,32 @@
+{
+  "format_version": 1,
+  "catalog_version": "0.2.1",
+  "kind": "packaged-authoring-guidance",
+  "native_execution_claim": "unverified",
+  "components": [
+    {
+      "id": "bounded-cost-report",
+      "version": "1.0.0",
+      "use_when": "Validate structured records, filter by a confirmed state, multiply and sum exact monetary values.",
+      "capabilities": ["files.read", "python.stdlib", "files.write"],
+      "resources": ["references/patterns.md"],
+      "evaluation_cases": ["changed-row-count", "held-invalid-row", "fractional-cents", "empty-input", "deep-invalid-json"]
+    },
+    {
+      "id": "priority-checklist",
+      "version": "1.0.0",
+      "use_when": "Turn supplied records into a grouped checklist without creating tasks in a business system.",
+      "capabilities": ["files.read", "python.stdlib", "files.write"],
+      "resources": ["references/patterns.md"],
+      "evaluation_cases": ["reordered-priorities", "unknown-priority", "duplicate-id", "empty-input"]
+    },
+    {
+      "id": "signed-exception-ledger",
+      "version": "1.0.0",
+      "use_when": "Compare expected and actual values, preserve signed differences and report only nonzero exceptions.",
+      "capabilities": ["files.read", "python.stdlib", "files.write"],
+      "resources": ["references/patterns.md"],
+      "evaluation_cases": ["negative-difference", "zero-filtering", "exact-net-total", "invalid-number"]
+    }
+  ]
+}

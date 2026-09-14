@@ -1,0 +1,78 @@
+{
+  "artifact_kind": "public-mcp-metadata-observation",
+  "purpose": "Optional real existing-system metadata for Creator connection-mapping examples; not a Creator runtime dependency or a Cowork availability claim.",
+  "endpoint": "https://learn.microsoft.com/api/mcp",
+  "transport": "streamable-http",
+  "authentication_observation": {
+    "documented_requirement": "none",
+    "account_credentials_api_keys_or_oauth_tokens_supplied": false,
+    "protocol_session_allocated": true,
+    "protocol_session_identifier_saved": false,
+    "session_termination_requested": true
+  },
+  "observation": {
+    "location": "Development environment outside Cowork",
+    "method": "MCP initialize, notifications/initialized, and tools/list over the public endpoint",
+    "protocol_version": "2025-03-26",
+    "server_info": {
+      "name": "Microsoft Learn MCP Server",
+      "version": "1.0.0"
+    },
+    "http_statuses": {
+      "initialize": 200,
+      "notifications_initialized": 202,
+      "tools_list": 200
+    },
+    "response_date_utc": "2026-09-12T01:43:37Z",
+    "response_date_source": "Server HTTP Date header",
+    "response_content_type": "text/event-stream",
+    "tool_count": 3,
+    "next_cursor_present": false,
+    "tools_call_requests_in_this_probe": 0,
+    "new_services_deployed": 0,
+    "cowork_connections_installed_or_modified": 0,
+    "cowork_availability": "unverified"
+  },
+  "files": {
+    "raw_tools_list_response": {
+      "path": "learn-mcp-tools-response.txt",
+      "bytes": 4950,
+      "sha256": "380a2bbd84cafc59c9c7507baef0cedde7b40220dfd74b6cb8db601c473e73e0"
+    },
+    "extracted_tools_document": {
+      "path": "learn-mcp-tools.json",
+      "bytes": 6874,
+      "sha256": "148574d43a7e0b531852521127eb60fb4d910307a623e88618cb761c1f26535d",
+      "shape": "Object with a tools array",
+      "transformation": "Extracted result.tools from the JSON-RPC SSE response and wrapped it as tools; all tool definitions are semantically unchanged."
+    }
+  },
+  "documented_service_facts": {
+    "publicly_available": true,
+    "documented_mcp_service_charge": "No charge",
+    "content_scope": "Public documentation, not training or user-profile information",
+    "terms_url": "https://learn.microsoft.com/en-us/legal/termsofuse"
+  },
+  "sources": [
+    "https://learn.microsoft.com/training/support/mcp",
+    "https://learn.microsoft.com/training/support/mcp-developer-reference",
+    "https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle",
+    "https://modelcontextprotocol.io/specification/2025-03-26/basic/transports"
+  ],
+  "contract_observations": [
+    "All three actual tools include top-level title as well as annotations.title.",
+    "microsoft_docs_search has no required array; query is a string property with a null default annotation.",
+    "microsoft_code_sample_search requires query; language is an optional string with a null default annotation.",
+    "microsoft_docs_fetch requires url.",
+    "The search and code-sample tools include outputSchema with nullable type arrays. The fetch tool does not include outputSchema.",
+    "Server-provided readOnlyHint and other annotations are descriptive hints, not a security boundary or native approval."
+  ],
+  "claim_boundaries": [
+    "This is a point-in-time public MCP metadata observation, not a traditional REST contract guaranteed to remain stable.",
+    "Use Cowork's own supported MCP connection facilities at runtime; do not bundle the development probe or require an end-user MCP client installation.",
+    "Do not label the endpoint available in Cowork until the target host actually exposes or accepts the connection.",
+    "No output plugin installation, native invocation, or scheduled execution is established by this metadata capture.",
+    "The service's identity and terms are not approved publisher metadata or legal URLs for the Creator or generated output plugin.",
+    "Keep the original snapshot intact if selecting a smaller emitted tool subset; identify any projection explicitly."
+  ]
+}

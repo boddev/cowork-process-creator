@@ -1,0 +1,19 @@
+{
+  "schema_version": "creator-plugin-1",
+  "name": "cowork-process-creator",
+  "title": "Cowork Process Creator",
+  "version": "0.2.1",
+  "summary": "Turn process evidence into self-contained skills and checked plugin source.",
+  "description": "Eight focused skills for explicitly requested process-plugin authoring, revision and source resume. Guide native evidence observation, repeatable workflow design, real capability mapping, standalone output skills/helpers, checked packaging and edit-preserving checkpoints. Use the current Cowork host and user's authorization. No authoring backend, external model/media service, custom runner or end-user runtime installer. Assess each artifact's native readiness independently.",
+  "skills": [
+    "create-process-plugin",
+    "read-process-evidence",
+    "design-repeatable-workflow",
+    "map-native-capabilities",
+    "author-output-skills",
+    "author-deterministic-helpers",
+    "build-output-plugin",
+    "review-output-plugin"
+  ],
+  "connectors": []
+}

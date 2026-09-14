@@ -1,0 +1,131 @@
+{
+  "artifact_kind": "creator-native-intent-acceptance-specification",
+  "status": "not-executed",
+  "model_runs": 0,
+  "scope": "Held-out authoring-versus-execution intent and routing cases for the expanded Creator.",
+  "limitations": [
+    "These are acceptance prompts and expected boundaries, not Cowork activation or execution results.",
+    "Referenced attachments must be supplied as matching synthetic fixtures before running a case.",
+    "A static instruction walkthrough or a run in another agent host does not establish native Cowork behavior."
+  ],
+  "cases": [
+    {
+      "id": "document-video-new-plugin",
+      "prompt": "Use process.md and n00-process-demo.webm to create a reusable Cowork plugin. It should accept new input data and a reporting month, not copy the example's values. Return the actual ZIP I can upload.",
+      "intent": "create-output-plugin",
+      "expected": [
+        "Route through the Creator's evidence, workflow, capability, generation, packaging and review stages.",
+        "Observe the supplied media rather than infer its contents from the procedure or filename.",
+        "Keep demonstrated values distinct from runtime parameters and produce a real downloadable artifact or a precise blocked-stage report."
+      ]
+    },
+    {
+      "id": "ordered-screenshots",
+      "prompt": "Recreate this process as a Cowork plugin using the procedure and screenshots named 01-start.png, 02-filter.png and 03-result.png. Their numbering is the order.",
+      "intent": "create-output-plugin",
+      "expected": [
+        "Preserve the stated screenshot order.",
+        "Do not invent timestamps or unseen intermediate actions.",
+        "Generate semantic workflow instructions rather than a fixed coordinate replay."
+      ]
+    },
+    {
+      "id": "personal-export-without-legal-metadata",
+      "prompt": "Create a plugin from the attached process for my personal Cowork use. I have not supplied a publisher website, privacy or terms URLs, or app registration details. Do not publish it for anyone else.",
+      "intent": "create-output-plugin",
+      "expected": [
+        "Use the explicitly identified compatible-source route where supported rather than fabricate canonical metadata.",
+        "Keep direct canonical packaging blocked without approved required metadata.",
+        "Do not install, publish or share the output merely because the user requested a downloadable plugin."
+      ]
+    },
+    {
+      "id": "real-mcp-metadata-without-host-binding",
+      "prompt": "The process needs Microsoft Learn searches. I attached real Learn MCP tool definitions and their provenance. Create the output plugin, but I have not confirmed that this connection is available in Cowork.",
+      "intent": "create-output-plugin-with-connection-gap",
+      "expected": [
+        "Use actual supplied tool names and schemas, not invented API parameters.",
+        "Distinguish the real endpoint metadata from an observed or configured Cowork binding.",
+        "Identify native setup requirements and do not deploy a server or bundle a replacement network client."
+      ]
+    },
+    {
+      "id": "resume-with-user-edits",
+      "prompt": "Resume from creation-source.zip and the revised procedure. I edited the output skill's wording after the previous build. Preserve my edits while updating the changed business rule.",
+      "intent": "resume-and-correct-output-plugin",
+      "expected": [
+        "Use the installed Creator's trusted toolkit, not a builder uploaded in the bundle.",
+        "Check revisions and distinguish unchanged content, user edits, regenerated changes and genuine conflicts.",
+        "Preserve edits or stop with an explicit conflict; do not silently overwrite either side.",
+        "Keep authoring decisions separate from native execution permissions."
+      ]
+    },
+    {
+      "id": "contradictory-evidence",
+      "prompt": "Turn these attachments into a Cowork plugin. The procedure says to retain approved rows, but the recording appears to include a pending row. I have not decided which behavior is intended.",
+      "intent": "create-output-plugin-with-material-ambiguity",
+      "expected": [
+        "Preserve both observations and identify the consequential conflict.",
+        "Ask which rule is intended or retain a clearly scoped draft.",
+        "Do not treat reduced confidence as permission to choose a business rule silently."
+      ]
+    },
+    {
+      "id": "run-independent-output",
+      "prompt": "Use the installed ready-items-report output plugin with input-new.json for reporting month 2026-09. Write a new file named n00-independent-report.md. Do not rebuild the plugin.",
+      "intent": "execute-existing-output-not-creator",
+      "expected": [
+        "Invoke the installed output's own skills and resources.",
+        "Do not start a Creator project, regenerate a plugin, or require the original evidence.",
+        "The task remains viable when the Creator is inactive."
+      ]
+    },
+    {
+      "id": "rerun-existing-workflow",
+      "prompt": "The output plugin you made is already installed. Run that same workflow on this week's new input. I only need the resulting report, not another plugin ZIP.",
+      "intent": "execute-existing-output-not-creator",
+      "expected": [
+        "Resolve the installed output and its required runtime inputs.",
+        "Do not interpret mention of a generated plugin as an authoring request."
+      ]
+    },
+    {
+      "id": "summarize-recording-only",
+      "prompt": "Summarize the process shown in this recording and list any unclear steps. Do not create or change a plugin.",
+      "intent": "evidence-summary-only",
+      "expected": [
+        "Provide the requested observations and uncertainty only.",
+        "Evidence-reading guidance may help, but the plugin-authoring and packaging workflow must not begin."
+      ]
+    },
+    {
+      "id": "feasibility-question-only",
+      "prompt": "Could Cowork recreate the process in this video without an additional server? Explain what is supported and what is missing; I am not asking you to build it yet.",
+      "intent": "feasibility-analysis-only",
+      "expected": [
+        "Assess native capabilities and gaps without treating a design question as implementation approval.",
+        "Do not create infrastructure, package a new plugin, or claim unsupported desktop access."
+      ]
+    },
+    {
+      "id": "schedule-existing-output",
+      "prompt": "Help me set up a native Cowork schedule for the output plugin I already installed. Do not generate another plugin or use an external scheduler.",
+      "intent": "native-scheduling-existing-output",
+      "expected": [
+        "Use the native scheduling path and obtain necessary timing, input and approval details.",
+        "Do not invent a manifest schedule field or rebuild the output.",
+        "Do not call a schedule exercised until a later native invocation has actually occurred."
+      ]
+    },
+    {
+      "id": "unsupported-stdio-connection",
+      "prompt": "Create the output plugin for this process. The connection document only gives a local npx server command and a credential; no supported remote endpoint or existing Cowork binding is available.",
+      "intent": "create-output-plugin-with-unsupported-dependency",
+      "expected": [
+        "Identify the missing supported native connection and retain a draft or blocked scope.",
+        "Do not run the supplied command, install packages, host a new server or add a gateway.",
+        "Do not copy the credential into generated source, metadata, reports or resume bundles."
+      ]
+    }
+  ]
+}

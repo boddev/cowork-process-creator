@@ -1,0 +1,215 @@
+{
+  "schema_version": "n00-status-1",
+  "overall": "native-gate-blocked-desktop-locked",
+  "scope": "Historical native evidence for the provisional implementation; public source sharing does not establish native Cowork acceptance or deployment",
+  "public_copy_note": "Private session and task identifiers are omitted; original local evidence is preserved outside the public repository.",
+  "expanded_candidate_status": "docs\\provisional-status.json",
+  "continuation_plan_sha256": "8a0cd45a5dbcf326f2966c1e6678128dc7aa493221dd5d62185580606f753e00",
+  "native_continuation": {
+    "blocker": "Windows desktop locked; Computer Use failed closed because the session is not active",
+    "no_access_workaround_permitted": true,
+    "creator_plugin": "Only Cowork Process Creator was disabled and its toggle was verified off; unrelated plugins preserved",
+    "output_publication": "UNKNOWN",
+    "last_action": "Selected the exact ready-items.zip, verified Only you, clicked Publish once",
+    "last_visible_state": "Publishing...",
+    "independent_native_task_started": false,
+    "resume_rule": "After normal user unlock, inspect Installed plugins before any repeat publication. Do not infer rejection or success, and do not publish again blindly."
+  },
+  "canonical_target": "cowork-m365-unified-manifest-v1.28",
+  "approved_plan_sha256": "03743B3DCD6F43D58AA2D75886AC1C66E34746919067479DAB4713CF5489D6CD",
+  "native_evidence_bundle": {
+    "path": ".local\\native-output-15d75761c98a\\n00-evidence.zip",
+    "sha256": "fda9fd0ed6a1dc037ea583fde26d19c1a19059cfffcce206ad496ff8a0a77bf1",
+    "size_bytes": 46434,
+    "entry_count": 5,
+    "not_a_plugin_upload_archive": true,
+    "inner_plugin_and_build_report_match_separate_downloads": true,
+    "observations_sha256": "a1c12011e7779a69198702e73b4ad412974c5f9dd5db49d30f304f50ef6b532a",
+    "runtime_probe_sha256": "07b38f59d97127f0469665c224ee3c0e4804acba5de3399c82e9f94ccb38ae07",
+    "test_results_sha256": "4bc51effba74f59607d7fd446f91ad0aeaf3d80cbf209b41e9b3202d12e45a70"
+  },
+  "artifacts": [
+    {
+      "role": "initial-creator-bootstrap-installed-via-native-conversion",
+      "version": "0.1.0",
+      "path": "dist\\creator-bootstrap-compatible-source.zip",
+      "sha256": "357ce0ade8b27143ab7db7fc99068523d998076da9cd14acbf9dacc073998f9f",
+      "size_bytes": 34190,
+      "target": "compatible-source",
+      "readiness": "Installed",
+      "installed_filename": "creator-n00.zip",
+      "installation_evidence": "Parent observed Cowork Process Creator under Installed with Enable on after an identical-byte short-name retry. Not direct canonical v1.28 archive acceptance."
+    },
+    {
+      "role": "current-hardened-creator-bootstrap",
+      "version": "0.1.1",
+      "path": "dist\\n00-v0.1.1\\creator-n00.zip",
+      "sha256": "f31dc061a1d55d797c1ea2008d4bb049c3509f1afee921db20ba3ee88158add1",
+      "size_bytes": 36040,
+      "target": "compatible-source",
+      "readiness": "Draft"
+    },
+    {
+      "role": "developer-output-baseline-not-native-authorship",
+      "version": "0.1.1",
+      "path": "dist\\n00-v0.1.1\\output-n00.zip",
+      "sha256": "8c3b0fb7b4890f92eecf600b71ca3b8eb20705cf644315e15fd8bc57a3289504",
+      "size_bytes": 9193,
+      "target": "compatible-source",
+      "readiness": "Draft"
+    },
+    {
+      "role": "actual-native-generated-output",
+      "version": "0.1.0",
+      "path": ".local\\native-output-15d75761c98a\\ready-items.zip",
+      "sha256": "15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419",
+      "size_bytes": 10591,
+      "target": "compatible-source",
+      "readiness": "Draft",
+      "build_report_sha256": "8f1ace9f20ff6b8308430a75edaf0cbdfbaa8023c0d0abf9d2bf174bd4c4525b",
+      "build_report_matches_archive_and_all_entries": true,
+      "entry_skill": "ready-items-report",
+      "helper": "skills\\ready-items-report\\scripts\\ready_items_report.py",
+      "cli_arguments": ["--input", "--month", "--output"]
+    }
+  ],
+  "observations": [
+    {
+      "step": "native-access",
+      "status": "observed",
+      "evidence_kind": "parent-operator-report",
+      "detail": "Authenticated real Cowork in the existing Edge Work profile at https://copilot.cloud.microsoft/cowork; Customize Plugins/Skills and native tasks/automation UI. No new credentials, consent or permission changes."
+    },
+    {
+      "step": "native-python-primitive",
+      "status": "observed",
+      "evidence_kind": "parent-operator-report",
+      "detail": "Python 3.12.14 on Linux, GCC13.2/glibc2.38. Imported json, zipfile, hashlib, pathlib, csv and decimal. This was not execution from the installed Creator."
+    },
+    {
+      "step": "native-zip-download-primitive",
+      "status": "observed",
+      "evidence_kind": "parent-operator-report-with-byte-inspection",
+      "artifact_name": "creator-native-preflight.zip",
+      "sha256": "5a7ea4c70d3022c1821dc582f7cf98407b8c40f9de41d8102bf711e6d7c07f9b",
+      "detail": "Downloaded through Cowork UI. Root probe.txt/runtime.json; probe bytes exactly native-cowork-proof; downloaded hash matched Cowork."
+    },
+    {
+      "step": "creator-compatible-source-upload",
+      "status": "observed",
+      "evidence_kind": "parent-operator-report",
+      "attempts": [
+        {
+          "version": "0.1.0",
+          "filename": "creator-bootstrap-compatible-source.zip",
+          "sha256": "357ce0ade8b27143ab7db7fc99068523d998076da9cd14acbf9dacc073998f9f",
+          "scope": "Only you",
+          "status": "failed",
+          "error": "There was an error processing the request"
+        },
+        {
+          "version": "0.1.0",
+          "filename": "creator-n00.zip",
+          "sha256": "357ce0ade8b27143ab7db7fc99068523d998076da9cd14acbf9dacc073998f9f",
+          "scope": "Only you",
+          "status": "Installed",
+          "evidence": "Cowork Process Creator appeared under Installed, Enable on; expanded installed list before retry had no Creator."
+        }
+      ],
+      "detail": "Compatible-source conversion/install observed, not direct canonical v1.28 archive acceptance. First failure cause remains unestablished; short-name retry success does not distinguish filename issue from transient failure."
+    },
+    {
+      "step": "procedure-reading",
+      "status": "observed",
+      "evidence_kind": "parent-operator-report",
+      "detail": "Fresh Cowork task loaded the installed create-process-plugin skill; only process.md and WebM attached. Native UI marked Inspect the procedure and video evidence complete. This is not a complete rule-by-rule correctness review."
+    },
+    {"step": "ordered-screenshot-reading", "status": "unverified"},
+    {
+      "step": "video-reading",
+      "status": "observed-for-limited-synthetic-fixture",
+      "evidence_kind": "parent-operator-report",
+      "fixture_path": "dist\\n00-video\\n00-process-demo.webm",
+      "fixture_sha256": "080148c22a568107bed7f0542d5983777f4b60920f3894507590310b1bf9e011",
+      "direct_video_view": "unsupported-in-this-native-task",
+      "observed_method": "Pre-existing native imageio_ffmpeg decoder extracted 24 frames and original PTS without installation or external service; native Cowork parent visually inspected frames 1, 9 and 17, then supplied its observations to its own native authoring worker.",
+      "visually_confirmed_frames": [
+        {"ordinal": 1, "pts_seconds": 0},
+        {"ordinal": 9, "pts_seconds": 4},
+        {"ordinal": 17, "pts_seconds": 8}
+      ],
+      "decoder_is_a_creator_dependency": false,
+      "detail": "Fresh task received procedure plus WebM only, no screenshots or ground truth. Observations match all 4 source rows/states/quantities/costs, LANTERN-42, retained R101/R103/R104, excluded R102, line costs25.00/21.60/4.05 and total50.65 for2026-08. 'Parent session' in the native observations means Cowork's own native parent, not the external coordinating/coding sessions. No all-24-frame visual review, interval-boundary, continuous UI, narration or every-rule claim."
+    },
+    {
+      "step": "installed-creator-bundled-helper-execution",
+      "status": "observed",
+      "evidence_kind": "parent-native-task-observation-and-downloaded-probe-build-test-artifacts",
+      "detail": "Downloaded probe confirms builder0.1.0, Linux Python3.12.14 and probe ZIP hash74c58d7cf3317b6ab16076bdd0091a66ff1f4c9441f77284a9f0fe6ea3310319. Native test-results contains exactly81 cases,81passed0failed and the exact generated-helper hash. This records the observed native build/testing task, not fresh independent output invocation."
+    },
+    {
+      "step": "native-output-candidate-authorship",
+      "status": "observed",
+      "evidence_kind": "parent-native-task-report-plus-inspected-downloaded-source",
+      "detail": "Actual native-generated three-entry ready-items ZIP inspected; differs from the developer baseline and contains its own entry skill/helper."
+    },
+    {
+      "step": "native-bundled-builder-output-zip",
+      "status": "observed",
+      "detail": "Native build-report.json states builder0.1.0, targetcompatible-source, Draft. Archive hash, size and all entry hashes/sizes match exactly; runtime probe and native test records corroborate the parent-observed build task."
+    },
+    {
+      "step": "exact-generated-plugin-zip-download",
+      "status": "observed",
+      "evidence_kind": "direct-byte-and-build-report-comparison",
+      "sha256": "15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419",
+      "detail": "Parent downloaded actual ready-items.zip from Cowork. Child independently read and staged unchanged bytes, matched native build report and all entries. Not a Download All container or local baseline."
+    },
+    {
+      "step": "generated-output-upload",
+      "status": "unknown-after-publication-attempt",
+      "evidence_kind": "parent-operator-last-observation",
+      "detail": "Exact ready-items.zip selected, Only you verified, Publish clicked once. Last visible state Publishing... before desktop lock. Acceptance UNKNOWN. Reconcile Installed list before any retry."
+    },
+    {"step": "independent-new-input-invocation", "status": "unverified"},
+    {"step": "canonical-v1.28-package", "status": "blocked", "detail": "Approved publisher/legal metadata and app identity have not been supplied. No native release ZIP generated."},
+    {"step": "native-schedule", "status": "not-exercised", "detail": "Outside this first proof attempt."}
+  ],
+  "native_output_local_inspection": {
+    "not_native_invocation": true,
+    "archive_sha256": "15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419",
+    "test_runner": "python -B -m unittest discover -s tests\\native -v",
+    "regression_groups": 15,
+    "additional_seeded_datasets": 100,
+    "status": "passed",
+    "new_input_result": {"included": 4, "excluded": 1, "total": "27.78"},
+    "new_input_report_sha256": "4c624191eb4f8190d37fcce4501d26c39600a78584d58d133f38d0e52f395573",
+    "source_not_modified": true,
+    "nonblocking_notes": [
+      "Deep invalid JSON caused uncaught RecursionError locally, exit1 and no output file; not normal concise error formatting.",
+      "No input byte ceiling before parsing; row limit applies after parse.",
+      "User filename-only policy is in skill instructions; resolved-path containment is governed by caller/native platform."
+    ],
+    "details": "docs\\native-output-inspection.md"
+  },
+  "local_evidence": {
+    "not_native_proof": true,
+    "builder_version": "0.1.1",
+    "creator_archive_sha256": "f31dc061a1d55d797c1ea2008d4bb049c3509f1afee921db20ba3ee88158add1",
+    "output_baseline_archive_sha256": "8c3b0fb7b4890f92eecf600b71ca3b8eb20705cf644315e15fd8bc57a3289504",
+    "test_runner": "python -B -m unittest discover -s tests -v",
+    "test_count": 34,
+    "status": "passed",
+    "coverage": [
+      "exact ZIP roots, inventory, hashes and deterministic bytes",
+      "skills-only v1.28 composition using temporary syntax fixtures only",
+      "publisher metadata blockers with no successful output artifacts",
+      "names, descriptions, body, paths, companions and size limits",
+      "missing companions, unsupported imports, secret-shaped content and unresolved tokens",
+      "explicit parse errors and no-overwrite behavior",
+      "extracted Creator helper runs in an isolated Python process",
+      "extracted baseline output runs with changed inputs without Creator or evidence",
+      "exact decimal arithmetic, bounded repetition, empty and negative cases"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "artifact_kind": "intent-regression-case-disclosure-status",
+  "case_file": "creator-intent-cases.json",
+  "source_sha256": "e129d7a948c7b17ee342f55edcf76e7d9d8735f0e33dbf229bd6b7c25c372f9b",
+  "case_count": 12,
+  "originally_prepared_before_initial_instruction_review": true,
+  "current_role": "disclosed acceptance/regression prompts",
+  "blind_holdout_for_current_or_later_revisions": false,
+  "status": "not-executed",
+  "model_runs": 0,
+  "native_activation_evidence": false,
+  "note": "The original case file is preserved byte-for-byte and describes its original held-out preparation. It was subsequently disclosed for these instruction revisions. Static content checks/walkthroughs are not native activation results."
+}

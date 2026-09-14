@@ -1,0 +1,107 @@
+{
+  "version": "0.2.1",
+  "status": "Draft",
+  "scope": "Completed provisional offline implementation; native gates are not complete",
+  "artifact": {
+    "path": "dist\\v0.2.1\\creator.zip",
+    "target": "compatible-source",
+    "sha256": "9251dabf6c57e44e2ab77a17982837c584082fccbfb00a3ca42cafa2af136c08",
+    "size_bytes": 230892,
+    "zip_entries": 28,
+    "skills": 8,
+    "baseline_connectors": 0,
+    "largest_companion_count_per_skill": 6,
+    "largest_companion_aggregate_bytes_per_skill": 113752,
+    "byte_identical_rebuild": true
+  },
+  "implementation": {
+    "N01": "Eight-skill shell, routing and owning-skill resources implemented",
+    "N02": "Evidence observation/source/uncertainty instructions and deterministic contracts implemented",
+    "N03": "Typed revisioned blueprint, evidence links, control flow, decisions and freshness checks implemented",
+    "N04": "Native capability and real metadata mapping with separate availability/setup gaps implemented",
+    "N05": "Standalone output source assembly, reusable patterns and bounded helper generation guidance implemented",
+    "N06": "Source subset checker, canonical manifest/connector composer, ZIP builder and metadata gates implemented",
+    "N07": "Hash-inventoried source checkpoints, new-directory resume and conservative edit-preserving three-way merge implemented",
+    "N08_offline": "Source/helper/package/correction regressions and controlled synthetic cases executed",
+    "N09_offline": "Pattern catalog, three distinct workflow families, adversarial variants, public metadata example and end-user/extension documentation implemented"
+  },
+  "local_results": {
+    "test_command": "python -B -m unittest discover -s tests -v",
+    "passed": 71,
+    "failed": 0,
+    "release_case_count": 15,
+    "distinct_executable_workflow_families": 3,
+    "negative_variants": 11,
+    "real_public_metadata_setup_block_case": 1,
+    "model_activation_prompts": 14,
+    "additional_disclosed_intent_cases": 12,
+    "disclosed_intent_cases_are_blind_holdout": false,
+    "model_activation_prompts_run": 0,
+    "extracted_owning_skill_project_round_trip": "passed locally using only its own bundled sibling modules",
+    "native_claims": "none"
+  },
+  "review_corrections": [
+    {
+      "id": "known-business-mutation-effect",
+      "result": "Known non-read-only business tools cannot be labeled read/local-write to clear toolkit readiness; explicit business-write confirmation and native per-run approval remain required.",
+      "scope": "Toolkit readiness only, not a claimed bypass/fix of independent host controls."
+    },
+    {
+      "id": "confirmed-control-flow",
+      "result": "Current user confirmation can support condition/repeat with empty media evidence; supplied invalid/stale references remain rejected."
+    },
+    {
+      "id": "interrupted-evaluation-resume",
+      "result": "Malformed discarded evaluation bytes are preserved in history before removal, without parsing them; malformed required controls still fail explicitly."
+    },
+    {
+      "id": "runtime-not-development-session",
+      "result": "Runtime instructions use current-user authorization/current-host capabilities, not this development session's lock/publication state; exact history stays in operator/native/release records."
+    },
+    {
+      "id": "explicit-authoring-intent",
+      "result": "Entry intent gate precedes init/generation and excludes existing-output execution, recording summaries, feasibility-only analysis and scheduling existing outputs. Ambiguous perform-versus-author requests require clarification; activation prompts remain unrun."
+    },
+    {
+      "id": "unicode-output-atomicity",
+      "result": "Failing-first regression reproduced empty-file residue. UTF-8 encoding now precedes exclusive binary creation with a specific InputError; invalid Unicode creates no file, valid Unicode writes exact bytes, and existing outputs remain unchanged. All example copies/evaluations were freshly generated."
+    },
+    {
+      "id": "public-provenance-closure",
+      "result": "The optional packaged Learn example now includes the exact original 4950-byte raw response alongside definitions/provenance; no native connection or new runtime requirement is implied."
+    }
+  ],
+  "native_readiness": {
+    "expanded_candidate_installed": "unverified",
+    "expanded_candidate_invoked": "unverified",
+    "independent_output_invocation": "unverified",
+    "direct_canonical_v1_28_acceptance": "unverified; approved publishing metadata missing",
+    "scheduling": "not-exercised",
+    "real_cowork_learn_connection": "unverified; public metadata observation is not native availability",
+    "N00": "blocked-desktop-locked; original output publication acceptance UNKNOWN",
+    "N08": "blocked pending separately authorized native exercises",
+    "inherited_claims_from_v0_1_artifacts": false
+  },
+  "limits": [
+    "No host UI/access workaround was attempted by the coding session.",
+    "Current text/Python/JSON source subset is not full arbitrary Microsoft schema support or a code sandbox.",
+    "Source-format export does not silently project remote connector/auth/descriptor declarations.",
+    "Native video evidence was a static silent synthetic clip via an already-present native decoder and three visually inspected frames.",
+    "Native control, permissions, legal approval and actual media/semantic understanding are not proved by authoring JSON records.",
+    "Original v0.1.0/v0.1.1/native artifacts remain unchanged; earlier v0.2.0 and intermediate v0.2.1 artifacts are preserved but are not the final handoff candidate."
+  ],
+  "superseded_candidate": {
+    "path": "dist\\v0.2.0\\creator.zip",
+    "sha256": "13061a6bf42442fa36dbd984a39c7dee91a1e77d9ba131120f7c0bd19cd1f0b6",
+    "not_final_handoff": true
+  },
+  "handoff": {
+    "inventory": "dist\\v0.2.1\\inventory.json",
+    "release_report": "dist\\v0.2.1\\release.json",
+    "offline_cases": "dist\\v0.2.1\\offline-cases.json",
+    "disclosed_intent_status": "dist\\v0.2.1\\evals\\intent-case-status.json",
+    "operator_continuation": "docs\\operator-continuation.md",
+    "user_guide": "docs\\user-guide.md",
+    "extension_guide": "docs\\extensions.md"
+  }
+}

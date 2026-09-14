@@ -1,0 +1,57 @@
+{
+  "purpose": "Evaluator reference only. Do not attach this file or the baseline candidate during the native observation test.",
+  "modality": "ordered synthetic screenshots and a separately generated silent WebM sequence",
+  "expected_order": [
+    "01-source-inventory.png",
+    "02-retained-calculations.png",
+    "03-report-result.png"
+  ],
+  "visual_only_note": "LANTERN-42",
+  "demonstrated_period": "2026-08",
+  "source_items": [
+    {"id": "R101", "state": "ready", "quantity": 2, "unit_cost": "12.50"},
+    {"id": "R102", "state": "hold", "quantity": 5, "unit_cost": "3.10"},
+    {"id": "R103", "state": "ready", "quantity": 3, "unit_cost": "7.20"},
+    {"id": "R104", "state": "ready", "quantity": 1, "unit_cost": "4.05"}
+  ],
+  "retained_ids": ["R101", "R103", "R104"],
+  "excluded_ids": ["R102"],
+  "demonstrated_total": "50.65",
+  "new_input_period": "2026-09",
+  "new_input_included": 4,
+  "new_input_excluded": 1,
+  "new_input_total": "27.78",
+  "material_rules_not_observed_in_screenshots": [
+    "empty inventory",
+    "malformed or duplicate records",
+    "invalid reporting month",
+    "existing output path"
+  ],
+  "video_status": "limited_native_semantic_observation_reported",
+  "video_fixture": {
+    "path": "dist\\n00-video\\n00-process-demo.webm",
+    "sha256": "080148c22a568107bed7f0542d5983777f4b60920f3894507590310b1bf9e011",
+    "duration_seconds": 12,
+    "initial_inventory_interval": [0, 4],
+    "calculations_interval": [4, 8],
+    "result_interval": [8, 12],
+    "interval_end_is_exclusive": true,
+    "audio": "none",
+    "limitations": "Synthetic static screens/transitions, not continuous real mouse or desktop activity; no narration."
+  },
+  "native_observation_comparison": {
+    "evidence_kind": "parent-assistant-operator-report",
+    "fresh_inputs": ["process.md", "n00-process-demo.webm"],
+    "matching_reported_facts": [
+      "visual-only note LANTERN-42",
+      "all source IDs, states, quantities and unit costs",
+      "retained IDs R101/R103/R104 and excluded ID R102",
+      "line costs25.00/21.60/4.05",
+      "sample month2026-08 and displayed total50.65"
+    ],
+    "native_method": "Direct video view unsupported; pre-existing native imageio_ffmpeg decoded24 frames. Cowork's own native parent visually inspected originalframes1/9/17 at0/4/8seconds and supplied observations to its native authoring worker.",
+    "no_external_visual_answers_supplied": true,
+    "not_established": ["all24frames visually reviewed", "exact step interval boundaries", "continuous UI motion", "narration", "every workflow rule"]
+  },
+  "human_review_status": "not-human-reviewed"
+}
