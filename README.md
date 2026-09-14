@@ -68,6 +68,15 @@ or pass a new `--output` directory. Original v0.1.0/v0.1.1 and native proof
 artifacts remain unchanged. Development commands are not end-user runtime
 dependencies.
 
+## Contributed examples
+
+[Restaurant bill splitter](examples/bill-splitter/process.md) adapts a
+contributor-generated skill into the existing candidate-and-fixtures layout.
+It includes an independent arithmetic helper, workbook layout reference and
+synthetic regression cases. The original recording and workbook are not
+required at runtime. Native installation and workbook creation for this
+revision remain unverified; it is separate from the preview release artifacts.
+
 ## Toolkit and source layout
 
 The owning `build-output-plugin` skill contains `creator_builder.py`,

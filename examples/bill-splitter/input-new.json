@@ -1,0 +1,14 @@
+{
+  "meal_label": "Harbour Grill",
+  "diners": ["Ana", "Bo", "Cleo"],
+  "lines": [
+    {"label": "Soup", "amount": 10.00, "shares": {"Ana": 1, "Bo": 1}},
+    {"label": "Fries for the table", "amount": 6.00, "shares": {"Ana": 1, "Bo": 1, "Cleo": 1}},
+    {"label": "Steak", "amount": 30.00, "shares": {"Cleo": 1}},
+    {"label": "Beer x2", "amount": 9.00, "shares": {"Ana": 2}}
+  ],
+  "tax": 5.00,
+  "tip_rate": 0.2,
+  "printed_subtotal": 55.00,
+  "printed_total": 71.00
+}

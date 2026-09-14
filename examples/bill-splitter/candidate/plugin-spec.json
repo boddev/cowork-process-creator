@@ -1,0 +1,10 @@
+{
+  "schema_version": "creator-plugin-1",
+  "name": "restaurant-bill-splitter",
+  "title": "Restaurant Bill Splitter",
+  "version": "1.0.1",
+  "summary": "Split a restaurant receipt by shares with reconciled per-person amounts.",
+  "description": "Split an itemized restaurant receipt among up to eight named diners, allocate tax and tip in proportion to their items, and create a new workbook and per-person summary. Includes an independent standard-library arithmetic helper and a workbook layout reference; the original template, recording and Creator are not runtime dependencies. Requires existing native receipt-reading, Python and spreadsheet facilities. This adapted contributed source has no attested native installation or invocation.",
+  "skills": ["split-restaurant-bill"],
+  "connectors": []
+}
