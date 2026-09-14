@@ -1,5 +1,6 @@
 # Preserve byte-addressed runtime resources and public metadata across checkouts.
 appPackage/** -text whitespace=cr-at-eol
+examples/bill-splitter/candidate/skills/** -text whitespace=cr-at-eol
 examples/offline/public-learn/** -text whitespace=cr-at-eol
 evals/creator-intent-cases.json -text whitespace=cr-at-eol
 

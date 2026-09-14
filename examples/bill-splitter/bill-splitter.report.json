@@ -1,0 +1,47 @@
+{
+  "artifact_kind": "compatible-source-export",
+  "builder_version": "0.2.1",
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "c803d558e4827a3eb6c62f0e269f8b68aabff429d21c77f6d02f1791be4ed5a5",
+      "size_bytes": 580
+    },
+    {
+      "path": "skills/split-restaurant-bill/SKILL.md",
+      "sha256": "bdfa243d08e5f827d786f7111409c287b6c041f8168b3e93eafc9bc6acf876cc",
+      "size_bytes": 9144
+    },
+    {
+      "path": "skills/split-restaurant-bill/references/helper-contract.md",
+      "sha256": "44a36ae95f93068719eccb872633c3e58bcc652157a9f305e994a504046c4f27",
+      "size_bytes": 5581
+    },
+    {
+      "path": "skills/split-restaurant-bill/references/template-layout.md",
+      "sha256": "da473cfc30542cf22cbf81e04fbcee21144bc23fb5d116da059dcf6c9cac33f4",
+      "size_bytes": 5908
+    },
+    {
+      "path": "skills/split-restaurant-bill/scripts/safe_json.py",
+      "sha256": "4770136044a9efd54728b7fa341fca55c045ca734e9a8651816ae0fa33c1e1c3",
+      "size_bytes": 3193
+    },
+    {
+      "path": "skills/split-restaurant-bill/scripts/split_bill.py",
+      "sha256": "33cc48de23103f29a5f1377ce79d3f578c1d163e57f094f52aacb360da055c9b",
+      "size_bytes": 11597
+    }
+  ],
+  "host_acceptance": "unverified",
+  "manual_invocation": "unverified",
+  "native_execution": "not_attested_by_builder",
+  "plugin": "restaurant-bill-splitter",
+  "publishing_metadata": "not supplied or represented by this source format",
+  "scheduling": "not_exercised",
+  "sha256": "d50f635cfa3d40e81087a4f80e261f812a1c095fb33a700aba38ea2738e7f5a3",
+  "size_bytes": 37037,
+  "status": "Draft",
+  "target": "compatible-source",
+  "validation_scope": "Creator emitted source/manifest/descriptor subset; not the full Microsoft schema or a code sandbox"
+}

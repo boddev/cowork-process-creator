@@ -1,0 +1,20 @@
+{
+  "meal_label": "Harbour Grill",
+  "items_subtotal": "55.00",
+  "tax": "5.00",
+  "tip_rate": "20.00",
+  "tip": "11.00",
+  "grand_total": "71.00",
+  "check": "0.00",
+  "lines": [
+    {"label": "Soup", "amount": "10.00", "shares_claimed": 2, "cost_per_share": "5.00", "shares": {"Ana": 1, "Bo": 1}},
+    {"label": "Fries for the table", "amount": "6.00", "shares_claimed": 3, "cost_per_share": "2.00", "shares": {"Ana": 1, "Bo": 1, "Cleo": 1}},
+    {"label": "Steak", "amount": "30.00", "shares_claimed": 1, "cost_per_share": "30.00", "shares": {"Cleo": 1}},
+    {"label": "Beer x2", "amount": "9.00", "shares_claimed": 2, "cost_per_share": "4.50", "shares": {"Ana": 2}}
+  ],
+  "people": [
+    {"name": "Ana", "items": "16.00", "tax_share": "1.45", "tip_share": "3.20", "total_owed": "20.65"},
+    {"name": "Bo", "items": "7.00", "tax_share": "0.64", "tip_share": "1.40", "total_owed": "9.04"},
+    {"name": "Cleo", "items": "32.00", "tax_share": "2.91", "tip_share": "6.40", "total_owed": "41.31"}
+  ]
+}
