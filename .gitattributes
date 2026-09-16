@@ -6,3 +6,7 @@ evals/creator-intent-cases.json -text whitespace=cr-at-eol
 
 # The original SSE response deliberately ends with a blank event separator.
 **/learn-mcp-tools-response.txt whitespace=cr-at-eol,-blank-at-eof
+
+# Scenario evidence and native exports are byte-addressed across worktrees.
+scenarios/** -text whitespace=cr-at-eol
+output/** -text whitespace=cr-at-eol

@@ -1,0 +1,41 @@
+{
+  "coverage": {
+    "case_count": 0,
+    "case_kind_counts": {},
+    "diversity_limit": "Counts and exact/structural reuse signals are observed; business diversity, research quality and golden independence still require review.",
+    "errors": [
+      "No implemented scenarios discovered; foundation fixtures do not count",
+      "Need at least 15 implemented scenarios; found 0",
+      "Need Manufacturing, Health/Life Sciences, Financial Services, Retail, and at least one other industry",
+      "Need at least five distinct workflow families, not sector relabelings"
+    ],
+    "full_corpus_required": true,
+    "identical_demo_groups": [],
+    "identical_procedure_groups": [],
+    "industry_counts": {},
+    "scenario_count": 0,
+    "shared_step_shape_groups": [],
+    "workflow_family_counts": {}
+  },
+  "local_baselines_ready": false,
+  "local_corpus_ready": false,
+  "local_media_ready": false,
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "native_complete": false,
+  "provenance": "foundation-observed-local-corpus",
+  "scenarios": [],
+  "schema_version": 1
+}
