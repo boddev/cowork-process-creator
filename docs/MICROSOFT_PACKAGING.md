@@ -1,15 +1,13 @@
 # Native Microsoft Copilot Cowork packaging
 
-The current Creator emits **Microsoft Copilot Cowork packages**, not Claude
-Cowork plugins. Starting with source v0.3.0, both package build APIs/CLIs and
-the release builder require `cowork-v1.28`. They reject alternative targets
-instead of silently switching formats.
+This guide is for developers building plugin packages. To install Creator,
+follow the [user guide](user-guide.md).
 
-The rule comes from the user's explicit requirement and the
-[Microsoft Cowork developer guide](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development).
-The emitted subset identifies the
-[M365 v1.28 schema](https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json).
-This is not a claim to validate every arbitrary Microsoft schema feature.
+The builder targets Microsoft's native app package format, using
+`cowork-v1.28`. See the
+[Microsoft developer guide](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development)
+and [M365 v1.28 schema](https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json).
+It validates the subset it generates, not every feature in the Microsoft schema.
 
 ## Required ZIP layout
 
@@ -19,18 +17,16 @@ name/description, `icons`, `accentColor`, and `agentSkills[].folder`.
 The declared folders contain `SKILL.md` and all resources needed by each
 skill. Root `color.png` is 192x192; `outline.png` is 32x32.
 
-`SKILL.md` and its YAML frontmatter remain correct: Microsoft uses the shared
-Agent Skills standard. The package manifest and supported capabilities are
-what distinguish the Microsoft package from a Claude plugin.
+Skills use the shared Agent Skills standard: a `SKILL.md` file with YAML
+frontmatter, plus any supporting files.
 
 Optional real remote connectors are declared in `agentConnectors`; every
 `remoteMcpServer` includes `mcpToolDescription.file` pointing to its included
 tool-description JSON. Do not invent endpoints, tool names or registrations.
 
 A `.claude-plugin/plugin.json`, `.cursor-plugin` or `devPreview` manifest
-does not satisfy this output contract. The older v0.2.1 compatible-source
-preview and native-prototype downloads remain unchanged historical artifacts;
-they are not newly generated Microsoft manifest packages.
+does not satisfy this native output format. The builder does not convert
+to another format when required information is missing.
 
 ## Publishing metadata is a real prerequisite
 
@@ -44,10 +40,9 @@ Supply a JSON object containing exactly:
 | `developer.privacyUrl` | Real approved HTTPS privacy statement |
 | `developer.termsOfUseUrl` | Real approved HTTPS terms |
 
-The public GitHub repository is not implicit approval to invent legal
-documents or use somebody else's privacy/terms. No metadata, secrets, OAuth
-registration or consent is generated automatically. Unit tests use temporary
-syntax fixtures only; those values are never release metadata.
+Use details approved for the publisher. Do not substitute test identities
+or someone else's legal URLs. The builder does not register an app, create
+credentials, or grant account permissions.
 
 For a single candidate, use the owning build skill's bundled project CLI:
 
@@ -72,24 +67,12 @@ above and a distinct app ID. All are checked before building. Missing/invalid
 metadata produces an explicit failure and no replacement-format package.
 The directory is local-only and should not contain credentials.
 
-## Current status
+## Current native-build status
 
-No approved publishing metadata has been supplied for a v0.3.0 release. The
-code path is implemented, but no real native-ready release package is
-claimed. Preserve useful editable source/checkpoints while this is blocked.
+The v0.3.0 native release build still needs approved publishing metadata.
+See [native-manifest-status.json](native-manifest-status.json) for its status.
 
-The 15 enterprise scenarios have mock data, baseline outputs and videos, but
-**zero scenario plugins have been generated or installed in native Cowork**.
-Their native access gate is separately blocked. Future generation prompts
-explicitly require the Microsoft manifest, and the scenario import gate
-rejects Claude-layout and wrong-version packages before comparison.
-
-`evals/n00.json` preserves the original historical proof prompts, not current
-packaging instructions. Active authoring prompts use v0.3.0;
-`evals/intent-case-status.json` explicitly supersedes the original disclosed
-intent case that allowed compatible-source export, without rewriting its
-historical bytes or claiming a new model run.
-
-Passing local manifest/source checks is not actual Cowork acceptance,
-independent execution, or scheduling. Record those stages separately once
-the approved native tools and accessible session are available.
+A successful build creates a package; it does not install or test it in
+Cowork. Upload **the ZIP you built** using the
+[installation steps](user-guide.md#upload-the-package), then test the
+installed plugin in a fresh task with new inputs.
