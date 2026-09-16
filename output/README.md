@@ -27,4 +27,5 @@ Local baseline success, media decoding, ZIP inspection, matching imported
 payloads, and operator-supplied status strings do not advance native stages.
 The [corpus how-to](../scenarios/HOW_TO.md) documents the future bounded native
 comparison and the importer that keeps observed bytes separate from claims.
-No push, release, or publication is authorized.
+Source integration does not authorize Cowork publication or a new release;
+native actions remain blocked.

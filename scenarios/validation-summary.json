@@ -100,6 +100,7 @@
     "historical_native_and_release_artifacts_unchanged": true,
     "prior_three_uncommitted_operator_status_updates_preserved": true,
     "current_os_cache_artifacts": 0,
+    "publication_status_scope": "Historical pre-publication snapshot: pushed_to_github records local corpus preparation, not the live GitHub repository state after source integration.",
     "pushed_to_github": false,
     "native_actions_taken": false
   }
