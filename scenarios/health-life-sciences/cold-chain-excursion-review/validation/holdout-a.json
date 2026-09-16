@@ -1,0 +1,216 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "23b5eed82d8375af0dea90769bc8152ab4d189dbf27f2951e628c067afe52ceb",
+    "golden_sha256": "c049911da0d59e23bc45707787a9b2a84cf8f3f24ad7fee3116a52657718e958",
+    "input_sha256": "5be81856763a437be462b67bbbf8f4f091db3f01da068d28a6dc1255e529c196",
+    "result": "baseline-output/holdout-a.json",
+    "result_sha256": "ea52322493212781cd1c12c8858b8b2b52a868a2d79a07e76565da042d49e4c8",
+    "trace": "baseline-output/holdout-a.trace.json",
+    "trace_sha256": "833ed8bbbbfaa6acae0c77da45c6e086524912685eddda072472275e69074ff8"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "bisect",
+      "collections",
+      "datetime",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "holdout-a",
+  "documented": {
+    "case_rule_coverage": [
+      "bounded-interval-model",
+      "point-boundaries",
+      "unknown-and-conflict",
+      "deduplicate-provenance",
+      "unique-lot-aggregation"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "Cardinality changes from3 lots/2profiles to2 lots/1profile, with a new day and finite exits. U occupies09:05-09:25=1200s:300 covered outside then900 wholly unknown because the original15-minute gap exceeds600. V enters exactly09:10 and occupies900 unknown seconds; no overlap with the prior outside point/segment. R25 at exit and R35 after as-of do not create point flags. U min/max50/90, V50/50 from occupied points. Review3+7=10, two gap lots. Future R35 is listed once; all14 source entries enumerated manually.",
+    "steps": [
+      {
+        "id": "load-cold-chain-export",
+        "kind": "input",
+        "rule_ids": [
+          "strict-bounded-input"
+        ]
+      },
+      {
+        "id": "validate-sensor-evidence",
+        "kind": "validation",
+        "rule_ids": [
+          "strict-bounded-input",
+          "deduplicate-provenance"
+        ]
+      },
+      {
+        "id": "join-lot-profile-occupancy",
+        "kind": "join",
+        "rule_ids": [
+          "profile-specific-bands",
+          "deduplicate-provenance"
+        ]
+      },
+      {
+        "id": "reconstruct-covered-intervals",
+        "kind": "join",
+        "rule_ids": [
+          "bounded-interval-model",
+          "strict-bounded-input"
+        ]
+      },
+      {
+        "id": "classify-observations",
+        "kind": "decision",
+        "rule_ids": [
+          "profile-specific-bands",
+          "point-boundaries"
+        ]
+      },
+      {
+        "id": "isolate-coverage-conflicts",
+        "kind": "exception",
+        "rule_ids": [
+          "unknown-and-conflict",
+          "deduplicate-provenance"
+        ]
+      },
+      {
+        "id": "aggregate-quality-review",
+        "kind": "decision",
+        "rule_ids": [
+          "unique-lot-aggregation",
+          "document-qualified-review"
+        ]
+      },
+      {
+        "id": "write-excursion-packet",
+        "kind": "output",
+        "rule_ids": [
+          "draft-only-output",
+          "document-qualified-review"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/holdout-a.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/health-life-sciences/cold-chain-excursion-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.410768,
+  "kind": "holdout",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-cold-chain-export"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-sensor-evidence"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "join-lot-profile-occupancy"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "reconstruct-covered-intervals"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "classify-observations"
+      },
+      {
+        "kind": "exception",
+        "sequence": 6,
+        "step_id": "isolate-coverage-conflicts"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "aggregate-quality-review"
+      },
+      {
+        "kind": "output",
+        "sequence": 8,
+        "step_id": "write-excursion-packet"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "hls-02",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "ddc9e02631c76ef8fc3764e3e394d05440a29ab698617b515499671dc9d148d1",
+    "baseline.py": "23b5eed82d8375af0dea90769bc8152ab4d189dbf27f2951e628c067afe52ceb",
+    "connections.json": "5c7d04cfd2f65288e1206bb58c95700b03a656f9eeb5b1b4d02c073a2b1341d1",
+    "expected/demo.json": "f321bd7a498d0e6919b48a829ea1e5cfe89428ba38439ece46884c95fe77a2e8",
+    "expected/holdout-a.json": "c049911da0d59e23bc45707787a9b2a84cf8f3f24ad7fee3116a52657718e958",
+    "expected/holdout-b.json": "f2aff57530eca059989b1c49e6fac13e447abde118e945cfee900ed88c25fd51",
+    "expected/negative-contradictory.json": "5068864b8f8aa518fbcf5bf127fbcfda02c5d4f2161871e37e3e87ea906e840b",
+    "expected/negative-malformed.json": "068ab697051d68e924c23c11dd479917169ef865526b3e5436c18de0ba551a89",
+    "mock-data/demo.json": "7df92e50dd5466e6994c2a621d2f5d7de772fc316e764eff61a11e1e61a7dbaa",
+    "mock-data/holdout-a.json": "5be81856763a437be462b67bbbf8f4f091db3f01da068d28a6dc1255e529c196",
+    "mock-data/holdout-b.json": "e70c62205f880ecedcfcd5da6d6c1b3a3cf00e795dec12b4520f6bf348cc3f29",
+    "mock-data/negative-contradictory.json": "9b364abb104cb0485f93b513ad349906afeb94482d06d4ef83f0c4973bb41abb",
+    "mock-data/negative-malformed.json": "9c1cd6cfcc1023e2984be9c3a324412ac1a00f50942d774ebd8de411ee8ed1c9",
+    "scenario.json": "8748a40d20a8c58d1c9f0c14a29ea170e29e2f4111625d7ba3422bd33523516c",
+    "sources.json": "a435070ca794f466d52fa3da55d7757e92b3b14f971b9736b7b83fd7a581b5c1",
+    "workflow.json": "5086bedb341b4bfe7bf8abf307828c17d262420febc80e3b46d3800722196779"
+  },
+  "state": "baseline_pass"
+}

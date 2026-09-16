@@ -1,0 +1,412 @@
+{
+  "events": [
+    {
+      "caption": "Load supplied synthetic export rows; no live system or financial action.",
+      "facts": {
+        "synthetic_input": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-exports",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "scopes",
+              2
+            ],
+            [
+              "bank_lines",
+              4
+            ],
+            [
+              "ledger_lines",
+              6
+            ],
+            [
+              "mappings",
+              3
+            ],
+            [
+              "batches",
+              1
+            ]
+          ],
+          "title": "Supplied source counts (null means invalid collection)",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Both normalized source closes agree with their included rows.",
+      "facts": {
+        "bank_rows": 4,
+        "ledger_rows": 6,
+        "scopes": 2
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-close",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "currency",
+            "bank_close",
+            "bank_sum",
+            "ledger_close",
+            "ledger_sum"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A",
+              "USD",
+              12002,
+              12002,
+              12000,
+              12000
+            ],
+            [
+              "SYN-B",
+              "USD",
+              57000,
+              57000,
+              57000,
+              57000
+            ]
+          ],
+          "title": "Validated source closes (minor units)",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Signs and fixed-offset business dates are normalized; ledger exclusions stay visible.",
+      "facts": {
+        "cutoff": "2026-07-31",
+        "excluded_ledger": 0,
+        "offset_minutes": 0
+      },
+      "kind": "validation",
+      "sequence": 3,
+      "step_id": "normalize-cutoff",
+      "tables": [
+        {
+          "columns": [
+            "bank_id",
+            "scope",
+            "local_date",
+            "amount_minor",
+            "reference",
+            "mapped_type"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A-B1",
+              "SYN-A",
+              "2026-07-30",
+              3000,
+              "SYN-THREE",
+              "RECEIPT"
+            ],
+            [
+              "SYN-A-B2",
+              "SYN-A",
+              "2026-07-31",
+              10002,
+              "SYN-CENT",
+              "RECEIPT"
+            ],
+            [
+              "SYN-A-B3",
+              "SYN-A",
+              "2026-07-31",
+              -1000,
+              "SYN-LATE",
+              "PAYMENT"
+            ],
+            [
+              "SYN-B-B1",
+              "SYN-B",
+              "2026-07-31",
+              7000,
+              "SYN-CENT",
+              "RECEIPT"
+            ]
+          ],
+          "title": "Normalized bank rows",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Full single-candidate graph and exact batch members are available before any pair is selected.",
+      "facts": {
+        "batch_edges": 3,
+        "batch_manifests": 1,
+        "date_window_days": 2,
+        "reserved_members": 3,
+        "single_edges": 2,
+        "tolerance_minor": 2
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "join-candidates",
+      "tables": [
+        {
+          "columns": [
+            "bank_id",
+            "scope",
+            "batch",
+            "candidate_count",
+            "ledger_ids"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A-B1",
+              "SYN-A",
+              "SYN-THREE",
+              3,
+              "SYN-A-L1, SYN-A-L2 (+1 more)"
+            ],
+            [
+              "SYN-A-B2",
+              "SYN-A",
+              null,
+              1,
+              "SYN-A-L4"
+            ],
+            [
+              "SYN-A-B3",
+              "SYN-A",
+              null,
+              0,
+              ""
+            ],
+            [
+              "SYN-B-B1",
+              "SYN-B",
+              null,
+              1,
+              "SYN-B-L1"
+            ]
+          ],
+          "title": "Candidate evidence (ID previews counted)",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Only exact complete batches and isolated single pairs are candidate matches; nothing is posted.",
+      "facts": {
+        "candidate_groups": 3,
+        "pending_corrections": 1
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "decide-matches",
+      "tables": [
+        {
+          "columns": [
+            "bank_id",
+            "ledger_ids",
+            "kind",
+            "bank",
+            "ledger",
+            "delta"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A-B1",
+              "SYN-A-L1, SYN-A-L2 (+1 more)",
+              "batch",
+              3000,
+              3000,
+              0
+            ],
+            [
+              "SYN-A-B2",
+              "SYN-A-L4",
+              "single",
+              10002,
+              10000,
+              2
+            ],
+            [
+              "SYN-B-B1",
+              "SYN-B-L1",
+              "single",
+              7000,
+              7000,
+              0
+            ]
+          ],
+          "title": "Candidate groups (minor units)",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Every unresolved row and candidate correction is routed to review with a concrete reason.",
+      "facts": {
+        "exception_records": 4,
+        "live_action": "none"
+      },
+      "kind": "exception",
+      "sequence": 6,
+      "step_id": "route-unresolved",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "record_id",
+            "reason"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A",
+              "SYN-A-B2",
+              "pending-correction"
+            ],
+            [
+              "SYN-A",
+              "SYN-A-B3",
+              "date-mismatch"
+            ],
+            [
+              "SYN-A",
+              "SYN-A-L4",
+              "pending-correction"
+            ],
+            [
+              "SYN-A",
+              "SYN-A-L5",
+              "date-mismatch"
+            ]
+          ],
+          "title": "Review queue",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "The signed opening/unmatched/delta bridge equals the closing difference for every scope.",
+      "facts": {
+        "bridges_equal": true,
+        "scopes": 2
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "bridge-balances",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "opening_diff",
+            "unmatched_bank",
+            "unmatched_ledger",
+            "match_delta",
+            "close_diff"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A",
+              0,
+              -1000,
+              -1000,
+              2,
+              2
+            ],
+            [
+              "SYN-B",
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "title": "Signed bridges (minor units; never cross-currency netted)",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Complete synthetic controller packet: all rows accounted for, human review pending, no financial action.",
+      "facts": {
+        "exceptions": 4,
+        "groups": 3,
+        "human_review": "pending",
+        "live_action": "none",
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "emit-review-packet",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "groups",
+            "unresolved_bank",
+            "unresolved_ledger",
+            "difference_minor",
+            "disposition"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-A",
+              2,
+              1,
+              1,
+              2,
+              "review-required"
+            ],
+            [
+              "SYN-B",
+              1,
+              0,
+              0,
+              0,
+              "no-open-items"
+            ]
+          ],
+          "title": "Controller packet",
+          "total_rows": 2
+        }
+      ]
+    }
+  ],
+  "input_sha256": "9b307911691cf9993cb6c9e7c4f73effb8441620e1c36a88c4679a97d9ad8b5d",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-01",
+  "schema_version": 1
+}

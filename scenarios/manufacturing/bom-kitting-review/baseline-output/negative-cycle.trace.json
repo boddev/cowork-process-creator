@@ -1,0 +1,244 @@
+{
+  "events": [
+    {
+      "caption": "Read one synthetic JSON bundle containing six independent logical exports; no live or physical multi-file ingestion.",
+      "facts": {
+        "business_connections": 0,
+        "logical_exports": 6
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows_received"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1
+            ],
+            [
+              "bom_versions",
+              2
+            ],
+            [
+              "bom_lines",
+              2
+            ],
+            [
+              "items",
+              2
+            ],
+            [
+              "stock_lots",
+              0
+            ],
+            [
+              "inbound",
+              0
+            ]
+          ],
+          "title": "Received logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Validated strict fields, dates, quantities, supported EA/line types, and source identity; identical duplicates count once.",
+      "facts": {
+        "duplicate_groups": 0,
+        "fatal_errors": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-structure",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "received_rows",
+            "unique_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1,
+              1
+            ],
+            [
+              "bom_versions",
+              2,
+              2
+            ],
+            [
+              "bom_lines",
+              2,
+              2
+            ],
+            [
+              "items",
+              2,
+              2
+            ],
+            [
+              "stock_lots",
+              0,
+              0
+            ],
+            [
+              "inbound",
+              0,
+              0
+            ]
+          ],
+          "title": "Validated unique exports",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Joined ordered in-scope demand to approved applicable root BOM versions; explicit requests do not fall back.",
+      "facts": {
+        "excluded_orders": 0,
+        "in_scope_orders": 1,
+        "selected_roots": 1
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "select-bom",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "item_id",
+            "quantity",
+            "version_id",
+            "decision"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "CY01",
+              "CY",
+              1,
+              "CY-V",
+              "selected"
+            ]
+          ],
+          "title": "Root version selections",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Execution stopped at expand-phantoms: BOM_CYCLE.",
+      "facts": {
+        "fatal_errors": 1,
+        "order_id": "CY01"
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "expand-phantoms",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "BOM_CYCLE",
+              "CY01",
+              "M-TO-C",
+              "component_id",
+              "BOM expansion repeats ancestor item CY."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Fatal business evidence supersedes partial calculations; no material plan is published.",
+      "facts": {
+        "fatal_errors": 1
+      },
+      "kind": "exception",
+      "sequence": 5,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "BOM_CYCLE",
+              "CY01",
+              "M-TO-C",
+              "component_id",
+              "BOM expansion repeats ancestor item CY."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "The input was rejected. No assignments or production authorization were emitted.",
+      "facts": {
+        "exceptions": 1,
+        "output_keys": 0,
+        "status": "rejected"
+      },
+      "kind": "output",
+      "sequence": 6,
+      "step_id": "close-plan",
+      "tables": [
+        {
+          "columns": [
+            "status",
+            "plan_emitted",
+            "production_authorized"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "rejected",
+              false,
+              false
+            ]
+          ],
+          "title": "Rejected review",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "efa8eb43d2070f1b6d159d6b8e9eac6db1a107a7ddb980074ce4dd76efeb0423",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1
+}

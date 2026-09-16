@@ -1,0 +1,13 @@
+{
+  "exceptions": [
+    {
+      "code": "contradictory-evidence",
+      "message": "Conflicting rows share a primary identifier.",
+      "owner_role": null,
+      "subject": "observations:MFG-CONFLICT"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

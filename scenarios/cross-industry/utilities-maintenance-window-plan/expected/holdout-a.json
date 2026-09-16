@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "notice": "Planning review only; not safe-to-work clearance or authorization.",
+    "planning_window": {"as_of": "2026-11-02T12:00:00Z", "start": "2026-11-02T13:00:00Z", "end": "2026-11-02T18:00:00Z", "slot_minutes": 30, "max_search_starts": 60},
+    "orders": [
+      {"work_order_id": "UT-A01", "disposition": "proposed", "reason": null, "ready_at": "2026-11-02T13:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-A02", "disposition": "proposed", "reason": null, "ready_at": "2026-11-02T13:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 7},
+      {"work_order_id": "UT-A03", "disposition": "proposed", "reason": null, "ready_at": "2026-11-02T14:30:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-A04", "disposition": "deferred", "reason": "no-feasible-window", "ready_at": "2026-11-02T17:30:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 0}
+    ],
+    "proposals": [
+      {"work_order_id": "UT-A01", "start": "2026-11-02T13:00:00Z", "end": "2026-11-02T14:30:00Z", "duration_minutes": 90, "crew_id": "CE-A02", "area_id": "A", "tool_id": "T-A1", "contingent_on": []},
+      {"work_order_id": "UT-A03", "start": "2026-11-02T14:30:00Z", "end": "2026-11-02T15:00:00Z", "duration_minutes": 30, "crew_id": "CE-A01", "area_id": "A", "tool_id": null, "contingent_on": ["UT-A01"]},
+      {"work_order_id": "UT-A02", "start": "2026-11-02T16:00:00Z", "end": "2026-11-02T17:00:00Z", "duration_minutes": 60, "crew_id": "CE-A01", "area_id": "B", "tool_id": "T-A1", "contingent_on": []}
+    ],
+    "conflicts": [
+      {"work_order_id": "UT-A01", "candidate_start": "2026-11-02T13:00:00Z", "crew_id": "CE-A01", "resource_id": "CE-A01", "reason": "existing-booking", "blocking_id": "BOOK-A-CE1"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T13:00:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "proposed-booking", "blocking_id": "UT-A01"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T13:30:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "proposed-booking", "blocking_id": "UT-A01"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T14:00:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "proposed-booking", "blocking_id": "UT-A01"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T14:30:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "existing-booking", "blocking_id": "BOOK-A-T1"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T15:00:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "existing-booking", "blocking_id": "BOOK-A-T1"},
+      {"work_order_id": "UT-A02", "candidate_start": "2026-11-02T15:30:00Z", "crew_id": null, "resource_id": "T-A1", "reason": "existing-booking", "blocking_id": "BOOK-A-T1"}
+    ],
+    "review_queue": [
+      {"work_order_id": "UT-A04", "code": "no-feasible-window", "owner": "PLANNER-A", "next_action": "Review candidate windows, due time, and resource conflicts."}
+    ],
+    "resource_load": [
+      {"resource_id": "A", "kind": "area", "available_minutes": 300, "committed_minutes": 0, "proposed_minutes": 120, "total_booked_minutes": 120},
+      {"resource_id": "B", "kind": "area", "available_minutes": 300, "committed_minutes": 0, "proposed_minutes": 60, "total_booked_minutes": 60},
+      {"resource_id": "CE-A01", "kind": "crew", "available_minutes": 300, "committed_minutes": 60, "proposed_minutes": 90, "total_booked_minutes": 150},
+      {"resource_id": "CE-A02", "kind": "crew", "available_minutes": 300, "committed_minutes": 0, "proposed_minutes": 90, "total_booked_minutes": 90},
+      {"resource_id": "T-A1", "kind": "tool", "available_minutes": 300, "committed_minutes": 60, "proposed_minutes": 150, "total_booked_minutes": 210}
+    ],
+    "summary": {"work_orders": 4, "proposed": 3, "deferred": 1, "job_minutes": 180, "rejected_candidates": 7}
+  },
+  "exceptions": [
+    {"code": "no-feasible-window", "message": "No complete resource window fits the order.", "work_order_id": "UT-A04"}
+  ]
+}

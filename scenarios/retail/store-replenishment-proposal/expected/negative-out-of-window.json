@@ -1,0 +1,4 @@
+{
+  "schema_version": 1, "status": "rejected", "outputs": {},
+  "exceptions": [{"code": "snapshot-date-mismatch", "message": "Inventory snapshot must match as_of.", "reference": "store_stock:SYN-STORE-Z|SYN-SKU-Z"}]
+}

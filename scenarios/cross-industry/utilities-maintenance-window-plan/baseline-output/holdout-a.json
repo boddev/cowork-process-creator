@@ -1,0 +1,208 @@
+{
+  "exceptions": [
+    {
+      "code": "no-feasible-window",
+      "message": "No complete resource window fits the order.",
+      "work_order_id": "UT-A04"
+    }
+  ],
+  "outputs": {
+    "conflicts": [
+      {
+        "blocking_id": "BOOK-A-CE1",
+        "candidate_start": "2026-11-02T13:00:00Z",
+        "crew_id": "CE-A01",
+        "reason": "existing-booking",
+        "resource_id": "CE-A01",
+        "work_order_id": "UT-A01"
+      },
+      {
+        "blocking_id": "UT-A01",
+        "candidate_start": "2026-11-02T13:00:00Z",
+        "crew_id": null,
+        "reason": "proposed-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      },
+      {
+        "blocking_id": "UT-A01",
+        "candidate_start": "2026-11-02T13:30:00Z",
+        "crew_id": null,
+        "reason": "proposed-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      },
+      {
+        "blocking_id": "UT-A01",
+        "candidate_start": "2026-11-02T14:00:00Z",
+        "crew_id": null,
+        "reason": "proposed-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      },
+      {
+        "blocking_id": "BOOK-A-T1",
+        "candidate_start": "2026-11-02T14:30:00Z",
+        "crew_id": null,
+        "reason": "existing-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      },
+      {
+        "blocking_id": "BOOK-A-T1",
+        "candidate_start": "2026-11-02T15:00:00Z",
+        "crew_id": null,
+        "reason": "existing-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      },
+      {
+        "blocking_id": "BOOK-A-T1",
+        "candidate_start": "2026-11-02T15:30:00Z",
+        "crew_id": null,
+        "reason": "existing-booking",
+        "resource_id": "T-A1",
+        "work_order_id": "UT-A02"
+      }
+    ],
+    "notice": "Planning review only; not safe-to-work clearance or authorization.",
+    "orders": [
+      {
+        "disposition": "proposed",
+        "missing_materials": [],
+        "pending_predecessors": [],
+        "ready_at": "2026-11-02T13:00:00Z",
+        "reason": null,
+        "search_starts": 1,
+        "work_order_id": "UT-A01"
+      },
+      {
+        "disposition": "proposed",
+        "missing_materials": [],
+        "pending_predecessors": [],
+        "ready_at": "2026-11-02T13:00:00Z",
+        "reason": null,
+        "search_starts": 7,
+        "work_order_id": "UT-A02"
+      },
+      {
+        "disposition": "proposed",
+        "missing_materials": [],
+        "pending_predecessors": [],
+        "ready_at": "2026-11-02T14:30:00Z",
+        "reason": null,
+        "search_starts": 1,
+        "work_order_id": "UT-A03"
+      },
+      {
+        "disposition": "deferred",
+        "missing_materials": [],
+        "pending_predecessors": [],
+        "ready_at": "2026-11-02T17:30:00Z",
+        "reason": "no-feasible-window",
+        "search_starts": 0,
+        "work_order_id": "UT-A04"
+      }
+    ],
+    "planning_window": {
+      "as_of": "2026-11-02T12:00:00Z",
+      "end": "2026-11-02T18:00:00Z",
+      "max_search_starts": 60,
+      "slot_minutes": 30,
+      "start": "2026-11-02T13:00:00Z"
+    },
+    "proposals": [
+      {
+        "area_id": "A",
+        "contingent_on": [],
+        "crew_id": "CE-A02",
+        "duration_minutes": 90,
+        "end": "2026-11-02T14:30:00Z",
+        "start": "2026-11-02T13:00:00Z",
+        "tool_id": "T-A1",
+        "work_order_id": "UT-A01"
+      },
+      {
+        "area_id": "A",
+        "contingent_on": [
+          "UT-A01"
+        ],
+        "crew_id": "CE-A01",
+        "duration_minutes": 30,
+        "end": "2026-11-02T15:00:00Z",
+        "start": "2026-11-02T14:30:00Z",
+        "tool_id": null,
+        "work_order_id": "UT-A03"
+      },
+      {
+        "area_id": "B",
+        "contingent_on": [],
+        "crew_id": "CE-A01",
+        "duration_minutes": 60,
+        "end": "2026-11-02T17:00:00Z",
+        "start": "2026-11-02T16:00:00Z",
+        "tool_id": "T-A1",
+        "work_order_id": "UT-A02"
+      }
+    ],
+    "resource_load": [
+      {
+        "available_minutes": 300,
+        "committed_minutes": 0,
+        "kind": "area",
+        "proposed_minutes": 120,
+        "resource_id": "A",
+        "total_booked_minutes": 120
+      },
+      {
+        "available_minutes": 300,
+        "committed_minutes": 0,
+        "kind": "area",
+        "proposed_minutes": 60,
+        "resource_id": "B",
+        "total_booked_minutes": 60
+      },
+      {
+        "available_minutes": 300,
+        "committed_minutes": 60,
+        "kind": "crew",
+        "proposed_minutes": 90,
+        "resource_id": "CE-A01",
+        "total_booked_minutes": 150
+      },
+      {
+        "available_minutes": 300,
+        "committed_minutes": 0,
+        "kind": "crew",
+        "proposed_minutes": 90,
+        "resource_id": "CE-A02",
+        "total_booked_minutes": 90
+      },
+      {
+        "available_minutes": 300,
+        "committed_minutes": 60,
+        "kind": "tool",
+        "proposed_minutes": 150,
+        "resource_id": "T-A1",
+        "total_booked_minutes": 210
+      }
+    ],
+    "review_queue": [
+      {
+        "code": "no-feasible-window",
+        "next_action": "Review candidate windows, due time, and resource conflicts.",
+        "owner": "PLANNER-A",
+        "work_order_id": "UT-A04"
+      }
+    ],
+    "summary": {
+      "deferred": 1,
+      "job_minutes": 180,
+      "proposed": 3,
+      "rejected_candidates": 7,
+      "work_orders": 4
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

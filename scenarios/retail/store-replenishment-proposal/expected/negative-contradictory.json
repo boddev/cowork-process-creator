@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [{"code": "contradictory-stock", "message": "Reserved and blocked units exceed physical on-hand.", "reference": "store_stock:SYN-STORE-Z|SYN-SKU-Z"}]
+}

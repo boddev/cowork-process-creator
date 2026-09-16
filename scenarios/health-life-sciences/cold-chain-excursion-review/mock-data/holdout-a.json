@@ -1,0 +1,26 @@
+{
+  "window_start": "2026-09-15T09:00:00Z",
+  "as_of": "2026-09-15T09:30:00Z",
+  "policy": {"policy_id": "SYN-POLICY-GAP", "max_gap_seconds": 600, "max_rows_per_table": 1000, "max_total_rows": 5000, "max_derived_pairs": 10000},
+  "products": [{"product_id": "SYN-PROD-R", "profile_id": "SYN-PROFILE-R"}],
+  "profiles": [{"profile_id": "SYN-PROFILE-R", "lower_tenths_c": 20, "upper_tenths_c": 80, "policy_ref": "SYN-RULE-R"}],
+  "inventory": [
+    {"lot_id": "SYN-LOT-U", "product_id": "SYN-PROD-R", "quantity_units": 3, "owner_role_id": "SYN-ROLE-Q"},
+    {"lot_id": "SYN-LOT-V", "product_id": "SYN-PROD-R", "quantity_units": 7, "owner_role_id": "SYN-ROLE-Q"}
+  ],
+  "placements": [
+    {"placement_id": "SYN-PL-U", "lot_id": "SYN-LOT-U", "unit_id": "SYN-UNIT-R", "entered_at": "2026-09-15T09:05:00Z", "left_at": "2026-09-15T09:25:00Z"},
+    {"placement_id": "SYN-PL-V", "lot_id": "SYN-LOT-V", "unit_id": "SYN-UNIT-R", "entered_at": "2026-09-15T09:10:00Z", "left_at": "2026-09-15T09:25:00Z"}
+  ],
+  "sensor_assignments": [{"assignment_id": "SYN-AS-R", "sensor_id": "SYN-SENSOR-R", "unit_id": "SYN-UNIT-R", "valid_from": "2026-09-15T08:00:00Z", "valid_until": null}],
+  "calibrations": [{"calibration_id": "SYN-C-R", "sensor_id": "SYN-SENSOR-R", "valid_from": "2026-09-01T00:00:00Z", "valid_until": "2026-10-01T00:00:00Z", "recorded_at": "2026-09-01T00:00:00Z", "attestation_ref": "SYN-CERT-R"}],
+  "readings": [
+    {"reading_id": "SYN-R00", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:00:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-R05", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:05:00Z", "temperature_tenths_c": 90},
+    {"reading_id": "SYN-R10", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:10:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-R25", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:25:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-R30", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:30:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-R35", "sensor_id": "SYN-SENSOR-R", "observed_at": "2026-09-15T09:35:00Z", "temperature_tenths_c": 90}
+  ],
+  "correspondence": []
+}

@@ -1,0 +1,175 @@
+{
+  "exceptions": [
+    {
+      "code": "SUPPLY_EXCLUSIONS",
+      "field": null,
+      "message": "2 order/source eligibility exclusion(s) require review.",
+      "order_id": null,
+      "source_id": null,
+      "source_type": null
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-10-01",
+    "closure": {
+      "approval_required": true,
+      "inventory_mutated": false,
+      "orders_released": false,
+      "production_authorized": false,
+      "reservations_created": false,
+      "review_only": true,
+      "substitutions_made": false
+    },
+    "component_requirements": [
+      {
+        "assigned_expected_qty": 3,
+        "assigned_now_qty": 1,
+        "assigned_qty": 4,
+        "available_now_qty": 1,
+        "component_id": "PANE",
+        "exact_qty": "4",
+        "expected_before_need_qty": 3,
+        "gap_qty": 0,
+        "order_id": "A01",
+        "required_qty": 4
+      }
+    ],
+    "component_totals": [
+      {
+        "assigned_expected_qty": 3,
+        "assigned_now_qty": 1,
+        "assigned_qty": 4,
+        "component_id": "PANE",
+        "gap_qty": 0,
+        "required_qty": 4,
+        "site": "NORTH"
+      }
+    ],
+    "excluded_orders": [],
+    "exploded_paths": [
+      {
+        "component_id": "PANE",
+        "exact_qty": "4",
+        "order_id": "A01",
+        "path": [
+          "NEW-PANE"
+        ]
+      }
+    ],
+    "horizon_end": "2026-10-03",
+    "order_reviews": [
+      {
+        "approval_required": true,
+        "item_id": "WINDOW",
+        "need_by": "2026-10-03",
+        "order_id": "A01",
+        "priority": 3,
+        "production_authorized": false,
+        "quantity": 2,
+        "review_owners": [
+          "Material planner",
+          "Production planner"
+        ],
+        "short_components": [],
+        "site": "NORTH",
+        "state": "covered-with-expected-receipt-review"
+      }
+    ],
+    "order_sequence": [
+      "A01"
+    ],
+    "review_queue": [
+      "A01"
+    ],
+    "selected_versions": [
+      {
+        "item_id": "WINDOW",
+        "order_id": "A01",
+        "parent_path": [],
+        "selection": "active-default",
+        "version_id": "WIN-NEW"
+      }
+    ],
+    "shadow_allocations": [
+      {
+        "component_id": "PANE",
+        "order_id": "A01",
+        "quantity": 1,
+        "source_id": "HA-BOUND",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "A01",
+        "quantity": 3,
+        "source_id": "HA-IN",
+        "source_type": "inbound"
+      }
+    ],
+    "source_balances": [
+      {
+        "assigned_qty": 1,
+        "item_id": "PANE",
+        "net_qty": 1,
+        "remaining_qty": 0,
+        "site": "NORTH",
+        "source_id": "HA-BOUND",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 2,
+        "remaining_qty": 2,
+        "site": "NORTH",
+        "source_id": "HA-EARLY",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 10,
+        "remaining_qty": 10,
+        "site": "EAST",
+        "source_id": "HA-OTHER",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 3,
+        "item_id": "PANE",
+        "net_qty": 3,
+        "remaining_qty": 0,
+        "site": "NORTH",
+        "source_id": "HA-IN",
+        "source_type": "inbound"
+      }
+    ],
+    "summary": {
+      "covered_now_orders": 0,
+      "covered_with_expected_orders": 1,
+      "excluded_orders": 0,
+      "in_scope_orders": 1,
+      "resolved_orders": 1,
+      "shortage_orders": 0,
+      "unresolved_orders": 0
+    },
+    "supply_exclusions": [
+      {
+        "component_id": "PANE",
+        "order_id": "A01",
+        "reason": "expired-before-need",
+        "source_id": "HA-EARLY",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "A01",
+        "reason": "wrong-site",
+        "source_id": "HA-OTHER",
+        "source_type": "stock_lots"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

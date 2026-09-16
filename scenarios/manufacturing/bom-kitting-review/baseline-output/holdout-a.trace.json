@@ -1,0 +1,542 @@
+{
+  "events": [
+    {
+      "caption": "Read one synthetic JSON bundle containing six independent logical exports; no live or physical multi-file ingestion.",
+      "facts": {
+        "business_connections": 0,
+        "logical_exports": 6
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows_received"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1
+            ],
+            [
+              "bom_versions",
+              2
+            ],
+            [
+              "bom_lines",
+              2
+            ],
+            [
+              "items",
+              2
+            ],
+            [
+              "stock_lots",
+              3
+            ],
+            [
+              "inbound",
+              1
+            ]
+          ],
+          "title": "Received logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Validated strict fields, dates, quantities, supported EA/line types, and source identity; identical duplicates count once.",
+      "facts": {
+        "duplicate_groups": 0,
+        "fatal_errors": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-structure",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "received_rows",
+            "unique_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1,
+              1
+            ],
+            [
+              "bom_versions",
+              2,
+              2
+            ],
+            [
+              "bom_lines",
+              2,
+              2
+            ],
+            [
+              "items",
+              2,
+              2
+            ],
+            [
+              "stock_lots",
+              3,
+              3
+            ],
+            [
+              "inbound",
+              1,
+              1
+            ]
+          ],
+          "title": "Validated unique exports",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Joined ordered in-scope demand to approved applicable root BOM versions; explicit requests do not fall back.",
+      "facts": {
+        "excluded_orders": 0,
+        "in_scope_orders": 1,
+        "selected_roots": 1
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "select-bom",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "item_id",
+            "quantity",
+            "version_id",
+            "decision"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "A01",
+              "WINDOW",
+              2,
+              "WIN-NEW",
+              "selected"
+            ]
+          ],
+          "title": "Root version selections",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Traversed real Item/Phantom paths without intermediate rounding; incomplete orders have no partial ledger.",
+      "facts": {
+        "leaf_paths_visited": 1,
+        "line_paths_visited": 1,
+        "published_paths": 1,
+        "selected_versions": 1,
+        "unresolved_orders": 0
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "expand-phantoms",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "leaf_line_id",
+            "levels",
+            "exact_qty"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              "NEW-PANE",
+              1,
+              "4"
+            ]
+          ],
+          "title": "Expanded Item paths",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "order_id",
+            "item_id",
+            "version_id",
+            "selection"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "A01",
+              "WINDOW",
+              "WIN-NEW",
+              "active-default"
+            ]
+          ],
+          "title": "Selected assembly versions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Summed exact leaf quantities by order/component and applied one whole-EA ceiling to each sum.",
+      "facts": {
+        "component_requirements": 1,
+        "rounding": "sum-then-ceil"
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "calculate-demand",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "exact_qty",
+            "required_qty"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              "4",
+              4
+            ]
+          ],
+          "title": "Once-rounded demand",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Cross-referenced site/status/expiry/reservations and confirmed future dates; nominal source balances are not availability.",
+      "facts": {
+        "exclusions": 2,
+        "source_matches": 4,
+        "sources": 4
+      },
+      "kind": "join",
+      "sequence": 6,
+      "step_id": "join-supply",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "source_type",
+            "source_id",
+            "net_qty",
+            "decision"
+          ],
+          "highlight_rows": [
+            1,
+            2
+          ],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-BOUND",
+              1,
+              "eligible"
+            ],
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-EARLY",
+              2,
+              "expired-before-need"
+            ],
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-OTHER",
+              10,
+              "wrong-site"
+            ],
+            [
+              "A01",
+              "PANE",
+              "inbound",
+              "HA-IN",
+              3,
+              "eligible"
+            ]
+          ],
+          "title": "Source eligibility before shadow consumption",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Consumed only report-local source balances in order/date/priority sequence, stock first; partial kits retain their assignments.",
+      "facts": {
+        "allocation_rows": 2,
+        "short_components": 0
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "shadow-allocate",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "required_qty",
+            "assigned_now_qty",
+            "assigned_future_qty",
+            "gap_qty"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              4,
+              1,
+              3,
+              0
+            ]
+          ],
+          "title": "Conserved component assignments",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "source_type",
+            "source_id",
+            "quantity"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-BOUND",
+              1
+            ],
+            [
+              "A01",
+              "PANE",
+              "inbound",
+              "HA-IN",
+              3
+            ]
+          ],
+          "title": "Actual shadow source assignments",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Collected actual shortage and evidence exceptions; excluded nominal stock and receipts did not reduce demand gaps.",
+      "facts": {
+        "exceptions": 1,
+        "supply_exclusions": 2,
+        "unresolved_orders": 0
+      },
+      "kind": "exception",
+      "sequence": 8,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SUPPLY_EXCLUSIONS",
+              null,
+              null,
+              null,
+              "2 order/source eligibility exclusion(s) require review."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "order_id",
+            "component_id",
+            "source_type",
+            "source_id",
+            "reason"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-EARLY",
+              "expired-before-need"
+            ],
+            [
+              "A01",
+              "PANE",
+              "stock_lots",
+              "HA-OTHER",
+              "wrong-site"
+            ]
+          ],
+          "title": "Detailed supply exclusions",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Reconciled known component/site demand and every nominal source balance; unresolved demand remains unknown, not zero.",
+      "facts": {
+        "resolved_orders": 1,
+        "shortage_orders": 0,
+        "source_balances": 4,
+        "unresolved_orders": 0
+      },
+      "kind": "decision",
+      "sequence": 9,
+      "step_id": "reconcile-plan",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "component_id",
+            "required_qty",
+            "assigned_now_qty",
+            "assigned_future_qty",
+            "gap_qty"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "NORTH",
+              "PANE",
+              4,
+              1,
+              3,
+              0
+            ]
+          ],
+          "title": "Component/site conservation",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "source_type",
+            "source_id",
+            "net_qty",
+            "assigned_qty",
+            "remaining_qty"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stock_lots",
+              "HA-BOUND",
+              1,
+              1,
+              0
+            ],
+            [
+              "stock_lots",
+              "HA-EARLY",
+              2,
+              0,
+              2
+            ],
+            [
+              "stock_lots",
+              "HA-OTHER",
+              10,
+              0,
+              10
+            ],
+            [
+              "inbound",
+              "HA-IN",
+              3,
+              3,
+              0
+            ]
+          ],
+          "title": "Nominal source conservation",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Closed the synthetic office review with explicit human approval boundaries, not a reservation, release, or production instruction.",
+      "facts": {
+        "orders": 1,
+        "production_authorized": false,
+        "queued_reviews": 1,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 10,
+      "step_id": "close-plan",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "need_by",
+            "state",
+            "approval_required",
+            "production_authorized"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "A01",
+              "2026-10-03",
+              "covered-with-expected-receipt-review",
+              true,
+              false
+            ]
+          ],
+          "title": "Review-only order states",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "d7b95cf7ce3942b23cab80c5032f3c5ac82203df9dff2f3a7cfbc8445cdfb6fd",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1
+}

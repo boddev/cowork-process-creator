@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "billing_period": {
+      "period_start": "2026-01-01", "period_end": "2026-01-02", "currency": "USD",
+      "as_of": "2026-01-02T05:00:00Z", "business_utc_offset_minutes": -300,
+      "day_count_basis": "act-365-fixed", "rounding_mode": "half-up", "variance_tolerance_minor": 0
+    },
+    "account_reviews": [
+      {
+        "billing_account_id": "SYN-TIE-A", "agreement_id": "SYN-AGR-TIE-A", "currency": "USD",
+        "active_start": "2026-01-01", "active_end": "2026-01-02", "active_days": 1,
+        "calculation_status": "computed", "exact_fee_minor": {"numerator": 1, "denominator": 2},
+        "computed_fee_minor": 1, "rounding_decision": "half-up",
+        "draft_ids": ["SYN-DFT-TIE-A"], "comparison_status": "draft-understatement",
+        "draft_fee_minor": 0, "delta_minor": -1, "pending_change_ids": [],
+        "review_flags": ["draft-understatement"]
+      },
+      {
+        "billing_account_id": "SYN-TIE-B", "agreement_id": "SYN-AGR-TIE-B", "currency": "USD",
+        "active_start": "2026-01-01", "active_end": "2026-01-02", "active_days": 1,
+        "calculation_status": "computed", "exact_fee_minor": {"numerator": 20000001, "denominator": 73000},
+        "computed_fee_minor": 274, "rounding_decision": "above-half-up",
+        "draft_ids": ["SYN-DFT-TIE-B"], "comparison_status": "matched",
+        "draft_fee_minor": 274, "delta_minor": 0, "pending_change_ids": [],
+        "review_flags": []
+      }
+    ],
+    "calculation_segments": [
+      {
+        "billing_account_id": "SYN-TIE-A", "segment_index": 1,
+        "segment_start": "2026-01-01", "segment_end": "2026-01-02", "days": 1,
+        "day_count_denominator": 365, "schedule_id": "SYN-SCH-TIE-A", "valuation_id": "SYN-VAL-TIE-A",
+        "coverage": "complete", "calculation_status": "computed", "billable_value_minor": 36500,
+        "annual_numerator": 1825000,
+        "bands": [
+          {"band_index": 1, "lower_value_minor": 0, "upper_value_minor": null, "annual_rate_bps": 50, "band_value_minor": 36500, "annual_numerator": 1825000}
+        ],
+        "exact_fee_minor": {"numerator": 1, "denominator": 2}
+      },
+      {
+        "billing_account_id": "SYN-TIE-B", "segment_index": 1,
+        "segment_start": "2026-01-01", "segment_end": "2026-01-02", "days": 1,
+        "day_count_denominator": 365, "schedule_id": "SYN-SCH-TIE-B", "valuation_id": "SYN-VAL-TIE-B",
+        "coverage": "complete", "calculation_status": "computed", "billable_value_minor": 10000001,
+        "annual_numerator": 1000000050,
+        "bands": [
+          {"band_index": 1, "lower_value_minor": 0, "upper_value_minor": 10000000, "annual_rate_bps": 100, "band_value_minor": 10000000, "annual_numerator": 1000000000},
+          {"band_index": 2, "lower_value_minor": 10000000, "upper_value_minor": null, "annual_rate_bps": 50, "band_value_minor": 1, "annual_numerator": 50}
+        ],
+        "exact_fee_minor": {"numerator": 20000001, "denominator": 73000}
+      }
+    ],
+    "draft_comparisons": [
+      {
+        "draft_id": "SYN-DFT-TIE-A", "billing_account_id": "SYN-TIE-A", "currency": "USD",
+        "period_start": "2026-01-01", "period_end": "2026-01-02", "source_schedule_id": null,
+        "amount_minor": 0, "disposition": "compared", "computed_fee_minor": 1,
+        "delta_minor": -1, "comparison_status": "draft-understatement"
+      },
+      {
+        "draft_id": "SYN-DFT-TIE-B", "billing_account_id": "SYN-TIE-B", "currency": "USD",
+        "period_start": "2026-01-01", "period_end": "2026-01-02", "source_schedule_id": null,
+        "amount_minor": 274, "disposition": "compared", "computed_fee_minor": 274,
+        "delta_minor": 0, "comparison_status": "matched"
+      }
+    ],
+    "pending_changes": [],
+    "evidence_dispositions": {
+      "engagements": [
+        {"billing_account_id": "SYN-TIE-A", "disposition": "billable"},
+        {"billing_account_id": "SYN-TIE-B", "disposition": "billable"}
+      ],
+      "schedule_versions": [
+        {"schedule_id": "SYN-SCH-TIE-A", "billing_account_id": "SYN-TIE-A", "disposition": "joined"},
+        {"schedule_id": "SYN-SCH-TIE-B", "billing_account_id": "SYN-TIE-B", "disposition": "joined"}
+      ],
+      "synthetic_value_intervals": [
+        {"valuation_id": "SYN-VAL-TIE-A", "billing_account_id": "SYN-TIE-A", "disposition": "joined"},
+        {"valuation_id": "SYN-VAL-TIE-B", "billing_account_id": "SYN-TIE-B", "disposition": "joined"}
+      ]
+    },
+    "population_totals": {
+      "currency": "USD", "account_count": 2,
+      "computed": {"account_count": 2, "fee_minor": 275},
+      "comparable": {"account_count": 2, "computed_fee_minor": 275, "draft_fee_minor": 274, "delta_minor": -1},
+      "computed_missing_draft": {"account_count": 0, "computed_fee_minor": 0},
+      "computed_duplicate_drafts": {"account_count": 0, "computed_fee_minor": 0},
+      "uncomputed": {"account_count": 0, "billing_account_ids": []},
+      "not_billable": {"account_count": 0, "billing_account_ids": []}
+    },
+    "review": {
+      "human_review": "pending", "live_action": "none", "owner_role": "Billing manager or compliance reviewer",
+      "summary": "Synthetic review only; no fee invoice, debit, refund, trade, advice, or regulatory opinion."
+    }
+  },
+  "exceptions": [
+    {
+      "code": "draft-understatement", "message": "Draft is below the recomputed fee beyond the inclusive tolerance.",
+      "billing_account_id": "SYN-TIE-A", "record_id": "SYN-DFT-TIE-A", "related_ids": ["SYN-DFT-TIE-A"],
+      "from_date": "2026-01-01", "to_date": "2026-01-02", "field": null
+    }
+  ]
+}

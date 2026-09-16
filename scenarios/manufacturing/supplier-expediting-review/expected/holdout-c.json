@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "receipt_reconciliation": [
+      {
+        "line_id": "C01", "supplier_id": "S-C1", "item_id": "BOLT", "state": "open", "ordered_qty": 4, "original_requested_receipt": "2026-11-08", "deadline": "2026-11-10",
+        "net_received_qty": 6, "credited_received_qty": 4, "on_time_qty": 4, "open_qty": 0, "overreceipt_qty": 2,
+        "receipt_event_ids": ["R-C01"], "active_receipt_ids": ["R-C01"], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "included", "otif": true, "performance_pending": false
+      },
+      {
+        "line_id": "C02", "supplier_id": "S-C1", "item_id": "NUT", "state": "open", "ordered_qty": 3, "original_requested_receipt": "2026-11-09", "deadline": "2026-11-11",
+        "net_received_qty": 3, "credited_received_qty": 3, "on_time_qty": 3, "open_qty": 0, "overreceipt_qty": 0,
+        "receipt_event_ids": ["R-C02", "RV-C02"], "active_receipt_ids": ["R-C02"], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": ["RV-C02"],
+        "cohort_status": "included", "otif": true, "performance_pending": false
+      },
+      {
+        "line_id": "C03", "supplier_id": "S-C1", "item_id": "HUB", "state": "open", "ordered_qty": 5, "original_requested_receipt": "2026-11-10", "deadline": "2026-11-12",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 5, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "included", "otif": false, "performance_pending": true
+      },
+      {
+        "line_id": "C04", "supplier_id": "S-C2", "item_id": "WASHER", "state": "open", "ordered_qty": 10, "original_requested_receipt": "2026-11-14", "deadline": "2026-11-16",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 10, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "future-requested-date", "otif": null, "performance_pending": false
+      },
+      {
+        "line_id": "C05", "supplier_id": "UNKNOWN", "item_id": "GASKET", "state": "open", "ordered_qty": 2, "original_requested_receipt": null, "deadline": null,
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": null, "open_qty": 2, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "missing-requested-date", "otif": null, "performance_pending": false
+      }
+    ],
+    "overall_performance": {"numerator": 2, "denominator": 3, "percent": "66.67", "low_performance": true, "line_ids": ["C01", "C02", "C03"], "pending_line_ids": ["C03"]},
+    "supplier_performance": [
+      {"supplier_id": "S-C1", "buyer_role": "History buyer", "numerator": 2, "denominator": 3, "percent": "66.67", "low_performance": true, "line_ids": ["C01", "C02", "C03"], "pending_line_ids": ["C03"]},
+      {"supplier_id": "S-C2", "buyer_role": "Planning buyer", "numerator": 0, "denominator": 0, "percent": null, "low_performance": null, "line_ids": [], "pending_line_ids": []},
+      {"supplier_id": "UNKNOWN", "buyer_role": null, "numerator": 0, "denominator": 0, "percent": null, "low_performance": null, "line_ids": [], "pending_line_ids": []}
+    ],
+    "cohort_exclusions": [{"line_id": "C04", "reason": "future-requested-date"}, {"line_id": "C05", "reason": "missing-requested-date"}],
+    "confirmation_review": [
+      {"line_id": "C01", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "not-open", "in_scope": false, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "C02", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "not-open", "in_scope": false, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "C03", "confirmation_id": "C-C03", "recorded_on": "2026-11-09", "confirmed_receipt": "2026-11-09", "remaining_qty": 5, "state": "stale", "in_scope": true, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "C04", "confirmation_id": "C-C04", "recorded_on": "2026-11-10", "confirmed_receipt": "2026-11-12", "remaining_qty": 6, "state": "current", "in_scope": true, "supply_qty": 6, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "C05", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "missing", "in_scope": true, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []}
+    ],
+    "requirement_coverage": [
+      {"requirement_id": "R-C41", "line_id": "C04", "need_by": "2026-11-12", "unmet_qty": 4, "criticality": "critical", "in_scope": true, "assessment": "allocated", "confirmation_id": "C-C04", "covered_qty": 4, "shortage_qty": 0},
+      {"requirement_id": "R-C42", "line_id": "C04", "need_by": "2026-11-12", "unmet_qty": 4, "criticality": "normal", "in_scope": true, "assessment": "allocated", "confirmation_id": "C-C04", "covered_qty": 2, "shortage_qty": 2},
+      {"requirement_id": "R-C43", "line_id": "C04", "need_by": "2026-11-16", "unmet_qty": 2, "criticality": "critical", "in_scope": false, "assessment": "outside-horizon", "confirmation_id": "C-C04", "covered_qty": null, "shortage_qty": null},
+      {"requirement_id": "R-C05", "line_id": "C05", "need_by": "2026-11-15", "unmet_qty": 2, "criticality": "normal", "in_scope": true, "assessment": "allocated", "confirmation_id": null, "covered_qty": 0, "shortage_qty": 2},
+      {"requirement_id": "X-C01", "line_id": "C99", "need_by": "2026-11-13", "unmet_qty": 1, "criticality": "normal", "in_scope": true, "assessment": "unresolved-line", "confirmation_id": null, "covered_qty": null, "shortage_qty": null}
+    ],
+    "buyer_review_queue": [
+      {
+        "rank": 1, "line_id": "C04", "supplier_id": "S-C2", "buyer_role": "Planning buyer", "priority": "P2", "earliest_need_by": "2026-11-12",
+        "open_qty": 10, "shortage_qty": 2, "confirmed_receipt": "2026-11-12", "low_performance": null, "reason_codes": ["shortage"],
+        "draft_questions": ["Review uncovered demand and request receipt-date evidence."], "send_status": "unsent", "approval_required": true
+      },
+      {
+        "rank": 2, "line_id": "C05", "supplier_id": "UNKNOWN", "buyer_role": null, "priority": "P2", "earliest_need_by": "2026-11-15",
+        "open_qty": 2, "shortage_qty": 2, "confirmed_receipt": null, "low_performance": null, "reason_codes": ["shortage", "missing-confirmation", "unknown-requested-date"],
+        "draft_questions": ["Review uncovered demand and request receipt-date evidence.", "Obtain a dated confirmation of remaining quantity and receipt date.", "Resolve the missing original requested receipt date."], "send_status": "unsent", "approval_required": true
+      },
+      {
+        "rank": 3, "line_id": "C03", "supplier_id": "S-C1", "buyer_role": "History buyer", "priority": "P3", "earliest_need_by": null,
+        "open_qty": 5, "shortage_qty": 0, "confirmed_receipt": "2026-11-09", "low_performance": true, "reason_codes": ["stale-confirmation"],
+        "draft_questions": ["Reconcile the past confirmed receipt date with posted receipts before using supply."], "send_status": "unsent", "approval_required": true
+      }
+    ],
+    "review_closure": {
+      "as_of": "2026-11-10", "reporting_month": "2026-11", "horizon_end": "2026-11-15", "urgency_end": "2026-11-12", "tolerance_days": 2, "low_performance_percent": 90,
+      "line_count": 5, "active_open_qty": 17, "in_scope_unmet_qty": 11, "covered_qty": 6, "shortage_qty": 4, "unresolved_requirement_count": 1, "unresolved_unmet_qty": 1,
+      "queue_count": 3, "exception_count": 10, "state": "review-prepared", "owner_role": "Buyer and material planner", "approval_required": true, "messages_sent": 0, "orders_changed": 0,
+      "boundary": "Mock calendar-day review; no live purchasing or communication."
+    }
+  },
+  "exceptions": [
+    {"code": "DUPLICATE_COLLAPSED", "message": "Identical rows with one primary ID were counted once.", "table": "receipt_events", "record_id": "R-C01", "field": "event_id", "count": 1},
+    {"code": "FUTURE_RECEIPT_EVENT", "message": "Receipt event posted after as-of is excluded from receipt reconciliation.", "table": "receipt_events", "record_id": "RV-C02", "field": "posted_on"},
+    {"code": "MISSING_CONFIRMATION", "message": "No confirmation recorded by as-of for an in-scope open line.", "table": "po_schedule_lines", "record_id": "C05", "field": null},
+    {"code": "MISSING_REQUESTED_DATE", "message": "Original requested receipt date is unknown; historical cohort is excluded.", "table": "po_schedule_lines", "record_id": "C05", "field": "original_requested_receipt"},
+    {"code": "ORPHAN_RECEIPT", "message": "Receipt references an unknown purchase line; excluded from receipt totals.", "table": "receipt_events", "record_id": "U-C01", "field": "line_id", "related_id": "C99"},
+    {"code": "ORPHAN_REQUIREMENT", "message": "Requirement references an unknown purchase line; coverage is unresolved.", "table": "requirements", "record_id": "X-C01", "field": "line_id", "related_id": "C99"},
+    {"code": "OVERRECEIPT", "message": "Net receipt quantity exceeds ordered quantity; credited receipts are capped.", "table": "po_schedule_lines", "record_id": "C01", "field": "ordered_qty"},
+    {"code": "PENDING_TOLERANCE", "message": "Tolerance deadline is after as-of; the unsuccessful cohort result is provisional.", "table": "po_schedule_lines", "record_id": "C03", "field": "original_requested_receipt"},
+    {"code": "STALE_CONFIRMATION", "message": "Past confirmed receipt date is not usable remaining supply.", "table": "confirmations", "record_id": "C-C03", "field": "confirmed_receipt"},
+    {"code": "UNKNOWN_SUPPLIER", "message": "Supplier master is missing; buyer ownership is unresolved.", "table": "po_schedule_lines", "record_id": "C05", "field": "supplier_id", "related_id": "UNKNOWN"}
+  ]
+}

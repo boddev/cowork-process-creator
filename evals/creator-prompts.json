@@ -1,6 +1,6 @@
 {
   "skill_name": "create-process-plugin",
-  "source_version": "0.2.1",
+  "source_version": "0.3.0",
   "evaluation_host": "Offline review now; Microsoft Copilot Cowork native evaluation only when separately authorized",
   "status": "not-run",
   "not_a_local_model_benchmark": true,
@@ -24,7 +24,7 @@
         "Every required step is bound to actual candidate files and meaningful declared case IDs.",
         "Exact calculations and declared rejection behavior are checked on changed synthetic inputs before claiming execution.",
         "No connection, service, package install, Creator import or original-recording runtime dependency is introduced.",
-        "A local or compatible-source result remains Draft and is not marked installed, manually exercised in Cowork or scheduled."
+        "Plugin output uses native Microsoft manifest v1.28 only; local construction never implies installation, independent Cowork execution or scheduling."
       ]
     },
     {
@@ -217,20 +217,20 @@
     },
     {
       "id": 11,
-      "name": "canonical-metadata-versus-source-export",
+      "name": "native-metadata-without-alternative-format-fallback",
       "status": "not-run",
-      "prompt": "The file-only workflow is coherent, but I have not supplied approved app identity, publisher, website, privacy or terms metadata. Do not invent legal URLs or reuse test publisher values. Explain why canonical cowork-v1.28 packaging is blocked. If all project coverage checks allow a compatible-source export, label it as a separate Draft source target and return its actual report, not a claim that Cowork installed a canonical package.",
+      "prompt": "The file-only workflow is coherent, but I have not supplied approved app identity, publisher, website, privacy or terms metadata. Do not invent legal URLs or reuse test publisher values. I require Microsoft Copilot Cowork's native manifest v1.28, not a Claude-compatible source ZIP or conversion. Explain the packaging blocker and return useful editable project source without representing it as an installable plugin.",
       "files": [],
       "fixture_requirements": [
         "Coherent synthetic project source and current actual local evaluations.",
         "No approved canonical publisher metadata.",
         "New output/report destinations so prior proof artifacts remain untouched."
       ],
-      "expected_output": "Canonical metadata blocker and, only when project checks permit, an explicitly labeled compatible-source Draft with truthful artifact/report provenance.",
+      "expected_output": "Explicit native metadata blocker and a useful source checkpoint, with no plugin ZIP in an alternative host format and no installation claim.",
       "assertions": [
         "No publisher, legal URL, endpoint or registration is fabricated.",
         "The exact canonical target requires supplied approved metadata.",
-        "Compatible-source is not described as canonical v1.28 or evidence of native conversion/acceptance.",
+        "No Claude-compatible/source-manifest fallback is generated; a source checkpoint is not labeled a plugin.",
         "Source export does not bypass unresolved project coverage, evidence or evaluation blockers.",
         "Old v0.1.0, v0.1.1 and actual-native ZIPs remain immutable.",
         "Package checks are described as emitted-subset checks, not full-schema validation or a sandbox."

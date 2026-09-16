@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "f1-advisor-fees",
+      "title": "Advisor Fees",
+      "url": "https://www.interactivebrokers.com/en/pricing/advisor-fees.php",
+      "publisher": "Interactive Brokers",
+      "accessed": "2026-09-14",
+      "scope": "Automatic Billing, Blended Fee, fee notices, and pending configuration notes; public HTML verified in the approved sector research.",
+      "supported_claims": [
+        "The vendor describes annualized net-liquidation-value fees and blended fees with separate value ranges and rates.",
+        "The vendor notes that configuration requests pending client authorization are not in effect.",
+        "The vendor describes fee notices identifying calculation method, amount, and period."
+      ],
+      "limitations": "Vendor-specific process context only. Synthetic approval is not client consent. No invoice submission, debit, compliance determination, or reproduction of IBKR billing is implemented."
+    },
+    {
+      "id": "f2-billing-methods",
+      "title": "Automatic Billing Methods and Examples",
+      "url": "https://www.interactivebrokers.com/en/general/advisor-client-fee-examples.php",
+      "publisher": "Interactive Brokers",
+      "accessed": "2026-09-14",
+      "scope": "Percent of Net Liquidation Value and Flat Fee examples; public HTML verified in the approved sector research.",
+      "supported_claims": [
+        "The vendor's annualized-percentage daily example uses a 252-business-day divisor.",
+        "Its flat-fee example also states a 252-day allocation convention."
+      ],
+      "limitations": "This supports making the calculation basis explicit, not our invented 365/366 calendar-day agreement policy. Flat fees and performance fees are excluded. No regulatory content is inferred."
+    }
+  ]
+}

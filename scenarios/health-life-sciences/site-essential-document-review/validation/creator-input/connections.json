@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Synthetic exported metadata only. No endpoint, authentication, CTMS, eTMF, EHR, live repository, genuine signature verification, or external action is provisioned or verified."
+}

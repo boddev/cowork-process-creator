@@ -1,0 +1,403 @@
+{
+  "exceptions": [
+    {
+      "billing_account_id": "SYN-A",
+      "code": "draft-overstatement",
+      "field": null,
+      "from_date": "2026-04-01",
+      "message": "Draft exceeds the recomputed fee beyond the inclusive tolerance.",
+      "record_id": "SYN-DFT-A",
+      "related_ids": [
+        "SYN-DFT-A"
+      ],
+      "to_date": "2026-05-01"
+    },
+    {
+      "billing_account_id": "SYN-B",
+      "code": "pending-approval",
+      "field": null,
+      "from_date": "2026-04-11",
+      "message": "Pending schedule does not override approved evidence; review the request.",
+      "record_id": "SYN-SCH-B-PENDING",
+      "related_ids": [
+        "SYN-SCH-B-PENDING"
+      ],
+      "to_date": "2026-05-01"
+    },
+    {
+      "billing_account_id": "SYN-C",
+      "code": "missing-draft",
+      "field": null,
+      "from_date": "2026-04-01",
+      "message": "No draft matches the account/period/currency key; no zero draft is inferred.",
+      "record_id": "SYN-C",
+      "related_ids": [],
+      "to_date": "2026-05-01"
+    }
+  ],
+  "outputs": {
+    "account_reviews": [
+      {
+        "active_days": 30,
+        "active_end": "2026-05-01",
+        "active_start": "2026-04-01",
+        "agreement_id": "SYN-AGR-A",
+        "billing_account_id": "SYN-A",
+        "calculation_status": "computed",
+        "comparison_status": "draft-overstatement",
+        "computed_fee_minor": 9247,
+        "currency": "USD",
+        "delta_minor": 1027,
+        "draft_fee_minor": 10274,
+        "draft_ids": [
+          "SYN-DFT-A"
+        ],
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 675000
+        },
+        "pending_change_ids": [],
+        "review_flags": [
+          "draft-overstatement"
+        ],
+        "rounding_decision": "above-half-up"
+      },
+      {
+        "active_days": 20,
+        "active_end": "2026-05-01",
+        "active_start": "2026-04-11",
+        "agreement_id": "SYN-AGR-B",
+        "billing_account_id": "SYN-B",
+        "calculation_status": "computed",
+        "comparison_status": "matched",
+        "computed_fee_minor": 5479,
+        "currency": "USD",
+        "delta_minor": 0,
+        "draft_fee_minor": 5479,
+        "draft_ids": [
+          "SYN-DFT-B"
+        ],
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 400000
+        },
+        "pending_change_ids": [
+          "SYN-SCH-B-PENDING"
+        ],
+        "review_flags": [
+          "pending-approval"
+        ],
+        "rounding_decision": "below-half-down"
+      },
+      {
+        "active_days": 30,
+        "active_end": "2026-05-01",
+        "active_start": "2026-04-01",
+        "agreement_id": "SYN-AGR-C",
+        "billing_account_id": "SYN-C",
+        "calculation_status": "computed",
+        "comparison_status": "missing-draft",
+        "computed_fee_minor": 4110,
+        "currency": "USD",
+        "delta_minor": null,
+        "draft_fee_minor": null,
+        "draft_ids": [],
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 300000
+        },
+        "pending_change_ids": [],
+        "review_flags": [
+          "missing-draft"
+        ],
+        "rounding_decision": "above-half-up"
+      }
+    ],
+    "billing_period": {
+      "as_of": "2026-05-01T00:00:00Z",
+      "business_utc_offset_minutes": 0,
+      "currency": "USD",
+      "day_count_basis": "actual-calendar-year",
+      "period_end": "2026-05-01",
+      "period_start": "2026-04-01",
+      "rounding_mode": "half-up",
+      "variance_tolerance_minor": 1
+    },
+    "calculation_segments": [
+      {
+        "annual_numerator": 1250000000,
+        "bands": [
+          {
+            "annual_numerator": 1000000000,
+            "annual_rate_bps": 100,
+            "band_index": 1,
+            "band_value_minor": 10000000,
+            "lower_value_minor": 0,
+            "upper_value_minor": 10000000
+          },
+          {
+            "annual_numerator": 250000000,
+            "annual_rate_bps": 50,
+            "band_index": 2,
+            "band_value_minor": 5000000,
+            "lower_value_minor": 10000000,
+            "upper_value_minor": null
+          }
+        ],
+        "billable_value_minor": 15000000,
+        "billing_account_id": "SYN-A",
+        "calculation_status": "computed",
+        "coverage": "complete",
+        "day_count_denominator": 365,
+        "days": 15,
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 375000
+        },
+        "schedule_id": "SYN-SCH-A1",
+        "segment_end": "2026-04-16",
+        "segment_index": 1,
+        "segment_start": "2026-04-01",
+        "valuation_id": "SYN-VAL-A"
+      },
+      {
+        "annual_numerator": 1000000000,
+        "bands": [
+          {
+            "annual_numerator": 800000000,
+            "annual_rate_bps": 80,
+            "band_index": 1,
+            "band_value_minor": 10000000,
+            "lower_value_minor": 0,
+            "upper_value_minor": 10000000
+          },
+          {
+            "annual_numerator": 200000000,
+            "annual_rate_bps": 40,
+            "band_index": 2,
+            "band_value_minor": 5000000,
+            "lower_value_minor": 10000000,
+            "upper_value_minor": null
+          }
+        ],
+        "billable_value_minor": 15000000,
+        "billing_account_id": "SYN-A",
+        "calculation_status": "computed",
+        "coverage": "complete",
+        "day_count_denominator": 365,
+        "days": 15,
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 300000
+        },
+        "schedule_id": "SYN-SCH-A2",
+        "segment_end": "2026-05-01",
+        "segment_index": 2,
+        "segment_start": "2026-04-16",
+        "valuation_id": "SYN-VAL-A"
+      },
+      {
+        "annual_numerator": 1000000000,
+        "bands": [
+          {
+            "annual_numerator": 1000000000,
+            "annual_rate_bps": 100,
+            "band_index": 1,
+            "band_value_minor": 10000000,
+            "lower_value_minor": 0,
+            "upper_value_minor": 10000000
+          },
+          {
+            "annual_numerator": 0,
+            "annual_rate_bps": 50,
+            "band_index": 2,
+            "band_value_minor": 0,
+            "lower_value_minor": 10000000,
+            "upper_value_minor": null
+          }
+        ],
+        "billable_value_minor": 10000000,
+        "billing_account_id": "SYN-B",
+        "calculation_status": "computed",
+        "coverage": "complete",
+        "day_count_denominator": 365,
+        "days": 20,
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 400000
+        },
+        "schedule_id": "SYN-SCH-B",
+        "segment_end": "2026-05-01",
+        "segment_index": 1,
+        "segment_start": "2026-04-11",
+        "valuation_id": "SYN-VAL-B"
+      },
+      {
+        "annual_numerator": 500000000,
+        "bands": [
+          {
+            "annual_numerator": 500000000,
+            "annual_rate_bps": 100,
+            "band_index": 1,
+            "band_value_minor": 5000000,
+            "lower_value_minor": 0,
+            "upper_value_minor": null
+          }
+        ],
+        "billable_value_minor": 5000000,
+        "billing_account_id": "SYN-C",
+        "calculation_status": "computed",
+        "coverage": "complete",
+        "day_count_denominator": 365,
+        "days": 30,
+        "exact_fee_minor": {
+          "denominator": 73,
+          "numerator": 300000
+        },
+        "schedule_id": "SYN-SCH-C",
+        "segment_end": "2026-05-01",
+        "segment_index": 1,
+        "segment_start": "2026-04-01",
+        "valuation_id": "SYN-VAL-C"
+      }
+    ],
+    "draft_comparisons": [
+      {
+        "amount_minor": 10274,
+        "billing_account_id": "SYN-A",
+        "comparison_status": "draft-overstatement",
+        "computed_fee_minor": 9247,
+        "currency": "USD",
+        "delta_minor": 1027,
+        "disposition": "compared",
+        "draft_id": "SYN-DFT-A",
+        "period_end": "2026-05-01",
+        "period_start": "2026-04-01",
+        "source_schedule_id": "SYN-SCH-A1"
+      },
+      {
+        "amount_minor": 5479,
+        "billing_account_id": "SYN-B",
+        "comparison_status": "matched",
+        "computed_fee_minor": 5479,
+        "currency": "USD",
+        "delta_minor": 0,
+        "disposition": "compared",
+        "draft_id": "SYN-DFT-B",
+        "period_end": "2026-05-01",
+        "period_start": "2026-04-01",
+        "source_schedule_id": "SYN-SCH-B-PENDING"
+      }
+    ],
+    "evidence_dispositions": {
+      "engagements": [
+        {
+          "billing_account_id": "SYN-A",
+          "disposition": "billable"
+        },
+        {
+          "billing_account_id": "SYN-B",
+          "disposition": "billable"
+        },
+        {
+          "billing_account_id": "SYN-C",
+          "disposition": "billable"
+        }
+      ],
+      "schedule_versions": [
+        {
+          "billing_account_id": "SYN-A",
+          "disposition": "joined",
+          "schedule_id": "SYN-SCH-A1"
+        },
+        {
+          "billing_account_id": "SYN-A",
+          "disposition": "joined",
+          "schedule_id": "SYN-SCH-A2"
+        },
+        {
+          "billing_account_id": "SYN-B",
+          "disposition": "joined",
+          "schedule_id": "SYN-SCH-B"
+        },
+        {
+          "billing_account_id": "SYN-B",
+          "disposition": "pending-approval",
+          "schedule_id": "SYN-SCH-B-PENDING"
+        },
+        {
+          "billing_account_id": "SYN-C",
+          "disposition": "joined",
+          "schedule_id": "SYN-SCH-C"
+        }
+      ],
+      "synthetic_value_intervals": [
+        {
+          "billing_account_id": "SYN-A",
+          "disposition": "joined",
+          "valuation_id": "SYN-VAL-A"
+        },
+        {
+          "billing_account_id": "SYN-B",
+          "disposition": "joined",
+          "valuation_id": "SYN-VAL-B"
+        },
+        {
+          "billing_account_id": "SYN-C",
+          "disposition": "joined",
+          "valuation_id": "SYN-VAL-C"
+        }
+      ]
+    },
+    "pending_changes": [
+      {
+        "approval_state": "pending",
+        "approved_at": null,
+        "billing_account_id": "SYN-B",
+        "effective_from": "2026-04-01",
+        "effective_to": "2026-05-01",
+        "exclusion_reason": "pending-approval",
+        "intersects_billable_period": true,
+        "schedule_id": "SYN-SCH-B-PENDING"
+      }
+    ],
+    "population_totals": {
+      "account_count": 3,
+      "comparable": {
+        "account_count": 2,
+        "computed_fee_minor": 14726,
+        "delta_minor": 1027,
+        "draft_fee_minor": 15753
+      },
+      "computed": {
+        "account_count": 3,
+        "fee_minor": 18836
+      },
+      "computed_duplicate_drafts": {
+        "account_count": 0,
+        "computed_fee_minor": 0
+      },
+      "computed_missing_draft": {
+        "account_count": 1,
+        "computed_fee_minor": 4110
+      },
+      "currency": "USD",
+      "not_billable": {
+        "account_count": 0,
+        "billing_account_ids": []
+      },
+      "uncomputed": {
+        "account_count": 0,
+        "billing_account_ids": []
+      }
+    },
+    "review": {
+      "human_review": "pending",
+      "live_action": "none",
+      "owner_role": "Billing manager or compliance reviewer",
+      "summary": "Synthetic review only; no fee invoice, debit, refund, trade, advice, or regulatory opinion."
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

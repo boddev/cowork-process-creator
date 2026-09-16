@@ -159,7 +159,22 @@ def materialize_release(destination: Path, files: dict[str, bytes]) -> None:
     p.write_tree_new(destination, files)
 
 
-def build_release(destination: Path) -> dict:
+def release_metadata(directory: Path | None) -> dict[str, Path]:
+    b.require(directory is not None, "Native Microsoft Cowork release packaging requires --metadata-dir with approved metadata for each package; no Claude-compatible fallback is produced")
+    b.check_regular(directory, directory=True)
+    paths = {}
+    app_ids = set()
+    for name in ("cowork-process-creator", *examples.FAMILIES):
+        path = directory / (name + ".json")
+        metadata = b.publishing_metadata(path)
+        b.require(metadata["app_id"] not in app_ids, "Each independently installed package requires a distinct supplied app_id")
+        app_ids.add(metadata["app_id"])
+        paths[name] = path
+    return paths
+
+
+def build_release(destination: Path, metadata_dir: Path | None = None) -> dict:
+    metadata = release_metadata(metadata_dir)
     preserved = proof_integrity()
     source = ROOT / "appPackage"
     _, spec, _ = b.source_payload(source)
@@ -170,7 +185,7 @@ def build_release(destination: Path) -> dict:
         stage, work = temporary_root / "release", temporary_root / "work"
         stage.mkdir()
         work.mkdir()
-        creator = b.build(source, stage / "creator.zip", stage / "creator.report.json", "compatible-source")
+        creator = b.build(source, stage / "creator.zip", stage / "creator.report.json", b.TARGET, metadata[spec["name"]])
         sample_reports = []
         base = None
         for family in examples.FAMILIES:
@@ -180,7 +195,7 @@ def build_release(destination: Path) -> dict:
                 raise AssertionError(checked["blockers"])
             sample = stage / "examples" / family
             sample.mkdir(parents=True)
-            build = p.build_project(project, sample / "plugin.zip", sample / "build.json", "compatible-source")
+            build = p.build_project(project, sample / "plugin.zip", sample / "build.json", b.TARGET, metadata[family])
             p.checkpoint(project, sample / "source.zip")
             restored = work / (family + "-resumed")
             resume = p.resume(sample / "source.zip", restored)
@@ -230,15 +245,15 @@ def build_release(destination: Path) -> dict:
                     entry["companion_bytes"] += row["size_bytes"]
         report = {
             "version": b.VERSION, "status": "Draft", "kind": "provisional-offline-creator",
-            "creator_target": "compatible-source", "creator_sha256": creator["sha256"],
+            "creator_target": b.TARGET, "creator_sha256": creator["sha256"],
             "skill_count": len(spec["skills"]), "connector_count": len(spec["connectors"]),
             "resource_budgets": budgets, "offline_case_count": len(sample_reports),
             "unrun_authoring_prompts": len(authoring_prompts["evals"]),
             "unrun_disclosed_intent_cases": len(intent_prompts["cases"]),
             "model_activation_runs": 0,
             "native_acceptance": "unverified", "manual_invocation": "unverified", "scheduling": "not-exercised",
-            "canonical_target": "cowork-v1.28", "canonical_state": "blocked-missing-approved-publisher-metadata",
-            "native_gate": "blocked-desktop-locked; original output publication result UNKNOWN; reconcile before retry",
+            "canonical_target": b.TARGET, "canonical_state": "package-built-with-supplied-metadata; native acceptance unverified",
+            "native_gate": "approved native tools and accessible session required; prior publication outcome UNKNOWN; reconcile before retry",
             "claims_inherited_from_proof_versions": False,
             "immutable_proof_artifacts": preserved,
             "readiness_boundaries": [
@@ -264,5 +279,11 @@ def build_release(destination: Path) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "dist" / ("v" + b.VERSION))
+    parser.add_argument("--metadata-dir", type=Path, help="Approved per-package publishing metadata; required for native packages")
     args = parser.parse_args()
-    print(json.dumps(build_release(args.output.resolve()), indent=2, sort_keys=True))
+    try:
+        report = build_release(args.output.resolve(), args.metadata_dir)
+    except (b.BuildError, OSError, UnicodeError) as error:
+        print(json.dumps({"status": "Draft", "target": b.TARGET, "error": str(error)}), file=sys.stderr)
+        raise SystemExit(2)
+    print(json.dumps(report, indent=2, sort_keys=True))

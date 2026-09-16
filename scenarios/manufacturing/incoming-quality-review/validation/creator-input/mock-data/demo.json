@@ -1,0 +1,33 @@
+{
+  "config": {"as_of": "2026-09-14", "review_age_days": 5, "certificate_required": true, "fallback_reviewer_role": "QA intake reviewer"},
+  "items": [{"item_id": "MFG-PIN", "item_group": "MFG-METAL"}],
+  "reviewer_routes": [{"item_group": "MFG-METAL", "reviewer_role": "QA reviewer"}],
+  "lots": [
+    {"lot_id": "MFG-L01", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-ALPHA", "receipt_date": "2026-09-08", "received_qty": 1000, "site": "MFG-EAST", "quality_order_id": "MFG-Q01"},
+    {"lot_id": "MFG-L02", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-BETA", "receipt_date": "2026-09-12", "received_qty": 200, "site": "MFG-EAST", "quality_order_id": "MFG-Q02"},
+    {"lot_id": "MFG-L03", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-ALPHA", "receipt_date": "2026-09-10", "received_qty": 80, "site": "MFG-EAST", "quality_order_id": "MFG-Q03"}
+  ],
+  "test_requirements": [
+    {"requirement_id": "MFG-SPEC-DIAM", "item_id": "MFG-PIN", "test_id": "MFG-DIAM", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "minimum": "4.90", "maximum": "5.10", "required_specimens": 3}
+  ],
+  "observations": [
+    {"result_id": "MFG-R11", "lot_id": "MFG-L01", "test_id": "MFG-DIAM", "specimen_id": "MFG-S11", "value": "4.99", "observed_on": "2026-09-09", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R12", "lot_id": "MFG-L01", "test_id": "MFG-DIAM", "specimen_id": "MFG-S12", "value": "5.00", "observed_on": "2026-09-09", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R13", "lot_id": "MFG-L01", "test_id": "MFG-DIAM", "specimen_id": "MFG-S13", "value": "5.01", "observed_on": "2026-09-09", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R21", "lot_id": "MFG-L02", "test_id": "MFG-DIAM", "specimen_id": "MFG-S21", "value": "5.00", "observed_on": "2026-09-13", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R22", "lot_id": "MFG-L02", "test_id": "MFG-DIAM", "specimen_id": "MFG-S22", "value": "5.13", "observed_on": "2026-09-13", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R23", "lot_id": "MFG-L02", "test_id": "MFG-DIAM", "specimen_id": "MFG-S23", "value": "4.99", "observed_on": "2026-09-13", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R31", "lot_id": "MFG-L03", "test_id": "MFG-DIAM", "specimen_id": "MFG-S31", "value": "5.02", "observed_on": "2026-09-11", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-R32", "lot_id": "MFG-L03", "test_id": "MFG-DIAM", "specimen_id": "MFG-S32", "value": "5.04", "observed_on": "2026-09-11", "supersedes_result_id": null, "supersession_approved": false}
+  ],
+  "certificates": [
+    {"certificate_id": "MFG-C01", "lot_id": "MFG-L01", "item_id": "MFG-PIN", "valid_through": "2026-09-14", "status": "valid"},
+    {"certificate_id": "MFG-C02", "lot_id": "MFG-L02", "item_id": "MFG-PIN", "valid_through": "2026-12-31", "status": "valid"}
+  ],
+  "hold_snapshot": [
+    {"lot_id": "MFG-L01", "physical_held_qty": 1000, "hold_state": "held", "snapshot_date": "2026-09-14"},
+    {"lot_id": "MFG-L02", "physical_held_qty": 200, "hold_state": "held", "snapshot_date": "2026-09-14"},
+    {"lot_id": "MFG-L03", "physical_held_qty": 80, "hold_state": "held", "snapshot_date": "2026-09-14"}
+  ],
+  "nonconformances": [{"nc_id": "MFG-NC02", "lot_id": "MFG-L02", "state": "open", "reason": "Synthetic diameter observation needs QA review."}]
+}

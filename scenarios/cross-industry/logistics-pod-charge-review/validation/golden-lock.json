@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independent pre-execution derivation: D01 dwell 4500s minus 3600s free = 900s, ceil(900/1800)=1; 1000+100+25=1125; 1130-1125=5 equals the inclusive 5 allowance. D02 dwell 7800s, excess 4200s, three blocks cost 75; 800+80+75=955, variance 45 exceeds 5, so its resolved variance case reopens. D03 has no POD, age 183600s (51h), strictly beyond 86400s grace; its rate is still selected, but all price fields remain null. D04 dwell 3600s, zero excess/blocks; 400+40=440, matched, and prior missing-POD case closes. D1 line sum 2130 pairs with 2080 and variance 50; D2 line sum 1100 compares ONLY D04's 440 with 440, not the incomplete invoice. USD billed 3230 = ready 1570 + held 1660; computable billed 2570 minus known price 2520 = 50. All 4 shipments, 2 headers, 12 lines, 3 POD rows, 4 rates, and 2 cases are enumerated; only D02 variance and D03 missing-POD produce queue entries.",
+      "expected_sha256": "e962277545f0984a697cb78853a2906a3ea1a0b3724751b57b456f527d31caaa",
+      "input_sha256": "1419540e5985f272598d1efa7f9ad076d7b7c2823a0e43e33af405f17ce4bbc4"
+    },
+    "holdout-a": {
+      "derivation": "Independent pre-execution derivation with new carrier/contracts and changed policies: A01's 2026-09-30T20:00:00-04:00 is October 1 UTC; the September rate is unused and the 900 October rate uniquely active. 2760s dwell minus 2700s free gives one 900s block, 900+112.50+20=1032.50. Relative allowance 10.325 rounds half-up to 10.33; 1042.83-1032.50=10.33 is included. A02 dwell 7260s minus 2700s = 4560s, six blocks, uncapped 120 capped at 60; 500+40+60=600. Billed 615 has 15 variance beyond 6. A03 revision 2 recorded exactly at cutoff supersedes void revision 1; future void revision 3 is independently excluded. 700+70+0=770, tolerance 7.70; missing-POD case closes. Header/line sum 2427.83; computed sum 2402.50; variance 25.33; ready 1812.83 and held 615. All 3 shipments, 1 invoice, 9 lines, 5 PODs, 4 rates, 1 case are explicitly represented; only A02 variance is a queue entry.",
+      "expected_sha256": "4db4a927ec0348fd0960bdfa88a6ba4f071600ff93fb1ecc9858944718589614",
+      "input_sha256": "917b49127110a68942fb0d4f19b6f739f496027b59df38fc33229c2ec448203c"
+    },
+    "holdout-b": {
+      "derivation": "Independent pre-execution derivation: B01 only has a POD recorded one second after cutoff, so no selected POD, age 3600s versus 14400s grace, not overdue, and its 220 is uncomputed. B02's two effective rates overlap; both are ambiguous-only, its valid POD supplies 3600s dwell but no price or tolerance is invented for billed 330. B03 exact 1800s free dwell has zero excess and zero detention; 100+7=107, variance 100-107=-7 exceeds the 2.14 allowance. B04 exact 3600s free dwell gives 200+20=220 and tolerance 4.40, matched. B1 billed 650 compares only B03's 100 with 107, variance -7; B2 compares 220 with 220. Currency billed 870 = ready 220 + held 650; computable billed 320 minus known price 327 = -7. All 4 shipments, 2 invoices, 12 lines, 4 PODs, 5 rates, and zero cases are accounted; B01 missing-POD, B02 ambiguous-rate, and B03 variance are the ordered queue.",
+      "expected_sha256": "1f7c384955b435145656a39ec695145557919e05feefc96fb75ff6dd21026cec",
+      "input_sha256": "abc43a6e1c12b16c1e3ae0306e03d15f8e10b2a0d85e49d4d87f7f9a1bd28687"
+    },
+    "negative-contradictory": {
+      "derivation": "Independent pre-execution derivation: C01 has two distinct POD IDs at eligible top revision 2, reporting 10 versus 9 units. Neither is selected, even though one matches the shipment; both dispositions are ambiguous. C01's unique rate is selected but expected amount and dwell remain null; billed 550 is held. C02 has one eligible POD with 3600s dwell/free, so 100+10+0=110 matches. Invoice line sum 660 compares ONLY 110 with 110; comparison is incomplete. Ready 110 + held 550 = billed 660, computable variance 0. All 2 shipments, 1 invoice, 6 lines, 3 POD rows, and 2 rates are included; the sole issue is C01 contradictory-pod.",
+      "expected_sha256": "020efa8c9292ade6c17507d682e51e8dd87ab4e7734d77d5ed9bbb1371eea50a",
+      "input_sha256": "faec0af61da810c076744ca5b357ddc6e78ddac28a29efa750def858c717fded"
+    },
+    "negative-malformed": {
+      "derivation": "Independent pre-execution schema derivation: LG-L-M01-LH.amount is the string 12oops, which fails the fixed two-decimal nonnegative money grammar. Other row schemas are valid. Reject the entire bundle with outputs {}, exactly one invalid-amount input issue identifying invoice-lines.json:LG-L-M01-LH.amount, and no join or pricing stage. Header equality is a later business check and is not evaluated after schema rejection.",
+      "expected_sha256": "3ee8e019a9c6d544e50b010e547d721aa0dedf90e4e04fb87d6b488cc3570821",
+      "input_sha256": "fab01e6d568c8587b5bcdd9d94beba11c9212e90d078ceb0e38b75b64fb9db81"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Logistics scenario owner",
+    "description": "The complete five result JSON files were manually authored from HOW_TO.md, the approved research arithmetic, and the input rows before implementing or executing solve. Each export row was separately assigned a disposition; each comparable invoice and currency total was summed independently. The shared golden lock is created before the first baseline invocation. No baseline output is used to construct or repair these files.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "cross-industry-01",
+  "schema_version": 1
+}

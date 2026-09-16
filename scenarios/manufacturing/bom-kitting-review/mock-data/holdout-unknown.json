@@ -1,0 +1,27 @@
+{
+  "as_of": "2026-12-01",
+  "horizon_end": "2026-12-05",
+  "work_orders": [
+    {"order_id": "U02", "item_id": "PANEL", "site": "EAST", "start_date": "2026-12-03", "quantity": 1, "priority": 1, "requested_version_id": null},
+    {"order_id": "U01", "item_id": "MISSING", "site": "EAST", "start_date": "2026-12-02", "quantity": 1, "priority": 1, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "PANEL-V", "item_id": "PANEL", "site": "EAST", "valid_from": "2026-12-01", "valid_to": "2026-12-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "PANEL-PANE", "version_id": "PANEL-V", "component_id": "PANE", "line_type": "Item", "quantity_per": "1", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "PANEL", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "PANE", "unit": "EA", "expiry_controlled": true}
+  ],
+  "stock_lots": [
+    {"stock_id": "US-1", "item_id": "PANE", "site": "EAST", "quantity": 4, "reserved_external_qty": 0, "status": "available", "expires_on": null},
+    {"stock_id": "US-2", "item_id": "PANE", "site": "EAST", "quantity": 5, "reserved_external_qty": 0, "status": "hold", "expires_on": "2026-12-03"}
+  ],
+  "inbound": [
+    {"receipt_id": "UI-X", "item_id": "GHOST", "site": "EAST", "expected_on": "2026-12-02", "quantity": 9, "confirmed": true},
+    {"receipt_id": "UI-O", "item_id": "PANE", "site": "EAST", "expected_on": "2026-12-01", "quantity": 2, "confirmed": true},
+    {"receipt_id": "UI-L", "item_id": "PANE", "site": "EAST", "expected_on": "2026-12-03", "quantity": 7, "confirmed": false}
+  ]
+}

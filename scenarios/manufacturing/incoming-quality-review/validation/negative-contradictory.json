@@ -1,0 +1,198 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "7026c81acc5298789c3b14be795d210065c925fa71afe6671d4c1bdfd7ce17bc",
+    "golden_sha256": "537364735772bb7790e52b63b3f29130563f1f8309ebf6f577080f6bf0141019",
+    "input_sha256": "d540d82eaa236e2164beb91d0ff26e0991b8e7cd813468916b475c25cf35c412",
+    "result": "baseline-output/negative-contradictory.json",
+    "result_sha256": "1d9e1b4d1156feab26ffc9460d0e8ba5d417868c2f5a3bb30722f441e4833ed4",
+    "trace": "baseline-output/negative-contradictory.trace.json",
+    "trace_sha256": "db4cb1e5e80b960c38ec93ecb38cc5944acda3606975b372a4be4c8ed40daf2b"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "datetime",
+      "decimal",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-contradictory",
+  "documented": {
+    "case_rule_coverage": [
+      "input-safety",
+      "retest-lineage"
+    ],
+    "failure_modes": [
+      "contradictory-evidence"
+    ],
+    "golden_derivation": "Two rows with resultID MFG-CONFLICT have different values5.00/5.50. A primary identifier cannot refer to both facts. Reject the entire packet with explicit conflicting-row error, never last-row-wins or select passing evidence.",
+    "steps": [
+      {
+        "id": "intake",
+        "kind": "input",
+        "rule_ids": [
+          "source-inventory",
+          "input-safety"
+        ]
+      },
+      {
+        "id": "validate",
+        "kind": "validation",
+        "rule_ids": [
+          "input-safety",
+          "physical-hold",
+          "retest-lineage"
+        ]
+      },
+      {
+        "id": "join-lot-context",
+        "kind": "join",
+        "rule_ids": [
+          "source-quality-evidence",
+          "dated-requirements",
+          "unknown-evidence",
+          "physical-hold"
+        ]
+      },
+      {
+        "id": "resolve-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "dated-requirements",
+          "retest-lineage"
+        ]
+      },
+      {
+        "id": "evaluate-tests",
+        "kind": "decision",
+        "rule_ids": [
+          "specimen-evaluation",
+          "certificate-review",
+          "nonconformance-precedence"
+        ]
+      },
+      {
+        "id": "classify-review",
+        "kind": "decision",
+        "rule_ids": [
+          "nonconformance-precedence",
+          "unknown-evidence",
+          "queue-closure"
+        ]
+      },
+      {
+        "id": "collect-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "unknown-evidence",
+          "certificate-review",
+          "retest-lineage",
+          "queue-closure"
+        ]
+      },
+      {
+        "id": "order-review",
+        "kind": "decision",
+        "rule_ids": [
+          "queue-closure"
+        ]
+      },
+      {
+        "id": "close-packet",
+        "kind": "output",
+        "rule_ids": [
+          "queue-closure",
+          "physical-hold"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-contradictory.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/manufacturing/incoming-quality-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.404424,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "manufacturing-01",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "8f4e47d0968d282f00694cd12d7af93b8fcb1b3509e8457a19b2350a0d3554dc",
+    "baseline.py": "7026c81acc5298789c3b14be795d210065c925fa71afe6671d4c1bdfd7ce17bc",
+    "connections.json": "4e520add65ce0a2f5135005aecce353e0688ded81a70efe237d1f52cfef88cae",
+    "expected/demo.json": "7e85d558e2bdebafe6b391a2b9ef080a68a9908eccad368849bdde470a646d79",
+    "expected/holdout-a.json": "6dded25d4f418566ee9ed6ce126c538f898d03ee8256c15c4bb120b5e3893a16",
+    "expected/holdout-b.json": "80f47dbbdffe2fd0bceeab93a1991fff16951e2e422ccf1189046eeca9e547bc",
+    "expected/negative-contradictory.json": "537364735772bb7790e52b63b3f29130563f1f8309ebf6f577080f6bf0141019",
+    "expected/negative-malformed.json": "d07da6ba2ae1ecc2cb6a94fb68348be8a710740f6e6d0f5ba936e98805287c6a",
+    "mock-data/demo.json": "bcd4b74e7439ad70f4203132cb11a618673f1cfbc261ea11aaaa674fef32318c",
+    "mock-data/holdout-a.json": "698bd265e1b57b655c16465a5bb321f88f1a120ca954ead623ce681040d49931",
+    "mock-data/holdout-b.json": "09930f4f9fc42cc627bc2cf782160d60c8b670a6bcf71636137ba230e9a26a7f",
+    "mock-data/negative-contradictory.json": "d540d82eaa236e2164beb91d0ff26e0991b8e7cd813468916b475c25cf35c412",
+    "mock-data/negative-malformed.json": "fa3c4b029d4fa951445e224479797ecce680390b9e4415bd6edefa6c4c94a1da",
+    "scenario.json": "61d052d9f5c97094b695652747d88a1ebcb7d39f92935f75d48b52e6df170296",
+    "sources.json": "5d65bd00f7e2eab6191997912c669d1c8c6b387ba9b498282ca7218cea9e7f64",
+    "workflow.json": "aec1cc6b8f7e92a37dc2ca976ca8946342a4e82dc80d65a17cf1fe2425682c79"
+  },
+  "state": "baseline_pass"
+}

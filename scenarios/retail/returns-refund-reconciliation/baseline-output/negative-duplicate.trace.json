@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "caption": "Inspect independently mapped mock exports; null counts mean missing or malformed data, never assumed zero history.",
+      "facts": {
+        "allow_partial_requests": true,
+        "as_of": "2099-10-07",
+        "period_end": "2099-10-07",
+        "period_start": "2099-10-07",
+        "window_days": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-return-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "policy",
+              1
+            ],
+            [
+              "original_orders",
+              1
+            ],
+            [
+              "original_lines",
+              1
+            ],
+            [
+              "prior_returns",
+              0
+            ],
+            [
+              "requests",
+              2
+            ]
+          ],
+          "title": "Supplied logical exports",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Structural validation rejected the bundle before any join, quantity reservation or money proposal.",
+      "facts": {
+        "code": "duplicate-key",
+        "entity_id": "SYN-REQUEST-D",
+        "validation": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-return-records",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "entity_id",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "input",
+              "SYN-REQUEST-D",
+              "duplicate-key",
+              "requests repeats primary key SYN-REQUEST-D."
+            ]
+          ],
+          "title": "First invalid evidence",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "b4951eb3364a9d872eb6a5b4410dba6a947045f090b49e508ed3b8a1d315c567",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-02",
+  "schema_version": 1
+}

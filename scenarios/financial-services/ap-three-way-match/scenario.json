@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "financial-services-02",
+  "title": "AP three-way invoice, PO, and receipt exception matching",
+  "industry": "financial-services",
+  "workflow_family": "procurement-quantity-price-exception-matching",
+  "description": "Bounded synthetic invoice/PO/receipt comparisons, globally non-overlapping proposed quantities, remaining capacities and an atomic AP review queue. No posting or payment.",
+  "owner_role": "AP manager",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "SYN-FIN Demonstration Company and every input identifier, quantity, amount, threshold and approval are invented. Review-only classification, not production accounting, regulatory advice or real authority."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Financial-services AP scenario owner",
+    "description": "Full envelopes manually authored from approved FS-02 arithmetic and document/capacity worksheets before writing baseline business logic or executing it. No computed baseline output or baseline import used to derive or repair answers. The pre-execution golden lock preserves those declarations; this is not independent human AP approval."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json", "expected_status": "completed_with_exceptions",
+      "covers": ["ap-three-way-evidence","ap-partial-receipts","ap-duplicate-business-key","ap-exact-arithmetic","ap-combined-tolerance","ap-approval-and-cutoff","ap-selection-and-capacity","ap-atomic-review"],
+      "failure_modes": [],
+      "derivation": "Independent worksheet: A has PO7000 milliunits minus prior1000=6000; receipts A1=3000 and A2=4000 minus prior1000=3000. Explicit3000+3000 meets6000. 6000*1010/1000=6060, PO net6000, unit cross-products100000<=200000 and line delta60<=500. Allocate A1/A2 by3000 each, leaving both and PO-A at0. B requests5000 against sole receipt3000: shortage2000, no selection/proposal, hold10000; PO-B remains5000 and receipt-B3000. C raw number canonicalizes to SYN-DUP-09, matching SYN-HIST-DUP; its otherwise exact1000-milliunit/5000-cent line remains held and leaves PO/receipt1000. D unit delta300 gives3000000>2000000, though net delta300<=500; hold10300 and leave1000. All exact joins and individual line evidence remain visible. No globally competing eligible invoices. Ready6060+held25300=intake31360; four headers/four lines/four POs/five receipts/two historical headers/one prior allocation/two explicit selection rows."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json", "expected_status": "completed_with_exceptions",
+      "covers": ["ap-three-way-evidence","ap-partial-receipts","ap-exact-arithmetic","ap-combined-tolerance","ap-selection-and-capacity","ap-atomic-review"],
+      "failure_modes": [],
+      "derivation": "Different from demo: A and B each independently pass a1000-milliunit/20000-cent line but together demand2000 from both PO-X and receipt-X capacity1000. Both resources report both competitors; both invoices held, capacities remain1000. C1250*816/1000=1020 versus PO1250*800/1000=1000. Unit delta16 gives160000=160000, line delta20<=500; propose1250, leaving0. D100000*1010/1000=101000 versus100000 at PO1000: unit100000<=200000 passes but line delta1000>500 holds D before competition, leaving100000. Ready1020+held(20000+20000+101000)=142020. Four headers/lines, three POs/receipts, no history, two explicit selection rows."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json", "expected_status": "completed_with_exceptions",
+      "covers": ["ap-three-way-evidence","ap-duplicate-business-key","ap-exact-arithmetic","ap-approval-and-cutoff","ap-selection-and-capacity","ap-atomic-review"],
+      "failure_modes": [],
+      "derivation": "Different entity/vendor, fixed offset-300, as_of2026-08-01T04:59:59Z gives business date2026-07-31. A receipt04:30Z is eligible;1250*1002/1000=1252.5 rounds HALF_UP to1253 versus PO1250; unit20000<=200000 and line delta3 pass. Propose1250 leaving0. B receipt05:00Z is after cutoff despite03:00Z physical receipt: explicitly exclude2000, local posting date2026-08-01, no capacity/selection, hold6000. PO-B remains2000. C PO pending: retain otherwise exact1000-milliunit/4000-cent comparison and selection but hold4000 and leave1000. D/E numbers normalize to SYN-MIX-12: both hold500, retain individually valid selections and leave shared PO/receipt2000; removed before competition so no conflict claim. Ready1253+held11000=intake12253. Five headers/lines, four POs/receipts, no history or explicit selections."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json", "expected_status": "rejected",
+      "covers": ["ap-exact-arithmetic"], "failure_modes": ["malformed-input"],
+      "derivation": "The true JSON boolean at invoice SYN-BAD-INV / line SYN-LINE-01 quantity_milliunits is not a true integer. Emit invalid-integer for that source field before arithmetic or trusted financial outputs. Only pending review metadata accompanies the diagnostic."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json", "expected_status": "rejected",
+      "covers": ["ap-selection-and-capacity","ap-atomic-review"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "All scalar and join evidence is valid, but posted historical allocation SYN-CAP-A consumes1001 milliunits from SYN-CAP-R containing1000. PO capacity2000 is deliberately not the contradictory resource. Reject historical-receipt-overallocated at the receipt quantity field; never clamp1000-1001, assign the incoming line, or emit partial totals."
+    }
+  ]
+}

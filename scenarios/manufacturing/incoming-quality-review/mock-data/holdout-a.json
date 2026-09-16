@@ -1,0 +1,25 @@
+{
+  "config": {"as_of": "2026-10-02", "review_age_days": 2, "certificate_required": true, "fallback_reviewer_role": "QA intake reviewer"},
+  "items": [{"item_id": "MFG-BAR", "item_group": "MFG-METAL"}],
+  "reviewer_routes": [{"item_group": "MFG-METAL", "reviewer_role": "QA reviewer"}],
+  "lots": [
+    {"lot_id": "MFG-H02", "item_id": "MFG-BAR", "supplier_id": "MFG-SUP-GAMMA", "receipt_date": "2026-10-02", "received_qty": 9, "site": "MFG-WEST", "quality_order_id": "MFG-QH02"},
+    {"lot_id": "MFG-H01", "item_id": "MFG-BAR", "supplier_id": "MFG-SUP-DELTA", "receipt_date": "2026-10-01", "received_qty": 12, "site": "MFG-WEST", "quality_order_id": "MFG-QH01"}
+  ],
+  "test_requirements": [
+    {"requirement_id": "MFG-SPEC-BAR", "item_id": "MFG-BAR", "test_id": "MFG-WIDTH", "effective_from": "2026-10-01", "effective_to": "2026-12-31", "minimum": "10.00", "maximum": "10.20", "required_specimens": 2}
+  ],
+  "observations": [
+    {"result_id": "MFG-RA12", "lot_id": "MFG-H01", "test_id": "MFG-WIDTH", "specimen_id": "MFG-SA12", "value": "10.20", "observed_on": "2026-10-02", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-RA11", "lot_id": "MFG-H01", "test_id": "MFG-WIDTH", "specimen_id": "MFG-SA11", "value": "10.00", "observed_on": "2026-10-02", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-RA11", "lot_id": "MFG-H01", "test_id": "MFG-WIDTH", "specimen_id": "MFG-SA11", "value": "10.00", "observed_on": "2026-10-02", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-RA21", "lot_id": "MFG-H02", "test_id": "MFG-WIDTH", "specimen_id": "MFG-SA21", "value": "10.10", "observed_on": "2026-10-02", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-RA22", "lot_id": "MFG-H02", "test_id": "MFG-WIDTH", "specimen_id": "MFG-SA22", "value": "10.15", "observed_on": "2026-10-02", "supersedes_result_id": null, "supersession_approved": false}
+  ],
+  "certificates": [{"certificate_id": "MFG-CA01", "lot_id": "MFG-H01", "item_id": "MFG-BAR", "valid_through": "2026-10-02", "status": "valid"}],
+  "hold_snapshot": [
+    {"lot_id": "MFG-H01", "physical_held_qty": 12, "hold_state": "held", "snapshot_date": "2026-10-02"},
+    {"lot_id": "MFG-H02", "physical_held_qty": 9, "hold_state": "held", "snapshot_date": "2026-10-02"}
+  ],
+  "nonconformances": []
+}

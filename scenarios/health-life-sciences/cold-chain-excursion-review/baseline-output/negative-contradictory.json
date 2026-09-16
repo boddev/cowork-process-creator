@@ -1,0 +1,245 @@
+{
+  "exceptions": [
+    {
+      "code": "conflicting-evidence",
+      "entity_ref": "inventory:SYN-LOT-X",
+      "message": "Quality review required: conflicting-evidence."
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-09-17T10:20:00Z",
+    "correspondence": [],
+    "draft_quality_requests": [
+      {
+        "action": "request-quality-review",
+        "lot_id": "SYN-LOT-X",
+        "owner_role_id": "SYN-ROLE-Q",
+        "prior_correspondence_ids": [],
+        "reason_codes": [
+          "conflicting-evidence"
+        ]
+      }
+    ],
+    "duration_model": "bounded-zero-order-hold",
+    "evidence_register": [
+      {
+        "occurrences": 1,
+        "record_id": "SYN-C-X",
+        "state": "available",
+        "table": "calibrations",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-C-Y",
+        "state": "available",
+        "table": "calibrations",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-X",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-Y",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-X1",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-X2",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-Y",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROD-R",
+        "state": "available",
+        "table": "products",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROFILE-R",
+        "state": "available",
+        "table": "profiles",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-X00A",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-X00B",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-X20",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-Y00",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-Y20",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-AS-X",
+        "state": "available",
+        "table": "sensor_assignments",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-AS-Y",
+        "state": "available",
+        "table": "sensor_assignments",
+        "variants": 1
+      }
+    ],
+    "interval_ledger": [
+      {
+        "end": "2026-09-17T10:20:00Z",
+        "evidence_state": "unknown",
+        "lot_id": "SYN-LOT-X",
+        "overlap_seconds": 1200,
+        "placement_ids": [
+          "SYN-PL-X1",
+          "SYN-PL-X2"
+        ],
+        "reading_ids": [],
+        "sensor_id": null,
+        "start": "2026-09-17T10:00:00Z",
+        "temperature_tenths_c": null
+      },
+      {
+        "end": "2026-09-17T10:20:00Z",
+        "evidence_state": "inside-band",
+        "lot_id": "SYN-LOT-Y",
+        "overlap_seconds": 1200,
+        "placement_ids": [
+          "SYN-PL-Y"
+        ],
+        "reading_ids": [
+          "SYN-Y00"
+        ],
+        "sensor_id": "SYN-SENSOR-Y",
+        "start": "2026-09-17T10:00:00Z",
+        "temperature_tenths_c": 50
+      }
+    ],
+    "inventory_summary": {
+      "evidence_gap_lots": 1,
+      "no_observed_exception_lots": 1,
+      "review_lots": 1,
+      "review_units": 9,
+      "total_lots": 2
+    },
+    "lot_review": [
+      {
+        "covered_seconds": 0,
+        "lot_id": "SYN-LOT-X",
+        "modeled_outside_seconds": null,
+        "observed_outside_reading_ids": [],
+        "occupied_seconds": 1200,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-R",
+        "profile_id": "SYN-PROFILE-R",
+        "quantity_units": 9,
+        "reason_codes": [
+          "conflicting-evidence"
+        ],
+        "review_state": "pending-quality-review",
+        "source_refs": [
+          "calibrations:SYN-C-X",
+          "calibrations:SYN-C-Y",
+          "inventory:SYN-LOT-X",
+          "placements:SYN-PL-X1",
+          "placements:SYN-PL-X2",
+          "products:SYN-PROD-R",
+          "profiles:SYN-PROFILE-R",
+          "readings:SYN-X00A",
+          "readings:SYN-X00B",
+          "readings:SYN-X20",
+          "readings:SYN-Y00",
+          "readings:SYN-Y20",
+          "sensor_assignments:SYN-AS-X",
+          "sensor_assignments:SYN-AS-Y"
+        ],
+        "temperature_max_tenths_c": null,
+        "temperature_min_tenths_c": null,
+        "unknown_seconds": 1200
+      },
+      {
+        "covered_seconds": 1200,
+        "lot_id": "SYN-LOT-Y",
+        "modeled_outside_seconds": 0,
+        "observed_outside_reading_ids": [],
+        "occupied_seconds": 1200,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-R",
+        "profile_id": "SYN-PROFILE-R",
+        "quantity_units": 1,
+        "reason_codes": [],
+        "review_state": "no-observed-exception",
+        "source_refs": [
+          "calibrations:SYN-C-Y",
+          "inventory:SYN-LOT-Y",
+          "placements:SYN-PL-Y",
+          "products:SYN-PROD-R",
+          "profiles:SYN-PROFILE-R",
+          "readings:SYN-Y00",
+          "readings:SYN-Y20",
+          "sensor_assignments:SYN-AS-Y"
+        ],
+        "temperature_max_tenths_c": 50,
+        "temperature_min_tenths_c": 50,
+        "unknown_seconds": 0
+      }
+    ],
+    "physical_actions_performed": false,
+    "policy_id": "SYN-POLICY-CONFLICT",
+    "quality_disposition_required": true,
+    "window_start": "2026-09-17T10:00:00Z"
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

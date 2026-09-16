@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "status": "research-catalog-qualified-for-synthetic-build",
+  "qualified_on": "2026-09-14",
+  "review_method": "Coordinator read all fifteen primary-source-backed scenario designs, including workflow boundaries, decisions, independent case derivations and explicit source-versus-sample policy distinctions.",
+  "qualified_scenario_count": 15,
+  "industry_count": 7,
+  "construction_authorized": true,
+  "authorization_scope": "Build synthetic workflows, data, independent expected results, no-Creator baselines, complete how-to documents and videos from actual baseline traces. This does not attest native generation, installation or invocation.",
+  "packs": [
+    {
+      "industry": "Manufacturing",
+      "research_path": "manufacturing/research.json",
+      "research_commit": "cf561605b666b79d1b35ba668740d3ff2201fb0e",
+      "source_count": 10,
+      "scenarios": [
+        "Incoming-lot quality evidence and disposition review",
+        "Supplier delivery performance and shortage expediting review",
+        "BOM material-readiness and kitting shortage review"
+      ]
+    },
+    {
+      "industry": "Health and Life Sciences",
+      "research_path": "health-life-sciences/research.json",
+      "research_commit": "1a141ae899acae0e87058c92aa10bb82cfa2a516",
+      "source_count": 7,
+      "scenarios": [
+        "Site essential-document completeness and expiry review",
+        "Cold-chain inventory temperature-excursion review",
+        "Specimen accession and order reconciliation"
+      ]
+    },
+    {
+      "industry": "Financial Services",
+      "research_path": "financial-services/research.json",
+      "research_commit": "276ca0112f1f60a7009726ab286bd37c31246df4",
+      "source_count": 8,
+      "scenarios": [
+        "Bank-statement-to-ledger reconciliation review",
+        "Accounts-payable three-way invoice match",
+        "Advisory fee billing reconciliation"
+      ]
+    },
+    {
+      "industry": "Retail",
+      "research_path": "retail/research.json",
+      "research_commit": "ae9c1df71a34cf2efbfc7d2f6d5f979501cdf3f8",
+      "source_count": 8,
+      "scenarios": [
+        "Store replenishment proposal",
+        "Original-order returns and refund reconciliation",
+        "Store, product and date promotion price audit"
+      ]
+    },
+    {
+      "industry": "Logistics, Utilities, Professional Services",
+      "research_path": "cross-industry/research.json",
+      "research_commit": "bdfc62c938b9cfc902a057c37cc0850e758530de",
+      "source_count": 9,
+      "scenarios": [
+        "Delivery, proof-of-delivery and carrier charge review",
+        "Maintenance readiness and resource-window plan",
+        "Approved time and expense billing-draft review"
+      ]
+    }
+  ],
+  "build_acceptance": {
+    "minimum_cases_per_scenario": 5,
+    "minimum_corpus_cases": 75,
+    "required_cases": "One demo, two materially changed holdouts, and at least two negatives covering malformed records and contradictory evidence.",
+    "oracle_rule": "Derive expected business outputs independently before baseline execution; never copy baseline or generated-plugin results into goldens to make them pass.",
+    "procedure_rule": "One complete HOW_TO.md per scenario with all input/output fields, full result envelope, exact numerical/date/ordering rules, exceptions, human review and no-plugin versus plugin procedure.",
+    "trace_rule": "Actual executed stages, all six stage kinds, meaningful intermediate decisions and complete final outputs. No storyboard substituted for execution.",
+    "video_rule": "Readable short synthetic baseline execution visualization from actual trace, with encoding/timing/hash/fidelity evidence. Not a live ERP/POS/LIS/Cowork recording.",
+    "native_input_rule": "Only the approved procedure/workflow/connection metadata, demo input and video; withhold baseline code, goldens, holdouts and evaluation answers."
+  },
+  "native_status": {
+    "creation": "blocked",
+    "installation": "not-run",
+    "independent_invocation": "not-run",
+    "reason": "Approved Computer Use tools must be restored AND an unlocked accessible session must be available. No alternate UI/private API/cookie/token/shell workaround.",
+    "prior_publication_result": "UNKNOWN; inspect actual Installed state before any retry after access restoration.",
+    "output_directory_rule": "Store actual native-generated plugins only after native generation. Do not fill output with locally generated substitutes or fake pass evidence."
+  }
+}

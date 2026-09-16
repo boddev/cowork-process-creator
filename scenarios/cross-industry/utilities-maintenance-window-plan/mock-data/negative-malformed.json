@@ -1,0 +1,20 @@
+{
+  "config": {"as_of": "2026-10-05T07:00:00Z", "horizon_start": "2026-10-05T08:00:00Z", "horizon_end": "2026-10-05T12:00:00Z", "slot_minutes": 30, "max_search_starts": 20},
+  "files": {
+    "work-orders.json": [
+      {"work_order_id": "UT-N01", "priority": 1, "earliest_start": "2026-10-05T08:00:00Z", "due_at": "2026-10-05T12:00:00Z", "duration_minutes": true, "craft_code": "E", "area_resource_id": "NA", "tool_resource_id": null, "predecessors": [], "plan_approved": true, "owner": "PLANNER-N"}
+    ],
+    "requirements.json": [],
+    "kit-components.json": [],
+    "resources.json": [
+      {"resource_id": "NC", "kind": "crew", "craft_code": "E", "capacity": 1},
+      {"resource_id": "NA", "kind": "area", "craft_code": null, "capacity": 1}
+    ],
+    "resource-windows.json": [
+      {"window_id": "WN-C", "resource_id": "NC", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T12:00:00Z"},
+      {"window_id": "WN-A", "resource_id": "NA", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T12:00:00Z"}
+    ],
+    "commitments.json": [],
+    "prerequisite-status.json": []
+  }
+}

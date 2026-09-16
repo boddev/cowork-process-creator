@@ -1,0 +1,176 @@
+{
+  "exceptions": [],
+  "outputs": {
+    "buyer_review_queue": [
+      {
+        "approval_required": true,
+        "buyer_role": "September buyer",
+        "confirmed_receipt": "2026-10-05",
+        "draft_questions": [
+          "Review the overdue original receipt date; any amendment needs buyer approval."
+        ],
+        "earliest_need_by": "2026-10-05",
+        "line_id": "A02",
+        "low_performance": true,
+        "open_qty": 8,
+        "priority": "P2",
+        "rank": 1,
+        "reason_codes": [
+          "overdue-original"
+        ],
+        "send_status": "unsent",
+        "shortage_qty": 0,
+        "supplier_id": "SA01"
+      }
+    ],
+    "cohort_exclusions": [],
+    "confirmation_review": [
+      {
+        "confirmation_id": null,
+        "confirmed_receipt": null,
+        "future_confirmation_ids": [],
+        "in_scope": false,
+        "line_id": "A01",
+        "recorded_on": null,
+        "remaining_qty": null,
+        "state": "not-open",
+        "superseded_confirmation_ids": [],
+        "supply_qty": 0
+      },
+      {
+        "confirmation_id": "C-A02",
+        "confirmed_receipt": "2026-10-05",
+        "future_confirmation_ids": [],
+        "in_scope": true,
+        "line_id": "A02",
+        "recorded_on": "2026-10-05",
+        "remaining_qty": 8,
+        "state": "current",
+        "superseded_confirmation_ids": [],
+        "supply_qty": 8
+      }
+    ],
+    "overall_performance": {
+      "denominator": 2,
+      "line_ids": [
+        "A01",
+        "A02"
+      ],
+      "low_performance": true,
+      "numerator": 1,
+      "pending_line_ids": [],
+      "percent": "50.00"
+    },
+    "receipt_reconciliation": [
+      {
+        "active_receipt_ids": [
+          "R-A01"
+        ],
+        "cohort_status": "included",
+        "credited_received_qty": 7,
+        "deadline": "2026-10-02",
+        "future_event_ids": [],
+        "item_id": "SEAL",
+        "line_id": "A01",
+        "net_received_qty": 7,
+        "on_time_qty": 7,
+        "open_qty": 0,
+        "ordered_qty": 7,
+        "original_requested_receipt": "2026-09-30",
+        "otif": true,
+        "overreceipt_qty": 0,
+        "performance_pending": false,
+        "receipt_event_ids": [
+          "R-A01"
+        ],
+        "reversal_event_ids": [],
+        "state": "open",
+        "supplier_id": "SA01",
+        "voided_receipt_ids": []
+      },
+      {
+        "active_receipt_ids": [],
+        "cohort_status": "included",
+        "credited_received_qty": 0,
+        "deadline": "2026-10-02",
+        "future_event_ids": [],
+        "item_id": "VALVE",
+        "line_id": "A02",
+        "net_received_qty": 0,
+        "on_time_qty": 0,
+        "open_qty": 8,
+        "ordered_qty": 8,
+        "original_requested_receipt": "2026-09-30",
+        "otif": false,
+        "overreceipt_qty": 0,
+        "performance_pending": false,
+        "receipt_event_ids": [
+          "R-A02",
+          "V-A02"
+        ],
+        "reversal_event_ids": [
+          "V-A02"
+        ],
+        "state": "open",
+        "supplier_id": "SA01",
+        "voided_receipt_ids": [
+          "R-A02"
+        ]
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "assessment": "allocated",
+        "confirmation_id": "C-A02",
+        "covered_qty": 8,
+        "criticality": "critical",
+        "in_scope": true,
+        "line_id": "A02",
+        "need_by": "2026-10-05",
+        "requirement_id": "RQ-A02",
+        "shortage_qty": 0,
+        "unmet_qty": 8
+      }
+    ],
+    "review_closure": {
+      "active_open_qty": 8,
+      "approval_required": true,
+      "as_of": "2026-10-05",
+      "boundary": "Mock calendar-day review; no live purchasing or communication.",
+      "covered_qty": 8,
+      "exception_count": 0,
+      "horizon_end": "2026-10-12",
+      "in_scope_unmet_qty": 8,
+      "line_count": 2,
+      "low_performance_percent": 90,
+      "messages_sent": 0,
+      "orders_changed": 0,
+      "owner_role": "Buyer and material planner",
+      "queue_count": 1,
+      "reporting_month": "2026-09",
+      "shortage_qty": 0,
+      "state": "review-prepared",
+      "tolerance_days": 2,
+      "unresolved_requirement_count": 0,
+      "unresolved_unmet_qty": 0,
+      "urgency_end": "2026-10-07"
+    },
+    "supplier_performance": [
+      {
+        "buyer_role": "September buyer",
+        "denominator": 2,
+        "line_ids": [
+          "A01",
+          "A02"
+        ],
+        "low_performance": true,
+        "numerator": 1,
+        "pending_line_ids": [],
+        "percent": "50.00",
+        "supplier_id": "SA01"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed"
+}

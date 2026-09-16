@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "cross-industry-02",
+  "title": "Maintenance readiness and resource-window conflict plan",
+  "industry": "cross-industry",
+  "workflow_family": "readiness-and-constrained-window-allocation",
+  "description": "Energy and utilities: turn synthetic work, kit, crew, area, tool and prerequisite exports into a contingent review plan with complete resource-conflict explanations and deferred-work closure.",
+  "owner_role": "Maintenance planning coordinator",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "All quantities, priorities, windows, capacities, kit rules and workload limits are fictional. No equipment operation, isolation/lockout, dispatch, authorization or real schedule changes. Not safe-to-work clearance."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Cross-industry scenario owner",
+    "description": "Complete expected JSON was written from the approved research and HOW_TO rules before baseline execution. The owner manually enumerated grid failures, crew/resource occupancy and each terminal order state. Source provenance is an author declaration, not independent human or native proof."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json", "expected_status": "completed_with_exceptions",
+      "covers": ["work-requirements", "availability-review", "planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "bounded-search", "conflict-explanation", "planning-closure"],
+      "failure_modes": [],
+      "derivation": "Six orders. D01 08-09 adjoins a 09-10 crew booking. D02's seven starts 09,09:30,10,10:30,11,11:30,12 produce six conflicts and select12-14; fixed-tool checking explains the 09:30-11:30 failures. D03 follows D01 at09-10; D06 follows area occupancy at10-11:30. D04 lacks2of3kit units; D05 external prerequisite open. Four proposals total60+120+60+90=330job minutes; CE1/CM1=180/150proposed and T1=180, separate from60existing CE1/T1 minutes. Every full envelope value and array was prewritten manually."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json", "expected_status": "completed_with_exceptions",
+      "covers": ["planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "bounded-search", "conflict-explanation", "planning-closure"],
+      "failure_modes": [],
+      "derivation": "Four different orders and explicit-05:00 offsets normalize to13-18Z. A01 selects CE-A02 at13-14:30 after CE-A01 fails, so one start/two crew trials. A02 fixed tool fails at13,13:30,14 against A01 and14:30,15,15:30 against BOOK-A-T1; select CE-A01 at16-17. A03 dependency bound14:30 selects CE-A01 until15. A04 kit arrives17:30, leaving30minutes for a60minute job: zero examined starts, no-feasible-window. Job minutes90+60+30=180, each crew90proposed and tool150."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json", "expected_status": "completed_with_exceptions",
+      "covers": ["planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "bounded-search", "conflict-explanation", "planning-closure"],
+      "failure_modes": [],
+      "derivation": "Five new orders, 15minute grid and no existing bookings. Priority1 B02 depends on priority2 B01; recompute resolved priorities so B01 08-09 precedes B02 09-09:45. B03's only09start collides with B02's tool use and later starts miss its10due time. B04 uses Y immediately after B02 at09:45-10:15 without tool. B05 lacks administrative approval. Three proposals=135job minutes, E-B1/M-B1=90/45, tool105, area X/Y=60/75. Exact resource adjacency is allowed."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json", "expected_status": "rejected",
+      "covers": ["interval-semantics"], "failure_modes": ["malformed-input"],
+      "derivation": "A parseable JSON record supplies true as duration_minutes. This is not a valid integer duration; reject at files.work-orders.json[0].duration_minutes with outputs{} before graph/resource planning."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json", "expected_status": "rejected",
+      "covers": ["prerequisite-order", "planning-closure"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "Two otherwise valid work orders require one another. The internal prerequisite graph has no topological processing order, so reject at files.work-orders.json with cyclic-prerequisite and outputs{}, without choosing a start or implying clearance."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "q-orders", "title": "Quality orders", "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-orders", "publisher": "Microsoft Learn", "accessed": "2026-09-14",
+      "scope": "Actual page fetched; purchase-reference inspections and advanced review actions.",
+      "supported_claims": ["Inspection records connect source inventory, tests and quantities.", "Quality review can include test results and nonconformance evidence."],
+      "limitations": "No order creation, laboratory testing, certificate issuance, inventory release or regulatory assertion is implemented."
+    },
+    {
+      "id": "q-quarantine", "title": "Quarantine orders", "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quarantine-orders", "publisher": "Microsoft Learn", "accessed": "2026-09-14",
+      "scope": "Actual page fetched; inventory effects and WMS limitation.",
+      "supported_claims": ["Quarantine orders have distinct states and physical inventory effects.", "With WMS, quarantine-order processing applies only to return sales orders."],
+      "limitations": "This incoming-lot packet reviews exported hold evidence and does not emulate a universal inbound quarantine workflow."
+    },
+    {
+      "id": "q-blocking", "title": "Inventory blocking", "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-blocking", "publisher": "Microsoft Learn", "accessed": "2026-09-14",
+      "scope": "Actual page fetched; sampling versus blocking and overlapping inventory records.",
+      "supported_claims": ["Inspection sample quantity is not always blocked inventory quantity.", "Overlapping blocking mechanisms can appear to exceed physical stock."],
+      "limitations": "Normalized physical hold snapshots are fictional file exports, not a reconstruction of tenant-specific inventory transactions."
+    },
+    {
+      "id": "q-overview", "title": "Quality and nonconformance management overview", "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-management-processes", "publisher": "Microsoft Learn", "accessed": "2026-09-14",
+      "scope": "Actual page fetched; quality evidence, nonconformance and correction handling.",
+      "supported_claims": ["Quality review relates sampling, numeric tests, supporting documents and nonconformances.", "Corrections and retests are separate evidence-bearing activities."],
+      "limitations": "Thresholds, specimen counts, retest authorization policy and queue priorities are invented. No ISO/AQL/regulatory certification."
+    },
+    {
+      "id": "q-sampling", "title": "Quality management item sampling", "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-item-sampling", "publisher": "Microsoft Learn", "accessed": "2026-09-14",
+      "scope": "Actual page fetched; fixed/percentage/license-plate sampling.",
+      "supported_claims": ["Quality associations can use fixed sampling quantities.", "Sampling and blocking configuration vary by process."],
+      "limitations": "The supplied fixed specimen minimum is only a fictional completeness rule, not an acceptance-sampling algorithm."
+    }
+  ]
+}

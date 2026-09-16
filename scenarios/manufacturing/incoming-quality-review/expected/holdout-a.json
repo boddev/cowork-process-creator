@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-10-02",
+    "packet_state": "review-required",
+    "review_queue": [
+      {
+        "rank": 1, "lot_id": "MFG-H02", "item_id": "MFG-BAR", "supplier_id": "MFG-SUP-GAMMA", "site": "MFG-WEST", "quality_order_id": "MFG-QH02", "receipt_date": "2026-10-02",
+        "received_qty": 9, "physical_held_qty": 9, "hold_state": "held", "hold_snapshot_date": "2026-10-02", "age_days": 0, "overdue": false,
+        "review_state": "evidence-gap", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["missing-certificate"], "certificate_ids": [], "open_nc_ids": [],
+        "test_checks": [{
+          "test_id": "MFG-WIDTH", "requirement_id": "MFG-SPEC-BAR", "minimum": "10.00", "maximum": "10.20", "required_specimens": 2, "observed_specimens": 2,
+          "state": "complete", "failed_result_ids": [],
+          "observations": [
+            {"result_id": "MFG-RA21", "specimen_id": "MFG-SA21", "value": "10.10", "evidence_state": "active"},
+            {"result_id": "MFG-RA22", "specimen_id": "MFG-SA22", "value": "10.15", "evidence_state": "active"}
+          ]
+        }]
+      },
+      {
+        "rank": 2, "lot_id": "MFG-H01", "item_id": "MFG-BAR", "supplier_id": "MFG-SUP-DELTA", "site": "MFG-WEST", "quality_order_id": "MFG-QH01", "receipt_date": "2026-10-01",
+        "received_qty": 12, "physical_held_qty": 12, "hold_state": "held", "hold_snapshot_date": "2026-10-02", "age_days": 1, "overdue": false,
+        "review_state": "evidence-complete", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": [], "certificate_ids": ["MFG-CA01"], "open_nc_ids": [],
+        "test_checks": [{
+          "test_id": "MFG-WIDTH", "requirement_id": "MFG-SPEC-BAR", "minimum": "10.00", "maximum": "10.20", "required_specimens": 2, "observed_specimens": 2,
+          "state": "complete", "failed_result_ids": [],
+          "observations": [
+            {"result_id": "MFG-RA11", "specimen_id": "MFG-SA11", "value": "10.00", "evidence_state": "active"},
+            {"result_id": "MFG-RA12", "specimen_id": "MFG-SA12", "value": "10.20", "evidence_state": "active"}
+          ]
+        }]
+      }
+    ],
+    "totals": {"lot_count": 2, "received_qty": 21, "known_held_qty": 21, "unknown_hold_lot_ids": [], "review_quantities": {"data-review": 0, "nonconformance-review": 0, "evidence-gap": 9, "evidence-complete": 12}}
+  },
+  "exceptions": [
+    {"code": "duplicate-record", "message": "Collapsed identical duplicate source row.", "subject": "observations:MFG-RA11", "owner_role": null},
+    {"code": "missing-certificate", "message": "No current matching certificate is available.", "subject": "MFG-H02", "owner_role": "QA reviewer"}
+  ]
+}

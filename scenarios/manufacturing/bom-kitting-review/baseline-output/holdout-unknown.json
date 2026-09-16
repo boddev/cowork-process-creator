@@ -1,0 +1,243 @@
+{
+  "exceptions": [
+    {
+      "code": "MATERIAL_SHORTAGE",
+      "field": null,
+      "message": "Required material is not fully assigned.",
+      "order_id": "U02",
+      "source_id": "PANE",
+      "source_type": "items"
+    },
+    {
+      "code": "ORDER_UNRESOLVED",
+      "field": null,
+      "message": "Material requirements are unresolved; no component assignment was made.",
+      "order_id": "U01",
+      "source_id": "U01",
+      "source_type": "work_orders"
+    },
+    {
+      "code": "SUPPLY_EXCLUSIONS",
+      "field": null,
+      "message": "5 order/source eligibility exclusion(s) require review.",
+      "order_id": null,
+      "source_id": null,
+      "source_type": null
+    },
+    {
+      "code": "UNKNOWN_ITEM",
+      "field": "item_id",
+      "message": "Referenced item master is missing: GHOST.",
+      "order_id": null,
+      "source_id": "UI-X",
+      "source_type": "inbound"
+    },
+    {
+      "code": "UNKNOWN_ITEM",
+      "field": "item_id",
+      "message": "Referenced item master is missing: MISSING.",
+      "order_id": "U01",
+      "source_id": "U01",
+      "source_type": "work_orders"
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-12-01",
+    "closure": {
+      "approval_required": true,
+      "inventory_mutated": false,
+      "orders_released": false,
+      "production_authorized": false,
+      "reservations_created": false,
+      "review_only": true,
+      "substitutions_made": false
+    },
+    "component_requirements": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 0,
+        "assigned_qty": 0,
+        "available_now_qty": 0,
+        "component_id": "PANE",
+        "exact_qty": "1",
+        "expected_before_need_qty": 0,
+        "gap_qty": 1,
+        "order_id": "U02",
+        "required_qty": 1
+      }
+    ],
+    "component_totals": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 0,
+        "assigned_qty": 0,
+        "component_id": "PANE",
+        "gap_qty": 1,
+        "required_qty": 1,
+        "site": "EAST"
+      }
+    ],
+    "excluded_orders": [],
+    "exploded_paths": [
+      {
+        "component_id": "PANE",
+        "exact_qty": "1",
+        "order_id": "U02",
+        "path": [
+          "PANEL-PANE"
+        ]
+      }
+    ],
+    "horizon_end": "2026-12-05",
+    "order_reviews": [
+      {
+        "approval_required": true,
+        "item_id": "MISSING",
+        "need_by": "2026-12-02",
+        "order_id": "U01",
+        "priority": 1,
+        "production_authorized": false,
+        "quantity": 1,
+        "review_owners": [
+          "Engineering reviewer",
+          "Material planner"
+        ],
+        "short_components": [],
+        "site": "EAST",
+        "state": "unresolved-review"
+      },
+      {
+        "approval_required": true,
+        "item_id": "PANEL",
+        "need_by": "2026-12-03",
+        "order_id": "U02",
+        "priority": 1,
+        "production_authorized": false,
+        "quantity": 1,
+        "review_owners": [
+          "Material planner",
+          "Stores reviewer",
+          "Production planner"
+        ],
+        "short_components": [
+          "PANE"
+        ],
+        "site": "EAST",
+        "state": "shortage-review"
+      }
+    ],
+    "order_sequence": [
+      "U01",
+      "U02"
+    ],
+    "review_queue": [
+      "U01",
+      "U02"
+    ],
+    "selected_versions": [
+      {
+        "item_id": "PANEL",
+        "order_id": "U02",
+        "parent_path": [],
+        "selection": "active-default",
+        "version_id": "PANEL-V"
+      }
+    ],
+    "shadow_allocations": [],
+    "source_balances": [
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 4,
+        "remaining_qty": 4,
+        "site": "EAST",
+        "source_id": "US-1",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 5,
+        "remaining_qty": 5,
+        "site": "EAST",
+        "source_id": "US-2",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 7,
+        "remaining_qty": 7,
+        "site": "EAST",
+        "source_id": "UI-L",
+        "source_type": "inbound"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PANE",
+        "net_qty": 2,
+        "remaining_qty": 2,
+        "site": "EAST",
+        "source_id": "UI-O",
+        "source_type": "inbound"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "GHOST",
+        "net_qty": 9,
+        "remaining_qty": 9,
+        "site": "EAST",
+        "source_id": "UI-X",
+        "source_type": "inbound"
+      }
+    ],
+    "summary": {
+      "covered_now_orders": 0,
+      "covered_with_expected_orders": 0,
+      "excluded_orders": 0,
+      "in_scope_orders": 2,
+      "resolved_orders": 1,
+      "shortage_orders": 1,
+      "unresolved_orders": 1
+    },
+    "supply_exclusions": [
+      {
+        "component_id": "GHOST",
+        "order_id": null,
+        "reason": "unknown-item",
+        "source_id": "UI-X",
+        "source_type": "inbound"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "U02",
+        "reason": "unknown-expiry",
+        "source_id": "US-1",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "U02",
+        "reason": "blocked-status",
+        "source_id": "US-2",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "U02",
+        "reason": "unconfirmed",
+        "source_id": "UI-L",
+        "source_type": "inbound"
+      },
+      {
+        "component_id": "PANE",
+        "order_id": "U02",
+        "reason": "not-future",
+        "source_id": "UI-O",
+        "source_type": "inbound"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

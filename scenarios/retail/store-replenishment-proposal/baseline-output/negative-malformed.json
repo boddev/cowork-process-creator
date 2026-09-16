@@ -1,0 +1,12 @@
+{
+  "exceptions": [
+    {
+      "code": "invalid-record",
+      "message": "routes[0].case_pack must be a positive integer.",
+      "reference": "routes[0].case_pack"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

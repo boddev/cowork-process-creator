@@ -1,0 +1,36 @@
+{
+  "config": {"as_of": "2026-12-01T07:00:00Z", "horizon_start": "2026-12-01T08:00:00Z", "horizon_end": "2026-12-01T12:00:00Z", "slot_minutes": 15, "max_search_starts": 24},
+  "files": {
+    "work-orders.json": [
+      {"work_order_id": "UT-B01", "priority": 2, "earliest_start": "2026-12-01T08:00:00Z", "due_at": "2026-12-01T10:00:00Z", "duration_minutes": 60, "craft_code": "EB", "area_resource_id": "X", "tool_resource_id": "T-B1", "predecessors": [], "plan_approved": true, "owner": "PLANNER-B"},
+      {"work_order_id": "UT-B02", "priority": 1, "earliest_start": "2026-12-01T09:00:00Z", "due_at": "2026-12-01T12:00:00Z", "duration_minutes": 45, "craft_code": "MB", "area_resource_id": "Y", "tool_resource_id": "T-B1", "predecessors": ["UT-B01"], "plan_approved": true, "owner": "PLANNER-B"},
+      {"work_order_id": "UT-B03", "priority": 3, "earliest_start": "2026-12-01T09:00:00Z", "due_at": "2026-12-01T10:00:00Z", "duration_minutes": 60, "craft_code": "EB", "area_resource_id": "X", "tool_resource_id": "T-B1", "predecessors": [], "plan_approved": true, "owner": "PLANNER-B"},
+      {"work_order_id": "UT-B04", "priority": 4, "earliest_start": "2026-12-01T09:45:00Z", "due_at": "2026-12-01T12:00:00Z", "duration_minutes": 30, "craft_code": "EB", "area_resource_id": "Y", "tool_resource_id": null, "predecessors": [], "plan_approved": true, "owner": "PLANNER-B"},
+      {"work_order_id": "UT-B05", "priority": 5, "earliest_start": "2026-12-01T08:00:00Z", "due_at": "2026-12-01T12:00:00Z", "duration_minutes": 60, "craft_code": "EB", "area_resource_id": "Y", "tool_resource_id": null, "predecessors": [], "plan_approved": false, "owner": "PLANNER-B"}
+    ],
+    "requirements.json": [
+      {"work_order_id": "UT-B01", "item_id": "K1", "required_quantity": 1},
+      {"work_order_id": "UT-B02", "item_id": "K2", "required_quantity": 1}
+    ],
+    "kit-components.json": [
+      {"kit_component_id": "K-B01", "work_order_id": "UT-B01", "item_id": "K1", "reserved_quantity": 1, "available_at": "2026-12-01T08:00:00Z"},
+      {"kit_component_id": "K-B02", "work_order_id": "UT-B02", "item_id": "K2", "reserved_quantity": 1, "available_at": "2026-12-01T08:00:00Z"}
+    ],
+    "resources.json": [
+      {"resource_id": "E-B1", "kind": "crew", "craft_code": "EB", "capacity": 1},
+      {"resource_id": "M-B1", "kind": "crew", "craft_code": "MB", "capacity": 1},
+      {"resource_id": "T-B1", "kind": "tool", "craft_code": null, "capacity": 1},
+      {"resource_id": "X", "kind": "area", "craft_code": null, "capacity": 1},
+      {"resource_id": "Y", "kind": "area", "craft_code": null, "capacity": 1}
+    ],
+    "resource-windows.json": [
+      {"window_id": "WB-E", "resource_id": "E-B1", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T12:00:00Z"},
+      {"window_id": "WB-M", "resource_id": "M-B1", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T12:00:00Z"},
+      {"window_id": "WB-T", "resource_id": "T-B1", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T12:00:00Z"},
+      {"window_id": "WB-X", "resource_id": "X", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T10:00:00Z"},
+      {"window_id": "WB-Y", "resource_id": "Y", "start": "2026-12-01T09:00:00Z", "end": "2026-12-01T12:00:00Z"}
+    ],
+    "commitments.json": [],
+    "prerequisite-status.json": []
+  }
+}

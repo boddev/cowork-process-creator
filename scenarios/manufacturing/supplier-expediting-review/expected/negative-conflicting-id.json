@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "CONFLICTING_ID", "message": "Rows with the same primary ID disagree.", "table": "receipt_events", "record_id": "E-N10", "field": "event_id"}
+  ]
+}

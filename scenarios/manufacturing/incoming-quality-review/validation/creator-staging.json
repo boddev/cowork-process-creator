@@ -1,0 +1,61 @@
+{
+  "files": [
+    {
+      "path": "HOW_TO.md",
+      "sha256": "8f4e47d0968d282f00694cd12d7af93b8fcb1b3509e8457a19b2350a0d3554dc",
+      "size_bytes": 20786
+    },
+    {
+      "path": "workflow.json",
+      "sha256": "aec1cc6b8f7e92a37dc2ca976ca8946342a4e82dc80d65a17cf1fe2425682c79",
+      "size_bytes": 6154
+    },
+    {
+      "path": "connections.json",
+      "sha256": "4e520add65ce0a2f5135005aecce353e0688ded81a70efe237d1f52cfef88cae",
+      "size_bytes": 440
+    },
+    {
+      "path": "mock-data/demo.json",
+      "sha256": "bcd4b74e7439ad70f4203132cb11a618673f1cfbc261ea11aaaa674fef32318c",
+      "size_bytes": 3581
+    },
+    {
+      "path": "demo/baseline.webm",
+      "sha256": "ba85be6c3dc8135a1e4f98ecb58a3100af162635ab6151aedf0d5d571a69483c",
+      "size_bytes": 1467744
+    }
+  ],
+  "input_directory": "validation/creator-input",
+  "media_sha256": "ba85be6c3dc8135a1e4f98ecb58a3100af162635ab6151aedf0d5d571a69483c",
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "provenance": "local-allowlisted-synthetic-demo-inputs",
+  "scenario_id": "manufacturing-01",
+  "schema_version": 1,
+  "state": "prepared",
+  "withheld": [
+    "scenario.json",
+    "sources.json",
+    "baseline.py",
+    "shared tooling",
+    "expected",
+    "baseline-output",
+    "holdout cases",
+    "negative cases",
+    "validation answers",
+    "hidden evaluation markers"
+  ]
+}

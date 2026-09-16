@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "bank-process",
+      "title": "Reconcile bank statements by using advanced bank reconciliation",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/reconcile-bank-statements-advanced-bank-reconciliation",
+      "publisher": "Microsoft", "accessed": "2026-09-14",
+      "scope": "Validate the bank statement and Reconcile the bank statement sections; actual full page retrieved/read.",
+      "supported_claims": ["The product validates account/currency, previous closing continuity, statement and line dates, and opening plus line amounts equals closing.", "A reconciliation worksheet uses cutoff dates, matched/unmatched transactions, grouped matching and tolerated penny differences."],
+      "limitations": "Product-specific, feature-dependent behavior, not an accounting standard. This sample JSON is not a Finance import format. Product posting, journals, reversals and payments are excluded."
+    },
+    {
+      "id": "bank-matching",
+      "title": "Set up bank reconciliation matching rules",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/set-up-bank-reconciliation-matching-rules",
+      "publisher": "Microsoft", "accessed": "2026-09-14",
+      "scope": "Introduction and Set up bank reconciliation matching rule sets; actual full page retrieved/read.",
+      "supported_claims": ["The product's default may select the first matching bank document.", "A documented parameter requires manual matching for multiple documents matching on amount.", "Rule sets execute rules in a specified sequence."],
+      "limitations": "This sample deliberately chooses ambiguity review, not the first-match default. Exact batch manifests and whole-component holds are stronger fictional policies."
+    },
+    {
+      "id": "bank-setup",
+      "title": "Advanced bank reconciliation setup process",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/configure-advanced-bank-reconciliation",
+      "publisher": "Microsoft", "accessed": "2026-09-14",
+      "scope": "Transaction code mapping, Cash and bank management parameters, and Bank account reconciliation options; actual full page retrieved/read.",
+      "supported_claims": ["Account-specific transaction-type mappings and date-difference controls constrain matching.", "The documented configuration includes penny tolerance, sign orientation, and time-zone interpretation."],
+      "limitations": "No universal threshold or verified native Finance/bank integration follows from this page. Synthetic fixed-offset dates do not implement daylight-saving or business-day calendars."
+    }
+  ]
+}

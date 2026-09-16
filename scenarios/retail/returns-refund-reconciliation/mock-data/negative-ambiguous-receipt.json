@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source_files": {"policy": "return-policy.json", "original_orders": "original-orders.json", "original_lines": "original-lines.json", "prior_returns": "prior-returns.json", "requests": "return-requests.json"},
+  "files": {
+    "return-policy.json": {"as_of": "2099-10-08", "period_start": "2099-10-08", "period_end": "2099-10-08", "window_days": 7, "allow_partial_requests": true, "allowed_reasons": ["wrong-size"], "allowed_conditions": ["unworn"]},
+    "original-orders.json": [
+      {"order_id": "SYN-ORDER-E-01", "store_id": "SYN-STORE-E", "receipt_id": "SYN-RECEIPT-E", "invoice_id": "SYN-INVOICE-E-01", "purchased_on": "2099-10-01", "currency": "USD", "payment_reference": "SYN-CARD-E-01", "payment_method": "card", "confirmed": true, "authorized_minor": 550, "captured_minor": 550},
+      {"order_id": "SYN-ORDER-E-02", "store_id": "SYN-STORE-E", "receipt_id": "SYN-RECEIPT-E", "invoice_id": "SYN-INVOICE-E-02", "purchased_on": "2099-10-01", "currency": "USD", "payment_reference": "SYN-CARD-E-02", "payment_method": "card", "confirmed": true, "authorized_minor": 660, "captured_minor": 660}
+    ],
+    "original-lines.json": [
+      {"order_id": "SYN-ORDER-E-01", "line_id": "SYN-LINE-E-01", "sku": "SYN-SKU-E-01", "fulfilled_qty": 1, "merchandise_paid_minor": 500, "tax_paid_minor": 50, "returnable": true},
+      {"order_id": "SYN-ORDER-E-02", "line_id": "SYN-LINE-E-02", "sku": "SYN-SKU-E-02", "fulfilled_qty": 1, "merchandise_paid_minor": 600, "tax_paid_minor": 60, "returnable": true}
+    ],
+    "prior-returns.json": {"complete_before": "2099-10-08", "is_complete": true, "records": []},
+    "return-requests.json": [
+      {"request_id": "SYN-REQUEST-E", "store_id": "SYN-STORE-E", "receipt_id": "SYN-RECEIPT-E", "order_id": "SYN-ORDER-E-01", "invoice_id": "SYN-INVOICE-E-01", "line_id": "SYN-LINE-E-01", "sku": "SYN-SKU-E-01", "requested_on": "2099-10-08", "requested_qty": 1, "reason": "wrong-size", "condition": "unworn"}
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {
+    "validation": {"accepted": false, "rejected_before_calculation": true},
+    "review": {
+      "human_review": "pending", "live_action": "none", "owner_role": "Billing manager or compliance reviewer",
+      "summary": "Synthetic review only; no fee invoice, debit, refund, trade, advice, or regulatory opinion."
+    }
+  },
+  "exceptions": [
+    {
+      "code": "invalid-integer", "message": "Expected an integer from 0 through 10000.",
+      "billing_account_id": "SYN-MAL-A", "record_id": "SYN-SCH-MAL", "related_ids": [],
+      "from_date": null, "to_date": null,
+      "field": "schedule_versions[SYN-SCH-MAL].bands[0].annual_rate_bps"
+    }
+  ]
+}

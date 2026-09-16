@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Manual truth table in ledger order: O1/L1/S1 has A1, matching U1/K1 and active E1 -> reconciled; O2/L2/S2 has no accession and 12:00-11:30=1800 seconds -> pending; O3/L3/S3 has 12:00-11:00=3600 -> pending at equality; O4/L4/S4 has 12:00-10:59=3660 -> accession-overdue; O5/L5/S6 has A6 with UX versus U5 -> identity-mismatch, age null, reference SYN-D-REF1; O9/null/S5 has only R5 and no header/line -> missing-link, unknown state, age null. Source indexes are the written table positions; all five active E1-E5 are eligible, no exclusions/copies. Queue order is O9 missing-link, O5 identity-mismatch, O4 overdue. One unmatched receipt R5. Six unique received specimens, five declared lines, six triples = 1 reconciled + 2 pending + 3 review.",
+      "expected_sha256": "561bddeab8a1b1ac4b5a249740f3351e4a0f7fb2be2349a988193ccaac985391",
+      "input_sha256": "ac539809e359242620bd0becb1f7ebe96c389d60e5d807beb1528e2dac59c657"
+    },
+    "holdout-a": {
+      "derivation": "Manually changed date and SLA to 30 minutes, not just identifiers. O1/L1/S1: 10:00-09:30=1800 equality; E1 remains active because E1F was recorded at 10:01 and E1G becomes effective at 10:01. O2/L2/S2: 10:00-09:29=1860, overdue because A2 is future-recorded. O3/L3/S3: E3C uniquely selects cancelled, no age. O4/L4/null: E4 and R4 unavailable -> missing-order-state plus missing-receipt; no time invented. A4 and clarification Q4 also unavailable. Seven exclusions: A2; A4 (two reasons); Q4; E1F; E1G; E4; R4. EO has missing O9 and is an unmatched record-level draft; L4 unmatched for missing receipt. Queue order: EO missing-link; O4 missing-state; O3 cancelled; O2 overdue. Three received specimens, four declared lines/triples = 0 reconciled + 1 pending + 3 review; no copies.",
+      "expected_sha256": "293e7d363fe11b45962e88be81eccdbbc997a902c4b3fc581e0c20aac86b3267",
+      "input_sha256": "78b7552cc08f2c499aaa091742caae1b1488fe921d43cc15353b24cd823d8bbe"
+    },
+    "holdout-b": {
+      "derivation": "Manual cardinality/metadata variant with 120-minute policy: one receipt specimen S1 serves L1 and L2, with A1/A2 and T1/T2 both labeled K1, so two reconciled rows but one received specimen for those rows. Identical R1 at raw receipt rows 1 and 2 collapses once with both provenance refs, never a competing receipt. R2 at row 3 has null identity/collection and K2 versus K1 -> missing-identity, specimen-label-mismatch, missing-collection-time; no ordinary age despite 3 hours since receipt. L4 has no T3 catalog or receipt -> missing-test-metadata and missing-receipt. L9 has no O9 or receipt -> missing-link and missing-receipt. A9 references missing LX and S9 -> null order/LX/S9 with missing-link and missing-receipt; it does not count as a received specimen or declared line. Q2 attaches its reference to A9; Q1 acceptance text changes nothing for S2; Q3 is orphaned. Four unmatched groups: A9,Q3,L4,L9. Queue lexical order within missing-link rank is Q3, null-order LX row, O9 row; then O2 missing identity, O3 missing metadata. Duplicate warning follows five row/record exceptions. Two received specimens, five declared lines, six triples = 2 reconciled + 0 pending + 4 review; one duplicate copy collapsed.",
+      "expected_sha256": "0034f67a056a9783191fa8aaf16975ac55f8eadf59d77e6e52c80a8149fc4396",
+      "input_sha256": "8447391768cbb57428ec1ec798198acbe9e3c0199b804c431ba1c9eeffa7e426"
+    },
+    "negative-contradictory": {
+      "derivation": "Manual conflict truth table: O1/L1 has primary candidates S1 and S2, so both rows conflicting-evidence. S1 has distinct competing A1/A2 and two distinct A1 records (T1/T2) plus UX versus U1 -> retain conflicting-evidence, identity-mismatch, test-code-mismatch. S2 has no accession but cardinality prevents aging. A1 is the sole unmatched/quarantined key, with both original source refs; its different records are not duplicate copies. O2/L2/S3: receipt09:00 precedes collection10:00, A3 at08:59 precedes receipt, and E2 recorded07:59 precedes effective08:00 -> impossible-chronology once, age null. O3/L3/S4 is unrelated valid A4 -> reconciled. O4/L4/S5 has E4A/E4C tied at maximum sequence2, hence unknown, empty selected IDs and conflicting-evidence, not active or cancelled by arbitrary selection. Queue order is conflicting O1/S1, O1/S2, O4/S5, then chronology O2/S3. Five received specimens, four declared lines, five triples = 1 reconciled + 0 pending + 4 review; no future evidence and no exact duplicates.",
+      "expected_sha256": "b2c4726453d54be322afe1a0ecb854e772fff219d67fe3fb18f8d6be5ed08a47",
+      "input_sha256": "bfda9beeba2b9fa3c211f213376b2508fcbbb400f97beb97cab6db1eea4375f6"
+    },
+    "negative-malformed": {
+      "derivation": "Manually enumerated five invalid fields before execution: impossible February 30 effective timestamp; boolean sequence (not integer); recorded timestamp using +00:00 instead of canonical Z; boolean accession SLA; boolean receipt row instead of an object. Lexical one-based path order is order_events[1].effective_at, order_events[1].event_seq, order_events[1].recorded_at, policy.accession_sla_minutes, receipts[1]. The expected result rejects only this input packet, has outputs {}, and five explicit malformed-input diagnostics. No joins, ages, or clinical disposition are inferred.",
+      "expected_sha256": "a4f88e772e74d59e13e76618fa84d9539fb393516cc1d098e83bf8845b39f96f",
+      "input_sha256": "a19ff56f861b3097c72cc5453fcd3b7af510667454b7ca2661c1fdd9b635d2aa"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "HLS accession scenario owner",
+    "description": "All five complete expected envelopes were written manually from HOW_TO before any baseline execution. For each case the author independently enumerated order/line/specimen triples, eligible highest-sequence state, source row references, null versus present metadata, ordered reason unions, integer UTC subtraction, priority-sorted drafts and separate specimen/line denominators. These are author declarations, not independent human review. Goldens are never generated by solve or copied from outputs. Shared golden_lock is created before the first execution; any genuine manual correction requires an explicit independent lock revision record.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "hls-03",
+  "schema_version": 1
+}

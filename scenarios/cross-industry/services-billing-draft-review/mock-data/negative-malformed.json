@@ -1,0 +1,17 @@
+{
+  "config": {"as_of": "2026-10-02T12:00:00Z", "period_start": "2026-09-01", "period_end": "2026-10-01", "draft_tolerance": "0.00"},
+  "files": {
+    "projects.json": [{"project_id": "PM", "client_id": "CLIENT-M", "contract_id": "CONTRACT-M", "currency": "USD", "period_cap": "1000.00", "owner": "ACCOUNTANT-M"}],
+    "rates.json": [{"rate_id": "RM", "project_id": "PM", "role_code": "consultant", "currency": "USD", "valid_from": "2026-09-01", "valid_to": "2026-10-01", "hourly_rate": "100.00"}],
+    "time-entries.json": [{"time_id": "TM", "project_id": "PM", "person_id": "PERSON-M", "role_code": "consultant", "service_date": "2026-09-10", "minutes": 60, "chargeable": true}],
+    "expense-entries.json": [{"expense_id": "EM", "project_id": "PM", "person_id": "PERSON-M", "service_date": "2026-09-10", "category": "travel", "amount": "-12.00", "currency": "USD", "receipt_reference": null, "chargeable": true}],
+    "approval-events.json": [
+      {"approval_event_id": "AM-E", "entry_type": "expense", "entry_id": "EM", "revision": 1, "recorded_at": "2026-09-11T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AM-T", "entry_type": "time", "entry_id": "TM", "revision": 1, "recorded_at": "2026-09-11T09:00:00Z", "decision": "approved"}
+    ],
+    "billed-transactions.json": [],
+    "draft-invoices.json": [{"draft_id": "DM", "project_id": "PM", "currency": "USD", "period_start": "2026-09-01", "period_end": "2026-10-01", "state": "draft"}],
+    "draft-lines.json": [{"line_id": "LM", "draft_id": "DM", "entry_type": "time", "entry_id": "TM", "amount": "100.00"}],
+    "expense-policies.json": [{"category": "travel", "currency": "USD", "max_amount": "100.00", "receipt_required_at": "50.00"}]
+  }
+}

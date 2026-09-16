@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "invalid-field", "message": "Expected an integer from 1 through 1000000.", "subject": "lots:MFG-BAD.received_qty", "owner_role": null}
+  ]
+}

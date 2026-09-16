@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "s-performance",
+      "title": "Power BI reports for risks analysis and performance ranking",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/procurement/supply-risk-assessment-reports",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Official page actually fetched during the approved manufacturing research; receipt-based supplier performance and historical versus planned supply risk.",
+      "supported_claims": [
+        "Supplier performance analysis distinguishes on-time, in-full, and on-time-in-full receipt measures.",
+        "Historical delivery performance and planned supply risk provide different evidence for supplier review."
+      ],
+      "limitations": "Supports the business concepts, not this implementation's exact cohort, reversal handling, denominator, provisional flags, rounding, thresholds, or priority policy. No D365 or Power BI metric equivalence or execution is claimed."
+    },
+    {
+      "id": "s-procurement",
+      "title": "Procurement and sourcing overview",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/procurement/procurement-sourcing-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Official page actually fetched during the approved manufacturing research; purchase confirmations, delivery schedules, arrival registration, and product receipts.",
+      "supported_claims": [
+        "Purchase confirmation, dated split deliveries, arrival registration, and product receipt are distinct procurement concepts.",
+        "Supplier performance can be reviewed using purchase and delivery evidence."
+      ],
+      "limitations": "The scenario consumes only fictional exported posted-receipt records. It does not execute posting, inquiries, invoice matching, arrival registration, purchase amendments, or supplier communication. Logical tables in one JSON are not proof of physical multi-file native ingestion."
+    },
+    {
+      "id": "s-dates",
+      "title": "Calculate requested ship dates for purchase orders",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/supplier-requested-confirmed-dates",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Official page actually fetched during the approved manufacturing research; requested/confirmed ship versus receipt dates and calendar/transport effects.",
+      "supported_claims": [
+        "Requested and confirmed ship dates must be distinguished from requested and confirmed receipt dates.",
+        "Transport and calendars can affect ERP date calculation."
+      ],
+      "limitations": "All dates here are explicitly exported receipt dates or evidence-recording dates. All offsets use invented calendar-day rules; no shipping conversion, working-day calendar, transport engine, carrier ETA, or commitment verification is reproduced."
+    }
+  ]
+}

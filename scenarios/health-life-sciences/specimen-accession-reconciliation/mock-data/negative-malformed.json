@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-18T12:00:00Z",
+  "policy": {"policy_id":"SYN-M-POLICY","accession_sla_minutes":true},
+  "orders": [],
+  "order_lines": [],
+  "order_events": [
+    {"event_id":"SYN-M-E1","order_id":"SYN-M-O1","event_seq":true,"effective_at":"2026-02-30T08:00:00Z","recorded_at":"2026-09-18T08:00:00+00:00","state":"active"}
+  ],
+  "receipts": [false],
+  "accessions": [],
+  "test_catalog": [],
+  "clarifications": []
+}

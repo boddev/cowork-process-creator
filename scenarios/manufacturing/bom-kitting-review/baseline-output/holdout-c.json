@@ -1,0 +1,170 @@
+{
+  "exceptions": [
+    {
+      "code": "DUPLICATE_ROW",
+      "field": null,
+      "message": "Collapsed 1 identical duplicate row(s).",
+      "order_id": null,
+      "source_id": "S-A",
+      "source_type": "stock_lots"
+    },
+    {
+      "code": "ORDER_OUT_OF_SCOPE",
+      "field": "start_date",
+      "message": "Order start_date is outside the inclusive review horizon.",
+      "order_id": "X-OUT",
+      "source_id": "X-OUT",
+      "source_type": "work_orders"
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-11-01",
+    "closure": {
+      "approval_required": true,
+      "inventory_mutated": false,
+      "orders_released": false,
+      "production_authorized": false,
+      "reservations_created": false,
+      "review_only": true,
+      "substitutions_made": false
+    },
+    "component_requirements": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 2,
+        "assigned_qty": 2,
+        "available_now_qty": 3,
+        "component_id": "PIN",
+        "exact_qty": "1.75",
+        "expected_before_need_qty": 2,
+        "gap_qty": 0,
+        "order_id": "X01",
+        "required_qty": 2
+      }
+    ],
+    "component_totals": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 2,
+        "assigned_qty": 2,
+        "component_id": "PIN",
+        "gap_qty": 0,
+        "required_qty": 2,
+        "site": "WEST"
+      }
+    ],
+    "excluded_orders": [
+      {
+        "order_id": "X-OUT",
+        "reason": "after-horizon"
+      }
+    ],
+    "exploded_paths": [
+      {
+        "component_id": "PIN",
+        "exact_qty": "1.25",
+        "order_id": "X01",
+        "path": [
+          "ALT-A"
+        ]
+      },
+      {
+        "component_id": "PIN",
+        "exact_qty": "0.5",
+        "order_id": "X01",
+        "path": [
+          "ALT-B"
+        ]
+      }
+    ],
+    "horizon_end": "2026-11-05",
+    "order_reviews": [
+      {
+        "approval_required": true,
+        "item_id": "CASE",
+        "need_by": "2026-11-04",
+        "order_id": "X01",
+        "priority": 1,
+        "production_authorized": false,
+        "quantity": 2,
+        "review_owners": [
+          "Material planner",
+          "Production planner"
+        ],
+        "short_components": [],
+        "site": "WEST",
+        "state": "covered-now-review"
+      }
+    ],
+    "order_sequence": [
+      "X01"
+    ],
+    "review_queue": [],
+    "selected_versions": [
+      {
+        "item_id": "CASE",
+        "order_id": "X01",
+        "parent_path": [],
+        "selection": "explicit-approved",
+        "version_id": "CASE-ALT"
+      }
+    ],
+    "shadow_allocations": [
+      {
+        "component_id": "PIN",
+        "order_id": "X01",
+        "quantity": 1,
+        "source_id": "S-A",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "PIN",
+        "order_id": "X01",
+        "quantity": 1,
+        "source_id": "S-B",
+        "source_type": "stock_lots"
+      }
+    ],
+    "source_balances": [
+      {
+        "assigned_qty": 1,
+        "item_id": "PIN",
+        "net_qty": 1,
+        "remaining_qty": 0,
+        "site": "WEST",
+        "source_id": "S-A",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 1,
+        "item_id": "PIN",
+        "net_qty": 2,
+        "remaining_qty": 1,
+        "site": "WEST",
+        "source_id": "S-B",
+        "source_type": "stock_lots"
+      },
+      {
+        "assigned_qty": 0,
+        "item_id": "PIN",
+        "net_qty": 2,
+        "remaining_qty": 2,
+        "site": "WEST",
+        "source_id": "I-A",
+        "source_type": "inbound"
+      }
+    ],
+    "summary": {
+      "covered_now_orders": 1,
+      "covered_with_expected_orders": 0,
+      "excluded_orders": 1,
+      "in_scope_orders": 1,
+      "resolved_orders": 1,
+      "shortage_orders": 0,
+      "unresolved_orders": 0
+    },
+    "supply_exclusions": []
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

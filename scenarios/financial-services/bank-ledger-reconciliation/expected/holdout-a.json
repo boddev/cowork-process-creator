@@ -1,0 +1,37 @@
+{
+  "schema_version": 1, "status": "completed_with_exceptions",
+  "outputs": {
+    "controls": {"control_version": "SYN-CONTROL-A", "approval_state": "approved", "as_of": "2026-08-01T00:00:00Z", "business_utc_offset_minutes": 0, "cutoff_date": "2026-07-31", "max_match_calendar_days": 2, "single_amount_tolerance_minor": 2, "timing_grace_calendar_days": 2, "stale_after_calendar_days": 5, "max_rows_per_source": 5000},
+    "matches": [
+      {"scope_id": "SYN-A", "bank_line_id": "SYN-A-B1", "ledger_line_ids": ["SYN-A-L1", "SYN-A-L2", "SYN-A-L3"], "kind": "batch", "bank_minor": 3000, "ledger_minor": 3000, "delta_minor": 0, "max_date_gap_days": 1, "decision": "candidate-match"},
+      {"scope_id": "SYN-A", "bank_line_id": "SYN-A-B2", "ledger_line_ids": ["SYN-A-L4"], "kind": "single", "bank_minor": 10002, "ledger_minor": 10000, "delta_minor": 2, "max_date_gap_days": 2, "decision": "candidate-with-correction"},
+      {"scope_id": "SYN-B", "bank_line_id": "SYN-B-B1", "ledger_line_ids": ["SYN-B-L1"], "kind": "single", "bank_minor": 7000, "ledger_minor": 7000, "delta_minor": 0, "max_date_gap_days": 0, "decision": "candidate-match"}
+    ],
+    "bank_reviews": [
+      {"scope_id": "SYN-A", "bank_line_id": "SYN-A-B1", "local_date": "2026-07-30", "amount_minor": 3000, "canonical_reference": "SYN-THREE", "mapped_type": "RECEIPT", "candidate_ledger_ids": ["SYN-A-L1", "SYN-A-L2", "SYN-A-L3"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-A", "bank_line_id": "SYN-A-B2", "local_date": "2026-07-31", "amount_minor": 10002, "canonical_reference": "SYN-CENT", "mapped_type": "RECEIPT", "candidate_ledger_ids": ["SYN-A-L4"], "disposition": "candidate-with-correction", "reason_codes": ["pending-correction"]},
+      {"scope_id": "SYN-A", "bank_line_id": "SYN-A-B3", "local_date": "2026-07-31", "amount_minor": -1000, "canonical_reference": "SYN-LATE", "mapped_type": "PAYMENT", "candidate_ledger_ids": [], "disposition": "unmatched", "reason_codes": ["date-mismatch"]},
+      {"scope_id": "SYN-B", "bank_line_id": "SYN-B-B1", "local_date": "2026-07-31", "amount_minor": 7000, "canonical_reference": "SYN-CENT", "mapped_type": "RECEIPT", "candidate_ledger_ids": ["SYN-B-L1"], "disposition": "candidate-match", "reason_codes": []}
+    ],
+    "ledger_reviews": [
+      {"scope_id": "SYN-A", "ledger_line_id": "SYN-A-L1", "local_date": "2026-07-29", "amount_minor": 1000, "canonical_reference": "SYN-PART-1", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-A-B1"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-A", "ledger_line_id": "SYN-A-L2", "local_date": "2026-07-30", "amount_minor": 1500, "canonical_reference": "SYN-PART-2", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-A-B1"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-A", "ledger_line_id": "SYN-A-L3", "local_date": "2026-07-30", "amount_minor": 500, "canonical_reference": "SYN-PART-3", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-A-B1"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-A", "ledger_line_id": "SYN-A-L4", "local_date": "2026-07-29", "amount_minor": 10000, "canonical_reference": "SYN-CENT", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-A-B2"], "disposition": "candidate-with-correction", "reason_codes": ["pending-correction"]},
+      {"scope_id": "SYN-A", "ledger_line_id": "SYN-A-L5", "local_date": "2026-07-26", "amount_minor": -1000, "canonical_reference": "SYN-LATE", "ledger_type": "PAYMENT", "expected_bank_date": null, "candidate_bank_ids": [], "disposition": "unmatched", "reason_codes": ["date-mismatch"]},
+      {"scope_id": "SYN-B", "ledger_line_id": "SYN-B-L1", "local_date": "2026-07-31", "amount_minor": 7000, "canonical_reference": "SYN-CENT", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B-B1"], "disposition": "candidate-match", "reason_codes": []}
+    ],
+    "excluded": [],
+    "scope_summaries": [
+      {"scope_id": "SYN-A", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT-A", "statement_id": "SYN-JULY-A", "currency": "USD", "from_date": "2026-07-01", "through_date": "2026-07-31", "opening_bank_minor": 0, "opening_ledger_minor": 0, "closing_bank_minor": 12002, "closing_ledger_minor": 12000, "included_bank_count": 3, "included_ledger_count": 5, "matched_group_count": 2, "matched_bank_count": 2, "matched_ledger_count": 4, "unresolved_bank_count": 1, "unresolved_ledger_count": 1, "unmatched_bank_minor": -1000, "unmatched_ledger_minor": -1000, "match_delta_minor": 2, "opening_difference_minor": 0, "closing_difference_minor": 2, "bridge_minor": 2, "disposition": "review-required"},
+      {"scope_id": "SYN-B", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT-B", "statement_id": "SYN-JULY-B", "currency": "USD", "from_date": "2026-07-01", "through_date": "2026-07-31", "opening_bank_minor": 50000, "opening_ledger_minor": 50000, "closing_bank_minor": 57000, "closing_ledger_minor": 57000, "included_bank_count": 1, "included_ledger_count": 1, "matched_group_count": 1, "matched_bank_count": 1, "matched_ledger_count": 1, "unresolved_bank_count": 0, "unresolved_ledger_count": 0, "unmatched_bank_minor": 0, "unmatched_ledger_minor": 0, "match_delta_minor": 0, "opening_difference_minor": 0, "closing_difference_minor": 0, "bridge_minor": 0, "disposition": "no-open-items"}
+    ],
+    "review": {"human_review": "pending", "live_action": "none"}
+  },
+  "exceptions": [
+    {"scope_id": "SYN-A", "record_id": "SYN-A-B2", "code": "pending-correction", "message": "Candidate penny difference requires controller review; no posting."},
+    {"scope_id": "SYN-A", "record_id": "SYN-A-B3", "code": "date-mismatch", "message": "Reference/type candidates exceed the date window."},
+    {"scope_id": "SYN-A", "record_id": "SYN-A-L4", "code": "pending-correction", "message": "Candidate penny difference requires controller review; no posting."},
+    {"scope_id": "SYN-A", "record_id": "SYN-A-L5", "code": "date-mismatch", "message": "Reference/type candidates exceed the date window."}
+  ]
+}

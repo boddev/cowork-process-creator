@@ -1,0 +1,32 @@
+{
+  "exceptions": [
+    {
+      "code": "malformed-input",
+      "message": "Input packet rejected: real whole-second UTC timestamp YYYY-MM-DDTHH:MM:SSZ required.",
+      "path": "order_events[1].effective_at"
+    },
+    {
+      "code": "malformed-input",
+      "message": "Input packet rejected: integer in 1..1000000 required (boolean is not an integer).",
+      "path": "order_events[1].event_seq"
+    },
+    {
+      "code": "malformed-input",
+      "message": "Input packet rejected: real whole-second UTC timestamp YYYY-MM-DDTHH:MM:SSZ required.",
+      "path": "order_events[1].recorded_at"
+    },
+    {
+      "code": "malformed-input",
+      "message": "Input packet rejected: integer in 0..10080 required (boolean is not an integer).",
+      "path": "policy.accession_sla_minutes"
+    },
+    {
+      "code": "malformed-input",
+      "message": "Input packet rejected: object with exactly the documented fields required.",
+      "path": "receipts[1]"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

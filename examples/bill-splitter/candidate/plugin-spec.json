@@ -2,9 +2,9 @@
   "schema_version": "creator-plugin-1",
   "name": "restaurant-bill-splitter",
   "title": "Restaurant Bill Splitter",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "summary": "Split a restaurant receipt by shares with reconciled per-person amounts.",
-  "description": "Split an itemized restaurant receipt among up to eight named diners, allocate tax and tip in proportion to their items, and create a new workbook and per-person summary. Includes an independent standard-library arithmetic helper and a workbook layout reference; the original template, recording and Creator are not runtime dependencies. Requires existing native receipt-reading, Python and spreadsheet facilities. This adapted contributed source has no attested native installation or invocation.",
+  "description": "Split an itemized restaurant receipt among up to eight named diners, allocate tax and tip in proportion to their items, and create a new workbook and per-person summary. Includes an independent standard-library arithmetic helper and a workbook layout reference; the original template, recording and Creator are not runtime dependencies. Requires existing native receipt-reading, Python and spreadsheet facilities. This Microsoft Copilot Cowork candidate targets native M365 manifest v1.28 only and requires approved app/publisher metadata before packaging. Native installation and invocation remain unverified.",
   "skills": ["split-restaurant-bill"],
   "connectors": []
 }

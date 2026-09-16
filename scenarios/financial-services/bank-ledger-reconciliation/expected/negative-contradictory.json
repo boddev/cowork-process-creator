@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {"review": {"human_review": "pending", "live_action": "none"}},
+  "exceptions": [
+    {"scope_id": "SYN-N", "record_id": "SYN-N", "code": "contradictory-evidence", "message": "Normalized bank opening plus included lines does not equal closing."}
+  ]
+}

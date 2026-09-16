@@ -1,0 +1,422 @@
+{
+  "artifact_type": "research-catalog",
+  "industry": "manufacturing",
+  "research_date": "2026-09-14",
+  "status": "awaiting-parent-catalog-build-approval",
+  "implementation_contract": "scenarios/SCENARIO_CONTRACT.md",
+  "schema_note": "Business field proposals only; this catalog does not replace or extend the shared implementation schema.",
+  "scope": {
+    "synthetic_only": true,
+    "decision_support_only": true,
+    "business_writes": false,
+    "physical_production_authorized": false,
+    "compliance_certification_claim": false,
+    "real_connection": "No endpoint/auth required. Mock exported-file inputs and native file outputs; connections remain empty.",
+    "multi_source_packaging": "Separately named logical export tables are bundled in the shared case JSON payload. Physical multi-file native ingestion is not established.",
+    "native_status": "blocked",
+    "native_blockers": [
+      "Approved Computer Use tools must be restored.",
+      "An unlocked accessible session and parent authorization are required.",
+      "No alternative browser, private API, token, cookie, shell, or custom runner workaround.",
+      "Historical output publication outcome is unknown after Publishing."
+    ],
+    "forbidden_actions": [
+      "Quality release, scrap, inventory movements or reservations",
+      "Purchase-order changes or supplier communications",
+      "Shop-floor control, production authorization or actual kitting",
+      "Publication, push, auth or EULA changes",
+      "Backend, custom MCP, Azure/external services, runtime installers or external scheduler"
+    ],
+    "creator_input_allowlist": [
+      "HOW_TO.md",
+      "workflow.json",
+      "connections.json",
+      "mock-data/demo.json",
+      "demo/baseline.webm"
+    ],
+    "creator_withheld": [
+      "research.md",
+      "research.json",
+      "scenario.json",
+      "sources.json",
+      "baseline.py",
+      "shared helper code",
+      "expected",
+      "holdouts",
+      "negative cases",
+      "baseline-output",
+      "validation answers"
+    ]
+  },
+  "common_semantics": {
+    "time": "Explicit as_of; no runtime wall clock. ISO date bounds 2000-01-01 through 2100-12-31; each boundary is documented.",
+    "quantities": "Whole EA quantities 0-1000000, positive lot/order quantities, no booleans. Decimal strings only for explicitly decimal fields.",
+    "size_policy": "At most 200 records per source table; fictional safety limit, not an ERP or platform limit.",
+    "duplicates": "Identical event-ID duplicates collapse once with an exception. Conflicting same-ID rows reject; identical values with different IDs are distinct.",
+    "missing": "Absent evidence never implies zero, pass or availability. Missing required structure rejects; unknown references are explicit unresolved work.",
+    "ordering": "Input order does not choose winners. Candidate-specific business sort with case-sensitive ASCII ID final tie-break; stable exceptions.",
+    "independence": "All case assertions below are manually reasoned proposals, not baseline-generated answers. Complete goldens must be written before executing baseline.",
+    "result_envelope": "Use only the shared schema_version/status/outputs/exceptions envelope at implementation.",
+    "baseline": "Developer-only no-Creator Python stdlib solve(payload)->(result,events) through scenario_support.run_cli; not native proof.",
+    "trace": "Actual execution snapshots for all six shared kinds; first input, last output; meaningful row decisions and conservation totals, never copied goldens.",
+    "media": "Foundation centrally renders actual demo trace, about 30-90 seconds, explicitly synthetic and not Cowork/live ERP."
+  },
+  "sources": [
+    {
+      "id": "q-orders",
+      "title": "Quality orders",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-orders",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Manually create quality orders", "Quality order reference types", "Advanced actions for quality orders"],
+      "supported_claims": [
+        "Purchase inspection records relate tests and source inventory references.",
+        "Quality order review can include test results, blocking evidence and nonconformances."
+      ],
+      "limitations": "No quality-order creation, test execution, certificate issuance, release or regulatory assertion is implemented."
+    },
+    {
+      "id": "q-quarantine",
+      "title": "Quarantine orders",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quarantine-orders",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Quarantine on-hand inventory items", "Quarantine order statuses"],
+      "supported_claims": [
+        "Quarantine orders have inventory blocking/transfer effects and distinct statuses.",
+        "With WMS, quarantine-order processing applies only to return sales orders."
+      ],
+      "limitations": "Use only to bound a hold-evidence review; not a universal incoming-receipt quarantine workflow."
+    },
+    {
+      "id": "q-blocking",
+      "title": "Inventory blocking",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-blocking",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Blocking items by creating a quality order", "Blocking items by using a process that generates a quality order", "Take care when blocking items that use both inventory status blocking and quality order blocking"],
+      "supported_claims": [
+        "Sampling and blocked inventory quantities are not interchangeable.",
+        "Overlapping blocking mechanisms can produce confusing transaction quantities that are not additive physical stock."
+      ],
+      "limitations": "Mock normalized physical hold/status snapshots replace tenant-specific inventory-transaction interpretation."
+    },
+    {
+      "id": "q-overview",
+      "title": "Quality and nonconformance management overview",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-management-processes",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Examples of the use of quality management", "Product testing and quality orders", "Nonconformance", "Correction handling"],
+      "supported_claims": [
+        "Quality processes connect events, sampling, test criteria, documentation and nonconformance.",
+        "Corrective/retest work and approval states are separate parts of the quality process."
+      ],
+      "limitations": "Our test thresholds, specimen minimum and approval-review categories are fictional; no standard or certification is asserted."
+    },
+    {
+      "id": "q-sampling",
+      "title": "Quality management item sampling",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/quality-item-sampling",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Set up item sampling"],
+      "supported_claims": [
+        "Sampling can use fixed quantities, percentages or full license plates.",
+        "Blocking behavior depends on sampling/process configuration."
+      ],
+      "limitations": "The proposed fixed specimen-count check is not an AQL acceptance-sampling algorithm."
+    },
+    {
+      "id": "s-performance",
+      "title": "Power BI reports for risks analysis and performance ranking",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/procurement/supply-risk-assessment-reports",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Embedded supplier performance analysis", "Vendor and product ranking report", "Embedded supply risk assessment analysis"],
+      "supported_claims": [
+        "Supplier reports consider receipt-based OT/IF/OTIF and vendor/product dimensions.",
+        "Historical performance can inform review of planned supply risk."
+      ],
+      "limitations": "Our cohort, tolerance, reversal handling and queue policy do not reproduce or claim equivalence to D365 Power BI metrics."
+    },
+    {
+      "id": "s-procurement",
+      "title": "Procurement and sourcing overview",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/procurement/procurement-sourcing-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Procurement", "Delivery options", "Product receipt and invoicing", "Vendor performance"],
+      "supported_claims": [
+        "Purchase orders may have split delivery schedules with different dates.",
+        "Confirmation, arrival registration, product receipt and invoicing are distinct events."
+      ],
+      "limitations": "Only mock posted physical receipt events are reconciled; no PO or financial operation is performed."
+    },
+    {
+      "id": "s-dates",
+      "title": "Calculate requested ship dates for purchase orders",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/supplier-requested-confirmed-dates",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch; relevant date and calendar sections read from returned content.",
+      "sections": ["How calendars affect ship and receipt date calculations", "Date calculations and recalculations"],
+      "supported_claims": [
+        "Requested receipt dates differ from requested ship dates.",
+        "Confirmed receipt and ship dates and calendar/transport configuration affect delivery-date calculations."
+      ],
+      "limitations": "No ERP calendar calculation or feature-availability claim; use exported receipt dates and an explicit fictional calendar-day policy."
+    },
+    {
+      "id": "b-bom",
+      "title": "Bills of materials and formulas",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/bill-of-material-bom",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["BOM and formula versions", "Alternative BOM versions", "BOM and formula lines"],
+      "supported_claims": [
+        "BOM versions can be constrained by dates, site, quantity and dimensions.",
+        "Approval and activation differ; a valid approved explicit alternative need not be the active default.",
+        "Phantom, Item, Pegged supply and Vendor lines have different behavior."
+      ],
+      "limitations": "Support only bounded Item/Phantom material planning; no formula, production-order, pegged supply, route or subcontracting operations."
+    },
+    {
+      "id": "b-phantom",
+      "title": "Phantom items",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/phantom-items",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "retrieval": "Actual documentation page fetched with microsoft_docs_fetch.",
+      "sections": ["Phantom items", "Multilevel phantom BOM structures"],
+      "supported_claims": [
+        "Phantom component groupings expand into the parent manufacturing material structure.",
+        "Phantom structures can have multiple levels."
+      ],
+      "limitations": "Local graph expansion is not native ERP estimation, route merging or production authorization."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "manufacturing-01",
+      "title": "Incoming-lot quality evidence and disposition review packet",
+      "proposed_folder": "scenarios/manufacturing/incoming-quality-review",
+      "workflow_family": "evidence-gating-and-review-routing",
+      "source_ids": ["q-orders", "q-quarantine", "q-blocking", "q-overview", "q-sampling"],
+      "actors": ["Receiving analyst", "Quality technician", "QA/material-review-board reviewer"],
+      "trigger": "Manual or recurring preparation after receipt or updated lab evidence.",
+      "start": "Frozen mock receipt, requirement, observation, certificate, hold, nonconformance and routing exports plus dated policy.",
+      "end": "Review-required lot packet, checklist, reviewer queue, evidence requests and reconciled known/unknown quantities.",
+      "scope_refinement": "Review incoming quality/hold evidence, not a universal inbound quarantine-order lifecycle; WMS source limitation is explicit.",
+      "inputs_proposed": {
+        "config": "as_of, review_age_days, required_specimens, certificate_required, source/table bounds",
+        "lots": "lot_id, item_id, supplier_id, receipt_date, received_qty, site, quality_order_id",
+        "test_requirements": "item_id, test_id, effective_from, effective_to, minimum, maximum, required_specimens",
+        "observations": "result_id, lot_id, test_id, specimen_id, value, observed_on, supersedes_result_id, supersession_approved",
+        "certificates": "certificate_id, lot_id, item_id, valid_through, status",
+        "hold_snapshot": "lot_id, physical_held_qty, hold_state, snapshot_date",
+        "nonconformances": "nc_id, lot_id, state, reason",
+        "reviewer_routes": "item_group, reviewer_role; explicit configured fallback role"
+      },
+      "stages": [
+        {"id": "intake", "kind": "input", "observable": "Named export counts and explicit snapshot dates."},
+        {"id": "validate", "kind": "validation", "observable": "Quantity/key/duplicate checks and physical hold reconciliation."},
+        {"id": "join-lot-context", "kind": "join", "observable": "Lot-to-specification, hold and reviewer matches with unmatched IDs."},
+        {"id": "resolve-evidence", "kind": "join", "observable": "Dated specimen rows and explicit retained/superseded retest chains."},
+        {"id": "evaluate-tests", "kind": "decision", "observable": "Actual values against inclusive limits and distinct specimen counts."},
+        {"id": "classify-review", "kind": "decision", "observable": "All reasons and precedence applied to each lot."},
+        {"id": "collect-exceptions", "kind": "exception", "observable": "Missing certificates/tests, unknown IDs, overdue reviews and retest needs."},
+        {"id": "order-review", "kind": "decision", "observable": "Stable review-category/age/lot order and conserved quantity totals."},
+        {"id": "close-packet", "kind": "output", "observable": "Review-only artifact rows and approval/production boundary."}
+      ],
+      "source_backed_concepts": [
+        "Inspection evidence links to purchase-source inventory and quality requirements.",
+        "Nonconformances and correction/retest work require explicit treatment.",
+        "Sampling quantity and physical hold quantity are not interchangeable."
+      ],
+      "sample_policies": [
+        "Demo: three specimens, inclusive 4.90-5.10, certificate valid through as_of, overdue when age strictly exceeds five days.",
+        "Requirement version uses receipt date; exactly one applicable requirement per required test.",
+        "Passing retest supersedes a failed observation only through an explicit approved link; cycles/ambiguous links reject.",
+        "Retain all reasons; precedence: unresolved identity, failed test/open NC, evidence gaps, evidence-complete QA review.",
+        "Unknown item means unresolved specification; missing hold snapshot means unknown quantity, never zero.",
+        "Sort category data/NC/gap/complete, age descending, then lot_id."
+      ],
+      "main_branch": "Complete consistent evidence produces a QA review packet, never a released lot.",
+      "exception_branches": ["Missing evidence", "Out-of-limit observation", "Open NC", "Unapproved retest", "Unknown item", "Contradictory evidence rejects"],
+      "loops": "Each lot, required test and specimen; bounded explicit retest chain.",
+      "manual_approval": "QA/material review outside the workflow; no release, scrap, physical movement, signature or certificate issuance.",
+      "outputs_proposed": ["review_cover", "lot_evidence", "required_observed_checklist", "review_queue", "evidence_requests", "known_unknown_totals"],
+      "output_invariants": [
+        "Every lot has approval_required=true and production_authorized=false.",
+        "Received quantities reconcile once per physical lot; hold transactions are not blindly added.",
+        "Rejected cases contain explicit errors and no success-shaped packet."
+      ],
+      "case_designs": [
+        {"id": "demo", "kind": "demo", "fixture": "September: 1000-unit complete lot, 200-unit failed/open-NC lot, 80-unit two-specimen/no-certificate lot.", "independent_assertions": ["Total received/held 1280.", "Complete/NC/gap quantities 1000/200/80.", "Complete lot age 6 exceeds threshold 5.", "No quality release."]},
+        {"id": "holdout-a", "kind": "holdout", "fixture": "October, different item and limits 10.00-10.20, minimum two; quantities 12 and 9; identical duplicate observation.", "independent_assertions": ["Both inclusive limit values pass for 12-unit lot.", "Nine-unit lot stays gap despite passing values because certificate is absent.", "Duplicate does not inflate two specimens.", "Known quantity total 21."]},
+        {"id": "holdout-b", "kind": "holdout", "fixture": "January, one-specimen policy; six-unit failed observation with unapproved passing retest; four-unit unknown item.", "independent_assertions": ["Failed evidence remains active and routes to NC review.", "Unknown item receives no invented specification.", "Known received total 10; no release."]},
+        {"id": "negative-malformed", "kind": "negative", "fixture": "Boolean received_qty or non-array required observations.", "independent_assertions": ["Rejected with field-specific malformed-record error.", "No lot-review packet."]},
+        {"id": "negative-contradictory", "kind": "negative", "fixture": "Conflicting same result_id values; targeted variant for retest cycle.", "independent_assertions": ["Rejected for contradictory evidence.", "Neither last-row-wins nor automatic passing-retest selection."]}
+      ],
+      "stdlib_requirements": ["json", "datetime", "decimal", "collections", "pathlib", "shared scenario_support"],
+      "native_requirements": ["Existing permitted files.read", "Existing permitted files.write", "Host-provided deterministic operations; generated helper capability unverified"],
+      "unsupported_steps": ["Actual laboratory testing", "Certificate OCR/authenticity", "Quality release or scrap", "WMS quarantine-order execution", "Compliance certification or electronic signature"],
+      "remaining_scope": "Physical multi-file native ingestion is unproven; no business endpoint/tool metadata supplied or required."
+    },
+    {
+      "id": "manufacturing-02",
+      "title": "Supplier delivery performance and shortage expediting review queue",
+      "proposed_folder": "scenarios/manufacturing/supplier-expediting-review",
+      "workflow_family": "event-cohort-reconciliation-and-expediting",
+      "source_ids": ["s-performance", "s-procurement", "s-dates"],
+      "actors": ["Buyer", "Material planner", "Procurement reviewer"],
+      "trigger": "Daily or manually requested review of frozen purchase-delivery and shortage exports.",
+      "start": "PO delivery lines, posted receipt/reversal events, confirmations, pegged unmet requirements and vendor ownership plus as_of/month/policy.",
+      "end": "Reconciled supplier performance and ordered unsent buyer-review queue with evidence questions.",
+      "inputs_proposed": {
+        "config": "as_of, reporting_month, horizon_days, tolerance_days, urgency_days, low_performance_percent",
+        "po_schedule_lines": "line_id, supplier_id, item_id, ordered_qty, original_requested_receipt, state",
+        "receipt_events": "event_id, line_id, posted_on, qty, reversal_of",
+        "confirmations": "confirmation_id, line_id, recorded_on, confirmed_receipt, remaining_qty",
+        "requirements": "requirement_id, line_id, need_by, unmet_qty, criticality; quantities already net of actual stock/receipts",
+        "suppliers": "supplier_id, buyer_role"
+      },
+      "stages": [
+        {"id": "intake", "kind": "input", "observable": "Export counts and as_of/reporting month/horizon."},
+        {"id": "validate-events", "kind": "validation", "observable": "Source IDs, quantities, dates, event and reversal consistency."},
+        {"id": "join-purchase-context", "kind": "join", "observable": "Schedule-to-receipt/vendor/demand matches."},
+        {"id": "reconcile-receipts", "kind": "decision", "observable": "Active/voided events, net/on-time/open quantities."},
+        {"id": "measure-performance", "kind": "decision", "observable": "Eligible/excluded line IDs, OTIF numerator and denominator."},
+        {"id": "select-confirmations", "kind": "join", "observable": "Latest eligible receipt-date promises and future/conflicting evidence."},
+        {"id": "evaluate-demand", "kind": "decision", "observable": "Per-requirement confirmed coverage and uncovered quantity without reuse."},
+        {"id": "collect-exceptions", "kind": "exception", "observable": "Unknown IDs, absent/stale confirmations, overreceipts and exclusions."},
+        {"id": "rank-queue", "kind": "decision", "observable": "Priority, needed date, shortage and stable line ID ordering."},
+        {"id": "close-review", "kind": "output", "observable": "Unsent review work and reconciled performance scope."}
+      ],
+      "source_backed_concepts": [
+        "Delivery schedules, confirmations, arrival registration and product receipts are distinct.",
+        "Receipt-based OTIF supports supplier-performance review.",
+        "Ship dates must not be substituted for receipt dates."
+      ],
+      "sample_policies": [
+        "Cohort uses original requested receipt date in reporting month and no later than as_of; cancelled/future/unknown rows have separate exclusions.",
+        "OTIF: non-voided quantity received by requested date plus tolerance meets ordered quantity; count lines, not receipt events.",
+        "Full reversal posted by as_of voids original receipt for all metrics; unmatched, partial or repeated reversals are not guessed.",
+        "Credit receipts only up to ordered quantity; report overreceipt separately. Empty denominator is null. Percent uses two-place decimal half-up.",
+        "Latest confirmation recorded by as_of wins; conflicting equal-date promises reject; future evidence is excluded/reported.",
+        "Past unreceived ETA is not available supply. Unknown ETA is not on-time.",
+        "Allocate confirmation quantity once across a line's unmet requirements by need date/requirement ID; do not subtract historic receipts from unmet demand twice.",
+        "Demo horizon 10, urgency 3, low-performance flag below 90; these are configurable fictional policies.",
+        "P1 critical uncovered requirement due within urgency window, including overdue; P2 other shortage or overdue original delivery; P3 remaining confirmation review.",
+        "Sort priority, earliest need date with unknown last, uncovered quantity descending, line ID. History is evidence, not an automatic supply-risk multiplier."
+      ],
+      "main_branch": "Reconcile past receipts, explain future uncovered needs and assign unsent review work.",
+      "exception_branches": ["Reversed receipt", "Future promise", "Missing/stale ETA", "Unknown vendor/line", "Zero performance cohort", "Contradictory events reject"],
+      "loops": "Each purchase line, posted event, vendor cohort and line-pegged requirement; confirmation supply cannot be reused.",
+      "manual_approval": "Buyer reviews all proposed questions and performs any communication or PO amendment outside the workflow.",
+      "outputs_proposed": ["receipt_reconciliation", "supplier_performance", "overall_performance", "cohort_exclusions", "requirement_coverage", "buyer_review_queue"],
+      "output_invariants": ["Queue is unsent and approval-required.", "Past-receipt metrics and future promise coverage remain separate.", "No empty-cohort success percentage."],
+      "case_designs": [
+        {"id": "demo", "kind": "demo", "fixture": "2026-09-14: P01 100 due 09-10, receipts 60 on 09-09 and 40 on 09-12; P03 50 due/received 09-12; P02 open 60 with 50 critical units needed 09-16 but promised 09-18; P04 40 needed 09-21 with no ETA.", "independent_assertions": ["P01 net 100/open 0 but OTIF false; P03 true.", "Historical numerator 1/denominator 2 -> 50.00%.", "P02 shortage 50/P1; P04 shortage 40/P2.", "Future-due P02/P04 excluded from historical cohort."]},
+        {"id": "holdout-a", "kind": "holdout", "fixture": "2026-10-05 reporting September, tolerance 2: A01 seven due 09-30 received 10-02; A02 eight on-time receipt reversed 10-01, confirmed for unmet need on 10-05.", "independent_assertions": ["A01 OTIF true at inclusive tolerance boundary.", "A02 net/on-time 0, open 8, OTIF false.", "A02 prospective coverage 8, shortage 0, but original-delivery overdue P2.", "Overall 50.00%."]},
+        {"id": "holdout-b", "kind": "holdout", "fixture": "2027-02-01, January month, cancelled historic lines, two new-vendor future critical requirements of ten due 02-04; one confirmation recorded 02-02.", "independent_assertions": ["Zero eligible denominator yields null OTIF.", "Future confirmation ignored and reported.", "B01 and B02 both P1; B01 sorts first despite reversed input.", "Unknown vendor history is not 0% or 100%."]},
+        {"id": "negative-malformed", "kind": "negative", "fixture": "Nonnumeric receipt quantity or invalid reporting month.", "independent_assertions": ["Rejected before performance or queue output."]},
+        {"id": "negative-contradictory", "kind": "negative", "fixture": "Conflicting same event_id quantities or reversal of a receipt on another line.", "independent_assertions": ["Rejected with conflicting keys; no convenient receipt selection."]}
+      ],
+      "stdlib_requirements": ["json", "datetime", "decimal", "collections", "pathlib", "shared scenario_support"],
+      "native_requirements": ["Existing permitted files.read", "Existing permitted files.write", "Bounded native date/decimal operations; interpreter support unverified"],
+      "unsupported_steps": ["Live supplier communication", "Purchase-order updates", "ERP workday/transport engine", "Carrier ETA verification", "Partial financial-return accounting", "Power BI/service dependency"],
+      "remaining_scope": "Mock receipt-date snapshots only; real connection/tool/permission requirements remain unverified."
+    },
+    {
+      "id": "manufacturing-03",
+      "title": "BOM material-readiness and kitting shortage review plan",
+      "proposed_folder": "scenarios/manufacturing/bom-kitting-review",
+      "workflow_family": "versioned-graph-expansion-and-shadow-allocation",
+      "source_ids": ["b-bom", "b-phantom", "q-blocking"],
+      "actors": ["Material planner", "Engineering reviewer", "Stores reviewer", "Production planner"],
+      "trigger": "Short-horizon preparation for proposed work orders or an engineering change.",
+      "start": "Work orders, versioned BOM lines, item masters, site stock and inbound snapshots plus horizon policy.",
+      "end": "Exploded requirement ledger, conserved shadow allocation, shortage review plan and unresolved evidence requests.",
+      "inputs_proposed": {
+        "config": "as_of, horizon_end, allocation priority policy, size/depth limits",
+        "work_orders": "order_id, item_id, site, start_date, quantity, priority, requested_version_id",
+        "bom_versions": "version_id, item_id, site, valid_from, valid_to, min_order_qty, max_order_qty, approved, active",
+        "bom_lines": "line_id, version_id, component_id, line_type, quantity_per, scrap_percent",
+        "items": "item_id, unit, expiry_controlled",
+        "stock_lots": "stock_id, item_id, site, quantity, reserved_external_qty, status, expires_on",
+        "inbound": "receipt_id, item_id, site, expected_on, quantity, confirmed"
+      },
+      "stages": [
+        {"id": "intake", "kind": "input", "observable": "Order horizon and source inventory counts."},
+        {"id": "validate-structure", "kind": "validation", "observable": "Quantities, masters, dates, version ambiguity and graph bounds."},
+        {"id": "select-bom", "kind": "join", "observable": "Order-to-approved-valid version selection and explicit alternatives."},
+        {"id": "expand-phantoms", "kind": "join", "observable": "Actual component paths and exact multipliers."},
+        {"id": "calculate-demand", "kind": "decision", "observable": "Per-order/component raw sum and once-rounded EA demand."},
+        {"id": "join-supply", "kind": "join", "observable": "Site/status/expiry/reservation/receipt-date eligible supply with reasons."},
+        {"id": "shadow-allocate", "kind": "decision", "observable": "Order sequence, source usage, remaining pool and component gaps."},
+        {"id": "collect-exceptions", "kind": "exception", "observable": "Late/blocked/expired supply, unknown masters, unsupported lines and shortage rows."},
+        {"id": "reconcile-plan", "kind": "decision", "observable": "Demand = assigned + shortage, plus source-level conservation."},
+        {"id": "close-plan", "kind": "output", "observable": "Review-only material states and owner questions; no actual reservations."}
+      ],
+      "source_backed_concepts": [
+        "BOM validity can depend on date, site and quantity.",
+        "Approval differs from active-default selection; explicit approved valid alternatives exist.",
+        "Phantoms expand into leaf material requirements; other line types have different effects.",
+        "Blocked inventory must not be treated as available stock."
+      ],
+      "sample_policies": [
+        "Exactly one approved active default version; explicit alternative may be inactive but must be approved and valid. Inclusive date ranges; ambiguous match rejects.",
+        "Only Item/Phantom and EA; max eight levels/5000 expanded paths, detect cycles; unsupported types fail explicitly.",
+        "Propagate exact phantom multipliers; no phantom scrap. Sum leaf parent_quantity*quantity_per*(1+scrap_percent/100) by order/component then ceil once.",
+        "quantity_per is a canonical decimal string with <=4 fractional places; scrap_percent 0-25.",
+        "Site-appropriate available nonexpired stock contributes physical minus external reservations. Hold/blocked rows contribute zero without double subtraction.",
+        "Expiry-controlled stock without expiry is unknown. Confirmed inbound counts only when as_of < expected_on <= need_by; overdue unreceived inbound is not stock.",
+        "Allocate by start date, priority ascending, order ID. Stock before future inbound; eligible sources by earliest expiry/date then ID.",
+        "Conservative report-local partial assignment; no optimizer, automatic backtracking, reservations, or authorization to kit."
+      ],
+      "main_branch": "Explode valid BOMs and produce a conserved review-only material coverage/shortage plan.",
+      "exception_branches": ["Blocked/expired/wrong-site inventory", "Late/unconfirmed inbound", "Unknown component or expiry", "Version ambiguity", "Phantom cycle/depth overflow", "Unsupported line type"],
+      "loops": "Orders, bounded graph paths, aggregated leaf components, and eligible supply sources with non-reused shadow balances.",
+      "manual_approval": "Engineering/stores/planning review all evidence and any substitutions, reservations, releases or schedule changes outside this process.",
+      "outputs_proposed": ["selected_versions", "exploded_paths", "component_requirements", "shadow_allocations", "shortage_review_queue", "supply_exclusions"],
+      "output_invariants": [
+        "Demand equals assigned plus shortage.",
+        "Each stock/inbound source is assigned at most once up to eligible capacity.",
+        "Covered-now, covered-with-expected-receipt and shortage review states are distinct; none authorizes production."
+      ],
+      "case_designs": [
+        {"id": "demo", "kind": "demo", "fixture": "2026-09-14: R=one frame+phantom(two bolts/four screws). W01 qty3 due09-16, W02 qty2 due09-17. Stock frame4/bolt8-reserved2/screw20; frame1 arrives09-17; bolt3 arrives late09-18; bolt100 blocked.", "independent_assertions": ["Total demand frame5/bolt10/screw20.", "W01 assigned3/6/12, covered now.", "W02 assigned2/0/8, bolts short4.", "Total assigned5/6/20; late and blocked bolts do not reduce shortage."]},
+        {"id": "holdout-a", "kind": "holdout", "fixture": "October effective-version switch. Qty2 requires two panes each. Site mismatch stock10; stock2 expires10-02; stock1 expires exactly need10-03; confirmed inbound3 on10-03.", "independent_assertions": ["New version effective10-01 selected; old09-30 version excluded.", "Demand4; current eligible1 plus prospective3 covers4.", "State covered-with-expected-receipt-review, not covered-now.", "Wrong-site/expired quantities excluded."]},
+        {"id": "holdout-b", "kind": "holdout", "fixture": "January, reverse-ordered equal-date/priority B01/B02. Each qty3 has two phantom paths of 0.5 nut per product. Shared available nuts5.", "independent_assertions": ["Each order requires ceil(3*0.5+3*0.5)=3, not4.", "B01 assigned3 first; B02 assigned2/gap1.", "Total demand6, assigned5; no shared-stock double count."]},
+        {"id": "negative-malformed", "kind": "negative", "fixture": "Nonnumeric/nonfinite quantity_per, negative stock or external reservations greater than physical stock.", "independent_assertions": ["Rejected before shadow allocation with field-specific errors."]},
+        {"id": "negative-contradictory", "kind": "negative", "fixture": "Two active approved BOM versions match one order.", "independent_assertions": ["Rejected as ambiguous; no newest-version heuristic."]}
+      ],
+      "additional_negative_checks": ["Phantom cycle", "Depth and expansion bounds", "Pegged supply/Vendor unsupported", "Unknown component/unsupported unit"],
+      "stdlib_requirements": ["json", "datetime", "decimal", "collections", "math", "pathlib", "shared scenario_support"],
+      "native_requirements": ["Existing permitted files.read", "Existing permitted files.write", "Bounded graph/decimal operations; native generated helper execution unverified"],
+      "unsupported_steps": ["Actual inventory reservation", "Production or kitting release", "Route/capacity scheduling", "Formula/co-product planning", "Substitute qualification", "ERP/calendar/service execution"],
+      "remaining_scope": "Report-local conservative plan only, not an optimal or executable production schedule; real integrations remain unverified."
+    }
+  ],
+  "current_evidence": {
+    "research_candidates": 3,
+    "primary_pages_fetched": 10,
+    "scenario_baselines_run": 0,
+    "golden_files_created": 0,
+    "videos_created": 0,
+    "native_plugins_created": 0,
+    "native_installations_verified": 0,
+    "native_independent_runs": 0
+  },
+  "next_gate": "Wait for parent research catalog approved/build before implementing any candidate. Complete independent goldens precede baseline execution."
+}

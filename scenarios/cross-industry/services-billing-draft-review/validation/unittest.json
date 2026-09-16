@@ -1,0 +1,19 @@
+{
+  "discovery_start": "C:\\Users\\bodonnell\\src\\copilot-worktrees\\cowork-process-creator\\boddev-potential-enigma\\scenarios\\cross-industry\\services-billing-draft-review",
+  "errors": 0,
+  "failures": 0,
+  "runner": "stdlib unittest.defaultTestLoader.discover + TextTestRunner(verbosity=2)",
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1,
+  "scope": "Synthetic developer baseline only; native creation blocked, installation and independent invocation not run.",
+  "skipped": 0,
+  "source_sha256": {
+    "HOW_TO.md": "fcd97645d6854ad59c369511149b42f1f15dfaaaf714de25dd3c6f5ce2bba305",
+    "baseline.py": "21faef940ef14aaaa04904b5edba3d9c666ebcec8b5b0fc15a74223c226c3a7b",
+    "test_baseline.py": "87e9855a08557e385ca83e17e517e1bd8b09e8dd490e83af1a6f46a50c5ec570",
+    "validation/golden-lock.json": "e4716271a71ce560bf99271928e48d68ab2a7236744d51d5e35b86c3f3751bc0"
+  },
+  "status": "passed",
+  "test_pattern": "test_baseline.py",
+  "tests_run": 62
+}

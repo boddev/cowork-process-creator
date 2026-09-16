@@ -1,0 +1,754 @@
+{
+  "document_type": "phase-one-research-catalog",
+  "catalog_version": 1,
+  "industry": "retail",
+  "researched_on": "2026-09-14",
+  "status": "researched-awaiting-parent-catalog-approval",
+  "qualified_scenario_count": 3,
+  "build_gate": {
+    "state": "pending",
+    "required_parent_decision": "research-catalog-approved and explicit build authorization after at least 15 scenarios are researched",
+    "construction_started": false,
+    "shared_contract": "scenarios/SCENARIO_CONTRACT.md",
+    "shared_contract_version": 1,
+    "shared_contract_source_commit": "d641b1f34328e5293e043d5975d0944b485236c0",
+    "schema_limit": "This catalog specifies business research and draft export schemas, not an alternative scenario, result, trace, staging or runner contract."
+  },
+  "common_design": {
+    "synthetic_only": true,
+    "fixture_id_prefix": "SYN-",
+    "fixture_year": 2099,
+    "real_actions_authorized": false,
+    "input_packaging": "Each shared-contract case remains one parseable JSON object. Preserve independent named logical export tables and a configurable role-to-filename mapping inside the case bundle. Final serialization is settled at build time; these are draft business schemas, not a new file resolver or prejoined answer.",
+    "configuration": [
+      "Logical source filenames are configured by role, not hard-coded.",
+      "As-of dates, periods, thresholds and policy choices are explicit input data.",
+      "Exact joins and complete required date coverage; no fuzzy matching, silent deduplication or missing-as-zero defaults."
+    ],
+    "numeric_rules": [
+      "Quantities and minor-unit money are integers, never booleans.",
+      "Money carries explicit currency; no mixed-currency totals.",
+      "Percentage rates use integer basis points.",
+      "Monetary intermediate values use exact decimal or rational arithmetic; round only at documented policy boundaries.",
+      "Arrays have documented stable ordering independent of source row order."
+    ],
+    "independent_expected_method": "Write expected results manually from the documented procedure and arithmetic before baseline execution. Never derive, repair or copy goldens from baseline output. The research seed answers are not yet fixture or golden files.",
+    "native_authoring_allowlist": [
+      "HOW_TO.md",
+      "workflow.json",
+      "connections.json",
+      "mock-data/demo.json",
+      "demo/baseline.webm"
+    ],
+    "withheld_from_native_authoring": [
+      "research.md",
+      "research.json",
+      "scenario.json",
+      "sources.json",
+      "baseline.py",
+      "shared baseline code",
+      "expected",
+      "baseline-output",
+      "holdout inputs",
+      "negative inputs",
+      "validation answers"
+    ],
+    "connections": {
+      "mode": "mock-exports-only",
+      "availability": "not-required",
+      "connections": [],
+      "note": "Exported synthetic file inputs and existing native file-output facilities only. No endpoint, authentication, account, payment token or backend is supplied or required. Real commerce integrations remain unverified."
+    },
+    "baseline_boundary": "After approval only: standard-library baseline solve(payload) returns the common result envelope and actual events, using the shared scenario_support.run_cli helper. No Creator/generated-plugin imports, expected-file reads, network calls or input mutation.",
+    "video_boundary": "Foundation renders actual demo trace tables into a roughly 30-90 second video. Every frame identifies a Synthetic baseline execution visualization - not Cowork or a live system. Sector supplies meaningful actual intermediate events, not invented UI.",
+    "native_status": {
+      "as_of": "2026-09-14",
+      "creation": "blocked-not-run",
+      "installation": "blocked-not-run",
+      "independent_invocation": "blocked-not-run",
+      "historical_output_publication": "unknown",
+      "blocker": "Approved Computer Use tools were removed; an unlocked accessible native session is also required.",
+      "workaround_allowed": false,
+      "note": "No Playwright/browser/private API/cookie/token/shell/native workaround; no placeholder or local fake native ZIP. Actual native artifacts may later be saved under root output by the parent-authorized process."
+    },
+    "prohibited_dependencies": [
+      "authoring backend or API",
+      "custom MCP authoring server",
+      "Azure resources",
+      "external model or media APIs",
+      "database or queue",
+      "workflow engine or gateway",
+      "custom desktop or browser runner",
+      "device agent",
+      "external scheduler",
+      "runtime installer",
+      "new end-user developer-tool dependency"
+    ],
+    "frozen_surfaces": [
+      "Creator runtime 0.2.1",
+      "appPackage",
+      "release and proof artifacts",
+      "historical native downloads",
+      "main checkout"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "title": "Replenishment",
+      "publisher": "Oracle",
+      "url": "https://docs.oracle.com/en/industries/retail/retail-merchandising-foundation-cloud/latest/rmpug/replenishment.htm",
+      "accessed": "2026-09-14",
+      "retrieval": "Official HTML fetched with web_fetch; primary page content reviewed.",
+      "scope": "Retail Merchandising Foundation Cloud replenishment overview",
+      "sections": [
+        "Overview paragraphs on purpose, recommendations versus orders, inventory positions and replenishment attributes"
+      ],
+      "supported_claims": [
+        "Replenishment refills store or warehouse stock from a supplier or warehouse.",
+        "The process may produce recommendations for manual addition to orders or transfers rather than automatically creating them.",
+        "Item/location inventory, demand-forecast integration, supplier/location rounding and constraints are relevant."
+      ],
+      "limitations": "Unversioned latest documentation, not an installed-product assertion. Does not define our daily lost-demand model, whole-case ceiling, DC case budget or priority allocation."
+    },
+    {
+      "id": "r2",
+      "title": "Replenishment methods and quantity modification",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/supply-chain/master-planning/planning-optimization/replenishment-methods-quantity-modification",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch and reviewed.",
+      "scope": "Dynamics 365 Supply Chain Management coverage and order-quantity concepts",
+      "sections": [
+        "Coverage codes",
+        "Impact of the order quantity from default order settings",
+        "Examples of replenishment that use the Min./Max. coverage code"
+      ],
+      "supported_claims": [
+        "Planning can use period, requirement, minimum-maximum or manual replenishment methods.",
+        "Planned orders can be constrained to multiples of a configured quantity."
+      ],
+      "limitations": "The documented minimum-maximum multiple selection is not unconditional rounding up; our ceiling and allocation algorithm are explicitly sample policy."
+    },
+    {
+      "id": "r3",
+      "title": "Overview of the Forecast to plan business process areas",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/guidance/business-processes/forecast-to-plan-areas",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch and reviewed.",
+      "scope": "Cross-product stocking, demand/supply forecasting and replenishment planning",
+      "sections": [
+        "Establish stocking and replenishment policies",
+        "Forecast supply and demand",
+        "Plan supply and replenishment"
+      ],
+      "supported_claims": [
+        "Stocking policy includes replenishment lead times, inventory thresholds, planning frequency and horizon.",
+        "Demand planning relates expected demand, safety stock and lead times.",
+        "Supply planning uses demand, supply and inventory with business-defined policies and capacity considerations."
+      ],
+      "limitations": "Business-process guidance, not an exact store allocation formula, live inventory guarantee or mandate for a particular DC capacity unit."
+    },
+    {
+      "id": "r4",
+      "title": "Create returns in POS",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/pos-returns",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch; relevant return, history freshness and partial-tax sections reviewed.",
+      "scope": "Dynamics 365 Commerce original-transaction-linked return processing",
+      "sections": [
+        "Process returns by using the return transaction operation",
+        "Return processing improvements when the connection to headquarters is down",
+        "Enable proper tax calculation for returns with partial quantity"
+      ],
+      "supported_claims": [
+        "Original transactions can be located using receipt, order, channel reference or invoice identifiers.",
+        "Original and previously returned quantities inform the available-to-return limit; return reasons are recorded.",
+        "Synchronized offline return quantities can be stale.",
+        "Partial return tax handling can preserve the original tax amount."
+      ],
+      "limitations": "No universal return window, condition policy, legal entitlement or penny-allocation algorithm follows from this page. The nonvalidated Return product operation is excluded."
+    },
+    {
+      "id": "r5",
+      "title": "Linked refunds of previously approved and confirmed transactions",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/linked-refunds",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch and reviewed.",
+      "scope": "Dynamics 365 Commerce linked-refund concept and flow limits",
+      "sections": [
+        "Introduction",
+        "Prerequisites",
+        "Supported flows",
+        "Unsupported flows"
+      ],
+      "supported_claims": [
+        "A linked refund refers to a previously approved and confirmed transaction.",
+        "A refund can be full or partial and cannot exceed the original authorization.",
+        "Execution has payment configuration and connector prerequisites and excludes some exchange, gift-card, receiptless and multi-invoice flows."
+      ],
+      "limitations": "No payment connection, card token or authorization to issue money exists in this corpus. The original confirmation is a synthetic fixture, not permission for action."
+    },
+    {
+      "id": "r6",
+      "title": "Retail discounts",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/retail-discounts-overview",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch; Manage discounts and Best practices reviewed.",
+      "scope": "Dynamics 365 Commerce discount applicability, concurrency and management",
+      "sections": [
+        "Manage discounts",
+        "Discount concurrency mode",
+        "Override priority and Pricing priority",
+        "Line type",
+        "Unit of measure",
+        "Best practices"
+      ],
+      "supported_claims": [
+        "Status, currency, unit and product/channel scope affect discount applicability.",
+        "Exclusive, best-price and compounded modes interact with pricing priority.",
+        "Exclusion lines override inclusion lines.",
+        "A discount strategy should be documented and configuration tested before enablement."
+      ],
+      "limitations": "The actual pricing engine includes broader contextual and basket-dependent rules than this single-unit synthetic audit. The catalog does not claim full engine parity."
+    },
+    {
+      "id": "r7",
+      "title": "Pricing settings",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/price-settings",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch and reviewed.",
+      "scope": "Dynamics 365 Commerce configurable concurrency, compounding and rounding",
+      "sections": [
+        "Best price and compound concurrency control model",
+        "Discount compound behavior",
+        "Keep items on the same sales line for discount price rounding",
+        "Deprecated or removed settings"
+      ],
+      "supported_claims": [
+        "Different concurrency settings change whether discounts compound within or across priorities.",
+        "Compounding successively versus applying each discount to original price can change the result.",
+        "Line discount rounding/distribution behavior is configurable.",
+        "The old Enable price report for retail store setting was removed in October 2023."
+      ],
+      "limitations": "Our final half-up rounding, threshold tolerance and selected hierarchy are sample policy, not universal product behavior. No deprecated setup instruction is executed."
+    },
+    {
+      "id": "r8",
+      "title": "Retail price reports",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/price-report",
+      "accessed": "2026-09-14",
+      "retrieval": "Official full page fetched with microsoft_docs_fetch and reviewed.",
+      "scope": "Store/date-scoped price reporting and export",
+      "sections": [
+        "Report overview",
+        "Configuration table",
+        "Export and historical-price description"
+      ],
+      "supported_claims": [
+        "Store managers can review recent or upcoming product price changes by store and date.",
+        "Reports can support historical-price checks and export for further filtering."
+      ],
+      "limitations": "Its old enable-parameter instruction conflicts with the later removal documented by r7; only reporting concepts are used. The documented seven-day feature limit is not a universal audit requirement."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "retail-01",
+      "slug": "store-replenishment-proposal",
+      "title": "Store replenishment proposal with inventory and DC constraints",
+      "qualification": "qualified-for-research-catalog",
+      "workflow_family": "constrained-inventory-allocation",
+      "source_ids": ["r1", "r2", "r3"],
+      "source_grounded_claims": [
+        {
+          "id": "replenishment-recommendations",
+          "source_ids": ["r1"],
+          "claim": "Inventory replenishment may end at manually reviewable recommendations rather than automatic orders or transfers."
+        },
+        {
+          "id": "demand-lead-time-planning",
+          "source_ids": ["r1", "r3"],
+          "claim": "Inventory positions, expected demand, replenishment lead times, planning horizons and capacity considerations inform supply planning."
+        },
+        {
+          "id": "order-quantity-multiples",
+          "source_ids": ["r2"],
+          "claim": "Order quantities can be constrained to configured multiples."
+        }
+      ],
+      "source_limitations": [
+        "The allocation, lost-demand and safety formulas below are mock company policy.",
+        "Ceiling raw need to whole cases differs from Microsoft's documented minimum-maximum multiple algorithm.",
+        "No live Oracle/Dynamics installation, inventory accuracy or backend connection is asserted."
+      ],
+      "actors": [
+        {"role": "Replenishment planner", "responsibility": "Own the proposed allocation and review the shortages."},
+        {"role": "Inventory-reporting analyst", "responsibility": "Provide dated synthetic store/DC and in-transit exports."},
+        {"role": "DC capacity coordinator", "responsibility": "Provide remaining dispatch-day case capacity and review constraints."}
+      ],
+      "trigger": "A human starts one dated replenishment-planning review from a closed synthetic export bundle.",
+      "start": "Unjoined stock snapshots, residual daily demand, inbound receipts, one route per store/SKU and policy.",
+      "end": "Whole-case proposal, daily physical projection, DC stock/capacity reconciliation and exception review packet.",
+      "no_live_actions": [
+        "No purchase or transfer order",
+        "No reservation or inventory write",
+        "No shipment or physical stock movement"
+      ],
+      "scope_limits": [
+        "One source DC per store/SKU and one dispatch day.",
+        "Nonperishable whole-unit inventory.",
+        "No multi-DC optimization, substitutes, lots, expiry, routing, procurement or forecast training."
+      ],
+      "mock_file_schemas": [
+        {
+          "role": "policy",
+          "suggested_filename": "planning-policy.json",
+          "draft_fields": ["as_of:date", "review_days:positive-int", "policy_id:string", "source_files:role-filename-map", "partial_cases_allowed:boolean"],
+          "key": "one policy object",
+          "validation": "Partial allocation means whole cases; dates and filenames are explicit."
+        },
+        {
+          "role": "store_stock",
+          "suggested_filename": "store-stock.json",
+          "draft_fields": ["store_id:string", "sku:string", "snapshot_on:date", "on_hand_units:nonnegative-int", "reserved_units:nonnegative-int", "blocked_units:nonnegative-int"],
+          "key": ["store_id", "sku"],
+          "validation": "Start-of-as-of snapshot. Reserved and blocked are disjoint physical subsets whose sum cannot exceed on-hand."
+        },
+        {
+          "role": "dc_stock",
+          "suggested_filename": "dc-stock.json",
+          "draft_fields": ["dc_id:string", "sku:string", "snapshot_on:date", "on_hand_units:nonnegative-int", "reserved_units:nonnegative-int", "blocked_units:nonnegative-int"],
+          "key": ["dc_id", "sku"],
+          "validation": "Same as-of and disjoint-stock checks as store inventory."
+        },
+        {
+          "role": "residual_demand",
+          "suggested_filename": "residual-demand.json",
+          "draft_fields": ["store_id:string", "sku:string", "demand_on:date", "units:nonnegative-int"],
+          "key": ["store_id", "sku", "demand_on"],
+          "validation": "Complete daily coverage for each routed store/SKU. Demand excludes already reserved commitments."
+        },
+        {
+          "role": "inbound",
+          "suggested_filename": "inbound.json",
+          "draft_fields": ["receipt_id:string", "store_id:string", "sku:string", "eta:date", "status:in-transit|received|cancelled", "remaining_units:nonnegative-int"],
+          "key": ["receipt_id"],
+          "validation": "In-transit goods have left the origin. Received/cancelled rows have zero remaining units. No receipt is represented twice in stock and inbound."
+        },
+        {
+          "role": "routes",
+          "suggested_filename": "replenishment-routes.json",
+          "draft_fields": ["store_id:string", "sku:string", "dc_id:string", "lead_days:nonnegative-int", "case_pack:positive-int", "safety_units:nonnegative-int", "priority:int"],
+          "key": ["store_id", "sku"],
+          "validation": "Exactly one route per planned pair. No guessing between source DCs."
+        },
+        {
+          "role": "dc_capacity",
+          "suggested_filename": "dc-capacity.json",
+          "draft_fields": ["dc_id:string", "dispatch_on:date", "remaining_case_capacity:nonnegative-int"],
+          "key": ["dc_id", "dispatch_on"],
+          "validation": "Remaining capacity is already net of firm work and is debited only for new hypothetical proposals."
+        }
+      ],
+      "sample_policy": [
+        {
+          "id": "net-stock-once",
+          "rule": "Available stock equals physical on-hand minus disjoint reserved and blocked units. Demand is residual unreserved demand, so the same commitment is not counted twice."
+        },
+        {
+          "id": "dated-coverage",
+          "rule": "Arrival is as_of + lead_days. Coverage includes as_of through arrival + review_days - 1. Receipts arrive before the day's demand."
+        },
+        {
+          "id": "inbound-cutoff",
+          "rule": "Count positive in-transit remaining quantities only on/after as_of and within coverage. Late receipts are listed but excluded; overdue in-transit evidence quarantines its pair; received/cancelled quantities contribute zero."
+        },
+        {
+          "id": "lost-demand-not-backlog",
+          "rule": "Walk pre-arrival days with nonnegative physical stock and record unfilled forecast as lost, never as a later backlog or actual negative stock."
+        },
+        {
+          "id": "coverage-requirement",
+          "rule": "After pre-arrival simulation, form post-arrival cumulative planning balances without the new receipt. Raw need is max(0, largest negative cumulative balance, safety - final cumulative balance)."
+        },
+        {
+          "id": "whole-case-ceiling",
+          "rule": "Round raw need up to whole cases; record the rounding excess. This is not the vendor minimum-maximum algorithm."
+        },
+        {
+          "id": "shared-dc-allocation",
+          "rule": "Sort priority ascending, store_id, sku. Proposed cases are bounded by request, remaining whole cases of DC SKU stock and remaining dispatch-day case capacity. Debit each proposal exactly once."
+        },
+        {
+          "id": "partial-proposal-review",
+          "rule": "If enabled, partial fulfillment is whole-case-only. If disabled and the full request cannot fit, propose zero and debit nothing. Every unproposed unit and binding limit is reported. Re-simulate with actual proposed quantities and expose dated loss and final safety shortfall. All three seed cases enable partial whole-case proposals."
+        }
+      ],
+      "steps": [
+        {"id": "load-exports", "kind": "input", "action": "Load configured role tables and policy.", "trace": "Source row counts, snapshot dates and case budgets."},
+        {"id": "validate-stock-and-keys", "kind": "validation", "action": "Validate records, unique keys, stock subsets, case packs and complete daily demand.", "trace": "Validated key/date coverage and explicit failures."},
+        {"id": "join-store-supply", "kind": "join", "action": "Join store/SKU to route, DC stock, demand and individual inbound receipts.", "trace": "Joined available stock, route and counted/excluded receipts."},
+        {"id": "project-before-arrival", "kind": "decision", "action": "Walk every pre-arrival day and separate fulfilled from lost forecast.", "trace": "Day-level receipts, demand, closing units and losses."},
+        {"id": "calculate-case-requests", "kind": "decision", "action": "Calculate cumulative balances, safety need, raw units and case-ceiling requests.", "trace": "Raw need, pack, requested units/cases and rounding excess."},
+        {"id": "allocate-dc-capacity", "kind": "decision", "action": "Allocate all candidates in deterministic priority order against shared remaining ledgers.", "trace": "Requested/proposed cases and before/after stock/capacity balances."},
+        {"id": "surface-shortfalls", "kind": "exception", "action": "Re-simulate with actual proposals and expose data issues, dated losses, deferred units and final safety gaps.", "trace": "Actual exception rows and residual-risk quantities."},
+        {"id": "publish-review-packet", "kind": "output", "action": "Publish proposal, projections, DC controls and planner review summary.", "trace": "Final proposal totals and review-required rows."}
+      ],
+      "branches_and_loops": {
+        "loops": ["Every routed store/SKU", "Every configured coverage day", "Every relevant receipt", "All prioritized candidates sharing a DC"],
+        "branches": ["No need", "Full proposal", "DC-stock-limited partial proposal", "DC-capacity-limited partial proposal", "Late receipt excluded", "Overdue receipt quarantined", "Pre-arrival loss remains", "Malformed or duplicate evidence rejected"],
+        "temporal_constraints": ["Same-date opening snapshots", "Inclusive computed coverage horizon", "Receipt before daily demand", "No retroactive cure for lost demand", "Single dispatch-day capacity budget"]
+      },
+      "final_artifacts": [
+        {
+          "name": "proposal",
+          "content": "Store/SKU/DC, dispatch/arrival, raw need, requested/proposed units and cases, deferred units, rounding excess and binding constraints."
+        },
+        {
+          "name": "daily_projection",
+          "content": "Per day: opening units, existing/proposed receipts, demand, fulfilled/lost units and closing physical units."
+        },
+        {
+          "name": "dc_controls",
+          "content": "Opening available stock/capacity, each hypothetical usage and final remaining DC/SKU and DC/day balances."
+        },
+        {
+          "name": "review_packet",
+          "content": "Policy/as-of, totals, dated risks, exception keys, planner owner/actions and action_authorized=false. No business action is executed."
+        }
+      ],
+      "stable_ordering": "Proposal rows store_id/sku; projection rows store_id/sku/day; DC controls dc_id/sku; allocation decisions priority/store_id/sku.",
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "design": "As-of 2099-04-10, lead 2, review 3. A/BLUE available 8 from 11-2-1, demand 2/day, inbound 2 at arrival, safety 4, pack 3. B/BLUE available 3, demand 2/day, inbound 3 on final day, safety 3, pack 3. C/GOLD available 4, demand 2/day, no inbound, safety 2, pack 4. Priorities A,B,C; DC BLUE 9 and GOLD 40 available; remaining capacity 4 cases.",
+          "independent_derivation": "A reaches arrival with 4; raw need 4 rounds to 6. B loses 1 before arrival; post-arrival cumulative balances -2,-4,-3 give need max(4,3-(-3))=6. C raw need 8. Requests are 6,6,8. Allocate 6,3,4 under BLUE stock and shared case capacity.",
+          "expected_facts": {
+            "requested_units_by_pair": [6, 6, 8],
+            "proposed_units_by_pair": [6, 3, 4],
+            "proposed_units": 13,
+            "proposed_cases": 4,
+            "deferred_units": 7,
+            "closing_units_by_pair": [6, 1, 0],
+            "pre_arrival_lost_units": 1,
+            "post_arrival_lost_units": 3,
+            "final_safety_shortfall_by_pair": [0, 2, 2]
+          },
+          "covers": ["net-stock-once", "dated-coverage", "inbound-cutoff", "lost-demand-not-backlog", "coverage-requirement", "whole-case-ceiling", "shared-dc-allocation", "partial-proposal-review"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "design": "As-of 2099-05-01, lead 1, review 2, pack 5, DC stock 22, capacity 3. A starts 0; demands 1 then 2,3; safety 1. B starts 5; demands 1 then 2,2; safety 3.",
+          "independent_derivation": "A loses 1 before arrival and needs 5+1=6, rounded to 10. B reaches arrival with 4 and needs 4+3-4=3, rounded to 5. Propose all 15 units, using 3 cases and leaving 7 DC units. Both closing stocks are 5.",
+          "expected_facts": {"proposed_units_by_pair": [10, 5], "proposed_units": 15, "proposed_cases": 3, "dc_remaining_units": 7, "closing_units_by_pair": [5, 5], "pre_arrival_lost_units": 1},
+          "covers": ["dated-coverage", "lost-demand-not-backlog", "whole-case-ceiling", "shared-dc-allocation"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "design": "As-of 2099-06-15, lead 0, review 2, pack 4, capacity 1. A starts 6; demands 1,1; safety 2; inbound 11 on June 17 is late. B starts 1; demands 3,2; safety 2; DC stock 20.",
+          "independent_derivation": "A needs zero and closes 4 without late inbound. B needs 5+2-1=6, requests 8, receives a 4-unit proposal, satisfies 5 demand and closes zero, leaving a safety gap of 2.",
+          "expected_facts": {"proposed_units_by_pair": [0, 4], "proposed_units": 4, "proposed_cases": 1, "closing_units_by_pair": [4, 0], "post_arrival_lost_units": 0, "final_safety_shortfall_by_pair": [0, 2], "deferred_units": 4},
+          "covers": ["inbound-cutoff", "coverage-requirement", "shared-dc-allocation", "partial-proposal-review"],
+          "failure_modes": []
+        },
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "design": "Zero case pack or boolean quantity.", "independent_derivation": "Invalid numeric domain prevents any allocation.", "covers": ["whole-case-ceiling", "net-stock-once"], "failure_modes": ["malformed-input"]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "rejected", "design": "Reserved plus blocked units exceed physical on-hand.", "independent_derivation": "Disjoint stock conservation is impossible; no proposals.", "covers": ["net-stock-once"], "failure_modes": ["contradictory-evidence"]},
+        {"id": "negative-duplicate", "kind": "negative", "expected_status": "rejected", "design": "Repeated receipt ID or stock key.", "independent_derivation": "Reject instead of counting duplicate supply or silently selecting a row.", "covers": ["net-stock-once", "inbound-cutoff"], "failure_modes": ["duplicate-key"]},
+        {"id": "negative-ambiguous-route", "kind": "negative", "expected_status": "rejected", "design": "Two routes supply the same store/SKU from different DCs.", "independent_derivation": "Unique route requirement fails; do not infer preferred DC.", "covers": ["shared-dc-allocation"], "failure_modes": ["ambiguous-evidence"]},
+        {"id": "negative-out-of-window", "kind": "negative", "expected_status": "rejected", "design": "Inventory snapshot date differs from configured as-of.", "independent_derivation": "A stale/future opening balance cannot support this run.", "covers": ["dated-coverage"], "failure_modes": ["out-of-window"]},
+        {"id": "negative-overdue-inbound", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Positive in-transit quantity has an ETA before as-of.", "independent_derivation": "Quarantine the affected pair and show the unresolved ETA, not an invented receipt.", "covers": ["inbound-cutoff"], "failure_modes": ["contradictory-evidence"]}
+      ],
+      "independent_assertions": [
+        "Proposed and requested units are nonnegative whole case-pack multiples.",
+        "No proposal exceeds its request, available DC SKU stock or dispatch-day case budget.",
+        "Every proposal debits shared stock and capacity once, with no received/in-transit double counting.",
+        "Opening plus receipts minus fulfilled demand equals closing; demand equals fulfilled plus lost.",
+        "Physical stocks are never negative; negative planning balances are labeled separately.",
+        "Pre-arrival loss is not erased by a later proposed receipt.",
+        "Missing demand or stock cannot silently become zero; duplicates cannot increase supply.",
+        "Zero-need pairs consume no capacity.",
+        "Input permutations, changed row counts and consistent role-filename remapping preserve the documented result."
+      ]
+    },
+    {
+      "id": "retail-02",
+      "slug": "returns-refund-reconciliation",
+      "title": "Original-order returns and refund proposal reconciliation",
+      "qualification": "qualified-for-research-catalog",
+      "workflow_family": "original-transaction-reconciliation",
+      "source_ids": ["r4", "r5"],
+      "source_grounded_claims": [
+        {"id": "original-line-eligibility", "source_ids": ["r4"], "claim": "Original transaction lookup, prior returned quantity and return reason support available-to-return reconciliation."},
+        {"id": "confirmed-refund-cap", "source_ids": ["r5"], "claim": "Linked refunds can be partial but are associated with a previously confirmed transaction and bounded by original authorization."},
+        {"id": "history-freshness-and-tax", "source_ids": ["r4"], "claim": "Offline quantities can be stale and partial-return tax handling must account for original tax."}
+      ],
+      "source_limitations": [
+        "Window length, conditions, partial-request policy and cumulative penny allocation are invented company policy.",
+        "No statutory return right, fraud conclusion or legal/payment approval is inferred.",
+        "Offline fixtures do not demonstrate real-time eligibility; live refund execution requires absent payment capabilities."
+      ],
+      "actors": [
+        {"role": "Returns reconciliation analyst", "responsibility": "Prepare original-linked quantity and money proposals for review."},
+        {"role": "Store-service intake role", "responsibility": "Provide synthetic request, condition and reason records."},
+        {"role": "Finance-reporting role", "responsibility": "Provide complete original-order/payment and opening return history exports."}
+      ],
+      "trigger": "A human reviews a closed return-intake reporting period.",
+      "start": "Unjoined intake requests, original receipts/invoices/lines, posted opening returns and explicit company policy.",
+      "end": "Review-only per-request proposals and reconciled original/prior/proposed/remaining quantity and money controls.",
+      "no_live_actions": ["No refund or card operation", "No order amendment", "No inventory return or disposition", "No customer contact", "No fraud accusation or legal/policy entitlement judgment"],
+      "scope_limits": [
+        "Whole units; one invoice and one confirmed synthetic card-payment reference per original order.",
+        "Two-decimal currency with original merchandise and allocated tax; no shipping charges.",
+        "No exchanges, serialized goods, receiptless authorization, mixed tenders, multiple captures, tax recomputation or restocking fees."
+      ],
+      "mock_file_schemas": [
+        {"role": "policy", "suggested_filename": "return-policy.json", "draft_fields": ["as_of:date", "period_start:date", "period_end:date", "window_days:nonnegative-int", "allow_partial_requests:boolean", "allowed_reasons:string-list", "allowed_conditions:string-list", "source_files:role-filename-map"], "key": "one policy object", "validation": "Inclusive request period ending on/before as-of; all window/condition rules are mock policy."},
+        {"role": "original_orders", "suggested_filename": "original-orders.json", "draft_fields": ["order_id:string", "store_id:string", "receipt_id:string", "invoice_id:string", "purchased_on:date", "currency:string", "payment_reference:string", "confirmed:boolean", "authorized_minor:nonnegative-int", "captured_minor:nonnegative-int"], "key": ["order_id"], "additional_unique_keys": [["store_id", "receipt_id"]], "validation": "One original invoice/payment reference per order; reference is not a token. Capture cannot exceed authorization."},
+        {"role": "original_lines", "suggested_filename": "original-lines.json", "draft_fields": ["order_id:string", "line_id:string", "sku:string", "fulfilled_qty:positive-int", "merchandise_paid_minor:nonnegative-int", "tax_paid_minor:nonnegative-int", "returnable:boolean"], "key": ["order_id", "line_id"], "validation": "Original line totals reconcile to captured amount; no unreported shipping or fee assumed."},
+        {"role": "prior_returns", "suggested_filename": "prior-returns.json", "draft_fields": ["return_event_id:string", "order_id:string", "line_id:string", "posted_on:date", "state:posted|voided|pending", "qty:positive-int", "merchandise_minor:nonnegative-int", "tax_minor:nonnegative-int"], "key": ["return_event_id"], "validation": "Posted opening history strictly predates period_start. Posted consumes eligibility; voided does not; pending causes affected-order quarantine."},
+        {"role": "requests", "suggested_filename": "return-requests.json", "draft_fields": ["request_id:string", "store_id:string", "receipt_id:string", "order_id:string", "invoice_id:string", "line_id:string", "sku:string", "requested_on:date", "requested_qty:positive-int", "reason:string", "condition:string"], "key": ["request_id"], "validation": "All supplied original identifiers must agree after exact joins; no fuzzy receipt or SKU matching."}
+      ],
+      "sample_policy": [
+        {"id": "closed-opening-history", "rule": "Opening posted history is complete strictly before period_start. Pending events, current-period posted history or impossible totals quarantine the affected order; never treat unresolved history as zero."},
+        {"id": "inclusive-return-window", "rule": "The demo window is 30 calendar days inclusive, with purchase <= request, request inside the inclusive period and period_end <= as_of. The configured window is not law."},
+        {"id": "condition-and-reason", "rule": "Original returnability, configured reason and configured condition must pass. Nonreturnable, unknown or excluded items receive review-only zero proposals."},
+        {"id": "original-entitlement", "rule": "For original quantity Q and merchandise M/tax T, cumulative entitlement at q is half-up rounding of M*q/Q and T*q/Q in minor units. Never use a current price or recompute tax."},
+        {"id": "history-reconciliation", "rule": "Prior posted quantity must be <= original quantity and prior amounts must equal the cumulative entitlements for that quantity. Original line totals must equal captured amount, which must be <= authorization; discrepancies quarantine order."},
+        {"id": "quantity-reservation", "rule": "Process requested_on then request_id. Subtract posted history and earlier hypothetical proposals from fulfilled quantity. Partial-enabled requests propose min(requested, remaining); partial-disabled oversized requests propose zero and consume nothing."},
+        {"id": "incremental-refund", "rule": "Refund proposal for a additional units after r returned/proposed units is entitlement(r+a)-entitlement(r) for merchandise and tax separately. Check prior plus current proposals against capture/authorization."},
+        {"id": "review-only-closure", "rule": "Publish all request dispositions and projected controls with action_authorized=false. Original payment confirmation is evidence in a fixture, not execution permission."}
+      ],
+      "steps": [
+        {"id": "load-return-exports", "kind": "input", "action": "Load configured intake, original-order/line and prior-event roles plus policy.", "trace": "Actual source counts, reporting period and return window."},
+        {"id": "validate-return-records", "kind": "validation", "action": "Validate keys, integer money/quantity, status vocabulary, dates and policy.", "trace": "Validation counts and explicit invalid record keys."},
+        {"id": "link-original-evidence", "kind": "join", "action": "Join receipt/store and original order/invoice/line/SKU evidence.", "trace": "Matched originals and mismatched/missing key evidence."},
+        {"id": "reconcile-opening-ledger", "kind": "decision", "action": "Sum posted prior quantities and amounts, exclude voided events, reconcile original capture and cumulative entitlements.", "trace": "Original/prior/remaining quantities and money."},
+        {"id": "apply-return-policy", "kind": "decision", "action": "Evaluate date age, original returnability, reason and condition.", "trace": "Per-request age and policy decisions."},
+        {"id": "reserve-proposed-quantities", "kind": "decision", "action": "Walk ordered requests against remaining original quantity and earlier proposals.", "trace": "Before/after quantities and explicit partial/deferred units."},
+        {"id": "calculate-original-refund", "kind": "decision", "action": "Calculate differences of cumulative merchandise/tax entitlements and enforce payment caps.", "trace": "Before/after entitlements, incremental pennies and original authorization controls."},
+        {"id": "quarantine-return-exceptions", "kind": "exception", "action": "Expose unknown receipts, age exclusions, oversized requests and contradictory histories without financial actions.", "trace": "Affected request/order keys, codes and next review actions."},
+        {"id": "publish-return-review", "kind": "output", "action": "Publish complete proposal and ledger-control packet.", "trace": "Proposed quantities/money, unresolved counts and remaining eligibility."}
+      ],
+      "branches_and_loops": {
+        "loops": ["All original lines and posted history events", "Every request in date/ID order", "All order/currency control totals"],
+        "branches": ["Full proposal", "Partial proposal", "Exhausted original line", "Partial-disabled oversized request", "Expired or excluded request", "Unknown receipt", "Unconfirmed payment", "Contradictory history quarantine"],
+        "temporal_constraints": ["History strictly before intake period", "Inclusive current reporting period", "Purchase not after request", "Inclusive configurable return-age boundary", "No future requests beyond as-of"]
+      },
+      "final_artifacts": [
+        {"name": "request_proposals", "content": "Every request: disposition, original keys, requested/available/proposed/deferred quantity, proposed merchandise/tax/total, currency, payment reference and reason."},
+        {"name": "line_eligibility", "content": "Original fulfilled, posted prior, batch-proposed and remaining quantity plus original/prior/proposed/remaining merchandise and tax."},
+        {"name": "order_money_controls", "content": "Original captured/authorized, reconciled line total, posted refund total, proposed total and remaining amount, separated by currency."},
+        {"name": "review_packet", "content": "Policy/period, exact totals, exception keys, owner/actions and action_authorized=false; no claim money was refunded or goods accepted."}
+      ],
+      "stable_ordering": "Request rows requested_on/request_id; line controls order_id/line_id; order controls order_id; currencies separate.",
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "design": "Review date/period 2099-07-02; window 30; partial enabled. Original order 1 purchased June 12: Q3, merchandise1000, tax100, captured/authorized1100. Prior posted1 unit with merchandise333/tax33. Request1 asks1; request2 asks2. Original order2 purchased June1: Q1, merchandise2000/tax200/payment2200; request3 asks1 at age31. Request4 cites unknown receipt.",
+          "independent_derivation": "At cumulative quantity2, merchandise=667 and tax=67, so request1 gets334+34=368. Only one remains; request2 gets333+33=366 and defers1. Age31 exceeds window30; unknown receipt cannot join. Prior366 + proposed734 = original1100.",
+          "expected_facts": {"proposed_qty_by_request": [1, 1, 0, 0], "proposed_minor_by_request": [368, 366, 0, 0], "deferred_qty_second_request": 1, "proposed_merchandise_minor": 667, "proposed_tax_minor": 67, "proposed_total_minor": 734, "prior_plus_proposed_order_one_minor": 1100, "order_one_remaining_qty": 0},
+          "covers": ["closed-opening-history", "inclusive-return-window", "condition-and-reason", "original-entitlement", "history-reconciliation", "quantity-reservation", "incremental-refund", "review-only-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed",
+          "design": "Review 2099-08-15; purchase August1 exactly14 days before; window14. Q4, merchandise1999, tax161, capture2160. Prior1 unit with merchandise500/tax40. One new request asks2.",
+          "independent_derivation": "Cumulative3 entitlement: round(1999*3/4)=1499; round(161*3/4)=121. New amounts999+81=1080. Prior540 plus new1080=1620. Remaining1 is500+40=540.",
+          "expected_facts": {"proposed_qty": 2, "proposed_merchandise_minor": 999, "proposed_tax_minor": 81, "proposed_total_minor": 1080, "remaining_qty": 1, "remaining_minor": 540, "prior_plus_proposed_minor": 1620},
+          "covers": ["inclusive-return-window", "original-entitlement", "history-reconciliation", "incremental-refund"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "design": "Review 2099-09-11; purchase September4; window7; partial disabled. Q2, merchandise999, tax0, capture999, no history. Earlier request asks3; later request asks1.",
+          "independent_derivation": "Oversized first request consumes zero. Second gets round(999/2)=500 by half-up; one unit and499 remain.",
+          "expected_facts": {"proposed_qty_by_request": [0, 1], "proposed_minor_by_request": [0, 500], "remaining_qty": 1, "remaining_minor": 499},
+          "covers": ["inclusive-return-window", "quantity-reservation", "original-entitlement", "incremental-refund"],
+          "failure_modes": []
+        },
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "design": "Fractional/boolean requested quantity or invalid money type.", "independent_derivation": "Numeric domain fails before proposals.", "covers": ["quantity-reservation", "original-entitlement"], "failure_modes": ["malformed-input"]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Prior quantity exceeds fulfilled quantity or amounts differ from cumulative entitlement.", "independent_derivation": "Quarantine affected order; its requests propose zero without repairing history.", "covers": ["history-reconciliation"], "failure_modes": ["contradictory-evidence"]},
+        {"id": "negative-duplicate", "kind": "negative", "expected_status": "rejected", "design": "Repeated request or prior-event key.", "independent_derivation": "Reject rather than deduplicate or propose twice.", "covers": ["quantity-reservation", "closed-opening-history"], "failure_modes": ["duplicate-key"]},
+        {"id": "negative-ambiguous-receipt", "kind": "negative", "expected_status": "rejected", "design": "Two original orders share one store/receipt key.", "independent_derivation": "Unique receipt evidence fails; never choose the first match.", "covers": ["history-reconciliation"], "failure_modes": ["ambiguous-evidence"]},
+        {"id": "negative-out-of-window", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Request age is configured window plus one day.", "independent_derivation": "Zero proposal, explicit sample-policy review exception, no statement about statutory rights.", "covers": ["inclusive-return-window"], "failure_modes": ["out-of-window"]},
+        {"id": "negative-current-period-history", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "A posted historical return falls within current intake period.", "independent_derivation": "Quarantine order rather than assume the intake and history are disjoint.", "covers": ["closed-opening-history"], "failure_modes": ["contradictory-evidence"]},
+        {"id": "negative-unconfirmed-payment", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Original payment confirmation is false.", "independent_derivation": "No refund proposal on that order; source-backed original-confirmation prerequisite is absent even in the mock.", "covers": ["history-reconciliation", "review-only-closure"], "failure_modes": ["contradictory-evidence"]}
+      ],
+      "independent_assertions": [
+        "Every proposed unit has exactly one matching original order/invoice/line and matching store/receipt/SKU.",
+        "Posted plus proposed quantity never exceeds fulfilled quantity.",
+        "Prior plus proposed money never exceeds captured or authorized amount.",
+        "Cumulative merchandise and tax allocations telescope to original totals when all units are returned.",
+        "No current catalog price, new tax rate, token or payment execution appears in calculation.",
+        "Earlier proposals consume hypothetical availability; later requests cannot reuse it.",
+        "Expired, unresolved and partial-disabled oversized requests consume no eligibility.",
+        "The demo's368 and366 amounts expose naive equal-unit rounding errors.",
+        "Input permutations, changed request counts and role-filename remapping preserve documented ordering and totals."
+      ]
+    },
+    {
+      "id": "retail-03",
+      "slug": "promotion-price-audit",
+      "title": "Store/SKU/date promotion price audit with exception review",
+      "qualification": "qualified-for-research-catalog",
+      "workflow_family": "temporal-pricing-rule-audit",
+      "source_ids": ["r6", "r7", "r8"],
+      "source_grounded_claims": [
+        {"id": "store-date-price-review", "source_ids": ["r8"], "claim": "Store-scoped price reports support date-bound and historical price review with export for further analysis."},
+        {"id": "discount-applicability", "source_ids": ["r6"], "claim": "Status, currency, unit and product/channel scope filter discounts; exclusions override inclusions."},
+        {"id": "configurable-concurrency", "source_ids": ["r6", "r7"], "claim": "Priority, exclusive/best/compound modes and rounding configuration can change expected prices."}
+      ],
+      "source_limitations": [
+        "No claim of full Dynamics pricing-engine compatibility.",
+        "Half-open date windows, selected hierarchy, exact tie ordering, final half-up rounding and tolerance are sample policy.",
+        "R8's enable-parameter instruction is superseded by R7's October2023 removal note; no native setup is performed.",
+        "The source report's seven-day limit is not a universal file-audit policy."
+      ],
+      "actors": [
+        {"role": "Pricing operations analyst", "responsibility": "Compare expected and observed synthetic unit prices and own the review packet."},
+        {"role": "Merchandising reporting role", "responsibility": "Supply reference prices, promotion definitions and store/SKU scopes."},
+        {"role": "Store-reporting role", "responsibility": "Supply synthetic dated observed unit prices."},
+        {"role": "Pricing reviewer", "responsibility": "Review discrepancies and the mock approved-exception evidence."}
+      ],
+      "trigger": "A human starts an explicitly scoped historical or current-period unit-price audit.",
+      "start": "Unjoined observation, store/product, date-versioned base price, promotion/scope and exception exports.",
+      "end": "Full observation disposition, rule-selection ledger, expected-versus-observed comparison and review-only issue packet.",
+      "no_live_actions": ["No POS or ERP operation", "No price publication", "No shelf-label change", "No sale or reimbursement", "No legal/compliance judgment"],
+      "scope_limits": [
+        "One-unit tax-exclusive two-decimal-currency prices and exact store/SKU scope.",
+        "Dates already normalized to each store's local calendar; no timezone or DST inference.",
+        "No basket, quantity, threshold, loyalty, coupon, affiliation, personalized, shipping or conversion rules."
+      ],
+      "mock_file_schemas": [
+        {"role": "policy", "suggested_filename": "audit-policy.json", "draft_fields": ["as_of:date", "audit_start:date", "audit_end:date", "tolerance_minor:nonnegative-int", "rounding:ROUND_HALF_UP", "source_files:role-filename-map"], "key": "one policy object", "validation": "Half-open audit window; final included day <= as_of."},
+        {"role": "stores", "suggested_filename": "stores.json", "draft_fields": ["store_id:string", "currency:string", "date_basis:store-local-calendar"], "key": ["store_id"], "validation": "Unique synthetic store; no currency conversion."},
+        {"role": "products", "suggested_filename": "products.json", "draft_fields": ["sku:string", "unit:string"], "key": ["sku"], "validation": "Unique SKU with explicit unit; no variant or unit conversion inference."},
+        {"role": "base_prices", "suggested_filename": "base-prices.json", "draft_fields": ["price_id:string", "store_id:string", "sku:string", "valid_from:date", "valid_to:date", "currency:string", "unit:string", "price_minor:nonnegative-int"], "key": ["price_id"], "validation": "Exactly one date-applicable base per observation; overlaps/missing bases are not-evaluable evidence."},
+        {"role": "promotions", "suggested_filename": "promotions.json", "draft_fields": ["promotion_id:string", "enabled:boolean", "valid_from:date", "valid_to:date", "currency:string", "unit:string", "priority:int", "mode:exclusive|best-price|compound", "type:amount-off|percent-off", "value:positive-int"], "key": ["promotion_id"], "validation": "Amount-off values are minor units; percent-off values are1..10000 basis points. Unsupported types are not silently reinterpreted."},
+        {"role": "promotion_scope", "suggested_filename": "promotion-scope.json", "draft_fields": ["promotion_id:string", "store_id:string", "sku:string", "line_type:include|exclude"], "key": ["promotion_id", "store_id", "sku", "line_type"], "validation": "All foreign keys resolve. Exclusion overrides matching inclusion; no wildcard scope inference."},
+        {"role": "price_exceptions", "suggested_filename": "price-exceptions.json", "draft_fields": ["exception_id:string", "store_id:string", "sku:string", "valid_from:date", "valid_to:date", "approved:boolean", "approval_reference:string", "price_minor:nonnegative-int"], "key": ["exception_id"], "validation": "At most one active approved exception per observation; approval reference is synthetic, not actual business authorization."},
+        {"role": "observations", "suggested_filename": "observed-prices.json", "draft_fields": ["observation_id:string", "store_id:string", "sku:string", "observed_on:date", "currency:string", "unit:string", "observed_minor:nonnegative-int"], "key": ["observation_id"], "validation": "Observed unit price only, not an order or sales amount."}
+      ],
+      "sample_policy": [
+        {"id": "half-open-windows", "rule": "All audit, base, promotion and approved-exception windows use start <= local observed date < end. Out-of-audit observations are listed separately. Invalid/reversed windows or future audit coverage reject."},
+        {"id": "unique-price-evidence", "rule": "Exactly one active base is required. Missing/overlapping base evidence or two active approved exceptions makes affected observations not evaluable, never zero-priced."},
+        {"id": "scope-and-status", "rule": "An eligible promotion is enabled, active on the observation date, same currency/unit, explicitly included for store/SKU and not explicitly excluded."},
+        {"id": "exception-and-priority", "rule": "One active approved exception sets expected price. Otherwise choose the highest numeric priority among eligible promotions; no lower-priority stacking."},
+        {"id": "exclusive-competition", "rule": "If exclusive candidates exist at that priority, only they compete; choose the lowest unrounded result and suppress all other modes."},
+        {"id": "best-versus-compound", "rule": "Without exclusive candidates, compare each best-price single against the combined compound set. Compound subtracts total amount-off with floor zero, then applies all percentage factors without intermediate rounding."},
+        {"id": "deterministic-ties", "rule": "Compare unrounded results; exact ties select the lexicographically sorted promotion-ID tuple and record tied candidates, independent of source order."},
+        {"id": "half-up-and-tolerance", "rule": "Round the selected final expected price once to integer minor units using half-up. Delta=observed-expected. Mismatch only when abs(delta)>configured tolerance."},
+        {"id": "review-only-price-audit", "rule": "Publish all included/excluded/not-evaluable observations and explanations with action_authorized=false. Do not infer financial loss, legal violation or a price change."}
+      ],
+      "steps": [
+        {"id": "load-price-exports", "kind": "input", "action": "Load named observations, base versions, promotion scopes and exceptions with policy.", "trace": "Source counts and configured audit interval."},
+        {"id": "validate-pricing-records", "kind": "validation", "action": "Validate uniqueness, types, dates, rates, supported modes and foreign keys.", "trace": "Valid keys and precise domain/reference errors."},
+        {"id": "join-store-sku-prices", "kind": "join", "action": "Join observations to store/product and date-valid base versions.", "trace": "Base candidates and exact observation references."},
+        {"id": "select-active-promotions", "kind": "decision", "action": "Filter promotion status/date/store/SKU/currency/unit and exclusion scopes.", "trace": "Eligible and excluded candidates with per-rule reasons."},
+        {"id": "resolve-price-policy", "kind": "decision", "action": "Resolve one exception or highest-priority exclusive/best/compound candidates.", "trace": "Candidate raw prices, winning rules and suppressed modes/priorities."},
+        {"id": "round-and-compare", "kind": "decision", "action": "Apply final half-up rounding, calculate signed delta and compare tolerance.", "trace": "Raw amount, expected/observed minor units, delta and disposition."},
+        {"id": "register-audit-exceptions", "kind": "exception", "action": "Register mismatches, out-of-period observations and ambiguous/missing evidence.", "trace": "Actual issue rows, source IDs and reviewer actions."},
+        {"id": "publish-price-review", "kind": "output", "action": "Publish full audit, out-of-scope register, rule ledger and summary.", "trace": "Final matched/mismatched/not-evaluable/excluded totals."}
+      ],
+      "branches_and_loops": {
+        "loops": ["Every observed unit-price row", "All matching base-price versions", "Each eligible promotion and scope row", "All candidate price combinations allowed by the bounded policy"],
+        "branches": ["No promotion", "Disabled/expired/excluded promotion", "Exclusive competition", "Best-price versus compound", "Exact tie", "Approved exception", "Ambiguous base/exception", "Within/outside tolerance", "Out-of-audit observation"],
+        "temporal_constraints": ["Store-local dates already normalized", "All rule windows half-open", "Audit final included day <= as_of", "Expiration date excluded", "No present-day rule applied retroactively without its historical window"]
+      },
+      "final_artifacts": [
+        {"name": "price_audit", "content": "Every included observation with reference IDs, eligible/excluded candidates and reasons, winning rules/exception, expected and observed minor units, signed delta and disposition."},
+        {"name": "out_of_scope", "content": "Every excluded observation and exact date/scope reason; no expected price is fabricated."},
+        {"name": "issue_queue", "content": "Mismatch/non-evaluable records, affected store/SKU/date, evidence IDs, owner and next human review action."},
+        {"name": "review_packet", "content": "Policy/period, counts by store and currency, complete input-disposition reconciliation and action_authorized=false. No financial-loss estimate or legal conclusion."}
+      ],
+      "stable_ordering": "Observation date/store_id/sku/observation_id; rule IDs lexicographic; source-row order never resolves ambiguity.",
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "design": "Audit [2099-10-10,2099-10-12), as-of October11, tolerance0. TEA base1999: priority20 exclusive amount300 versus same-priority best50% and lower-priority40%; observed1699. SOAP base999: priority10 compound10%+20% versus best25%; observed720. MUG base1999 with50%; observed999. TEA October11 approved exception1550; observed1550.",
+          "independent_derivation": "TEA exclusive wins1999-300=1699. SOAP compound999*0.9*0.8=719.28 beats best749.25 and rounds719. MUG1999*0.5=999.5 rounds1000 half-up. Approved exception yields1550. Deltas0,+1,-1,0.",
+          "expected_facts": {"expected_minor_by_observation": [1699, 719, 1000, 1550], "delta_minor_by_observation": [0, 1, -1, 0], "matched": 2, "mismatched": 2},
+          "covers": ["half-open-windows", "unique-price-evidence", "scope-and-status", "exception-and-priority", "exclusive-competition", "best-versus-compound", "half-up-and-tolerance", "review-only-price-audit"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "design": "Audit [2099-11-01,2099-11-03), as-of November2, tolerance1. Base1005 with10% observed906. Another row base1005 has same-priority exclusive SYN-PROMO-A at20% and SYN-PROMO-B at amount201, plus suppressed best50%; observed805. A third observation is dated November3.",
+          "independent_derivation": "1005*0.9=904.5 rounds905, delta1 within tolerance. Exclusive20% and amount201 both give804; lexicographic tie selects SYN-PROMO-A and records both candidates. Best50% does not compete. Observed805 is within tolerance. Observation at exclusive audit end is excluded.",
+          "expected_facts": {"expected_minor_by_included_observation": [905, 804], "delta_minor_by_included_observation": [1, 1], "matched": 2, "mismatched": 0, "out_of_scope": 1, "exclusive_tie_winner": "SYN-PROMO-A"},
+          "covers": ["half-open-windows", "exclusive-competition", "deterministic-ties", "half-up-and-tolerance", "review-only-price-audit"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "design": "Audit [2099-12-05,2099-12-07), as-of December6, tolerance0. Base1099 with compound amount99 and12.5% versus best20%, all expiring December6. Observed875 on December5 and December6.",
+          "independent_derivation": "(1099-99)*0.875=875 beats1099*0.8=879.2 on December5. On December6 all promotions expired, so expected price is base1099; observed875 gives delta-224.",
+          "expected_facts": {"expected_minor_by_observation": [875, 1099], "delta_minor_by_observation": [0, -224], "matched": 1, "mismatched": 1},
+          "covers": ["half-open-windows", "scope-and-status", "best-versus-compound", "half-up-and-tolerance"],
+          "failure_modes": []
+        },
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "design": "Percent exceeds10000 basis points or a price is boolean.", "independent_derivation": "Reject invalid numeric domain before expected-price calculation.", "covers": ["scope-and-status", "half-up-and-tolerance"], "failure_modes": ["malformed-input"]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Two applicable base windows contain different prices.", "independent_derivation": "Affected observation is not evaluable with expected price null; no first-match or cheapest-base guess.", "covers": ["unique-price-evidence"], "failure_modes": ["contradictory-evidence"]},
+        {"id": "negative-duplicate", "kind": "negative", "expected_status": "rejected", "design": "Repeated observation or promotion primary key.", "independent_derivation": "Reject duplicate evidence rather than apply/compare it twice.", "covers": ["scope-and-status", "review-only-price-audit"], "failure_modes": ["duplicate-key"]},
+        {"id": "negative-ambiguous-exception", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Two active approved price exceptions cover one observation.", "independent_derivation": "Expected price remains null and reviewer receives both evidence IDs.", "covers": ["unique-price-evidence", "exception-and-priority"], "failure_modes": ["ambiguous-evidence"]},
+        {"id": "negative-out-of-window", "kind": "negative", "expected_status": "completed_with_exceptions", "design": "Observation date equals audit_end.", "independent_derivation": "Half-open window excludes it and preserves a separate disposition with no expected price.", "covers": ["half-open-windows", "review-only-price-audit"], "failure_modes": ["out-of-window"]},
+        {"id": "negative-invalid-window", "kind": "negative", "expected_status": "rejected", "design": "Reversed audit dates or final included day after as-of.", "independent_derivation": "Invalid requested audit scope prevents evaluation.", "covers": ["half-open-windows"], "failure_modes": ["malformed-input"]}
+      ],
+      "independent_assertions": [
+        "Every winner matches status, date, store, SKU, currency, unit and include/exclude rules.",
+        "Disabled, excluded and expired promotions never win.",
+        "Priority precedes competition; exclusive discounts never stack with other modes.",
+        "One approved exception replaces promotional pricing only within its active window.",
+        "Ambiguous base/exception evidence cannot produce a numeric expected price.",
+        "Exact compound and half-up calculations match the independently derived719,1000,905 and875 examples.",
+        "The observed price never influences expected-price selection.",
+        "All observations appear exactly once across matched, mismatched, not-evaluable and out-of-scope totals.",
+        "Exact candidate ties are deterministic and visibly documented, not settled by input order.",
+        "Input permutations, changed row counts and role-filename remapping preserve the procedure."
+      ]
+    }
+  ],
+  "handoff": {
+    "phase_one_deliverables": ["scenarios/retail/research.md", "scenarios/retail/research.json"],
+    "phase_two_not_yet_built": [
+      "Three scenario folders",
+      "Complete mock and independent expected files",
+      "Standard-library baselines and actual execution traces",
+      "Baseline-output and local validation evidence",
+      "One thorough HOW_TO.md per scenario",
+      "Scenario/workflow/source/connection metadata",
+      "Foundation-produced videos"
+    ],
+    "native_work_not_authorized": true,
+    "publication_not_authorized": true,
+    "core_defect_policy": "Report suspected Creator core defects to parent before proposing any runtime modification.",
+    "next_gate": "Parent reviews the complete 15-scenario research catalog and sends an explicit build authorization."
+  }
+}

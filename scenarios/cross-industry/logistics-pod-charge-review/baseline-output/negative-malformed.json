@@ -1,0 +1,16 @@
+{
+  "exceptions": [
+    {
+      "code": "invalid-amount",
+      "entity_id": "invoice-lines.json:LG-L-M01-LH.amount",
+      "entity_type": "input",
+      "message": "Amount must be a nonnegative decimal string with exactly two fractional digits.",
+      "next_action": "Correct the input bundle and rerun the review.",
+      "owner": "freight-review",
+      "shipment_id": null
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

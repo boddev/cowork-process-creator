@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "cdc-temperature",
+      "title": "Temperature Monitoring",
+      "url": "https://www.cdc.gov/vaccines/hcp/storage-handling/temp-monitoring.html",
+      "publisher": "Centers for Disease Control and Prevention",
+      "accessed": "2026-09-14",
+      "scope": "Fetched HTML: Temperature Excursions and documentation steps.",
+      "supported_claims": [
+        "Excursions are assessed against product-specific instructions.",
+        "Timing, temperatures, lots, actions, and contacts support qualified excursion review.",
+        "CDC describes separating exposed vaccines and not automatically discarding them while guidance is obtained."
+      ],
+      "limitations": "This file workflow performs no physical action, contact, product viability or use/release/disposal decision. Integer bands and duration reconstruction are invented fixture policy, not CDC or manufacturer instructions."
+    },
+    {
+      "id": "cdc-storage",
+      "title": "Vaccine Storage and Handling",
+      "url": "https://www.cdc.gov/vaccines/hcp/storage-handling/index.html",
+      "publisher": "Centers for Disease Control and Prevention",
+      "accessed": "2026-09-14",
+      "scope": "Fetched HTML: toolkit scope, explicit 2026-07-14 update, product-specific information, compliance-language caveat.",
+      "supported_claims": [
+        "The toolkit covers vaccines and RSV monoclonal antibody products and discusses different temperature ranges.",
+        "Product-specific guidance and jurisdiction-specific program requirements are distinguished.",
+        "CDC warns that vendor compliance language does not establish CDC validation or endorsement."
+      ],
+      "limitations": "No real licensed product, product labeling, VFC/CDC endorsement, regulatory compliance, or general rule for every medical supply is claimed."
+    }
+  ]
+}

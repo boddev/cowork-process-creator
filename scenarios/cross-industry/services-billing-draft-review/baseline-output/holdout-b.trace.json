@@ -1,0 +1,641 @@
+{
+  "events": [
+    {
+      "caption": "Inventory the supplied synthetic exports and frozen service period; no other files or systems are read.",
+      "facts": {
+        "as_of": "2026-12-02T12:00:00Z",
+        "logical_exports": 9,
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-billing-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval-events.json",
+              7
+            ],
+            [
+              "billed-transactions.json",
+              1
+            ],
+            [
+              "draft-invoices.json",
+              2
+            ],
+            [
+              "draft-lines.json",
+              3
+            ],
+            [
+              "expense-entries.json",
+              3
+            ],
+            [
+              "expense-policies.json",
+              4
+            ],
+            [
+              "projects.json",
+              2
+            ],
+            [
+              "rates.json",
+              2
+            ]
+          ],
+          "title": "Supplied logical exports (first 8 rows)",
+          "total_rows": 9
+        }
+      ]
+    },
+    {
+      "caption": "All nine export schemas, types, intervals and primary keys passed validation.",
+      "facts": {
+        "duplicate_primary_keys": 0,
+        "records": 28,
+        "tolerance": "0.00",
+        "valid": true
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-billing-data",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "validated_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval-events.json",
+              7
+            ],
+            [
+              "billed-transactions.json",
+              1
+            ],
+            [
+              "draft-invoices.json",
+              2
+            ],
+            [
+              "draft-lines.json",
+              3
+            ],
+            [
+              "expense-entries.json",
+              3
+            ],
+            [
+              "expense-policies.json",
+              4
+            ],
+            [
+              "projects.json",
+              2
+            ],
+            [
+              "rates.json",
+              2
+            ]
+          ],
+          "title": "Validated exports (first 8 rows)",
+          "total_rows": 9
+        }
+      ]
+    },
+    {
+      "caption": "Join current entries to projects, as-of approval revisions, raw prior billing and current draft details.",
+      "facts": {
+        "entries": 7,
+        "matched_projects": 7,
+        "prior_rows": 1,
+        "projects": 2,
+        "source_absent_prior": 1
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-billing-evidence",
+      "tables": [
+        {
+          "columns": [
+            "entry",
+            "project",
+            "approval_ids",
+            "prior_rows",
+            "active_lines",
+            "rate_matches"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "expense:EB1",
+              "P-B1",
+              "AB-EB1",
+              0,
+              1,
+              null
+            ],
+            [
+              "expense:EB2",
+              "P-B1",
+              "AB-EB2",
+              0,
+              0,
+              null
+            ],
+            [
+              "expense:EB3",
+              "P-B2",
+              "AB-EB3",
+              0,
+              0,
+              null
+            ],
+            [
+              "time:TB1",
+              "P-B1",
+              "AB-TB1",
+              0,
+              1,
+              1
+            ],
+            [
+              "time:TB2",
+              "P-B1",
+              "AB-TB2",
+              0,
+              0,
+              1
+            ],
+            [
+              "time:TB3",
+              "P-B2",
+              "AB-TB3",
+              0,
+              1,
+              1
+            ],
+            [
+              "time:TB4",
+              "P-B2",
+              "AB-TB4",
+              0,
+              0,
+              0
+            ]
+          ],
+          "title": "Actual evidence joins",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Resolve unique highest as-of revisions and explicit exclusions; contradictions are never turned into removal decisions.",
+      "facts": {
+        "entries": 7,
+        "excluded": 1,
+        "future_approvals_ignored": 0,
+        "uncomputed": 1
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "resolve-entry-eligibility",
+      "tables": [
+        {
+          "columns": [
+            "entry",
+            "revision",
+            "event_ids",
+            "future_events",
+            "status",
+            "reason"
+          ],
+          "highlight_rows": [
+            1,
+            2,
+            6
+          ],
+          "rows": [
+            [
+              "expense:EB1",
+              1,
+              "AB-EB1",
+              0,
+              "candidate",
+              "candidate-expense"
+            ],
+            [
+              "expense:EB2",
+              1,
+              "AB-EB2",
+              0,
+              "quarantined",
+              "currency-mismatch"
+            ],
+            [
+              "expense:EB3",
+              1,
+              "AB-EB3",
+              0,
+              "held",
+              "receipt-required"
+            ],
+            [
+              "time:TB1",
+              1,
+              "AB-TB1",
+              0,
+              "candidate",
+              "candidate-time"
+            ],
+            [
+              "time:TB2",
+              1,
+              "AB-TB2",
+              0,
+              "candidate",
+              "candidate-time"
+            ],
+            [
+              "time:TB3",
+              1,
+              "AB-TB3",
+              0,
+              "candidate",
+              "candidate-time"
+            ],
+            [
+              "time:TB4",
+              1,
+              "AB-TB4",
+              0,
+              "excluded",
+              "out-of-period"
+            ]
+          ],
+          "title": "Actual revision and eligibility outcomes",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Price time half-up per entry; enforce whole-expense caps and inclusive receipt thresholds without FX or truncation.",
+      "facts": {
+        "candidates": 4,
+        "expense_entries": 3,
+        "policy_holds": 1,
+        "time_entries": 4
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "price-candidate-entries",
+      "tables": [
+        {
+          "columns": [
+            "entry_id",
+            "minutes",
+            "rate_id",
+            "hourly_rate",
+            "amount",
+            "status"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "TB1",
+              1,
+              "RB1",
+              "100.00",
+              "1.67",
+              "candidate"
+            ],
+            [
+              "TB2",
+              1,
+              "RB1",
+              "100.00",
+              "1.67",
+              "candidate"
+            ],
+            [
+              "TB3",
+              60,
+              "RB2",
+              "90.00",
+              "90.00",
+              "candidate"
+            ],
+            [
+              "TB4",
+              60,
+              null,
+              null,
+              "0.00",
+              "excluded"
+            ]
+          ],
+          "title": "Time pricing",
+          "total_rows": 4
+        },
+        {
+          "columns": [
+            "entry_id",
+            "amount",
+            "cap",
+            "receipt_at",
+            "receipt",
+            "status"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "EB1",
+              "20.00",
+              "60.00",
+              "30.00",
+              false,
+              "candidate"
+            ],
+            [
+              "EB2",
+              "15.00",
+              null,
+              null,
+              false,
+              "quarantined"
+            ],
+            [
+              "EB3",
+              "30.00",
+              "100.00",
+              "30.00",
+              false,
+              "held"
+            ]
+          ],
+          "title": "Expense evidence",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Compare actual draft lines and missing candidates before project cap gating; ambiguous evidence stays uncomputed.",
+      "facts": {
+        "actual_lines": 3,
+        "comparison_rows": 4,
+        "nonmatch_rows": 2,
+        "uncomputed_rows": 0
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "compare-draft-details",
+      "tables": [
+        {
+          "columns": [
+            "draft",
+            "entry",
+            "draft_amount",
+            "computed_amount",
+            "delta",
+            "action"
+          ],
+          "highlight_rows": [
+            1,
+            2
+          ],
+          "rows": [
+            [
+              "DB1",
+              "expense:EB1",
+              "20.00",
+              "20.00",
+              "0.00",
+              "match"
+            ],
+            [
+              "DB1",
+              "time:TB1",
+              "1.66",
+              "1.67",
+              "0.01",
+              "update"
+            ],
+            [
+              "DB1",
+              "time:TB2",
+              null,
+              "1.67",
+              "1.67",
+              "add"
+            ],
+            [
+              "DB2",
+              "time:TB3",
+              "90.00",
+              "90.00",
+              "0.00",
+              "match"
+            ]
+          ],
+          "title": "Actual detail comparisons",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Add raw as-of period billing to rounded candidates; equality is allowed and proven excess holds the whole project's new candidates.",
+      "facts": {
+        "cap_held_projects": 0,
+        "counted_prior_rows": 1,
+        "incomplete_projects": 1,
+        "projects": 2
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "check-project-caps",
+      "tables": [
+        {
+          "columns": [
+            "project",
+            "currency",
+            "prior",
+            "new",
+            "cap",
+            "overage"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "P-B1",
+              "USD",
+              "0.00",
+              "23.34",
+              "500.00",
+              null
+            ],
+            [
+              "P-B2",
+              "EUR",
+              "160.00",
+              "90.00",
+              "250.00",
+              "0.00"
+            ]
+          ],
+          "title": "Project cap arithmetic",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "billed_id",
+            "source_present",
+            "currency",
+            "amount",
+            "cap_amount",
+            "disposition"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "BB",
+              false,
+              "EUR",
+              "160.00",
+              "160.00",
+              "counted"
+            ]
+          ],
+          "title": "Raw ledger cap contributions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Assign actual entry holds, project holds and draft correction or clarification items to human reviewers; no financial action is taken.",
+      "facts": {
+        "clarifications": 1,
+        "diagnostic_only": 2,
+        "exceptions": 4
+      },
+      "kind": "exception",
+      "sequence": 8,
+      "step_id": "triage-billing-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "project",
+            "entry",
+            "draft",
+            "owner",
+            "action",
+            "reason"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "P-B1",
+              "EB2",
+              null,
+              "ACCOUNTANT-B1",
+              "clarify-evidence",
+              "currency-mismatch"
+            ],
+            [
+              "P-B1",
+              "TB1",
+              "DB1",
+              "ACCOUNTANT-B1",
+              "review-update",
+              "draft-update"
+            ],
+            [
+              "P-B1",
+              "TB2",
+              "DB1",
+              "ACCOUNTANT-B1",
+              "review-add",
+              "draft-add"
+            ],
+            [
+              "P-B2",
+              "EB3",
+              null,
+              "ACCOUNTANT-B2",
+              "hold-entry",
+              "receipt-required"
+            ]
+          ],
+          "title": "Owned review packet",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Emit the complete synthetic review-only packet with separate currency subtotals, explicit null comparisons and no invoice or posting actions.",
+      "facts": {
+        "currencies": 2,
+        "drafts": 2,
+        "entries": 7,
+        "exceptions": 4,
+        "projects": 2,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "emit-billing-review",
+      "tables": [
+        {
+          "columns": [
+            "currency",
+            "candidates",
+            "cap_held",
+            "reviewable",
+            "raw_draft",
+            "complete"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "EUR",
+              "90.00",
+              "0.00",
+              "90.00",
+              "90.00",
+              false
+            ],
+            [
+              "USD",
+              "23.34",
+              "0.00",
+              "23.34",
+              "21.66",
+              false
+            ]
+          ],
+          "title": "Final currency-separated facts",
+          "total_rows": 2
+        }
+      ]
+    }
+  ],
+  "input_sha256": "e7c6865d627d583b0defabd6137b805d23ac8daa8d7423d951b536bc8e7f9094",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1
+}

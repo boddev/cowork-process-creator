@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "price_audit": [
+      {
+        "observation_id": "SYN-OBS-A1", "observed_on": "2099-11-01", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "currency": "GBP", "unit": "EA", "observed_minor": 906,
+        "base_price_ids": ["SYN-BASE-A1"], "base_minor": 1005, "active_exception_ids": [], "applied_exception_id": null,
+        "selected_promotion_ids": ["SYN-PROMO-ROUND10"], "pricing_basis": "best-price",
+        "unrounded_minor": "904.5", "expected_minor": 905, "delta_minor": 1, "disposition": "match"
+      },
+      {
+        "observation_id": "SYN-OBS-A2", "observed_on": "2099-11-02", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "currency": "GBP", "unit": "EA", "observed_minor": 805,
+        "base_price_ids": ["SYN-BASE-A2"], "base_minor": 1005, "active_exception_ids": [], "applied_exception_id": null,
+        "selected_promotion_ids": ["SYN-PROMO-A"], "pricing_basis": "exclusive",
+        "unrounded_minor": "804", "expected_minor": 804, "delta_minor": 1, "disposition": "match"
+      }
+    ],
+    "rule_selection": [
+      {
+        "observation_id": "SYN-OBS-A1",
+        "base_checks": [{"price_id": "SYN-BASE-A1", "date_match": true}], "exception_checks": [],
+        "promotion_filters": [
+          {"promotion_id": "SYN-PROMO-A", "reasons": ["not-included"]},
+          {"promotion_id": "SYN-PROMO-B", "reasons": ["not-included"]},
+          {"promotion_id": "SYN-PROMO-HIDDEN50", "reasons": ["not-included"]},
+          {"promotion_id": "SYN-PROMO-ROUND10", "reasons": []}
+        ],
+        "winning_priority": 10,
+        "candidates": [{"promotion_ids": ["SYN-PROMO-ROUND10"], "mode": "best-price", "unrounded_minor": "904.5"}],
+        "tied_promotion_sets": [], "suppressed_promotions": []
+      },
+      {
+        "observation_id": "SYN-OBS-A2",
+        "base_checks": [{"price_id": "SYN-BASE-A2", "date_match": true}], "exception_checks": [],
+        "promotion_filters": [
+          {"promotion_id": "SYN-PROMO-A", "reasons": []},
+          {"promotion_id": "SYN-PROMO-B", "reasons": []},
+          {"promotion_id": "SYN-PROMO-HIDDEN50", "reasons": []},
+          {"promotion_id": "SYN-PROMO-ROUND10", "reasons": ["not-included"]}
+        ],
+        "winning_priority": 30,
+        "candidates": [
+          {"promotion_ids": ["SYN-PROMO-A"], "mode": "exclusive", "unrounded_minor": "804"},
+          {"promotion_ids": ["SYN-PROMO-B"], "mode": "exclusive", "unrounded_minor": "804"}
+        ],
+        "tied_promotion_sets": [["SYN-PROMO-A"], ["SYN-PROMO-B"]],
+        "suppressed_promotions": [
+          {"promotion_id": "SYN-PROMO-B", "reason": "tie-break"},
+          {"promotion_id": "SYN-PROMO-HIDDEN50", "reason": "exclusive-present"}
+        ]
+      }
+    ],
+    "out_of_scope": [
+      {"observation_id": "SYN-OBS-A3", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "observed_on": "2099-11-03", "currency": "GBP", "unit": "EA", "observed_minor": 906, "expected_minor": null, "delta_minor": null, "disposition": "out-of-scope", "reason": "at-or-after-audit-end"}
+    ],
+    "issue_queue": [
+      {"issue_id": "SYN-ISSUE-0001", "code": "OUT_OF_AUDIT_WINDOW", "message": "Observation is outside the half-open audit window; no price was evaluated.", "observation_id": "SYN-OBS-A3", "observed_on": "2099-11-03", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "currency": "GBP", "evidence_ids": [], "owner": "Pricing operations analyst", "next_action": "Confirm the intended audit period; keep this observation outside this review."}
+    ],
+    "reconciliation": {"input_observations": 3, "included_observations": 2, "matched": 2, "mismatched": 0, "not_evaluable": 0, "out_of_scope": 1, "reconciled": true},
+    "review_packet": {
+      "policy": {"audit_start": "2099-11-01", "audit_end": "2099-11-03", "as_of": "2099-11-02", "tolerance_minor": 1, "rounding": "ROUND_HALF_UP", "date_basis": "store-local-calendar"},
+      "owner_role": "Pricing operations analyst", "review_state": "review-required", "action_authorized": false,
+      "counts_by_store_currency": [{"store_id": "SYN-STORE-A", "currency": "GBP", "input_observations": 3, "included_observations": 2, "matched": 2, "mismatched": 0, "not_evaluable": 0, "out_of_scope": 1}]
+    }
+  },
+  "exceptions": [
+    {"code": "OUT_OF_AUDIT_WINDOW", "message": "Observation is outside the half-open audit window; no price was evaluated.", "path": "observations.SYN-OBS-A3", "observation_id": "SYN-OBS-A3", "evidence_ids": []}
+  ]
+}

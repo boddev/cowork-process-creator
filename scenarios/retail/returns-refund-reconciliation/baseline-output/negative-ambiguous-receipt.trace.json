@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "caption": "Inspect independently mapped mock exports; null counts mean missing or malformed data, never assumed zero history.",
+      "facts": {
+        "allow_partial_requests": true,
+        "as_of": "2099-10-08",
+        "period_end": "2099-10-08",
+        "period_start": "2099-10-08",
+        "window_days": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-return-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "policy",
+              1
+            ],
+            [
+              "original_orders",
+              2
+            ],
+            [
+              "original_lines",
+              2
+            ],
+            [
+              "prior_returns",
+              0
+            ],
+            [
+              "requests",
+              1
+            ]
+          ],
+          "title": "Supplied logical exports",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Structural validation rejected the bundle before any join, quantity reservation or money proposal.",
+      "facts": {
+        "code": "ambiguous-receipt",
+        "entity_id": "SYN-STORE-E/SYN-RECEIPT-E",
+        "validation": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-return-records",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "entity_id",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "input",
+              "SYN-STORE-E/SYN-RECEIPT-E",
+              "ambiguous-receipt",
+              "original_orders contains multiple orders for store/receipt SYN-STORE-E/SYN-RECEIPT-E."
+            ]
+          ],
+          "title": "First invalid evidence",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "964a8884b8686830013d8010c722fce1275a9685e5b936c698f1a97f732b093b",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-02",
+  "schema_version": 1
+}

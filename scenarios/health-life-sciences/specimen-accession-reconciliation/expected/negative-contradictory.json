@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-09-17T12:00:00Z",
+    "policy_id": "SYN-C-POLICY",
+    "sla_seconds": 3600,
+    "reconciliation_rows": [
+      {
+        "order_id":"SYN-C-O1","order_line_id":"SYN-C-L1","specimen_id":"SYN-C-S1",
+        "receipt_ids":["SYN-C-R1"],"accession_ids":["SYN-C-A1","SYN-C-A2"],"state_event_ids":["SYN-C-E1"],
+        "imported_order_state":"active","administrative_state":"review","reason_codes":["conflicting-evidence","identity-mismatch","test-code-mismatch"],"age_seconds":null,
+        "source_refs":["accessions:SYN-C-A1@1","accessions:SYN-C-A1@2","accessions:SYN-C-A2@3","order_events:SYN-C-E1@1","order_lines:SYN-C-L1@1","orders:SYN-C-O1@1","receipts:SYN-C-R1@1","test_catalog:SYN-T1@1"]
+      },
+      {
+        "order_id":"SYN-C-O1","order_line_id":"SYN-C-L1","specimen_id":"SYN-C-S2",
+        "receipt_ids":["SYN-C-R2"],"accession_ids":[],"state_event_ids":["SYN-C-E1"],
+        "imported_order_state":"active","administrative_state":"review","reason_codes":["conflicting-evidence"],"age_seconds":null,
+        "source_refs":["order_events:SYN-C-E1@1","order_lines:SYN-C-L1@1","orders:SYN-C-O1@1","receipts:SYN-C-R2@2","test_catalog:SYN-T1@1"]
+      },
+      {
+        "order_id":"SYN-C-O2","order_line_id":"SYN-C-L2","specimen_id":"SYN-C-S3",
+        "receipt_ids":["SYN-C-R3"],"accession_ids":["SYN-C-A3"],"state_event_ids":["SYN-C-E2"],
+        "imported_order_state":"active","administrative_state":"review","reason_codes":["impossible-chronology"],"age_seconds":null,
+        "source_refs":["accessions:SYN-C-A3@4","order_events:SYN-C-E2@2","order_lines:SYN-C-L2@2","orders:SYN-C-O2@2","receipts:SYN-C-R3@3","test_catalog:SYN-T1@1"]
+      },
+      {
+        "order_id":"SYN-C-O3","order_line_id":"SYN-C-L3","specimen_id":"SYN-C-S4",
+        "receipt_ids":["SYN-C-R4"],"accession_ids":["SYN-C-A4"],"state_event_ids":["SYN-C-E3"],
+        "imported_order_state":"active","administrative_state":"reconciled","reason_codes":[],"age_seconds":null,
+        "source_refs":["accessions:SYN-C-A4@5","order_events:SYN-C-E3@3","order_lines:SYN-C-L3@3","orders:SYN-C-O3@3","receipts:SYN-C-R4@4","test_catalog:SYN-T1@1"]
+      },
+      {
+        "order_id":"SYN-C-O4","order_line_id":"SYN-C-L4","specimen_id":"SYN-C-S5",
+        "receipt_ids":["SYN-C-R5"],"accession_ids":[],"state_event_ids":[],
+        "imported_order_state":"unknown","administrative_state":"review","reason_codes":["conflicting-evidence"],"age_seconds":null,
+        "source_refs":["order_events:SYN-C-E4A@4","order_events:SYN-C-E4C@5","order_lines:SYN-C-L4@4","orders:SYN-C-O4@4","receipts:SYN-C-R5@5","test_catalog:SYN-T1@1"]
+      }
+    ],
+    "unmatched_records": [
+      {"table":"accessions","record_id":"SYN-C-A1","source_refs":["accessions:SYN-C-A1@1","accessions:SYN-C-A1@2"],"reason_codes":["conflicting-evidence"]}
+    ],
+    "excluded_evidence": [],
+    "duplicate_records": [],
+    "summary": {
+      "unique_received_specimens":5,"unique_order_lines":4,"ledger_rows":5,
+      "reconciled":1,"pending_within_window":0,"review":4,
+      "unmatched_records":1,"excluded_records":0,"duplicate_rows_collapsed":0
+    },
+    "draft_clarification_queue": [
+      {"entity_key":"row:SYN-C-O1|SYN-C-L1|SYN-C-S1","reason_codes":["conflicting-evidence","identity-mismatch","test-code-mismatch"],"owner_role_id":"SYN-ROLE-ORDER","existing_clarification_refs":[],"action":"request-administrative-review"},
+      {"entity_key":"row:SYN-C-O1|SYN-C-L1|SYN-C-S2","reason_codes":["conflicting-evidence"],"owner_role_id":"SYN-ROLE-ORDER","existing_clarification_refs":[],"action":"request-administrative-review"},
+      {"entity_key":"row:SYN-C-O4|SYN-C-L4|SYN-C-S5","reason_codes":["conflicting-evidence"],"owner_role_id":"SYN-ROLE-ORDER","existing_clarification_refs":[],"action":"request-administrative-review"},
+      {"entity_key":"row:SYN-C-O2|SYN-C-L2|SYN-C-S3","reason_codes":["impossible-chronology"],"owner_role_id":"SYN-ROLE-ORDER","existing_clarification_refs":[],"action":"request-administrative-review"}
+    ],
+    "clinical_disposition_performed": false,
+    "qualified_review_required": true
+  },
+  "exceptions": [
+    {"code":"conflicting-evidence","message":"Administrative evidence requires qualified review; no clinical action.","entity_key":"row:SYN-C-O1|SYN-C-L1|SYN-C-S1","reason_codes":["conflicting-evidence","identity-mismatch","test-code-mismatch"]},
+    {"code":"conflicting-evidence","message":"Administrative evidence requires qualified review; no clinical action.","entity_key":"row:SYN-C-O1|SYN-C-L1|SYN-C-S2","reason_codes":["conflicting-evidence"]},
+    {"code":"conflicting-evidence","message":"Administrative evidence requires qualified review; no clinical action.","entity_key":"row:SYN-C-O4|SYN-C-L4|SYN-C-S5","reason_codes":["conflicting-evidence"]},
+    {"code":"impossible-chronology","message":"Administrative evidence requires qualified review; no clinical action.","entity_key":"row:SYN-C-O2|SYN-C-L2|SYN-C-S3","reason_codes":["impossible-chronology"]}
+  ]
+}

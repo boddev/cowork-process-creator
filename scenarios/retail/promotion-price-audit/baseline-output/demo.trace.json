@@ -1,0 +1,687 @@
+{
+  "events": [
+    {
+      "caption": "Loaded the bundled source map and raw export counts. Null metadata means absent or invalid, never a default price or count.",
+      "facts": {
+        "as_of": "2099-10-11",
+        "audit_end": "2099-10-12",
+        "audit_start": "2099-10-10",
+        "tolerance_minor": 0
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-price-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "logical_filename",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stores",
+              "stores.json",
+              1
+            ],
+            [
+              "products",
+              "products.json",
+              3
+            ],
+            [
+              "base_prices",
+              "base-prices.json",
+              3
+            ],
+            [
+              "promotions",
+              "promotions.json",
+              8
+            ],
+            [
+              "promotion_scope",
+              "promotion-scope.json",
+              9
+            ],
+            [
+              "price_exceptions",
+              "price-exceptions.json",
+              1
+            ],
+            [
+              "observations",
+              "observed-prices.json",
+              4
+            ]
+          ],
+          "title": "Named export tables (all roles)",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Validated exact schemas, synthetic identifiers, integer domains, supported rules, calendar windows, unique keys and all foreign keys.",
+      "facts": {
+        "records_checked": 29,
+        "references_checked": true,
+        "valid": true,
+        "validation_errors": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-pricing-records",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "records",
+            "primary_key",
+            "valid"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stores",
+              1,
+              "store_id",
+              true
+            ],
+            [
+              "products",
+              3,
+              "sku",
+              true
+            ],
+            [
+              "base_prices",
+              3,
+              "price_id",
+              true
+            ],
+            [
+              "promotions",
+              8,
+              "promotion_id",
+              true
+            ],
+            [
+              "promotion_scope",
+              9,
+              "promotion_id|store_id|sku|line_type",
+              true
+            ],
+            [
+              "price_exceptions",
+              1,
+              "exception_id",
+              true
+            ],
+            [
+              "observations",
+              4,
+              "observation_id",
+              true
+            ]
+          ],
+          "title": "Validated export keys (all roles)",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Matched exact store/SKU/unit/currency dimensions, then half-open dates. Every matching version remains visible; ambiguous or missing evidence is not guessed.",
+      "facts": {
+        "ambiguous_approvals": 0,
+        "ambiguous_bases": 0,
+        "excluded_before_join": 0,
+        "included": 4,
+        "missing_bases": 0,
+        "unique_bases": 4
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-store-sku-prices",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "date",
+            "store / SKU",
+            "active_base_ids",
+            "approved_exception_ids",
+            "evidence_state"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "2099-10-10",
+              "SYN-STORE-01 / SYN-SKU-01-TEA",
+              "SYN-BASE-TEA",
+              "",
+              "unique"
+            ],
+            [
+              "SYN-OBS-02",
+              "2099-10-10",
+              "SYN-STORE-01 / SYN-SKU-02-SOAP",
+              "SYN-BASE-SOAP",
+              "",
+              "unique"
+            ],
+            [
+              "SYN-OBS-03",
+              "2099-10-10",
+              "SYN-STORE-01 / SYN-SKU-03-MUG",
+              "SYN-BASE-MUG",
+              "",
+              "unique"
+            ],
+            [
+              "SYN-OBS-04",
+              "2099-10-11",
+              "SYN-STORE-01 / SYN-SKU-01-TEA",
+              "SYN-BASE-TEA",
+              "SYN-EX-TEA",
+              "unique"
+            ]
+          ],
+          "title": "Observation joins (ordered prefix)",
+          "total_rows": 4
+        },
+        {
+          "columns": [
+            "observation_id",
+            "kind",
+            "reference_id",
+            "valid_from",
+            "valid_to",
+            "active"
+          ],
+          "highlight_rows": [
+            1
+          ],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "base",
+              "SYN-BASE-TEA",
+              "2099-10-01",
+              "2099-10-20",
+              true
+            ],
+            [
+              "SYN-OBS-01",
+              "exception",
+              "SYN-EX-TEA",
+              "2099-10-11",
+              "2099-10-12",
+              false
+            ],
+            [
+              "SYN-OBS-02",
+              "base",
+              "SYN-BASE-SOAP",
+              "2099-10-01",
+              "2099-10-20",
+              true
+            ],
+            [
+              "SYN-OBS-03",
+              "base",
+              "SYN-BASE-MUG",
+              "2099-10-01",
+              "2099-10-20",
+              true
+            ],
+            [
+              "SYN-OBS-04",
+              "base",
+              "SYN-BASE-TEA",
+              "2099-10-01",
+              "2099-10-20",
+              true
+            ],
+            [
+              "SYN-OBS-04",
+              "exception",
+              "SYN-EX-TEA",
+              "2099-10-11",
+              "2099-10-12",
+              true
+            ]
+          ],
+          "title": "Dimensional versions and date/approval matches (ordered prefix)",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Tested every promotion against every included observation: enabled, date, currency, unit and explicit include/exclude scope. All failed filters are retained.",
+      "facts": {
+        "eligible_pairs": 10,
+        "filtered_pairs": 22,
+        "promotion_observation_pairs": 32
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "select-active-promotions",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "promotion_id",
+            "date_match",
+            "included",
+            "excluded",
+            "eligibility"
+          ],
+          "highlight_rows": [
+            4,
+            5,
+            6
+          ],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-MUG50",
+              true,
+              false,
+              false,
+              "not-included"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-SOAP10",
+              true,
+              false,
+              false,
+              "not-included"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-SOAP20",
+              true,
+              false,
+              false,
+              "not-included"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-SOAP25",
+              true,
+              false,
+              false,
+              "not-included"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEA40",
+              true,
+              true,
+              false,
+              "eligible"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEA50",
+              true,
+              true,
+              false,
+              "eligible"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEAEX",
+              true,
+              true,
+              false,
+              "eligible"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEAFILTER",
+              false,
+              true,
+              true,
+              "disabled, outside-validity, currency-mismatch, unit-mismatch, explicit-exclusion"
+            ]
+          ],
+          "title": "Actual candidate filters (ordered prefix)",
+          "total_rows": 32
+        },
+        {
+          "columns": [
+            "observation_id",
+            "date",
+            "eligible_ids",
+            "filtered_rules"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "2099-10-10",
+              "SYN-PROMO-TEA40, SYN-PROMO-TEA50, SYN-PROMO-TEAEX",
+              5
+            ],
+            [
+              "SYN-OBS-02",
+              "2099-10-10",
+              "SYN-PROMO-SOAP10, SYN-PROMO-SOAP20, SYN-PROMO-SOAP25",
+              5
+            ],
+            [
+              "SYN-OBS-03",
+              "2099-10-10",
+              "SYN-PROMO-MUG50",
+              7
+            ],
+            [
+              "SYN-OBS-04",
+              "2099-10-11",
+              "SYN-PROMO-TEA40, SYN-PROMO-TEA50, SYN-PROMO-TEAEX",
+              5
+            ]
+          ],
+          "title": "Eligible rules by observation (ordered prefix)",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Resolved the unique-evidence gate, approved exceptions and highest-priority competition using exact unrounded amounts. Suppressed rules never stack.",
+      "facts": {
+        "approved_overrides": 1,
+        "base_only_rows": 0,
+        "included_rows": 4,
+        "suppressed_rules": 6,
+        "tied_rows": 0
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "resolve-price-policy",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "basis",
+            "rule_or_reference_ids",
+            "priority",
+            "unrounded_minor",
+            "decision"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "exclusive",
+              "SYN-PROMO-TEAEX",
+              20,
+              "1699",
+              "selected"
+            ],
+            [
+              "SYN-OBS-02",
+              "compound",
+              "SYN-PROMO-SOAP10, SYN-PROMO-SOAP20",
+              10,
+              "719.28",
+              "selected"
+            ],
+            [
+              "SYN-OBS-02",
+              "best-price",
+              "SYN-PROMO-SOAP25",
+              10,
+              "749.25",
+              "higher-price"
+            ],
+            [
+              "SYN-OBS-03",
+              "best-price",
+              "SYN-PROMO-MUG50",
+              10,
+              "999.5",
+              "selected"
+            ],
+            [
+              "SYN-OBS-04",
+              "approved-exception",
+              "SYN-EX-TEA",
+              null,
+              "1550",
+              "selected"
+            ]
+          ],
+          "title": "Actual candidate and fallback decisions (ordered prefix)",
+          "total_rows": 5
+        },
+        {
+          "columns": [
+            "observation_id",
+            "promotion_id",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEA40",
+              "lower-priority"
+            ],
+            [
+              "SYN-OBS-01",
+              "SYN-PROMO-TEA50",
+              "exclusive-present"
+            ],
+            [
+              "SYN-OBS-02",
+              "SYN-PROMO-SOAP25",
+              "higher-price"
+            ],
+            [
+              "SYN-OBS-04",
+              "SYN-PROMO-TEA40",
+              "approved-exception"
+            ],
+            [
+              "SYN-OBS-04",
+              "SYN-PROMO-TEA50",
+              "approved-exception"
+            ],
+            [
+              "SYN-OBS-04",
+              "SYN-PROMO-TEAEX",
+              "approved-exception"
+            ]
+          ],
+          "title": "Eligible but suppressed (ordered prefix)",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Rounded each selected unit price exactly once with ROUND_HALF_UP. Delta is observed minus rounded price; equality to tolerance is a match, not an exception.",
+      "facts": {
+        "compared_rows": 4,
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "round-and-compare",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "unrounded_minor",
+            "expected_minor",
+            "observed_minor",
+            "delta_minor",
+            "disposition"
+          ],
+          "highlight_rows": [
+            1,
+            2
+          ],
+          "rows": [
+            [
+              "SYN-OBS-01",
+              "1699",
+              1699,
+              1699,
+              0,
+              "match"
+            ],
+            [
+              "SYN-OBS-02",
+              "719.28",
+              719,
+              720,
+              1,
+              "mismatch"
+            ],
+            [
+              "SYN-OBS-03",
+              "999.5",
+              1000,
+              999,
+              -1,
+              "mismatch"
+            ],
+            [
+              "SYN-OBS-04",
+              "1550",
+              1550,
+              1550,
+              0,
+              "match"
+            ]
+          ],
+          "title": "Unit-price comparisons (ordered prefix)",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Registered actual discrepancies, missing/ambiguous evidence and out-of-period rows for human review. No issue authorizes a price change.",
+      "facts": {
+        "action_authorized": false,
+        "excluded_count": 0,
+        "issue_count": 2
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "register-audit-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "code",
+            "evidence_ids",
+            "owner"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "SYN-OBS-02",
+              "PRICE_MISMATCH",
+              "SYN-BASE-SOAP, SYN-PROMO-SOAP10, SYN-PROMO-SOAP20",
+              "Pricing operations analyst"
+            ],
+            [
+              "SYN-OBS-03",
+              "PRICE_MISMATCH",
+              "SYN-BASE-MUG, SYN-PROMO-MUG50",
+              "Pricing operations analyst"
+            ]
+          ],
+          "title": "Human issue queue (ordered prefix)",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "observation_id",
+            "observed_on",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Excluded observations (ordered prefix)",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Published the full audit, rule-selection ledger, excluded register, issue queue and reconciled review packet. This is local synthetic evidence, not native execution.",
+      "facts": {
+        "action_authorized": false,
+        "business_status": "completed_with_exceptions",
+        "included_observations": 4,
+        "input_observations": 4,
+        "issue_count": 2,
+        "reconciled": true
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "publish-price-review",
+      "tables": [
+        {
+          "columns": [
+            "store_id",
+            "currency",
+            "matched",
+            "mismatched",
+            "not_evaluable",
+            "out_of_scope"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-STORE-01",
+              "USD",
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "title": "Reconciliation by store and currency (ordered prefix)",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "owner_role",
+            "review_state",
+            "action_authorized"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "Pricing operations analyst",
+              "review-required",
+              false
+            ]
+          ],
+          "title": "Review packet",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "b804fe5ef352e79aa831ea05e835af5e95cd3e9080e02bacb38b1fe525f9a7b3",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-03",
+  "schema_version": 1
+}

@@ -1,0 +1,712 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic invoice, PO, receipt and history exports; no live systems are connected.",
+      "facts": {
+        "as_of": "2026-08-01T04:59:59Z",
+        "batch_id": "SYN-AP-HB",
+        "source_sets": 7,
+        "synthetic": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-documents",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "historical_invoices",
+              0
+            ],
+            [
+              "invoice_lines",
+              5
+            ],
+            [
+              "invoices",
+              5
+            ],
+            [
+              "po_lines",
+              4
+            ],
+            [
+              "prior_allocations",
+              0
+            ],
+            [
+              "receipt_lines",
+              4
+            ],
+            [
+              "selected_receipts",
+              0
+            ]
+          ],
+          "title": "Supplied source rows",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Validated strict fields, exact header/line arithmetic and authoritative historical receipt/PO capacity without clamping.",
+      "facts": {
+        "included_prior_allocations": 0,
+        "valid": true
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-documents",
+      "tables": [
+        {
+          "columns": [
+            "invoice",
+            "header_net",
+            "declared_line_sum",
+            "formula_checked"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              1253,
+              1253,
+              true
+            ],
+            [
+              "SYN-HB-B",
+              6000,
+              6000,
+              true
+            ],
+            [
+              "SYN-HB-C",
+              4000,
+              4000,
+              true
+            ],
+            [
+              "SYN-HB-D",
+              500,
+              500,
+              true
+            ],
+            [
+              "SYN-HB-E",
+              500,
+              500,
+              true
+            ]
+          ],
+          "title": "Validated invoice net checks",
+          "total_rows": 5
+        },
+        {
+          "columns": [
+            "receipt",
+            "quantity",
+            "included_prior",
+            "as_of_available"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-R-A",
+              1250,
+              0,
+              1250
+            ],
+            [
+              "SYN-HB-R-B",
+              2000,
+              0,
+              0
+            ],
+            [
+              "SYN-HB-R-C",
+              1000,
+              0,
+              1000
+            ],
+            [
+              "SYN-HB-R-D",
+              2000,
+              0,
+              2000
+            ]
+          ],
+          "title": "Historical receipt worksheet",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Compared every canonical invoice key with the complete batch and available posted history, then joined exact PO evidence.",
+      "facts": {
+        "historical_duplicate_invoices": 0,
+        "incoming_duplicate_invoices": 2
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-duplicates-and-pos",
+      "tables": [
+        {
+          "columns": [
+            "invoice",
+            "line",
+            "po",
+            "join_matches",
+            "approval"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-LINE-01",
+              "SYN-HB-PO-A",
+              true,
+              "approved"
+            ],
+            [
+              "SYN-HB-B",
+              "SYN-LINE-01",
+              "SYN-HB-PO-B",
+              true,
+              "approved"
+            ],
+            [
+              "SYN-HB-C",
+              "SYN-LINE-01",
+              "SYN-HB-PO-C",
+              true,
+              "pending"
+            ],
+            [
+              "SYN-HB-D",
+              "SYN-LINE-01",
+              "SYN-HB-PO-D",
+              true,
+              "approved"
+            ],
+            [
+              "SYN-HB-E",
+              "SYN-LINE-01",
+              "SYN-HB-PO-D",
+              true,
+              "approved"
+            ]
+          ],
+          "title": "Exact PO joins",
+          "total_rows": 5
+        },
+        {
+          "columns": [
+            "invoice",
+            "canonical_number",
+            "incoming_matches",
+            "history_matches"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-HB-001",
+              0,
+              0
+            ],
+            [
+              "SYN-HB-B",
+              "SYN-HB-002",
+              0,
+              0
+            ],
+            [
+              "SYN-HB-C",
+              "SYN-HB-003",
+              0,
+              0
+            ],
+            [
+              "SYN-HB-D",
+              "SYN-MIX-12",
+              1,
+              0
+            ],
+            [
+              "SYN-HB-E",
+              "SYN-MIX-12",
+              1,
+              0
+            ]
+          ],
+          "title": "Canonical document-key ledger",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Resolved explicit partial selections or a sole sufficient receipt using only posted-by-cutoff capacity net of history.",
+      "facts": {
+        "excluded_receipts": 1,
+        "line_selections": 4
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "join-receipt-evidence",
+      "tables": [
+        {
+          "columns": [
+            "receipt",
+            "quantity",
+            "prior",
+            "available",
+            "posted_date",
+            "eligible_time"
+          ],
+          "highlight_rows": [
+            1
+          ],
+          "rows": [
+            [
+              "SYN-HB-R-A",
+              1250,
+              0,
+              1250,
+              "2026-07-31",
+              true
+            ],
+            [
+              "SYN-HB-R-B",
+              2000,
+              0,
+              0,
+              "2026-08-01",
+              false
+            ],
+            [
+              "SYN-HB-R-C",
+              1000,
+              0,
+              1000,
+              "2026-07-31",
+              true
+            ],
+            [
+              "SYN-HB-R-D",
+              2000,
+              0,
+              2000,
+              "2026-07-31",
+              true
+            ]
+          ],
+          "title": "Receipt capacity at cutoff",
+          "total_rows": 4
+        },
+        {
+          "columns": [
+            "invoice",
+            "line",
+            "mode",
+            "requested",
+            "selected",
+            "shortage"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-LINE-01",
+              "sole-receipt",
+              1250,
+              1250,
+              0
+            ],
+            [
+              "SYN-HB-B",
+              "SYN-LINE-01",
+              "none",
+              2000,
+              0,
+              2000
+            ],
+            [
+              "SYN-HB-C",
+              "SYN-LINE-01",
+              "sole-receipt",
+              1000,
+              1000,
+              0
+            ],
+            [
+              "SYN-HB-D",
+              "SYN-LINE-01",
+              "sole-receipt",
+              1000,
+              1000,
+              0
+            ],
+            [
+              "SYN-HB-E",
+              "SYN-LINE-01",
+              "sole-receipt",
+              1000,
+              1000,
+              0
+            ]
+          ],
+          "title": "Receipt selection evidence",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Computed exact HALF_UP nets and both inclusive price limits; removed complete invoices with any individual hold before competition.",
+      "facts": {
+        "individually_held_invoices": 4,
+        "line_amount_cap_minor": 500,
+        "unit_tolerance_bps": 200
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "evaluate-price-and-quantity",
+      "tables": [
+        {
+          "columns": [
+            "invoice",
+            "line",
+            "unit_left",
+            "unit_right",
+            "net_delta",
+            "unit_pass"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-LINE-01",
+              20000,
+              200000,
+              3,
+              true
+            ],
+            [
+              "SYN-HB-B",
+              "SYN-LINE-01",
+              0,
+              600000,
+              0,
+              true
+            ],
+            [
+              "SYN-HB-C",
+              "SYN-LINE-01",
+              0,
+              800000,
+              0,
+              true
+            ],
+            [
+              "SYN-HB-D",
+              "SYN-LINE-01",
+              0,
+              100000,
+              0,
+              true
+            ],
+            [
+              "SYN-HB-E",
+              "SYN-LINE-01",
+              0,
+              100000,
+              0,
+              true
+            ]
+          ],
+          "title": "Exact price cross-products",
+          "total_rows": 5
+        },
+        {
+          "columns": [
+            "invoice",
+            "line",
+            "calculated_net",
+            "line_cap_pass",
+            "line_holds"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-LINE-01",
+              1253,
+              true,
+              0
+            ],
+            [
+              "SYN-HB-B",
+              "SYN-LINE-01",
+              6000,
+              true,
+              1
+            ],
+            [
+              "SYN-HB-C",
+              "SYN-LINE-01",
+              4000,
+              true,
+              1
+            ],
+            [
+              "SYN-HB-D",
+              "SYN-LINE-01",
+              500,
+              true,
+              0
+            ],
+            [
+              "SYN-HB-E",
+              "SYN-LINE-01",
+              500,
+              true,
+              0
+            ]
+          ],
+          "title": "Line calculation and individual holds",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Aggregated all otherwise eligible invoice demand across receipts and POs together; every oversubscribed-resource participant is held without retry.",
+      "facts": {
+        "candidate_invoices": 1,
+        "oversubscribed_resources": 0
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "resolve-capacity-conflicts",
+      "tables": [
+        {
+          "columns": [
+            "type",
+            "resource",
+            "available",
+            "demand",
+            "conflict"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "po-line",
+              "SYN-HB-PO-A:SYN-LINE-01",
+              1250,
+              1250,
+              false
+            ],
+            [
+              "receipt",
+              "SYN-HB-R-A",
+              1250,
+              1250,
+              false
+            ]
+          ],
+          "title": "Pre-conflict resource demand",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "type",
+            "resource",
+            "available",
+            "demand",
+            "invoice_count"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "All competitor evidence",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Retained all original line evaluations and source exclusions; any held invoice has zero proposed net and no allocation rows.",
+      "facts": {
+        "diagnostics": 5,
+        "held_invoices": 4
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "route-invoice-holds",
+      "tables": [
+        {
+          "columns": [
+            "invoice",
+            "status",
+            "reason_count",
+            "header_net"
+          ],
+          "highlight_rows": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "ready-for-review",
+              0,
+              1253
+            ],
+            [
+              "SYN-HB-B",
+              "held",
+              1,
+              6000
+            ],
+            [
+              "SYN-HB-C",
+              "held",
+              1,
+              4000
+            ],
+            [
+              "SYN-HB-D",
+              "held",
+              1,
+              500
+            ],
+            [
+              "SYN-HB-E",
+              "held",
+              1,
+              500
+            ]
+          ],
+          "title": "Atomic invoice dispositions",
+          "total_rows": 5
+        },
+        {
+          "columns": [
+            "source",
+            "record",
+            "code",
+            "owner"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "invoice-lines",
+              "SYN-HB-B",
+              "receipt-unavailable",
+              "Receiving owner"
+            ],
+            [
+              "invoice-lines",
+              "SYN-HB-C",
+              "po-approval-pending",
+              "Procurement owner"
+            ],
+            [
+              "invoices",
+              "SYN-HB-D",
+              "duplicate-incoming-invoice",
+              "AP manager"
+            ],
+            [
+              "invoices",
+              "SYN-HB-E",
+              "duplicate-incoming-invoice",
+              "AP manager"
+            ],
+            [
+              "receipt-lines",
+              "SYN-HB-R-B",
+              "receipt-posted-after-as-of",
+              "Receiving owner"
+            ]
+          ],
+          "title": "Owned holds and exclusions",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Emitted full review rows, non-overlapping quantity proposals and remaining capacities. Ready and held nets conserve intake within each currency scope.",
+      "facts": {
+        "held_invoices": 4,
+        "human_review": "pending",
+        "live_action": "none",
+        "proposal_rows": 1,
+        "ready_invoices": 1,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "emit-ap-review",
+      "tables": [
+        {
+          "columns": [
+            "entity",
+            "vendor",
+            "currency",
+            "intake",
+            "ready",
+            "held"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-ENT-02",
+              "SYN-VEN-02",
+              "USD",
+              12253,
+              1253,
+              11000
+            ]
+          ],
+          "title": "Per-scope review totals in minor units",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "invoice",
+            "line",
+            "receipt",
+            "milliunits"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-HB-A",
+              "SYN-LINE-01",
+              "SYN-HB-R-A",
+              1250
+            ]
+          ],
+          "title": "Proposed receipt quantities only",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "946fee9879128d4fe8a629b32a9c3cf953c2aca5d756af96ff71922e266d64c3",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-02",
+  "schema_version": 1
+}

@@ -330,15 +330,26 @@ class ProjectTests(unittest.TestCase):
 
     def test_project_build_is_deterministic_and_provisional(self):
         a, ar, b_path, br = [self.root / name for name in ("one.zip", "one.json", "two.zip", "two.json")]
-        result = p.build_project(self.project, a, ar, "compatible-source")
-        p.build_project(self.project, b_path, br, "compatible-source")
+        metadata = self.metadata()
+        result = p.build_project(self.project, a, ar, b.TARGET, metadata)
+        p.build_project(self.project, b_path, br, b.TARGET, metadata)
         self.assertEqual(a.read_bytes(), b_path.read_bytes())
         self.assertEqual(result["status"], "Draft")
         self.assertTrue(result["provisional_offline"])
         self.assertEqual(result["host_acceptance"], "unverified")
+        with zipfile.ZipFile(a) as archive:
+            self.assertIn("manifest.json", archive.namelist())
+            self.assertNotIn(".claude-plugin/plugin.json", archive.namelist())
         with self.assertRaisesRegex(b.BuildError, "requires --metadata"):
             p.build_project(self.project, self.root / "native.zip", self.root / "native.json", "cowork-v1.28")
         self.assertFalse((self.root / "native.zip").exists())
+
+    def test_project_cannot_fallback_to_claude_source_when_metadata_is_absent(self):
+        package, report = self.root / "alternative.zip", self.root / "alternative.json"
+        with self.assertRaisesRegex(b.BuildError, "native Microsoft Cowork"):
+            p.build_project(self.project, package, report, "compatible-source")
+        self.assertFalse(package.exists())
+        self.assertFalse(report.exists())
 
     def test_check_cli_reports_blockers_nonzero(self):
         self.blueprint(lambda doc: doc.update(status="draft"))
@@ -489,7 +500,7 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(remote["mcpToolDescription"]["file"], "./tools/learn.json")
         self.assertEqual(remote["authorization"], {"type": "None"})
         self.assertEqual(package["tools/learn.json"], LEARN.read_bytes())
-        with self.assertRaisesRegex(b.BuildError, "cannot preserve"):
+        with self.assertRaisesRegex(b.BuildError, "Only native Microsoft"):
             b.assemble(candidate, "compatible-source")
 
     def test_connector_limits_missing_descriptors_auth_and_metadata_types(self):

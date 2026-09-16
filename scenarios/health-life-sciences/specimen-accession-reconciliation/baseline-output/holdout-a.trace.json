@@ -1,0 +1,496 @@
+{
+  "events": [
+    {
+      "caption": "Load the supplied synthetic exports and record raw counts before any filtering or joins.",
+      "facts": {
+        "as_of": "2026-09-15T10:00:00Z",
+        "raw_rows": 24
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-accession-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "orders",
+              4
+            ],
+            [
+              "order_lines",
+              4
+            ],
+            [
+              "order_events",
+              8
+            ],
+            [
+              "receipts",
+              4
+            ],
+            [
+              "accessions",
+              2
+            ],
+            [
+              "test_catalog",
+              1
+            ],
+            [
+              "clarifications",
+              1
+            ]
+          ],
+          "title": "Raw input tables",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Validated the schema and bounds; collapsed exact copies, retained provenance, and isolated unavailable evidence.",
+      "facts": {
+        "conflicting_keys": 0,
+        "duplicate_rows_collapsed": 0,
+        "errors": 0,
+        "excluded_records": 7,
+        "logical_records": 24,
+        "raw_rows": 24
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-reconciliation-records",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw",
+            "logical",
+            "eligible",
+            "conflicting_keys"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "orders",
+              4,
+              4,
+              4,
+              0
+            ],
+            [
+              "order_lines",
+              4,
+              4,
+              4,
+              0
+            ],
+            [
+              "order_events",
+              8,
+              8,
+              5,
+              0
+            ],
+            [
+              "receipts",
+              4,
+              4,
+              3,
+              0
+            ],
+            [
+              "accessions",
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              "test_catalog",
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              "clarifications",
+              1,
+              1,
+              0,
+              0
+            ]
+          ],
+          "title": "Validation and availability",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Joined eligible dated events to headers; unique highest sequence selects imported state, never testing authorization.",
+      "facts": {
+        "active": 2,
+        "cancelled": 1,
+        "excluded_records": 7,
+        "orders": 4,
+        "unknown": 1
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "resolve-as-of-orders",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "state",
+            "selected_events",
+            "eligible_events",
+            "ambiguous"
+          ],
+          "highlight_rows": [
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "SYN-A-O1",
+              "active",
+              "SYN-A-E1",
+              1,
+              false
+            ],
+            [
+              "SYN-A-O2",
+              "active",
+              "SYN-A-E2",
+              1,
+              false
+            ],
+            [
+              "SYN-A-O3",
+              "cancelled",
+              "SYN-A-E3C",
+              2,
+              false
+            ],
+            [
+              "SYN-A-O4",
+              "unknown",
+              "",
+              0,
+              false
+            ]
+          ],
+          "title": "Imported as-of state",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Constructed exact order/line/specimen triples and retained unmatched links; no fuzzy repair or candidate selection.",
+      "facts": {
+        "ledger_triples": 4,
+        "unmatched_groups": 2
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "join-receipts-accessions",
+      "tables": [
+        {
+          "columns": [
+            "order_id",
+            "line_id",
+            "specimen_id",
+            "receipts",
+            "accessions",
+            "source_refs"
+          ],
+          "highlight_rows": [
+            3
+          ],
+          "rows": [
+            [
+              "SYN-A-O1",
+              "SYN-A-L1",
+              "SYN-A-S1",
+              1,
+              0,
+              5
+            ],
+            [
+              "SYN-A-O2",
+              "SYN-A-L2",
+              "SYN-A-S2",
+              1,
+              0,
+              5
+            ],
+            [
+              "SYN-A-O3",
+              "SYN-A-L3",
+              "SYN-A-S3",
+              1,
+              0,
+              6
+            ],
+            [
+              "SYN-A-O4",
+              "SYN-A-L4",
+              null,
+              0,
+              0,
+              3
+            ]
+          ],
+          "title": "Exact candidate triples",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Compared all present identities, labels, cardinality and linked chronology; retained every administrative reason.",
+      "facts": {
+        "chronology_rows": 0,
+        "conflicting_rows": 0,
+        "rows_with_reasons": 2
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "assess-record-consistency",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "specimen_id",
+            "primary_reason",
+            "reason_count",
+            "imported_state"
+          ],
+          "highlight_rows": [
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "SYN-A-L1",
+              "SYN-A-S1",
+              null,
+              0,
+              "active"
+            ],
+            [
+              "SYN-A-L2",
+              "SYN-A-S2",
+              null,
+              0,
+              "active"
+            ],
+            [
+              "SYN-A-L3",
+              "SYN-A-S3",
+              "cancelled-order",
+              1,
+              "cancelled"
+            ],
+            [
+              "SYN-A-L4",
+              null,
+              "missing-order-state",
+              2,
+              "unknown"
+            ]
+          ],
+          "title": "Consistency assessment",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Aged only clean active pairs without accessions; strict greater-than SLA flags backlog, not clinical urgency.",
+      "facts": {
+        "eligible_ages": 2,
+        "ledger_rows": 4,
+        "pending": 1,
+        "reconciled": 0,
+        "review": 3,
+        "sla_seconds": 1800
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "age-and-reconcile-backlog",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "specimen_id",
+            "age_seconds",
+            "sla_seconds",
+            "state"
+          ],
+          "highlight_rows": [
+            1
+          ],
+          "rows": [
+            [
+              "SYN-A-L1",
+              "SYN-A-S1",
+              1800,
+              1800,
+              "pending-within-window"
+            ],
+            [
+              "SYN-A-L2",
+              "SYN-A-S2",
+              1860,
+              1800,
+              "review"
+            ],
+            [
+              "SYN-A-L3",
+              "SYN-A-S3",
+              null,
+              1800,
+              "review"
+            ],
+            [
+              "SYN-A-L4",
+              null,
+              null,
+              1800,
+              "review"
+            ]
+          ],
+          "title": "Administrative receipt window",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Prepared priority-ordered clarification drafts and copy warnings; notes remain references and nothing is sent.",
+      "facts": {
+        "drafts": 4,
+        "duplicate_warnings": 0,
+        "unmatched_groups": 2
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "route-accession-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "entity_key",
+            "primary_reason",
+            "owner_role",
+            "references"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "order_events:SYN-A-EO",
+              "missing-link",
+              null,
+              0
+            ],
+            [
+              "row:SYN-A-O4|SYN-A-L4|-",
+              "missing-order-state",
+              "SYN-ROLE-ORDER",
+              0
+            ],
+            [
+              "row:SYN-A-O3|SYN-A-L3|SYN-A-S3",
+              "cancelled-order",
+              "SYN-ROLE-ORDER",
+              0
+            ],
+            [
+              "row:SYN-A-O2|SYN-A-L2|SYN-A-S2",
+              "accession-overdue",
+              "SYN-ROLE-ORDER",
+              0
+            ]
+          ],
+          "title": "Unsent administrative clarification queue",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Returned the evidence-preserving report with separate specimen and line counts; no clinical disposition performed.",
+      "facts": {
+        "clinical_disposition_performed": false,
+        "ledger_rows": 4,
+        "review": 3,
+        "status": "completed_with_exceptions",
+        "unique_order_lines": 4,
+        "unique_received_specimens": 3
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "write-accession-report",
+      "tables": [
+        {
+          "columns": [
+            "administrative_state",
+            "rows"
+          ],
+          "highlight_rows": [
+            2
+          ],
+          "rows": [
+            [
+              "reconciled",
+              0
+            ],
+            [
+              "pending-within-window",
+              1
+            ],
+            [
+              "review",
+              3
+            ]
+          ],
+          "title": "Ledger partition",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "register",
+            "groups"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "unmatched",
+              2
+            ],
+            [
+              "future exclusions",
+              7
+            ],
+            [
+              "duplicate groups",
+              0
+            ]
+          ],
+          "title": "Evidence register counts",
+          "total_rows": 3
+        }
+      ]
+    }
+  ],
+  "input_sha256": "78b7552cc08f2c499aaa091742caae1b1488fe921d43cc15353b24cd823d8bbe",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-03",
+  "schema_version": 1
+}

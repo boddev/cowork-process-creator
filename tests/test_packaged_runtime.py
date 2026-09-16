@@ -13,6 +13,7 @@ import zipfile
 from pathlib import Path
 
 from test_projects import ROOT, b, examples
+from test_builder import native_metadata
 
 
 class PackagedRuntimeTests(unittest.TestCase):
@@ -22,7 +23,9 @@ class PackagedRuntimeTests(unittest.TestCase):
         self.root = Path(self.temporary.name)
 
     def test_extracted_owning_skill_runs_full_project_file_round_trip(self):
-        payload, _ = b.assemble(ROOT / "appPackage", "compatible-source")
+        creator_metadata = native_metadata(self.root, "creator-publisher.json")
+        output_metadata = native_metadata(self.root, "output-publisher.json")
+        payload, _ = b.assemble(ROOT / "appPackage", b.TARGET, creator_metadata)
         installed = self.root / "installed"
         with zipfile.ZipFile(io.BytesIO(b.zip_bytes(payload))) as archive:
             archive.extractall(installed)
@@ -40,11 +43,11 @@ class PackagedRuntimeTests(unittest.TestCase):
         self.assertTrue(checked["ready"])
         package, report = self.root / "output.zip", self.root / "output.json"
         built = invoke("build", "--project", project, "--output", package, "--report", report,
-                       "--target", "compatible-source")
+                       "--target", b.TARGET, "--metadata", output_metadata)
         self.assertEqual(built["status"], "Draft")
         self.assertEqual(built["host_acceptance"], "unverified")
         self.assertEqual(built["sha256"], hashlib.sha256(package.read_bytes()).hexdigest())
-        expected_payload, _ = b.assemble(project / "candidate", "compatible-source")
+        expected_payload, _ = b.assemble(project / "candidate", b.TARGET, output_metadata)
         self.assertEqual(package.read_bytes(), b.zip_bytes(expected_payload))
         bundle = self.root / "source.zip"
         invoke("checkpoint", "--project", project, "--output", bundle)

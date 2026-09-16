@@ -1,0 +1,126 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic invoice, PO, receipt and history exports; no live systems are connected.",
+      "facts": {
+        "as_of": "2026-09-14T12:00:00Z",
+        "batch_id": "SYN-AP-BAD-CAP",
+        "source_sets": 7,
+        "synthetic": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-documents",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "historical_invoices",
+              1
+            ],
+            [
+              "invoice_lines",
+              1
+            ],
+            [
+              "invoices",
+              1
+            ],
+            [
+              "po_lines",
+              1
+            ],
+            [
+              "prior_allocations",
+              1
+            ],
+            [
+              "receipt_lines",
+              1
+            ],
+            [
+              "selected_receipts",
+              0
+            ]
+          ],
+          "title": "Supplied source rows",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Input evidence failed validation; no financial classification or partial totals were produced.",
+      "facts": {
+        "diagnostics": 1,
+        "valid": false
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-documents",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "record",
+            "line",
+            "field",
+            "code"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "receipt-lines",
+              "SYN-CAP-R",
+              null,
+              "quantity_milliunits",
+              "historical-receipt-overallocated"
+            ]
+          ],
+          "title": "Validation diagnostic",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Emitted a rejected, review-only packet with the observed diagnostic and no trusted financial outputs.",
+      "facts": {
+        "human_review": "pending",
+        "live_action": "none",
+        "status": "rejected"
+      },
+      "kind": "output",
+      "sequence": 3,
+      "step_id": "emit-ap-review",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "owner"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "historical-receipt-overallocated",
+              "Source data owner"
+            ]
+          ],
+          "title": "Rejected packet",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "131db651a93f729f08ef5a97c4a73277a30e1d2ebb0b76a335ace1465b89e559",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-02",
+  "schema_version": 1
+}

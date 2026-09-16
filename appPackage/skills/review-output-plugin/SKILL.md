@@ -65,10 +65,12 @@ unanswered questions, connection/setup gaps and unrun native gates.
 | Schedule exercised | A later native scheduled invocation behaved as declared |
 
 Local checks and an old prototype never promote a new candidate to the last
-three states. Canonical packaging needs approved publishing metadata.
-Compatible-source remains a Draft source target; conversion is a separate
-native observation. Neither target's structural checks are full-schema
-validation or a code sandbox.
+three states. Require a Microsoft Cowork v1.28 root `manifest.json`, real
+publishing metadata, correct skill folders/icons and connector descriptors.
+A Claude-compatible source manifest or host conversion is not an acceptable
+plugin output. Missing metadata permits only an editable source checkpoint,
+not an alternative host package. Subset checks are not full-schema validation
+or a code sandbox.
 
 Return actual downloadable files, the coverage/diagnostic report and a
 source-resume bundle that excludes raw media/secrets by default. Explain

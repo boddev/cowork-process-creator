@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "policy": {
+    "policy_id": "SYN-POLICY-JUNE",
+    "as_of": "2099-06-15",
+    "review_days": 2,
+    "partial_cases_allowed": true,
+    "source_files": {"store_stock": "june-stores.json", "dc_stock": "june-dc.json", "demand": "june-demand.json", "inbound": "june-receipts.json", "routes": "june-routes.json", "capacity": "june-capacity.json"}
+  },
+  "files": {
+    "june-stores.json": [
+      {"store_id": "SYN-STORE-F", "sku": "SYN-SKU-SILVER", "snapshot_on": "2099-06-15", "on_hand_units": 6, "reserved_units": 0, "blocked_units": 0},
+      {"store_id": "SYN-STORE-G", "sku": "SYN-SKU-SILVER", "snapshot_on": "2099-06-15", "on_hand_units": 1, "reserved_units": 0, "blocked_units": 0}
+    ],
+    "june-dc.json": [{"dc_id": "SYN-DC-3", "sku": "SYN-SKU-SILVER", "snapshot_on": "2099-06-15", "on_hand_units": 20, "reserved_units": 0, "blocked_units": 0}],
+    "june-demand.json": [
+      {"store_id": "SYN-STORE-F", "sku": "SYN-SKU-SILVER", "demand_on": "2099-06-15", "units": 1},
+      {"store_id": "SYN-STORE-F", "sku": "SYN-SKU-SILVER", "demand_on": "2099-06-16", "units": 1},
+      {"store_id": "SYN-STORE-G", "sku": "SYN-SKU-SILVER", "demand_on": "2099-06-15", "units": 3},
+      {"store_id": "SYN-STORE-G", "sku": "SYN-SKU-SILVER", "demand_on": "2099-06-16", "units": 2}
+    ],
+    "june-receipts.json": [{"receipt_id": "SYN-INBOUND-JUNE", "store_id": "SYN-STORE-F", "sku": "SYN-SKU-SILVER", "eta": "2099-06-17", "status": "in-transit", "remaining_units": 11}],
+    "june-routes.json": [
+      {"store_id": "SYN-STORE-F", "sku": "SYN-SKU-SILVER", "dc_id": "SYN-DC-3", "lead_days": 0, "case_pack": 4, "safety_units": 2, "priority": 1},
+      {"store_id": "SYN-STORE-G", "sku": "SYN-SKU-SILVER", "dc_id": "SYN-DC-3", "lead_days": 0, "case_pack": 4, "safety_units": 2, "priority": 2}
+    ],
+    "june-capacity.json": [{"dc_id": "SYN-DC-3", "dispatch_on": "2099-06-15", "remaining_case_capacity": 1}]
+  }
+}

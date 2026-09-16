@@ -1,0 +1,95 @@
+{
+  "events": [
+    {
+      "caption": "Inventory the supplied synthetic exports and frozen service period; no other files or systems are read.",
+      "facts": {
+        "as_of": "2026-10-02T12:00:00Z",
+        "logical_exports": 9,
+        "period_end": "2026-10-01",
+        "period_start": "2026-09-01"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-billing-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval-events.json",
+              2
+            ],
+            [
+              "billed-transactions.json",
+              0
+            ],
+            [
+              "draft-invoices.json",
+              1
+            ],
+            [
+              "draft-lines.json",
+              1
+            ],
+            [
+              "expense-entries.json",
+              1
+            ],
+            [
+              "expense-policies.json",
+              1
+            ],
+            [
+              "projects.json",
+              1
+            ],
+            [
+              "rates.json",
+              1
+            ]
+          ],
+          "title": "Supplied logical exports (first 8 rows)",
+          "total_rows": 9
+        }
+      ]
+    },
+    {
+      "caption": "Reject the entire malformed business bundle before joining or computing charges.",
+      "facts": {
+        "business_outputs": 0,
+        "errors": 1,
+        "valid": false
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-billing-data",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "invalid-amount",
+              "expense-entries.json[EM].amount must be a nonnegative fixed-two-decimal string."
+            ]
+          ],
+          "title": "Offending fields",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "e83f1eff949854e47620c3311c5fc036f3fc791ae65415851be917715d7605bc",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1
+}

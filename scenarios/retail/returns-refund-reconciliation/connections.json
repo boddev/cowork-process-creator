@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Use only the independently named logical JSON exports inside the supplied synthetic bundle. No POS, finance, inventory, payment or native connection is required or asserted; no credentials, card tokens or real account references are accepted."
+}

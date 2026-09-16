@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "r6",
+      "title": "Retail discounts",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/retail-discounts-overview",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Official full page fetched and reviewed in the approved research: Manage discounts, concurrency, pricing priority, line type, unit of measure and best practices.",
+      "supported_claims": [
+        "Status, currency, unit and product/channel scope affect discount applicability.",
+        "Exclusive, best-price and compounded modes interact with pricing priority.",
+        "Exclusion lines override inclusion lines.",
+        "A discount strategy should be documented and configuration tested before enablement."
+      ],
+      "limitations": "The actual pricing engine includes broader contextual and basket-dependent rules than this single-unit synthetic audit. This file procedure does not claim complete Dynamics pricing-engine compatibility; its precise hierarchy and export schema are sample policy."
+    },
+    {
+      "id": "r7",
+      "title": "Pricing settings",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/price-settings",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Official full page fetched and reviewed in the approved research: concurrency control, discount compound behavior, line rounding and deprecated/removed settings.",
+      "supported_claims": [
+        "Different concurrency settings change whether discounts compound within or across priorities.",
+        "Compounding successively versus applying each discount to original price can change the result.",
+        "Line discount rounding/distribution behavior is configurable.",
+        "The old Enable price report for retail store setting was removed in October 2023."
+      ],
+      "limitations": "Final ROUND_HALF_UP rounding, tolerance, highest-priority-only competition, amount-before-percent compounding and exact tie ordering are explicit sample choices, not universal product behavior. No deprecated setup instruction is executed."
+    },
+    {
+      "id": "r8",
+      "title": "Retail price reports",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/price-report",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Official full page fetched and reviewed in the approved research: store/date report overview, configuration, export and historical-price description.",
+      "supported_claims": [
+        "Store managers can review recent or upcoming product price changes by store and date.",
+        "Reports can support historical-price checks and export for further filtering."
+      ],
+      "limitations": "The page's old enable-parameter instruction is superseded by r7's October 2023 removal note. Only reporting concepts are used. The documented seven-day product-feature limit is not a universal file-audit requirement. No report setup, installed-product claim or live access is inferred."
+    }
+  ]
+}

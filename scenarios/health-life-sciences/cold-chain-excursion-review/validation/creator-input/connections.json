@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Synthetic exported files only. No endpoint, authentication, sensor/device, inventory, manufacturer, public-health, CTMS, LIS, or EHR connection is provisioned or verified. No business or physical action is performed."
+}

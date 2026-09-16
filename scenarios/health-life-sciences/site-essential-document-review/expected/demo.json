@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of_date": "2026-09-14",
+    "policy_id": "SYN-POLICY-DEMO",
+    "human_review_required": true,
+    "scope_notice": "Administrative export completeness only; qualified reviewer owns disposition. No authenticity, site activation, ethics, enrollment, or compliance determination.",
+    "requirement_matrix": [
+      {"site_id": "SYN-S1", "trial_id": "SYN-T1", "requirement_id": "SYN-R1", "document_type": "protocol", "selected_document_id": "SYN-D1", "assessment_state": "no-exception", "primary_reason": null, "reason_codes": [], "effective_expiry": null, "expiry_basis": "none", "days_to_expiry": null, "source_refs": ["artifacts/SYN-A1", "documents/SYN-D1", "requirements/SYN-R1", "sites/SYN-S1", "trials/SYN-T1"]},
+      {"site_id": "SYN-S1", "trial_id": "SYN-T1", "requirement_id": "SYN-R2", "document_type": "ethics-opinion", "selected_document_id": "SYN-D2", "assessment_state": "warning", "primary_reason": "expiring-soon", "reason_codes": ["expiring-soon"], "effective_expiry": "2026-09-14", "expiry_basis": "explicit", "days_to_expiry": 0, "source_refs": ["artifacts/SYN-A2", "documents/SYN-D2", "requirements/SYN-R2", "sites/SYN-S1", "trials/SYN-T1"]},
+      {"site_id": "SYN-S1", "trial_id": "SYN-T1", "requirement_id": "SYN-R3", "document_type": "qualification", "selected_document_id": "SYN-D3", "assessment_state": "no-exception", "primary_reason": null, "reason_codes": [], "effective_expiry": null, "expiry_basis": "none", "days_to_expiry": null, "source_refs": ["artifacts/SYN-A3", "documents/SYN-D3", "requirements/SYN-R3", "sites/SYN-S1", "trials/SYN-T1"]},
+      {"site_id": "SYN-S1", "trial_id": "SYN-T1", "requirement_id": "SYN-R4", "document_type": "training", "selected_document_id": "SYN-D4", "assessment_state": "review", "primary_reason": "expired", "reason_codes": ["expired"], "effective_expiry": "2026-09-13", "expiry_basis": "refresh", "days_to_expiry": -1, "source_refs": ["artifacts/SYN-A4", "documents/SYN-D4", "requirements/SYN-R4", "sites/SYN-S1", "trials/SYN-T1"]},
+      {"site_id": "SYN-S2", "trial_id": "SYN-T1", "requirement_id": "SYN-R1", "document_type": "protocol", "selected_document_id": "SYN-D5", "assessment_state": "review", "primary_reason": "protocol-version-mismatch", "reason_codes": ["protocol-version-mismatch"], "effective_expiry": null, "expiry_basis": "none", "days_to_expiry": null, "source_refs": ["artifacts/SYN-A5", "documents/SYN-D5", "requirements/SYN-R1", "sites/SYN-S2", "trials/SYN-T1"]},
+      {"site_id": "SYN-S2", "trial_id": "SYN-T1", "requirement_id": "SYN-R2", "document_type": "ethics-opinion", "selected_document_id": "SYN-D6", "assessment_state": "review", "primary_reason": "unavailable-evidence", "reason_codes": ["unavailable-evidence"], "effective_expiry": "2027-01-01", "expiry_basis": "explicit", "days_to_expiry": 109, "source_refs": ["artifacts/SYN-A6", "documents/SYN-D6", "requirements/SYN-R2", "sites/SYN-S2", "trials/SYN-T1"]},
+      {"site_id": "SYN-S2", "trial_id": "SYN-T1", "requirement_id": "SYN-R3", "document_type": "qualification", "selected_document_id": null, "assessment_state": "review", "primary_reason": "missing-document", "reason_codes": ["missing-document"], "effective_expiry": null, "expiry_basis": null, "days_to_expiry": null, "source_refs": ["requirements/SYN-R3", "sites/SYN-S2", "trials/SYN-T1"]},
+      {"site_id": "SYN-S2", "trial_id": "SYN-T1", "requirement_id": "SYN-R4", "document_type": "training", "selected_document_id": "SYN-D7", "assessment_state": "no-exception", "primary_reason": null, "reason_codes": [], "effective_expiry": "2027-07-01", "expiry_basis": "refresh", "days_to_expiry": 290, "source_refs": ["artifacts/SYN-A7", "documents/SYN-D7", "requirements/SYN-R4", "sites/SYN-S2", "trials/SYN-T1"]}
+    ],
+    "site_summary": [
+      {"site_id": "SYN-S1", "required_count": 4, "no_exception_count": 2, "warning_count": 1, "review_count": 1, "quarantined_count": 0},
+      {"site_id": "SYN-S2", "required_count": 4, "no_exception_count": 1, "warning_count": 0, "review_count": 3, "quarantined_count": 0}
+    ],
+    "evidence_register": [
+      {"table": "artifacts", "record_id": "SYN-A1", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A1"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A2", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A2"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A3", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A3"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A4", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A4"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A5", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A5"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A6", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact", "unavailable-metadata"], "source_refs": ["SYN-EXPORT-A6"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-A7", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-A7"], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D1", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D2", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D3", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D4", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D5", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D6", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-D7", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "open_review_tasks", "record_id": "SYN-K1", "copies": 1, "distinct_variants": 1, "dispositions": ["task-linked"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-R1", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-R2", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-R3", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-R4", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "sites", "record_id": "SYN-S1", "copies": 1, "distinct_variants": 1, "dispositions": ["in-scope"], "source_refs": [], "conflicting_variants": []},
+      {"table": "sites", "record_id": "SYN-S2", "copies": 1, "distinct_variants": 1, "dispositions": ["in-scope"], "source_refs": [], "conflicting_variants": []},
+      {"table": "trials", "record_id": "SYN-T1", "copies": 1, "distinct_variants": 1, "dispositions": ["context"], "source_refs": [], "conflicting_variants": []}
+    ],
+    "draft_review_queue": [
+      {"site_id": "SYN-S1", "requirement_id": "SYN-R2", "reason_code": "expiring-soon", "owner_role_id": "SYN-ROLE1", "existing_task_ids": [], "action": "request-evidence-review", "routing": "draft-new", "draft_review_by": "2026-09-16"},
+      {"site_id": "SYN-S1", "requirement_id": "SYN-R4", "reason_code": "expired", "owner_role_id": "SYN-ROLE1", "existing_task_ids": [], "action": "request-evidence-review", "routing": "draft-new", "draft_review_by": "2026-09-16"},
+      {"site_id": "SYN-S2", "requirement_id": "SYN-R1", "reason_code": "protocol-version-mismatch", "owner_role_id": "SYN-ROLE2", "existing_task_ids": ["SYN-K1"], "action": "request-evidence-review", "routing": "existing-task", "draft_review_by": null},
+      {"site_id": "SYN-S2", "requirement_id": "SYN-R2", "reason_code": "unavailable-evidence", "owner_role_id": "SYN-ROLE2", "existing_task_ids": [], "action": "request-evidence-review", "routing": "draft-new", "draft_review_by": "2026-09-16"},
+      {"site_id": "SYN-S2", "requirement_id": "SYN-R3", "reason_code": "missing-document", "owner_role_id": "SYN-ROLE2", "existing_task_ids": [], "action": "request-evidence-review", "routing": "draft-new", "draft_review_by": "2026-09-16"}
+    ]
+  },
+  "exceptions": [
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-S1", "requirement_id": "SYN-R2", "primary_reason": "expiring-soon", "reason_codes": ["expiring-soon"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-S1", "requirement_id": "SYN-R4", "primary_reason": "expired", "reason_codes": ["expired"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-S2", "requirement_id": "SYN-R1", "primary_reason": "protocol-version-mismatch", "reason_codes": ["protocol-version-mismatch"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-S2", "requirement_id": "SYN-R2", "primary_reason": "unavailable-evidence", "reason_codes": ["unavailable-evidence"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-S2", "requirement_id": "SYN-R3", "primary_reason": "missing-document", "reason_codes": ["missing-document"]}
+  ]
+}

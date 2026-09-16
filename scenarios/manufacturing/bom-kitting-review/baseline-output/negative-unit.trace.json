@@ -1,0 +1,155 @@
+{
+  "events": [
+    {
+      "caption": "Read one synthetic JSON bundle containing six independent logical exports; no live or physical multi-file ingestion.",
+      "facts": {
+        "business_connections": 0,
+        "logical_exports": 6
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows_received"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1
+            ],
+            [
+              "bom_versions",
+              1
+            ],
+            [
+              "bom_lines",
+              1
+            ],
+            [
+              "items",
+              2
+            ],
+            [
+              "stock_lots",
+              0
+            ],
+            [
+              "inbound",
+              0
+            ]
+          ],
+          "title": "Received logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Source structure or business values failed validation before material calculation.",
+      "facts": {
+        "fatal_errors": 1
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-structure",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "UNSUPPORTED_UNIT",
+              null,
+              "WEIGHT",
+              "unit",
+              "Only the EA unit is supported; conversions are not inferred."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Fatal business evidence supersedes partial calculations; no material plan is published.",
+      "facts": {
+        "fatal_errors": 1
+      },
+      "kind": "exception",
+      "sequence": 3,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "UNSUPPORTED_UNIT",
+              null,
+              "WEIGHT",
+              "unit",
+              "Only the EA unit is supported; conversions are not inferred."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "The input was rejected. No assignments or production authorization were emitted.",
+      "facts": {
+        "exceptions": 1,
+        "output_keys": 0,
+        "status": "rejected"
+      },
+      "kind": "output",
+      "sequence": 4,
+      "step_id": "close-plan",
+      "tables": [
+        {
+          "columns": [
+            "status",
+            "plan_emitted",
+            "production_authorized"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "rejected",
+              false,
+              false
+            ]
+          ],
+          "title": "Rejected review",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "14fcd3ff61a6f9fe823febf56e618b7b153993ea88a6c6927a8f3fe21c875a54",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1
+}

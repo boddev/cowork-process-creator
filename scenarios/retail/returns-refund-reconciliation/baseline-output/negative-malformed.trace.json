@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "caption": "Inspect independently mapped mock exports; null counts mean missing or malformed data, never assumed zero history.",
+      "facts": {
+        "allow_partial_requests": true,
+        "as_of": "2099-10-05",
+        "period_end": "2099-10-05",
+        "period_start": "2099-10-05",
+        "window_days": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-return-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "policy",
+              1
+            ],
+            [
+              "original_orders",
+              1
+            ],
+            [
+              "original_lines",
+              1
+            ],
+            [
+              "prior_returns",
+              0
+            ],
+            [
+              "requests",
+              1
+            ]
+          ],
+          "title": "Supplied logical exports",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Structural validation rejected the bundle before any join, quantity reservation or money proposal.",
+      "facts": {
+        "code": "invalid-record",
+        "entity_id": "SYN-REQUEST-M",
+        "validation": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-return-records",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "entity_id",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "input",
+              "SYN-REQUEST-M",
+              "invalid-record",
+              "requests.requested_qty must be a positive integer; booleans and fractions are invalid."
+            ]
+          ],
+          "title": "First invalid evidence",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "0de8901b07481fe554664d2b339f034e0cb76a9c9bc6cd264eb4908159660f95",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-02",
+  "schema_version": 1
+}

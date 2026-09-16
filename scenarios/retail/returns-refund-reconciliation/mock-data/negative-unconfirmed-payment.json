@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source_files": {"policy": "return-policy.json", "original_orders": "original-orders.json", "original_lines": "original-lines.json", "prior_returns": "prior-returns.json", "requests": "return-requests.json"},
+  "files": {
+    "return-policy.json": {"as_of": "2099-10-11", "period_start": "2099-10-11", "period_end": "2099-10-11", "window_days": 7, "allow_partial_requests": true, "allowed_reasons": ["wrong-size"], "allowed_conditions": ["unworn"]},
+    "original-orders.json": [
+      {"order_id": "SYN-ORDER-U", "store_id": "SYN-STORE-U", "receipt_id": "SYN-RECEIPT-U", "invoice_id": "SYN-INVOICE-U", "purchased_on": "2099-10-10", "currency": "USD", "payment_reference": "SYN-CARD-U", "payment_method": "card", "confirmed": false, "authorized_minor": 330, "captured_minor": 330}
+    ],
+    "original-lines.json": [
+      {"order_id": "SYN-ORDER-U", "line_id": "SYN-LINE-U", "sku": "SYN-SKU-U", "fulfilled_qty": 1, "merchandise_paid_minor": 300, "tax_paid_minor": 30, "returnable": true}
+    ],
+    "prior-returns.json": {"complete_before": "2099-10-11", "is_complete": true, "records": []},
+    "return-requests.json": [
+      {"request_id": "SYN-REQUEST-U", "store_id": "SYN-STORE-U", "receipt_id": "SYN-RECEIPT-U", "order_id": "SYN-ORDER-U", "invoice_id": "SYN-INVOICE-U", "line_id": "SYN-LINE-U", "sku": "SYN-SKU-U", "requested_on": "2099-10-11", "requested_qty": 1, "reason": "wrong-size", "condition": "unworn"}
+    ]
+  }
+}

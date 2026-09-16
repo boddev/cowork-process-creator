@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "hls-01",
+  "title": "Site essential-document completeness and expiry review",
+  "industry": "health-life-sciences",
+  "workflow_family": "temporal-document-completeness",
+  "description": "Bounded contextual site-kind requirement expansion, effective-and-recorded document selection, administrative expiry/evidence review, and existing-task reconciliation. Full research catalog construction approved 2026-09-14; native work remains blocked.",
+  "owner_role": "Synthetic document-control reviewer; qualified trial reviewer retains actual disposition",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "Invented SYN- metadata, contextual company checklist, refresh/expiry policies, and warning/follow-up windows. Administrative export completeness only, not genuine signature/readability authentication, site activation, ethics approval, enrollment, or regulatory compliance."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "HLS site scenario author",
+    "description": "All five complete expected envelopes were manually authored from the written HOW_TO rules and explicit grid/date reasoning before baseline.py existed or any baseline was executed. Source references and audit-register dispositions were enumerated by hand from the exported records; no solver call, copied actual output, or expected-generation program was used. Calendar arithmetic may be independently checked with stdlib dates, without importing the baseline. The shared golden lock must precede the first baseline invocation. This is author-declared oracle independence, not a claim of independent human review. No lock revision was needed."
+  },
+  "cases": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "input": "mock-data/demo.json",
+      "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["hls-01-record-control", "hls-01-checklist", "hls-01-as-of-version", "hls-01-expiry", "hls-01-date-boundaries", "hls-01-review-routing", "hls-01-input-bounds"],
+      "failure_modes": [],
+      "derivation": "Manual grid: S1 and S2 each match R1-R4, exactly 8 cells. D1-D7 are eligible unique version 1; S2/R3 has no document. S1/R1 and S1/R3 have allowed null expiry, and S2/R4 has correct protocol/signature and refresh expiry 2026-07-01 + 365 = 2027-07-01, 290 days after as-of. S1/R2 explicit 2026-09-14 equals as-of: 0 days, warning rather than expired. S1/R4 refresh 2025-09-13 + 365 = 2026-09-13 beats explicit 2026-12-31: -1 day, expired. S2/R1 protocol 2 differs from required 3. S2/R2 artifact A6 is readable=false despite available=true, so unavailable-evidence; explicit 2027-01-01 is 16+31+30+31+1 = 109 days away. Totals 8 = 3 no-exception + 1 warning + 4 review; site splits (2,1,1) and (1,0,3). Five reason keys give five exceptions and five queue rows. K1 already matches S2/R1, so only four new drafts, due 2026-09-16. All 22 table/key groups appear once in the register: seven artifacts, seven documents, one task, four requirements, two sites, one trial."
+    },
+    {
+      "id": "holdout-a",
+      "kind": "holdout",
+      "input": "mock-data/holdout-a.json",
+      "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["hls-01-record-control", "hls-01-checklist", "hls-01-as-of-version", "hls-01-expiry", "hls-01-date-boundaries", "hls-01-review-routing", "hls-01-input-bounds"],
+      "failure_modes": [],
+      "derivation": "Independent smaller grid: one site times three requirements = 3 pairs exactly at the configured cap, not the demo's 8. As-of is leap day 2028-02-29, required protocol is 7, refresh is 31 days, and follow-up window is zero. DA2's recorded date 2028-03-01 excludes its higher ethics version; DA5's effective date 2028-03-01 excludes its higher unsigned training version even though recorded 2028-02-28. DA1 remains selected and 2028-03-30 is exactly +30 days: warning-inclusive. DA3 is effective and recorded exactly on as-of; 2028-02-29 +31 = 2028-03-31, earlier than 2028-04-05 and +31 days: not warning. DA4 has no required expiry and no refresh, so no invented annual expiry. Totals 3 = 2 no-exception +1 warning +0 review. One queue key references KA1 opened on as-of; KA2 opened one day later is future, not a duplicate current task. Exactly one exception, zero new drafts, and all 17 table/key groups retained, including both future documents and their referenced but unselected artifacts."
+    },
+    {
+      "id": "holdout-b",
+      "kind": "holdout",
+      "input": "mock-data/holdout-b.json",
+      "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["hls-01-record-control", "hls-01-checklist", "hls-01-as-of-version", "hls-01-expiry", "hls-01-date-boundaries", "hls-01-review-routing", "hls-01-input-bounds", "hls-01-duplicates"],
+      "failure_modes": [],
+      "derivation": "Manual kind expansion differs in cardinality and policy: three sites, two in scope, five configured requirements, but only SB1/RB1-RB2 and SB2/RB3-RB4 = 4 pairs at cap. SB3 and its DB6 stay out of scope; laboratory RB5 is not applicable. As-of 2026-12-31 uses warning=7, draft=3, protocol=4. DB2 version 2 is selected over good version-1 DB1, retaining unavailable-evidence (AB2 available=false), missing-signature-evidence, then protocol-version-mismatch (3 != 4), without fallback. DB3 appears twice identically, so one selected group with copies=2, one duplicate exception, and no extra grid/queue rows. Its refresh 2026-12-31 +7 = 2027-01-07 beats explicit 2027-01-09, exactly +7 days and warning-inclusive. DB4 has required expiry but both expiry sources null: missing-expiry-evidence. DB5's issued 2026-12-30 +9 equals explicit 2027-01-08, so explicit-and-refresh, +8 days outside the seven-day window. Totals 4 = 1 no-exception +1 warning +2 review. Three review-cell exceptions plus one duplicate exception; five distinct reason keys yield five unsent drafts due 2027-01-03. Raw 22 rows collapse to 21 register groups. Old DB1 is superseded; AB1/AB6 are referenced but not selected artifacts."
+    },
+    {
+      "id": "negative-malformed",
+      "kind": "negative",
+      "input": "mock-data/negative-malformed.json",
+      "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected",
+      "covers": ["hls-01-input-bounds"],
+      "failure_modes": ["malformed-input"],
+      "derivation": "Manually inspect the five-row parseable input. Header, arrays, policy bounds, and field sets are valid. The one document has issued_on=2026-02-30, which is not a Gregorian calendar date, and version_seq=true, which is not an integer version. Phase-3 validation therefore yields precisely two invalid-input errors, ordered by paths documents[0].issued_on then documents[0].version_seq. Stop before chronology, expansion, or assessment: schema_version 1, status rejected, outputs {}, those two exceptions only, and a validation event. This rejects the input packet, not a site or person; the shared business CLI must exit 0."
+    },
+    {
+      "id": "negative-contradictory",
+      "kind": "negative",
+      "input": "mock-data/negative-contradictory.json",
+      "expected": "expected/negative-contradictory.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["hls-01-record-control", "hls-01-checklist", "hls-01-as-of-version", "hls-01-expiry", "hls-01-date-boundaries", "hls-01-review-routing", "hls-01-input-bounds", "hls-01-duplicates"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "Independent grid: SC/RC1, SC/RC2, SC/RC3, exactly 3 pairs. DC1 has two distinct same-ID signature variants at eligible version 2, not two identical copies: conflict quarantines RC1, no selected document or computed expiry. Canonical variant order is signature false before true; copies=2, distinct_variants=2, and no duplicate-evidence exception. DC2 is issued 2026-09-12 after effective 2026-09-10 and expires 2026-09-11 before issuance, but not before effectiveness: ordered violations issued-after-effective, expiry-before-issued. It quarantines RC2 with conflict only, not an invented expired assessment. DC3 supplies valid optional no-expiry qualification metadata for unrelated RC3. Totals 3 =1 no-exception +0 warning +2 review, both review cells quarantined. KC1 and KC2 both match RC1/conflict on or before as-of: retain both, add duplicate-open-tasks, and draft nothing new for RC1. RC2/conflict gets one unsent draft due 2026-09-16. Five exceptions in code/key order: conflicting-evidence, duplicate-open-tasks, impossible-chronology, then the two requirement-review entries. Fourteen raw rows form thirteen register groups; only AC3 is selected-artifact."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "manufacturing-02",
+  "title": "Supplier delivery performance and shortage expediting review queue",
+  "industry": "manufacturing",
+  "workflow_family": "event-cohort-reconciliation-and-expediting",
+  "description": "Reconcile synthetic posted receipts and full reversals, explain original-requested-receipt-date OTIF, allocate line-pegged confirmed supply once, and close an unsent buyer review queue.",
+  "owner_role": "Buyer and material planner",
+  "risk_level": "medium",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "Fictional whole-EA, calendar-day snapshot policy. Not a reproduction of D365 OTIF, ERP posting, transport calendars, purchasing authority, or supplier commitments."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Supplier expediting scenario owner",
+    "description": "The complete original fixtures, expected envelopes, and case derivations were authored manually from the written procedure before baseline implementation or execution. No baseline result is an oracle. Exact arrays, messages, quantities, nulls, and closure totals were reasoned independently. This is an author declaration, not independent human certification."
+  },
+  "cases": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "input": "mock-data/demo.json",
+      "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["posted-receipt-scope", "receipt-date-basis", "receipt-performance-review", "bounded-inputs", "fixed-cohort", "exact-performance", "confirmation-as-of", "pegged-demand-allocation", "review-scope", "stable-buyer-queue", "evidence-exceptions", "review-closure"],
+      "failure_modes": [],
+      "derivation": "As-of 2026-09-14; horizon ends 09-24 and urgency ends 09-17. P01 has 60 on time plus 40 late: net/credited 100, on-time 60, open 0, OTIF false. P03 has 50 on time: OTIF true. Included IDs P01,P03 give 1/2=50.00%, low=true. S01 has 0/1=0.00%; S02 1/1=100.00%. Future requested dates exclude P02,P04. P02 has 20 posted, open 60; C-P02B supersedes C-P02A by recorded date. Its 60 promised for 09-18 cannot cover R-P02A's 50 needed 09-16, but covers R-P02B's 10 needed 09-20. The first late requirement does not consume supply. P02 shortage 50 is critical within urgency: P1. P04 has open/unmet 40, no confirmation, shortage 40: P2 with shortage then missing-confirmation reasons. Queue P02,P04 is unsent. Only exception is missing confirmation for P04. Closure: four lines, active open 100, in-scope unmet 100 = covered 10 + shortage 90 + unresolved 0; two queue rows, one exception."
+    },
+    {
+      "id": "holdout-a",
+      "kind": "holdout",
+      "input": "mock-data/holdout-a.json",
+      "expected": "expected/holdout-a.json",
+      "expected_status": "completed",
+      "covers": ["posted-receipt-scope", "receipt-date-basis", "bounded-inputs", "full-reversal-as-of", "fixed-cohort", "exact-performance", "confirmation-as-of", "pegged-demand-allocation", "review-scope", "stable-buyer-queue", "review-closure"],
+      "failure_modes": [],
+      "derivation": "Different month boundary, supplier, quantities, and tolerance: as-of 2026-10-05, September reporting, tolerance 2, horizon through 10-12, urgency through 10-07. Both original requested dates are 09-30, deadlines 10-02. A01's seven received on 10-02 meet the inclusive deadline: net/on-time 7, open 0, true. V-A02 on 10-01 fully voids R-A02's eight received 09-30: active IDs empty, voided R-A02, applied reversal V-A02, net/on-time 0, open 8, false. Overall and SA01 are 1/2=50.00%, low=true. C-A02 recorded 10-05 promises eight for that same day; RQ-A02 needs eight that day, so prospective coverage is 8, shortage 0. Original date remains overdue: one P2 row with overdue-original only. No exceptions; completed. Closure: two lines, open 8, unmet 8 = covered 8 + shortage 0; queue 1, exceptions 0. No receipt is fabricated from the same-day promise."
+    },
+    {
+      "id": "holdout-b",
+      "kind": "holdout",
+      "input": "mock-data/holdout-b.json",
+      "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["bounded-inputs", "fixed-cohort", "exact-performance", "confirmation-as-of", "pegged-demand-allocation", "review-scope", "stable-buyer-queue", "evidence-exceptions", "review-closure"],
+      "failure_modes": [],
+      "derivation": "As-of 2027-02-01, January reporting, horizon through 02-06 and urgency through 02-04. Reversed input ordering and distinct new suppliers exercise deterministic IDs, not demo relabeling. H-B01 and H-B02 are cancelled, so their nominal open 9 and 4 do not enter active open totals or the cohort. B01/B02 are outside January; cancelled exclusions precede date exclusions. All historical numerators/denominators are 0/0, percentages and low flags null. C-B02 recorded 02-02 is future evidence despite a 02-04 receipt date; neither open line has an eligible confirmation. Each critical requirement is ten needed on the inclusive urgency boundary 02-04, covered 0, shortage 10. Equal P1/date/shortage rows sort B01 before B02. Exceptions sort EMPTY_COHORT, FUTURE_CONFIRMATION C-B02, MISSING_CONFIRMATION B01, MISSING_CONFIRMATION B02. Closure: four lines, active open 20, unmet 20 = covered 0 + shortage 20; queue 2, exceptions 4."
+    },
+    {
+      "id": "holdout-c",
+      "kind": "holdout",
+      "input": "mock-data/holdout-c.json",
+      "expected": "expected/holdout-c.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["bounded-inputs", "duplicate-integrity", "full-reversal-as-of", "fixed-cohort", "exact-performance", "confirmation-as-of", "pegged-demand-allocation", "review-scope", "stable-buyer-queue", "evidence-exceptions", "review-closure"],
+      "failure_modes": [],
+      "derivation": "As-of 2026-11-10, tolerance 2, horizon through 11-15, urgency through 11-12. C01's duplicate R-C01 counts once: net 6, credit/on-time 4, overreceipt 2, open 0, OTIF true. C02's R-C02 contributes three; its valid reversal RV-C02 is posted 11-11, so is future/excluded, not applied: true. C03 has zero received, open 5, due 11-10, deadline 11-12: false but provisional. Overall and S-C1 are 2/3=66.67%, low=true, pending C03. C04 is future-requested; C05 lacks an original date. S-C2 and UNKNOWN have no history and null ratios. C03's past 11-09 ETA is stale, contributes no supply and creates P3 confirmation work, not an overdue-original reason because due equals as-of. C04's six current promised units for 11-12 allocate in requirement-ID order: R-C41 gets 4, R-C42 gets 2 with shortage 2, R-C43 (11-16) is outside horizon with null coverage/gap. All ten unmet units validate against open 10, including that out-of-horizon two. C05 has unknown buyer master, no requested date/confirmation, and shortage 2. X-C01 and U-C01 reference C99: no invented purchase line or receipt credit; in-scope unmet 1 is unresolved. Queue order C04 P2/date11-12/gap2, C05 P2/date11-15/gap2, C03 P3/null date/gap0. Ten sorted exceptions: duplicate, future receipt, missing confirmation, missing requested date, orphan receipt, orphan requirement, overreceipt, pending tolerance, stale confirmation, unknown supplier. Closure: five lines, active open 17, in-scope unmet 11 = covered 6 + shortage 4 + unresolved 1; queue 3, exceptions 10."
+    },
+    {
+      "id": "negative-malformed",
+      "kind": "negative",
+      "input": "mock-data/negative-malformed.json",
+      "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected",
+      "covers": ["bounded-inputs", "evidence-exceptions"],
+      "failure_modes": ["malformed-input"],
+      "derivation": "The payload remains a parseable JSON object with all logical tables. Config reporting_month 2026-13 is not a calendar month. Receipt row zero is a string rather than an object. M-R01 qty is the string five, not an integer. Shape validation collects these three independent MALFORMED_INPUT errors, sorts config before receipt_events and the unidentified row before M-R01, and stops after intake/validation. outputs is exactly {}; no performance, allocation, or queue may be emitted."
+    },
+    {
+      "id": "negative-contradictory",
+      "kind": "negative",
+      "input": "mock-data/negative-contradictory.json",
+      "expected": "expected/negative-contradictory.json",
+      "expected_status": "rejected",
+      "covers": ["bounded-inputs", "full-reversal-as-of", "evidence-exceptions"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "Both source records are structurally well-formed and their dates and quantities are valid. E-N01 is an original five-unit receipt on N01. V-N01 purports to reverse those five on N02, a different purchase line. Exact quantity does not cure wrong-line identity. Emit one INVALID_REVERSAL for V-N01/reversal_of, related_id E-N01, then reject with empty outputs at validation; neither line gets convenient receipt credit."
+    },
+    {
+      "id": "negative-conflicting-id",
+      "kind": "negative",
+      "input": "mock-data/negative-conflicting-id.json",
+      "expected": "expected/negative-conflicting-id.json",
+      "expected_status": "rejected",
+      "covers": ["bounded-inputs", "duplicate-integrity", "evidence-exceptions"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "E-N10 occurs twice with the same line, posting date, and null reversal but different quantities, three and four. This is not an identical duplicate and cannot be summed or last-row-selected. The duplicate-integrity phase emits one CONFLICTING_ID for receipt_events/E-N10/event_id and rejects with empty outputs before reconciliation."
+    }
+  ]
+}

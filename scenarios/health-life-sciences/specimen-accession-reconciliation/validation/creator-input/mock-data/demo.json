@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-14T12:00:00Z",
+  "policy": {"policy_id":"SYN-D-POLICY"},
+  "orders": [
+    {"order_id":"SYN-D-O1","subject_token":"SYN-D-U1","ordered_at":"2026-09-14T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-D-O2","subject_token":"SYN-D-U2","ordered_at":"2026-09-14T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-D-O3","subject_token":"SYN-D-U3","ordered_at":"2026-09-14T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-D-O4","subject_token":"SYN-D-U4","ordered_at":"2026-09-14T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-D-O5","subject_token":"SYN-D-U5","ordered_at":"2026-09-14T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"}
+  ],
+  "order_lines": [
+    {"order_line_id":"SYN-D-L1","order_id":"SYN-D-O1","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-D-L2","order_id":"SYN-D-O2","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-D-L3","order_id":"SYN-D-O3","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-D-L4","order_id":"SYN-D-O4","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-D-L5","order_id":"SYN-D-O5","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"}
+  ],
+  "order_events": [
+    {"event_id":"SYN-D-E1","order_id":"SYN-D-O1","event_seq":1,"effective_at":"2026-09-14T08:00:00Z","recorded_at":"2026-09-14T08:01:00Z","state":"active"},
+    {"event_id":"SYN-D-E2","order_id":"SYN-D-O2","event_seq":1,"effective_at":"2026-09-14T08:00:00Z","recorded_at":"2026-09-14T08:01:00Z","state":"active"},
+    {"event_id":"SYN-D-E3","order_id":"SYN-D-O3","event_seq":1,"effective_at":"2026-09-14T08:00:00Z","recorded_at":"2026-09-14T08:01:00Z","state":"active"},
+    {"event_id":"SYN-D-E4","order_id":"SYN-D-O4","event_seq":1,"effective_at":"2026-09-14T08:00:00Z","recorded_at":"2026-09-14T08:01:00Z","state":"active"},
+    {"event_id":"SYN-D-E5","order_id":"SYN-D-O5","event_seq":1,"effective_at":"2026-09-14T08:00:00Z","recorded_at":"2026-09-14T08:01:00Z","state":"active"}
+  ],
+  "receipts": [
+    {"receipt_id":"SYN-D-R1","specimen_id":"SYN-D-S1","order_id":"SYN-D-O1","subject_token":"SYN-D-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-14T09:00:00Z","received_at":"2026-09-14T10:00:00Z"},
+    {"receipt_id":"SYN-D-R2","specimen_id":"SYN-D-S2","order_id":"SYN-D-O2","subject_token":"SYN-D-U2","specimen_kind":"SYN-K1","collected_at":"2026-09-14T11:00:00Z","received_at":"2026-09-14T11:30:00Z"},
+    {"receipt_id":"SYN-D-R3","specimen_id":"SYN-D-S3","order_id":"SYN-D-O3","subject_token":"SYN-D-U3","specimen_kind":"SYN-K1","collected_at":"2026-09-14T10:30:00Z","received_at":"2026-09-14T11:00:00Z"},
+    {"receipt_id":"SYN-D-R4","specimen_id":"SYN-D-S4","order_id":"SYN-D-O4","subject_token":"SYN-D-U4","specimen_kind":"SYN-K1","collected_at":"2026-09-14T10:30:00Z","received_at":"2026-09-14T10:59:00Z"},
+    {"receipt_id":"SYN-D-R5","specimen_id":"SYN-D-S5","order_id":"SYN-D-O9","subject_token":"SYN-D-U9","specimen_kind":"SYN-K1","collected_at":"2026-09-14T10:00:00Z","received_at":"2026-09-14T10:30:00Z"},
+    {"receipt_id":"SYN-D-R6","specimen_id":"SYN-D-S6","order_id":"SYN-D-O5","subject_token":"SYN-D-U5","specimen_kind":"SYN-K1","collected_at":"2026-09-14T10:00:00Z","received_at":"2026-09-14T10:30:00Z"}
+  ],
+  "accessions": [
+    {"accession_id":"SYN-D-A1","specimen_id":"SYN-D-S1","order_line_id":"SYN-D-L1","subject_token":"SYN-D-U1","test_code":"SYN-T1","accessioned_at":"2026-09-14T10:05:00Z","recorded_at":"2026-09-14T10:06:00Z"},
+    {"accession_id":"SYN-D-A6","specimen_id":"SYN-D-S6","order_line_id":"SYN-D-L5","subject_token":"SYN-D-UX","test_code":"SYN-T1","accessioned_at":"2026-09-14T10:40:00Z","recorded_at":"2026-09-14T10:41:00Z"}
+  ],
+  "test_catalog": [
+    {"test_code":"SYN-T1","expected_specimen_kind":"SYN-K1","policy_ref":"SYN-CATALOG-POLICY"}
+  ],
+  "clarifications": [
+    {"clarification_id":"SYN-D-Q1","entity_kind":"specimen","entity_id":"SYN-D-S6","recorded_at":"2026-09-14T11:00:00Z","reference":"SYN-D-REF1","note":"Request a source-record review; this note changes no identifiers."}
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "snapshot": {"as_of": "2026-11-02T12:00:00Z", "period_start": "2026-10-01", "period_end": "2026-11-01", "review_only": true},
+    "entries": [
+      {"entry_type": "expense", "entry_id": "EA1", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA-EA1"], "future_approval_event_ids": [], "rate_id": null, "policy_key": "travel/USD", "billed_ids": [], "status": "candidate", "reason": "candidate-expense", "message": "Approved expense satisfies currency, cap, and receipt policy.", "expected_amount": "49.99", "held_amount": null, "cap_held": false},
+      {"entry_type": "expense", "entry_id": "EA2", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA-EA2"], "future_approval_event_ids": [], "rate_id": null, "policy_key": "travel/USD", "billed_ids": [], "status": "held", "reason": "receipt-required", "message": "Expense meets the inclusive receipt threshold but has no receipt reference.", "expected_amount": "0.00", "held_amount": "50.00", "cap_held": false},
+      {"entry_type": "expense", "entry_id": "EA3", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA-EA3"], "future_approval_event_ids": [], "rate_id": null, "policy_key": "meals/USD", "billed_ids": [], "status": "candidate", "reason": "candidate-expense", "message": "Approved expense satisfies currency, cap, and receipt policy.", "expected_amount": "40.00", "held_amount": null, "cap_held": false},
+      {"entry_type": "time", "entry_id": "A1", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA1"], "future_approval_event_ids": [], "rate_id": "RA1", "policy_key": null, "billed_ids": [], "status": "candidate", "reason": "candidate-time", "message": "Approved time priced at the unique effective rate.", "expected_amount": "125.00", "held_amount": null, "cap_held": false},
+      {"entry_type": "time", "entry_id": "A2", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA2"], "future_approval_event_ids": [], "rate_id": "RA2", "policy_key": null, "billed_ids": [], "status": "candidate", "reason": "candidate-time", "message": "Approved time priced at the unique effective rate.", "expected_amount": "225.00", "held_amount": null, "cap_held": false},
+      {"entry_type": "time", "entry_id": "A3", "project_id": "P-A", "currency": "USD", "approval_revision": 2, "approval_event_ids": ["AA3-2"], "future_approval_event_ids": ["AA3-3"], "rate_id": null, "policy_key": null, "billed_ids": [], "status": "excluded", "reason": "recalled", "message": "Latest as-of approval is recalled; exclude from new charges.", "expected_amount": "0.00", "held_amount": null, "cap_held": false},
+      {"entry_type": "time", "entry_id": "A4", "project_id": "P-A", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AA4"], "future_approval_event_ids": [], "rate_id": null, "policy_key": null, "billed_ids": [], "status": "excluded", "reason": "nonchargeable", "message": "Entry is explicitly nonchargeable; exclude from new charges.", "expected_amount": "0.00", "held_amount": null, "cap_held": false}
+    ],
+    "prior_billing": [
+      {"billed_id": "BA", "entry_type": "time", "entry_id": "PREV-A", "project_id": "P-A", "currency": "USD", "amount": "560.01", "source_present": false, "cap_amount": "560.01", "disposition": "counted", "reason": "in-period-prior", "message": "As-of billed amount consumes this project's period cap."}
+    ],
+    "draft_details": [
+      {"draft_id": "DA", "line_id": "LA4", "project_id": "P-A", "currency": "USD", "entry_type": "expense", "entry_id": "EA1", "draft_amount": "49.99", "expected_amount": "49.99", "delta": "0.00", "action": "match", "diagnostic_only": false, "reason": "draft-match", "message": "Draft amount matches the computed entry amount."},
+      {"draft_id": "DA", "line_id": "LA5", "project_id": "P-A", "currency": "USD", "entry_type": "expense", "entry_id": "EA3", "draft_amount": "40.00", "expected_amount": "40.00", "delta": "0.00", "action": "match", "diagnostic_only": false, "reason": "draft-match", "message": "Draft amount matches the computed entry amount."},
+      {"draft_id": "DA", "line_id": "LA1", "project_id": "P-A", "currency": "USD", "entry_type": "time", "entry_id": "A1", "draft_amount": "125.00", "expected_amount": "125.00", "delta": "0.00", "action": "match", "diagnostic_only": false, "reason": "draft-match", "message": "Draft amount matches the computed entry amount."},
+      {"draft_id": "DA", "line_id": "LA2", "project_id": "P-A", "currency": "USD", "entry_type": "time", "entry_id": "A2", "draft_amount": "225.00", "expected_amount": "225.00", "delta": "0.00", "action": "match", "diagnostic_only": false, "reason": "draft-match", "message": "Draft amount matches the computed entry amount."},
+      {"draft_id": "DA", "line_id": "LA3", "project_id": "P-A", "currency": "USD", "entry_type": "time", "entry_id": "A3", "draft_amount": "60.00", "expected_amount": "0.00", "delta": "-60.00", "action": "remove", "diagnostic_only": false, "reason": "draft-remove", "message": "Draft contains a definitively ineligible entry."}
+    ],
+    "drafts": [
+      {"draft_id": "DA", "project_id": "P-A", "currency": "USD", "status": "corrections", "line_count": 5, "draft_amount": "499.99", "computable_draft_amount": "499.99", "quarantined_draft_amount": "0.00", "computable_expected_amount": "439.99", "expected_amount": "439.99", "variance": "-60.00", "comparison_complete": true}
+    ],
+    "projects": [
+      {"project_id": "P-A", "currency": "USD", "owner": "ACCOUNTANT-A", "entry_count": 7, "eligible_new_amount": "439.99", "prior_billed_amount": "560.01", "period_cap": "1000.00", "known_consumption": "1000.00", "proposed_consumption": "1000.00", "cap_overage": "0.00", "cap_hold": false, "cap_held_amount": "0.00", "reviewable_new_amount": "439.99", "calculation_complete": true, "draft_ids": ["DA"]}
+    ],
+    "currency_totals": [
+      {"currency": "USD", "eligible_new_amount": "439.99", "prior_billed_amount": "560.01", "cap_held_amount": "0.00", "reviewable_new_amount": "439.99", "known_entry_hold_amount": "50.00", "uncomputed_entry_count": 0, "draft_amount": "499.99", "computable_draft_amount": "499.99", "quarantined_draft_amount": "0.00", "computable_expected_amount": "439.99", "computable_variance": "-60.00", "comparison_complete": true}
+    ],
+    "closure": {"entry_count": 7, "draft_count": 1, "project_count": 1, "prior_billing_count": 1, "diagnostic_count": 1, "exception_count": 2}
+  },
+  "exceptions": [
+    {"code": "receipt-required", "message": "Expense meets the inclusive receipt threshold but has no receipt reference.", "owner": "ACCOUNTANT-A", "project_id": "P-A", "entry_type": "expense", "entry_id": "EA2", "draft_id": null, "line_id": null, "action": "hold-entry", "diagnostic_only": true},
+    {"code": "draft-remove", "message": "Draft contains a definitively ineligible entry.", "owner": "ACCOUNTANT-A", "project_id": "P-A", "entry_type": "time", "entry_id": "A3", "draft_id": "DA", "line_id": "LA3", "action": "review-remove", "diagnostic_only": false}
+  ]
+}

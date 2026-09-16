@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "artifact_type": "research-proposal",
+  "pack_id": "cross-industry",
+  "phase": "research-only-awaiting-full-catalog-approval",
+  "researched_on": "2026-09-14",
+  "base_commit": "1915f046b59c30c576cdaecb50ecfb6e092d23a2",
+  "shared_contract_read_at_commit": "d641b1f34328e5293e043d5975d0944b485236c0",
+  "ownership": {
+    "write_scope": ["scenarios/cross-industry/"],
+    "implementation_started": false,
+    "research_is_creator_input": false,
+    "build_gate": "Parent must explicitly approve the full 15-scenario catalog and authorize build.",
+    "excluded": ["appPackage", "output", "historical artifacts", "main checkout", "shared foundation files", "other sectors"]
+  },
+  "native_status": {
+    "state": "not-run-blocked",
+    "as_of": "2026-09-14",
+    "required": ["restored approved Computer Use tools", "unlocked accessible session", "parent-coordinated authorization"],
+    "owner_performs_native_ui": false,
+    "alternate_access_prohibited": ["browser or Playwright", "private API", "cookies or tokens", "shell access workaround"],
+    "historical_n00_publication": "unknown after Publishing",
+    "creation_installation_independent_invocation_claimed": false
+  },
+  "common_design": {
+    "bundle": {
+      "container": "mock-data/<case-id>.json",
+      "shape": {"config": "explicit fictional policies and cutoff", "files": "object mapping declared logical export filenames to row arrays"},
+      "logical_export_names_are_paths_to_open": false,
+      "note": "Logical file boundaries are preserved inside one attachment to comply with shared contract v1 and its native staging allowlist."
+    },
+    "types": {
+      "id": "nonempty synthetic string",
+      "date": "YYYY-MM-DD",
+      "instant": "ISO-8601 whole-second timestamp with explicit Z or numeric offset; compare/output in UTC",
+      "money": "nonnegative finite decimal string with exactly two fraction digits",
+      "fraction": "nonnegative finite decimal string; not an implicit percent",
+      "positive-int": "JSON integer greater than zero, excluding booleans",
+      "nonnegative-int": "JSON integer at least zero, excluding booleans",
+      "currency": "explicit currency code; no automatic conversion"
+    },
+    "rules": [
+      "All example formulas, thresholds, cutoffs, caps, capacities and tie-breaks are fictional sample policy, not general standards.",
+      "Malformed row schemas reject the complete bundle with outputs {} and explicit issues; never silently drop malformed rows.",
+      "Duplicate primary row IDs reject the bundle; ambiguous highest business revisions quarantine the affected entity without arbitrary tie-breaking.",
+      "Eligible evidence has recorded_at <= as_of; later evidence is not used to decide the frozen snapshot.",
+      "Money uses Decimal and ROUND_HALF_UP at the documented per-line boundary; totals sum rounded values.",
+      "All date ranges and planning intervals are half-open unless explicitly documented otherwise.",
+      "Uncomputable expected amounts remain uncomputed, not zero; complete totals cannot be compared against partial expected amounts.",
+      "All business entities must have an explicit terminal review disposition.",
+      "Goldens are independently authored before baseline execution and never regenerated from baseline results."
+    ],
+    "execution": {
+      "interface": "solve(payload) -> (result, events), invoked by shared scenario_support.run_cli",
+      "stdlib": ["json", "decimal", "datetime", "collections", "pathlib", "sys"],
+      "shared_services": ["strict input/output handling", "trace envelope", "no-overwrite guards", "exact golden comparison", "central demo media rendering"],
+      "developer_dependencies_to_install": [],
+      "external_services_or_native_connections": [],
+      "connection_contract": {"schema_version": 1, "mode": "mock-exports-only", "availability": "not-required", "connections": []},
+      "native_required_facilities": ["approved native attachment and media inspection", "native local file input/output", "already-available permitted bundled-stdlib execution when needed by generated output"],
+      "missing_capability_policy": "Stop and report the native limitation; no runtime installer, service, scheduler, browser runner, or infrastructure workaround."
+    },
+    "planned_tests": [
+      "demo and two genuinely changed holdout comparisons against prewritten independent expected JSON",
+      "malformed records with explicit rejection",
+      "contradictory evidence and ambiguity with no arbitrary winner",
+      "date, cutoff, threshold and rounding boundaries",
+      "zero, one and multiple entities and variable loop counts",
+      "input-order invariance and stable output array ordering",
+      "duplicate IDs and missing joins",
+      "strict malformed, deep, duplicate-key and nonfinite JSON through shared CLI",
+      "existing output and trace destinations are not overwritten",
+      "baseline never reads expected, holdout oracle, Creator source or generated plugins"
+    ],
+    "trace": {
+      "minimum_demo_events": 6,
+      "required_kinds": ["input", "validation", "join", "decision", "exception", "output"],
+      "provenance": "synthetic-local-baseline",
+      "content": "Actual selected rows, intermediate values, branches, and terminal artifact facts, captured during solve.",
+      "video_owner": "shared foundation",
+      "video_seconds_target": [30, 90],
+      "video_label": "Synthetic baseline execution visualization - not Cowork or a live system",
+      "trace_or_video_produced_during_research": false
+    }
+  },
+  "sources": [
+    {
+      "id": "oracle-pod",
+      "title": "Recording Proof of Delivery",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/recording-proof-of-delivery.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "JD Edwards EnterpriseOne Transportation Management 9.2 delivery confirmation",
+      "supported_claims": ["The POD form records delivery date, delivery time, and received-by information."],
+      "limitations": "Does not define our revision resolution, delivered-unit controls, required evidence policy, tariff or charge formula."
+    },
+    {
+      "id": "oracle-freight-match",
+      "title": "Understanding Invoice Matching",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/understanding-invoice-matching.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "JD Edwards EnterpriseOne Transportation Management 9.2 freight invoice matching",
+      "supported_claims": ["Freight invoice matching compares the invoice amount with calculated shipment charges.", "The documented process then creates an accounts-payable voucher; this downstream action is outside the mock review."],
+      "limitations": "No universal tolerance, pricing, audit algorithm, automatic-payment permission, or Oracle-compatible import schema is claimed."
+    },
+    {
+      "id": "oracle-freight-fields",
+      "title": "Matching Freight Invoices",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/matching-freight-invoices-1.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "JD Edwards EnterpriseOne Transportation Management 9.2 invoice header and freight selection",
+      "supported_claims": ["Invoice header information includes supplier, invoice number and dates.", "Selected freight charges are associated with the invoice for review."],
+      "limitations": "The baseline does not perform the documented voucher action or reproduce a live application schema."
+    },
+    {
+      "id": "ibm-work-orders",
+      "title": "Work orders overview",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=tracking-work-orders-overview",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "Maximo Manage continuous-delivery work-order overview",
+      "supported_claims": ["A work order specifies a task and the labor, materials, services, and tools required for it."],
+      "limitations": "Does not validate actual equipment condition, readiness, isolation or authorization, and does not prescribe a scheduling method."
+    },
+    {
+      "id": "ibm-resource-scheduling",
+      "title": "Scheduling work based on resource availability",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=view-scheduling-work-based-resource-availability",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "Maximo Manage Graphical Scheduling resource-availability review",
+      "supported_claims": ["Scheduling considers start/end requirements and craft, asset, location, item and tool availability.", "The documented planning workflow includes checking resource availability and adjusting the schedule."],
+      "limitations": "Our grid, greedy search, resource capacities, priorities and contingent dependency rules are sample policy, not a Maximo optimizer or safe-to-work clearance."
+    },
+    {
+      "id": "ibm-resource-view",
+      "title": "Resource planning in schedules",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=overview-resource-planning-in-schedules",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "web_fetch"},
+      "scope": "Maximo Manage resource requirements, craft hours and other resource availability",
+      "supported_claims": ["The resource view distinguishes required and available craft hours.", "Other-resource availability includes assets, locations, items and tools, with calendar context for assets and locations."],
+      "limitations": "Calendar availability is not a legal, physical or safety authorization. No industry-wide staffing, work-window or overtime standard is inferred."
+    },
+    {
+      "id": "ms-approvals",
+      "title": "Approvals overview",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/approvals/approvals-overview",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "microsoft_docs_fetch"},
+      "scope": "Project Operations Integrated with ERP and Project Operations Core approvals",
+      "supported_claims": ["Time, expense and material submissions have approval records.", "Approved project entries create actuals; approval cancellation and recall can reverse those transactions."],
+      "limitations": "No approval, rejection, cancellation or recall is executed. Synthetic status fields are not a Microsoft API or supported direct-edit instruction."
+    },
+    {
+      "id": "ms-proforma",
+      "title": "Proforma invoices",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/proforma-invoicing/create-manual-proforma-invoice",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "microsoft_docs_fetch"},
+      "scope": "Project Operations Integrated with ERP proforma invoicing",
+      "supported_claims": ["Proforma review provides another level of approval before customer invoicing.", "Ready-to-Invoice contract transactions can include approved time and expenses, and draft invoice details can be reviewed and adjusted."],
+      "limitations": "The mock does not implement native draft creation, automated invoice runs, milestones, tax, confirmation or ERP integration. Prices, receipt policies and caps are invented."
+    },
+    {
+      "id": "ms-confirm",
+      "title": "Confirm a proforma project-based invoice",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/proforma-invoicing/confirm-proforma-invoice",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "retrieval": {"status": "primary-body-fetched", "tool": "microsoft_docs_fetch"},
+      "scope": "Project Operations Integrated with ERP proforma confirmation",
+      "supported_claims": ["Confirmation makes a project invoice read-only.", "Confirmation creates financial actuals, including billed sales and relevant reversals."],
+      "limitations": "This source supports excluding confirmation and financial posting from the scenario, not any authority to perform them."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "cross-industry-01",
+      "proposed_slug": "logistics-pod-charge-review",
+      "title": "Delivery, POD and carrier charge reconciliation exception review",
+      "industry": "logistics",
+      "owner_role": "Freight audit analyst",
+      "workflow_family": "delivery-evidence-and-charge-reconciliation",
+      "risk_level": "medium",
+      "source_ids": ["oracle-pod", "oracle-freight-match", "oracle-freight-fields"],
+      "trigger": "Day-close arrival of synthetic shipment, POD, carrier invoice, rate and review-history exports.",
+      "start": "Freeze the supplied batch and cutoff, then inventory all six logical exports.",
+      "end": "Produce complete shipment and invoice review artifacts, owned exceptions and proposed case closures/reopens.",
+      "boundary": "No delivery confirmation, carrier contact, live TMS update, payment, voucher, financial approval or dispute submission. Ready-for-review is not approved-for-payment.",
+      "exports": [
+        {"name": "shipments.json", "key": ["shipment_id"], "fields": {"shipment_id": "id", "carrier_id": "id", "lane_id": "id", "currency": "currency", "planned_delivery_at": "instant", "shipped_units": "positive-int"}},
+        {"name": "pod-events.json", "key": ["pod_id"], "fields": {"pod_id": "id", "shipment_id": "id", "revision": "positive-int", "recorded_at": "instant", "state": "delivered|void", "delivered_at": "instant or null for void", "received_by": "id or null for void", "delivered_units": "positive-int or null for void", "gate_in_at": "instant or null for void", "gate_out_at": "instant or null for void"}},
+        {"name": "rate-cards.json", "key": ["rate_id"], "fields": {"rate_id": "id", "carrier_id": "id", "lane_id": "id", "currency": "currency", "valid_from": "date inclusive", "valid_to": "date exclusive", "linehaul": "money", "fuel_fraction": "fraction", "free_wait_minutes": "nonnegative-int", "detention_block_minutes": "positive-int", "detention_block_amount": "money", "detention_cap": "money"}},
+        {"name": "carrier-invoices.json", "key": ["invoice_id"], "fields": {"invoice_id": "id", "carrier_id": "id", "currency": "currency", "invoice_date": "date", "total": "money"}},
+        {"name": "invoice-lines.json", "key": ["line_id"], "fields": {"line_id": "id", "invoice_id": "id", "shipment_id": "id", "charge_code": "linehaul|fuel|detention", "amount": "money"}},
+        {"name": "review-history.json", "key": ["case_id"], "fields": {"case_id": "id", "shipment_id": "id", "issue_code": "id", "state": "open|evidence-requested|resolved", "updated_at": "instant", "owner": "id"}}
+      ],
+      "joins": [
+        "Invoice line -> invoice by invoice_id and shipment by shipment_id; carriers/currencies must agree.",
+        "POD -> shipment by shipment_id; unique highest eligible revision only.",
+        "Rate -> carrier_id + lane_id + currency + planned-delivery UTC date in [valid_from, valid_to); exactly one match.",
+        "Prior case -> shipment_id + issue_code; re-evaluate against current evidence without editing the historical export."
+      ],
+      "rules": [
+        {"id": "delivery-evidence", "kind": "source-backed", "source_ids": ["oracle-pod"], "description": "Use delivery date/time and received-by information as context for POD evidence review; strict completeness/revision requirements remain sample policy."},
+        {"id": "freight-match", "kind": "source-backed", "source_ids": ["oracle-freight-match", "oracle-freight-fields"], "description": "Compare invoice charges with shipment charge expectations and preserve invoice header associations; stop before voucher/payment."},
+        {"id": "snapshot-selection", "kind": "sample-policy", "source_ids": [], "description": "Select unique highest revision recorded by cutoff; conflicting highest revisions, void POD, quantity mismatch or missing POD hold shipment pricing."},
+        {"id": "rate-selection", "kind": "sample-policy", "source_ids": [], "description": "Exactly one rate must cover planned-delivery UTC date; overlapping or missing rates are held without arbitrary selection."},
+        {"id": "charge-formula", "kind": "sample-policy", "source_ids": [], "description": "Fuel is linehaul times fraction rounded to cents; detention is ceil(excess gate seconds / block seconds) times block charge, capped, with zero excess giving zero blocks."},
+        {"id": "variance-threshold", "kind": "sample-policy", "source_ids": [], "description": "Absolute variance <= max(absolute tolerance, rounded expected times relative tolerance) is ready for human review; both signs outside tolerance are held."},
+        {"id": "invoice-integrity", "kind": "sample-policy", "source_ids": [], "description": "Header total must equal line sum; duplicate shipment/charge billings and carrier/currency mismatches are explicit holds, not deduplicated."},
+        {"id": "pod-age-and-closure", "kind": "sample-policy", "source_ids": [], "description": "Missing POD is overdue only strictly beyond configured grace. Re-evaluate prior issues and propose closed/still-open/reopened states."},
+        {"id": "complete-accounting", "kind": "sample-policy", "source_ids": [], "description": "Separate computed/uncomputed shipments and totals; never treat unknown expected amounts as zero or compare partial expected with full billed totals."}
+      ],
+      "steps": [
+        {"id": "intake-exports", "kind": "input", "rule_ids": ["complete-accounting"], "procedure": "Inventory six exports and capture explicit cutoff/configuration.", "trace": "Actual row counts and selected shipment/invoice IDs."},
+        {"id": "validate-records", "kind": "validation", "rule_ids": ["invoice-integrity", "snapshot-selection"], "procedure": "Validate schemas, IDs, money, timestamps and required fields; reject malformed bundles.", "trace": "Validated counts or concrete offending row/field."},
+        {"id": "join-exports", "kind": "join", "rule_ids": ["delivery-evidence", "freight-match", "rate-selection"], "procedure": "Join shipment, invoice, POD, rates and cases while retaining missing/multiple matches.", "trace": "Selected joined shipment rows with match counts."},
+        {"id": "select-evidence", "kind": "decision", "rule_ids": ["snapshot-selection", "rate-selection"], "procedure": "Choose unique as-of POD and effective rate; hold ambiguous/incomplete evidence.", "trace": "Selected revision/rate IDs, future/ambiguous exclusions."},
+        {"id": "calculate-charges", "kind": "decision", "rule_ids": ["charge-formula"], "procedure": "Compute actual dwell, excess, blocks, fuel, detention and expected amounts for priceable rows.", "trace": "Real linehaul, dwell, block and expected intermediates."},
+        {"id": "compare-charges", "kind": "decision", "rule_ids": ["freight-match", "variance-threshold", "invoice-integrity"], "procedure": "Compare billed amounts and integrity constraints; classify ready versus held.", "trace": "Expected, billed, tolerance and branch for selected rows."},
+        {"id": "triage-exceptions", "kind": "exception", "rule_ids": ["pod-age-and-closure", "complete-accounting"], "procedure": "Create evidence, ambiguity, duplication and variance review items with owners.", "trace": "Actual issue IDs, amounts and age/next-action facts."},
+        {"id": "revisit-prior-cases", "kind": "decision", "rule_ids": ["pod-age-and-closure"], "procedure": "Propose closure, continuation or reopening from present evidence.", "trace": "Prior/current case decisions from real joins."},
+        {"id": "emit-review-packet", "kind": "output", "rule_ids": ["complete-accounting"], "procedure": "Emit accounted shipment/invoice rollups, review queue and closure proposals.", "trace": "Final ready/held/uncomputed counts and computable monetary totals."}
+      ],
+      "output_design": [
+        "Shipment reconciliation rows with selected evidence IDs, charge components, billed/expected/variance/tolerance and review disposition.",
+        "Invoice rollups with total billed, computable billed/expected, completeness flag and ready/held line amounts.",
+        "Owned exception queue with missing-POD age and next action.",
+        "Proposed prior-case closures/reopens and a complete batch accounting summary."
+      ],
+      "numeric_semantics": {
+        "money_rounding": "ROUND_HALF_UP per fuel calculation, then exact cent sums",
+        "duration": "Use exact integer gate seconds; ceiling division occurs after subtracting free minutes, not after rounding dwell.",
+        "rate_day": "UTC date of planned_delivery_at",
+        "missing_pod_overdue": "elapsed seconds > configured grace hours * 3600",
+        "output_order": ["shipments by shipment_id", "invoices by invoice_id", "issues by shipment_id then issue_code"]
+      },
+      "cases": [
+        {
+          "id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-09-14T12:00:00Z", "absolute_tolerance": "5.00", "relative_tolerance": "0", "missing_pod_grace_hours": 24},
+          "design": "Four shipments, two invoices, two previous cases. Rates use 10% fuel, 60 free minutes, 30-minute blocks at 25.00 capped at 100.00. Invoice D1 groups D01/D02; D2 groups D03/D04.",
+          "independent_expectations": {
+            "shipments": [
+              {"id": "LG-D01", "linehaul": "1000.00", "dwell_minutes": 75, "fuel": "100.00", "detention": "25.00", "expected": "1125.00", "billed": "1130.00", "variance": "5.00", "decision": "ready-for-review"},
+              {"id": "LG-D02", "linehaul": "800.00", "dwell_minutes": 130, "fuel": "80.00", "detention": "75.00", "expected": "955.00", "billed": "1000.00", "variance": "45.00", "decision": "hold-variance"},
+              {"id": "LG-D03", "expected": null, "billed": "660.00", "missing_pod_age_hours": 51, "decision": "hold-overdue-pod"},
+              {"id": "LG-D04", "linehaul": "400.00", "dwell_minutes": 60, "fuel": "40.00", "detention": "0.00", "expected": "440.00", "billed": "440.00", "variance": "0.00", "decision": "ready-for-review"}
+            ],
+            "billed_total": "3230.00", "ready_line_amount": "1570.00", "held_line_amount": "1660.00",
+            "computable_billed": "2570.00", "known_expected": "2520.00", "computable_variance": "50.00",
+            "uncomputed_shipments": ["LG-D03"], "proposed_reopened": ["LG-D02:variance"], "proposed_closed": ["LG-D04:missing-pod"]
+          },
+          "derivation": "D01: 1000+100+25=1125 and +5 equals tolerance. D02: excess 70 minutes rounds up to three blocks, 800+80+75=955. D04 has no excess, 400+40=440. D03 is 51 hours late with no eligible POD, so no expected amount is invented.",
+          "covers": ["delivery-evidence", "freight-match", "snapshot-selection", "rate-selection", "charge-formula", "variance-threshold", "invoice-integrity", "pod-age-and-closure", "complete-accounting"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-10-02T12:00:00Z", "absolute_tolerance": "2.00", "relative_tolerance": "0.01", "missing_pod_grace_hours": 12},
+          "design": "Three different shipments/contracts, a 15-minute block policy and cap changes, UTC effective-date rollover, new eligible POD closing history and a future void revision. A01 planned local September 30 at 20:00-04:00 selects the October 1 UTC rate.",
+          "independent_expectations": {
+            "shipments": [
+              {"id": "LG-A01", "linehaul": "900.00", "fuel_fraction": "0.125", "dwell_minutes": 46, "free_wait_minutes": 45, "block_minutes": 15, "block_amount": "20.00", "detention_cap": "60.00", "fuel": "112.50", "detention": "20.00", "expected": "1032.50", "billed": "1042.83", "tolerance": "10.33", "decision": "ready-for-review"},
+              {"id": "LG-A02", "linehaul": "500.00", "fuel_fraction": "0.08", "dwell_minutes": 121, "free_wait_minutes": 45, "block_minutes": 15, "block_amount": "20.00", "detention_cap": "60.00", "fuel": "40.00", "detention": "60.00", "expected": "600.00", "billed": "615.00", "tolerance": "6.00", "decision": "hold-variance"},
+              {"id": "LG-A03", "linehaul": "700.00", "fuel_fraction": "0.10", "dwell_minutes": 60, "free_wait_minutes": 60, "expected": "770.00", "billed": "770.00", "decision": "ready-for-review"}
+            ],
+            "billed_total": "2427.83", "known_expected": "2402.50", "computable_variance": "25.33",
+            "ready_line_amount": "1812.83", "held_line_amount": "615.00", "proposed_closed": ["LG-A03:missing-pod"]
+          },
+          "derivation": "A01's 10.325 relative allowance rounds half-up to 10.33, exactly the variance. A02's excess 76 minutes requires six 15-minute blocks; 120.00 is capped at 60.00. A03 uses eligible revision 2, not future void revision 3.",
+          "covers": ["snapshot-selection", "rate-selection", "charge-formula", "variance-threshold", "pod-age-and-closure", "complete-accounting"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-11-04T10:00:00Z", "absolute_tolerance": "1.00", "relative_tolerance": "0.02", "missing_pod_grace_hours": 4},
+          "design": "Four new shipments; only-future POD, two active rates, undercharge, and exact free-wait boundary. Two invoice groups total 650.00 and 220.00.",
+          "independent_expectations": {
+            "shipments": [
+              {"id": "LG-B01", "expected": null, "billed": "220.00", "missing_pod_age_hours": 1, "decision": "hold-awaiting-pod"},
+              {"id": "LG-B02", "expected": null, "billed": "330.00", "decision": "hold-ambiguous-rate"},
+              {"id": "LG-B03", "linehaul": "100.00", "fuel_fraction": "0.07", "dwell_minutes": 30, "free_wait_minutes": 30, "expected": "107.00", "billed": "100.00", "variance": "-7.00", "tolerance": "2.14", "decision": "hold-variance"},
+              {"id": "LG-B04", "expected": "220.00", "billed": "220.00", "decision": "ready-for-review"}
+            ],
+            "billed_total": "870.00", "ready_line_amount": "220.00", "held_line_amount": "650.00",
+            "computable_billed": "320.00", "known_expected": "327.00", "computable_variance": "-7.00",
+            "uncomputed_shipments": ["LG-B01", "LG-B02"]
+          },
+          "derivation": "B01 is not overdue at one hour against four-hour grace. B02's overlap is not resolved by row order. B03 has zero detention and 7.00 fuel; a -7.00 undercharge exceeds 2.14 tolerance. Only B03/B04 contribute to the computed variance.",
+          "covers": ["snapshot-selection", "rate-selection", "charge-formula", "variance-threshold", "pod-age-and-closure", "complete-accounting"],
+          "failure_modes": []
+        },
+        {
+          "id": "negative-malformed", "kind": "negative", "expected_status": "rejected",
+          "design": "An invoice line has amount 12oops rather than a money string.",
+          "independent_expectations": {"outputs": {}, "issue_code": "invalid-amount", "pricing_performed": false},
+          "derivation": "The amount is outside the declared numeric schema; bundle validation must finish with rejection before computing business artifacts.",
+          "covers": ["invoice-integrity"], "failure_modes": ["malformed-input"]
+        },
+        {
+          "id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions",
+          "design": "LG-C01 has two highest eligible POD revisions with different delivered-unit evidence; its billed amount is 550.00. LG-C02 has unambiguous matching evidence for 110.00.",
+          "independent_expectations": {"billed_total": "660.00", "ready_line_amount": "110.00", "held_line_amount": "550.00", "known_expected": "110.00", "computable_billed": "110.00", "computable_variance": "0.00", "uncomputed_shipments": ["LG-C01"], "issue_code": "contradictory-pod"},
+          "derivation": "No revision or row-order tie-break can establish C01's delivery evidence. Its entire amount is quarantined; C02 remains independently computable.",
+          "covers": ["snapshot-selection", "complete-accounting"], "failure_modes": ["contradictory-evidence"]
+        }
+      ],
+      "specific_tests": ["exact free-wait and one-second excess", "cap reached and exceeded", "positive/negative and exact tolerance", "rate effective boundary and overlap", "eligible versus future POD", "duplicate charge and header-total mismatch", "prior case reopens and closes", "uncomputed amount never becomes zero"]
+    },
+    {
+      "id": "cross-industry-02",
+      "proposed_slug": "utilities-maintenance-window-plan",
+      "title": "Maintenance readiness and resource-window conflict plan",
+      "industry": "energy-utilities",
+      "owner_role": "Maintenance planning coordinator",
+      "workflow_family": "readiness-and-constrained-window-allocation",
+      "risk_level": "high",
+      "source_ids": ["ibm-work-orders", "ibm-resource-scheduling", "ibm-resource-view"],
+      "trigger": "Weekly snapshot of fictional work packages, reserved kits, resources, candidate windows, commitments and prerequisites.",
+      "start": "Freeze planning horizon, snapshot cutoff and grid, then validate all administrative planning exports.",
+      "end": "Produce contingent proposed resource slots, readiness/backlog, observed conflict explanations and resource load totals for a human planner.",
+      "boundary": "Not safe-to-work clearance. No physical equipment operations, isolation/lockout instructions, permits, authorization decisions, actual scheduling, dispatch or business-system writes.",
+      "exports": [
+        {"name": "work-orders.json", "key": ["work_order_id"], "fields": {"work_order_id": "id", "priority": "positive-int", "earliest_start": "instant", "due_at": "instant", "duration_minutes": "positive-int", "craft_code": "id", "area_resource_id": "id", "tool_resource_id": "id or null", "predecessors": "array of distinct IDs", "plan_approved": "boolean administrative metadata", "owner": "id"}},
+        {"name": "requirements.json", "key": ["work_order_id", "item_id"], "fields": {"work_order_id": "id", "item_id": "id", "required_quantity": "positive-int"}},
+        {"name": "kit-components.json", "key": ["kit_component_id"], "fields": {"kit_component_id": "id", "work_order_id": "id", "item_id": "id", "reserved_quantity": "nonnegative-int", "available_at": "instant"}},
+        {"name": "resources.json", "key": ["resource_id"], "fields": {"resource_id": "id", "kind": "crew|tool|area", "craft_code": "id for crew, null otherwise", "capacity": "integer exactly 1"}},
+        {"name": "resource-windows.json", "key": ["window_id"], "fields": {"window_id": "id", "resource_id": "id", "start": "instant", "end": "instant"}},
+        {"name": "commitments.json", "key": ["commitment_id"], "fields": {"commitment_id": "id", "resource_id": "id", "start": "instant", "end": "instant"}},
+        {"name": "prerequisite-status.json", "key": ["prerequisite_id"], "fields": {"prerequisite_id": "id external to current work orders", "state": "complete|open", "completed_at": "instant when complete, null when open", "recorded_at": "instant"}}
+      ],
+      "joins": [
+        "Requirements and kits -> work_order_id + item_id; kits are reserved to that order, not reusable shared stock.",
+        "Crew candidates -> craft_code and kind crew; area and optional tool -> fixed resource IDs.",
+        "Windows and commitments -> resource_id; all required resources must fit simultaneously.",
+        "Predecessor -> internal work_order_id or explicit external prerequisite-status row; missing or unresolved evidence is not completion."
+      ],
+      "rules": [
+        {"id": "work-requirements", "kind": "source-backed", "source_ids": ["ibm-work-orders"], "description": "Review work order resource/material requirements as planning context, without performing maintenance."},
+        {"id": "availability-review", "kind": "source-backed", "source_ids": ["ibm-resource-scheduling", "ibm-resource-view"], "description": "Compare required resources and start/end needs with resource availability; keep actual authorization outside the scenario."},
+        {"id": "planning-readiness", "kind": "sample-policy", "source_ids": [], "description": "Administrative approval, sufficient order-reserved kits, and explicit predecessor evidence are necessary for a proposal; future kit availability changes its lower bound."},
+        {"id": "prerequisite-order", "kind": "sample-policy", "source_ids": [], "description": "Reject dependency cycles. Recompute the dependency-resolved set after each decision and select by priority, due time, ID; deferred predecessors defer successors."},
+        {"id": "window-search", "kind": "sample-policy", "source_ids": [], "description": "Greedy increasing grid starts, then lexicographic crew ID; one crew plus fixed area/optional tool, each capacity one, for the full duration."},
+        {"id": "interval-semantics", "kind": "sample-policy", "source_ids": [], "description": "Use UTC half-open intervals, horizon-relative grid, full containment in a single window per resource, and end <= due/horizon end. Do not stitch adjacent staffing windows."},
+        {"id": "conflict-explanation", "kind": "sample-policy", "source_ids": [], "description": "Record actual rejected candidate reasons and conflicting IDs; exhausted search yields an explicit deferred order, not an invented slot."},
+        {"id": "planning-closure", "kind": "sample-policy", "source_ids": [], "description": "Every work order is proposed or deferred; resource load separates proposed and committed minutes; no result implies clearance or real scheduling."}
+      ],
+      "steps": [
+        {"id": "intake-planning-exports", "kind": "input", "rule_ids": ["work-requirements"], "procedure": "Inventory work orders, seven exports and explicit planning horizon/grid.", "trace": "Actual order/resource counts and planning limits."},
+        {"id": "validate-planning-data", "kind": "validation", "rule_ids": ["prerequisite-order", "interval-semantics"], "procedure": "Check schemas, quantities, times and dependency graph; reject malformed records/cycles.", "trace": "Concrete validation facts or cycle member IDs."},
+        {"id": "join-readiness-evidence", "kind": "join", "rule_ids": ["work-requirements", "availability-review"], "procedure": "Join order requirements, kits, crews, resources, windows and prerequisites.", "trace": "Required/reserved quantities and matching resource counts."},
+        {"id": "assess-readiness", "kind": "decision", "rule_ids": ["planning-readiness", "prerequisite-order"], "procedure": "Evaluate gates and contingent earliest bounds in dependency-aware priority order.", "trace": "Actual gate results, shortages, predecessor and kit bounds."},
+        {"id": "search-resource-windows", "kind": "decision", "rule_ids": ["window-search", "interval-semantics"], "procedure": "Iterate actual grid slots and eligible crews against windows and bookings.", "trace": "Observed tested/selected slots, crew choices and allocation IDs."},
+        {"id": "record-conflicts", "kind": "exception", "rule_ids": ["conflict-explanation"], "procedure": "Explain rejected candidates and unresolved work without changing commitments.", "trace": "Real conflicting resource/order IDs and deferred reasons."},
+        {"id": "summarize-resource-load", "kind": "decision", "rule_ids": ["planning-closure"], "procedure": "Aggregate proposed and committed resource minutes separately.", "trace": "Actual crew/tool/area allocation totals."},
+        {"id": "emit-contingent-plan", "kind": "output", "rule_ids": ["planning-closure"], "procedure": "Emit proposals, readiness, deferred actions and no-authorization warning.", "trace": "Final proposal/deferred counts, durations and final artifact facts."}
+      ],
+      "output_design": [
+        "Readiness matrix with administrative, kit and prerequisite findings per work order.",
+        "Contingent proposals with start/end, crew, fixed resources and predecessor dependencies.",
+        "Observed search/conflict summary with conflicting commitments and proposals.",
+        "Deferred work queue with evidence or rescheduling action for human planning.",
+        "Resource proposed/committed minutes and complete order accounting."
+      ],
+      "numeric_semantics": {
+        "time": "Explicit offsets normalized to UTC; whole seconds; grid relative to horizon start.",
+        "resource_capacity": 1,
+        "crew_choice": "earliest feasible grid start first, then lexicographic crew ID",
+        "work_choice": "dependency-resolved set recomputed after each decision; priority then due time then work_order_id",
+        "duration_constraint": "Full duration lies in one window for each resource; proposed end <= due time and horizon end.",
+        "load": "Sum integer proposed minutes per required resource; existing committed minutes reported separately.",
+        "optimization_claim": "Deterministic greedy heuristic only; not globally optimal and not Maximo's algorithm.",
+        "output_order": ["proposals by start then work_order_id", "readiness/deferred by work_order_id", "load by resource_id"]
+      },
+      "cases": [
+        {
+          "id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-10-05T07:00:00Z", "horizon_start": "2026-10-05T08:00:00Z", "horizon_end": "2026-10-05T16:00:00Z", "slot_minutes": 30},
+          "design": "Six work orders priority D01-D06. CE1 available 08-16, CM1 08-12, T1 08-16. Existing CE1 commitment 09-10 and T1 commitment 11-12. Areas A1 08-12, A2 09-15, A3 08-12, A4 08-16. D04 requires 3 kit units but has 1; D05 has an open external predecessor.",
+          "independent_expectations": {
+            "proposals": [
+              {"work_order_id": "UT-D01", "crew": "CE1", "area": "A1", "tool": "T1", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T09:00:00Z", "minutes": 60},
+              {"work_order_id": "UT-D03", "crew": "CM1", "area": "A3", "tool": null, "start": "2026-10-05T09:00:00Z", "end": "2026-10-05T10:00:00Z", "minutes": 60},
+              {"work_order_id": "UT-D06", "crew": "CM1", "area": "A3", "tool": null, "start": "2026-10-05T10:00:00Z", "end": "2026-10-05T11:30:00Z", "minutes": 90},
+              {"work_order_id": "UT-D02", "crew": "CE1", "area": "A2", "tool": "T1", "start": "2026-10-05T12:00:00Z", "end": "2026-10-05T14:00:00Z", "minutes": 120}
+            ],
+            "deferred": [{"work_order_id": "UT-D04", "reason": "kit-shortage", "missing_units": 2}, {"work_order_id": "UT-D05", "reason": "external-prerequisite-open"}],
+            "proposed_job_minutes": 330,
+            "proposed_resource_minutes": {"CE1": 180, "CM1": 150, "T1": 180, "A1": 60, "A2": 120, "A3": 150, "A4": 0},
+            "committed_resource_minutes": {"CE1": 60, "T1": 60}
+          },
+          "derivation": "D01 ends exactly at CE1's commitment start. D02's 09:00 through 11:30 candidate starts collide with CE1 or T1, so 12:00 is first feasible. D03 follows proposed D01; D06 fits after D03. D04/D05 fail readiness before slot allocation.",
+          "covers": ["work-requirements", "availability-review", "planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "conflict-explanation", "planning-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-11-02T07:00:00-05:00", "horizon_start": "2026-11-02T08:00:00-05:00", "horizon_end": "2026-11-02T13:00:00-05:00", "slot_minutes": 30},
+          "design": "Four new orders, two electrical crews, full-horizon A/B/tool windows. CE-A01 committed 13-14Z, tool T-A1 committed 15-16Z. A01 is 90 minutes A/tool, A02 60 minutes B/tool, A03 30 minutes A/no tool after A01, A04 60 minutes B/no tool with reserved kit available 17:30Z. All due 18Z.",
+          "independent_expectations": {
+            "proposals": [
+              {"work_order_id": "UT-A01", "crew": "CE-A02", "start": "2026-11-02T13:00:00Z", "end": "2026-11-02T14:30:00Z", "minutes": 90},
+              {"work_order_id": "UT-A03", "crew": "CE-A01", "start": "2026-11-02T14:30:00Z", "end": "2026-11-02T15:00:00Z", "minutes": 30},
+              {"work_order_id": "UT-A02", "crew": "CE-A01", "start": "2026-11-02T16:00:00Z", "end": "2026-11-02T17:00:00Z", "minutes": 60}
+            ],
+            "deferred": [{"work_order_id": "UT-A04", "reason": "no-feasible-window"}],
+            "proposed_job_minutes": 180,
+            "proposed_resource_minutes": {"CE-A01": 90, "CE-A02": 90, "T-A1": 150},
+            "committed_resource_minutes": {"CE-A01": 60, "T-A1": 60}
+          },
+          "derivation": "Earliest slot takes CE-A02 for A01 rather than waiting for lexicographically first CE-A01. A02 cannot fit across tool's 15-16 booking and starts at 16. A03 starts at predecessor finish with no tool requirement. A04's ready-at bound leaves only 30 minutes for a 60-minute job.",
+          "covers": ["planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "conflict-explanation", "planning-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-12-01T07:00:00Z", "horizon_start": "2026-12-01T08:00:00Z", "horizon_end": "2026-12-01T12:00:00Z", "slot_minutes": 15},
+          "design": "Five new orders, E-B1 and M-B1 whole-horizon crews/tool, X window 08-10 and Y 09-12. Priority-1 B02 depends on priority-2 B01. B03 needs an impossible 60-minute X/tool interval after 09 and by 10; B04 needs Y/no tool after 09:45; B05 lacks planning approval.",
+          "independent_expectations": {
+            "proposals": [
+              {"work_order_id": "UT-B01", "crew": "E-B1", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T09:00:00Z", "minutes": 60},
+              {"work_order_id": "UT-B02", "crew": "M-B1", "start": "2026-12-01T09:00:00Z", "end": "2026-12-01T09:45:00Z", "minutes": 45},
+              {"work_order_id": "UT-B04", "crew": "E-B1", "start": "2026-12-01T09:45:00Z", "end": "2026-12-01T10:15:00Z", "minutes": 30}
+            ],
+            "deferred": [{"work_order_id": "UT-B03", "reason": "no-feasible-window"}, {"work_order_id": "UT-B05", "reason": "planning-approval-missing"}],
+            "proposed_job_minutes": 135,
+            "proposed_resource_minutes": {"E-B1": 90, "M-B1": 45, "T-B1": 105, "X": 60, "Y": 75}
+          },
+          "derivation": "Recomputing the dependency-resolved priority set lets B02 run immediately after B01, before B03. Half-open adjacency permits B02 at 09:00 and B04 at 09:45. B03 cannot fit a full hour before X closes at 10.",
+          "covers": ["planning-readiness", "prerequisite-order", "window-search", "interval-semantics", "conflict-explanation", "planning-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "negative-malformed", "kind": "negative", "expected_status": "rejected",
+          "design": "A work order has boolean true as duration_minutes.",
+          "independent_expectations": {"outputs": {}, "issue_code": "invalid-duration", "proposals_created": 0},
+          "derivation": "JSON true is not a positive integer duration, even though Python bool subclasses int.",
+          "covers": ["interval-semantics"], "failure_modes": ["malformed-input"]
+        },
+        {
+          "id": "negative-contradictory", "kind": "negative", "expected_status": "rejected",
+          "design": "Two valid work orders each declare the other as an internal prerequisite.",
+          "independent_expectations": {"outputs": {}, "issue_code": "cyclic-prerequisite", "proposals_created": 0},
+          "derivation": "Neither order can precede the other consistently; graph validation rejects the bundle without inventing completion or authorization.",
+          "covers": ["prerequisite-order", "planning-closure"], "failure_modes": ["contradictory-evidence"]
+        }
+      ],
+      "specific_tests": ["half-open adjacent reservations", "crew lexicographic tie and earlier-slot precedence", "dependency-aware reordering and deferred-successor propagation", "cycle detection", "late kit arrival and shortage", "single-window containment without stitching", "15 versus 30 minute grid", "impossible due window", "multiple resources with independent conflicts", "proposal report never labels safe-to-work"]
+    },
+    {
+      "id": "cross-industry-03",
+      "proposed_slug": "services-billing-draft-review",
+      "title": "Approved time and expense to client billing draft reconciliation",
+      "industry": "professional-services",
+      "owner_role": "Project accountant",
+      "workflow_family": "approval-aware-billing-draft-reconciliation",
+      "risk_level": "medium",
+      "source_ids": ["ms-approvals", "ms-proforma", "ms-confirm"],
+      "trigger": "Billing-cutoff exports for multiple fictional projects with time, expenses, approval histories, prior billing and draft details.",
+      "start": "Freeze service period and cutoff, then inventory nine independent logical exports.",
+      "end": "Produce eligible candidate amounts, draft differences, project cap summaries and owned correction/clarification holds.",
+      "boundary": "No approval or recall action, reimbursement, real invoice creation/send, proforma confirmation, AR/GL posting, customer contact, tax or FX decisions.",
+      "exports": [
+        {"name": "projects.json", "key": ["project_id"], "fields": {"project_id": "id", "client_id": "id", "contract_id": "id", "currency": "currency", "period_cap": "money", "owner": "id"}},
+        {"name": "rates.json", "key": ["rate_id"], "fields": {"rate_id": "id", "project_id": "id", "role_code": "id", "currency": "currency", "valid_from": "date inclusive", "valid_to": "date exclusive", "hourly_rate": "money"}},
+        {"name": "time-entries.json", "key": ["time_id"], "fields": {"time_id": "id", "project_id": "id", "person_id": "id", "role_code": "id", "service_date": "date", "minutes": "positive-int", "chargeable": "boolean"}},
+        {"name": "expense-entries.json", "key": ["expense_id"], "fields": {"expense_id": "id", "project_id": "id", "person_id": "id", "service_date": "date", "category": "id", "amount": "money", "currency": "currency", "receipt_reference": "id or null", "chargeable": "boolean"}},
+        {"name": "approval-events.json", "key": ["approval_event_id"], "fields": {"approval_event_id": "id", "entry_type": "time|expense", "entry_id": "id", "revision": "positive-int", "recorded_at": "instant", "decision": "approved|pending|rejected|recalled"}},
+        {"name": "billed-transactions.json", "key": ["billed_id"], "fields": {"billed_id": "id", "entry_type": "time|expense", "entry_id": "id", "project_id": "id", "invoice_id": "id", "service_date": "date", "amount": "money", "currency": "currency", "billed_at": "instant"}},
+        {"name": "draft-invoices.json", "key": ["draft_id"], "fields": {"draft_id": "id", "project_id": "id", "currency": "currency", "period_start": "date", "period_end": "date", "state": "draft"}},
+        {"name": "draft-lines.json", "key": ["line_id"], "fields": {"line_id": "id", "draft_id": "id", "entry_type": "time|expense", "entry_id": "id", "amount": "money"}},
+        {"name": "expense-policies.json", "key": ["category", "currency"], "fields": {"category": "id", "currency": "currency", "max_amount": "money", "receipt_required_at": "money"}}
+      ],
+      "joins": [
+        "Time/expense -> project_id for client, currency, cap and owner.",
+        "Time -> project_id + role_code + project currency + service date in [valid_from, valid_to), exactly one rate.",
+        "Expense -> category + currency for explicit policy; expense currency must equal project currency.",
+        "Approval/billed/draft line -> entry_type + entry_id; current entry project/currency must agree with identity evidence.",
+        "Draft detail -> draft_id -> project, currency and service period.",
+        "Historical posted entries absent from current intake still count toward the project cap when service_date is in period and billed_at <= cutoff."
+      ],
+      "rules": [
+        {"id": "approval-context", "kind": "source-backed", "source_ids": ["ms-approvals"], "description": "Approval and recall status matter to billing evidence, but the baseline does not perform any approval or financial transition."},
+        {"id": "draft-review-context", "kind": "source-backed", "source_ids": ["ms-proforma", "ms-confirm"], "description": "Review draft transaction details before customer invoicing; stop before confirmation and actuals creation."},
+        {"id": "eligibility-precedence", "kind": "sample-policy", "source_ids": [], "description": "Quarantine identity/approval contradictions; otherwise check service period, chargeability, prior billing, latest as-of approval, then pricing/expense policy."},
+        {"id": "effective-time-rate", "kind": "sample-policy", "source_ids": [], "description": "Use unique effective project/role/currency rate; round minutes * hourly_rate / 60 per entry before summing."},
+        {"id": "expense-evidence", "kind": "sample-policy", "source_ids": [], "description": "Per-entry category/currency cap and receipt threshold are explicit. Require receipt at or above threshold; exceeding cap or currency mismatch holds the whole expense, without truncation or FX."},
+        {"id": "draft-comparison", "kind": "sample-policy", "source_ids": [], "description": "Zero-tolerance add/update/remove diagnostics; duplicate entry details or multiple active drafts for a project/period require clarification, not arbitrary selection."},
+        {"id": "period-cap", "kind": "sample-policy", "source_ids": [], "description": "Prior billed-in-period plus eligible new exceeding cap holds the whole project's new amount; equality is allowed. No partial allocation or inferred credit."},
+        {"id": "billing-closure", "kind": "sample-policy", "source_ids": [], "description": "Account for all entries/drafts/projects; preserve per-currency totals and partial-comparison boundaries; produce local review recommendations only."}
+      ],
+      "steps": [
+        {"id": "intake-billing-exports", "kind": "input", "rule_ids": ["billing-closure"], "procedure": "Inventory nine exports, service period and cutoff.", "trace": "Actual project/time/expense/draft counts and cutoff facts."},
+        {"id": "validate-billing-data", "kind": "validation", "rule_ids": ["eligibility-precedence", "draft-comparison"], "procedure": "Check schemas, IDs, minutes, amounts, currencies, date ranges and approval enums.", "trace": "Validated record counts or exact offending field."},
+        {"id": "join-billing-evidence", "kind": "join", "rule_ids": ["approval-context", "draft-review-context"], "procedure": "Join projects, entries, approval histories, rates/policies, ledger and draft details.", "trace": "Selected entry IDs with matching approval/rate/draft evidence."},
+        {"id": "resolve-entry-eligibility", "kind": "decision", "rule_ids": ["eligibility-precedence"], "procedure": "Choose unique eligible approval revision and explicit exclusion/hold dispositions.", "trace": "Actual approved/pending/recalled, billed and period decisions."},
+        {"id": "price-candidate-entries", "kind": "decision", "rule_ids": ["effective-time-rate", "expense-evidence"], "procedure": "Calculate time per entry and enforce expense receipt/cap/currency policy.", "trace": "Actual minutes/rate/amount, expense limits and eligibility branches."},
+        {"id": "compare-draft-details", "kind": "decision", "rule_ids": ["draft-comparison"], "procedure": "Find missing, differing, duplicate and ineligible draft details without modifying them.", "trace": "Real expected/draft amounts and proposed diagnostic actions."},
+        {"id": "check-project-caps", "kind": "decision", "rule_ids": ["period-cap"], "procedure": "Add prior period billing and eligible new charges, then apply whole-project holds.", "trace": "Prior/new/cap/overage values by project and currency."},
+        {"id": "triage-billing-exceptions", "kind": "exception", "rule_ids": ["draft-comparison", "expense-evidence", "period-cap"], "procedure": "Assign correction and clarification items; suppress speculative changes for ambiguous evidence.", "trace": "Actual issue owners, affected entries/projects and amounts."},
+        {"id": "emit-billing-review", "kind": "output", "rule_ids": ["billing-closure"], "procedure": "Emit complete local draft reconciliation, project summaries and review-only actions.", "trace": "Final eligible/held/excluded facts with separate currency totals."}
+      ],
+      "output_design": [
+        "Entry eligibility and charge table with approval/rate/policy provenance and excluded/held reasons.",
+        "Draft comparison details with missing/update/remove/clarify diagnostics and original line identities.",
+        "Project cap consumption including prior billing and whole-project hold amount.",
+        "Owned correction/clarification packet and per-currency complete/partial totals."
+      ],
+      "numeric_semantics": {
+        "time_amount": "round_cents(Decimal(minutes) * hourly_rate / 60), per entry, ROUND_HALF_UP",
+        "service_period": "[period_start, period_end)",
+        "approval": "unique highest revision recorded_at <= as_of; future ignored, conflicting highest held",
+        "receipt": "required when amount >= receipt_required_at",
+        "cap": "hold project only when prior_billed + eligible_new > period_cap",
+        "currency": "No FX or mixed-currency grand total",
+        "partial_billing": "Out of scope; a posted current entry is wholly excluded, never implicitly split.",
+        "output_order": ["entries by entry_type then entry_id", "projects by project_id", "draft differences by draft_id then entry_type then entry_id then line_id"]
+      },
+      "cases": [
+        {
+          "id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-10-02T12:00:00Z", "period_start": "2026-09-01", "period_end": "2026-10-01", "draft_tolerance": "0.00"},
+          "design": "Two USD projects. P1 cap 2000/hourly rate 100; P2 cap 500/rate 120. Travel cap 100, meals cap 50, receipt threshold 50. Six time entries, four expenses, two drafts, prior billing and multiple approval states.",
+          "independent_expectations": {
+            "eligible_entry_amounts": {"T1": "200.00", "T2": "150.00", "T4": "240.00", "T5": "60.00", "E1": "80.00", "E4": "40.00"},
+            "excluded": {"T3": "pending", "T6": "already-billed"},
+            "held_expenses": {"E2": "60.00 exceeds meals cap 50.00", "E3": "90.00 lacks required receipt"},
+            "projects": [
+              {"id": "P1", "eligible_new": "430.00", "prior_billed": "100.00", "cap": "2000.00", "proposed_consumption": "530.00", "draft_total": "560.00", "expected_draft_total": "430.00", "cap_hold": false},
+              {"id": "P2", "eligible_new": "340.00", "prior_billed": "200.00", "cap": "500.00", "proposed_consumption": "540.00", "draft_total": "280.00", "expected_draft_total": "340.00", "cap_hold": true, "overage": "40.00", "held_project_amount": "340.00"}
+            ],
+            "p1_corrections": [{"entry": "E1", "action": "add", "amount": "80.00"}, {"entry": "T2", "action": "update", "from": "160.00", "to": "150.00"}, {"entry": "T3", "action": "remove", "amount": "100.00"}, {"entry": "T6", "action": "remove", "amount": "100.00"}],
+            "p2_diagnostic_only": "Missing T5 at 60.00; project remains held.",
+            "eligible_by_currency": {"USD": "770.00"}, "draft_by_currency": {"USD": "840.00"}, "prior_billed_by_currency": {"USD": "300.00"}
+          },
+          "derivation": "P1: 120/60*100 + 90/60*100 + 80 = 430. Its draft 560 becomes 430 by -10-100-100+80. P2: 120/60*120 + 30/60*120 +40=340; 200+340=540 exceeds cap by 40, so all 340 is held. E2/E3 are not truncated or reimbursed.",
+          "covers": ["approval-context", "draft-review-context", "eligibility-precedence", "effective-time-rate", "expense-evidence", "draft-comparison", "period-cap", "billing-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-11-02T12:00:00Z", "period_start": "2026-10-01", "period_end": "2026-11-01", "draft_tolerance": "0.00"},
+          "design": "One new project with 1000 cap; rate 150 through October 14 and 180 from October 15; four time entries and three expenses. Changed travel/meals caps 150/60, receipt threshold 50. Recalled revision before cutoff and future reapproval after cutoff; one nonchargeable entry.",
+          "independent_expectations": {
+            "eligible_entry_amounts": {"A1": "125.00", "A2": "225.00", "EA1": "49.99", "EA3": "40.00"},
+            "excluded": {"A3": "recalled", "A4": "nonchargeable"},
+            "held_expenses": {"EA2": "50.00 without receipt at inclusive threshold"},
+            "eligible_new": "439.99", "prior_billed": "560.01", "cap": "1000.00", "proposed_consumption": "1000.00", "cap_hold": false,
+            "draft_total": "499.99", "expected_draft_total": "439.99", "corrections": [{"entry": "A3", "action": "remove", "amount": "60.00"}]
+          },
+          "derivation": "50/60*150=125; 75/60*180=225; 125+225+49.99+40=439.99. Adding prior 560.01 reaches, but does not exceed, 1000. A3's future reapproval is ineligible; remove its 60 from 499.99. EA2 hits the receipt threshold exactly.",
+          "covers": ["eligibility-precedence", "effective-time-rate", "expense-evidence", "draft-comparison", "period-cap", "billing-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions",
+          "config": {"as_of": "2026-12-02T12:00:00Z", "period_start": "2026-11-01", "period_end": "2026-12-01", "draft_tolerance": "0.00"},
+          "design": "New USD and EUR projects, changed receipt threshold 30, per-entry fractional-cent rounding, currency mismatch, exact cap, missing draft line and service-period end exclusion.",
+          "independent_expectations": {
+            "eligible_entry_amounts": {"TB1": "1.67", "TB2": "1.67", "EB1": "20.00", "TB3": "90.00"},
+            "held_expenses": {"EB2": "EUR 15.00 against USD project, no conversion", "EB3": "EUR 30.00 lacks receipt at threshold"},
+            "excluded": {"TB4": "service date 2026-12-01 outside November period"},
+            "projects": [
+              {"id": "P-B1", "currency": "USD", "eligible_new": "23.34", "prior_billed": "0.00", "cap": "500.00", "draft_total": "21.66", "cap_hold": false},
+              {"id": "P-B2", "currency": "EUR", "eligible_new": "90.00", "prior_billed": "160.00", "cap": "250.00", "draft_total": "90.00", "cap_hold": false}
+            ],
+            "corrections": [{"entry": "TB1", "action": "update", "from": "1.66", "to": "1.67"}, {"entry": "TB2", "action": "add", "amount": "1.67"}],
+            "eligible_by_currency": {"EUR": "90.00", "USD": "23.34"}, "mixed_currency_grand_total": null
+          },
+          "derivation": "Each 1/60*100 line rounds to 1.67, hence 3.34 rather than aggregated 3.33; adding 20 yields 23.34. Draft 21.66 needs +0.01+1.67. EUR prior 160 plus new 90 equals 250 cap. No cross-currency sum is meaningful.",
+          "covers": ["eligibility-precedence", "effective-time-rate", "expense-evidence", "draft-comparison", "period-cap", "billing-closure"],
+          "failure_modes": []
+        },
+        {
+          "id": "negative-malformed", "kind": "negative", "expected_status": "rejected",
+          "design": "An expense has amount -12.00, outside the positive-charge-only money schema.",
+          "independent_expectations": {"outputs": {}, "issue_code": "invalid-amount", "candidate_charges_created": 0},
+          "derivation": "Negative amounts are not interpreted as implicit credits or reimbursements; reject the bundle before financial calculations.",
+          "covers": ["expense-evidence"], "failure_modes": ["malformed-input"]
+        },
+        {
+          "id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions",
+          "design": "C1 has two highest approval revisions, approved and recalled, for a 60-minute 100/hour entry shown on a 100.00 draft. Separate-project C2 has valid approved 30 minutes at 120/hour and a matching 60.00 draft.",
+          "independent_expectations": {"quarantined_entries": ["C1"], "quarantined_draft_amount": "100.00", "computable_expected": "60.00", "computable_draft": "60.00", "computable_variance": "0.00", "issue_code": "contradictory-approval", "c1_action": "clarify-not-remove"},
+          "derivation": "The conflicting top revisions cannot establish approval or recall, so C1 has no computed candidate and no speculative removal. C2 independently computes 30/60*120=60 and matches its draft.",
+          "covers": ["eligibility-precedence", "draft-comparison", "billing-closure"], "failure_modes": ["contradictory-evidence"]
+        }
+      ],
+      "specific_tests": ["per-entry versus aggregate rounding", "receipt and expense cap exact boundaries", "service and effective rate interval boundaries", "overlapping rates", "future approvals and recalls", "already-billed entry exclusion", "duplicate drafts/details and conflicting approval evidence", "cap equality and whole-project hold", "separate USD/EUR totals", "ambiguous evidence never becomes an automatic removal or posting"]
+    }
+  ],
+  "handoff": {
+    "phase_1_outputs": ["research.md", "research.json"],
+    "implementation_after_approval": ["scenario.json", "HOW_TO.md", "sources.json", "workflow.json", "connections.json", "baseline.py", "mock-data with demo and two holdouts and two negatives", "independent expected JSON", "actual baseline-output and trace", "owned stdlib tests"],
+    "native_creator_allowlist_after_build": ["HOW_TO.md", "workflow.json", "connections.json", "mock-data/demo.json", "demo/baseline.webm"],
+    "private_from_creator": ["research.md", "research.json", "scenario.json", "sources.json", "baseline.py", "expected", "holdouts", "negative cases", "baseline-output", "validation answers", "shared source"],
+    "current_evidence": "Fetched public primary research and independently reasoned designs only; no baseline or native execution.",
+    "next_gate": "Send scoped research commit to parent and wait for research15-catalog-approved/build."
+  }
+}

@@ -106,8 +106,8 @@ fresh execution or connection availability evidence.
 
 ## Handoff labels and evidence boundaries
 
-- **Draft:** unresolved material rules/support/setup, offline synthetic
-  readiness, or an explicitly separate compatible-source export.
+- **Draft:** unresolved material rules/support/setup or offline synthetic
+  readiness. An editable source checkpoint is not an installable plugin.
 - **Package built:** an actual ZIP passed the Creator's subset checks for
   the named target. It is not installed merely because it exists.
 - **Installed:** the actual target Cowork host accepted this exact artifact.

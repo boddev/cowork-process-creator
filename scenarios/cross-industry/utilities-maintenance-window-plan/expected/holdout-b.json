@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "notice": "Planning review only; not safe-to-work clearance or authorization.",
+    "planning_window": {"as_of": "2026-12-01T07:00:00Z", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T12:00:00Z", "slot_minutes": 15, "max_search_starts": 24},
+    "orders": [
+      {"work_order_id": "UT-B01", "disposition": "proposed", "reason": null, "ready_at": "2026-12-01T08:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-B02", "disposition": "proposed", "reason": null, "ready_at": "2026-12-01T09:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-B03", "disposition": "deferred", "reason": "no-feasible-window", "ready_at": "2026-12-01T09:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-B04", "disposition": "proposed", "reason": null, "ready_at": "2026-12-01T09:45:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-B05", "disposition": "deferred", "reason": "planning-approval-missing", "ready_at": null, "missing_materials": [], "pending_predecessors": [], "search_starts": 0}
+    ],
+    "proposals": [
+      {"work_order_id": "UT-B01", "start": "2026-12-01T08:00:00Z", "end": "2026-12-01T09:00:00Z", "duration_minutes": 60, "crew_id": "E-B1", "area_id": "X", "tool_id": "T-B1", "contingent_on": []},
+      {"work_order_id": "UT-B02", "start": "2026-12-01T09:00:00Z", "end": "2026-12-01T09:45:00Z", "duration_minutes": 45, "crew_id": "M-B1", "area_id": "Y", "tool_id": "T-B1", "contingent_on": ["UT-B01"]},
+      {"work_order_id": "UT-B04", "start": "2026-12-01T09:45:00Z", "end": "2026-12-01T10:15:00Z", "duration_minutes": 30, "crew_id": "E-B1", "area_id": "Y", "tool_id": null, "contingent_on": []}
+    ],
+    "conflicts": [
+      {"work_order_id": "UT-B03", "candidate_start": "2026-12-01T09:00:00Z", "crew_id": null, "resource_id": "T-B1", "reason": "proposed-booking", "blocking_id": "UT-B02"}
+    ],
+    "review_queue": [
+      {"work_order_id": "UT-B03", "code": "no-feasible-window", "owner": "PLANNER-B", "next_action": "Review candidate windows, due time, and resource conflicts."},
+      {"work_order_id": "UT-B05", "code": "planning-approval-missing", "owner": "PLANNER-B", "next_action": "Request administrative planning evidence; do not authorize work."}
+    ],
+    "resource_load": [
+      {"resource_id": "E-B1", "kind": "crew", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 90, "total_booked_minutes": 90},
+      {"resource_id": "M-B1", "kind": "crew", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 45, "total_booked_minutes": 45},
+      {"resource_id": "T-B1", "kind": "tool", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 105, "total_booked_minutes": 105},
+      {"resource_id": "X", "kind": "area", "available_minutes": 120, "committed_minutes": 0, "proposed_minutes": 60, "total_booked_minutes": 60},
+      {"resource_id": "Y", "kind": "area", "available_minutes": 180, "committed_minutes": 0, "proposed_minutes": 75, "total_booked_minutes": 75}
+    ],
+    "summary": {"work_orders": 5, "proposed": 3, "deferred": 2, "job_minutes": 135, "rejected_candidates": 1}
+  },
+  "exceptions": [
+    {"code": "no-feasible-window", "message": "No complete resource window fits the order.", "work_order_id": "UT-B03"},
+    {"code": "planning-approval-missing", "message": "Administrative planning approval is missing.", "work_order_id": "UT-B05"}
+  ]
+}

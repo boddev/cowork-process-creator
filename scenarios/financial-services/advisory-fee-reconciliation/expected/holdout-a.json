@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "billing_period": {
+      "period_start": "2024-02-01", "period_end": "2024-03-01", "currency": "USD",
+      "as_of": "2024-03-01T00:00:00Z", "business_utc_offset_minutes": 0,
+      "day_count_basis": "actual-calendar-year", "rounding_mode": "half-up", "variance_tolerance_minor": 1
+    },
+    "account_reviews": [
+      {
+        "billing_account_id": "SYN-LEAP-A", "agreement_id": "SYN-AGR-LEAP-A", "currency": "USD",
+        "active_start": "2024-02-15", "active_end": "2024-03-01", "active_days": 15,
+        "calculation_status": "computed", "exact_fee_minor": {"numerator": 950000, "denominator": 183},
+        "computed_fee_minor": 5191, "rounding_decision": "below-half-down",
+        "draft_ids": ["SYN-DFT-LEAP-A"], "comparison_status": "draft-overstatement",
+        "draft_fee_minor": 5205, "delta_minor": 14, "pending_change_ids": [],
+        "review_flags": ["draft-overstatement"]
+      },
+      {
+        "billing_account_id": "SYN-LEAP-B", "agreement_id": "SYN-AGR-LEAP-B", "currency": "USD",
+        "active_start": "2024-02-01", "active_end": "2024-02-11", "active_days": 10,
+        "calculation_status": "computed", "exact_fee_minor": {"numerator": 250000, "denominator": 183},
+        "computed_fee_minor": 1366, "rounding_decision": "below-half-down",
+        "draft_ids": ["SYN-DFT-LEAP-B1", "SYN-DFT-LEAP-B2"], "comparison_status": "duplicate-drafts",
+        "draft_fee_minor": null, "delta_minor": null, "pending_change_ids": [],
+        "review_flags": ["duplicate-drafts"]
+      }
+    ],
+    "calculation_segments": [
+      {
+        "billing_account_id": "SYN-LEAP-A", "segment_index": 1,
+        "segment_start": "2024-02-15", "segment_end": "2024-02-22", "days": 7,
+        "day_count_denominator": 366, "schedule_id": "SYN-SCH-LEAP-A", "valuation_id": "SYN-VAL-LEAP-A1",
+        "coverage": "complete", "calculation_status": "computed", "billable_value_minor": 10000000,
+        "annual_numerator": 1000000000,
+        "bands": [
+          {"band_index": 1, "lower_value_minor": 0, "upper_value_minor": 10000000, "annual_rate_bps": 100, "band_value_minor": 10000000, "annual_numerator": 1000000000},
+          {"band_index": 2, "lower_value_minor": 10000000, "upper_value_minor": null, "annual_rate_bps": 50, "band_value_minor": 0, "annual_numerator": 0}
+        ],
+        "exact_fee_minor": {"numerator": 350000, "denominator": 183}
+      },
+      {
+        "billing_account_id": "SYN-LEAP-A", "segment_index": 2,
+        "segment_start": "2024-02-22", "segment_end": "2024-03-01", "days": 8,
+        "day_count_denominator": 366, "schedule_id": "SYN-SCH-LEAP-A", "valuation_id": "SYN-VAL-LEAP-A2",
+        "coverage": "complete", "calculation_status": "computed", "billable_value_minor": 20000000,
+        "annual_numerator": 1500000000,
+        "bands": [
+          {"band_index": 1, "lower_value_minor": 0, "upper_value_minor": 10000000, "annual_rate_bps": 100, "band_value_minor": 10000000, "annual_numerator": 1000000000},
+          {"band_index": 2, "lower_value_minor": 10000000, "upper_value_minor": null, "annual_rate_bps": 50, "band_value_minor": 10000000, "annual_numerator": 500000000}
+        ],
+        "exact_fee_minor": {"numerator": 200000, "denominator": 61}
+      },
+      {
+        "billing_account_id": "SYN-LEAP-B", "segment_index": 1,
+        "segment_start": "2024-02-01", "segment_end": "2024-02-11", "days": 10,
+        "day_count_denominator": 366, "schedule_id": "SYN-SCH-LEAP-B", "valuation_id": "SYN-VAL-LEAP-B",
+        "coverage": "complete", "calculation_status": "computed", "billable_value_minor": 5000000,
+        "annual_numerator": 500000000,
+        "bands": [
+          {"band_index": 1, "lower_value_minor": 0, "upper_value_minor": null, "annual_rate_bps": 100, "band_value_minor": 5000000, "annual_numerator": 500000000}
+        ],
+        "exact_fee_minor": {"numerator": 250000, "denominator": 183}
+      }
+    ],
+    "draft_comparisons": [
+      {
+        "draft_id": "SYN-DFT-LEAP-A", "billing_account_id": "SYN-LEAP-A", "currency": "USD",
+        "period_start": "2024-02-01", "period_end": "2024-03-01", "source_schedule_id": "SYN-SCH-LEAP-A",
+        "amount_minor": 5205, "disposition": "compared", "computed_fee_minor": 5191,
+        "delta_minor": 14, "comparison_status": "draft-overstatement"
+      },
+      {
+        "draft_id": "SYN-DFT-LEAP-B1", "billing_account_id": "SYN-LEAP-B", "currency": "USD",
+        "period_start": "2024-02-01", "period_end": "2024-03-01", "source_schedule_id": "SYN-SCH-LEAP-B",
+        "amount_minor": 1366, "disposition": "duplicate-draft", "computed_fee_minor": null,
+        "delta_minor": null, "comparison_status": null
+      },
+      {
+        "draft_id": "SYN-DFT-LEAP-B2", "billing_account_id": "SYN-LEAP-B", "currency": "USD",
+        "period_start": "2024-02-01", "period_end": "2024-03-01", "source_schedule_id": null,
+        "amount_minor": 1366, "disposition": "duplicate-draft", "computed_fee_minor": null,
+        "delta_minor": null, "comparison_status": null
+      }
+    ],
+    "pending_changes": [],
+    "evidence_dispositions": {
+      "engagements": [
+        {"billing_account_id": "SYN-LEAP-A", "disposition": "billable"},
+        {"billing_account_id": "SYN-LEAP-B", "disposition": "billable"}
+      ],
+      "schedule_versions": [
+        {"schedule_id": "SYN-SCH-LEAP-A", "billing_account_id": "SYN-LEAP-A", "disposition": "joined"},
+        {"schedule_id": "SYN-SCH-LEAP-B", "billing_account_id": "SYN-LEAP-B", "disposition": "joined"}
+      ],
+      "synthetic_value_intervals": [
+        {"valuation_id": "SYN-VAL-LEAP-A1", "billing_account_id": "SYN-LEAP-A", "disposition": "joined"},
+        {"valuation_id": "SYN-VAL-LEAP-A2", "billing_account_id": "SYN-LEAP-A", "disposition": "joined"},
+        {"valuation_id": "SYN-VAL-LEAP-B", "billing_account_id": "SYN-LEAP-B", "disposition": "joined"}
+      ]
+    },
+    "population_totals": {
+      "currency": "USD", "account_count": 2,
+      "computed": {"account_count": 2, "fee_minor": 6557},
+      "comparable": {"account_count": 1, "computed_fee_minor": 5191, "draft_fee_minor": 5205, "delta_minor": 14},
+      "computed_missing_draft": {"account_count": 0, "computed_fee_minor": 0},
+      "computed_duplicate_drafts": {"account_count": 1, "computed_fee_minor": 1366},
+      "uncomputed": {"account_count": 0, "billing_account_ids": []},
+      "not_billable": {"account_count": 0, "billing_account_ids": []}
+    },
+    "review": {
+      "human_review": "pending", "live_action": "none", "owner_role": "Billing manager or compliance reviewer",
+      "summary": "Synthetic review only; no fee invoice, debit, refund, trade, advice, or regulatory opinion."
+    }
+  },
+  "exceptions": [
+    {
+      "code": "draft-overstatement", "message": "Draft exceeds the recomputed fee beyond the inclusive tolerance.",
+      "billing_account_id": "SYN-LEAP-A", "record_id": "SYN-DFT-LEAP-A", "related_ids": ["SYN-DFT-LEAP-A"],
+      "from_date": "2024-02-01", "to_date": "2024-03-01", "field": null
+    },
+    {
+      "code": "duplicate-drafts", "message": "Multiple drafts share the account/period/currency key; comparison is held.",
+      "billing_account_id": "SYN-LEAP-B", "record_id": "SYN-DFT-LEAP-B1",
+      "related_ids": ["SYN-DFT-LEAP-B1", "SYN-DFT-LEAP-B2"],
+      "from_date": "2024-02-01", "to_date": "2024-03-01", "field": null
+    }
+  ]
+}

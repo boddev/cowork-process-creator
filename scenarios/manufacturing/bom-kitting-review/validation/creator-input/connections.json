@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Six independent logical export tables are bundled into one synthetic JSON input. No endpoint, credential, authentication, native connection, or live ERP access is required or asserted. Separately attached physical exports are not supported by the current native input contract."
+}

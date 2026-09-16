@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "as_of": "2099-11-02", "audit_start": "2099-11-01", "audit_end": "2099-11-03",
+    "tolerance_minor": 1, "rounding": "ROUND_HALF_UP",
+    "source_files": {
+      "stores": "locations-a.json", "products": "catalog-a.json", "base_prices": "reference-a.json",
+      "promotions": "offers-a.json", "promotion_scope": "scope-a.json",
+      "price_exceptions": "approvals-a.json", "observations": "readings-a.json"
+    }
+  },
+  "exports": {
+    "locations-a.json": [{"store_id": "SYN-STORE-A", "currency": "GBP", "date_basis": "store-local-calendar"}],
+    "catalog-a.json": [{"sku": "SYN-SKU-B-TIE", "unit": "EA"}, {"sku": "SYN-SKU-A-ROUND", "unit": "EA"}],
+    "reference-a.json": [
+      {"price_id": "SYN-BASE-A2", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "price_minor": 1005},
+      {"price_id": "SYN-BASE-A1", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "price_minor": 1005}
+    ],
+    "offers-a.json": [
+      {"promotion_id": "SYN-PROMO-B", "enabled": true, "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "priority": 30, "mode": "exclusive", "type": "amount-off", "value": 201},
+      {"promotion_id": "SYN-PROMO-HIDDEN50", "enabled": true, "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "priority": 30, "mode": "best-price", "type": "percent-off", "value": 5000},
+      {"promotion_id": "SYN-PROMO-A", "enabled": true, "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "priority": 30, "mode": "exclusive", "type": "percent-off", "value": 2000},
+      {"promotion_id": "SYN-PROMO-ROUND10", "enabled": true, "valid_from": "2099-11-01", "valid_to": "2099-11-04", "currency": "GBP", "unit": "EA", "priority": 10, "mode": "best-price", "type": "percent-off", "value": 1000}
+    ],
+    "scope-a.json": [
+      {"promotion_id": "SYN-PROMO-B", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-HIDDEN50", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-A", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-ROUND10", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "line_type": "include"}
+    ],
+    "approvals-a.json": [],
+    "readings-a.json": [
+      {"observation_id": "SYN-OBS-A3", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "observed_on": "2099-11-03", "currency": "GBP", "unit": "EA", "observed_minor": 906},
+      {"observation_id": "SYN-OBS-A2", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-B-TIE", "observed_on": "2099-11-02", "currency": "GBP", "unit": "EA", "observed_minor": 805},
+      {"observation_id": "SYN-OBS-A1", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-A-ROUND", "observed_on": "2099-11-01", "currency": "GBP", "unit": "EA", "observed_minor": 906}
+    ]
+  }
+}

@@ -26,6 +26,21 @@ builder = importlib.util.module_from_spec(MODULE_SPEC)
 MODULE_SPEC.loader.exec_module(builder)
 
 
+def native_metadata(directory, name="publishing.json"):
+    # Offline syntax fixture only; never approved metadata or a release artifact.
+    path = directory / name
+    path.write_bytes(builder.json_bytes({
+        "app_id": str(uuid.uuid4()),
+        "developer": {
+            "name": "Syntax fixture only",
+            "websiteUrl": "https://www.microsoft.com",
+            "privacyUrl": "https://privacy.microsoft.com/privacystatement",
+            "termsOfUseUrl": "https://www.microsoft.com/servicesagreement",
+        },
+    }))
+    return path
+
+
 class BuilderTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="n00-test-")
@@ -37,6 +52,7 @@ class BuilderTests(unittest.TestCase):
         self.skill = self.skill_dir / "SKILL.md"
         self.output = self.root / "plugin.zip"
         self.report = self.root / "report.json"
+        self.metadata_path = native_metadata(self.root)
 
     def change_spec(self, field, value):
         path = self.source / "plugin-spec.json"
@@ -45,7 +61,7 @@ class BuilderTests(unittest.TestCase):
         path.write_text(json.dumps(spec), encoding="utf-8")
 
     def assemble(self):
-        return builder.assemble(self.source, "compatible-source")[0]
+        return builder.assemble(self.source, builder.TARGET, self.metadata_path)[0]
 
     def metadata(self):
         # Syntax fixtures only, not an approved publisher. Never exported to dist.
@@ -63,26 +79,30 @@ class BuilderTests(unittest.TestCase):
         return path, value
 
     def test_bootstrap_bundles_its_own_builder_and_references(self):
-        payload, spec = builder.assemble(ROOT / "appPackage", "compatible-source")
+        payload, spec = builder.assemble(ROOT / "appPackage", builder.TARGET, self.metadata_path)
         self.assertEqual(len(spec["skills"]), 8)
         self.assertEqual(sum(path.endswith("/SKILL.md") for path in payload), 8)
         self.assertEqual(payload["skills/build-output-plugin/scripts/creator_builder.py"], BUILDER.read_bytes())
-        self.assertNotIn("manifest.json", payload)
+        self.assertIn("manifest.json", payload)
+        self.assertNotIn(".claude-plugin/plugin.json", payload)
         self.assertNotIn("plugin-spec.json", payload)
         self.assertFalse(any(path.endswith((".mp4", ".webm")) or "/tests/" in path for path in payload))
 
     def test_zip_roots_hash_inventory_and_honest_readiness(self):
-        result = builder.build(self.source, self.output, self.report, "compatible-source")
+        result = builder.build(self.source, self.output, self.report, metadata_path=self.metadata_path)
         data = self.output.read_bytes()
         self.assertEqual(result["sha256"], hashlib.sha256(data).hexdigest())
         self.assertEqual(result, json.loads(self.report.read_text(encoding="utf-8")))
-        self.assertEqual(result["status"], "Draft")
+        self.assertEqual(result["status"], "Package built")
+        self.assertEqual(result["target"], "cowork-v1.28")
+        self.assertEqual(result["artifact_kind"], "native-package")
         self.assertEqual(result["host_acceptance"], "unverified")
         self.assertEqual(result["native_execution"], "not_attested_by_builder")
         self.assertEqual(result["scheduling"], "not_exercised")
         with zipfile.ZipFile(self.output) as archive:
             self.assertIsNone(archive.testzip())
-            self.assertIn(".claude-plugin/plugin.json", archive.namelist())
+            self.assertIn("manifest.json", archive.namelist())
+            self.assertNotIn(".claude-plugin/plugin.json", archive.namelist())
             self.assertEqual(archive.namelist(), sorted(archive.namelist()))
             self.assertEqual(set(archive.namelist()), {row["path"] for row in result["files"]})
             for row in result["files"]:
@@ -133,6 +153,13 @@ class BuilderTests(unittest.TestCase):
             builder.build(self.source, self.output, self.report, "cowork-v1.28")
         self.assertFalse(self.output.exists())
         self.assertFalse(self.report.exists())
+
+    def test_alternative_manifest_target_is_not_an_output_plugin(self):
+        for target in ("compatible-source", "claude", "devPreview"):
+            with self.subTest(target=target), self.assertRaisesRegex(builder.BuildError, "native Microsoft"):
+                builder.build(self.source, self.output, self.report, target, self.metadata_path)
+            self.assertFalse(self.output.exists())
+            self.assertFalse(self.report.exists())
 
     def test_bad_metadata_is_rejected(self):
         path, good = self.metadata()
@@ -318,11 +345,11 @@ class BuilderTests(unittest.TestCase):
     def test_no_overwrite_or_output_inside_source(self):
         self.output.write_bytes(b"existing user artifact")
         with self.assertRaisesRegex(builder.BuildError, "overwrite"):
-            builder.build(self.source, self.output, self.report, "compatible-source")
+            builder.build(self.source, self.output, self.report, metadata_path=self.metadata_path)
         self.assertEqual(self.output.read_bytes(), b"existing user artifact")
         self.assertFalse(self.report.exists())
         with self.assertRaisesRegex(builder.BuildError, "outside"):
-            builder.build(self.source, self.source / "new.zip", self.report, "compatible-source")
+            builder.build(self.source, self.source / "new.zip", self.report, metadata_path=self.metadata_path)
 
     def test_report_failure_removes_only_new_zip(self):
         real_write = builder.write_new_file
@@ -334,19 +361,19 @@ class BuilderTests(unittest.TestCase):
 
         with mock.patch.object(builder, "write_new_file", side_effect=failing_write):
             with self.assertRaisesRegex(OSError, "synthetic"):
-                builder.build(self.source, self.output, self.report, "compatible-source")
+                builder.build(self.source, self.output, self.report, metadata_path=self.metadata_path)
         self.assertFalse(self.output.exists())
         self.assertFalse(self.report.exists())
 
     def test_downloaded_builder_runs_without_developer_checkout_imports(self):
-        payload, _ = builder.assemble(ROOT / "appPackage", "compatible-source")
+        payload, _ = builder.assemble(ROOT / "appPackage", builder.TARGET, self.metadata_path)
         installed = self.root / "installed-creator"
         with zipfile.ZipFile(io.BytesIO(builder.zip_bytes(payload))) as archive:
             archive.extractall(installed)
         script = installed / "skills" / "build-output-plugin" / "scripts" / "creator_builder.py"
         result = subprocess.run(
             [sys.executable, "-I", "-B", str(script), "build", "--source", str(self.source),
-             "--output", str(self.output), "--report", str(self.report), "--target", "compatible-source"],
+             "--output", str(self.output), "--report", str(self.report), "--metadata", str(self.metadata_path)],
             cwd=self.root, capture_output=True, text=True, timeout=30,
         )
         self.assertEqual(result.returncode, 0, result.stderr)

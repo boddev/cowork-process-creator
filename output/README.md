@@ -5,6 +5,12 @@ This directory currently holds only this explanation and the
 [pending matrix](status.json). It contains no placeholder or locally fabricated
 native plugin ZIPs.
 
+Future plugins must be native **Microsoft Copilot Cowork M365 v1.28** archives:
+root `manifest.json`, icons and declared `agentSkills`, with included real
+connector tool descriptors when applicable. Claude-compatible source ZIPs
+or conversion do not satisfy this target. Missing approved app/publisher
+metadata blocks packaging; do not fabricate it.
+
 Actual native-generated plugins, downloaded result artifacts, separate
 creation/install/invocation observations, and read-only comparison receipts
 belong under `output/<scenario-id>` only after the authorized operator obtains

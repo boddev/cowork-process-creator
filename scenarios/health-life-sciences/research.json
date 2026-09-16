@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "artifact_type": "sector-research-catalog",
+  "industry": "health-life-sciences",
+  "researched_on": "2026-09-14",
+  "status": "research-qualified-awaiting-catalog-approval",
+  "base_commit": "1915f046b59c30c576cdaecb50ecfb6e092d23a2",
+  "shared_contract": {
+    "path": "scenarios/SCENARIO_CONTRACT.md",
+    "version": 1,
+    "source_commit": "d641b1f34328e5293e043d5975d0944b485236c0",
+    "interface_approved": true,
+    "full_catalog_approved": false,
+    "construction_authorized": false,
+    "note": "This file proposes business payloads, not a replacement for the shared scenario, result, trace, or staging contracts. Parent approval of all 15 researched scenarios remains a separate gate."
+  },
+  "boundaries": {
+    "synthetic_only": true,
+    "synthetic_id_prefix": "SYN-",
+    "data_excluded": [
+      "Real people, patients, PHI, provider identifiers, trial records, customer data, credentials, and client systems",
+      "Patient demographics, clinical observations, test results, diagnoses, treatments, consent forms, and enrollment lists",
+      "Actual product labeling or actual specimen suitability rules represented as invented mock policy"
+    ],
+    "permitted_outcome": "Read mock exported tables, reconcile their administrative evidence, and produce a deterministic review-ready packet with unresolved issues and provenance.",
+    "prohibited_outcomes": [
+      "Clinical decisions, trial enrollment or site activation approval",
+      "Specimen acceptance or rejection for patient care, clinical ordering, diagnosis, or treatment",
+      "Product use, release, disposal, physical quarantine, or inventory movement authorization",
+      "Regulatory compliance, validated-system, or independent human-review claims",
+      "Live business writes, notifications, scheduling, connections, publication, or native UI actions"
+    ],
+    "human_boundary": "Qualified trial, laboratory, and quality reviewers retain all actual interpretation and disposition. A packet marked completed has completed file processing only; rejected refers only to an invalid input packet, never a specimen or product.",
+    "connections": {
+      "schema_version": 1,
+      "mode": "mock-exports-only",
+      "availability": "not-required",
+      "connections": [],
+      "note": "Synthetic tables model exported files. No endpoint, authentication, CTMS, LIS, EHR, sensor, inventory, manufacturer, or public-health integration is provisioned or verified."
+    },
+    "native": {
+      "status": "blocked",
+      "as_of": "2026-09-14",
+      "creation": "not-run",
+      "installation": "not-run",
+      "independent_execution": "not-run",
+      "prerequisites": "Approved Computer Use tools restored, an unlocked accessible session, and parent-coordinated authorization.",
+      "no_workaround": "No alternate browser, Playwright, private API, cookie, token, shell, or model/skill route.",
+      "historical_publication_outcome": "unknown",
+      "output_rule": "Only actual native-generated plugins may enter root output. No locally generated ZIP or placeholder is native evidence."
+    }
+  },
+  "sources": [
+    {
+      "id": "hls-src-ich-e6r3",
+      "title": "ICH E6(R3) Guideline for Good Clinical Practice, final version adopted 06 January 2025",
+      "publisher": "International Council for Harmonisation",
+      "url": "https://database.ich.org/sites/default/files/ICH_E6%28R3%29_Step4_FinalGuideline_2025_0106.pdf",
+      "accessed": "2026-09-14",
+      "scope": "Annex 1, Appendix C: management and essentiality of trial records; a non-participant administrative subset only.",
+      "supported_claims": [
+        "C.2.1 addresses identifiable, appropriately version-controlled records with relevant author, reviewer, approver, date, and signature information.",
+        "C.2.3-C.2.6 address repositories, record locations, version history, timely filing, completeness, readability, access, and traceable alterations.",
+        "C.3.1-C.3.3 make essentiality contextual; the essential-records table is not exhaustive and some records depend on trial design and conduct.",
+        "The table includes signed protocols and amendments, dated IRB/IEC opinions, qualifications, trial-specific training, and delegation documentation."
+      ],
+      "limitations": "This guideline is not a universal checklist, annual-expiry mandate, or automatic readiness decision. The synthetic checklist, expiry calculations, warning windows, and document-ranking rules are local sample policies. No participant records are included.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "Public HTTPS download; text extracted with already-installed pdftotext; PDF page references checked with already-installed pypdf.",
+        "edition_observed": "Final version, adopted 2025-01-06",
+        "sha256": "e6ce19e36ce7d2e294f89ee89492b9e035178c3cca48984392bbd92eec9b002c",
+        "locators": [
+          "Appendix C.2, printed pages 63-64, PDF pages 70-71",
+          "Appendix C.3 and essential-records table, printed pages 64-68, PDF pages 71-75"
+        ],
+        "short_quote": "Records should be identifiable and version controlled"
+      }
+    },
+    {
+      "id": "hls-src-fda-e6r3",
+      "title": "E6(R3) Good Clinical Practice (GCP)",
+      "publisher": "U.S. Food and Drug Administration",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp",
+      "accessed": "2026-09-14",
+      "scope": "FDA final-guidance announcement and its risk-proportionate framing.",
+      "supported_claims": [
+        "FDA announces final E6(R3) guidance and describes flexible, risk-based approaches.",
+        "The announcement describes clarified sponsor and investigator responsibilities and proportionality throughout the trial lifecycle."
+      ],
+      "limitations": "The HTML page supports the announcement and framing only. Detailed essential-record claims cite the independently retrieved ICH PDF, not this landing page or its unretrieved FDA download.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "web_fetch, HTML body",
+        "edition_observed": "Final guidance announcement; no publication date inferred from the fetched body.",
+        "sha256": null,
+        "locators": ["Opening final-guidance paragraph", "Key updates in ICH E6 (R3)"],
+        "short_quote": null
+      }
+    },
+    {
+      "id": "hls-src-cdc-temperature",
+      "title": "Temperature Monitoring",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/vaccines/hcp/storage-handling/temp-monitoring.html",
+      "accessed": "2026-09-14",
+      "scope": "Immunization-product temperature monitoring, excursion documentation, and escalation.",
+      "supported_claims": [
+        "An excursion is evaluated against the relevant manufacturer's package insert or EUA fact sheet, not a universal temperature band.",
+        "Event documentation includes timing, temperatures, potentially affected inventory and lots, actions, contacts, and instructions received.",
+        "CDC describes labeling and separating exposed inventory, retaining it rather than automatically discarding it, and obtaining manufacturer or immunization-program guidance.",
+        "Magnitude and time outside the recommended range are information manufacturers use when assessing an excursion."
+      ],
+      "limitations": "The scenario only prepares an evidence packet. It cannot label or move physical stock, contact authorities, determine viability, repeat a dose, or authorize use/disposal. Temperature profiles and sample-hold duration estimation are invented fixture policies, not CDC or product instructions.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "web_fetch, HTML body",
+        "edition_observed": "Live page retrieved 2026-09-14; no page revision date inferred.",
+        "sha256": null,
+        "locators": ["Vaccine Temperature Monitoring", "Temperature Excursions", "Perform the following steps in the event of a temperature excursion"],
+        "short_quote": "Do not discard these vaccines."
+      }
+    },
+    {
+      "id": "hls-src-cdc-storage",
+      "title": "Vaccine Storage and Handling",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/vaccines/hcp/storage-handling/index.html",
+      "accessed": "2026-09-14",
+      "scope": "Toolkit scope, July 2026 updates, product-specific information, and limitations of compliance language.",
+      "supported_claims": [
+        "The toolkit applies to vaccines and RSV monoclonal antibody products.",
+        "The page reports a full-toolkit update on 2026-07-14, including storage of products with different temperature ranges.",
+        "Product-specific guidance and jurisdiction-specific program requirements must be distinguished.",
+        "CDC cautions that vendor compliance language does not establish CDC validation or endorsement."
+      ],
+      "limitations": "Vaccine guidance is not generalized to every medical supply. No real licensed product or manufacturer profile is modeled; no CDC, VFC, or regulatory compliance is asserted.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "web_fetch, HTML body",
+        "edition_observed": "Page explicitly states full toolkit updated 2026-07-14.",
+        "sha256": null,
+        "locators": ["About the Toolkit", "Key Updates", "Where to Find Current, Product-specific Storage and Handling Guidance", "Vaccines for Children (VFC) Program"],
+        "short_quote": null
+      }
+    },
+    {
+      "id": "hls-src-cms-clia-manual",
+      "title": "State Operations Manual, Appendix C - Survey Procedures and Interpretive Guidelines for Laboratories and Laboratory Services",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/som107ap_c_lab.pdf",
+      "accessed": "2026-09-14",
+      "scope": "Relevant CLIA nonwaived-test quality-system provisions and interpretive guidance, not a complete regulatory analysis.",
+      "supported_claims": [
+        "D5203 / 42 CFR 493.1232 addresses positive identification through receipt, accessioning, and subsequent laboratory phases.",
+        "D5301 and D5305 / 493.1241(a),(c) address authorized requests and requisition information, including identifiers, requested tests, specimen source, and collection date/time as applicable.",
+        "D5309 / 493.1241(e) addresses accurate transcription of requisition information into a record system or LIS.",
+        "D5311 / 493.1242(a) addresses written specimen-handling procedures, including labeling and processing; its acceptability/rejection provisions remain outside this scenario.",
+        "D5313 / 493.1242(b) requires documenting the date and time of specimen receipt.",
+        "D5391 / 493.1249(a) addresses ongoing monitoring, assessment, and correction of preanalytic-system problems."
+      ],
+      "limitations": "The mock intentionally omits clinical demographics, actual authorized-person verification, suitability/rejection criteria, testing, results, and many CLIA requirements. Its synthetic subject tokens are not real patient identifiers. An administrative accession SLA is not a CLIA time limit, and this report is not CLIA compliance.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "Public HTTPS download; text extracted with already-installed pdftotext; PDF page references checked with already-installed pypdf.",
+        "edition_observed": "Cover: Rev. 236, issued 2026-01-23. The cited D5203/D5301-D5313/D5391 sections show Rev. 233, issued/effective/implementation 2025-09-12.",
+        "sha256": "b6937df6f41c22541e55094f5345912289e3406e1fea6e0a4f28b86bb7566f66",
+        "locators": [
+          "D5203, PDF page 124",
+          "D5301-D5309, PDF pages 134-137",
+          "D5311-D5313, PDF pages 137-140",
+          "D5391, PDF pages 141-142"
+        ],
+        "short_quote": "The laboratory must document the date and time it receives a specimen."
+      }
+    },
+    {
+      "id": "hls-src-cms-clia-overview",
+      "title": "Clinical Laboratory Improvement Amendments (CLIA)",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments",
+      "accessed": "2026-09-14",
+      "scope": "CLIA program scope and test-complexity context.",
+      "supported_claims": [
+        "CMS describes CLIA as regulating human laboratory testing for health assessment or diagnosis, prevention, or treatment.",
+        "The page distinguishes requirements according to test-method complexity."
+      ],
+      "limitations": "This overview is used to bound claims, not to establish a particular accession algorithm, certification outcome, or universal rule for every laboratory.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "web_fetch, HTML body",
+        "edition_observed": "Live page retrieved 2026-09-14; no page revision date inferred.",
+        "sha256": null,
+        "locators": ["Opening CLIA program description", "Test-method complexity paragraph"],
+        "short_quote": null
+      }
+    },
+    {
+      "id": "hls-src-who-lqms",
+      "title": "Laboratory quality management system: handbook",
+      "publisher": "World Health Organization",
+      "url": "https://www.who.int/publications/i/item/9789241548274",
+      "accessed": "2026-09-14",
+      "scope": "Laboratory quality management includes management, administration, and laboratory work.",
+      "supported_claims": [
+        "The publication overview explicitly includes administrative stakeholders in health laboratory quality management."
+      ],
+      "limitations": "Only the public overview was fetched. No handbook chapter, ISO text, specimen rule, or accreditation claim is inferred from it.",
+      "retrieval": {
+        "status": "content-fetched",
+        "method": "web_fetch, HTML overview",
+        "edition_observed": "Publication overview; publication date not inferred from the fetched body.",
+        "sha256": null,
+        "locators": ["Overview"],
+        "short_quote": null
+      }
+    }
+  ],
+  "discovery_exclusions": [
+    "Search summaries are discovery aids only. Incorrect ICH section labels and an invented older PDF URL were replaced by the fetched final guideline and its actual Appendix C.",
+    "The attempted FDA media/169090 download returned Not found. Its contents were not treated as retrieved evidence; the FDA HTML announcement and independently fetched ICH PDF are distinguished.",
+    "eCFR returned an automated-access/CAPTCHA notice, not regulatory text. No bypass was attempted and that response supports no substantive claim.",
+    "Guessed govinfo annual-section URLs returned error pages and an obsolete CMS PDF path returned 404; none is a source in this catalog.",
+    "Unverified search-summary laboratory section titles and third-party citations were discarded in favor of the actual CMS manual's D-tags and text.",
+    "No whole source document or full extraction is committed. The catalog retains links, limited quotations, locators, retrieval facts, and hashes where actually obtained."
+  ],
+  "common_design": {
+    "result_envelope": {
+      "schema_version": 1,
+      "status_values": ["completed", "completed_with_exceptions", "rejected"],
+      "outputs": "Scenario-specific object; no business fields outside outputs.",
+      "exceptions": "Ordered objects containing code and message, with optional entity IDs, rule IDs, and source references."
+    },
+    "proposed_limits": {
+      "classification": "sample-policy",
+      "max_rows_per_table": 1000,
+      "max_total_rows": 5000,
+      "max_derived_pairs": 10000,
+      "behavior": "Validate positive bounded limits before joins. Reject an over-limit payload explicitly; never truncate a decision set or retry until success."
+    },
+    "validation_rules": [
+      "Reject malformed required types, unsupported fields, invalid date/timestamp syntax, non-finite values, booleans masquerading as integers, and invalid policy configuration before business evaluation.",
+      "Date-only values are Gregorian YYYY-MM-DD; timestamps are whole-second UTC YYYY-MM-DDTHH:MM:SSZ. No local clock, implicit timezone, float duration, or wall-clock output.",
+      "Exact repeated rows with the same record ID collapse deterministically with a duplicate count and a duplicate-evidence exception. Conflicting values for the same key quarantine that entity and its dependent evaluations; never first-wins.",
+      "Future evidence is excluded from the as-of assessment and listed with its reason. Known missing, contradictory, unavailable, and out-of-scope evidence remains explicit rather than becoming a successful default.",
+      "Use exact synthetic keys only. No name-based or fuzzy identity joins, external enrichment, generated clinical facts, or free-text instructions executed as code.",
+      "Sort result arrays by documented business keys and reason priority. Preserve source table and record IDs, selected/excluded record IDs, policy IDs, and duplicate multiplicities; input hashes belong to the shared trace.",
+      "A completed packet can include unresolved review tasks. Any warning, duplicate, or review issue makes the status completed_with_exceptions; a syntactically/business-structurally unusable payload is rejected."
+    ],
+    "independent_golden_strategy": [
+      "After catalog approval, freeze procedure rules and write all five expected JSON envelopes before the first baseline execution.",
+      "Derive expectation tables from explicit requirement grids, interval intersections, or join truth tables, with manual date arithmetic and per-case count-conservation assertions.",
+      "Document sector-author reasoning, not a claim of independent human review. A separate arithmetic check may use stdlib date/integer operations without importing the baseline.",
+      "Never execute baseline code to author expected values, copy baseline outputs, import expected files in the solver, or change a golden merely to silence a mismatch.",
+      "On a mismatch, reconcile the written rule, input fact, and independently derived assertion; correct the faulty side with an explicit reason.",
+      "Withheld holdouts, negative cases, derivations, expected files, this research catalog, baseline code, and baseline outputs are never Creator inputs."
+    ],
+    "future_execution_interface": "baseline.py implements solve(payload) -> (result, events), uses Python stdlib plus scenario_support.run_cli, and simulates exported-data processing only.",
+    "future_trace_video": {
+      "owner": "Shared foundation",
+      "events": "Actual computed stage snapshots, at least six meaningful demo events spanning input, validation, join, decision, exception, and output. First input, last output; bounded tables and facts follow SCENARIO_CONTRACT.md.",
+      "duration_seconds": "30-90",
+      "label": "Synthetic baseline execution visualization - not Cowork or a live system",
+      "visual_only_policy": "Internal storyboard hints below are presentation observations, not concealed clinical or safety rules. Do not copy them into a native authoring prompt; any visual-observation evaluation is distinct from deterministic business comparisons."
+    },
+    "native_capabilities": [
+      {"capability": "files.read", "needed_for": "Allowed procedure, workflow, connections, demo payload, and media inputs", "status": "unverified"},
+      {"capability": "files.write", "needed_for": "Review packet and actual generated output plugin", "status": "unverified"},
+      {"capability": "reasoning-and-allowed-execution", "needed_for": "Independent authoring, bounded joins, dates, integer arithmetic, and reports", "status": "unverified"},
+      {"capability": "media.video-frames", "needed_for": "Actual observation of the baseline demonstration", "status": "unverified"}
+    ],
+    "native_gaps": [
+      "Current access gate prevents observing any required native capability or running the Creator.",
+      "File exports do not establish CTMS/LIS/EHR access, authenticated records, sensor fidelity, signatures, or permissions.",
+      "Native attachment/media observation and independent plugin execution must be evidenced separately; historical native work is not inherited.",
+      "If a required native capability is missing, report a gap. No backend, custom MCP authoring service, external model/media API, OCR/transcription service, runner, device agent, scheduler, resource provisioning, or installer is allowed."
+    ],
+    "native_staging_allowlist": ["HOW_TO.md", "workflow.json", "connections.json", "mock-data/demo.json", "demo/baseline.webm"]
+  },
+  "scenarios": [
+    {
+      "id": "hls-01",
+      "slug": "site-essential-document-review",
+      "title": "Clinical-trial site essential-document completeness and expiry review packet",
+      "workflow_family": "temporal-document-completeness",
+      "qualification": "qualified-administrative-synthetic",
+      "risk_level": "high",
+      "source_ids": ["hls-src-ich-e6r3", "hls-src-fda-e6r3"],
+      "purpose": "Reconcile a synthetic site's exported essential-record manifest against an explicit, contextual checklist and prepare an evidence-linked review packet.",
+      "trigger": "A trial-operations coordinator requests an as-of review of a bounded mock file export.",
+      "roles": ["Synthetic trial-operations coordinator", "Synthetic document-control reviewer", "Qualified trial reviewer outside the simulation"],
+      "start": "Supplied synthetic trial/site, requirement, document, artifact-manifest, and open-review-task tables plus dated sample policy.",
+      "end": "Requirement matrix, site rollup, selected/excluded evidence register, and deduplicated draft clarification queue for human review.",
+      "not_end": "Site activation, enrollment, ethics approval, signature verification, actual CTMS filing, regulatory certification, or disposition of real trial records.",
+      "input_schema_proposal": {
+        "top_level": ["as_of_date: date", "policy: object", "trials: array", "sites: array", "requirements: array", "documents: array", "artifacts: array", "open_review_tasks: array"],
+        "policy_fields": ["policy_id: SYN-POLICY token", "warning_days: nonnegative integer", "draft_review_days: nonnegative integer", "max_rows_per_table: bounded positive integer", "max_total_rows: bounded positive integer", "max_derived_pairs: bounded positive integer"],
+        "tables": [
+          {"name": "trials", "key": "trial_id", "fields": ["trial_id: SYN-ID", "required_protocol_version: positive integer"]},
+          {"name": "sites", "key": "site_id", "fields": ["site_id: SYN-ID", "trial_id: SYN-ID", "site_kind: configured code", "owner_role_id: SYN-ROLE token", "in_scope: boolean"]},
+          {"name": "requirements", "key": "requirement_id", "fields": ["requirement_id: SYN-ID", "site_kind: configured code", "document_type: configured code", "match_protocol_version: boolean", "signature_required: boolean", "expiry_required: boolean", "refresh_days: positive integer or null"]},
+          {"name": "documents", "key": "document_id", "fields": ["document_id: SYN-ID", "site_id: SYN-ID", "document_type: configured code", "version_seq: positive integer", "protocol_version: positive integer or null", "issued_on: date", "effective_on: date", "recorded_on: date", "expires_on: date or null", "artifact_id: SYN-ID", "signature_recorded: boolean"]},
+          {"name": "artifacts", "key": "artifact_id", "fields": ["artifact_id: SYN-ID", "export_available: boolean", "readability_attested: boolean", "source_ref: synthetic export reference"]},
+          {"name": "open_review_tasks", "key": "task_id", "fields": ["task_id: SYN-ID", "site_id: SYN-ID", "requirement_id: SYN-ID", "reason_code: configured code", "opened_on: date"]}
+        ],
+        "joins": [
+          "sites.trial_id -> trials.trial_id; sites.site_kind -> requirements.site_kind forms the expected requirement grid.",
+          "(site_id, document_type) -> eligible documents; choose the unique highest version_seq after the as-of filter.",
+          "documents.artifact_id -> artifacts.artifact_id supplies exported availability/readability evidence, not an independent real-document check.",
+          "(site_id, requirement_id, reason_code) -> open_review_tasks identifies an existing clarification reference instead of creating duplicate draft work."
+        ],
+        "proposal_note": "The export deliberately contains no clinical document bodies or actual signatures. Completeness is completeness of the configured administrative manifest, not authenticity or sufficiency of real trial evidence."
+      },
+      "output_schema_proposal": {
+        "outputs": [
+          "as_of_date and policy_id",
+          "requirement_matrix: site_id, trial_id, requirement_id, document_type, selected_document_id or null, assessment_state, ordered reason_codes, effective_expiry or null, days_to_expiry or null, source_refs",
+          "site_summary: required_count, no_exception_count, warning_count, review_count by site",
+          "evidence_register: selected, duplicate, future, superseded, unavailable, and conflicting record references with reasons",
+          "draft_review_queue: site_id, requirement_id, reason_code, owner_role_id, existing_task_ids, draft_review_by, action=request-evidence-review",
+          "human_review_required: true"
+        ],
+        "ordering": "Requirement rows: site_id, requirement_id. Site summaries: site_id. Queue: site_id, requirement_id, reason priority. Evidence references: table, record ID.",
+        "no_authorization_fields": ["site_activated", "enrollment_approved", "regulatory_compliant"]
+      },
+      "policies": [
+        {"id": "hls-01-record-control", "kind": "source-backed", "source_ids": ["hls-src-ich-e6r3"], "rule": "Track version, location, availability, dated evidence, and traceability rather than treating a filename as sufficient evidence.", "boundary": "The export only reports these attributes; real-document verification stays human."},
+        {"id": "hls-01-checklist", "kind": "sample-policy", "source_ids": [], "rule": "Use the supplied site-kind checklist. Demo categories are protocol, ethics-opinion metadata, qualification metadata, and training metadata; no universal required set is inferred.", "boundary": "Requirements are invented for this fixture, informed by but not mandated wholesale by ICH."},
+        {"id": "hls-01-as-of-version", "kind": "sample-policy", "source_ids": [], "rule": "Require effective_on and recorded_on <= as_of_date. Select the unique highest version_seq; retain excluded future/superseded evidence. A deficient latest record never falls back to an older apparently complete record. Issuance after effectiveness or expiry before issuance is contradictory chronology.", "boundary": "Conflicting highest versions or impossible chronology quarantine that requirement."},
+        {"id": "hls-01-expiry", "kind": "sample-policy", "source_ids": [], "rule": "Effective expiry is the earlier non-null value of explicit expires_on and issued_on + configured refresh_days. Null refresh_days creates no annual expiry. When expiry_required is true and no expiry can be computed, flag missing-expiry-evidence.", "boundary": "These are mock company review dates, never universal regulatory expiration rules."},
+        {"id": "hls-01-date-boundaries", "kind": "sample-policy", "source_ids": [], "rule": "Expiry is inclusive through its date: expiry < as_of means expired; 0 <= days_to_expiry <= warning_days means expiring-soon. Demo warning_days=30, draft_review_days=2.", "boundary": "Warning and follow-up windows are configurable administrative conveniences."},
+        {"id": "hls-01-review-routing", "kind": "sample-policy", "source_ids": [], "rule": "Retain every reason, with primary priority conflict, missing-document, unavailable-evidence, missing-signature-evidence, protocol-version-mismatch, missing-expiry-evidence, expired, expiring-soon. Join existing tasks; draft new requests only when absent.", "boundary": "No task is sent or closed and no clinical/ethics approval is inferred."}
+      ],
+      "stages": [
+        {"id": "load-review-export", "kind": "input", "purpose": "Capture as-of date, policy, table counts, and synthetic provenance."},
+        {"id": "validate-record-evidence", "kind": "validation", "purpose": "Validate schema, dates, bounds, exact duplicates, conflicting keys, and declared evidence fields."},
+        {"id": "expand-site-requirements", "kind": "join", "purpose": "Join trials, in-scope sites, and contextual checklist to preserve missing-document rows."},
+        {"id": "select-as-of-documents", "kind": "join", "purpose": "Filter effective/recorded dates, resolve versions, and cross-reference artifact availability."},
+        {"id": "assess-checklist-gaps", "kind": "decision", "purpose": "Evaluate signature metadata, required protocol version, supplied expiry policy, and exact date boundaries."},
+        {"id": "route-evidence-exceptions", "kind": "exception", "purpose": "Quarantine ambiguous requirements, preserve all reason codes, and join existing review tasks."},
+        {"id": "reconcile-review-counts", "kind": "decision", "purpose": "Check grid conservation and unique queue keys; distinguish warnings from evidence blockers."},
+        {"id": "write-review-packet", "kind": "output", "purpose": "Return sorted matrix, rollups, provenance, and draft requests with the mandatory human boundary."}
+      ],
+      "case_proposals": [
+        {"id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "As-of 2026-09-14, two SYN sites and four requirements each. Three cells have no checklist exception; one ethics-opinion metadata record expires that day; four require review for an expired training record, wrong protocol version, unavailable artifact, and missing qualification record respectively.", "independent_assertions": ["Eight expected cells = three no-exception + one warning + four review.", "The date-equal expiry is a zero-day warning, not expired.", "Unavailable and missing evidence remain different reasons; none authorizes site activation."]},
+        {"id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Different site, protocol version, and dates. Include one future-recorded higher version, expiry exactly +30 days, expiry +31 days, a null-expiry qualification record, and an existing matching review task.", "independent_assertions": ["The future-recorded record cannot replace as-of evidence.", "+30 is warning-inclusive; +31 is not.", "Null expiry without an expiry requirement is not automatically deficient.", "A matching open task is referenced once rather than duplicated."]},
+        {"id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Change site-kind applicability, required protocol version, warning_days to 7, and training refresh policy. Include an out-of-scope site, a newer unsigned document above an older signed record, and a repeated identical export row.", "independent_assertions": ["The requirement denominator follows only in-scope site-kind pairs.", "The unsigned newest record remains deficient; no fallback.", "Derived expiry is computed from the changed refresh policy.", "Identical repeated evidence cannot multiply the denominator or queue."]},
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "failure_modes": ["malformed-input"], "design": "Parseable object with an invalid calendar date and a boolean in version_seq, plus a separate boundary variant exceeding the declared row limit.", "independent_assertions": ["Explicit validation exception(s), empty business outputs, and no review-ready claim.", "Input rejection is not rejection of a site, trial, or person."]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions", "failure_modes": ["contradictory-evidence"], "design": "Same highest site/document version has conflicting expiry or signature evidence; another unrelated requirement is valid. Include two open task IDs for the same review key.", "independent_assertions": ["The conflicting requirement is quarantined with both evidence references, not first-wins.", "The unrelated requirement is still reported.", "Multiple existing tasks remain visible as a duplicate-task issue, without drafting an additional task."]}
+      ],
+      "golden_method": "Independently enumerate the site-kind requirement grid, choose eligible version keys, subtract calendar dates, and assign reason sets. Prove required = no-exception + warning + review, and one queue row per requirement/reason key. Expected files do not yet exist.",
+      "visual_only_storyboard": "Show the warning row with an amber left border and an expanded source-reference strip before the site rollup. These presentation observations stay out of the native authoring prompt.",
+      "native_specific_gap": "No CTMS/eTMF or signature/readability verification is established. Even successful native file processing would not authenticate records or activate a site.",
+      "construction_state": "not-started"
+    },
+    {
+      "id": "hls-02",
+      "slug": "cold-chain-excursion-review",
+      "title": "Cold-chain immunization inventory temperature-excursion review packet",
+      "workflow_family": "time-series-inventory-exposure",
+      "qualification": "qualified-administrative-synthetic",
+      "risk_level": "high",
+      "source_ids": ["hls-src-cdc-temperature", "hls-src-cdc-storage"],
+      "purpose": "Join mock logger exports, storage occupancy, and product-specific fixture profiles to summarize possible excursions and evidence gaps for a quality reviewer.",
+      "trigger": "An inventory coordinator receives a simulated alarm or requests a bounded retrospective review.",
+      "roles": ["Synthetic inventory coordinator", "Synthetic quality-review coordinator", "Qualified manufacturer/public-health/quality reviewer outside the simulation"],
+      "start": "Dated mock inventory and placement exports, product/profile tables, sensor/calibration evidence, readings, and prior correspondence references.",
+      "end": "Lot-level evidence packet, interval ledger, affected-unit rollup, gap register, and draft quality-review request.",
+      "not_end": "Product viability, use/release/disposal authorization, actual physical hold or movement, manufacturer contact, vaccine administration, or patient management.",
+      "input_schema_proposal": {
+        "top_level": ["window_start: UTC timestamp", "as_of: UTC timestamp", "policy: object", "products: array", "profiles: array", "inventory: array", "placements: array", "sensor_assignments: array", "calibrations: array", "readings: array", "correspondence: array"],
+        "policy_fields": ["policy_id: SYN-POLICY token", "max_gap_seconds: bounded positive integer", "max_rows_per_table: bounded positive integer", "max_total_rows: bounded positive integer", "max_derived_pairs: bounded positive integer"],
+        "tables": [
+          {"name": "products", "key": "product_id", "fields": ["product_id: SYN-ID", "profile_id: SYN-ID"]},
+          {"name": "profiles", "key": "profile_id", "fields": ["profile_id: SYN-ID", "lower_tenths_c: integer", "upper_tenths_c: integer", "policy_ref: synthetic reference"]},
+          {"name": "inventory", "key": "lot_id", "fields": ["lot_id: SYN-ID", "product_id: SYN-ID", "quantity_units: nonnegative integer", "owner_role_id: SYN-ROLE token"]},
+          {"name": "placements", "key": "placement_id", "fields": ["placement_id: SYN-ID", "lot_id: SYN-ID", "unit_id: SYN-ID", "entered_at: UTC timestamp", "left_at: UTC timestamp or null"]},
+          {"name": "sensor_assignments", "key": "assignment_id", "fields": ["assignment_id: SYN-ID", "sensor_id: SYN-ID", "unit_id: SYN-ID", "valid_from: UTC timestamp", "valid_until: UTC timestamp or null"]},
+          {"name": "calibrations", "key": "calibration_id", "fields": ["calibration_id: SYN-ID", "sensor_id: SYN-ID", "valid_from: UTC timestamp", "valid_until: UTC timestamp", "recorded_at: UTC timestamp", "attestation_ref: synthetic reference"]},
+          {"name": "readings", "key": "reading_id", "fields": ["reading_id: SYN-ID", "sensor_id: SYN-ID", "observed_at: UTC timestamp", "temperature_tenths_c: integer"]},
+          {"name": "correspondence", "key": "correspondence_id", "fields": ["correspondence_id: SYN-ID", "lot_id: SYN-ID", "recorded_at: UTC timestamp", "source_role_id: SYN-ROLE token", "reference: synthetic reference", "note: untrusted plain text"]}
+        ],
+        "joins": [
+          "inventory.product_id -> products.profile_id -> profiles; do not substitute a global range for a missing profile.",
+          "inventory.lot_id -> placements -> sensor_assignments by unit and intersecting time intervals.",
+          "sensor_assignments.sensor_id -> calibrations and sorted readings, restricted to as-of-valid evidence.",
+          "lot_id -> correspondence, presented as evidence references without interpreting free text as an authorization."
+        ],
+        "proposal_note": "Each lot moves as a whole; split-lot quantities and ambiguous simultaneous locations are unsupported evidence requiring review. This is a synthetic reconstruction from exports, not live sensor control."
+      },
+      "output_schema_proposal": {
+        "outputs": [
+          "window_start, as_of, policy_id, and duration_model",
+          "lot_review: lot_id, profile_id, quantity_units, occupied_seconds, modeled_outside_seconds or null, unknown_seconds, observed_outside_reading_ids, temperature_min_tenths_c or null, temperature_max_tenths_c or null, ordered reason_codes, source_refs",
+          "interval_ledger: lot_id, placement_id, sensor_id, start, end, evidence_state, modeled_temperature_tenths_c or null, overlap_seconds, reading_refs",
+          "inventory_summary: unique reviewed_lots, unique reviewed_units, evidence_gap_lots, no_observed_exception_lots",
+          "draft_quality_requests and prior_correspondence references",
+          "physical_actions_performed: false and quality_disposition_required: true"
+        ],
+        "ordering": "Lot rows and requests: lot_id. Intervals: lot_id, start, end, sensor_id. Reading references: sensor_id, observed_at, reading_id.",
+        "no_authorization_fields": ["released", "safe_to_use", "discard_authorized", "physical_quarantine_completed"]
+      },
+      "policies": [
+        {"id": "hls-02-document-escalate", "kind": "source-backed", "source_ids": ["hls-src-cdc-temperature"], "rule": "Preserve temperatures, times, inventory/lot references, existing actions/contacts, and unresolved questions for qualified review instead of deciding product viability.", "boundary": "CDC's physical response instructions are context only; the file workflow performs none of them."},
+        {"id": "hls-02-profile-bands", "kind": "sample-policy", "source_ids": [], "rule": "Profiles are per product. Proposed mock profiles SYN-PROFILE-R=20..80 and SYN-PROFILE-F=-250..-150 integer tenths Celsius; endpoints are included.", "boundary": "These are invented demonstration profiles, not real labeling or a claim that all supplies are 2-8 C."},
+        {"id": "hls-02-interval-model", "kind": "sample-policy", "source_ids": [], "rule": "Review window, occupancy, assignment, and calibration use half-open [start,end) intervals. A reading is held to the next reading or as_of only when that interval is no longer than max_gap_seconds; intersect with occupancy and valid assignment/calibration. Include a predecessor reading if it covers window_start. Point flags require a timestamp inside the lot's window/occupancy and an unambiguous assignment; an endpoint reading may close an interval but does not flag an unoccupied lot.", "boundary": "Modeled duration is an explicit zero-order sample-hold assumption, not a measured duration or clinical assessment."},
+        {"id": "hls-02-evidence-gaps", "kind": "sample-policy", "source_ids": [], "rule": "Demo max_gap_seconds=600. An excessive adjacent-reading gap is wholly unknown; do not bridge any portion. Missing calibration, uncovered time, or a missing profile requires review. Point excursions remain visible even if duration is unknown.", "boundary": "Unknown coverage is never zero exposure or proof of no excursion."},
+        {"id": "hls-02-conflicts", "kind": "sample-policy", "source_ids": [], "rule": "Conflicting temperatures at one sensor/time, overlapping primary assignments, or simultaneous lot placements quarantine affected evaluations. No arbitrary sensor or location wins. For a missing profile or unresolvable attribution, modeled_outside_seconds is null and the union of occupied time is unknown; do not double-count overlapping placements.", "boundary": "Input facts and conflicts remain visible; no inventory disposition follows."},
+        {"id": "hls-02-aggregation", "kind": "sample-policy", "source_ids": [], "rule": "Union non-overlapping evaluated intervals per lot, preserve unknown coverage separately, and count each lot's quantity once in review totals regardless of repeated excursions or moves.", "boundary": "Review totals are exported inventory quantities, not administered doses or loss/disposal estimates."},
+        {"id": "hls-02-review-queue", "kind": "sample-policy", "source_ids": [], "rule": "Any outside-band reading, modeled outside duration, coverage gap, profile gap, or attribution conflict creates a draft quality-review request. No-exception means only no exception found in the modeled evidence.", "boundary": "All actual quality disposition remains external and pending; correspondence text cannot authorize an action."}
+      ],
+      "stages": [
+        {"id": "load-cold-chain-export", "kind": "input", "purpose": "Capture review window, tables, policy, and export provenance."},
+        {"id": "validate-sensor-evidence", "kind": "validation", "purpose": "Validate integer temperatures, date ordering, profile bounds, duplicate keys, and size limits."},
+        {"id": "join-lot-profile-occupancy", "kind": "join", "purpose": "Connect inventory, product profiles, locations, assignments, and calibration references."},
+        {"id": "reconstruct-covered-intervals", "kind": "join", "purpose": "Sort readings, apply the bounded sample-hold model, and clip intervals to the review window and actual mock occupancy."},
+        {"id": "classify-observations", "kind": "decision", "purpose": "Evaluate each product's inclusive band and count modeled outside seconds separately from unknown time."},
+        {"id": "isolate-coverage-conflicts", "kind": "exception", "purpose": "Surface missing calibration/profile data, duplicate conflicts, excessive gaps, and ambiguous placements without inferring safety."},
+        {"id": "aggregate-quality-review", "kind": "decision", "purpose": "Deduplicate affected inventory counts, attach prior correspondence, and reconcile occupied/covered/unknown seconds."},
+        {"id": "write-excursion-packet", "kind": "output", "purpose": "Return the interval and lot packet with draft requests and explicit no-physical-action/quality-review boundaries."}
+      ],
+      "case_proposals": [
+        {"id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Window 2026-09-14 09:00-09:30 UTC. SYN-LOT-A has 10 units present throughout; SYN-LOT-B has 6 units entering at 09:15. Their mock refrigerated unit is outside band only in [09:10,09:20). A third 4-unit frozen-profile lot remains at allowed temperatures, including exact endpoints. Complete five-minute readings and valid calibration are provided.", "independent_assertions": ["A has 600 modeled outside seconds; B has 300 after occupancy clipping.", "Two reviewed lots contain 16 unique units, not a quantity per reading or interval.", "The frozen-profile lot is evaluated against its own range, not the refrigerated profile.", "Known occupied duration equals covered duration; unknown seconds are zero."]},
+        {"id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Changed inventory and readings: an outside segment [09:05,09:10), then a 15-minute adjacent-reading gap [09:10,09:25) with max_gap_seconds=600. One lot occupies [09:05,09:25); another enters exactly 09:10. Include a future reading.", "independent_assertions": ["First lot has 300 modeled outside seconds and 900 unknown seconds.", "The lot entering at 09:10 has no overlap with the preceding outside segment but still has the coverage gap.", "A future reading does not repair as-of coverage.", "No zero-exposure or safe-use conclusion is produced for either uncertain lot."]},
+        {"id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Different profile thresholds and two non-overlapping whole-lot moves; a calibration expires at a move boundary. Include a missing product profile, an identical repeated reading, and prior correspondence containing a claim of release.", "independent_assertions": ["Exact interval boundaries neither double-count a move nor extend expired calibration.", "A changed product profile changes assessment without code edits.", "Missing profile remains unknown rather than assuming 2-8 C.", "Duplicate reading contributes no extra time, and correspondence cannot become release authorization."]},
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "failure_modes": ["malformed-input"], "design": "Parseable object with inverted profile bounds, a boolean temperature, or a non-UTC timestamp; include an independent oversized-table variant.", "independent_assertions": ["Explicit invalid-policy/record diagnostics and empty business outputs.", "The rejection is of a mock data packet, not a product."]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions", "failure_modes": ["contradictory-evidence"], "design": "Conflicting readings at the same sensor/time and overlapping placements for an affected lot, with a separate valid lot.", "independent_assertions": ["Affected attribution is quarantined and modeled outside seconds are null, not zero.", "Every conflicting source remains referenced.", "The unaffected lot remains reportable, but not released or declared viable."]}
+      ],
+      "golden_method": "Independently draw the time intervals, intersect each with lot occupancy and evidence-validity windows, subtract endpoints as integer seconds, and sum disjoint intervals. Verify occupied seconds = modeled covered seconds + unknown seconds where attribution is resolvable, outside <= covered, and inventory quantity is counted once per lot. Expected files do not yet exist.",
+      "visual_only_storyboard": "Show unknown coverage as a hatched gray interval beside a solid excursion interval, then animate the unique-lot quantity rollup. These presentation observations stay out of the native authoring prompt.",
+      "native_specific_gap": "No live logger, calibration authentication, product-label source, inventory write, manufacturer contact, or physical storage action is available through this file-only proposal.",
+      "construction_state": "not-started"
+    },
+    {
+      "id": "hls-03",
+      "slug": "specimen-accession-reconciliation",
+      "title": "Laboratory specimen accession and order reconciliation exception report",
+      "workflow_family": "order-accession-reconciliation",
+      "qualification": "qualified-administrative-synthetic",
+      "risk_level": "high",
+      "source_ids": ["hls-src-cms-clia-manual", "hls-src-cms-clia-overview", "hls-src-who-lqms"],
+      "purpose": "Reconcile synthetic order, receipt, and accession exports into an administrative mismatch/backlog report without judging any specimen or test.",
+      "trigger": "An accession coordinator requests a manual as-of reconciliation of a bounded mock export.",
+      "roles": ["Synthetic accession coordinator", "Synthetic order-management reviewer", "Qualified laboratory reviewer outside the simulation"],
+      "start": "Dated mock order headers/lines, order-state events, specimen receipts, accessions, test-code metadata, clarification references, and sample queue policy.",
+      "end": "Exact-key reconciliation ledger, unmatched-record report, age/SLA indicators, line and specimen count rollups, and draft clarification queue.",
+      "not_end": "Specimen accept/reject for patient care, actual LIS accessioning or correction, clinical ordering, authorized-provider verification, testing, reporting clinical results, diagnosis, or treatment.",
+      "input_schema_proposal": {
+        "top_level": ["as_of: UTC timestamp", "policy: object", "orders: array", "order_lines: array", "order_events: array", "receipts: array", "accessions: array", "test_catalog: array", "clarifications: array"],
+        "policy_fields": ["policy_id: SYN-POLICY token", "accession_sla_minutes: nonnegative integer", "max_rows_per_table: bounded positive integer", "max_total_rows: bounded positive integer", "max_derived_pairs: bounded positive integer"],
+        "tables": [
+          {"name": "orders", "key": "order_id", "fields": ["order_id: SYN-ID", "subject_token: SYN-SUBJECT token or null", "ordered_at: UTC timestamp", "owner_role_id: SYN-ROLE token"]},
+          {"name": "order_lines", "key": "order_line_id", "fields": ["order_line_id: SYN-ID", "order_id: SYN-ID", "test_code: SYN-TEST token", "requested_specimen_kind: synthetic code"]},
+          {"name": "order_events", "key": "event_id", "fields": ["event_id: SYN-ID", "order_id: SYN-ID", "event_seq: positive integer", "effective_at: UTC timestamp", "recorded_at: UTC timestamp", "state: active or cancelled"]},
+          {"name": "receipts", "key": "receipt_id", "fields": ["receipt_id: SYN-ID", "specimen_id: SYN-ID", "order_id: SYN-ID or null", "subject_token: SYN-SUBJECT token or null", "specimen_kind: synthetic code", "collected_at: UTC timestamp or null", "received_at: UTC timestamp"]},
+          {"name": "accessions", "key": "accession_id", "fields": ["accession_id: SYN-ID", "specimen_id: SYN-ID", "order_line_id: SYN-ID", "subject_token: SYN-SUBJECT token or null", "test_code: SYN-TEST token", "accessioned_at: UTC timestamp", "recorded_at: UTC timestamp"]},
+          {"name": "test_catalog", "key": "test_code", "fields": ["test_code: SYN-TEST token", "expected_specimen_kind: synthetic code", "policy_ref: synthetic reference"]},
+          {"name": "clarifications", "key": "clarification_id", "fields": ["clarification_id: SYN-ID", "entity_kind: configured code", "entity_id: SYN-ID", "recorded_at: UTC timestamp", "reference: synthetic reference", "note: untrusted plain text"]}
+        ],
+        "joins": [
+          "order_lines.order_id -> orders; order_events.order_id -> orders determines only the imported as-of state.",
+          "receipts.order_id -> orders; accessions.specimen_id -> receipts.specimen_id; accessions.order_line_id -> order_lines links the three records.",
+          "order_lines.test_code -> test_catalog; compare the requested and exported specimen-kind labels only, not clinical suitability.",
+          "Cross-check synthetic subject tokens and test codes across explicit links; never repair a link by fuzzy matching.",
+          "clarifications.entity_id -> report entities appends evidence references without changing a source record."
+        ],
+        "proposal_note": "The mock subset is intentionally not a compliant requisition. No names, dates of birth, provider IDs, actual results, real specimen types, or medical facts are present. One primary specimen per order line is the sample cardinality; one specimen may serve multiple lines."
+      },
+      "output_schema_proposal": {
+        "outputs": [
+          "as_of and policy_id",
+          "reconciliation_rows: order_id or null, order_line_id or null, specimen_id or null, accession_ids, administrative_state, ordered reason_codes, age_seconds or null, sla_seconds, source_refs",
+          "unmatched_records: orphan receipts/accessions/lines and missing links with explicit reasons",
+          "summary: unique specimen counts separately from order-line counts, reconciled pairs, pending-within-window pairs, and review pairs",
+          "draft_clarification_queue: entity key, reason_code, owner_role_id or null, existing_clarification_refs, action=request-administrative-review",
+          "clinical_disposition_performed: false and qualified_review_required: true"
+        ],
+        "ordering": "Ledger: order_id, order_line_id, specimen_id, using empty-string sort position only for null IDs while preserving null in JSON. Queue: entity kind, entity ID, reason priority. References: table, record ID.",
+        "no_authorization_fields": ["specimen_accepted", "specimen_rejected", "test_authorized", "diagnosis", "treatment"]
+      },
+      "policies": [
+        {"id": "hls-03-identification-evidence", "kind": "source-backed", "source_ids": ["hls-src-cms-clia-manual"], "rule": "Preserve identification, requisition-to-record consistency, receipt timing, and a traceable discrepancy report.", "boundary": "Synthetic token comparison is not actual positive patient identification or verification that a requester is legally authorized."},
+        {"id": "hls-03-as-of-events", "kind": "sample-policy", "source_ids": [], "rule": "Use only order events with effective_at and recorded_at <= as_of; choose the unique highest event_seq. Exclude future receipts/accessions and future-recorded accession evidence from current assessment.", "boundary": "Missing or conflicting state evidence is an exception, never assumed active."},
+        {"id": "hls-03-exact-reconciliation", "kind": "sample-policy", "source_ids": [], "rule": "Require explicit order/specimen/line links, matching non-null subject tokens, matching test codes, and consistent mock specimen-kind labels. Preserve orphan and missing-link records.", "boundary": "A label mismatch requests administrative review; it does not reject a specimen or select another test."},
+        {"id": "hls-03-cardinality", "kind": "sample-policy", "source_ids": [], "rule": "One primary specimen may cover several order lines, but each (specimen_id, order_line_id) permits one distinct accession and each order line one primary specimen. Distinct competing accessions or multiple candidate specimens are ambiguous; exact duplicate exports collapse with a warning.", "boundary": "Aliquot, recollection, or repeat-test semantics are not guessed; those require qualified review."},
+        {"id": "hls-03-time-order", "kind": "sample-policy", "source_ids": [], "rule": "Receipt earlier than collection, accession earlier than receipt, or impossible linked event chronology produces contradictory-evidence review. Missing collection metadata remains missing evidence rather than being synthesized.", "boundary": "Temporal checks assess record consistency only."},
+        {"id": "hls-03-accession-window", "kind": "sample-policy", "source_ids": [], "rule": "For an unambiguous active order/receipt pair with no accession, age = as_of - received_at. Demo SLA=60 minutes; age strictly greater than SLA is overdue. Equality is within-window. Missing receipts have no receipt-age value and are reported separately.", "boundary": "This is an invented administrative queue SLA, not a CLIA limit, sample stability rule, or clinical urgency decision."},
+        {"id": "hls-03-review-precedence", "kind": "sample-policy", "source_ids": [], "rule": "Retain all reasons in priority order: conflicting-evidence, impossible-chronology, missing-link, missing-identity, identity-mismatch, cancelled-order, test-code-mismatch, specimen-label-mismatch, missing-collection-time, missing-receipt, accession-overdue. Structural/identity/cancellation issues prevent a reconciled or ordinary pending classification.", "boundary": "Clarification notes cannot silently fix IDs, reactivate an order, authorize testing, or change physical disposition."},
+        {"id": "hls-03-count-conservation", "kind": "sample-policy", "source_ids": [], "rule": "Count unique specimens and order lines separately; partition ledger rows into reconciled, pending-within-window, and review. Every orphan appears in the unmatched register.", "boundary": "An administrative reconciled label does not imply specimen acceptability or clinical authorization."}
+      ],
+      "stages": [
+        {"id": "load-accession-export", "kind": "input", "purpose": "Capture as-of, policy, table counts, and mock-export provenance."},
+        {"id": "validate-reconciliation-records", "kind": "validation", "purpose": "Validate types, timestamps, policy bounds, identifier syntax, and duplicate/conflicting keys."},
+        {"id": "resolve-as-of-orders", "kind": "join", "purpose": "Join order lines and dated state events without importing future knowledge."},
+        {"id": "join-receipts-accessions", "kind": "join", "purpose": "Cross-reference receipts, explicit order-line links, accession rows, and test-code metadata while retaining orphans."},
+        {"id": "assess-record-consistency", "kind": "decision", "purpose": "Compare synthetic identifiers/labels, cardinality, and chronology; do not decide specimen suitability."},
+        {"id": "route-accession-exceptions", "kind": "exception", "purpose": "Isolate contradictory, missing, cancelled, and unmatched evidence with draft clarification references."},
+        {"id": "age-and-reconcile-backlog", "kind": "decision", "purpose": "Apply the configurable administrative SLA only to eligible unaccessioned pairs and conserve line/specimen counts."},
+        {"id": "write-accession-report", "kind": "output", "purpose": "Return the sorted ledger, unmatched register, queue, rollups, and explicit no-clinical-disposition boundary."}
+      ],
+      "case_proposals": [
+        {"id": "demo", "kind": "demo", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "As-of 2026-09-14T12:00:00Z and SLA=60 minutes. Six distinct synthetic receipts: one fully matched accession; missing accessions aged 30, 60, and 61 minutes; one orphan receipt; one linked accession with a subject-token mismatch.", "independent_assertions": ["Six receipt-led rows = one reconciled + two pending-within-window + three review.", "Age exactly 3600 seconds is not overdue; 3660 seconds is overdue.", "An accession's existence cannot override identity mismatch.", "Five linked order lines and six specimens are distinct denominators."]},
+        {"id": "holdout-a", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "Different date and IDs, SLA=30 minutes, pending receipts aged exactly 30 and 31 minutes, one cancelled order, a future cancellation, and a future-recorded accession.", "independent_assertions": ["Changed SLA moves only the intended threshold classification.", "The currently cancelled order is a review issue, not ordinary pending.", "Future cancellation and future-recorded accession cannot alter as-of state.", "No receipt timestamp is invented to age a missing receipt."]},
+        {"id": "holdout-b", "kind": "holdout", "expected_status": "completed_with_exceptions", "failure_modes": [], "design": "One new specimen legitimately links to two order lines; include an unmatched active line, a missing collection timestamp, a mock specimen-label mismatch, and an identical repeated export row. A clarification note asks for acceptance.", "independent_assertions": ["Two valid line reconciliations can represent one unique specimen.", "The unmatched line and missing metadata remain explicit.", "Identical repeats do not inflate accession or specimen counts.", "Free-text acceptance language causes no correction or specimen disposition."]},
+        {"id": "negative-malformed", "kind": "negative", "expected_status": "rejected", "failure_modes": ["malformed-input"], "design": "Parseable object with an invalid UTC date/timestamp, a boolean event sequence, or an invalid SLA; include a derived-pair-limit boundary variant.", "independent_assertions": ["Explicit malformed-record or policy diagnostics and empty business outputs.", "The report states input-packet rejection, never specimen rejection."]},
+        {"id": "negative-contradictory", "kind": "negative", "expected_status": "completed_with_exceptions", "failure_modes": ["contradictory-evidence"], "design": "Two competing accession IDs for one specimen/order-line pair disagree on subject identity; another receipt predates collection; an unrelated pair is valid.", "independent_assertions": ["No arbitrary accession wins; all competing sources are referenced.", "Impossible chronology is not converted into negative age or ordinary pending.", "The unrelated pair remains visible and no source record is overwritten."]}
+      ],
+      "golden_method": "Independently enumerate exact-key join truth tables and missing counterparts, choose dated order-state evidence, subtract UTC timestamps as integer seconds, and classify each row by explicit precedence. Assert ledger partition conservation, separate specimen/line counts, and that no identity conflict can be reconciled. Expected files do not yet exist.",
+      "visual_only_storyboard": "Show the order-line counter beside a separate unique-specimen counter, with the unmatched-record tray opened before the final queue. These presentation observations stay out of the native authoring prompt.",
+      "native_specific_gap": "No live LIS/EHR, provider authorization lookup, accession write, specimen assessment, or clinical-result capability is provisioned or implied.",
+      "construction_state": "not-started"
+    }
+  ],
+  "handoff": {
+    "owned_files_now": ["scenarios/health-life-sciences/research.md", "scenarios/health-life-sciences/research.json"],
+    "qualified_scenarios": 3,
+    "catalog_minimum_total": 15,
+    "total_catalog_verified_here": false,
+    "next_authorization": "Parent must approve the complete 15-scenario research catalog before construction. Shared contract interface approval alone is insufficient.",
+    "after_authorization": "Create only the three owned scenario directories and sector tests; author independent expected files before baseline runs, produce actual per-stage traces, and let the shared foundation render media.",
+    "current_execution": "No scenario implementation, mock-data files, golden files, baseline runs, video, plugin generation, or native execution was performed in phase 1."
+  }
+}

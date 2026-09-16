@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "as_of": "2099-08-31", "audit_start": "2099-09-01", "audit_end": "2099-09-02",
+    "tolerance_minor": 0, "rounding": "ROUND_HALF_UP",
+    "source_files": {"stores": "stores.json", "products": "products.json", "base_prices": "base-prices.json", "promotions": "promotions.json", "promotion_scope": "promotion-scope.json", "price_exceptions": "price-exceptions.json", "observations": "observed-prices.json"}
+  },
+  "exports": {
+    "stores.json": [{"store_id": "SYN-STORE-N", "currency": "USD", "date_basis": "store-local-calendar"}],
+    "products.json": [{"sku": "SYN-SKU-N", "unit": "EA"}],
+    "base-prices.json": [{"price_id": "SYN-BASE-N1", "store_id": "SYN-STORE-N", "sku": "SYN-SKU-N", "valid_from": "2099-09-01", "valid_to": "2099-09-03", "currency": "USD", "unit": "EA", "price_minor": 1000}],
+    "promotions.json": [], "promotion-scope.json": [], "price-exceptions.json": [],
+    "observed-prices.json": [{"observation_id": "SYN-OBS-FUTURE", "store_id": "SYN-STORE-N", "sku": "SYN-SKU-N", "observed_on": "2099-09-01", "currency": "USD", "unit": "EA", "observed_minor": 1000}]
+  }
+}

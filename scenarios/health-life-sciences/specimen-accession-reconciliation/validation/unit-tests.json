@@ -1,0 +1,50 @@
+{
+  "case_evidence": {
+    "demo": {
+      "business_status": "completed_with_exceptions",
+      "comparison": "pass",
+      "native_creation": "native_creation_blocked",
+      "state": "baseline_pass"
+    },
+    "holdout-a": {
+      "business_status": "completed_with_exceptions",
+      "comparison": "pass",
+      "native_creation": "native_creation_blocked",
+      "state": "baseline_pass"
+    },
+    "holdout-b": {
+      "business_status": "completed_with_exceptions",
+      "comparison": "pass",
+      "native_creation": "native_creation_blocked",
+      "state": "baseline_pass"
+    },
+    "negative-contradictory": {
+      "business_status": "completed_with_exceptions",
+      "comparison": "pass",
+      "native_creation": "native_creation_blocked",
+      "state": "baseline_pass"
+    },
+    "negative-malformed": {
+      "business_status": "rejected",
+      "comparison": "pass",
+      "native_creation": "native_creation_blocked",
+      "state": "baseline_pass"
+    }
+  },
+  "errors": [],
+  "failures": [],
+  "provenance": "observed-python-stdlib-unittest",
+  "rerun_command": "python -B -m unittest scenarios.tests.test_health_accession -q",
+  "runner": "unittest.TextTestRunner",
+  "schema_version": 1,
+  "skipped": [],
+  "source_sha256": {
+    "HOW_TO.md": "bab66d4d495cac8d0f052f9160ce111d194f9a7e72f9c9989c6928a71ef87405",
+    "baseline.py": "18ee71568efeee91bfe1ac4904787360fb52fb00b081a2096bc2a681e5e9a501",
+    "scenarios/tests/test_health_accession.py": "6796a58257ebb95ae82106b6333ce6b3bb047dd89629908a28341f6fd1626612",
+    "validation/golden-lock.json": "c5437ae19e6287e6aa03f6951c933376393fbd58ec63b8adf7b68ac4f132200a"
+  },
+  "successful": true,
+  "test_module": "scenarios.tests.test_health_accession",
+  "tests_run": 59
+}

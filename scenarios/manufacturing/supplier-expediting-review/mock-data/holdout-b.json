@@ -1,0 +1,21 @@
+{
+  "config": {"as_of": "2027-02-01", "reporting_month": "2027-01", "horizon_days": 5, "tolerance_days": 0, "urgency_days": 3, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "B02", "supplier_id": "SB02", "item_id": "PLATE-B", "ordered_qty": 10, "original_requested_receipt": "2027-02-04", "state": "open"},
+    {"line_id": "H-B01", "supplier_id": "SB01", "item_id": "OLD-PIN", "ordered_qty": 9, "original_requested_receipt": "2027-01-20", "state": "cancelled"},
+    {"line_id": "B01", "supplier_id": "SB01", "item_id": "PLATE-A", "ordered_qty": 10, "original_requested_receipt": "2027-02-04", "state": "open"},
+    {"line_id": "H-B02", "supplier_id": "SB02", "item_id": "OLD-RING", "ordered_qty": 4, "original_requested_receipt": "2027-01-31", "state": "cancelled"}
+  ],
+  "receipt_events": [],
+  "confirmations": [
+    {"confirmation_id": "C-B02", "line_id": "B02", "recorded_on": "2027-02-02", "confirmed_receipt": "2027-02-04", "remaining_qty": 10}
+  ],
+  "requirements": [
+    {"requirement_id": "RQ-B02", "line_id": "B02", "need_by": "2027-02-04", "unmet_qty": 10, "criticality": "critical"},
+    {"requirement_id": "RQ-B01", "line_id": "B01", "need_by": "2027-02-04", "unmet_qty": 10, "criticality": "critical"}
+  ],
+  "suppliers": [
+    {"supplier_id": "SB02", "buyer_role": "East materials buyer"},
+    {"supplier_id": "SB01", "buyer_role": "West materials buyer"}
+  ]
+}

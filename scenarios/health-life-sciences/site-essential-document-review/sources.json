@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "hls-src-ich-e6r3",
+      "title": "ICH E6(R3) Guideline for Good Clinical Practice, final version adopted 06 January 2025",
+      "url": "https://database.ich.org/sites/default/files/ICH_E6%28R3%29_Step4_FinalGuideline_2025_0106.pdf",
+      "publisher": "International Council for Harmonisation",
+      "accessed": "2026-09-14",
+      "scope": "Annex 1, Appendix C: management and essentiality of trial records; a non-participant administrative subset only. Appendix C.2, printed pages 63-64 / PDF pages 70-71; C.3 and essential-records table, printed pages 64-68 / PDF pages 71-75.",
+      "supported_claims": [
+        "C.2.1 addresses identifiable, appropriately version-controlled records with relevant author, reviewer, approver, date, and signature information.",
+        "C.2.3-C.2.6 address repositories, record locations, version history, timely filing, completeness, readability, access, and traceable alterations.",
+        "C.3.1-C.3.3 make essentiality contextual; the essential-records table is not exhaustive and some records depend on trial design and conduct.",
+        "The table includes signed protocols and amendments, dated IRB/IEC opinions, qualifications, trial-specific training, and delegation documentation."
+      ],
+      "limitations": "This guideline is not a universal checklist, annual-expiry mandate, or automatic readiness decision. The synthetic checklist, expiry calculations, warning windows, and document-ranking rules are local sample policies. No participant records are included."
+    },
+    {
+      "id": "hls-src-fda-e6r3",
+      "title": "E6(R3) Good Clinical Practice (GCP)",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp",
+      "publisher": "U.S. Food and Drug Administration",
+      "accessed": "2026-09-14",
+      "scope": "FDA final-guidance announcement and its risk-proportionate framing.",
+      "supported_claims": [
+        "FDA announces final E6(R3) guidance and describes flexible, risk-based approaches.",
+        "The announcement describes clarified sponsor and investigator responsibilities and proportionality throughout the trial lifecycle."
+      ],
+      "limitations": "The HTML page supports the announcement and framing only. Detailed essential-record claims cite the independently retrieved ICH PDF, not this landing page or its unretrieved FDA download."
+    }
+  ]
+}

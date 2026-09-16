@@ -1,0 +1,168 @@
+{
+  "exceptions": [
+    {
+      "code": "amount-mismatch",
+      "message": "Reference/type candidates exceed the amount tolerance.",
+      "record_id": "SYN-T-B2",
+      "scope_id": "SYN-T"
+    },
+    {
+      "code": "amount-mismatch",
+      "message": "Reference/type candidates exceed the amount tolerance.",
+      "record_id": "SYN-T-L2",
+      "scope_id": "SYN-T"
+    },
+    {
+      "code": "pending-clearance",
+      "message": "Expected clearing is after cutoff within the configured grace window.",
+      "record_id": "SYN-T-L3",
+      "scope_id": "SYN-T"
+    }
+  ],
+  "outputs": {
+    "bank_reviews": [
+      {
+        "amount_minor": 20000,
+        "bank_line_id": "SYN-T-B1",
+        "candidate_ledger_ids": [
+          "SYN-T-L1"
+        ],
+        "canonical_reference": "SYN-OFFSET",
+        "disposition": "candidate-match",
+        "local_date": "2026-07-31",
+        "mapped_type": "RECEIPT",
+        "reason_codes": [],
+        "scope_id": "SYN-T"
+      },
+      {
+        "amount_minor": 1003,
+        "bank_line_id": "SYN-T-B2",
+        "candidate_ledger_ids": [],
+        "canonical_reference": "SYN-THREE-CENTS",
+        "disposition": "unmatched",
+        "local_date": "2026-07-31",
+        "mapped_type": "RECEIPT",
+        "reason_codes": [
+          "amount-mismatch"
+        ],
+        "scope_id": "SYN-T"
+      }
+    ],
+    "controls": {
+      "approval_state": "approved",
+      "as_of": "2026-08-01T04:59:59Z",
+      "business_utc_offset_minutes": -300,
+      "control_version": "SYN-CONTROL-B",
+      "cutoff_date": "2026-07-31",
+      "max_match_calendar_days": 2,
+      "max_rows_per_source": 5000,
+      "single_amount_tolerance_minor": 2,
+      "stale_after_calendar_days": 5,
+      "timing_grace_calendar_days": 2
+    },
+    "excluded": [
+      {
+        "amount_minor": 9900,
+        "local_date": "2026-08-01",
+        "reason": "after-as-of",
+        "record_id": "SYN-T-L4",
+        "scope_id": "SYN-T",
+        "source": "ledger"
+      }
+    ],
+    "ledger_reviews": [
+      {
+        "amount_minor": 20000,
+        "candidate_bank_ids": [
+          "SYN-T-B1"
+        ],
+        "canonical_reference": "SYN-OFFSET",
+        "disposition": "candidate-match",
+        "expected_bank_date": null,
+        "ledger_line_id": "SYN-T-L1",
+        "ledger_type": "RECEIPT",
+        "local_date": "2026-07-31",
+        "reason_codes": [],
+        "scope_id": "SYN-T"
+      },
+      {
+        "amount_minor": 1000,
+        "candidate_bank_ids": [],
+        "canonical_reference": "SYN-THREE-CENTS",
+        "disposition": "unmatched",
+        "expected_bank_date": null,
+        "ledger_line_id": "SYN-T-L2",
+        "ledger_type": "RECEIPT",
+        "local_date": "2026-07-31",
+        "reason_codes": [
+          "amount-mismatch"
+        ],
+        "scope_id": "SYN-T"
+      },
+      {
+        "amount_minor": -1500,
+        "candidate_bank_ids": [],
+        "canonical_reference": "SYN-TIMING",
+        "disposition": "pending-clearance",
+        "expected_bank_date": "2026-08-01",
+        "ledger_line_id": "SYN-T-L3",
+        "ledger_type": "PAYMENT",
+        "local_date": "2026-07-31",
+        "reason_codes": [
+          "pending-clearance"
+        ],
+        "scope_id": "SYN-T"
+      }
+    ],
+    "matches": [
+      {
+        "bank_line_id": "SYN-T-B1",
+        "bank_minor": 20000,
+        "decision": "candidate-match",
+        "delta_minor": 0,
+        "kind": "single",
+        "ledger_line_ids": [
+          "SYN-T-L1"
+        ],
+        "ledger_minor": 20000,
+        "max_date_gap_days": 0,
+        "scope_id": "SYN-T"
+      }
+    ],
+    "review": {
+      "human_review": "pending",
+      "live_action": "none"
+    },
+    "scope_summaries": [
+      {
+        "account_id": "SYN-ACCOUNT-T",
+        "bridge_minor": 1503,
+        "closing_bank_minor": 21003,
+        "closing_difference_minor": 1503,
+        "closing_ledger_minor": 19500,
+        "currency": "USD",
+        "disposition": "review-required",
+        "from_date": "2026-07-01",
+        "included_bank_count": 2,
+        "included_ledger_count": 3,
+        "legal_entity_id": "SYN-ENTITY",
+        "match_delta_minor": 0,
+        "matched_bank_count": 1,
+        "matched_group_count": 1,
+        "matched_ledger_count": 1,
+        "opening_bank_minor": 0,
+        "opening_difference_minor": 0,
+        "opening_ledger_minor": 0,
+        "scope_id": "SYN-T",
+        "statement_id": "SYN-JULY-T",
+        "through_date": "2026-07-31",
+        "unmatched_bank_minor": 1003,
+        "unmatched_ledger_minor": -500,
+        "unresolved_bank_count": 1,
+        "unresolved_ledger_count": 2
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

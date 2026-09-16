@@ -5,7 +5,7 @@ evaluation cases. Do not add a service or a runtime installation step.
 This guide is for maintainers; end users need only Cowork and the resources
 shipped in the Creator or generated output.
 
-The v0.2.1 source is provisional offline implementation. New instructions,
+The v0.3.0 source requires native Microsoft Cowork v1.28 output. New instructions,
 fixtures and local checks do not establish native installation, invocation,
 video support, business access or scheduling.
 
@@ -162,12 +162,11 @@ phase, with synthetic data and repository-local scratch files.
    target-host observation can establish installed resources, native helper
    execution, media understanding, independent output or later scheduling.
 
-Canonical build metadata must be supplied and approved. Do not use test
-publisher/URL/registration values as shipping metadata. `compatible-source`
-is an explicitly separate Draft target, not a workaround for unresolved
-semantic coverage or evidence. The current subset rejects declared remote
-connectors for that target; do not invent conversion fields or remove
-required bindings to make the export pass.
+Native Microsoft build metadata must be supplied and approved. Do not use
+test publisher/URL/registration values as shipping metadata. Only a root
+M365 v1.28 `manifest.json` is accepted for plugin output; no Claude-compatible
+fallback is generated. Keep missing metadata or semantic coverage as a Draft
+source checkpoint, and do not remove required bindings to make packaging pass.
 
 The toolkit checks the specific source/manifest subset it emits. Do not
 advertise full Microsoft schema coverage, sandboxing, transactional workflow

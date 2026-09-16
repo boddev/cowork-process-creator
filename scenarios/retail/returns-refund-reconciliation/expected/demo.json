@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "request_proposals": [
+      {
+        "request_id": "SYN-REQUEST-01", "requested_on": "2099-07-02",
+        "supplied_keys": {"store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-01", "order_id": "SYN-ORDER-01", "invoice_id": "SYN-INVOICE-01", "line_id": "SYN-LINE-01", "sku": "SYN-SKU-01"},
+        "reason": "wrong-size", "condition": "unworn", "requested_qty": 1, "join_status": "matched",
+        "original": {"order_id": "SYN-ORDER-01", "store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-01", "invoice_id": "SYN-INVOICE-01", "line_id": "SYN-LINE-01", "sku": "SYN-SKU-01", "currency": "USD", "payment_reference": "SYN-CARD-01"},
+        "disposition": "proposed", "reason_codes": [], "age_days": 20,
+        "prior_qty": 1, "earlier_proposed_qty": 0, "available_qty": 2, "proposed_qty": 1, "deferred_qty": 0,
+        "entitlement_before": {"qty": 1, "merchandise_minor": 333, "tax_minor": 33},
+        "entitlement_after": {"qty": 2, "merchandise_minor": 667, "tax_minor": 67},
+        "proposed_merchandise_minor": 334, "proposed_tax_minor": 34, "proposed_total_minor": 368
+      },
+      {
+        "request_id": "SYN-REQUEST-02", "requested_on": "2099-07-02",
+        "supplied_keys": {"store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-01", "order_id": "SYN-ORDER-01", "invoice_id": "SYN-INVOICE-01", "line_id": "SYN-LINE-01", "sku": "SYN-SKU-01"},
+        "reason": "wrong-size", "condition": "unworn", "requested_qty": 2, "join_status": "matched",
+        "original": {"order_id": "SYN-ORDER-01", "store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-01", "invoice_id": "SYN-INVOICE-01", "line_id": "SYN-LINE-01", "sku": "SYN-SKU-01", "currency": "USD", "payment_reference": "SYN-CARD-01"},
+        "disposition": "partial", "reason_codes": ["partial-quantity"], "age_days": 20,
+        "prior_qty": 1, "earlier_proposed_qty": 1, "available_qty": 1, "proposed_qty": 1, "deferred_qty": 1,
+        "entitlement_before": {"qty": 2, "merchandise_minor": 667, "tax_minor": 67},
+        "entitlement_after": {"qty": 3, "merchandise_minor": 1000, "tax_minor": 100},
+        "proposed_merchandise_minor": 333, "proposed_tax_minor": 33, "proposed_total_minor": 366
+      },
+      {
+        "request_id": "SYN-REQUEST-03", "requested_on": "2099-07-02",
+        "supplied_keys": {"store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-02", "order_id": "SYN-ORDER-02", "invoice_id": "SYN-INVOICE-02", "line_id": "SYN-LINE-02", "sku": "SYN-SKU-02"},
+        "reason": "changed-mind", "condition": "unworn", "requested_qty": 1, "join_status": "matched",
+        "original": {"order_id": "SYN-ORDER-02", "store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-02", "invoice_id": "SYN-INVOICE-02", "line_id": "SYN-LINE-02", "sku": "SYN-SKU-02", "currency": "USD", "payment_reference": "SYN-CARD-02"},
+        "disposition": "ineligible", "reason_codes": ["return-window-exceeded"], "age_days": 31,
+        "prior_qty": 0, "earlier_proposed_qty": 0, "available_qty": 1, "proposed_qty": 0, "deferred_qty": 1,
+        "entitlement_before": {"qty": 0, "merchandise_minor": 0, "tax_minor": 0},
+        "entitlement_after": {"qty": 0, "merchandise_minor": 0, "tax_minor": 0},
+        "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_total_minor": 0
+      },
+      {
+        "request_id": "SYN-REQUEST-04", "requested_on": "2099-07-02",
+        "supplied_keys": {"store_id": "SYN-STORE-01", "receipt_id": "SYN-RECEIPT-404", "order_id": "SYN-ORDER-404", "invoice_id": "SYN-INVOICE-404", "line_id": "SYN-LINE-404", "sku": "SYN-SKU-404"},
+        "reason": "wrong-size", "condition": "unworn", "requested_qty": 1, "join_status": "unknown-receipt", "original": null,
+        "disposition": "unresolved", "reason_codes": ["unknown-receipt"], "age_days": null,
+        "prior_qty": null, "earlier_proposed_qty": null, "available_qty": null, "proposed_qty": 0, "deferred_qty": 1,
+        "entitlement_before": null, "entitlement_after": null,
+        "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_total_minor": 0
+      }
+    ],
+    "line_eligibility": [
+      {
+        "order_id": "SYN-ORDER-01", "line_id": "SYN-LINE-01", "sku": "SYN-SKU-01", "currency": "USD", "quarantined": false,
+        "original_qty": 3, "original_merchandise_minor": 1000, "original_tax_minor": 100,
+        "observed_posted_qty": 1, "observed_posted_merchandise_minor": 333, "observed_posted_tax_minor": 33,
+        "prior_qty": 1, "prior_merchandise_minor": 333, "prior_tax_minor": 33,
+        "proposed_qty": 2, "proposed_merchandise_minor": 667, "proposed_tax_minor": 67,
+        "remaining_qty": 0, "remaining_merchandise_minor": 0, "remaining_tax_minor": 0
+      },
+      {
+        "order_id": "SYN-ORDER-02", "line_id": "SYN-LINE-02", "sku": "SYN-SKU-02", "currency": "USD", "quarantined": false,
+        "original_qty": 1, "original_merchandise_minor": 2000, "original_tax_minor": 200,
+        "observed_posted_qty": 0, "observed_posted_merchandise_minor": 0, "observed_posted_tax_minor": 0,
+        "prior_qty": 0, "prior_merchandise_minor": 0, "prior_tax_minor": 0,
+        "proposed_qty": 0, "proposed_merchandise_minor": 0, "proposed_tax_minor": 0,
+        "remaining_qty": 1, "remaining_merchandise_minor": 2000, "remaining_tax_minor": 200
+      }
+    ],
+    "order_money_controls": [
+      {
+        "order_id": "SYN-ORDER-01", "currency": "USD", "payment_reference": "SYN-CARD-01", "payment_method": "card", "confirmed": true, "quarantined": false, "reason_codes": [],
+        "authorized_minor": 1100, "captured_minor": 1100, "original_merchandise_minor": 1000, "original_tax_minor": 100, "original_total_minor": 1100,
+        "observed_posted_minor": 366, "prior_minor": 366,
+        "proposed_merchandise_minor": 667, "proposed_tax_minor": 67, "proposed_minor": 734,
+        "prior_plus_proposed_minor": 1100, "remaining_minor": 0, "cap_ok": true
+      },
+      {
+        "order_id": "SYN-ORDER-02", "currency": "USD", "payment_reference": "SYN-CARD-02", "payment_method": "card", "confirmed": true, "quarantined": false, "reason_codes": [],
+        "authorized_minor": 2200, "captured_minor": 2200, "original_merchandise_minor": 2000, "original_tax_minor": 200, "original_total_minor": 2200,
+        "observed_posted_minor": 0, "prior_minor": 0,
+        "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_minor": 0,
+        "prior_plus_proposed_minor": 0, "remaining_minor": 2200, "cap_ok": true
+      }
+    ],
+    "currency_controls": [
+      {"currency": "USD", "order_count": 2, "quarantined_order_count": 0, "reconciled_order_count": 2, "captured_minor": 3300, "reconciled_captured_minor": 3300, "prior_minor": 366, "proposed_merchandise_minor": 667, "proposed_tax_minor": 67, "proposed_minor": 734, "prior_plus_proposed_minor": 1100, "remaining_minor": 2200}
+    ],
+    "review_packet": {
+      "action_authorized": false, "owner_role": "Returns reconciliation analyst",
+      "as_of": "2099-07-02", "period_start": "2099-07-02", "period_end": "2099-07-02", "window_days": 30, "allow_partial_requests": true,
+      "request_count": 4, "proposed_qty": 2, "deferred_qty": 3, "exception_count": 3,
+      "unresolved_request_ids": ["SYN-REQUEST-04"], "quarantined_order_ids": [], "review_request_ids": ["SYN-REQUEST-02", "SYN-REQUEST-03", "SYN-REQUEST-04"],
+      "next_actions": [
+        "Verify source completeness and resolve every exception with the original transaction owner.",
+        "Review proposals against current authorized return and payment policy; this packet grants no approval.",
+        "Use an authorized operational process only after separate approval; no refund, order or stock change was executed."
+      ]
+    }
+  },
+  "exceptions": [
+    {"code": "partial-quantity", "message": "Only the remaining quantity is proposed; defer the unfilled requested quantity.", "scope": "request", "entity_id": "SYN-REQUEST-02"},
+    {"code": "return-window-exceeded", "message": "Request age exceeds the configured inclusive return window.", "scope": "request", "entity_id": "SYN-REQUEST-03"},
+    {"code": "unknown-receipt", "message": "No original order matches the exact store/receipt; unresolved, not an accusation.", "scope": "request", "entity_id": "SYN-REQUEST-04"}
+  ]
+}

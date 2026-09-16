@@ -1,0 +1,57 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Opening available store units are 8,3,4; DC BLUE=12-2-1=9 and GOLD=43-2-1=40. After two days, store stock is4,0,0 and B has lost1. Coverage raw needs4,6,8 become case requests6,6,8. Priority A,B,C allocates6,3,4: BLUE stock limits B, remaining four-case dispatch budget limits C. Close6,1,0; B loses another1 and C2; safety shortfalls0,2,2. Total proposed13/4cases, deferred7, lost4; seven exact review exceptions. Received/cancelled zero-remaining rows add no supply.",
+      "expected_sha256": "995662ae32604b7d08a5bbdd8a09392def67645db74402565d6c6339d5e0e5ff",
+      "input_sha256": "5b667fa333817851ecca1de0de1f247c025caa1e6153f02b81f8185c9c3ef4f0"
+    },
+    "holdout-a": {
+      "derivation": "Changed filenames, May dates, one-day lead, two-day review, pack5, DC22/capacity3 and new stores/SKU/demands. D loses1 before arrival; coverage demand5+safety1=6 rounds10. E starts arrival with4; demand4+safety3-4=3 rounds5. Allocate15/3cases, DC remains7. Both close5 with no final safety gap. One dated lost-demand exception remains.",
+      "expected_sha256": "4a9b9dcf1e8651db380bc45759b6787b8171093c077108170b24338859025a2b",
+      "input_sha256": "5997a4490f1cac3913db913bd5fae144277cdeb07bdcebb8914b873fbf6cc98a"
+    },
+    "holdout-b": {
+      "derivation": "Changed June dates/filenames, zero lead, two-day review, new SKU/stores and pack4. F starts6 with demand1+1 and safety2: no request, close4. Its11-unit June17 receipt is outside June15-16 coverage and not counted. G starts1 with demand3+2 and safety2: raw6 rounds8; one-case capacity allows4. G closes0 with no lost demand, safety gap2. DC remains16. Three exceptions: allocation4 deferred, late11, safety2.",
+      "expected_sha256": "bb11a06a215e94feb88fdcf4523922c852d00f5197d15ac0324b52298d32e53e",
+      "input_sha256": "a424d9e7423b4c21eb9bb8045a75bc5133b98f45a3e84eaa06c90e997fba1dcb"
+    },
+    "negative-ambiguous-route": {
+      "derivation": "The same store/SKU has two otherwise supplied DC routes. The store/SKU route primary key is duplicate; reject instead of choosing either DC or pooling supply.",
+      "expected_sha256": "342e359d0111453e79ed39bd3dc562359e99e75d2b463b12435c99d7641ae100",
+      "input_sha256": "ba2beeef5f281aeabccb39c6223e331d59c485a05a9c5b5f530361cf4a88471b"
+    },
+    "negative-contradictory": {
+      "derivation": "Physical on-hand2 cannot contain disjoint reserved2 plus blocked1. Reject the store-stock evidence with contradictory-stock; no proposal or negative stock fallback.",
+      "expected_sha256": "067541c197b6e22918a79fc88f3003431dd90efa6bb7bf749fc2f0519d1b18a8",
+      "input_sha256": "9d35d9c57220592924740e8fcc4ee16b604359e634a2050ade87db01da711549"
+    },
+    "negative-duplicate": {
+      "derivation": "Two receipts reuse SYN-RECEIPT-DUP. Reject the duplicated inbound primary key rather than count two units or silently deduplicate.",
+      "expected_sha256": "1b56746f08d1f21c4f8e0be700b0136a9bc9922ce10ba39b3482030f58819787",
+      "input_sha256": "626c9cc88374c660f8271c07e06adf6932cff8512c86ac67f1369a12b5ba863b"
+    },
+    "negative-malformed": {
+      "derivation": "case_pack=0 violates the positive-integer field rule before any need or allocation calculation. Rejected outputs are empty; the error points to routes[0].case_pack.",
+      "expected_sha256": "468f0045428a9a3f3cfa96bf45410627ca3c4838075c1c5982beb6cdbb013106",
+      "input_sha256": "0a6e23e23750b312c6fcc0ad3818a57522cc1782ee3fcc0547946ea9b29cf1e6"
+    },
+    "negative-out-of-window": {
+      "derivation": "The store snapshot is December31 but run as-of is January1. Reject the mismatched opening date, not a current-stock assumption.",
+      "expected_sha256": "62964422c49a3e2c6fc2875d2f70ba2b467eeb36b6eb5be532d87c2714bd7f61",
+      "input_sha256": "17d3a54d874bf0fb3da66218afffb6057fe22291999424c9f202963f00fc3e6f"
+    },
+    "negative-overdue-inbound": {
+      "derivation": "Two in-transit units have ETA January1 before January2 as-of. Quarantine the sole store/SKU. Proposal units/cases are0; unknown need, projection and shortage fields are null, no allocation/daily rows, DC10 and capacity2 unchanged. Known-only totals are0 with blocked_pairs1; one overdue-inbound exception preserves the two-unit receipt.",
+      "expected_sha256": "c896f75089fcbe5043f9fe253f653a6d96d1058d0d5276ec728e2d3bae6111a7",
+      "input_sha256": "08971537ecc3ff1358e8b50e49e717721f725af663f520488520ecb0b11d3975"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Retail sector author",
+    "description": "All nine expected JSON files were manually enumerated from the approved research arithmetic and written policy before any baseline execution. They are not copied from baseline output and do not imply independent human or native review.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "retail-01",
+  "schema_version": 1
+}

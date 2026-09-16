@@ -1,0 +1,41 @@
+{
+  "exceptions": [
+    {
+      "code": "DUPLICATE_KEY",
+      "evidence_ids": [],
+      "message": "An export contains a duplicate primary or scope key.",
+      "observation_id": null,
+      "path": "observations.SYN-OBS-DUP"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "DUPLICATE_KEY",
+        "currency": null,
+        "evidence_ids": [],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "An export contains a duplicate primary or scope key.",
+        "next_action": "Correct the source export or policy and rerun the audit.",
+        "observation_id": null,
+        "observed_on": null,
+        "owner": "Pricing operations analyst",
+        "sku": null,
+        "store_id": null
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [],
+    "reconciliation": null,
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [],
+      "owner_role": "Pricing operations analyst",
+      "policy": null,
+      "review_state": "input-rejected"
+    },
+    "rule_selection": []
+  },
+  "schema_version": 1,
+  "status": "rejected"
+}

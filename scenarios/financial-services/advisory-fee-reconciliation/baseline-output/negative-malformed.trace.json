@@ -1,0 +1,112 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic exports without changing any source row.",
+      "facts": {
+        "as_of": "2026-06-01T00:00:00Z",
+        "period_end": "2026-06-01",
+        "period_start": "2026-05-01",
+        "synthetic_only": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-billing-exports",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "engagements",
+              1
+            ],
+            [
+              "schedule_versions",
+              1
+            ],
+            [
+              "synthetic_value_intervals",
+              1
+            ],
+            [
+              "draft_fee_lines",
+              0
+            ]
+          ],
+          "title": "Observed input source counts",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Rejected the supplied evidence before any financial calculation.",
+      "facts": {
+        "accepted": false,
+        "code": "invalid-integer"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-billing-evidence",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "record",
+            "code",
+            "field"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-MAL-A",
+              "SYN-SCH-MAL",
+              "invalid-integer",
+              "schedule_versions[SYN-SCH-MAL].bands[0].annual_rate_bps"
+            ]
+          ],
+          "title": "Validation diagnostic",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Returned a rejection diagnostic, pending human review, and no financial totals.",
+      "facts": {
+        "human_review": "pending",
+        "live_action": "none",
+        "status": "rejected"
+      },
+      "kind": "output",
+      "sequence": 3,
+      "step_id": "emit-billing-review",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "invalid-integer",
+              "Expected an integer from 0 through 10000."
+            ]
+          ],
+          "title": "Rejected review packet",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "11f569b74031905c5a11e3ad5f7d55de9c85b7887c46fb4b7a32ca443feb5b22",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-03",
+  "schema_version": 1
+}

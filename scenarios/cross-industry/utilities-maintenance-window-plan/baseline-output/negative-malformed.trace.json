@@ -1,0 +1,87 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic planning exports without live connections.",
+      "facts": {
+        "logical_exports": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-planning-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work-orders.json",
+              1
+            ],
+            [
+              "requirements.json",
+              0
+            ],
+            [
+              "kit-components.json",
+              0
+            ],
+            [
+              "resources.json",
+              2
+            ],
+            [
+              "resource-windows.json",
+              2
+            ],
+            [
+              "commitments.json",
+              0
+            ],
+            [
+              "prerequisite-status.json",
+              0
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Rejected invalid or contradictory planning input before creating a plan.",
+      "facts": {
+        "code": "invalid-duration",
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-planning-data",
+      "tables": [
+        {
+          "columns": [
+            "path",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "files.work-orders.json[0].duration_minutes",
+              "invalid-duration",
+              "Expected an integer from 1 to 44640 (booleans are invalid)."
+            ]
+          ],
+          "title": "Explicit rejection",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "55c3f07a471b3907d6028bf088854589f939966d2c9a0a8d6a79f1e4141c23eb",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-02",
+  "schema_version": 1
+}

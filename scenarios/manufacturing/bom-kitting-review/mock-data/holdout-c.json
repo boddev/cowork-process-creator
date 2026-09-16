@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-11-01",
+  "horizon_end": "2026-11-05",
+  "work_orders": [
+    {"order_id": "X-OUT", "item_id": "CASE", "site": "WEST", "start_date": "2026-11-06", "quantity": 1, "priority": 1, "requested_version_id": null},
+    {"order_id": "X01", "item_id": "CASE", "site": "WEST", "start_date": "2026-11-04", "quantity": 2, "priority": 1, "requested_version_id": "CASE-ALT"}
+  ],
+  "bom_versions": [
+    {"version_id": "CASE-DEFAULT", "item_id": "CASE", "site": "WEST", "valid_from": "2026-11-01", "valid_to": "2026-11-30", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "CASE-ALT", "item_id": "CASE", "site": "WEST", "valid_from": "2026-11-04", "valid_to": "2026-11-04", "min_order_qty": 2, "max_order_qty": 2, "approved": true, "active": false}
+  ],
+  "bom_lines": [
+    {"line_id": "DEFAULT-PIN", "version_id": "CASE-DEFAULT", "component_id": "PIN", "line_type": "Item", "quantity_per": "5", "scrap_percent": "0"},
+    {"line_id": "ALT-B", "version_id": "CASE-ALT", "component_id": "PIN", "line_type": "Item", "quantity_per": "0.25", "scrap_percent": "0"},
+    {"line_id": "ALT-A", "version_id": "CASE-ALT", "component_id": "PIN", "line_type": "Item", "quantity_per": "0.5", "scrap_percent": "25"}
+  ],
+  "items": [
+    {"item_id": "CASE", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "PIN", "unit": "EA", "expiry_controlled": true}
+  ],
+  "stock_lots": [
+    {"stock_id": "S-B", "item_id": "PIN", "site": "WEST", "quantity": 2, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-11-04"},
+    {"stock_id": "S-A", "item_id": "PIN", "site": "WEST", "quantity": 1, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-11-04"},
+    {"stock_id": "S-A", "item_id": "PIN", "site": "WEST", "quantity": 1, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-11-04"}
+  ],
+  "inbound": [
+    {"receipt_id": "I-A", "item_id": "PIN", "site": "WEST", "expected_on": "2026-11-02", "quantity": 2, "confirmed": true}
+  ]
+}

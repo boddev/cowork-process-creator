@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "r1", "title": "Replenishment", "publisher": "Oracle",
+      "url": "https://docs.oracle.com/en/industries/retail/retail-merchandising-foundation-cloud/latest/rmpug/replenishment.htm",
+      "accessed": "2026-09-14",
+      "scope": "Fetched official Retail Merchandising Foundation Cloud replenishment overview.",
+      "supported_claims": ["Replenishment refills stores or warehouses from a supplier or warehouse.", "The process can generate recommendations for manual review rather than automatically create orders or transfers.", "Item/location inventory, forecast integration and rounding/constraints are relevant planning concepts."],
+      "limitations": "Unversioned latest page; no installed Oracle version or connection is asserted. Does not define this sample DC-case budget, lost-demand model, ceiling or allocation queue."
+    },
+    {
+      "id": "r2", "title": "Replenishment methods and quantity modification", "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/supply-chain/master-planning/planning-optimization/replenishment-methods-quantity-modification",
+      "accessed": "2026-09-14",
+      "scope": "Fetched official Dynamics 365 Supply Chain Management coverage codes and order quantity multiple sections.",
+      "supported_claims": ["Replenishment planning can use period, requirement, minimum-maximum and manual methods.", "Planned orders can be constrained to multiples of a configured quantity."],
+      "limitations": "Microsoft's minimum-maximum examples can select a lower multiple before overshoot. This scenario's unconditional case ceiling is explicitly different sample policy, not engine parity."
+    },
+    {
+      "id": "r3", "title": "Overview of the Forecast to plan business process areas", "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/guidance/business-processes/forecast-to-plan-areas",
+      "accessed": "2026-09-14",
+      "scope": "Fetched official stocking/replenishment policies, forecast supply and demand, and plan supply and replenishment sections.",
+      "supported_claims": ["Stocking policies include replenishment lead times, inventory thresholds and planning horizons.", "Expected demand, safety stock, inventory and capacity considerations inform replenishment planning."],
+      "limitations": "Cross-product process guidance, not an exact store/DC allocation formula, a mandate for case-count capacity, or a live inventory accuracy guarantee."
+    }
+  ]
+}

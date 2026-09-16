@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Synthetic exported-file inputs and native file outputs only; no endpoint or authentication required. Logical export tables share one case JSON payload. Real ERP tool names, connection metadata, permissions and physical multi-file native ingestion remain unverified. No business or physical inventory action."
+}

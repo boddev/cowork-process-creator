@@ -1,0 +1,13 @@
+{
+  "config": {"as_of": "2026-09-14", "reporting_month": "2026-13", "horizon_days": 10, "tolerance_days": 0, "urgency_days": 3, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "M01", "supplier_id": "SM01", "item_id": "SPACER", "ordered_qty": 5, "original_requested_receipt": "2026-09-14", "state": "open"}
+  ],
+  "receipt_events": [
+    "not-a-receipt",
+    {"event_id": "M-R01", "line_id": "M01", "posted_on": "2026-09-14", "qty": "five", "reversal_of": null}
+  ],
+  "confirmations": [],
+  "requirements": [],
+  "suppliers": [{"supplier_id": "SM01", "buyer_role": "Sample buyer"}]
+}

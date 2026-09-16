@@ -1,0 +1,67 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic export bundle; no live inventory connection.",
+      "facts": {
+        "logical_files": 6,
+        "records": 8
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-exports",
+      "tables": [
+        {
+          "columns": [
+            "measure",
+            "count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "logical export files",
+              6
+            ],
+            [
+              "export records",
+              8
+            ]
+          ],
+          "title": "Received bundle",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Rejected explicit invalid or contradictory export evidence.",
+      "facts": {
+        "rejected": true
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-stock-and-keys",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "reference"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "duplicate-key",
+              "routes:SYN-STORE-Z|SYN-SKU-Z"
+            ]
+          ],
+          "title": "Input rejection",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "ba2beeef5f281aeabccb39c6223e331d59c485a05a9c5b5f530361cf4a88471b",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-01",
+  "schema_version": 1
+}

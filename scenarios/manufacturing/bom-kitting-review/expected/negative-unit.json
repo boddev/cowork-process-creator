@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "UNSUPPORTED_UNIT", "message": "Only the EA unit is supported; conversions are not inferred.", "order_id": null, "source_type": "items", "source_id": "WEIGHT", "field": "unit"}
+  ]
+}

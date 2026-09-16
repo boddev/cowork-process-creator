@@ -1,6 +1,7 @@
 {
-  "implemented_scenario_count": 0,
-  "local_corpus_ready": false,
+  "alternative_manifest_fallback": false,
+  "implemented_scenario_count": 15,
+  "local_corpus_ready": true,
   "native": {
     "comparison": "not_run",
     "creation": "native_creation_blocked",
@@ -18,7 +19,902 @@
   "native_complete": false,
   "native_gate_as_of": "2026-09-14",
   "provenance": "foundation-generated-pending-matrix",
+  "publishing_metadata": "approved per-package app/publisher metadata required; not supplied by this corpus",
+  "required_plugin_manifest": "manifest.json",
+  "required_plugin_target": "cowork-v1.28",
   "required_scenario_count": 15,
-  "scenarios": [],
+  "scenarios": [
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "cross-industry-01",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Logistics: POD and carrier charge review"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "cross-industry-03",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Approved time and expense to client billing draft reconciliation"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "cross-industry-02",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Maintenance readiness and resource-window conflict plan"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "financial-services-03",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Advisory fee billing reconciliation"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "financial-services-02",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "AP three-way invoice, PO, and receipt exception matching"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "financial-services-01",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Bank-statement-to-ledger reconciliation review packet"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "hls-02",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Cold-chain immunization inventory temperature-excursion review packet"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "hls-01",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Site essential-document completeness and expiry review"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "hls-03",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Laboratory specimen accession and order reconciliation exception report"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-c",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-unknown",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-cycle",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-line",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-unit",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "manufacturing-03",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "BOM material-readiness and kitting shortage review plan"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "manufacturing-01",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Incoming-lot quality evidence and disposition review packet"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-c",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-conflicting-id",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "manufacturing-02",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Supplier delivery performance and shortage expediting review queue"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-duplicate",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-ambiguous-exception",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-out-of-window",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-missing-base",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-invalid-window",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "retail-03",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Store/SKU/date promotion price audit with exception review"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-duplicate",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-ambiguous-receipt",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-out-of-window",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-current-period-history",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-unconfirmed-payment",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "retail-02",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Original-order returns and refund proposal reconciliation"
+    },
+    {
+      "cases": [
+        {
+          "baseline": "baseline_pass",
+          "id": "demo",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-a",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "holdout-b",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-malformed",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-contradictory",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-duplicate",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-ambiguous-route",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-out-of-window",
+          "native_invocation": "not_run",
+          "native_result": null
+        },
+        {
+          "baseline": "baseline_pass",
+          "id": "negative-overdue-inbound",
+          "native_invocation": "not_run",
+          "native_result": null
+        }
+      ],
+      "id": "retail-01",
+      "native": {
+        "comparison": "not_run",
+        "creation": "native_creation_blocked",
+        "declared": [],
+        "evidence_ids": {
+          "creation": null,
+          "installation": null,
+          "invocation": null
+        },
+        "independent_invocation": "not_run",
+        "installation": "not_run",
+        "observed": [],
+        "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+      },
+      "plugin": null,
+      "title": "Store replenishment proposal with inventory and DC constraints"
+    }
+  ],
   "schema_version": 1
 }

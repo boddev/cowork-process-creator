@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "provenance": "internal-presentation-hints-not-native-authoring-input",
+  "hints": [
+    "Use an amber emphasis for outside-band intervals and a hatched gray treatment for unknown coverage.",
+    "Keep unique reviewed units beside the lot counter, not beside individual sensor readings.",
+    "Expand the active lot's source references before the final draft-request rollup."
+  ],
+  "boundary": "Render only actual baseline events. These presentation observations are not hidden safety rules and must not be copied into the native authoring prompt or mistaken for a native UI recording."
+}

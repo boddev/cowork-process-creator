@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "policy": {
+    "policy_id": "SYN-POLICY-DEMO",
+    "as_of": "2099-04-10",
+    "review_days": 3,
+    "partial_cases_allowed": true,
+    "source_files": {"store_stock": "store-stock.json", "dc_stock": "dc-stock.json", "demand": "residual-demand.json", "inbound": "inbound.json", "routes": "routes.json", "capacity": "dc-capacity.json"}
+  },
+  "files": {
+    "store-stock.json": [
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "snapshot_on": "2099-04-10", "on_hand_units": 11, "reserved_units": 2, "blocked_units": 1},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "snapshot_on": "2099-04-10", "on_hand_units": 3, "reserved_units": 0, "blocked_units": 0},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "snapshot_on": "2099-04-10", "on_hand_units": 4, "reserved_units": 0, "blocked_units": 0}
+    ],
+    "dc-stock.json": [
+      {"dc_id": "SYN-DC-1", "sku": "SYN-SKU-BLUE", "snapshot_on": "2099-04-10", "on_hand_units": 12, "reserved_units": 2, "blocked_units": 1},
+      {"dc_id": "SYN-DC-1", "sku": "SYN-SKU-GOLD", "snapshot_on": "2099-04-10", "on_hand_units": 43, "reserved_units": 2, "blocked_units": 1}
+    ],
+    "residual-demand.json": [
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-10", "units": 2},
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-11", "units": 2},
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-12", "units": 2},
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-13", "units": 2},
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-14", "units": 2},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-10", "units": 2},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-11", "units": 2},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-12", "units": 2},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-13", "units": 2},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "demand_on": "2099-04-14", "units": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "demand_on": "2099-04-10", "units": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "demand_on": "2099-04-11", "units": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "demand_on": "2099-04-12", "units": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "demand_on": "2099-04-13", "units": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "demand_on": "2099-04-14", "units": 2}
+    ],
+    "inbound.json": [
+      {"receipt_id": "SYN-INBOUND-1", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "eta": "2099-04-12", "status": "in-transit", "remaining_units": 2},
+      {"receipt_id": "SYN-INBOUND-2", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "eta": "2099-04-14", "status": "in-transit", "remaining_units": 3},
+      {"receipt_id": "SYN-INBOUND-3", "store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "eta": "2099-04-09", "status": "received", "remaining_units": 0},
+      {"receipt_id": "SYN-INBOUND-4", "store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "eta": "2099-04-12", "status": "cancelled", "remaining_units": 0}
+    ],
+    "routes.json": [
+      {"store_id": "SYN-STORE-A", "sku": "SYN-SKU-BLUE", "dc_id": "SYN-DC-1", "lead_days": 2, "case_pack": 3, "safety_units": 4, "priority": 1},
+      {"store_id": "SYN-STORE-B", "sku": "SYN-SKU-BLUE", "dc_id": "SYN-DC-1", "lead_days": 2, "case_pack": 3, "safety_units": 3, "priority": 2},
+      {"store_id": "SYN-STORE-C", "sku": "SYN-SKU-GOLD", "dc_id": "SYN-DC-1", "lead_days": 2, "case_pack": 4, "safety_units": 2, "priority": 3}
+    ],
+    "dc-capacity.json": [{"dc_id": "SYN-DC-1", "dispatch_on": "2099-04-10", "remaining_case_capacity": 4}]
+  }
+}

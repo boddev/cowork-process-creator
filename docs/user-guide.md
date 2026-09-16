@@ -10,7 +10,8 @@ recording. There is no separate authoring application, backend or service.
 
 ## Current status and authorization
 
-**As of September 11, 2026: source v0.2.1 is provisional offline work, not a
+**As of September 14, 2026: source v0.3.0 requires native Microsoft Cowork
+manifest v1.28 and approved publisher metadata. It is not a
 new installed or natively exercised release.** Offline implementation covers
 the expanded instruction/toolkit path and evaluation preparation. Native
 installation, independent output execution and scheduling remain separate
@@ -65,9 +66,9 @@ blocked offline phase.
 2. Use the plugin upload/import facilities actually available in Cowork's
    native customization experience. Follow its real controls and policies;
    a missing route is a limitation, not a reason to use an external loader.
-3. Distinguish a canonical v1.28 ZIP from a compatible-source ZIP that needs
-   a separate native conversion route. Do not assume conversion preserves
-   every connector or companion feature.
+3. Require a root `manifest.json` targeting M365 v1.28, icons and declared
+   skills/resources. Historical Claude-compatible source ZIPs are not the
+   native package required by the current Creator; do not rely on conversion.
 4. Verify the actual package appears and is available before calling it
    installed. Select/enable it only when authorized for an authoring task.
 5. In a new authoring conversation, invoke `create-process-plugin` by name
@@ -197,7 +198,7 @@ installation or command-line prerequisites.
 | New project | `init --project PATH --id ID --title TITLE --purpose PURPOSE` |
 | Current checks/fingerprints | `check --project PATH [--report NEW_JSON]` |
 | Materialize authored candidate | `assemble --plan JSON --output NEW_CANDIDATE_DIR` |
-| Build a coherent project | `build --project PATH --output NEW_ZIP --report NEW_JSON --target cowork-v1.28\|compatible-source [--metadata APPROVED_JSON]` |
+| Build a coherent project | `build --project PATH --output NEW_ZIP --report NEW_JSON --target cowork-v1.28 --metadata APPROVED_JSON` |
 | Export creation source | `checkpoint --project PATH --output NEW_ZIP` |
 | Restore into a new directory | `resume --bundle ZIP --output NEW_PROJECT_DIR` |
 | Preserve corrections/user edits | `merge --base ZIP --current PROJECT --proposed PROJECT --output NEW_PROJECT` |
@@ -238,13 +239,14 @@ Missing approved metadata blocks this target. The Creator must not invent
 legal URLs, registrations, publishers or endpoints. Canonical upload
 acceptance remains a native gate, not a local schema claim.
 
-**`compatible-source`:** a separate **Draft source export** intended for a
-possible supported native import/conversion route. It is not a canonical
-v1.28 package. Old skills-only conversion is not proof for every new skill,
-resource or connector. The current emitted subset rejects declared remote
-connectors. Use canonical packaging with approved metadata or a suitable
-verified existing native connection; do not drop required bindings merely
-to obtain a compatible-source ZIP.
+There is no alternative plugin target or Claude-format fallback. If approved
+metadata is missing, keep editable project source and report the gap; a
+source-resume ZIP is not an installable plugin. Preserve required connector
+bindings and their packaged tool descriptors in the native manifest.
+
+See [Microsoft packaging](MICROSOFT_PACKAGING.md) for the exact publisher
+fields and developer release commands. Example-domain or guessed legal URLs
+are not valid supplied publishing metadata.
 
 The handoff should identify:
 
@@ -355,7 +357,7 @@ is observed to meet the declared behavior. None has been exercised here.
 
 | Label | Meaning |
 |---|---|
-| Draft | Useful source with unresolved scope/setup, an offline synthetic candidate, or a separate compatible-source export |
+| Draft | Useful source with unresolved scope/setup or an offline synthetic candidate; not proof of an installable plugin |
 | Package built | Actual ZIP passed the Creator's subset checks for its named target |
 | Installed | The actual target host accepted that exact package |
 | Manually exercised | Declared inputs ran and expected results were verified |

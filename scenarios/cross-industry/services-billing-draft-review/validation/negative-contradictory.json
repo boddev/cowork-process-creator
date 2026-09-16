@@ -1,0 +1,227 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "21faef940ef14aaaa04904b5edba3d9c666ebcec8b5b0fc15a74223c226c3a7b",
+    "golden_sha256": "23f8649a58e8dd1155c819e3153ad422e613b5e3bcfd1c0c07ede9e5ca02cbed",
+    "input_sha256": "1b5b28bb8b6d6a9acf71c017a29753482f716ba0249590b4342f3fe8c2c20e33",
+    "result": "baseline-output/negative-contradictory.json",
+    "result_sha256": "ec5a4affee693ba071b831c5529746f143c978c711087f61c802fe4579b3ff2b",
+    "trace": "baseline-output/negative-contradictory.trace.json",
+    "trace_sha256": "67bf43afb5e576bda44c5e0e570cdcb457c87d85710e996737a7ca5224a4cb87"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "datetime",
+      "decimal",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-contradictory",
+  "documented": {
+    "case_rule_coverage": [
+      "approval-context",
+      "eligibility-precedence",
+      "draft-comparison",
+      "period-cap",
+      "billing-closure"
+    ],
+    "failure_modes": [
+      "contradictory-evidence"
+    ],
+    "golden_derivation": "C1 has approved and recalled events at the same highest eligible revision 2. Their different recorded timestamps cannot break a revision conflict. Its otherwise 60/60*100 line remains uncomputed and its 100 draft amount is quarantined, with clarify-not-remove. Separate PC2 C2 is 30/60*120=60 and matches its 60 draft. Known candidate/computable expected/computable draft totals are each USD 60, computable variance zero, raw draft 160, quarantined draft 100. PC1 proposed consumption/full draft comparison remain null rather than invented zero totals. Two entries, two projects, two drafts, no prior rows, one diagnostic, two clarification exceptions.",
+    "steps": [
+      {
+        "id": "intake-billing-exports",
+        "kind": "input",
+        "rule_ids": [
+          "billing-closure"
+        ]
+      },
+      {
+        "id": "validate-billing-data",
+        "kind": "validation",
+        "rule_ids": [
+          "eligibility-precedence",
+          "draft-comparison"
+        ]
+      },
+      {
+        "id": "join-billing-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "approval-context",
+          "draft-review-context",
+          "period-cap"
+        ]
+      },
+      {
+        "id": "resolve-entry-eligibility",
+        "kind": "decision",
+        "rule_ids": [
+          "eligibility-precedence"
+        ]
+      },
+      {
+        "id": "price-candidate-entries",
+        "kind": "decision",
+        "rule_ids": [
+          "effective-time-rate",
+          "expense-evidence"
+        ]
+      },
+      {
+        "id": "compare-draft-details",
+        "kind": "decision",
+        "rule_ids": [
+          "draft-comparison"
+        ]
+      },
+      {
+        "id": "check-project-caps",
+        "kind": "decision",
+        "rule_ids": [
+          "period-cap"
+        ]
+      },
+      {
+        "id": "triage-billing-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "draft-comparison",
+          "expense-evidence",
+          "period-cap"
+        ]
+      },
+      {
+        "id": "emit-billing-review",
+        "kind": "output",
+        "rule_ids": [
+          "billing-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-contradictory.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/cross-industry/services-billing-draft-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.421083,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-billing-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-billing-data"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "join-billing-evidence"
+      },
+      {
+        "kind": "decision",
+        "sequence": 4,
+        "step_id": "resolve-entry-eligibility"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "price-candidate-entries"
+      },
+      {
+        "kind": "decision",
+        "sequence": 6,
+        "step_id": "compare-draft-details"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "check-project-caps"
+      },
+      {
+        "kind": "exception",
+        "sequence": 8,
+        "step_id": "triage-billing-exceptions"
+      },
+      {
+        "kind": "output",
+        "sequence": 9,
+        "step_id": "emit-billing-review"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "fcd97645d6854ad59c369511149b42f1f15dfaaaf714de25dd3c6f5ce2bba305",
+    "baseline.py": "21faef940ef14aaaa04904b5edba3d9c666ebcec8b5b0fc15a74223c226c3a7b",
+    "connections.json": "33d237acd0cfa67252db4fab2f5b605d9d75a915c905695c81f6065fb1bf293b",
+    "expected/demo.json": "c3160bf2066ce8cbc7658e320a1625bb98deba897b70c9beb9009a4d945c30ab",
+    "expected/holdout-a.json": "84035fcca0d018c82184140703c0f8b828ad926809b758d8db410a260325b4b6",
+    "expected/holdout-b.json": "596a3af6fabde185141263a51b35a75116b3e6b283cd546f11417751fda14e91",
+    "expected/negative-contradictory.json": "23f8649a58e8dd1155c819e3153ad422e613b5e3bcfd1c0c07ede9e5ca02cbed",
+    "expected/negative-malformed.json": "d95f0a537af83ee4b87ddedb2651b7768b6bbccc828c448a5e739db5a2442310",
+    "mock-data/demo.json": "b78d8f6954632553153b8a5fb0c1218e89b51e7588200e997bcfb89f016b23c6",
+    "mock-data/holdout-a.json": "27afa5b57ea4fa87651545ea652dff64448c7abba1d3140f7950af82f7d7efd9",
+    "mock-data/holdout-b.json": "e7c6865d627d583b0defabd6137b805d23ac8daa8d7423d951b536bc8e7f9094",
+    "mock-data/negative-contradictory.json": "1b5b28bb8b6d6a9acf71c017a29753482f716ba0249590b4342f3fe8c2c20e33",
+    "mock-data/negative-malformed.json": "e83f1eff949854e47620c3311c5fc036f3fc791ae65415851be917715d7605bc",
+    "scenario.json": "549edd97863cb017e0e92c46433e2f7b77f9ba3027fa79fab4531b2e5cd0c285",
+    "sources.json": "9e75f983aa63486dde80bfef18e9f859100e8216575b56c083318daa5b29027a",
+    "workflow.json": "bc337df04b955c007c30ca6511dc753ac57d1ceb1f192ce35ce335547a32d02a"
+  },
+  "state": "baseline_pass"
+}

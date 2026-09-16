@@ -1,0 +1,11 @@
+{
+  "config": {"as_of": "2026-09-14", "review_age_days": 5, "certificate_required": true, "fallback_reviewer_role": "QA intake reviewer"},
+  "items": [{"item_id": "MFG-PIN", "item_group": "MFG-METAL"}],
+  "reviewer_routes": [{"item_group": "MFG-METAL", "reviewer_role": "QA reviewer"}],
+  "lots": [{"lot_id": "MFG-BAD", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-THETA", "receipt_date": "2026-09-14", "received_qty": true, "site": "MFG-EAST", "quality_order_id": "MFG-QBAD"}],
+  "test_requirements": [{"requirement_id": "MFG-SPEC-BAD", "item_id": "MFG-PIN", "test_id": "MFG-DIAM", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "minimum": "4.90", "maximum": "5.10", "required_specimens": 1}],
+  "observations": [],
+  "certificates": [],
+  "hold_snapshot": [],
+  "nonconformances": []
+}

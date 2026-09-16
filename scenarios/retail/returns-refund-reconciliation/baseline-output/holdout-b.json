@@ -1,0 +1,199 @@
+{
+  "exceptions": [
+    {
+      "code": "partial-not-allowed",
+      "entity_id": "SYN-REQUEST-B-01",
+      "message": "Requested quantity exceeds remaining quantity and partial requests are disabled.",
+      "scope": "request"
+    }
+  ],
+  "outputs": {
+    "currency_controls": [
+      {
+        "captured_minor": 999,
+        "currency": "GBP",
+        "order_count": 1,
+        "prior_minor": 0,
+        "prior_plus_proposed_minor": 500,
+        "proposed_merchandise_minor": 500,
+        "proposed_minor": 500,
+        "proposed_tax_minor": 0,
+        "quarantined_order_count": 0,
+        "reconciled_captured_minor": 999,
+        "reconciled_order_count": 1,
+        "remaining_minor": 499
+      }
+    ],
+    "line_eligibility": [
+      {
+        "currency": "GBP",
+        "line_id": "SYN-LINE-B",
+        "observed_posted_merchandise_minor": 0,
+        "observed_posted_qty": 0,
+        "observed_posted_tax_minor": 0,
+        "order_id": "SYN-ORDER-B",
+        "original_merchandise_minor": 999,
+        "original_qty": 2,
+        "original_tax_minor": 0,
+        "prior_merchandise_minor": 0,
+        "prior_qty": 0,
+        "prior_tax_minor": 0,
+        "proposed_merchandise_minor": 500,
+        "proposed_qty": 1,
+        "proposed_tax_minor": 0,
+        "quarantined": false,
+        "remaining_merchandise_minor": 499,
+        "remaining_qty": 1,
+        "remaining_tax_minor": 0,
+        "sku": "SYN-SKU-B"
+      }
+    ],
+    "order_money_controls": [
+      {
+        "authorized_minor": 999,
+        "cap_ok": true,
+        "captured_minor": 999,
+        "confirmed": true,
+        "currency": "GBP",
+        "observed_posted_minor": 0,
+        "order_id": "SYN-ORDER-B",
+        "original_merchandise_minor": 999,
+        "original_tax_minor": 0,
+        "original_total_minor": 999,
+        "payment_method": "card",
+        "payment_reference": "SYN-CARD-B",
+        "prior_minor": 0,
+        "prior_plus_proposed_minor": 500,
+        "proposed_merchandise_minor": 500,
+        "proposed_minor": 500,
+        "proposed_tax_minor": 0,
+        "quarantined": false,
+        "reason_codes": [],
+        "remaining_minor": 499
+      }
+    ],
+    "request_proposals": [
+      {
+        "age_days": 6,
+        "available_qty": 2,
+        "condition": "unworn",
+        "deferred_qty": 3,
+        "disposition": "deferred",
+        "earlier_proposed_qty": 0,
+        "entitlement_after": {
+          "merchandise_minor": 0,
+          "qty": 0,
+          "tax_minor": 0
+        },
+        "entitlement_before": {
+          "merchandise_minor": 0,
+          "qty": 0,
+          "tax_minor": 0
+        },
+        "join_status": "matched",
+        "original": {
+          "currency": "GBP",
+          "invoice_id": "SYN-INVOICE-B",
+          "line_id": "SYN-LINE-B",
+          "order_id": "SYN-ORDER-B",
+          "payment_reference": "SYN-CARD-B",
+          "receipt_id": "SYN-RECEIPT-B",
+          "sku": "SYN-SKU-B",
+          "store_id": "SYN-STORE-B"
+        },
+        "prior_qty": 0,
+        "proposed_merchandise_minor": 0,
+        "proposed_qty": 0,
+        "proposed_tax_minor": 0,
+        "proposed_total_minor": 0,
+        "reason": "changed-mind",
+        "reason_codes": [
+          "partial-not-allowed"
+        ],
+        "request_id": "SYN-REQUEST-B-01",
+        "requested_on": "2099-09-10",
+        "requested_qty": 3,
+        "supplied_keys": {
+          "invoice_id": "SYN-INVOICE-B",
+          "line_id": "SYN-LINE-B",
+          "order_id": "SYN-ORDER-B",
+          "receipt_id": "SYN-RECEIPT-B",
+          "sku": "SYN-SKU-B",
+          "store_id": "SYN-STORE-B"
+        }
+      },
+      {
+        "age_days": 7,
+        "available_qty": 2,
+        "condition": "unworn",
+        "deferred_qty": 0,
+        "disposition": "proposed",
+        "earlier_proposed_qty": 0,
+        "entitlement_after": {
+          "merchandise_minor": 500,
+          "qty": 1,
+          "tax_minor": 0
+        },
+        "entitlement_before": {
+          "merchandise_minor": 0,
+          "qty": 0,
+          "tax_minor": 0
+        },
+        "join_status": "matched",
+        "original": {
+          "currency": "GBP",
+          "invoice_id": "SYN-INVOICE-B",
+          "line_id": "SYN-LINE-B",
+          "order_id": "SYN-ORDER-B",
+          "payment_reference": "SYN-CARD-B",
+          "receipt_id": "SYN-RECEIPT-B",
+          "sku": "SYN-SKU-B",
+          "store_id": "SYN-STORE-B"
+        },
+        "prior_qty": 0,
+        "proposed_merchandise_minor": 500,
+        "proposed_qty": 1,
+        "proposed_tax_minor": 0,
+        "proposed_total_minor": 500,
+        "reason": "changed-mind",
+        "reason_codes": [],
+        "request_id": "SYN-REQUEST-B-02",
+        "requested_on": "2099-09-11",
+        "requested_qty": 1,
+        "supplied_keys": {
+          "invoice_id": "SYN-INVOICE-B",
+          "line_id": "SYN-LINE-B",
+          "order_id": "SYN-ORDER-B",
+          "receipt_id": "SYN-RECEIPT-B",
+          "sku": "SYN-SKU-B",
+          "store_id": "SYN-STORE-B"
+        }
+      }
+    ],
+    "review_packet": {
+      "action_authorized": false,
+      "allow_partial_requests": false,
+      "as_of": "2099-09-11",
+      "deferred_qty": 3,
+      "exception_count": 1,
+      "next_actions": [
+        "Verify source completeness and resolve every exception with the original transaction owner.",
+        "Review proposals against current authorized return and payment policy; this packet grants no approval.",
+        "Use an authorized operational process only after separate approval; no refund, order or stock change was executed."
+      ],
+      "owner_role": "Returns reconciliation analyst",
+      "period_end": "2099-09-11",
+      "period_start": "2099-09-10",
+      "proposed_qty": 1,
+      "quarantined_order_ids": [],
+      "request_count": 2,
+      "review_request_ids": [
+        "SYN-REQUEST-B-01"
+      ],
+      "unresolved_request_ids": [],
+      "window_days": 7
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

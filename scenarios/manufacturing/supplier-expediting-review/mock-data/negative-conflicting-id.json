@@ -1,0 +1,13 @@
+{
+  "config": {"as_of": "2026-12-03", "reporting_month": "2026-12", "horizon_days": 7, "tolerance_days": 0, "urgency_days": 2, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "N10", "supplier_id": "SN10", "item_id": "KEY", "ordered_qty": 6, "original_requested_receipt": "2026-12-02", "state": "open"}
+  ],
+  "receipt_events": [
+    {"event_id": "E-N10", "line_id": "N10", "posted_on": "2026-12-02", "qty": 3, "reversal_of": null},
+    {"event_id": "E-N10", "line_id": "N10", "posted_on": "2026-12-02", "qty": 4, "reversal_of": null}
+  ],
+  "confirmations": [],
+  "requirements": [],
+  "suppliers": [{"supplier_id": "SN10", "buyer_role": "Identity reviewer"}]
+}

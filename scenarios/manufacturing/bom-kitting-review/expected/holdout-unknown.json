@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-12-01",
+    "horizon_end": "2026-12-05",
+    "order_sequence": ["U01", "U02"],
+    "selected_versions": [
+      {"order_id": "U02", "parent_path": [], "item_id": "PANEL", "version_id": "PANEL-V", "selection": "active-default"}
+    ],
+    "exploded_paths": [
+      {"order_id": "U02", "path": ["PANEL-PANE"], "component_id": "PANE", "exact_qty": "1"}
+    ],
+    "component_requirements": [
+      {"order_id": "U02", "component_id": "PANE", "exact_qty": "1", "required_qty": 1, "available_now_qty": 0, "expected_before_need_qty": 0, "assigned_now_qty": 0, "assigned_expected_qty": 0, "assigned_qty": 0, "gap_qty": 1}
+    ],
+    "shadow_allocations": [],
+    "source_balances": [
+      {"source_type": "stock_lots", "source_id": "US-1", "item_id": "PANE", "site": "EAST", "net_qty": 4, "assigned_qty": 0, "remaining_qty": 4},
+      {"source_type": "stock_lots", "source_id": "US-2", "item_id": "PANE", "site": "EAST", "net_qty": 5, "assigned_qty": 0, "remaining_qty": 5},
+      {"source_type": "inbound", "source_id": "UI-L", "item_id": "PANE", "site": "EAST", "net_qty": 7, "assigned_qty": 0, "remaining_qty": 7},
+      {"source_type": "inbound", "source_id": "UI-O", "item_id": "PANE", "site": "EAST", "net_qty": 2, "assigned_qty": 0, "remaining_qty": 2},
+      {"source_type": "inbound", "source_id": "UI-X", "item_id": "GHOST", "site": "EAST", "net_qty": 9, "assigned_qty": 0, "remaining_qty": 9}
+    ],
+    "supply_exclusions": [
+      {"order_id": null, "component_id": "GHOST", "source_type": "inbound", "source_id": "UI-X", "reason": "unknown-item"},
+      {"order_id": "U02", "component_id": "PANE", "source_type": "stock_lots", "source_id": "US-1", "reason": "unknown-expiry"},
+      {"order_id": "U02", "component_id": "PANE", "source_type": "stock_lots", "source_id": "US-2", "reason": "blocked-status"},
+      {"order_id": "U02", "component_id": "PANE", "source_type": "inbound", "source_id": "UI-L", "reason": "unconfirmed"},
+      {"order_id": "U02", "component_id": "PANE", "source_type": "inbound", "source_id": "UI-O", "reason": "not-future"}
+    ],
+    "excluded_orders": [],
+    "order_reviews": [
+      {"order_id": "U01", "item_id": "MISSING", "site": "EAST", "need_by": "2026-12-02", "quantity": 1, "priority": 1, "state": "unresolved-review", "short_components": [], "review_owners": ["Engineering reviewer", "Material planner"], "approval_required": true, "production_authorized": false},
+      {"order_id": "U02", "item_id": "PANEL", "site": "EAST", "need_by": "2026-12-03", "quantity": 1, "priority": 1, "state": "shortage-review", "short_components": ["PANE"], "review_owners": ["Material planner", "Stores reviewer", "Production planner"], "approval_required": true, "production_authorized": false}
+    ],
+    "review_queue": ["U01", "U02"],
+    "component_totals": [
+      {"site": "EAST", "component_id": "PANE", "required_qty": 1, "assigned_now_qty": 0, "assigned_expected_qty": 0, "assigned_qty": 0, "gap_qty": 1}
+    ],
+    "summary": {"in_scope_orders": 2, "resolved_orders": 1, "unresolved_orders": 1, "excluded_orders": 0, "shortage_orders": 1, "covered_now_orders": 0, "covered_with_expected_orders": 0},
+    "closure": {"review_only": true, "approval_required": true, "production_authorized": false, "inventory_mutated": false, "reservations_created": false, "substitutions_made": false, "orders_released": false}
+  },
+  "exceptions": [
+    {"code": "MATERIAL_SHORTAGE", "message": "Required material is not fully assigned.", "order_id": "U02", "source_type": "items", "source_id": "PANE", "field": null},
+    {"code": "ORDER_UNRESOLVED", "message": "Material requirements are unresolved; no component assignment was made.", "order_id": "U01", "source_type": "work_orders", "source_id": "U01", "field": null},
+    {"code": "SUPPLY_EXCLUSIONS", "message": "5 order/source eligibility exclusion(s) require review.", "order_id": null, "source_type": null, "source_id": null, "field": null},
+    {"code": "UNKNOWN_ITEM", "message": "Referenced item master is missing: GHOST.", "order_id": null, "source_type": "inbound", "source_id": "UI-X", "field": "item_id"},
+    {"code": "UNKNOWN_ITEM", "message": "Referenced item master is missing: MISSING.", "order_id": "U01", "source_type": "work_orders", "source_id": "U01", "field": "item_id"}
+  ]
+}

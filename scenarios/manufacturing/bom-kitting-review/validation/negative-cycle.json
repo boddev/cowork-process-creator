@@ -1,0 +1,239 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "29972072059073e240a74e8ddc1213f0c7e6ea8bffeffc03d07d98c300168767",
+    "golden_sha256": "1099613230397b62ac73b93c94743ca3afbc633bd58af020337b7430cc6ea9ab",
+    "input_sha256": "efa8eb43d2070f1b6d159d6b8e9eac6db1a107a7ddb980074ce4dd76efeb0423",
+    "result": "baseline-output/negative-cycle.json",
+    "result_sha256": "c95597c4626a9193f905e2dbe3de8aa9d1e8d64684684226bc53ef1a39c45fb4",
+    "trace": "baseline-output/negative-cycle.trace.json",
+    "trace_sha256": "718b6837a0d32029051a3f4089c074aa58edd007b63dbffd545aad5898c597f2"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "datetime",
+      "decimal",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-cycle",
+  "documented": {
+    "case_rule_coverage": [
+      "phantom-structure",
+      "graph-safety",
+      "review-closure"
+    ],
+    "failure_modes": [
+      "contradictory-evidence"
+    ],
+    "golden_derivation": "Independent February two-assembly Phantom cycle. CY01 selects CY-V, follows C-TO-M to MID-V, then M-TO-C points back to ancestor CY. The second edge is a cycle even though all versions, quantities, dates and units are valid. BOM_CYCLE at line M-TO-C/component_id rejects outputs{}; no truncated expansion, zero demand, or assignment is accepted. Separate preauthored direct tests exercise exactly eight/nine levels and 5000/5001 leaf-path bounds without large stored fixtures.",
+    "steps": [
+      {
+        "id": "intake",
+        "kind": "input",
+        "rule_ids": [
+          "input-contract"
+        ]
+      },
+      {
+        "id": "validate-structure",
+        "kind": "validation",
+        "rule_ids": [
+          "input-contract",
+          "duplicate-evidence",
+          "graph-safety"
+        ]
+      },
+      {
+        "id": "select-bom",
+        "kind": "join",
+        "rule_ids": [
+          "order-scope",
+          "bom-validity",
+          "version-selection",
+          "unknown-evidence"
+        ]
+      },
+      {
+        "id": "expand-phantoms",
+        "kind": "join",
+        "rule_ids": [
+          "phantom-structure",
+          "version-selection",
+          "graph-safety",
+          "unknown-evidence"
+        ]
+      },
+      {
+        "id": "calculate-demand",
+        "kind": "decision",
+        "rule_ids": [
+          "leaf-rounding"
+        ]
+      },
+      {
+        "id": "join-supply",
+        "kind": "join",
+        "rule_ids": [
+          "blocked-inventory",
+          "stock-eligibility",
+          "inbound-eligibility",
+          "unknown-evidence"
+        ]
+      },
+      {
+        "id": "shadow-allocate",
+        "kind": "decision",
+        "rule_ids": [
+          "order-scope",
+          "stable-shadow-allocation"
+        ]
+      },
+      {
+        "id": "collect-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "unknown-evidence",
+          "stock-eligibility",
+          "inbound-eligibility",
+          "review-closure"
+        ]
+      },
+      {
+        "id": "reconcile-plan",
+        "kind": "decision",
+        "rule_ids": [
+          "stable-shadow-allocation",
+          "review-closure"
+        ]
+      },
+      {
+        "id": "close-plan",
+        "kind": "output",
+        "rule_ids": [
+          "review-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-cycle.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/manufacturing/bom-kitting-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.477963,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-structure"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "select-bom"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "expand-phantoms"
+      },
+      {
+        "kind": "exception",
+        "sequence": 5,
+        "step_id": "collect-exceptions"
+      },
+      {
+        "kind": "output",
+        "sequence": 6,
+        "step_id": "close-plan"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "e540e556be3864813e89bdc8f53f9d6d3fec5bffe37d9a238e836ee0c62bb1e6",
+    "baseline.py": "29972072059073e240a74e8ddc1213f0c7e6ea8bffeffc03d07d98c300168767",
+    "connections.json": "9054fa5eb6979c22f2277505bfe0b613b6610fcf2cb79004e927809f48a7a9e3",
+    "expected/demo.json": "55e4fd0bb772d6af441f47cd584d57f1a2e5170e2a22fce0d40589376dd54597",
+    "expected/holdout-a.json": "43c01bc0f95351a76d0d16f999e763d11036d926a6863b9e13e5df8b50086d5a",
+    "expected/holdout-b.json": "d735b8860b418259a723e434d52afa761ead7ceb5d3c8014123e89b74dbd9f8d",
+    "expected/holdout-c.json": "ea93712d400b161d9ce2fecf243f86e4ff637c3ea8b6c47961c132b265aa62f9",
+    "expected/holdout-unknown.json": "98f8468d72546d2e15bb728edf0d4b03da531c5fcdc49a45d969c8cb39020527",
+    "expected/negative-contradictory.json": "2761037abd78a12e48342f369f375404ce1486a32882e671991a59b5c7646f8e",
+    "expected/negative-cycle.json": "1099613230397b62ac73b93c94743ca3afbc633bd58af020337b7430cc6ea9ab",
+    "expected/negative-line.json": "8032cb4d8ec64fad0425746e22c6cb554d28f389ce20abcdb629fdf6cc2311f4",
+    "expected/negative-malformed.json": "ced86dcd8d59abc547ce078f4a3120f00582023fa94b77fbd58e10a71a0e147d",
+    "expected/negative-unit.json": "5398093e982720cf21559ad3ac390639d8e7f58f2dafd43d4c6603a14713ea8a",
+    "mock-data/demo.json": "50e16f896cb6131c49f2601e7f35a3dd39bda2483dd926510fd857aaa4483584",
+    "mock-data/holdout-a.json": "d7b95cf7ce3942b23cab80c5032f3c5ac82203df9dff2f3a7cfbc8445cdfb6fd",
+    "mock-data/holdout-b.json": "03efe91754de463cec3884bd9d86a63d633d924ed1a4cf90b3dc107ee2b7cdb8",
+    "mock-data/holdout-c.json": "5a2e58e450662f9b678a22b650569eb5ce671f2d9d313e565d097d846052c88a",
+    "mock-data/holdout-unknown.json": "e3121731d6553c4884da6dfd26ae7c1b39f4bcae0c05cd1a417e646931e719c1",
+    "mock-data/negative-contradictory.json": "cd1f055b3ce0075111e411d8387eabbc0140ac97eeffea9d0b3a8ff24af93c0c",
+    "mock-data/negative-cycle.json": "efa8eb43d2070f1b6d159d6b8e9eac6db1a107a7ddb980074ce4dd76efeb0423",
+    "mock-data/negative-line.json": "85801bd00392cce28056c1a85e63c773fefa25322a2a8d3002ab7485dd01a2e0",
+    "mock-data/negative-malformed.json": "2f4107b2222f6c6f8bcb8056f6a7218b41eeef84c3b5cc349ab7daacc018fdce",
+    "mock-data/negative-unit.json": "14fcd3ff61a6f9fe823febf56e618b7b153993ea88a6c6927a8f3fe21c875a54",
+    "scenario.json": "96010dc5ce207ce8760b423e13b71275b9b7b25f981e0197023254f787510455",
+    "sources.json": "1952f2cc20ec82241d46d5b659ae4d169ae7db9867f90d48f26580d6f43a92c0",
+    "workflow.json": "f54acf27a2f0190f258dbe0953cb21a6e74661ffa320db4dfae7f394be2e4256"
+  },
+  "state": "baseline_pass"
+}

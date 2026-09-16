@@ -1,0 +1,3115 @@
+{
+  "case_count": 96,
+  "files": {
+    "ALL_SCENARIOS_HOW_TO.md": {
+      "bytes": 433458,
+      "sha256": "a59d52a6caa2118f7fb0112e1aeb954933f35812a716179cd4be7051f66c2cdf"
+    },
+    "HOW_TO.md": {
+      "bytes": 15570,
+      "sha256": "78fca73e9fa3fdc1bc8b876ef46d8bf2f8ea314d7522c8fba712e7c668b7c17b"
+    },
+    "IMPLEMENTATION_NOTES.md": {
+      "bytes": 5820,
+      "sha256": "fb1ff422aaba4c3844c2c1f131494245f467bfe9a0dd0058686dec5978a9b9aa"
+    },
+    "SCENARIO_CONTRACT.md": {
+      "bytes": 12360,
+      "sha256": "ced58b80c2f1c3e67a2b81ab4c9bbd6be24482e92012ab72b4322334abdc167a"
+    },
+    "VALIDATION_REPORT.md": {
+      "bytes": 5582,
+      "sha256": "0e49117fe2b75b78e0f10fe78adc17d46979a3c3e86644dabdfb4d3c044bcaec"
+    },
+    "__init__.py": {
+      "bytes": 82,
+      "sha256": "25c8d505422750cd2fc458fb748e6276fe175fc26173a843b029dc059a9bcb28"
+    },
+    "__main__.py": {
+      "bytes": 91,
+      "sha256": "faa23a68f6ec15b66251a5c77f1727aa52a7610444797ea4d0ea9894addeb552"
+    },
+    "_shared/__init__.py": {
+      "bytes": 83,
+      "sha256": "8f5cc2605a57fae02922cb85ed100c797d8f9098b11ac19250085e24c5743468"
+    },
+    "_shared/cli.py": {
+      "bytes": 8471,
+      "sha256": "c8685ed708ad8bfebc7b55e24b2f5220306be7e0dff58767e6435542c1f0f41b"
+    },
+    "_shared/common.py": {
+      "bytes": 7375,
+      "sha256": "d00fcc69c91927d8e26b72a06573f2014d567ada3d061495e82614808548254c"
+    },
+    "_shared/comparison.py": {
+      "bytes": 2127,
+      "sha256": "b98d1a9b746c08831d2a33af5c85a10d3833df2f49f7c4f04a08bd894e381047"
+    },
+    "_shared/contract.py": {
+      "bytes": 19396,
+      "sha256": "6d8cef18741244885cb61dbb808fc54ba46de8117eec46777923ce858d3561fb"
+    },
+    "_shared/media.py": {
+      "bytes": 44347,
+      "sha256": "a4479218f5e8e59562e301e38afd31a8a873a829aa971d8790d936e979d26158"
+    },
+    "_shared/native.py": {
+      "bytes": 24550,
+      "sha256": "3d1dc9d5877643e5318583b0bc505ddeec7bf706bd3c9f1a0773273836cad699"
+    },
+    "_shared/pipeline.py": {
+      "bytes": 14550,
+      "sha256": "4fc1c62771e1e379920912f8637197cbe0f18d864684ab691b98da5f79b979e6"
+    },
+    "_shared/reporting.py": {
+      "bytes": 14345,
+      "sha256": "b6e68c1738ecd0f20b4910796a71779a163a4d52bde6649eee0a5d9aba98c645"
+    },
+    "_shared/scenario_support.py": {
+      "bytes": 4104,
+      "sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed"
+    },
+    "_shared/staging.py": {
+      "bytes": 12226,
+      "sha256": "7e920a6a7c6cf75b38023efd09967f119d109f056f350560d9de2f0225b50da6"
+    },
+    "catalog.json": {
+      "bytes": 236896,
+      "sha256": "bb7a1bd34c548bdca7893e716f02e0d5d9630c3b58790b051f929217737d2a3c"
+    },
+    "cross-industry/logistics-pod-charge-review/HOW_TO.md": {
+      "bytes": 29696,
+      "sha256": "11a596f5870d4dcf482599195a94ab2f97bc9faae930e54f405d0ae2dc63df7e"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/demo.json": {
+      "bytes": 10956,
+      "sha256": "1f3cd66b23a1b10be4e8dbb91c35344225b2b149c1b7eab27d4e3d42ac4d2b46"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/demo.trace.json": {
+      "bytes": 16127,
+      "sha256": "8dc10eaaf8a3c99bcfc002a36dd07036765c75f8292b794b07c7d09ddbe8c9ac"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/holdout-a.json": {
+      "bytes": 8538,
+      "sha256": "7ade4738bced9265f46d571ab2e6be4e6f28ffa5a04d0a58d0f225199d035c23"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 14947,
+      "sha256": "16fae1c7b6ac120165f855d2c67eb8b0d428973e5c1d1d6d396f411f42b1439d"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/holdout-b.json": {
+      "bytes": 11190,
+      "sha256": "e3cecd15a38211cad74a3501507a4301d78fbabc8febcf34182a9e3daec9cc68"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 16068,
+      "sha256": "e04f03c7a8a0b4367ed8ed0cd1544672f0152a0a56a2bb67043fb2dad04abe73"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/negative-contradictory.json": {
+      "bytes": 6026,
+      "sha256": "85fff03fb679a1512b29a80ecbbe93aa6dd822c9933d678ea8a1d8fee79b8beb"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 13456,
+      "sha256": "161fb6344a47abafe6a678f99b4829ddb2b9d63a631a13a4af71a0677798d2b9"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/negative-malformed.json": {
+      "bytes": 454,
+      "sha256": "10ce6e1065055ecec924418019925f4c2344bee6a14761130c96c8f539529383"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2134,
+      "sha256": "b5a6ffe9f95cf8edff42bdc050c862d4b560e18bc0aa8a18e731d68bca962014"
+    },
+    "cross-industry/logistics-pod-charge-review/baseline.py": {
+      "bytes": 41502,
+      "sha256": "a7f33e98236ddc6430c64d5f18d4141a312d0741c83357413eedb0bd2ed3dd8a"
+    },
+    "cross-industry/logistics-pod-charge-review/connections.json": {
+      "bytes": 390,
+      "sha256": "fdd0d4239cc2d1368a4b174f606921655329a0a984847b13d535e4a2103d9c13"
+    },
+    "cross-industry/logistics-pod-charge-review/demo/baseline.media.json": {
+      "bytes": 137353,
+      "sha256": "c8dfe7aa61acb04f9f787804804e22b8e95aa0de48b569e33757ff81934af827"
+    },
+    "cross-industry/logistics-pod-charge-review/demo/baseline.webm": {
+      "bytes": 1868514,
+      "sha256": "09100b02db72200077eb8f832dd1a6f5269989915612ae333360d7930f853247"
+    },
+    "cross-industry/logistics-pod-charge-review/expected/demo.json": {
+      "bytes": 8046,
+      "sha256": "e962277545f0984a697cb78853a2906a3ea1a0b3724751b57b456f527d31caaa"
+    },
+    "cross-industry/logistics-pod-charge-review/expected/holdout-a.json": {
+      "bytes": 6355,
+      "sha256": "4db4a927ec0348fd0960bdfa88a6ba4f071600ff93fb1ecc9858944718589614"
+    },
+    "cross-industry/logistics-pod-charge-review/expected/holdout-b.json": {
+      "bytes": 8176,
+      "sha256": "1f7c384955b435145656a39ec695145557919e05feefc96fb75ff6dd21026cec"
+    },
+    "cross-industry/logistics-pod-charge-review/expected/negative-contradictory.json": {
+      "bytes": 4495,
+      "sha256": "020efa8c9292ade6c17507d682e51e8dd87ab4e7734d77d5ed9bbb1371eea50a"
+    },
+    "cross-industry/logistics-pod-charge-review/expected/negative-malformed.json": {
+      "bytes": 414,
+      "sha256": "3ee8e019a9c6d544e50b010e547d721aa0dedf90e4e04fb87d6b488cc3570821"
+    },
+    "cross-industry/logistics-pod-charge-review/mock-data/demo.json": {
+      "bytes": 5497,
+      "sha256": "1419540e5985f272598d1efa7f9ad076d7b7c2823a0e43e33af405f17ce4bbc4"
+    },
+    "cross-industry/logistics-pod-charge-review/mock-data/holdout-a.json": {
+      "bytes": 5132,
+      "sha256": "917b49127110a68942fb0d4f19b6f739f496027b59df38fc33229c2ec448203c"
+    },
+    "cross-industry/logistics-pod-charge-review/mock-data/holdout-b.json": {
+      "bytes": 5768,
+      "sha256": "abc43a6e1c12b16c1e3ae0306e03d15f8e10b2a0d85e49d4d87f7f9a1bd28687"
+    },
+    "cross-industry/logistics-pod-charge-review/mock-data/negative-contradictory.json": {
+      "bytes": 3226,
+      "sha256": "faec0af61da810c076744ca5b357ddc6e78ddac28a29efa750def858c717fded"
+    },
+    "cross-industry/logistics-pod-charge-review/mock-data/negative-malformed.json": {
+      "bytes": 1720,
+      "sha256": "fab01e6d568c8587b5bcdd9d94beba11c9212e90d078ceb0e38b75b64fb9db81"
+    },
+    "cross-industry/logistics-pod-charge-review/scenario.json": {
+      "bytes": 7515,
+      "sha256": "39e9ef07259a6bd343fffecac23bb78854ade15eca811cc1bd307dcf29d0462c"
+    },
+    "cross-industry/logistics-pod-charge-review/sources.json": {
+      "bytes": 2387,
+      "sha256": "39c13256102d0007bc9823295d3935c420702513f50dfc1cd7889e5b90bcab95"
+    },
+    "cross-industry/logistics-pod-charge-review/test_baseline.py": {
+      "bytes": 48428,
+      "sha256": "f5181fa6b2a801bda1f6c47e2b0788788a99a7395000a301faaca9332f1d18f0"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 29696,
+      "sha256": "11a596f5870d4dcf482599195a94ab2f97bc9faae930e54f405d0ae2dc63df7e"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-input/connections.json": {
+      "bytes": 390,
+      "sha256": "fdd0d4239cc2d1368a4b174f606921655329a0a984847b13d535e4a2103d9c13"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1868514,
+      "sha256": "09100b02db72200077eb8f832dd1a6f5269989915612ae333360d7930f853247"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 5497,
+      "sha256": "1419540e5985f272598d1efa7f9ad076d7b7c2823a0e43e33af405f17ce4bbc4"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-input/workflow.json": {
+      "bytes": 6704,
+      "sha256": "68d7ee5e15bb841df34a57cce0977d7f04479aae87e65aa4015005e6aec9e79a"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/creator-staging.json": {
+      "bytes": 1934,
+      "sha256": "1761dd86dd5fca3e333e8c070b970336e7a27a70c252f49f22742a57a2ec70c7"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/demo.json": {
+      "bytes": 8094,
+      "sha256": "114a2e0d22bd552399184253268f05981e104cbe6994b66e880c2ee896c5032d"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/golden-lock.json": {
+      "bytes": 5622,
+      "sha256": "9b48a94d9a47a09d3d2a83bb606fba261eefc1411041f253e4c4575a93a40c80"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/holdout-a.json": {
+      "bytes": 8044,
+      "sha256": "282694314ae5842298b92ca34b1b5d0e25fcf262a0ef2788592853c77301c23d"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/holdout-b.json": {
+      "bytes": 8028,
+      "sha256": "06107cb447a4c5a747567918c5e062b09accd5af91bfcc87df5314cd6407e608"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/negative-contradictory.json": {
+      "bytes": 7773,
+      "sha256": "d02eee521991a64ea528f6f107cdff0333b1283677f2e1b5a5ac9fea88c88d1b"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/negative-malformed.json": {
+      "bytes": 6759,
+      "sha256": "0bb4f786bb0f3ac64956a8200af476e119984a83c9847f7c3defd10eacbfb6be"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/summary.json": {
+      "bytes": 5224,
+      "sha256": "da404b04560b52de5deecd75c27b63ec6934b1c3de124d189f98b40ba9fb10fd"
+    },
+    "cross-industry/logistics-pod-charge-review/validation/unittest.log": {
+      "bytes": 7577,
+      "sha256": "a84f48190be1864df523fd37b1c2ccdec1075d54b966bcc734747b7b5b9e1b3f"
+    },
+    "cross-industry/logistics-pod-charge-review/workflow.json": {
+      "bytes": 6704,
+      "sha256": "68d7ee5e15bb841df34a57cce0977d7f04479aae87e65aa4015005e6aec9e79a"
+    },
+    "cross-industry/research.json": {
+      "bytes": 63534,
+      "sha256": "3077a7c8ae737321c0300848d018569d2dd3efec3512d4f96cda2854fe2a677f"
+    },
+    "cross-industry/research.md": {
+      "bytes": 33940,
+      "sha256": "2151747144826ec1641997a68e33c638e7bdf4ab72db1b482ea3ee52afd9cd12"
+    },
+    "cross-industry/services-billing-draft-review/HOW_TO.md": {
+      "bytes": 40545,
+      "sha256": "fcd97645d6854ad59c369511149b42f1f15dfaaaf714de25dd3c6f5ce2bba305"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/demo.json": {
+      "bytes": 15996,
+      "sha256": "d588b7af9111c5ab657850c5185fad6cf7596cc864d4cb4aed23ebda094e489e"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/demo.trace.json": {
+      "bytes": 16741,
+      "sha256": "315e26a525fb2207d3e9aa6026e35137d9d12210d78640ff5e830109db4e16a9"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/holdout-a.json": {
+      "bytes": 9566,
+      "sha256": "364d7722f3765bedd47dfeaef659fbce794719b878f9264e73190664b8b182d2"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 13884,
+      "sha256": "753c78bdb2e5b262a2351a89536b9622453a4774a432dc2a76eecc8401e56724"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/holdout-b.json": {
+      "bytes": 11312,
+      "sha256": "272f1b8bff0c87d53b773dc84f72c406f9305f6cd894feb0c927d0e94ea90d64"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 14492,
+      "sha256": "7ba0227b99536c374351066d636d14d48daf4a9d3e81facab9ee2fc269689603"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/negative-contradictory.json": {
+      "bytes": 5921,
+      "sha256": "ec5a4affee693ba071b831c5529746f143c978c711087f61c802fe4579b3ff2b"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 10970,
+      "sha256": "67bf43afb5e576bda44c5e0e570cdcb457c87d85710e996737a7ca5224a4cb87"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/negative-malformed.json": {
+      "bytes": 449,
+      "sha256": "fcd39ab475b16949e05c3f1d6db965bee83b9dcd6f2d4b679aa0654fedc014d9"
+    },
+    "cross-industry/services-billing-draft-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2269,
+      "sha256": "65e66bd77544ef7e7ed39755597d05982460eb9725cd8994634906ff440fd1ba"
+    },
+    "cross-industry/services-billing-draft-review/baseline.py": {
+      "bytes": 44504,
+      "sha256": "21faef940ef14aaaa04904b5edba3d9c666ebcec8b5b0fc15a74223c226c3a7b"
+    },
+    "cross-industry/services-billing-draft-review/connections.json": {
+      "bytes": 415,
+      "sha256": "33d237acd0cfa67252db4fab2f5b605d9d75a915c905695c81f6065fb1bf293b"
+    },
+    "cross-industry/services-billing-draft-review/demo/baseline.media.json": {
+      "bytes": 145279,
+      "sha256": "7ece5899eaad1af79c4ebdcb033d776bb1bc746e38cef9d5634d46132447e841"
+    },
+    "cross-industry/services-billing-draft-review/demo/baseline.webm": {
+      "bytes": 2086860,
+      "sha256": "6c2869f664ec047447850397228ac80ef3598f201de2af9c0b9416b3bc14dc53"
+    },
+    "cross-industry/services-billing-draft-review/expected/demo.json": {
+      "bytes": 12167,
+      "sha256": "c3160bf2066ce8cbc7658e320a1625bb98deba897b70c9beb9009a4d945c30ab"
+    },
+    "cross-industry/services-billing-draft-review/expected/holdout-a.json": {
+      "bytes": 7270,
+      "sha256": "84035fcca0d018c82184140703c0f8b828ad926809b758d8db410a260325b4b6"
+    },
+    "cross-industry/services-billing-draft-review/expected/holdout-b.json": {
+      "bytes": 8656,
+      "sha256": "596a3af6fabde185141263a51b35a75116b3e6b283cd546f11417751fda14e91"
+    },
+    "cross-industry/services-billing-draft-review/expected/negative-contradictory.json": {
+      "bytes": 4587,
+      "sha256": "23f8649a58e8dd1155c819e3153ad422e613b5e3bcfd1c0c07ede9e5ca02cbed"
+    },
+    "cross-industry/services-billing-draft-review/expected/negative-malformed.json": {
+      "bytes": 391,
+      "sha256": "d95f0a537af83ee4b87ddedb2651b7768b6bbccc828c448a5e739db5a2442310"
+    },
+    "cross-industry/services-billing-draft-review/mock-data/demo.json": {
+      "bytes": 6107,
+      "sha256": "b78d8f6954632553153b8a5fb0c1218e89b51e7588200e997bcfb89f016b23c6"
+    },
+    "cross-industry/services-billing-draft-review/mock-data/holdout-a.json": {
+      "bytes": 4778,
+      "sha256": "27afa5b57ea4fa87651545ea652dff64448c7abba1d3140f7950af82f7d7efd9"
+    },
+    "cross-industry/services-billing-draft-review/mock-data/holdout-b.json": {
+      "bytes": 4815,
+      "sha256": "e7c6865d627d583b0defabd6137b805d23ac8daa8d7423d951b536bc8e7f9094"
+    },
+    "cross-industry/services-billing-draft-review/mock-data/negative-contradictory.json": {
+      "bytes": 2581,
+      "sha256": "1b5b28bb8b6d6a9acf71c017a29753482f716ba0249590b4342f3fe8c2c20e33"
+    },
+    "cross-industry/services-billing-draft-review/mock-data/negative-malformed.json": {
+      "bytes": 1741,
+      "sha256": "e83f1eff949854e47620c3311c5fc036f3fc791ae65415851be917715d7605bc"
+    },
+    "cross-industry/services-billing-draft-review/scenario.json": {
+      "bytes": 6934,
+      "sha256": "549edd97863cb017e0e92c46433e2f7b77f9ba3027fa79fab4531b2e5cd0c285"
+    },
+    "cross-industry/services-billing-draft-review/sources.json": {
+      "bytes": 2157,
+      "sha256": "9e75f983aa63486dde80bfef18e9f859100e8216575b56c083318daa5b29027a"
+    },
+    "cross-industry/services-billing-draft-review/test_baseline.py": {
+      "bytes": 55313,
+      "sha256": "87e9855a08557e385ca83e17e517e1bd8b09e8dd490e83af1a6f46a50c5ec570"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 40545,
+      "sha256": "fcd97645d6854ad59c369511149b42f1f15dfaaaf714de25dd3c6f5ce2bba305"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-input/connections.json": {
+      "bytes": 415,
+      "sha256": "33d237acd0cfa67252db4fab2f5b605d9d75a915c905695c81f6065fb1bf293b"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 2086860,
+      "sha256": "6c2869f664ec047447850397228ac80ef3598f201de2af9c0b9416b3bc14dc53"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 6107,
+      "sha256": "b78d8f6954632553153b8a5fb0c1218e89b51e7588200e997bcfb89f016b23c6"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-input/workflow.json": {
+      "bytes": 6815,
+      "sha256": "bc337df04b955c007c30ca6511dc753ac57d1ceb1f192ce35ce335547a32d02a"
+    },
+    "cross-industry/services-billing-draft-review/validation/creator-staging.json": {
+      "bytes": 1934,
+      "sha256": "10d4fd1e81c84c9e2d075f515b86dfad1281804a2a6e187afec8873d19425cbe"
+    },
+    "cross-industry/services-billing-draft-review/validation/demo.json": {
+      "bytes": 7973,
+      "sha256": "09b0fad6a4d41edf431ba308030ad86042b6d6579f15dce20b8dd85ef240add2"
+    },
+    "cross-industry/services-billing-draft-review/validation/golden-lock.json": {
+      "bytes": 5103,
+      "sha256": "e4716271a71ce560bf99271928e48d68ab2a7236744d51d5e35b86c3f3751bc0"
+    },
+    "cross-industry/services-billing-draft-review/validation/holdout-a.json": {
+      "bytes": 7877,
+      "sha256": "f870f1ae43bc7de6a971c88283dda90eeaae43596167712c8d5c51f22576a957"
+    },
+    "cross-industry/services-billing-draft-review/validation/holdout-b.json": {
+      "bytes": 8081,
+      "sha256": "dfc8b8f06bddbf1b89334a0c6d70bbfba664fe06cc70af49803934bfd3b11cb1"
+    },
+    "cross-industry/services-billing-draft-review/validation/negative-contradictory.json": {
+      "bytes": 7930,
+      "sha256": "7b03dce1d0805bdfc23b482790a48bbbb709b2f9c6db967200843303bafb6d1b"
+    },
+    "cross-industry/services-billing-draft-review/validation/negative-malformed.json": {
+      "bytes": 6705,
+      "sha256": "16cd6b3f953fe2b2d125e34123fde449683c204cd373f2008de8a9ba4d6fe7f8"
+    },
+    "cross-industry/services-billing-draft-review/validation/unittest.json": {
+      "bytes": 989,
+      "sha256": "988cf165a52e05bc3fd83f24d24647f569097b7c731c477165b0c60af75ba068"
+    },
+    "cross-industry/services-billing-draft-review/validation/unittest.log": {
+      "bytes": 9851,
+      "sha256": "985c9181acdcaccd9a0d3e39d09d2a617f641f9b3309d1cacfa0232614abaaba"
+    },
+    "cross-industry/services-billing-draft-review/workflow.json": {
+      "bytes": 6815,
+      "sha256": "bc337df04b955c007c30ca6511dc753ac57d1ceb1f192ce35ce335547a32d02a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/HOW_TO.md": {
+      "bytes": 16721,
+      "sha256": "8f30e438f07e3187194e1bb0d01405fa947fe8a6197de6f31e36f90895ffdbec"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/demo.json": {
+      "bytes": 6995,
+      "sha256": "19db3a1e42c48389fb4c17e4cee7209374ad4cfa67361e4e307a3fc8ededa8a9"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/demo.trace.json": {
+      "bytes": 11780,
+      "sha256": "486414f0443cc07623289f98131505fdfe0f5003afb361baff566666bc8eba7a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/holdout-a.json": {
+      "bytes": 5535,
+      "sha256": "a7b8ddb4624a479ce1a3c8f904efb06fb08862dd409649cfcc8e92a611b2e9a1"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/holdout-a.trace.json": {
+      "bytes": 10619,
+      "sha256": "a5a790292655467a2157bb996903f947fbb7f350acc3d21d10df9a7c923bf0b9"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/holdout-b.json": {
+      "bytes": 4753,
+      "sha256": "24c0e4e9346952d4dfb4b847dbd41284af6c72a8ec69d6bdf782619dfce65fdc"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/holdout-b.trace.json": {
+      "bytes": 10010,
+      "sha256": "45724300a2731f9d91f1de4662587ab0f0142ad35f167e01efc8c884fa07a375"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/negative-contradictory.json": {
+      "bytes": 238,
+      "sha256": "6b7ae54d0751ba24a936b28eccb5f04b011ea561c4fdfc5f8d87bc5bb8c347da"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 2016,
+      "sha256": "808c21add64754138c03a1099c96bcc35477ec7648810f15332b6bef9fd6bd80"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/negative-malformed.json": {
+      "bytes": 275,
+      "sha256": "15c9fe4e99dadd2a9830643cab89d5d7c84005054b563487b5a4c22f4e2c4896"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2050,
+      "sha256": "9fe7bda4e0d0c13a34062eae04704c2fe591b7b8ab8c8d40accd193adb0ce702"
+    },
+    "cross-industry/utilities-maintenance-window-plan/baseline.py": {
+      "bytes": 31155,
+      "sha256": "a6d9ff2ad44d1f9a06d9b734cfa090de8a44dfb8b3143e7847af719eadc35b9e"
+    },
+    "cross-industry/utilities-maintenance-window-plan/connections.json": {
+      "bytes": 351,
+      "sha256": "2bd69b4ea24debaf50d3f782e358e9db46a80cf587668345beb97738c138809a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/demo/baseline.media.json": {
+      "bytes": 90188,
+      "sha256": "3b8e88b3712f45f16e4a8ef4a68151f050f6cb73e0f744a8238e412e8eeaa920"
+    },
+    "cross-industry/utilities-maintenance-window-plan/demo/baseline.webm": {
+      "bytes": 1188826,
+      "sha256": "c251a830d1132b785652a3db2fd035ccf56e95995639dc1f245d3c51f42b1e19"
+    },
+    "cross-industry/utilities-maintenance-window-plan/expected/demo.json": {
+      "bytes": 5323,
+      "sha256": "83fa0755a1b912fa8e6afcb5d6171d84c430103e02bd40cfd308f7bb4a8400b5"
+    },
+    "cross-industry/utilities-maintenance-window-plan/expected/holdout-a.json": {
+      "bytes": 4277,
+      "sha256": "b399b9ed233a8ab5f6e60717c6fcdb5351ccf8909629eb1de58e5498e02aba4d"
+    },
+    "cross-industry/utilities-maintenance-window-plan/expected/holdout-b.json": {
+      "bytes": 3700,
+      "sha256": "c6b747ffe210803d60663bfe73d78f56d1c99eecb25e92093e233ebd38a8eb24"
+    },
+    "cross-industry/utilities-maintenance-window-plan/expected/negative-contradictory.json": {
+      "bytes": 222,
+      "sha256": "fe431feadff5683fbd60bae3364316ea00196c9dfd8c76fa5bfc8a2aa138e643"
+    },
+    "cross-industry/utilities-maintenance-window-plan/expected/negative-malformed.json": {
+      "bytes": 259,
+      "sha256": "58f2241cf286534c5aa1b0b24c573a3e251a500dd100adb00981b6f1a4621a55"
+    },
+    "cross-industry/utilities-maintenance-window-plan/mock-data/demo.json": {
+      "bytes": 5075,
+      "sha256": "08dc35949e5d6445b39bfbe21cd1a7bfd149eee573324302567177a4d8385cab"
+    },
+    "cross-industry/utilities-maintenance-window-plan/mock-data/holdout-a.json": {
+      "bytes": 4157,
+      "sha256": "8857c023d08775c75ddd9ebbd978bbecaece4a7390d8e0dbe3b9bc3a2a9d963a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/mock-data/holdout-b.json": {
+      "bytes": 3324,
+      "sha256": "6f8fa9c701e4f7eeacda1353d0a14d8df36c93cd0dae7e54be739b8c2ed795d6"
+    },
+    "cross-industry/utilities-maintenance-window-plan/mock-data/negative-contradictory.json": {
+      "bytes": 1411,
+      "sha256": "a9d91bd4f2f4bf2d3a6b4e24d4f5aab55c80d3af91d1f2c1cb02ef8656b46014"
+    },
+    "cross-industry/utilities-maintenance-window-plan/mock-data/negative-malformed.json": {
+      "bytes": 1110,
+      "sha256": "55c3f07a471b3907d6028bf088854589f939966d2c9a0a8d6a79f1e4141c23eb"
+    },
+    "cross-industry/utilities-maintenance-window-plan/scenario.json": {
+      "bytes": 5216,
+      "sha256": "4a85d9f77f3cc53756564fdce26820097b0e4288f9248083b3d59c14339eabea"
+    },
+    "cross-industry/utilities-maintenance-window-plan/sources.json": {
+      "bytes": 2198,
+      "sha256": "3d1b7e189249eefcdfbe5fe98e52f4f5006b098a26953d2f05bc21ee85c77acb"
+    },
+    "cross-industry/utilities-maintenance-window-plan/test_baseline.py": {
+      "bytes": 18841,
+      "sha256": "6a298d3fd54647893fdba7473d6992e57d356f541caefc9662b83b631f1a6a4f"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-input/HOW_TO.md": {
+      "bytes": 16721,
+      "sha256": "8f30e438f07e3187194e1bb0d01405fa947fe8a6197de6f31e36f90895ffdbec"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-input/connections.json": {
+      "bytes": 351,
+      "sha256": "2bd69b4ea24debaf50d3f782e358e9db46a80cf587668345beb97738c138809a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1188826,
+      "sha256": "c251a830d1132b785652a3db2fd035ccf56e95995639dc1f245d3c51f42b1e19"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-input/mock-data/demo.json": {
+      "bytes": 5075,
+      "sha256": "08dc35949e5d6445b39bfbe21cd1a7bfd149eee573324302567177a4d8385cab"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-input/workflow.json": {
+      "bytes": 5125,
+      "sha256": "b033d161708e403984cfc5149556a89538af8d317ef5d8a5297ddfb40f909b2a"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/creator-staging.json": {
+      "bytes": 1934,
+      "sha256": "9f1933a6536784e23d4b9688a994fa566ecabc96abc6177866855cce9f93e9da"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/demo.json": {
+      "bytes": 7508,
+      "sha256": "dbf70b8f722428f3453826cb04f003243382bd9a11f0715de1c7b2a6a98addd0"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/golden-lock.json": {
+      "bytes": 3657,
+      "sha256": "5290a88e535f1b912e84ca8e1bd4e6f800237edbac0a30b8867e3a160628618c"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/holdout-a.json": {
+      "bytes": 7438,
+      "sha256": "c39d5a16b9a1ea0edaa49778fa8ec07918a9718e4a7003720e1306d2f0ad23b3"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/holdout-b.json": {
+      "bytes": 7428,
+      "sha256": "6fedf8ac6c973693063bbff137eb4f0beb1a01ddf4e2dbf55123f27d19c57c41"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/negative-contradictory.json": {
+      "bytes": 6503,
+      "sha256": "5e75936da4266db3f6c376109adbdd56cec096c5c454845f44d14d4974b7bc7f"
+    },
+    "cross-industry/utilities-maintenance-window-plan/validation/negative-malformed.json": {
+      "bytes": 6405,
+      "sha256": "9ffd2e3dd90e2cf884757838604a0f54d536f63a37ac136ad85d86ed4e17e2b5"
+    },
+    "cross-industry/utilities-maintenance-window-plan/workflow.json": {
+      "bytes": 5125,
+      "sha256": "b033d161708e403984cfc5149556a89538af8d317ef5d8a5297ddfb40f909b2a"
+    },
+    "financial-services/advisory-fee-reconciliation/HOW_TO.md": {
+      "bytes": 31999,
+      "sha256": "2b8a786206a4d57ef1ed896269ca52282af98ab67ddce645b073a9106927e120"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/demo.json": {
+      "bytes": 11442,
+      "sha256": "7e8cea8f059c491f1802f89b0722ea298b440396607b9adb310d72fe43c9586d"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/demo.trace.json": {
+      "bytes": 12286,
+      "sha256": "c5e6e949eaaf0ed357e6deeddbf2b17b310a967c9b82116f86968b0ce9770528"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/holdout-a.json": {
+      "bytes": 9128,
+      "sha256": "8e5c1ebb2075d232bb6b4cab0809fb76cde113046aacc8671ca0539883a2b3de"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/holdout-a.trace.json": {
+      "bytes": 11507,
+      "sha256": "e45087f16a3383be5301fd917aed182f5dbd835569dae019cd60997d47d3b4ca"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/holdout-b.json": {
+      "bytes": 6896,
+      "sha256": "34730d63df8b67783bf494d7be570d9e3e18490061b0201d76bc6a7cc92bbf27"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/holdout-b.trace.json": {
+      "bytes": 10356,
+      "sha256": "1076f2e5b5f01cb62fb77a5dc63d29a698f0cd01490edbb6dee0bcffbaf3eb76"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/negative-contradictory.json": {
+      "bytes": 857,
+      "sha256": "886ad9e28ea157563d711c2c63b1cb1f68a51265da62558d72e0ae2b8d01387e"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 2713,
+      "sha256": "6a68897e5ecd334cd9517b5a87666fb23192c70193e6779edbaf2333c89386a3"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/negative-malformed.json": {
+      "bytes": 772,
+      "sha256": "ac9fb98326119529f2c8af0a4019a831ade54091b77fff5cf1baf5a9cf599c2f"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2680,
+      "sha256": "3237ed6b47a7dc1263090ce90af1e6bb435bcab9455db314bc578637cc1b6aef"
+    },
+    "financial-services/advisory-fee-reconciliation/baseline.py": {
+      "bytes": 43522,
+      "sha256": "6fdfc0e41a0126ff2ba81eaa9e5337a97ff7d15631f34908eaa869ec9f5d297a"
+    },
+    "financial-services/advisory-fee-reconciliation/connections.json": {
+      "bytes": 432,
+      "sha256": "e284aac378ac3da3667f77112a04df9fa8e1d6523448a3115b0e75eda36b05ca"
+    },
+    "financial-services/advisory-fee-reconciliation/demo/baseline.media.json": {
+      "bytes": 90236,
+      "sha256": "9ce9e5eca19b3f95d2c4dc0f25f89eb2120c77d05f4efb8f884d5c5eef7b0539"
+    },
+    "financial-services/advisory-fee-reconciliation/demo/baseline.webm": {
+      "bytes": 1212248,
+      "sha256": "20be8b0903eaa7679858231d249ef56a913d731319002078d1405df3dc316579"
+    },
+    "financial-services/advisory-fee-reconciliation/expected/demo.json": {
+      "bytes": 9360,
+      "sha256": "70b59c4dec550dc142e8125f85fee76a3bf070dd9415d0f8cdc2ba73c7fa9e36"
+    },
+    "financial-services/advisory-fee-reconciliation/expected/holdout-a.json": {
+      "bytes": 7556,
+      "sha256": "483ee77b7f205107f09194ab66e949ac267c234190d25f43aa7019be4c355ad6"
+    },
+    "financial-services/advisory-fee-reconciliation/expected/holdout-b.json": {
+      "bytes": 5727,
+      "sha256": "1a663c734ba0c3bf674f234dc1f8693db1fc7c053912692297ee02e65490bef5"
+    },
+    "financial-services/advisory-fee-reconciliation/expected/negative-contradictory.json": {
+      "bytes": 798,
+      "sha256": "f93eda4b8a715390455589aba767dd0da69d7be1d2482fdbfe652f2f7f3c8ae9"
+    },
+    "financial-services/advisory-fee-reconciliation/expected/negative-malformed.json": {
+      "bytes": 737,
+      "sha256": "57d323ae31b10754c742801f7cde64da9090f6ce3801f5fdee2463b3bcf2babd"
+    },
+    "financial-services/advisory-fee-reconciliation/mock-data/demo.json": {
+      "bytes": 3649,
+      "sha256": "b133bf1ec330e9d39be34b4cb2e59db867a4fb985de6b16a4c166e2da309c2a4"
+    },
+    "financial-services/advisory-fee-reconciliation/mock-data/holdout-a.json": {
+      "bytes": 2751,
+      "sha256": "6db8b2fa7c0adcc214700e811b315c50d24cacf83f542c636d46c9295765c081"
+    },
+    "financial-services/advisory-fee-reconciliation/mock-data/holdout-b.json": {
+      "bytes": 2247,
+      "sha256": "f4110809b629847e343e071c31ec74b75a4e08072edcc937309e4a4e41799b3a"
+    },
+    "financial-services/advisory-fee-reconciliation/mock-data/negative-contradictory.json": {
+      "bytes": 1584,
+      "sha256": "e6ab7d67889e9a05f608f501ada7b6827122fa353e6b851047016611e1fe2f55"
+    },
+    "financial-services/advisory-fee-reconciliation/mock-data/negative-malformed.json": {
+      "bytes": 1155,
+      "sha256": "11f569b74031905c5a11e3ad5f7d55de9c85b7887c46fb4b7a32ca443feb5b22"
+    },
+    "financial-services/advisory-fee-reconciliation/scenario.json": {
+      "bytes": 6431,
+      "sha256": "29d0d649144f545de4b4d475d477fdf67ac56bdcb44c90bac36d7c8739a55045"
+    },
+    "financial-services/advisory-fee-reconciliation/sources.json": {
+      "bytes": 1841,
+      "sha256": "5007948419f37a7a46c29ec6ec7cf74f5bba9ef2d7e5f7f1e814566a6c06cd49"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-input/HOW_TO.md": {
+      "bytes": 31999,
+      "sha256": "2b8a786206a4d57ef1ed896269ca52282af98ab67ddce645b073a9106927e120"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-input/connections.json": {
+      "bytes": 432,
+      "sha256": "e284aac378ac3da3667f77112a04df9fa8e1d6523448a3115b0e75eda36b05ca"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1212248,
+      "sha256": "20be8b0903eaa7679858231d249ef56a913d731319002078d1405df3dc316579"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3649,
+      "sha256": "b133bf1ec330e9d39be34b4cb2e59db867a4fb985de6b16a4c166e2da309c2a4"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-input/workflow.json": {
+      "bytes": 7324,
+      "sha256": "80b03c9973572fdee2384777557256b752f0d1ff205414ffc0215076683a4bbe"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/creator-staging.json": {
+      "bytes": 1938,
+      "sha256": "aac644554bf9a020cf4282fe3551cfb3ab21b646d9023664be0434e302d174cf"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/demo.json": {
+      "bytes": 7978,
+      "sha256": "a0d38903c33294243701546fb77a41cae89f8966b485227b53ef756bdad64683"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/golden-lock.json": {
+      "bytes": 4566,
+      "sha256": "40bf6c47333507e522c902ec3d8bd19b6851a082b265a4691a2fe7ef5e69cf3a"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/holdout-a.json": {
+      "bytes": 7805,
+      "sha256": "d9c74d4a5db864adf5c065456171e31235e3e281834292ab9b1e6d02acc1bb6b"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/holdout-b.json": {
+      "bytes": 7774,
+      "sha256": "ea37be8d823a7f12e9c8676072998acc63844ec8e9572998845afc2a281aac5a"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/negative-contradictory.json": {
+      "bytes": 7023,
+      "sha256": "a2624c6de8d7371b6b89861dc85bb39931220d542e3437611520e5ef455b5c79"
+    },
+    "financial-services/advisory-fee-reconciliation/validation/negative-malformed.json": {
+      "bytes": 6981,
+      "sha256": "2c7379aeca02a24eec84b2eab79e030f1111929a1bd2d984ae8a0076cc9bf981"
+    },
+    "financial-services/advisory-fee-reconciliation/workflow.json": {
+      "bytes": 7324,
+      "sha256": "80b03c9973572fdee2384777557256b752f0d1ff205414ffc0215076683a4bbe"
+    },
+    "financial-services/ap-three-way-match/HOW_TO.md": {
+      "bytes": 43276,
+      "sha256": "c925c34da154c456a88d26f261b604fb141c1d118e66101f46e6d8e68e55c14b"
+    },
+    "financial-services/ap-three-way-match/baseline-output/demo.json": {
+      "bytes": 20854,
+      "sha256": "18a340902fa8390dec779a5b607605d22278a9e19410c929959648ea479ebdd0"
+    },
+    "financial-services/ap-three-way-match/baseline-output/demo.trace.json": {
+      "bytes": 15291,
+      "sha256": "257f88db5ce5c8e717dd6bd0920bf1ea04a5da0b8047d2d1c08aaec5fb7d2991"
+    },
+    "financial-services/ap-three-way-match/baseline-output/holdout-a.json": {
+      "bytes": 19076,
+      "sha256": "5dfcd54034d577bd6db859626a3fff2a371a1bff8e505b17e71c935a02d9819a"
+    },
+    "financial-services/ap-three-way-match/baseline-output/holdout-a.trace.json": {
+      "bytes": 15495,
+      "sha256": "3ee5587c1dc6ae267364e2702d94953b6ea7c398b29aae773dd1dee68d6b95b9"
+    },
+    "financial-services/ap-three-way-match/baseline-output/holdout-b.json": {
+      "bytes": 21852,
+      "sha256": "ce374a0d7d706e53499a796aeee56baeff13a48c8e21622e2deb19a2d2c7b582"
+    },
+    "financial-services/ap-three-way-match/baseline-output/holdout-b.trace.json": {
+      "bytes": 16056,
+      "sha256": "785a88d42b426790b657a65f8cf0b67d9451e0e99ca4c8ea41feda27cbe5da3b"
+    },
+    "financial-services/ap-three-way-match/baseline-output/negative-contradictory.json": {
+      "bytes": 506,
+      "sha256": "c30f62f2f92bdb5a237ab46564bca656bb629615f592365fc6bbb637c3c513cd"
+    },
+    "financial-services/ap-three-way-match/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 2933,
+      "sha256": "01bc83afabc54bb5e7502d4d77db1bb183de73a9dc0d16fcd4defe092acd0fc5"
+    },
+    "financial-services/ap-three-way-match/baseline-output/negative-malformed.json": {
+      "bytes": 506,
+      "sha256": "c0fb7edfeeb31e45eb7233d1943ea8afa2e7ee091f14ef0f67a742376bff5ef6"
+    },
+    "financial-services/ap-three-way-match/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2911,
+      "sha256": "3b46a62efd20fe76ceb3682a43dbafaecbe76dff52802b0d02862f9e220b84c3"
+    },
+    "financial-services/ap-three-way-match/baseline.py": {
+      "bytes": 53667,
+      "sha256": "a0f998c8f24995eb3bca9bec6e45dad537f398a2a589b70459fa62484db24d48"
+    },
+    "financial-services/ap-three-way-match/connections.json": {
+      "bytes": 596,
+      "sha256": "80ae4199b97b88b16c83b958eada97751921f9115ca01f44606a3d1ae64fd23e"
+    },
+    "financial-services/ap-three-way-match/demo/baseline.media.json": {
+      "bytes": 129332,
+      "sha256": "b4724551d7f5072f2723bd81439334d9f0aafa83cd743594ff8087c35f96f3f1"
+    },
+    "financial-services/ap-three-way-match/demo/baseline.webm": {
+      "bytes": 1837415,
+      "sha256": "302b9242a85ca48156854e5ed674967db53a6661ea4313a18c7169241b6e60f4"
+    },
+    "financial-services/ap-three-way-match/expected/demo.json": {
+      "bytes": 14443,
+      "sha256": "5ef08d1b58cdc5b3187adbf0e1141f532c945a183f49fd63889d72e16f9743b9"
+    },
+    "financial-services/ap-three-way-match/expected/holdout-a.json": {
+      "bytes": 13197,
+      "sha256": "5fb598d6c5f8098eaa018842f55d523104cbab240772bedebd504dff2484b65d"
+    },
+    "financial-services/ap-three-way-match/expected/holdout-b.json": {
+      "bytes": 15046,
+      "sha256": "8e3bd5e5c9a1f6b2022190e38b57d26e87bee472887fc87a95b3ba9747cc739c"
+    },
+    "financial-services/ap-three-way-match/expected/negative-contradictory.json": {
+      "bytes": 401,
+      "sha256": "0274d748039701e599fb55f463ebe0909607d8150c8e11c20bea401be14544ca"
+    },
+    "financial-services/ap-three-way-match/expected/negative-malformed.json": {
+      "bytes": 401,
+      "sha256": "d7cb63dec8fba1fae94a9fb5b2f66fa65065015fe9c7835096f073285c34b54e"
+    },
+    "financial-services/ap-three-way-match/mock-data/demo.json": {
+      "bytes": 5067,
+      "sha256": "dd08e5f68cacb91db58cefc7fc6ca2b2161ea7f165e2677d7e56e66577c628ae"
+    },
+    "financial-services/ap-three-way-match/mock-data/holdout-a.json": {
+      "bytes": 3619,
+      "sha256": "da16faa4aebe60debae802bad39219747968b268ce8c9ffb6b4e0ae629025dfb"
+    },
+    "financial-services/ap-three-way-match/mock-data/holdout-b.json": {
+      "bytes": 4340,
+      "sha256": "946fee9879128d4fe8a629b32a9c3cf953c2aca5d756af96ff71922e266d64c3"
+    },
+    "financial-services/ap-three-way-match/mock-data/negative-contradictory.json": {
+      "bytes": 1650,
+      "sha256": "131db651a93f729f08ef5a97c4a73277a30e1d2ebb0b76a335ace1465b89e559"
+    },
+    "financial-services/ap-three-way-match/mock-data/negative-malformed.json": {
+      "bytes": 1206,
+      "sha256": "a46fa5c6429b8e34f64fe5551f34f3765d20603469f98e82fea3e602b784b960"
+    },
+    "financial-services/ap-three-way-match/scenario.json": {
+      "bytes": 6324,
+      "sha256": "e7c4835fb36b68c1e0d16dedb8d7f5aa90335d0b7bc0f8159464da88430eeec9"
+    },
+    "financial-services/ap-three-way-match/sources.json": {
+      "bytes": 2297,
+      "sha256": "9f710091c69e29f8898ab2dadeb4a0cec3a317e4d9adbcfea612c46ea61a07e5"
+    },
+    "financial-services/ap-three-way-match/validation/creator-input/HOW_TO.md": {
+      "bytes": 43276,
+      "sha256": "c925c34da154c456a88d26f261b604fb141c1d118e66101f46e6d8e68e55c14b"
+    },
+    "financial-services/ap-three-way-match/validation/creator-input/connections.json": {
+      "bytes": 596,
+      "sha256": "80ae4199b97b88b16c83b958eada97751921f9115ca01f44606a3d1ae64fd23e"
+    },
+    "financial-services/ap-three-way-match/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1837415,
+      "sha256": "302b9242a85ca48156854e5ed674967db53a6661ea4313a18c7169241b6e60f4"
+    },
+    "financial-services/ap-three-way-match/validation/creator-input/mock-data/demo.json": {
+      "bytes": 5067,
+      "sha256": "dd08e5f68cacb91db58cefc7fc6ca2b2161ea7f165e2677d7e56e66577c628ae"
+    },
+    "financial-services/ap-three-way-match/validation/creator-input/workflow.json": {
+      "bytes": 6098,
+      "sha256": "6cc88097b0af0f635acf175104862c924c77a53a308d320e2bf1317a935cdd28"
+    },
+    "financial-services/ap-three-way-match/validation/creator-staging.json": {
+      "bytes": 1938,
+      "sha256": "e84288d6c5f40b2053965fcd23a65dfc5f293d370c5784a55e692e167d055bd0"
+    },
+    "financial-services/ap-three-way-match/validation/demo.json": {
+      "bytes": 8186,
+      "sha256": "d80eeca01df35b4a827ade3b8aebc0c252afcad986d02320b73109b16cb72788"
+    },
+    "financial-services/ap-three-way-match/validation/golden-lock.json": {
+      "bytes": 4803,
+      "sha256": "537e7ff06d02441bc4e0227e2226944ffaedcd499dbdfcddae850c1372f4dbdf"
+    },
+    "financial-services/ap-three-way-match/validation/holdout-a.json": {
+      "bytes": 7849,
+      "sha256": "dcb8936b3006b007c38c867eeec9002d535ddd0bd87c84e4c1e0573441cff889"
+    },
+    "financial-services/ap-three-way-match/validation/holdout-b.json": {
+      "bytes": 8041,
+      "sha256": "c2c9693f10a3194f90c11903dababdc2c728b71969de800750bad0f730d7a2f4"
+    },
+    "financial-services/ap-three-way-match/validation/negative-contradictory.json": {
+      "bytes": 6962,
+      "sha256": "a49523ee224467229fe80c288d78758262b46f9db7e0a86642fc15a03c6d92d7"
+    },
+    "financial-services/ap-three-way-match/validation/negative-malformed.json": {
+      "bytes": 6818,
+      "sha256": "b678ac7ee738ee4234cbb66a467b352dca017d499cd964487d03601e03115d00"
+    },
+    "financial-services/ap-three-way-match/validation/unit-tests.txt": {
+      "bytes": 102,
+      "sha256": "2b4feac6b552c7fa67289198fd458103e953fc3ea9e240904d4271ba60ad5a4c"
+    },
+    "financial-services/ap-three-way-match/workflow.json": {
+      "bytes": 6098,
+      "sha256": "6cc88097b0af0f635acf175104862c924c77a53a308d320e2bf1317a935cdd28"
+    },
+    "financial-services/bank-ledger-reconciliation/HOW_TO.md": {
+      "bytes": 23753,
+      "sha256": "a1aa4689f554da91e3cdc1b394e626a83208876989a4e08b50286f8a2556b429"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/demo.json": {
+      "bytes": 7143,
+      "sha256": "ce061f91dda8719979c5a9e2b9d37b9edaf7efc58671df90384a85589369c5f9"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/demo.trace.json": {
+      "bytes": 8696,
+      "sha256": "dd2a44e688c62f064f33e3a1a196816278965471b1c0980a95ff53b362647b1b"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/holdout-a.json": {
+      "bytes": 8272,
+      "sha256": "a1cfc67d09a4f1e99a289d0af3df459df92f050a98ced5596953d01be2a49b84"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/holdout-a.trace.json": {
+      "bytes": 9243,
+      "sha256": "0fddd6463d9474d8bfc98c20ec9b3e9986d115ddd2556d1ca8b66c0be6471785"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/holdout-b.json": {
+      "bytes": 4686,
+      "sha256": "9b638f5b9f12e2bada2ff7014bdde825b0adc8d1783ac423e898c3abb0c5289f"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/holdout-b.trace.json": {
+      "bytes": 7705,
+      "sha256": "e09333cf0d5fe9f65be6d350d8fc52143c0fea89d4310e3e6b82dd949978f730"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/negative-contradictory.json": {
+      "bytes": 370,
+      "sha256": "b3800c56d7fe6e11d350e48dfd79fb35b9b60ee02684eb00df73ed396ea719a0"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 1837,
+      "sha256": "4c2d8b30138f7d5ddd99e6c06bf924ed18277977a9ec4ebef92085bf19bf1c51"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/negative-malformed.json": {
+      "bytes": 378,
+      "sha256": "000a0b370505744256395ea256da9825cad35bcf961f48abd57ee67eb0226baf"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline-output/negative-malformed.trace.json": {
+      "bytes": 1820,
+      "sha256": "b1c65303d0d17ee0aa6e46b4a716555b8429a9dbcb42a9fb3e2faac452718c1f"
+    },
+    "financial-services/bank-ledger-reconciliation/baseline.py": {
+      "bytes": 33580,
+      "sha256": "2600911ded5b7a7e22bdbdc7394bd6879277a45b02beb1fdfc06d6b346af6861"
+    },
+    "financial-services/bank-ledger-reconciliation/connections.json": {
+      "bytes": 434,
+      "sha256": "565132a561c6685f597b819bccaed34266c1dcd520737f2b4385952e37dc9918"
+    },
+    "financial-services/bank-ledger-reconciliation/demo/baseline.media.json": {
+      "bytes": 74250,
+      "sha256": "477640f1a7ccc7b740c3d99f9c2d035e7bd40fdb856ef6c65a6a3f5f3c3602f1"
+    },
+    "financial-services/bank-ledger-reconciliation/demo/baseline.webm": {
+      "bytes": 904331,
+      "sha256": "cda887ea53acd09dc550672ad7e44605e5e74871da25b950daa2c14d719910e0"
+    },
+    "financial-services/bank-ledger-reconciliation/expected/demo.json": {
+      "bytes": 5397,
+      "sha256": "1538eb48ac4964424668463918e866d4228645e775de9d2d250ea56e4d148734"
+    },
+    "financial-services/bank-ledger-reconciliation/expected/holdout-a.json": {
+      "bytes": 6259,
+      "sha256": "c0852fe49458aaca7c8da66aa6ea52fbd57f59a8ed4578fdc08f3d26a8f31fa9"
+    },
+    "financial-services/bank-ledger-reconciliation/expected/holdout-b.json": {
+      "bytes": 3652,
+      "sha256": "b88b330ea51b5e485d4f49e1b497fff204716e21cb9ac3cc4ccfe1dabc61ef8d"
+    },
+    "financial-services/bank-ledger-reconciliation/expected/negative-contradictory.json": {
+      "bytes": 322,
+      "sha256": "9bd98fb9f3ca4f0e587d4cf901809921e12b01c376069ce2d08ad93c3efe172a"
+    },
+    "financial-services/bank-ledger-reconciliation/expected/negative-malformed.json": {
+      "bytes": 330,
+      "sha256": "4ea7610ae5148239a47a24fabb67313c207f4f2004ad0ffc26670cf45c48fecb"
+    },
+    "financial-services/bank-ledger-reconciliation/mock-data/demo.json": {
+      "bytes": 3132,
+      "sha256": "f240b29d51feaad49ff4dc3a9f6f1a158cfbdcf8e64eb1467ffd75e0f5b60a0d"
+    },
+    "financial-services/bank-ledger-reconciliation/mock-data/holdout-a.json": {
+      "bytes": 3581,
+      "sha256": "9b307911691cf9993cb6c9e7c4f73effb8441620e1c36a88c4679a97d9ad8b5d"
+    },
+    "financial-services/bank-ledger-reconciliation/mock-data/holdout-b.json": {
+      "bytes": 2176,
+      "sha256": "20ed3af9a21eeb28b9d87f3ef36c2775ead7e95ca75bbdd3350f8d1197906c3e"
+    },
+    "financial-services/bank-ledger-reconciliation/mock-data/negative-contradictory.json": {
+      "bytes": 905,
+      "sha256": "d3e342591e2fa209b73287ed884092e456761ef1544bf754dd2960a868115aa3"
+    },
+    "financial-services/bank-ledger-reconciliation/mock-data/negative-malformed.json": {
+      "bytes": 1152,
+      "sha256": "475e410cff5d99ef70e9c290e5164bbb3dacc154055e097216ccac0ce07a0cf0"
+    },
+    "financial-services/bank-ledger-reconciliation/scenario.json": {
+      "bytes": 5069,
+      "sha256": "f3b87034c510b5d606b12df761b06bfd2e5691ecaa0f299c9223a0cd6a0a805d"
+    },
+    "financial-services/bank-ledger-reconciliation/sources.json": {
+      "bytes": 2732,
+      "sha256": "f9b26ac24f86ce9fc95a0bdb6acec498d5e7ef583ba7ae269624396dee885d29"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-input/HOW_TO.md": {
+      "bytes": 23753,
+      "sha256": "a1aa4689f554da91e3cdc1b394e626a83208876989a4e08b50286f8a2556b429"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-input/connections.json": {
+      "bytes": 434,
+      "sha256": "565132a561c6685f597b819bccaed34266c1dcd520737f2b4385952e37dc9918"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-input/demo/baseline.webm": {
+      "bytes": 904331,
+      "sha256": "cda887ea53acd09dc550672ad7e44605e5e74871da25b950daa2c14d719910e0"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3132,
+      "sha256": "f240b29d51feaad49ff4dc3a9f6f1a158cfbdcf8e64eb1467ffd75e0f5b60a0d"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-input/workflow.json": {
+      "bytes": 4864,
+      "sha256": "2f8dcc929bd56ab652e4ebd0416a6796faa75e475f21e538e3c9a2e706da2bb8"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/creator-staging.json": {
+      "bytes": 1937,
+      "sha256": "ffee1b1dc9e51bfced6a7bb10ff46d94b51f0177d6e62f2107fe1b03b7bc6848"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/demo.json": {
+      "bytes": 7358,
+      "sha256": "faf2408932f04473ad61afe303ec1aa87b5590fb9a05aa30260c2b0b430afc93"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/golden-lock.json": {
+      "bytes": 3518,
+      "sha256": "f31a2078dee5dcb451428af93d0c6ab8310905402654764e55b861e954622a34"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/holdout-a.json": {
+      "bytes": 7388,
+      "sha256": "2a06774c32f46d0afcb5fcd60e99811309923c2e4cca7c59b68b28a1b3b46cb7"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/holdout-b.json": {
+      "bytes": 7278,
+      "sha256": "de3df811e8a8c444d7887f1358f069d1e5a8000260d1f96bc5e321328ec972d4"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/negative-contradictory.json": {
+      "bytes": 6411,
+      "sha256": "7303b8ede4efe7a91e28629f5f4bd34eafa124c141cef73f737a87dd4ae837f1"
+    },
+    "financial-services/bank-ledger-reconciliation/validation/negative-malformed.json": {
+      "bytes": 6355,
+      "sha256": "974e3ec9b3a9b283515a6c549d670ed643e3d1b0b9a57229728ca261849c3d7b"
+    },
+    "financial-services/bank-ledger-reconciliation/workflow.json": {
+      "bytes": 4864,
+      "sha256": "2f8dcc929bd56ab652e4ebd0416a6796faa75e475f21e538e3c9a2e706da2bb8"
+    },
+    "financial-services/research.json": {
+      "bytes": 60970,
+      "sha256": "bbb94cf110694d6c8682c534e9743f88d0710da961981fe956fe9fa2070161b6"
+    },
+    "financial-services/research.md": {
+      "bytes": 47002,
+      "sha256": "db559d31ab642ec45bb0761106d1f2b9ec42e0c0694597e37ec7b82bed9b9df1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/HOW_TO.md": {
+      "bytes": 18874,
+      "sha256": "ddc9e02631c76ef8fc3764e3e394d05440a29ab698617b515499671dc9d148d1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/demo.json": {
+      "bytes": 13078,
+      "sha256": "7d91b35d02393126537987f6c95f87453766ba265d0570b61a80608e91e0cc9f"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/demo.trace.json": {
+      "bytes": 10514,
+      "sha256": "523fac276fdbde80353c3a6de000eb7be34486f653df9b81236b7f70b8954c98"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/holdout-a.json": {
+      "bytes": 7178,
+      "sha256": "ea52322493212781cd1c12c8858b8b2b52a868a2d79a07e76565da042d49e4c8"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 9159,
+      "sha256": "833ed8bbbbfaa6acae0c77da45c6e086524912685eddda072472275e69074ff8"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/holdout-b.json": {
+      "bytes": 11949,
+      "sha256": "3a6d7ca986ab83683daf89084eebe33e7f668f9646543dd53aa2a6b508fef668"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 10715,
+      "sha256": "758d3c9e445a3988c890b6041eac0b02aaecfc44463a0e68048dec9e950b11f0"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/negative-contradictory.json": {
+      "bytes": 6318,
+      "sha256": "9835ad259112f7ac0b3c3c3b8308f2d70be2ff5c0359f31782e8d2847ffb9d24"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 8975,
+      "sha256": "5adb1fd32f27a68df6482a2f5a12df557c7e7a53dbd7193ce3c1e29e86eeea8a"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/negative-malformed.json": {
+      "bytes": 253,
+      "sha256": "662d900d4e0f5e2937f23e1160fb281dfdbc988d0c9c4490e5062fc286ddbd23"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2043,
+      "sha256": "7b64e7e872df3b0a97a1cf5d120f10d863d08ff064330087a9caaa2f06280215"
+    },
+    "health-life-sciences/cold-chain-excursion-review/baseline.py": {
+      "bytes": 29993,
+      "sha256": "23b5eed82d8375af0dea90769bc8152ab4d189dbf27f2951e628c067afe52ceb"
+    },
+    "health-life-sciences/cold-chain-excursion-review/connections.json": {
+      "bytes": 342,
+      "sha256": "5c7d04cfd2f65288e1206bb58c95700b03a656f9eeb5b1b4d02c073a2b1341d1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/demo/baseline.media.json": {
+      "bytes": 97657,
+      "sha256": "7b22ab7d584cdbfd3449b938b9c439603dad62881dee1b90ce4e36c91e74b864"
+    },
+    "health-life-sciences/cold-chain-excursion-review/demo/baseline.webm": {
+      "bytes": 1357319,
+      "sha256": "10578426b5d526396514e96d6dc3c112d6048fe0d0d79ef357d7882c70e2ed9a"
+    },
+    "health-life-sciences/cold-chain-excursion-review/demo/storyboard.json": {
+      "bytes": 617,
+      "sha256": "42c368c017fd333adc89c9b06fce643d8b3d190378d033072cf6e286875c4a45"
+    },
+    "health-life-sciences/cold-chain-excursion-review/expected/demo.json": {
+      "bytes": 9498,
+      "sha256": "f321bd7a498d0e6919b48a829ea1e5cfe89428ba38439ece46884c95fe77a2e8"
+    },
+    "health-life-sciences/cold-chain-excursion-review/expected/holdout-a.json": {
+      "bytes": 5378,
+      "sha256": "c049911da0d59e23bc45707787a9b2a84cf8f3f24ad7fee3116a52657718e958"
+    },
+    "health-life-sciences/cold-chain-excursion-review/expected/holdout-b.json": {
+      "bytes": 8941,
+      "sha256": "f2aff57530eca059989b1c49e6fac13e447abde118e945cfee900ed88c25fd51"
+    },
+    "health-life-sciences/cold-chain-excursion-review/expected/negative-contradictory.json": {
+      "bytes": 4772,
+      "sha256": "5068864b8f8aa518fbcf5bf127fbcfda02c5d4f2161871e37e3e87ea906e840b"
+    },
+    "health-life-sciences/cold-chain-excursion-review/expected/negative-malformed.json": {
+      "bytes": 229,
+      "sha256": "068ab697051d68e924c23c11dd479917169ef865526b3e5436c18de0ba551a89"
+    },
+    "health-life-sciences/cold-chain-excursion-review/mock-data/demo.json": {
+      "bytes": 3629,
+      "sha256": "7df92e50dd5466e6994c2a621d2f5d7de772fc316e764eff61a11e1e61a7dbaa"
+    },
+    "health-life-sciences/cold-chain-excursion-review/mock-data/holdout-a.json": {
+      "bytes": 2203,
+      "sha256": "5be81856763a437be462b67bbbf8f4f091db3f01da068d28a6dc1255e529c196"
+    },
+    "health-life-sciences/cold-chain-excursion-review/mock-data/holdout-b.json": {
+      "bytes": 3880,
+      "sha256": "e70c62205f880ecedcfcd5da6d6c1b3a3cf00e795dec12b4520f6bf348cc3f29"
+    },
+    "health-life-sciences/cold-chain-excursion-review/mock-data/negative-contradictory.json": {
+      "bytes": 2564,
+      "sha256": "9b364abb104cb0485f93b513ad349906afeb94482d06d4ef83f0c4973bb41abb"
+    },
+    "health-life-sciences/cold-chain-excursion-review/mock-data/negative-malformed.json": {
+      "bytes": 397,
+      "sha256": "9c1cd6cfcc1023e2984be9c3a324412ac1a00f50942d774ebd8de411ee8ed1c9"
+    },
+    "health-life-sciences/cold-chain-excursion-review/scenario.json": {
+      "bytes": 5766,
+      "sha256": "8748a40d20a8c58d1c9f0c14a29ea170e29e2f4111625d7ba3422bd33523516c"
+    },
+    "health-life-sciences/cold-chain-excursion-review/sources.json": {
+      "bytes": 1881,
+      "sha256": "a435070ca794f466d52fa3da55d7757e92b3b14f971b9736b7b83fd7a581b5c1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 18874,
+      "sha256": "ddc9e02631c76ef8fc3764e3e394d05440a29ab698617b515499671dc9d148d1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-input/connections.json": {
+      "bytes": 342,
+      "sha256": "5c7d04cfd2f65288e1206bb58c95700b03a656f9eeb5b1b4d02c073a2b1341d1"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1357319,
+      "sha256": "10578426b5d526396514e96d6dc3c112d6048fe0d0d79ef357d7882c70e2ed9a"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3629,
+      "sha256": "7df92e50dd5466e6994c2a621d2f5d7de772fc316e764eff61a11e1e61a7dbaa"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-input/workflow.json": {
+      "bytes": 5445,
+      "sha256": "5086bedb341b4bfe7bf8abf307828c17d262420febc80e3b46d3800722196779"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/creator-staging.json": {
+      "bytes": 1923,
+      "sha256": "f7bfdfea306a2f172e4afbcf4b7374aecb25fa2488151ad185bdc5a439631c42"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/demo.json": {
+      "bytes": 7692,
+      "sha256": "6c259067a25b1d8ed556f0645eb24b2c4acb43c8c6c736111a1e2fed6e27ba7a"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/golden-lock.json": {
+      "bytes": 4253,
+      "sha256": "3c982e9f161c187fe9b883e3a9eb5c58dcf282bd379d27e09dbe92c9fada06c5"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/holdout-a.json": {
+      "bytes": 7636,
+      "sha256": "fa6f55dc936cf35b01c83ab818116da729dac34b5a42bb8bca2ced3595672063"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/holdout-b.json": {
+      "bytes": 7786,
+      "sha256": "dffc44d5b7012b7181b6fb896f03f0f9a78c2a2e8cabee7abe792f1cd7f9841d"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/negative-contradictory.json": {
+      "bytes": 7679,
+      "sha256": "44bc3de2e06707b81d542b9cb11aaec3f10dadbdb05b0a377c762243bca9b79d"
+    },
+    "health-life-sciences/cold-chain-excursion-review/validation/negative-malformed.json": {
+      "bytes": 6625,
+      "sha256": "666b4e3c79ba02b89fa97810681b50bd80c4fbf1508c20622442ad495cf1fd4f"
+    },
+    "health-life-sciences/cold-chain-excursion-review/workflow.json": {
+      "bytes": 5445,
+      "sha256": "5086bedb341b4bfe7bf8abf307828c17d262420febc80e3b46d3800722196779"
+    },
+    "health-life-sciences/research.json": {
+      "bytes": 62990,
+      "sha256": "dec199eb720590fa888dbd086999eb68e0d2996b7dd9198ed4944da1fa430cc0"
+    },
+    "health-life-sciences/research.md": {
+      "bytes": 26337,
+      "sha256": "2619cccef61793be2933812bac9669e429708c17dd3022638afa6a13b314d35d"
+    },
+    "health-life-sciences/site-essential-document-review/HOW_TO.md": {
+      "bytes": 28761,
+      "sha256": "dad8bda03d9b88019f6a6ee65d6923adc2084d68b0f0c911473850026c6dcf89"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/demo.json": {
+      "bytes": 14827,
+      "sha256": "1bb17ee02a7e97d16e07e24685fcf85c6d8ea8e7787f614404c814027f9b3044"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/demo.trace.json": {
+      "bytes": 12308,
+      "sha256": "dab2bbc40c53fda0c1fd0d744e54d4d790b968237d22ad67bdadff3da3f3279e"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/holdout-a.json": {
+      "bytes": 7876,
+      "sha256": "f37ef4b2fca17e9c3396637ffb48488aaa3cc811139a808777e72092c52d1576"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 9144,
+      "sha256": "99515c8a91a898209c76ad5f4f3dcdcf582ed3e69f26376d99d1d5d7a2d4cff8"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/holdout-b.json": {
+      "bytes": 12105,
+      "sha256": "241ee2feb8df84509df4f861c394edd862449233a49a4356f86e1d7637fa3b1c"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 10471,
+      "sha256": "2e1d59ae8a28ac7c428a12886bfcd09ab3704dffee034ef83cc63b4c70520ca4"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/negative-contradictory.json": {
+      "bytes": 9120,
+      "sha256": "26975c125b24c87564260b527e688339f15417f4a771dae69bbeae4208502972"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 9347,
+      "sha256": "395acdc6ed232e6222fc032605c2d910dcc93b116332a6cdcdb77349bc67772a"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/negative-malformed.json": {
+      "bytes": 401,
+      "sha256": "158f58230393c854d398dd62d4b08f80cf2f92dc86118694b13456347cc96b11"
+    },
+    "health-life-sciences/site-essential-document-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2180,
+      "sha256": "6bbc8b2d787834189999d37ab36e2b3fc75f196fbd4b2bf89fcad5288740454a"
+    },
+    "health-life-sciences/site-essential-document-review/baseline.py": {
+      "bytes": 35570,
+      "sha256": "ad146f9a32b2d1b5c43264049392aa742a10ca71252fefa22bb7f48212ce7599"
+    },
+    "health-life-sciences/site-essential-document-review/connections.json": {
+      "bytes": 308,
+      "sha256": "a9fd4ee458a2b8e13e5e36b29aba0453a3d6ad4fe3ad88de3f48ea8ab6cd6fb9"
+    },
+    "health-life-sciences/site-essential-document-review/demo/baseline.media.json": {
+      "bytes": 98147,
+      "sha256": "23989b39a33e3aa317e97350bff4dfeca6c81dc6d64034f9254ee0b9695433cb"
+    },
+    "health-life-sciences/site-essential-document-review/demo/baseline.webm": {
+      "bytes": 1390915,
+      "sha256": "0522be3717e5e9d4c735cf5c425a82af3c1e738d6752d01029fd3802a58703b5"
+    },
+    "health-life-sciences/site-essential-document-review/expected/demo.json": {
+      "bytes": 10647,
+      "sha256": "fa4ad94538fb544fcf67c99fb4773112b84b3282fc8f915d947e05c9be8d18e7"
+    },
+    "health-life-sciences/site-essential-document-review/expected/holdout-a.json": {
+      "bytes": 5603,
+      "sha256": "a3840e86746d771417ab931a64c1dc9d94cfb4541a49c591a17c5bbf2e57f9b8"
+    },
+    "health-life-sciences/site-essential-document-review/expected/holdout-b.json": {
+      "bytes": 8753,
+      "sha256": "598378691d773af0f81662a62ae5f1ed949fbd90d1ed286ed4cde4266d1754b1"
+    },
+    "health-life-sciences/site-essential-document-review/expected/negative-contradictory.json": {
+      "bytes": 6564,
+      "sha256": "9f76f7b64c27d64c9db3a9aefc655ade90b86e64c84426f465133d60d0ce6579"
+    },
+    "health-life-sciences/site-essential-document-review/expected/negative-malformed.json": {
+      "bytes": 362,
+      "sha256": "54047f64a00efbc0d67cb9e4dd08ea3e291a8b0c684fefa129346940648b23fa"
+    },
+    "health-life-sciences/site-essential-document-review/mock-data/demo.json": {
+      "bytes": 4485,
+      "sha256": "382ef60675b1aa948ad6938aa6ccaef4fa3021201df0e15c13d36921253d35f2"
+    },
+    "health-life-sciences/site-essential-document-review/mock-data/holdout-a.json": {
+      "bytes": 3514,
+      "sha256": "8879703785241435533628a3180e4acf9e079d18e8a70cbf5c4c9ef2518cd6b7"
+    },
+    "health-life-sciences/site-essential-document-review/mock-data/holdout-b.json": {
+      "bytes": 4577,
+      "sha256": "4a065a05f3e1323360d36840253ea41e9b5385541e3a4b20d4786d2266f9a9e7"
+    },
+    "health-life-sciences/site-essential-document-review/mock-data/negative-contradictory.json": {
+      "bytes": 2934,
+      "sha256": "f8a7bc061ccd0ee135bcf84c0188e3220e600b9e018c6adb9d658425a9a39a23"
+    },
+    "health-life-sciences/site-essential-document-review/mock-data/negative-malformed.json": {
+      "bytes": 1143,
+      "sha256": "8cc92cd57ed4132a32101d355fc78a13231883302193a15e642442b70f53bd6a"
+    },
+    "health-life-sciences/site-essential-document-review/scenario.json": {
+      "bytes": 9143,
+      "sha256": "1568f23e3aef13aba4aa8d7b21985f0a5592622fe4bf46b87c177bbcb41f3ac3"
+    },
+    "health-life-sciences/site-essential-document-review/sources.json": {
+      "bytes": 2504,
+      "sha256": "bc07ea6fcf086ad927551f2c5714a335f83ebcd1d7f81918a45cd20de272bc17"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 28761,
+      "sha256": "dad8bda03d9b88019f6a6ee65d6923adc2084d68b0f0c911473850026c6dcf89"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-input/connections.json": {
+      "bytes": 308,
+      "sha256": "a9fd4ee458a2b8e13e5e36b29aba0453a3d6ad4fe3ad88de3f48ea8ab6cd6fb9"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1390915,
+      "sha256": "0522be3717e5e9d4c735cf5c425a82af3c1e738d6752d01029fd3802a58703b5"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 4485,
+      "sha256": "382ef60675b1aa948ad6938aa6ccaef4fa3021201df0e15c13d36921253d35f2"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-input/workflow.json": {
+      "bytes": 7513,
+      "sha256": "e0dcf08620fdb74e35d76392eb8263c13c6dd880efca97e084816dac0ad3623c"
+    },
+    "health-life-sciences/site-essential-document-review/validation/creator-staging.json": {
+      "bytes": 1923,
+      "sha256": "8672198516efaaacaf5342a72ac4cf0d6aeff48e12cf4c8ef390608c67a612d2"
+    },
+    "health-life-sciences/site-essential-document-review/validation/demo.json": {
+      "bytes": 8107,
+      "sha256": "de5d72b3a04b6989d35d9effe444a6813246bdec5170a66d2403ea72edaa56ae"
+    },
+    "health-life-sciences/site-essential-document-review/validation/golden-lock.json": {
+      "bytes": 7084,
+      "sha256": "358b845f3f2becb75d657355d7305e3709c67d0fe909ee22bfc9a4ce1b4c4c8c"
+    },
+    "health-life-sciences/site-essential-document-review/validation/holdout-a.json": {
+      "bytes": 8159,
+      "sha256": "e588cb5de513f966face4f4edc61288e3c7a9d2c1a4470f5f933125f5ff440a2"
+    },
+    "health-life-sciences/site-essential-document-review/validation/holdout-b.json": {
+      "bytes": 8392,
+      "sha256": "2f9fb5d0eab73ad29d91cad42d536c7a78aaa3bef517b91f1e04d75c0bb3ec38"
+    },
+    "health-life-sciences/site-essential-document-review/validation/negative-contradictory.json": {
+      "bytes": 8447,
+      "sha256": "c14fb8d6f928016bd9e75e69f67fc64780b8b4b9b6f9df4c30fb54cd06bb8f87"
+    },
+    "health-life-sciences/site-essential-document-review/validation/negative-malformed.json": {
+      "bytes": 6998,
+      "sha256": "49a888b2fa6e0650bfb354be74f489856eaa4198aceb7ee9436b66dbd293e0d8"
+    },
+    "health-life-sciences/site-essential-document-review/workflow.json": {
+      "bytes": 7513,
+      "sha256": "e0dcf08620fdb74e35d76392eb8263c13c6dd880efca97e084816dac0ad3623c"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/HOW_TO.md": {
+      "bytes": 27115,
+      "sha256": "bab66d4d495cac8d0f052f9160ce111d194f9a7e72f9c9989c6928a71ef87405"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/demo.json": {
+      "bytes": 6359,
+      "sha256": "ff7ad8814cb8125cb2d6ffd46c6f9166af8f704f2fc01a87681ff487de3629de"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/demo.trace.json": {
+      "bytes": 11976,
+      "sha256": "8b134b36bbbb3ab9817b76f20bd9f84c99f07c763b0b167a866e8ee76c6d608e"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/holdout-a.json": {
+      "bytes": 7402,
+      "sha256": "eeb760e8a3698fdbca522b399631a4ac220258512b19cc00357547a62e777bfe"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/holdout-a.trace.json": {
+      "bytes": 11142,
+      "sha256": "8dfd8c51a9ea018370b9294c95252765ed2fcaebfa204d09139d5a00824c72fb"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/holdout-b.json": {
+      "bytes": 8800,
+      "sha256": "65bda3f3f4b9144fe3430cc4dec9ef2e8d1a7855b11f0f345c2da20c7512ae37"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/holdout-b.trace.json": {
+      "bytes": 12004,
+      "sha256": "8f5607ad67eb004ce7eaf0ef87cc03c1b75562c6695acc3e96071dbb651b321e"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/negative-contradictory.json": {
+      "bytes": 6882,
+      "sha256": "68ccb013383aae71d0f033a1545cd3aa4dd0de7b94d39919db6ea1c9a44f8600"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 11637,
+      "sha256": "5f737d1ad5bf0fd55a1d02aaec2e0a3fd195aa5caed22976486b92fbc6bfd80a"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/negative-malformed.json": {
+      "bytes": 1034,
+      "sha256": "442ba1e84c671c5e3fe39868853ffc4b1a4c7d91ccfecd7442b596dd517f5d6a"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2944,
+      "sha256": "f14cef9365bbbedc1b1de21581bcc5176dbcba3e62ae661e8ed6e750883a3361"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/baseline.py": {
+      "bytes": 35728,
+      "sha256": "18ee71568efeee91bfe1ac4904787360fb52fb00b081a2096bc2a681e5e9a501"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/connections.json": {
+      "bytes": 500,
+      "sha256": "af91247f9066c7317d928dfce78d49f715e46208dfe99e2f16ae1b6d0292d767"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/demo/baseline.media.json": {
+      "bytes": 82557,
+      "sha256": "d96efca181e7860f5bf061f3083dc9675201ab05d11fe1f920c96dcbd72bc5ae"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/demo/baseline.webm": {
+      "bytes": 1196480,
+      "sha256": "e1ab2953e51b63e16497243bbb23c3555f5e7ec795261c651e5888779fa06a2f"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/expected/demo.json": {
+      "bytes": 4743,
+      "sha256": "561bddeab8a1b1ac4b5a249740f3351e4a0f7fb2be2349a988193ccaac985391"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/expected/holdout-a.json": {
+      "bytes": 5353,
+      "sha256": "293e7d363fe11b45962e88be81eccdbbc997a902c4b3fc581e0c20aac86b3267"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/expected/holdout-b.json": {
+      "bytes": 6406,
+      "sha256": "0034f67a056a9783191fa8aaf16975ac55f8eadf59d77e6e52c80a8149fc4396"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/expected/negative-contradictory.json": {
+      "bytes": 5129,
+      "sha256": "b2c4726453d54be322afe1a0ecb854e772fff219d67fe3fb18f8d6be5ed08a47"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/expected/negative-malformed.json": {
+      "bytes": 901,
+      "sha256": "a4f88e772e74d59e13e76618fa84d9539fb393516cc1d098e83bf8845b39f96f"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/mock-data/demo.json": {
+      "bytes": 4242,
+      "sha256": "ac539809e359242620bd0becb1f7ebe96c389d60e5d807beb1528e2dac59c657"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/mock-data/holdout-a.json": {
+      "bytes": 4098,
+      "sha256": "78b7552cc08f2c499aaa091742caae1b1488fe921d43cc15353b24cd823d8bbe"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/mock-data/holdout-b.json": {
+      "bytes": 3722,
+      "sha256": "8447391768cbb57428ec1ec798198acbe9e3c0199b804c431ba1c9eeffa7e426"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/mock-data/negative-contradictory.json": {
+      "bytes": 4236,
+      "sha256": "bfda9beeba2b9fa3c211f213376b2508fcbbb400f97beb97cab6db1eea4375f6"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/mock-data/negative-malformed.json": {
+      "bytes": 461,
+      "sha256": "a19ff56f861b3097c72cc5453fcd3b7af510667454b7ca2661c1fdd9b635d2aa"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/scenario.json": {
+      "bytes": 8431,
+      "sha256": "5de710d07c157ef1c7eeb731b6161b6aef76b73c164134a4c7d5722a56803da1"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/sources.json": {
+      "bytes": 3214,
+      "sha256": "0a0c1c13833f2754f7926be90fb097ddb356c6dee3d8e2baffce4b41da0a27f0"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-input/HOW_TO.md": {
+      "bytes": 27115,
+      "sha256": "bab66d4d495cac8d0f052f9160ce111d194f9a7e72f9c9989c6928a71ef87405"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-input/connections.json": {
+      "bytes": 500,
+      "sha256": "af91247f9066c7317d928dfce78d49f715e46208dfe99e2f16ae1b6d0292d767"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1196480,
+      "sha256": "e1ab2953e51b63e16497243bbb23c3555f5e7ec795261c651e5888779fa06a2f"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-input/mock-data/demo.json": {
+      "bytes": 4242,
+      "sha256": "ac539809e359242620bd0becb1f7ebe96c389d60e5d807beb1528e2dac59c657"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-input/workflow.json": {
+      "bytes": 6386,
+      "sha256": "c799a41f683397942785729affc29fc23d47a4199266c340306c0b26df29b3b3"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/creator-staging.json": {
+      "bytes": 1923,
+      "sha256": "a0b2e01c7a50e04a200bc9ca22b21360b05483eb7b24d09bd4cb6f32e81b6bef"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/demo.json": {
+      "bytes": 8057,
+      "sha256": "fe514e8c799329377b3a583b148e80eff117c3a270ffbc5237ab7a8601cc76af"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/golden-lock.json": {
+      "bytes": 6474,
+      "sha256": "c5437ae19e6287e6aa03f6951c933376393fbd58ec63b8adf7b68ac4f132200a"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/holdout-a.json": {
+      "bytes": 7991,
+      "sha256": "f4d1098e86be7efbe9adf7929dca465d7bd846b10f8ffb458baf662a7f902760"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/holdout-b.json": {
+      "bytes": 8459,
+      "sha256": "080e93ddcc2188011726202dc10afd6576afd107be2015b2541de3471b4fd025"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/negative-contradictory.json": {
+      "bytes": 8337,
+      "sha256": "b7d68f0f74f922edaf7916e28c4804856102cbb8c5262e4cbf107e6a96d9d396"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/negative-malformed.json": {
+      "bytes": 7035,
+      "sha256": "4f42e76ec33d68f6708ac0af29234ea9cc89224fad6656d9027765a85cdce056"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/validation/unit-tests.json": {
+      "bytes": 1747,
+      "sha256": "b2b41869a4894a5502db7da07c947fa88da98c6a9847c3562f8533822bb59e46"
+    },
+    "health-life-sciences/specimen-accession-reconciliation/workflow.json": {
+      "bytes": 6386,
+      "sha256": "c799a41f683397942785729affc29fc23d47a4199266c340306c0b26df29b3b3"
+    },
+    "manufacturing/bom-kitting-review/HOW_TO.md": {
+      "bytes": 24991,
+      "sha256": "e540e556be3864813e89bdc8f53f9d6d3fec5bffe37d9a238e836ee0c62bb1e6"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/demo.json": {
+      "bytes": 9771,
+      "sha256": "e427df97c37d9d6262ae629e8a69165da30aafec79398b844090ed107b522992"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/demo.trace.json": {
+      "bytes": 17570,
+      "sha256": "d39b796e4677c7cd8fe11ece3cf1cf5761898cb5d85b1dbd2a47855966054000"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-a.json": {
+      "bytes": 4095,
+      "sha256": "eb1c063875d6b5167175f8fac09b873630fe1cb5ec04534443a853d0e53a2b13"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 12494,
+      "sha256": "17ab562b4dfa4983c97eba16116f6e21dfa48f42984cf9fdda84323f8151e72a"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-b.json": {
+      "bytes": 5332,
+      "sha256": "d6db90c75bf5e810045ae093e4da97f6f4a7623d34540e52f465bdd02961d833"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 12905,
+      "sha256": "88c4e90f404ccb08ebea49643d82e99f8b012903d1f0e16ec183b1ac7b969df1"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-c.json": {
+      "bytes": 3919,
+      "sha256": "1eb8c365986909762e881800c8aed00924cbb6480a02e9bcb5f0e4e79bf65660"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-c.trace.json": {
+      "bytes": 12035,
+      "sha256": "66c91ba71fd1d6b5faa99a85fd84d11a2d3120045b3d26971f5ab9fc02767ee8"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-unknown.json": {
+      "bytes": 5821,
+      "sha256": "ab16e4a9c64cc1a5405da32e8085771faf3ba095049cc0122b1d4c9aefa9cf71"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/holdout-unknown.trace.json": {
+      "bytes": 14175,
+      "sha256": "0543ca0be64c7b3cd64bcd22c40cf59bbf21e15bbd0a3c7cba5fb2ae6e11eb52"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-contradictory.json": {
+      "bytes": 317,
+      "sha256": "fff0e98b8f7c150c7ae078ad539ca01ef5664ae8e1725d83362e1b7292cb0e2e"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 4714,
+      "sha256": "dba98d0ddbcae067a45bd1df106436e62b5380067b2e6fd94f99605f558c1324"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-cycle.json": {
+      "bytes": 308,
+      "sha256": "c95597c4626a9193f905e2dbe3de8aa9d1e8d64684684226bc53ef1a39c45fb4"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-cycle.trace.json": {
+      "bytes": 5498,
+      "sha256": "718b6837a0d32029051a3f4089c074aa58edd007b63dbffd545aad5898c597f2"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-line.json": {
+      "bytes": 317,
+      "sha256": "f16a80d641f4be4e60366618235d46e263116ee0f38f9345cd9a9e239009107f"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-line.trace.json": {
+      "bytes": 3571,
+      "sha256": "4e10a093378b11b0e91d019c1e0736fc096b693f86cf6a1545dd479d06d9ed8a"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-malformed.json": {
+      "bytes": 1336,
+      "sha256": "9374e4281babaf8f276bb75236ec20c2f9643d1aae51d39ae1d4bfe2fed1b922"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 5473,
+      "sha256": "ca3d89796666bed102050a14573f3e76870beeafffbaa8f98052cf70968b8bfb"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-unit.json": {
+      "bytes": 322,
+      "sha256": "f9cac931e53e4acbbc25ffc206c5e43f605768a940b5c997b16a55ccdd1366fb"
+    },
+    "manufacturing/bom-kitting-review/baseline-output/negative-unit.trace.json": {
+      "bytes": 3589,
+      "sha256": "d8d6d3f98d187771653172a70c74abee4f4329adeda7699e024ac1504890535d"
+    },
+    "manufacturing/bom-kitting-review/baseline.py": {
+      "bytes": 42856,
+      "sha256": "29972072059073e240a74e8ddc1213f0c7e6ea8bffeffc03d07d98c300168767"
+    },
+    "manufacturing/bom-kitting-review/connections.json": {
+      "bytes": 410,
+      "sha256": "9054fa5eb6979c22f2277505bfe0b613b6610fcf2cb79004e927809f48a7a9e3"
+    },
+    "manufacturing/bom-kitting-review/demo/baseline.media.json": {
+      "bytes": 130215,
+      "sha256": "fb2cf93e0fbbd09626ae0cc2651f49a724459a192dd9ef8d0e59a0b80843023a"
+    },
+    "manufacturing/bom-kitting-review/demo/baseline.webm": {
+      "bytes": 1879974,
+      "sha256": "628829ca58613cef2ba18c1cd1c18ffb292d1044106142dc2fd1262a2a964720"
+    },
+    "manufacturing/bom-kitting-review/expected/demo.json": {
+      "bytes": 7086,
+      "sha256": "55e4fd0bb772d6af441f47cd584d57f1a2e5170e2a22fce0d40589376dd54597"
+    },
+    "manufacturing/bom-kitting-review/expected/holdout-a.json": {
+      "bytes": 3144,
+      "sha256": "43c01bc0f95351a76d0d16f999e763d11036d926a6863b9e13e5df8b50086d5a"
+    },
+    "manufacturing/bom-kitting-review/expected/holdout-b.json": {
+      "bytes": 3883,
+      "sha256": "d735b8860b418259a723e434d52afa761ead7ceb5d3c8014123e89b74dbd9f8d"
+    },
+    "manufacturing/bom-kitting-review/expected/holdout-c.json": {
+      "bytes": 3014,
+      "sha256": "ea93712d400b161d9ce2fecf243f86e4ff637c3ea8b6c47961c132b265aa62f9"
+    },
+    "manufacturing/bom-kitting-review/expected/holdout-unknown.json": {
+      "bytes": 4428,
+      "sha256": "98f8468d72546d2e15bb728edf0d4b03da531c5fcdc49a45d969c8cb39020527"
+    },
+    "manufacturing/bom-kitting-review/expected/negative-contradictory.json": {
+      "bytes": 283,
+      "sha256": "2761037abd78a12e48342f369f375404ce1486a32882e671991a59b5c7646f8e"
+    },
+    "manufacturing/bom-kitting-review/expected/negative-cycle.json": {
+      "bytes": 274,
+      "sha256": "1099613230397b62ac73b93c94743ca3afbc633bd58af020337b7430cc6ea9ab"
+    },
+    "manufacturing/bom-kitting-review/expected/negative-line.json": {
+      "bytes": 283,
+      "sha256": "8032cb4d8ec64fad0425746e22c6cb554d28f389ce20abcdb629fdf6cc2311f4"
+    },
+    "manufacturing/bom-kitting-review/expected/negative-malformed.json": {
+      "bytes": 1138,
+      "sha256": "ced86dcd8d59abc547ce078f4a3120f00582023fa94b77fbd58e10a71a0e147d"
+    },
+    "manufacturing/bom-kitting-review/expected/negative-unit.json": {
+      "bytes": 288,
+      "sha256": "5398093e982720cf21559ad3ac390639d8e7f58f2dafd43d4c6603a14713ea8a"
+    },
+    "manufacturing/bom-kitting-review/mock-data/demo.json": {
+      "bytes": 2664,
+      "sha256": "50e16f896cb6131c49f2601e7f35a3dd39bda2483dd926510fd857aaa4483584"
+    },
+    "manufacturing/bom-kitting-review/mock-data/holdout-a.json": {
+      "bytes": 1791,
+      "sha256": "d7b95cf7ce3942b23cab80c5032f3c5ac82203df9dff2f3a7cfbc8445cdfb6fd"
+    },
+    "manufacturing/bom-kitting-review/mock-data/holdout-b.json": {
+      "bytes": 2095,
+      "sha256": "03efe91754de463cec3884bd9d86a63d633d924ed1a4cf90b3dc107ee2b7cdb8"
+    },
+    "manufacturing/bom-kitting-review/mock-data/holdout-c.json": {
+      "bytes": 2067,
+      "sha256": "5a2e58e450662f9b678a22b650569eb5ce671f2d9d313e565d097d846052c88a"
+    },
+    "manufacturing/bom-kitting-review/mock-data/holdout-unknown.json": {
+      "bytes": 1668,
+      "sha256": "e3121731d6553c4884da6dfd26ae7c1b39f4bcae0c05cd1a417e646931e719c1"
+    },
+    "manufacturing/bom-kitting-review/mock-data/negative-contradictory.json": {
+      "bytes": 1151,
+      "sha256": "cd1f055b3ce0075111e411d8387eabbc0140ac97eeffea9d0b3a8ff24af93c0c"
+    },
+    "manufacturing/bom-kitting-review/mock-data/negative-cycle.json": {
+      "bytes": 1150,
+      "sha256": "efa8eb43d2070f1b6d159d6b8e9eac6db1a107a7ddb980074ce4dd76efeb0423"
+    },
+    "manufacturing/bom-kitting-review/mock-data/negative-line.json": {
+      "bytes": 827,
+      "sha256": "85801bd00392cce28056c1a85e63c773fefa25322a2a8d3002ab7485dd01a2e0"
+    },
+    "manufacturing/bom-kitting-review/mock-data/negative-malformed.json": {
+      "bytes": 1276,
+      "sha256": "2f4107b2222f6c6f8bcb8056f6a7218b41eeef84c3b5cc349ab7daacc018fdce"
+    },
+    "manufacturing/bom-kitting-review/mock-data/negative-unit.json": {
+      "bytes": 825,
+      "sha256": "14fcd3ff61a6f9fe823febf56e618b7b153993ea88a6c6927a8f3fe21c875a54"
+    },
+    "manufacturing/bom-kitting-review/scenario.json": {
+      "bytes": 11922,
+      "sha256": "96010dc5ce207ce8760b423e13b71275b9b7b25f981e0197023254f787510455"
+    },
+    "manufacturing/bom-kitting-review/sources.json": {
+      "bytes": 2809,
+      "sha256": "1952f2cc20ec82241d46d5b659ae4d169ae7db9867f90d48f26580d6f43a92c0"
+    },
+    "manufacturing/bom-kitting-review/tests/test_baseline.py": {
+      "bytes": 31973,
+      "sha256": "b0e54fd69f6fd2fcd85d80ebd851a157559cfe731038a83e854d06ec68333064"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 24991,
+      "sha256": "e540e556be3864813e89bdc8f53f9d6d3fec5bffe37d9a238e836ee0c62bb1e6"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-input/connections.json": {
+      "bytes": 410,
+      "sha256": "9054fa5eb6979c22f2277505bfe0b613b6610fcf2cb79004e927809f48a7a9e3"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1879974,
+      "sha256": "628829ca58613cef2ba18c1cd1c18ffb292d1044106142dc2fd1262a2a964720"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 2664,
+      "sha256": "50e16f896cb6131c49f2601e7f35a3dd39bda2483dd926510fd857aaa4483584"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-input/workflow.json": {
+      "bytes": 10583,
+      "sha256": "f54acf27a2f0190f258dbe0953cb21a6e74661ffa320db4dfae7f394be2e4256"
+    },
+    "manufacturing/bom-kitting-review/validation/creator-staging.json": {
+      "bytes": 1934,
+      "sha256": "d9375826a3386a2c504b04b070dfba04c98d997a53c966c12afcf6b29f069876"
+    },
+    "manufacturing/bom-kitting-review/validation/demo.json": {
+      "bytes": 9767,
+      "sha256": "5b5116c40afdace47554a37fb26c069000f8de5089b39f49b2f06716623afb4c"
+    },
+    "manufacturing/bom-kitting-review/validation/golden-lock.json": {
+      "bytes": 9352,
+      "sha256": "3a5c7827a311a29ff29e04fd2954f87943760148e69b92c4c55dd4714866af45"
+    },
+    "manufacturing/bom-kitting-review/validation/holdout-a.json": {
+      "bytes": 9353,
+      "sha256": "1e1e3c5c87ea081e93a0487d8414eb4d48b151dee98743539576eb53e26412c4"
+    },
+    "manufacturing/bom-kitting-review/validation/holdout-b.json": {
+      "bytes": 9341,
+      "sha256": "20d2d45de5ece9d0ea0900d5e448b6e581d0f73eca6d06db1ea499c919d0da8c"
+    },
+    "manufacturing/bom-kitting-review/validation/holdout-c.json": {
+      "bytes": 9561,
+      "sha256": "eefd3a8cb58842dbc94657fa8e073d388051c48ee5b1f5de0fd3a4320aafe227"
+    },
+    "manufacturing/bom-kitting-review/validation/holdout-unknown.json": {
+      "bytes": 9626,
+      "sha256": "22676b34e4710a121f13d25c558d222bd970f75abf09a387d4aefaa0eebbc15c"
+    },
+    "manufacturing/bom-kitting-review/validation/negative-contradictory.json": {
+      "bytes": 8507,
+      "sha256": "6109ebca268c67f472deca0de4b515b23a825525954e88fc05fc321063a52146"
+    },
+    "manufacturing/bom-kitting-review/validation/negative-cycle.json": {
+      "bytes": 8661,
+      "sha256": "e6a2a939b0bd149312d821964d64e0c190beb1855196fff13f13fa2458a050f8"
+    },
+    "manufacturing/bom-kitting-review/validation/negative-line.json": {
+      "bytes": 8315,
+      "sha256": "9ef30b90077aba751b5adf4c69f4dd57d42a86ec03ce0b7a68392d4f3cac9400"
+    },
+    "manufacturing/bom-kitting-review/validation/negative-malformed.json": {
+      "bytes": 8596,
+      "sha256": "bf4573676ccb5834de1f5d95f45fe4ec1873101d3ed7a156970c2cb83ac18f1f"
+    },
+    "manufacturing/bom-kitting-review/validation/negative-unit.json": {
+      "bytes": 8323,
+      "sha256": "2975c23ae14d589121f0abcdfb70a5dd3b32fc54c25a6afd953d698d79f6a27f"
+    },
+    "manufacturing/bom-kitting-review/validation/pure-unittest.txt": {
+      "bytes": 1274,
+      "sha256": "61f6e8448bb4773aec61ce13afc826ac5586c2110c93a45ca8c04d25eab407ed"
+    },
+    "manufacturing/bom-kitting-review/validation/unittest.txt": {
+      "bytes": 5850,
+      "sha256": "281c2ae5caf24a620f0ae33c92daac5bf64db0b66a923837dcbe3380670183b6"
+    },
+    "manufacturing/bom-kitting-review/workflow.json": {
+      "bytes": 10583,
+      "sha256": "f54acf27a2f0190f258dbe0953cb21a6e74661ffa320db4dfae7f394be2e4256"
+    },
+    "manufacturing/incoming-quality-review/HOW_TO.md": {
+      "bytes": 20786,
+      "sha256": "8f4e47d0968d282f00694cd12d7af93b8fcb1b3509e8457a19b2350a0d3554dc"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/demo.json": {
+      "bytes": 6383,
+      "sha256": "cc727e847b260fb275cb4f955e4eb6a477eb39324a371b12ff9e0e8470e11c73"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/demo.trace.json": {
+      "bytes": 11395,
+      "sha256": "010ec91eed1ce66644f064632fdb608ca4b1482ce8bb00a252e7ed677b1e3068"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/holdout-a.json": {
+      "bytes": 3813,
+      "sha256": "291fd7f0ad3f6cb97fc255d9219cc1a768fbfccaab4752089c0f019c0a066f86"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 9582,
+      "sha256": "40150ad30e2b32aa0c41139bd62b1c4631c8ade59208cc380e05de7a58ff20e7"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/holdout-b.json": {
+      "bytes": 3564,
+      "sha256": "905d08801000475444907074cd47dc82a4865a527f9cdc7da882ed358e116b3a"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 9559,
+      "sha256": "f29d0efc60fc7e783df222acfd3a1cf8824a723de0f59265e7c7e77ae9206b34"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/negative-contradictory.json": {
+      "bytes": 278,
+      "sha256": "1d9e1b4d1156feab26ffc9460d0e8ba5d417868c2f5a3bb30722f441e4833ed4"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 2041,
+      "sha256": "db4cb1e5e80b960c38ec93ecb38cc5944acda3606975b372a4be4c8ed40daf2b"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/negative-malformed.json": {
+      "bytes": 268,
+      "sha256": "ee10411003d5efba8c055f2a059bcde0671ca655885fddac45e638f457657bbe"
+    },
+    "manufacturing/incoming-quality-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2031,
+      "sha256": "a43ce409b98817cc94a74c7ca4b92bd10b8c7b7e7cc29245342cbe072dedb1b8"
+    },
+    "manufacturing/incoming-quality-review/baseline.py": {
+      "bytes": 26537,
+      "sha256": "7026c81acc5298789c3b14be795d210065c925fa71afe6671d4c1bdfd7ce17bc"
+    },
+    "manufacturing/incoming-quality-review/connections.json": {
+      "bytes": 440,
+      "sha256": "4e520add65ce0a2f5135005aecce353e0688ded81a70efe237d1f52cfef88cae"
+    },
+    "manufacturing/incoming-quality-review/demo/baseline.media.json": {
+      "bytes": 113604,
+      "sha256": "1db3f023317e6313535038a3daec2b67698997dc516ebbb77a0feebd713f50b8"
+    },
+    "manufacturing/incoming-quality-review/demo/baseline.webm": {
+      "bytes": 1467744,
+      "sha256": "ba85be6c3dc8135a1e4f98ecb58a3100af162635ab6151aedf0d5d571a69483c"
+    },
+    "manufacturing/incoming-quality-review/expected/demo.json": {
+      "bytes": 4705,
+      "sha256": "7e85d558e2bdebafe6b391a2b9ef080a68a9908eccad368849bdde470a646d79"
+    },
+    "manufacturing/incoming-quality-review/expected/holdout-a.json": {
+      "bytes": 2892,
+      "sha256": "6dded25d4f418566ee9ed6ce126c538f898d03ee8256c15c4bb120b5e3893a16"
+    },
+    "manufacturing/incoming-quality-review/expected/holdout-b.json": {
+      "bytes": 2767,
+      "sha256": "80f47dbbdffe2fd0bceeab93a1991fff16951e2e422ccf1189046eeca9e547bc"
+    },
+    "manufacturing/incoming-quality-review/expected/negative-contradictory.json": {
+      "bytes": 256,
+      "sha256": "537364735772bb7790e52b63b3f29130563f1f8309ebf6f577080f6bf0141019"
+    },
+    "manufacturing/incoming-quality-review/expected/negative-malformed.json": {
+      "bytes": 246,
+      "sha256": "d07da6ba2ae1ecc2cb6a94fb68348be8a710740f6e6d0f5ba936e98805287c6a"
+    },
+    "manufacturing/incoming-quality-review/mock-data/demo.json": {
+      "bytes": 3581,
+      "sha256": "bcd4b74e7439ad70f4203132cb11a618673f1cfbc261ea11aaaa674fef32318c"
+    },
+    "manufacturing/incoming-quality-review/mock-data/holdout-a.json": {
+      "bytes": 2424,
+      "sha256": "698bd265e1b57b655c16465a5bb321f88f1a120ca954ead623ce681040d49931"
+    },
+    "manufacturing/incoming-quality-review/mock-data/holdout-b.json": {
+      "bytes": 1788,
+      "sha256": "09930f4f9fc42cc627bc2cf782160d60c8b670a6bcf71636137ba230e9a26a7f"
+    },
+    "manufacturing/incoming-quality-review/mock-data/negative-contradictory.json": {
+      "bytes": 1535,
+      "sha256": "d540d82eaa236e2164beb91d0ff26e0991b8e7cd813468916b475c25cf35c412"
+    },
+    "manufacturing/incoming-quality-review/mock-data/negative-malformed.json": {
+      "bytes": 815,
+      "sha256": "fa3c4b029d4fa951445e224479797ecce680390b9e4415bd6edefa6c4c94a1da"
+    },
+    "manufacturing/incoming-quality-review/scenario.json": {
+      "bytes": 5054,
+      "sha256": "61d052d9f5c97094b695652747d88a1ebcb7d39f92935f75d48b52e6df170296"
+    },
+    "manufacturing/incoming-quality-review/sources.json": {
+      "bytes": 3283,
+      "sha256": "5d65bd00f7e2eab6191997912c669d1c8c6b387ba9b498282ca7218cea9e7f64"
+    },
+    "manufacturing/incoming-quality-review/test_baseline.py": {
+      "bytes": 14623,
+      "sha256": "2e818165955f059385611b3c747c213b4d3524509ac8e7e94e32d38b7a872eba"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 20786,
+      "sha256": "8f4e47d0968d282f00694cd12d7af93b8fcb1b3509e8457a19b2350a0d3554dc"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-input/connections.json": {
+      "bytes": 440,
+      "sha256": "4e520add65ce0a2f5135005aecce353e0688ded81a70efe237d1f52cfef88cae"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1467744,
+      "sha256": "ba85be6c3dc8135a1e4f98ecb58a3100af162635ab6151aedf0d5d571a69483c"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3581,
+      "sha256": "bcd4b74e7439ad70f4203132cb11a618673f1cfbc261ea11aaaa674fef32318c"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-input/workflow.json": {
+      "bytes": 6154,
+      "sha256": "aec1cc6b8f7e92a37dc2ca976ca8946342a4e82dc80d65a17cf1fe2425682c79"
+    },
+    "manufacturing/incoming-quality-review/validation/creator-staging.json": {
+      "bytes": 1933,
+      "sha256": "71388b854fcb712a2f47b49e1ccaf9908625c9be9f363de6847c173c52dbecd8"
+    },
+    "manufacturing/incoming-quality-review/validation/demo.json": {
+      "bytes": 7899,
+      "sha256": "b3ff8c1be4e742842863e5643244a1e5d649855902839e4aad45f182e95ba78f"
+    },
+    "manufacturing/incoming-quality-review/validation/golden-lock.json": {
+      "bytes": 3684,
+      "sha256": "771ceb1e013e774cc04711423d0e0f3ddde39320559e44e053d5d8ffecb9cc3b"
+    },
+    "manufacturing/incoming-quality-review/validation/holdout-a.json": {
+      "bytes": 7730,
+      "sha256": "141ffaa61e1acdebdab0d5ea7838c96fd57301aab5b10f58aaeb4ad78fdba260"
+    },
+    "manufacturing/incoming-quality-review/validation/holdout-b.json": {
+      "bytes": 7716,
+      "sha256": "2d181c49900c64e7e46e1e2392ea16da4180cb39c70dc7562689b7ef8130055d"
+    },
+    "manufacturing/incoming-quality-review/validation/negative-contradictory.json": {
+      "bytes": 6780,
+      "sha256": "13575ad7c3aac901a59950f9c9c4457b95c7c1cb540a99fc1886ba825400bb32"
+    },
+    "manufacturing/incoming-quality-review/validation/negative-malformed.json": {
+      "bytes": 6737,
+      "sha256": "46c34e4a411a12350a6c85e8e3f546b2dde33e3cfb40545ae23a3e7fd7a03db1"
+    },
+    "manufacturing/incoming-quality-review/workflow.json": {
+      "bytes": 6154,
+      "sha256": "aec1cc6b8f7e92a37dc2ca976ca8946342a4e82dc80d65a17cf1fe2425682c79"
+    },
+    "manufacturing/research.json": {
+      "bytes": 35730,
+      "sha256": "e17065fa8a2e6b2d0676d13f82ed79faa1fe2990a2026fc9cfa6007902a04009"
+    },
+    "manufacturing/research.md": {
+      "bytes": 29190,
+      "sha256": "7f1c2d60e7ea7c5427fd190e1b0db2034417f030ad0acd7a89902bebd675c685"
+    },
+    "manufacturing/supplier-expediting-review/HOW_TO.md": {
+      "bytes": 37786,
+      "sha256": "bae330290ecca699048aaca1e94821d0c05e0dba4b5786ac9068385cb0e15f4e"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/demo.json": {
+      "bytes": 8694,
+      "sha256": "236594b7d0b69f8e17735c19558f97bd71143c5472541b2562964a4f8081d45c"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/demo.trace.json": {
+      "bytes": 12550,
+      "sha256": "4b068e0edd2d77a00fed36eb3b69f8a1e2b4f55c6433707840a13b8462ee0f42"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-a.json": {
+      "bytes": 4602,
+      "sha256": "e4aee69f22901ca228692c649627dc481eba1325006ce6d8538986e7921d4df5"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-a.trace.json": {
+      "bytes": 10589,
+      "sha256": "dc450598560764a80f07eac230778ad1cd0964570ffb97e7ede9425e8f8b1e9b"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-b.json": {
+      "bytes": 9055,
+      "sha256": "f71f54e5f5eac95631079b6ee380a2a641001c0b43dd2475ee11107d305ac6cf"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-b.trace.json": {
+      "bytes": 13055,
+      "sha256": "d9172cf3788bddfbb6803ea88e47df7f33b7664c397fcbc4750188df3028da17"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-c.json": {
+      "bytes": 13346,
+      "sha256": "c11c58ae6b4c7719cf90d80b3b34bf4395cbd853591605dfd602e2d7b338f64d"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/holdout-c.trace.json": {
+      "bytes": 14723,
+      "sha256": "b909a59c73aa6260070f5dfc6822e19981738b74225317c9960a1af846e1fa89"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-conflicting-id.json": {
+      "bytes": 281,
+      "sha256": "2b9077597d5055a1c47568ff60b926fabd446eb6ba4baaec0f038bf5b9c760cc"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-conflicting-id.trace.json": {
+      "bytes": 2073,
+      "sha256": "2fe2ad6f823cf7921a29f7b55fecc5819d2558558d98e7b04880b7e67cb2cee4"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-contradictory.json": {
+      "bytes": 371,
+      "sha256": "ecd23a6943e1baa16ceff12270a3cd4530a8912390b3db74d02c3c013f5e5db3"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 2092,
+      "sha256": "4a4ce051599b4bae35ee29a89f60ab680b96a4e824878f861ccdd668501a3118"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-malformed.json": {
+      "bytes": 671,
+      "sha256": "5d056344272ee76ae9113bed09b23fa79619b3e39ef2f9979f3c3283dc8baa89"
+    },
+    "manufacturing/supplier-expediting-review/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2362,
+      "sha256": "bf3ccd7bbd43ff957a86ee2f11a608e93995a0edca4530e23405e79ad165e5cf"
+    },
+    "manufacturing/supplier-expediting-review/baseline.py": {
+      "bytes": 39648,
+      "sha256": "baf33324311706bfb350d64cf3c54b3a19eac5446803a75c9acfc0009521319e"
+    },
+    "manufacturing/supplier-expediting-review/connections.json": {
+      "bytes": 453,
+      "sha256": "97cc4d3bd8a5f817ebb8dd74e03cec8ba489e70bc76e82b929f84574188bdaaf"
+    },
+    "manufacturing/supplier-expediting-review/demo/baseline.media.json": {
+      "bytes": 98785,
+      "sha256": "5b4ad700be99168e4c385bb2de57bb9eb435edfc41f7f1437325130c8a587faa"
+    },
+    "manufacturing/supplier-expediting-review/demo/baseline.webm": {
+      "bytes": 1294870,
+      "sha256": "7cf4812baab0082562992998e53859200f29bf2445683bd253a2625a688586f9"
+    },
+    "manufacturing/supplier-expediting-review/expected/demo.json": {
+      "bytes": 6746,
+      "sha256": "edc573a35ca0ca0941bd3699e3863cf63e9a64c915edcb9d3ed24303f6dee719"
+    },
+    "manufacturing/supplier-expediting-review/expected/holdout-a.json": {
+      "bytes": 3620,
+      "sha256": "b918b7068471b80a25edfcfa14756ffad325229e20858b211557be875d29d340"
+    },
+    "manufacturing/supplier-expediting-review/expected/holdout-b.json": {
+      "bytes": 7248,
+      "sha256": "44b127250ea45e454e4575682125eef771a657a1ee52b9df9d95a40aae6d5299"
+    },
+    "manufacturing/supplier-expediting-review/expected/holdout-c.json": {
+      "bytes": 10468,
+      "sha256": "2cfc8d5296439b723110ca3f1f318c02aab0f2ed8030e7f8e2cfb573e1a18280"
+    },
+    "manufacturing/supplier-expediting-review/expected/negative-conflicting-id.json": {
+      "bytes": 253,
+      "sha256": "8f3933bb38503e19386edaa04e052594f7ed58c0707f2d8e6831743270e65444"
+    },
+    "manufacturing/supplier-expediting-review/expected/negative-contradictory.json": {
+      "bytes": 337,
+      "sha256": "4069bd417b15334a7fd4300767cd83b9d098e8046c12b3982c88c54e5b5c9d12"
+    },
+    "manufacturing/supplier-expediting-review/expected/negative-malformed.json": {
+      "bytes": 567,
+      "sha256": "528c5bedb0f18c38c562ee29b697ea4257a7265fbccdeef2ea9df99ca7c58926"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/demo.json": {
+      "bytes": 2087,
+      "sha256": "d2989af517f4351a6c824f8f4d9c407646e7f9d710d5ce8968e12a7e110d526e"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/holdout-a.json": {
+      "bytes": 1217,
+      "sha256": "1696af0a04fd59da505e02b24d3ba01937edf44196e0101ed3993b3b96fcb9c3"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/holdout-b.json": {
+      "bytes": 1426,
+      "sha256": "8040ee14c2bf053a9ee73c6a046ebcbce4bc43a3ef8f8687fbd3bef7f5c22c62"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/holdout-c.json": {
+      "bytes": 2541,
+      "sha256": "e3bb1a03324a3d95f2620be859602e215e8c48dd51a70119b9c1e8e3bfcfe949"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/negative-conflicting-id.json": {
+      "bytes": 700,
+      "sha256": "e3ca5e8d389ed07b7cc35a610eeb2125a85bf9c939ca02f2af278f5377a81150"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/negative-contradictory.json": {
+      "bytes": 853,
+      "sha256": "f420942ad2adc8880bd539bdef5542d4d6568b7d6ef19c4681d61865cc707b6c"
+    },
+    "manufacturing/supplier-expediting-review/mock-data/negative-malformed.json": {
+      "bytes": 622,
+      "sha256": "272052005c8fc312223996e58a41efb2601d6fb39b31dbe8197afb33db5d9bc6"
+    },
+    "manufacturing/supplier-expediting-review/scenario.json": {
+      "bytes": 10071,
+      "sha256": "67ba6a52d96e57fc0dbc0e66cd50d0d0055ed62bc65d4d116074229b2b61a0c5"
+    },
+    "manufacturing/supplier-expediting-review/sources.json": {
+      "bytes": 3061,
+      "sha256": "dc73bdf1364d9adcf425498f2579112062c2a8651dcdc8fd1811721200f88e9a"
+    },
+    "manufacturing/supplier-expediting-review/tests/test_baseline.py": {
+      "bytes": 42623,
+      "sha256": "b86a31b6248901e391c7eda342585a1501875556f75b235d2afc90ba114f8afb"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-input/HOW_TO.md": {
+      "bytes": 37786,
+      "sha256": "bae330290ecca699048aaca1e94821d0c05e0dba4b5786ac9068385cb0e15f4e"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-input/connections.json": {
+      "bytes": 453,
+      "sha256": "97cc4d3bd8a5f817ebb8dd74e03cec8ba489e70bc76e82b929f84574188bdaaf"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1294870,
+      "sha256": "7cf4812baab0082562992998e53859200f29bf2445683bd253a2625a688586f9"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-input/mock-data/demo.json": {
+      "bytes": 2087,
+      "sha256": "d2989af517f4351a6c824f8f4d9c407646e7f9d710d5ce8968e12a7e110d526e"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-input/workflow.json": {
+      "bytes": 11194,
+      "sha256": "0a524f5588de6e08cf10170d4f5f2e7f205a7d78ba3159044c9747ea9ed51c12"
+    },
+    "manufacturing/supplier-expediting-review/validation/creator-staging.json": {
+      "bytes": 1934,
+      "sha256": "28800a1161b7247e24d8ad46cb88db5782024b3e514a0fa1d97342670281ede8"
+    },
+    "manufacturing/supplier-expediting-review/validation/demo.json": {
+      "bytes": 9142,
+      "sha256": "28f79d93c86720631cfa2dc2a0c8aa116f4a55f97e5d2aaae5c6708677878f58"
+    },
+    "manufacturing/supplier-expediting-review/validation/golden-lock.json": {
+      "bytes": 7758,
+      "sha256": "eec03f19cbc21947a9f3329c2ebf37237b07bf6ee4d9c7b5e6b7639e4fe546c1"
+    },
+    "manufacturing/supplier-expediting-review/validation/holdout-a.json": {
+      "bytes": 9084,
+      "sha256": "13bb3cc9f70fe288d3ec0df5ecac1e9d124b4f4c570b32a56c3c35a74af29069"
+    },
+    "manufacturing/supplier-expediting-review/validation/holdout-b.json": {
+      "bytes": 9116,
+      "sha256": "64183743585c8cad260d821c5656a01d65245f4c38e2592cc9de03e0d5ae21e2"
+    },
+    "manufacturing/supplier-expediting-review/validation/holdout-c.json": {
+      "bytes": 9767,
+      "sha256": "de7b96f73577ce92951634f5b4befb32448b5ce08f10690668268139ab2619a5"
+    },
+    "manufacturing/supplier-expediting-review/validation/negative-conflicting-id.json": {
+      "bytes": 7599,
+      "sha256": "0b4e8bfef42f9d2134fc8d543736e1252e88bd42d750b782bef4352cfb389e7b"
+    },
+    "manufacturing/supplier-expediting-review/validation/negative-contradictory.json": {
+      "bytes": 7679,
+      "sha256": "f7b236bb550d2368c4f68c219fbe213367b179bb082aceda6111f9e31e5f0d23"
+    },
+    "manufacturing/supplier-expediting-review/validation/negative-malformed.json": {
+      "bytes": 7691,
+      "sha256": "ac9323cf53fe67013340bd9ca195e7860a677e7e0838db4880ea65335078d551"
+    },
+    "manufacturing/supplier-expediting-review/validation/unittest.log": {
+      "bytes": 6318,
+      "sha256": "c9bce442ceccfe3c3755dedc13bdcdc19d5558bdb72f3c783284c0768bd0a4bf"
+    },
+    "manufacturing/supplier-expediting-review/workflow.json": {
+      "bytes": 11194,
+      "sha256": "0a524f5588de6e08cf10170d4f5f2e7f205a7d78ba3159044c9747ea9ed51c12"
+    },
+    "research-approval.json": {
+      "bytes": 4577,
+      "sha256": "e2c51e26b0af1f44b1e4e85f80caa1a03769f0bd3fdfc184153a67b7964c3669"
+    },
+    "retail/promotion-price-audit/HOW_TO.md": {
+      "bytes": 31367,
+      "sha256": "ee27f98e0531091758519e12ecf398b75a71199a4f5da2129cdc9583122b8500"
+    },
+    "retail/promotion-price-audit/baseline-output/demo.json": {
+      "bytes": 13541,
+      "sha256": "e0eda3b647176e3ed33f4d34f8d350ad06bd59b5a9948ef7e64d0337ab4ec08f"
+    },
+    "retail/promotion-price-audit/baseline-output/demo.trace.json": {
+      "bytes": 17081,
+      "sha256": "eeffd2846618b7a1360bb41f7dc6af986a102dfa8f3f88a067d826a535c80491"
+    },
+    "retail/promotion-price-audit/baseline-output/holdout-a.json": {
+      "bytes": 6198,
+      "sha256": "ec97b843f5099622724be16e72e68d032d0b6a3c3fafaf4311228e20284aa9d1"
+    },
+    "retail/promotion-price-audit/baseline-output/holdout-a.trace.json": {
+      "bytes": 14049,
+      "sha256": "f3ca2459077f60d0afe76b8067ebf40d93a73c0ae7ef78d11e2d0bb8033e23bc"
+    },
+    "retail/promotion-price-audit/baseline-output/holdout-b.json": {
+      "bytes": 5336,
+      "sha256": "b8822a11c3074c0df1f5df47e20f90e603982b58151c22524dd35098fa93499f"
+    },
+    "retail/promotion-price-audit/baseline-output/holdout-b.trace.json": {
+      "bytes": 13567,
+      "sha256": "be7f4e0c6be211381edcf5152d00d92ab3e7167d15467ce4517e4ade09d0e193"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-ambiguous-exception.json": {
+      "bytes": 3381,
+      "sha256": "7df3cc568a861e46f97c861bde511470d69c88f941866cd0b993f106199cfe65"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-ambiguous-exception.trace.json": {
+      "bytes": 11547,
+      "sha256": "e494ffe75bf7963a3973347039c9d64a0fb3a6b499117900765667194feb6993"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-contradictory.json": {
+      "bytes": 3146,
+      "sha256": "b9bcfa54bd67a1a1d193740ad6f4c3a443ea14bdc5103288f5ad71c92842dbc8"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 11361,
+      "sha256": "9c1b9680e2881db55a620dc231c473fb324ef364e149cc212f8f98f8229a51c3"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-duplicate.json": {
+      "bytes": 1100,
+      "sha256": "0fb37f0c1810ad056e23e568ce5c066767634a726d9b954acff0058326be3f4b"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-duplicate.trace.json": {
+      "bytes": 2511,
+      "sha256": "8fbaa96e4a9a043765c622f0510118c9f8c451c7a35babf0910d4213c3669792"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-invalid-window.json": {
+      "bytes": 1106,
+      "sha256": "9ebb3da3808ea604f9436b2b2a6372036fd30f7456377d40aac43acbf95adb25"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-invalid-window.trace.json": {
+      "bytes": 2510,
+      "sha256": "4ff4c5bd09781cefdbf6e8cc240f1d9c2cf22544e17dda9d3c36daeffa251bca"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-malformed.json": {
+      "bytes": 1142,
+      "sha256": "b12713637455b126a968820a228d5a3050c0d8e00716e217fd9347e1492efc97"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2535,
+      "sha256": "63eeb4fec71378d96c1e968a2626025d91e40bab8d6bf276b20cc38f4349d245"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-missing-base.json": {
+      "bytes": 2891,
+      "sha256": "5a10b48458353ba8aad1d71198b92cf9b51bcf128a4b609549f5734258100242"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-missing-base.trace.json": {
+      "bytes": 11165,
+      "sha256": "a7a7eb66d46efa770efc1232d2c4b016378222624d31c43045a4de727ee1af9c"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-out-of-window.json": {
+      "bytes": 2305,
+      "sha256": "4514e13ca0b287eb51b1eea96ea16fd1ffb32994ea5b2b59f9c885749f2a687d"
+    },
+    "retail/promotion-price-audit/baseline-output/negative-out-of-window.trace.json": {
+      "bytes": 10303,
+      "sha256": "95cbe3a2703ea0c48ea0e039e5aa6a1d1f898b2b466492e9dc0d4292a02757f8"
+    },
+    "retail/promotion-price-audit/baseline.py": {
+      "bytes": 36706,
+      "sha256": "e2ae5a69fc9a48242d9340d7bad83d92ae675f76b98c35e0f0f63146861ec1bb"
+    },
+    "retail/promotion-price-audit/connections.json": {
+      "bytes": 388,
+      "sha256": "2dbfd759c6a3455fa4ec9d6b2b088599042611e92c0a158502cbfbab65e75522"
+    },
+    "retail/promotion-price-audit/demo/baseline.media.json": {
+      "bytes": 137611,
+      "sha256": "83f8483a4bb8b3a991458cde05a290e833e74a3d64cc5cca27de396768a4ed29"
+    },
+    "retail/promotion-price-audit/demo/baseline.webm": {
+      "bytes": 2267895,
+      "sha256": "1cddc0180853d08488e0269f43a98651b0032f35063048fbe5513583775bea73"
+    },
+    "retail/promotion-price-audit/expected/demo.json": {
+      "bytes": 9622,
+      "sha256": "4a840a3d2e389bd3cfaa9e4160173f595a7152cb6f00256cb0dc1882b0bd57ed"
+    },
+    "retail/promotion-price-audit/expected/holdout-a.json": {
+      "bytes": 4596,
+      "sha256": "bdd2f47f68ba0d9f5d239efc1795098933cae3084709cbdc54dae3dad73bc084"
+    },
+    "retail/promotion-price-audit/expected/holdout-b.json": {
+      "bytes": 4055,
+      "sha256": "4338e981262e2815a9c237403db3d3397293aa8b8f19e63330e1cca874f892ea"
+    },
+    "retail/promotion-price-audit/expected/negative-ambiguous-exception.json": {
+      "bytes": 2637,
+      "sha256": "ebd8c91775eb8beb72d52f01074394f2bff1b712a6e94479190b8e0e7d2e925d"
+    },
+    "retail/promotion-price-audit/expected/negative-contradictory.json": {
+      "bytes": 2493,
+      "sha256": "aca169497d5a304ca3c677e7073eb374a02f9a67803fa3acdec97373d30a9fad"
+    },
+    "retail/promotion-price-audit/expected/negative-duplicate.json": {
+      "bytes": 936,
+      "sha256": "885c43d15053fd34a3d5b8744acbf9f5307c335453cd7c8cf3220d289713dd37"
+    },
+    "retail/promotion-price-audit/expected/negative-invalid-window.json": {
+      "bytes": 942,
+      "sha256": "a7e184ad9cc40386efd233e1859e1a673b3fb6ee00dc47e00839b487755fc39e"
+    },
+    "retail/promotion-price-audit/expected/negative-malformed.json": {
+      "bytes": 978,
+      "sha256": "fe967902d7e6030f7281621e64e483a8d7417493dc39144e02458c8087f3fa96"
+    },
+    "retail/promotion-price-audit/expected/negative-missing-base.json": {
+      "bytes": 2368,
+      "sha256": "38466606b5f22ecc45acbc68bba7e2d7d6c9da59b569922bde53973b06cfca58"
+    },
+    "retail/promotion-price-audit/expected/negative-out-of-window.json": {
+      "bytes": 1870,
+      "sha256": "978c6343e611c9d19ddf643ca5b92c3549a39268e28d36eeed95786dfb1cc03a"
+    },
+    "retail/promotion-price-audit/mock-data/demo.json": {
+      "bytes": 5463,
+      "sha256": "b804fe5ef352e79aa831ea05e835af5e95cd3e9080e02bacb38b1fe525f9a7b3"
+    },
+    "retail/promotion-price-audit/mock-data/holdout-a.json": {
+      "bytes": 3165,
+      "sha256": "877d372b37fb16a38018d1c06a98e109f2bff73814c8ea4e2d1175b80807818e"
+    },
+    "retail/promotion-price-audit/mock-data/holdout-b.json": {
+      "bytes": 2494,
+      "sha256": "90a4370302a8b7e276a51e759453d0dfade6cce74b4d32a33e3bd3763737c4ce"
+    },
+    "retail/promotion-price-audit/mock-data/negative-ambiguous-exception.json": {
+      "bytes": 1656,
+      "sha256": "62f29acc9da3e80f99c19ef79cc0c272c1ff7c4fe9f7372a5b53ee1e1b4fb9a1"
+    },
+    "retail/promotion-price-audit/mock-data/negative-contradictory.json": {
+      "bytes": 1349,
+      "sha256": "e8977f56e52a2437725d6d205a713bf25e806c8632eea0748a59a466e7704f14"
+    },
+    "retail/promotion-price-audit/mock-data/negative-duplicate.json": {
+      "bytes": 1334,
+      "sha256": "84a1ba036830e782be2303e003715118f5d3219f29b7801c83433c79d0bb34a4"
+    },
+    "retail/promotion-price-audit/mock-data/negative-invalid-window.json": {
+      "bytes": 1149,
+      "sha256": "59a3fcba80466a26dc2a8285bcc2a4abd267c8276406f63e72b184ef3de95c52"
+    },
+    "retail/promotion-price-audit/mock-data/negative-malformed.json": {
+      "bytes": 1474,
+      "sha256": "a344cab7a5ec7520e25cdb10f055ad60f854f520a9712b94b3783f017719cfb7"
+    },
+    "retail/promotion-price-audit/mock-data/negative-missing-base.json": {
+      "bytes": 1155,
+      "sha256": "f3d4525927f6143afe0e996b801f1742953e49454720cfab3273d34076268f94"
+    },
+    "retail/promotion-price-audit/mock-data/negative-out-of-window.json": {
+      "bytes": 959,
+      "sha256": "a069871d22827d38279c2a7615881c2b5f9e7b537cdf4763855d7d744e883075"
+    },
+    "retail/promotion-price-audit/scenario.json": {
+      "bytes": 8565,
+      "sha256": "4c6136b184f6c1849d4ef8b401d1dcbd2d9c28b98dc5f5588dbbb944ebf7d2e7"
+    },
+    "retail/promotion-price-audit/sources.json": {
+      "bytes": 3118,
+      "sha256": "f9a4090a1b5f24a77f2b4de02aef700c649d48efc218d696042efc1348a86211"
+    },
+    "retail/promotion-price-audit/validation/creator-input/HOW_TO.md": {
+      "bytes": 31367,
+      "sha256": "ee27f98e0531091758519e12ecf398b75a71199a4f5da2129cdc9583122b8500"
+    },
+    "retail/promotion-price-audit/validation/creator-input/connections.json": {
+      "bytes": 388,
+      "sha256": "2dbfd759c6a3455fa4ec9d6b2b088599042611e92c0a158502cbfbab65e75522"
+    },
+    "retail/promotion-price-audit/validation/creator-input/demo/baseline.webm": {
+      "bytes": 2267895,
+      "sha256": "1cddc0180853d08488e0269f43a98651b0032f35063048fbe5513583775bea73"
+    },
+    "retail/promotion-price-audit/validation/creator-input/mock-data/demo.json": {
+      "bytes": 5463,
+      "sha256": "b804fe5ef352e79aa831ea05e835af5e95cd3e9080e02bacb38b1fe525f9a7b3"
+    },
+    "retail/promotion-price-audit/validation/creator-input/workflow.json": {
+      "bytes": 8045,
+      "sha256": "aba8264935675d549a7979d5e8ce5d91e056786686d0d1ad5fe7234243b7c52e"
+    },
+    "retail/promotion-price-audit/validation/creator-staging.json": {
+      "bytes": 1926,
+      "sha256": "f5faae303bdbb4f55213d0ddfccd3ccbcd1bb7d159895e195b6532c6bea8f62d"
+    },
+    "retail/promotion-price-audit/validation/demo.json": {
+      "bytes": 8939,
+      "sha256": "40e601b0884ced476d7e4efd58af37259084722a2d634382dcd90204b4fb22a1"
+    },
+    "retail/promotion-price-audit/validation/golden-lock.json": {
+      "bytes": 5825,
+      "sha256": "ac0ccd41203d5710f623629e2bbfc42c65186f29526d4c3207138fd84209741b"
+    },
+    "retail/promotion-price-audit/validation/holdout-a.json": {
+      "bytes": 8772,
+      "sha256": "b2b79143ad87b07db766a50d09d1e43082c98c083a1373e4b57a8eb63f687562"
+    },
+    "retail/promotion-price-audit/validation/holdout-b.json": {
+      "bytes": 8620,
+      "sha256": "7b90ca25fc7fad8e9df3d39f7c5a1cd74d5e457c58fe7597112efcc6da42da91"
+    },
+    "retail/promotion-price-audit/validation/negative-ambiguous-exception.json": {
+      "bytes": 8599,
+      "sha256": "f70a5b2e23e8e8811afd2f77eb3c7183e77b5f68e2dd0f336114f30e06441e20"
+    },
+    "retail/promotion-price-audit/validation/negative-contradictory.json": {
+      "bytes": 8548,
+      "sha256": "9730a693b36a5019f7661748787247cb6252e0e223a6fa8e7ab37193cf457ff4"
+    },
+    "retail/promotion-price-audit/validation/negative-duplicate.json": {
+      "bytes": 7806,
+      "sha256": "e9f8e64414e80b90c2a216967de136ac3053731cb5fed28558a1f4c5e8d9570e"
+    },
+    "retail/promotion-price-audit/validation/negative-invalid-window.json": {
+      "bytes": 7841,
+      "sha256": "c279fca8ae747720fe28d6f2ec4b06fa57e41e7924e04c81313691ff837ad172"
+    },
+    "retail/promotion-price-audit/validation/negative-malformed.json": {
+      "bytes": 7864,
+      "sha256": "51c46dc527b518f36e68ef956798f8ca4383c4467c88b0acc35d9a0eac781566"
+    },
+    "retail/promotion-price-audit/validation/negative-missing-base.json": {
+      "bytes": 8564,
+      "sha256": "4a97e8da41b2dde85df08eca718fa9fc15043509f2b94ab01adf47b968b97e08"
+    },
+    "retail/promotion-price-audit/validation/negative-out-of-window.json": {
+      "bytes": 8520,
+      "sha256": "dcc25ca4e60f70e3cbc5e2131930b82f82b5b2eb6a2a513ade49d2f01db1c430"
+    },
+    "retail/promotion-price-audit/validation/runner-environment-note.json": {
+      "bytes": 2843,
+      "sha256": "45c0f7bca95edab05414152329a0f72ad20b1cf6ba75632bd4f697d8848aa60e"
+    },
+    "retail/promotion-price-audit/workflow.json": {
+      "bytes": 8045,
+      "sha256": "aba8264935675d549a7979d5e8ce5d91e056786686d0d1ad5fe7234243b7c52e"
+    },
+    "retail/research.json": {
+      "bytes": 66433,
+      "sha256": "120236c78a1bd6510f8b01dd0590961dd0eb4775d3168fddb86af93ab17d37fa"
+    },
+    "retail/research.md": {
+      "bytes": 40360,
+      "sha256": "55bfd40d368583c7b2597114f8f5ce2c84d12644c15f36f24b281c4a29d6b777"
+    },
+    "retail/returns-refund-reconciliation/HOW_TO.md": {
+      "bytes": 35432,
+      "sha256": "90979a38905a60a6ac2f55519138849975ea182e15868787bb2cbcf9ba51e898"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/demo.json": {
+      "bytes": 10335,
+      "sha256": "bd03f98661be7508f84daf3bc0af5e4d926add2bee1bd5939511d9d5823100e5"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/demo.trace.json": {
+      "bytes": 13137,
+      "sha256": "04bcb0bdb7c34bca07edcf54f930cee941796e1f472d912ab04a7eba647b2857"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/holdout-a.json": {
+      "bytes": 4316,
+      "sha256": "fb718074c4c69f37569cb02ca56f22b857e279b8d1fcc7b33876747f0667730e"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/holdout-a.trace.json": {
+      "bytes": 10197,
+      "sha256": "497d5366587119a7402f36f701cb6e8feaf2acdcdde66b67f48ac9b193d75f62"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/holdout-b.json": {
+      "bytes": 5976,
+      "sha256": "793d2b0cc3877bf19c1075d8a795145208e088133989d4b555abdb4f2a6fbb4a"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/holdout-b.trace.json": {
+      "bytes": 11003,
+      "sha256": "8755fe28aa53ea9d14dcd15ff67b9b8c09da44ea91ab1bdf09ebd562adc3ec3d"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-ambiguous-receipt.json": {
+      "bytes": 314,
+      "sha256": "c669b36c54acd7ee04c28ee2ece873bebdda7062d71d9fe146c00dbb2a1ba9d3"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-ambiguous-receipt.trace.json": {
+      "bytes": 2202,
+      "sha256": "5cf86b03481e2f5a24ebfcef79024ed6756df6e636d544e3f292ba08ccd59b0a"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-contradictory.json": {
+      "bytes": 4740,
+      "sha256": "bff2a22c9eb835582a1233617dfe96cdae3eca664a2dc5bfb581250e47ad33bb"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 10583,
+      "sha256": "85487ea1e50b0a382765b6e40f35b8887643fe92ff400ca6b3cf1644e11bc5fc"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-current-period-history.json": {
+      "bytes": 4706,
+      "sha256": "ea331bf47975c992f393c6f22352d87a98d81a67ed875baaf91ebafde344ff29"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-current-period-history.trace.json": {
+      "bytes": 10576,
+      "sha256": "33ae81506d05d0ea9874f23cb8868563f67ec1c6e7e309de07e0c0c566187cc4"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-duplicate.json": {
+      "bytes": 256,
+      "sha256": "c11d02a41df13f7e5f4790e9108c4f4b5a45a8e4194c270404f56b4b891d33f2"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-duplicate.trace.json": {
+      "bytes": 2128,
+      "sha256": "1854ae78a119ccafb76681c7f521937ce072c63fac67e71e66db00d8f40833a9"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-malformed.json": {
+      "bytes": 300,
+      "sha256": "81fc22ba6ead2a69c5cbb1394543cff5f14ec99373610b9a2b5ea52fb5c23b11"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-malformed.trace.json": {
+      "bytes": 2173,
+      "sha256": "2cfb3bbf104092862a764dc89586a1b87c68dc0432d758cc46ed8dfae5eac843"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-out-of-window.json": {
+      "bytes": 4547,
+      "sha256": "04df6bb0ba70608a2850f4d0162d88a438bedd115a2e026549751384e0e34f42"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-out-of-window.trace.json": {
+      "bytes": 10369,
+      "sha256": "01d84eed6206b700fa7595374aace72bf1e745f1021a01617b4437a4816145a4"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-unconfirmed-payment.json": {
+      "bytes": 4669,
+      "sha256": "71fd9f0e9ee190cfb00fa61f69d53ac5aca18dd7c85301604cb244b92e3978d6"
+    },
+    "retail/returns-refund-reconciliation/baseline-output/negative-unconfirmed-payment.trace.json": {
+      "bytes": 10568,
+      "sha256": "36afa4af60fd63008d1f220d1b350bac4b6dd22f6c0323cf02fb5e0db5d947e5"
+    },
+    "retail/returns-refund-reconciliation/baseline.py": {
+      "bytes": 42026,
+      "sha256": "e487e4364472adbbf997a97ab93de3d6f817d55126b7c854f2ae1937a1cb682a"
+    },
+    "retail/returns-refund-reconciliation/connections.json": {
+      "bytes": 375,
+      "sha256": "8bda59dbcde4da79da0dfe86e0fdc7e51d2f44a681f5341bcfaf27924a88b838"
+    },
+    "retail/returns-refund-reconciliation/demo/baseline.media.json": {
+      "bytes": 106296,
+      "sha256": "19e9f87616ef3bc98b6f510af7d8c5fafe39c34f06e3cb9c9e4ee4cbd89312ce"
+    },
+    "retail/returns-refund-reconciliation/demo/baseline.webm": {
+      "bytes": 1462344,
+      "sha256": "3c29e4ab8b1cd5ec70a3d4bb7efc02a86ad9724adf447624209122fd6b4a9abe"
+    },
+    "retail/returns-refund-reconciliation/expected/demo.json": {
+      "bytes": 8422,
+      "sha256": "80439d0485d9f10b5e01fdbf548fb0b83405634ab71d9121716dc1f0e7dfd0bc"
+    },
+    "retail/returns-refund-reconciliation/expected/holdout-a.json": {
+      "bytes": 3637,
+      "sha256": "c07254e706080a6d8605696d928bec4a030e53d8baecfdf84c9b7fe76dce65b5"
+    },
+    "retail/returns-refund-reconciliation/expected/holdout-b.json": {
+      "bytes": 4908,
+      "sha256": "e03a7b1af0a651baab84f61ff4d72e7e294be2e918a648ca71a7eed8f674a77b"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-ambiguous-receipt.json": {
+      "bytes": 292,
+      "sha256": "55542915f78a34005961dde363ab8c5b7cebba354a390a13c41dda781dc9bdd1"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-contradictory.json": {
+      "bytes": 4003,
+      "sha256": "c5abf14630c962b8f812cfccb2cf4e2fac8b9553d0b383a7555af1f5c7f09ad2"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-current-period-history.json": {
+      "bytes": 3969,
+      "sha256": "b6c491bc854c44e5c08247b30c357017523c3e421c64499137fa8bcfd2695b7c"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-duplicate.json": {
+      "bytes": 234,
+      "sha256": "e136e6d5e0ec69ac26d6854b6bbaa9617ac59be2bc92cff92c5711c11be526f2"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-malformed.json": {
+      "bytes": 278,
+      "sha256": "7e0abe722f2ae213bb0757a2011013ea072feb396254077b9f20e8655d0af234"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-out-of-window.json": {
+      "bytes": 3804,
+      "sha256": "4628cb144b8748156f0a124fdfc13313a4c74d6901b725763eda59fdc00be4d9"
+    },
+    "retail/returns-refund-reconciliation/expected/negative-unconfirmed-payment.json": {
+      "bytes": 3932,
+      "sha256": "486aee04b612c2e1b88dbcdff2cfdf37cd88d216fdff6fa955cb8f1f74628dad"
+    },
+    "retail/returns-refund-reconciliation/mock-data/demo.json": {
+      "bytes": 3217,
+      "sha256": "26a42ca68acb4e1ce19a51228161553c9c2652c67df24aaa28021ad86ab9c03b"
+    },
+    "retail/returns-refund-reconciliation/mock-data/holdout-a.json": {
+      "bytes": 1686,
+      "sha256": "13fc2ba9e2730baa8cefb005b0efed275bfcde35e13192a569379f5e27534699"
+    },
+    "retail/returns-refund-reconciliation/mock-data/holdout-b.json": {
+      "bytes": 1784,
+      "sha256": "a9b4945c984b90a05cb892f7d9760149fa4792ec503e756bfb9300d92d359144"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-ambiguous-receipt.json": {
+      "bytes": 1998,
+      "sha256": "964a8884b8686830013d8010c722fce1275a9685e5b936c698f1a97f732b093b"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-contradictory.json": {
+      "bytes": 1685,
+      "sha256": "ec6f8f0a07b0413d0d59f7b7b9509c1aa36ecb18817e0e2be6ff48f9cefd6104"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-current-period-history.json": {
+      "bytes": 1685,
+      "sha256": "4d0ab7db05d0b52704c6f32213a0a2f958f98399f92048dfec9a2ad7e52da666"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-duplicate.json": {
+      "bytes": 1772,
+      "sha256": "b4951eb3364a9d872eb6a5b4410dba6a947045f090b49e508ed3b8a1d315c567"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-malformed.json": {
+      "bytes": 1481,
+      "sha256": "0de8901b07481fe554664d2b339f034e0cb76a9c9bc6cd264eb4908159660f95"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-out-of-window.json": {
+      "bytes": 1474,
+      "sha256": "c1f09c40409288f4efe7b532aa98d03665e609b1b9325be3c45198630c8a2722"
+    },
+    "retail/returns-refund-reconciliation/mock-data/negative-unconfirmed-payment.json": {
+      "bytes": 1475,
+      "sha256": "155580c39dfea195cdc697c860a40b9a6be99e0229c32966d0f703252df1c7a6"
+    },
+    "retail/returns-refund-reconciliation/scenario.json": {
+      "bytes": 8587,
+      "sha256": "34c663b074fa1ae0b94df0530f396e1716f09f9d4e0cccb471f14c5bb292acd2"
+    },
+    "retail/returns-refund-reconciliation/sources.json": {
+      "bytes": 2634,
+      "sha256": "76dec081a034e030a57f7c94d7fbd1d484c4a2cd95ed3c2153fd52753f46947c"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-input/HOW_TO.md": {
+      "bytes": 35432,
+      "sha256": "90979a38905a60a6ac2f55519138849975ea182e15868787bb2cbcf9ba51e898"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-input/connections.json": {
+      "bytes": 375,
+      "sha256": "8bda59dbcde4da79da0dfe86e0fdc7e51d2f44a681f5341bcfaf27924a88b838"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1462344,
+      "sha256": "3c29e4ab8b1cd5ec70a3d4bb7efc02a86ad9724adf447624209122fd6b4a9abe"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3217,
+      "sha256": "26a42ca68acb4e1ce19a51228161553c9c2652c67df24aaa28021ad86ab9c03b"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-input/workflow.json": {
+      "bytes": 8275,
+      "sha256": "350671415e595d3bb96dfc51b6e25978bccaf89abbd6402005172bc29405ceac"
+    },
+    "retail/returns-refund-reconciliation/validation/creator-staging.json": {
+      "bytes": 1926,
+      "sha256": "e0fd6b8c387feb16207e3bdf1a76e3bcd48c2b1b812653e09edac3a61c864f0c"
+    },
+    "retail/returns-refund-reconciliation/validation/demo.json": {
+      "bytes": 9404,
+      "sha256": "f6cb85cbe2c1da28e135f91d86bb009d0a93c59c569a7f05fe98ea213a46265d"
+    },
+    "retail/returns-refund-reconciliation/validation/golden-lock.json": {
+      "bytes": 6253,
+      "sha256": "54b52a48bd30407063c351bc6fe1da10d56b825585c08d52b6a59c5d3f91e9bd"
+    },
+    "retail/returns-refund-reconciliation/validation/holdout-a.json": {
+      "bytes": 8939,
+      "sha256": "61020a114641fc41a750422e14e48e0c209eefeddcbb728b8152de378554ef6a"
+    },
+    "retail/returns-refund-reconciliation/validation/holdout-b.json": {
+      "bytes": 8949,
+      "sha256": "29a227718cc712c49a2eb30850c90d95039f5431310820697a5785b7599d3197"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-ambiguous-receipt.json": {
+      "bytes": 8084,
+      "sha256": "fe3d3369ddd7245eefbbf7f31cfc40154b49833cce437c82755132dcce27c786"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-contradictory.json": {
+      "bytes": 9061,
+      "sha256": "315c70389a41eb32f7cc02276e043a29c06fca45e580d494301fc33a4d85d86c"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-current-period-history.json": {
+      "bytes": 9042,
+      "sha256": "2e29d6058efe496b83b9dd036cf09c7896b40de870066deaa5df94a11b83f85b"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-duplicate.json": {
+      "bytes": 7989,
+      "sha256": "9456d5961f749b8f8535d050545280658e9a0dd4266a437d6e4b4b5a7dda4d08"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-malformed.json": {
+      "bytes": 7997,
+      "sha256": "4a97e0da8d3f444f40a91c1b321354b6432ec651090e3aafd9a15958ebdde6e9"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-out-of-window.json": {
+      "bytes": 8937,
+      "sha256": "f0f79b659f33082807f6127f5aa87259bbaa17a160592fd80700e68e4f112bea"
+    },
+    "retail/returns-refund-reconciliation/validation/negative-unconfirmed-payment.json": {
+      "bytes": 9017,
+      "sha256": "e651e39111cdb7d70c038e5030df115d670cc3957baed13852fc4d903f1c02cd"
+    },
+    "retail/returns-refund-reconciliation/workflow.json": {
+      "bytes": 8275,
+      "sha256": "350671415e595d3bb96dfc51b6e25978bccaf89abbd6402005172bc29405ceac"
+    },
+    "retail/store-replenishment-proposal/HOW_TO.md": {
+      "bytes": 22536,
+      "sha256": "82f543a7909301f2548987bb335e7d10484209c13a0109e72b341108aa49b557"
+    },
+    "retail/store-replenishment-proposal/baseline-output/demo.json": {
+      "bytes": 12539,
+      "sha256": "fb99dad1c8be849f5b41ea1439d411a64da6746b4df066d44e1b64d669d2e32e"
+    },
+    "retail/store-replenishment-proposal/baseline-output/demo.trace.json": {
+      "bytes": 11477,
+      "sha256": "acd91cf970f31297712273c4da42b9f90221a1c5cfc7baf69f58a0e7ce181ea4"
+    },
+    "retail/store-replenishment-proposal/baseline-output/holdout-a.json": {
+      "bytes": 5703,
+      "sha256": "5f318c4fccb9b287b2dbff562fc4685f094cadf5e0dbea9696c01a98268ebc6e"
+    },
+    "retail/store-replenishment-proposal/baseline-output/holdout-a.trace.json": {
+      "bytes": 8478,
+      "sha256": "9330179a3a7edb489df2735eafcae55b032b76c6ee3f426d46e5a8dbd91d1244"
+    },
+    "retail/store-replenishment-proposal/baseline-output/holdout-b.json": {
+      "bytes": 5873,
+      "sha256": "a18b2adda7c770575693a4cd11b3b098130d42a047bab542923235879bfea07e"
+    },
+    "retail/store-replenishment-proposal/baseline-output/holdout-b.trace.json": {
+      "bytes": 8567,
+      "sha256": "1bfcdbe30faced27394c230d65b40293c995b9cf11935e3bd38aef05eba20206"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-ambiguous-route.json": {
+      "bytes": 225,
+      "sha256": "2f9b6194b282821e8a8928330f249a4e602d1777bf3f7e835f4d69816c998f2a"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-ambiguous-route.trace.json": {
+      "bytes": 1496,
+      "sha256": "c62c92f3fbe8f61382e306febf0f775be15e81596fa58677133bfb76f9bbddae"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-contradictory.json": {
+      "bytes": 266,
+      "sha256": "8e2ca10b2e9e12bf411ca019fcd6d07d07b862411b846527fca575728f02f490"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-contradictory.trace.json": {
+      "bytes": 1507,
+      "sha256": "23dcbb6ac31d82339c2e8d804b6a09a0c8b089b276aafbf799194243cf3b3cc5"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-duplicate.json": {
+      "bytes": 221,
+      "sha256": "c9e2980f68c9263115ca8e8aeb359c9cccc0af2347ed54962ae3c0b8b60d1676"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-duplicate.trace.json": {
+      "bytes": 1491,
+      "sha256": "0ca9c5556ed550bc182e9a9a6377c718561b8d94208a941ffe13f6550d7cd61b"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-malformed.json": {
+      "bytes": 243,
+      "sha256": "77ca452cdf3f6aa46ac769d20e593b89c2458acbacba732e3c8caa2064aacc71"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-malformed.trace.json": {
+      "bytes": 1488,
+      "sha256": "9f96f851d10671378b97d6976a389932a40a50caa0868a551143694558697c4c"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-out-of-window.json": {
+      "bytes": 254,
+      "sha256": "86d0f41618a39c2a6d55050aa9a35473c8c7787c043bc025db50b32993d57892"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-out-of-window.trace.json": {
+      "bytes": 1510,
+      "sha256": "d67da0ce1bb39c2863b5369c1643a8166703f45e7a68d34005c9c8bb634459b9"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-overdue-inbound.json": {
+      "bytes": 2617,
+      "sha256": "d221eeb61e229505b6adabaeeafec87d8dd7facee085e2838d502bc6c94a8efb"
+    },
+    "retail/store-replenishment-proposal/baseline-output/negative-overdue-inbound.trace.json": {
+      "bytes": 6780,
+      "sha256": "63fcd6ff8be244823d20914522969b06c758ec112fd982de5bb490d0a018b32c"
+    },
+    "retail/store-replenishment-proposal/baseline.py": {
+      "bytes": 25016,
+      "sha256": "c699d6cf8d5eaa072adeff7ad7e5a5289abc9c5700d16fb11b50c1e23099eb4e"
+    },
+    "retail/store-replenishment-proposal/connections.json": {
+      "bytes": 386,
+      "sha256": "ed7144038d92402e8167ae01439ede14d6695e6ac2c33fe21824793d30d4cd15"
+    },
+    "retail/store-replenishment-proposal/demo/baseline.media.json": {
+      "bytes": 97759,
+      "sha256": "5a2db7aedba818ac8d0c05cb5800600698e1a641d84d9eb6bab1ccf6fe28d575"
+    },
+    "retail/store-replenishment-proposal/demo/baseline.webm": {
+      "bytes": 1297318,
+      "sha256": "1672e7bf8aa28e7542e3bc66ffae1f3ed9c189379e09b34067f456b6b317de42"
+    },
+    "retail/store-replenishment-proposal/expected/demo.json": {
+      "bytes": 9474,
+      "sha256": "995662ae32604b7d08a5bbdd8a09392def67645db74402565d6c6339d5e0e5ff"
+    },
+    "retail/store-replenishment-proposal/expected/holdout-a.json": {
+      "bytes": 4324,
+      "sha256": "4a9b9dcf1e8651db380bc45759b6787b8171093c077108170b24338859025a2b"
+    },
+    "retail/store-replenishment-proposal/expected/holdout-b.json": {
+      "bytes": 4512,
+      "sha256": "bb11a06a215e94feb88fdcf4523922c852d00f5197d15ac0324b52298d32e53e"
+    },
+    "retail/store-replenishment-proposal/expected/negative-ambiguous-route.json": {
+      "bytes": 193,
+      "sha256": "342e359d0111453e79ed39bd3dc562359e99e75d2b463b12435c99d7641ae100"
+    },
+    "retail/store-replenishment-proposal/expected/negative-contradictory.json": {
+      "bytes": 240,
+      "sha256": "067541c197b6e22918a79fc88f3003431dd90efa6bb7bf749fc2f0519d1b18a8"
+    },
+    "retail/store-replenishment-proposal/expected/negative-duplicate.json": {
+      "bytes": 189,
+      "sha256": "1b56746f08d1f21c4f8e0be700b0136a9bc9922ce10ba39b3482030f58819787"
+    },
+    "retail/store-replenishment-proposal/expected/negative-malformed.json": {
+      "bytes": 217,
+      "sha256": "468f0045428a9a3f3cfa96bf45410627ca3c4838075c1c5982beb6cdbb013106"
+    },
+    "retail/store-replenishment-proposal/expected/negative-out-of-window.json": {
+      "bytes": 222,
+      "sha256": "62964422c49a3e2c6fc2875d2f70ba2b467eeb36b6eb5be532d87c2714bd7f61"
+    },
+    "retail/store-replenishment-proposal/expected/negative-overdue-inbound.json": {
+      "bytes": 2067,
+      "sha256": "c896f75089fcbe5043f9fe253f653a6d96d1058d0d5276ec728e2d3bae6111a7"
+    },
+    "retail/store-replenishment-proposal/mock-data/demo.json": {
+      "bytes": 3959,
+      "sha256": "5b667fa333817851ecca1de0de1f247c025caa1e6153f02b81f8185c9c3ef4f0"
+    },
+    "retail/store-replenishment-proposal/mock-data/holdout-a.json": {
+      "bytes": 1987,
+      "sha256": "5997a4490f1cac3913db913bd5fae144277cdeb07bdcebb8914b873fbf6cc98a"
+    },
+    "retail/store-replenishment-proposal/mock-data/holdout-b.json": {
+      "bytes": 1985,
+      "sha256": "a424d9e7423b4c21eb9bb8045a75bc5133b98f45a3e84eaa06c90e997fba1dcb"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-ambiguous-route.json": {
+      "bytes": 1437,
+      "sha256": "ba2beeef5f281aeabccb39c6223e331d59c485a05a9c5b5f530361cf4a88471b"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-contradictory.json": {
+      "bytes": 1021,
+      "sha256": "9d35d9c57220592924740e8fcc4ee16b604359e634a2050ade87db01da711549"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-duplicate.json": {
+      "bytes": 1339,
+      "sha256": "626c9cc88374c660f8271c07e06adf6932cff8512c86ac67f1369a12b5ba863b"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-malformed.json": {
+      "bytes": 1020,
+      "sha256": "0a6e23e23750b312c6fcc0ad3818a57522cc1782ee3fcc0547946ea9b29cf1e6"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-out-of-window.json": {
+      "bytes": 1018,
+      "sha256": "17d3a54d874bf0fb3da66218afffb6057fe22291999424c9f202963f00fc3e6f"
+    },
+    "retail/store-replenishment-proposal/mock-data/negative-overdue-inbound.json": {
+      "bytes": 1171,
+      "sha256": "08971537ecc3ff1358e8b50e49e717721f725af663f520488520ecb0b11d3975"
+    },
+    "retail/store-replenishment-proposal/scenario.json": {
+      "bytes": 6823,
+      "sha256": "28d54587d5fce069f85ef3dec8badc6df1f134400d3b959baef90d828d9fe5c1"
+    },
+    "retail/store-replenishment-proposal/sources.json": {
+      "bytes": 2567,
+      "sha256": "e7ed4a0f6f68de4c3ed8c4eacd5a0919d5c87c6b0f188eac2a35bbbf3ea81dc7"
+    },
+    "retail/store-replenishment-proposal/validation/creator-input/HOW_TO.md": {
+      "bytes": 22536,
+      "sha256": "82f543a7909301f2548987bb335e7d10484209c13a0109e72b341108aa49b557"
+    },
+    "retail/store-replenishment-proposal/validation/creator-input/connections.json": {
+      "bytes": 386,
+      "sha256": "ed7144038d92402e8167ae01439ede14d6695e6ac2c33fe21824793d30d4cd15"
+    },
+    "retail/store-replenishment-proposal/validation/creator-input/demo/baseline.webm": {
+      "bytes": 1297318,
+      "sha256": "1672e7bf8aa28e7542e3bc66ffae1f3ed9c189379e09b34067f456b6b317de42"
+    },
+    "retail/store-replenishment-proposal/validation/creator-input/mock-data/demo.json": {
+      "bytes": 3959,
+      "sha256": "5b667fa333817851ecca1de0de1f247c025caa1e6153f02b81f8185c9c3ef4f0"
+    },
+    "retail/store-replenishment-proposal/validation/creator-input/workflow.json": {
+      "bytes": 5983,
+      "sha256": "ebda3bdbfe566b767edaff216ecf8c9df32be391f899f65f848b0fac096176ff"
+    },
+    "retail/store-replenishment-proposal/validation/creator-staging.json": {
+      "bytes": 1926,
+      "sha256": "5b08a6c6d911ecb8c7be079a2a8dcc4504e5fcf2efa905d9c1f8cd087d209217"
+    },
+    "retail/store-replenishment-proposal/validation/demo.json": {
+      "bytes": 8569,
+      "sha256": "1630274b1c44e0c4d86340ff90a2fbc0b6c6b108307e568f6ef86f3b6c72ea69"
+    },
+    "retail/store-replenishment-proposal/validation/golden-lock.json": {
+      "bytes": 4999,
+      "sha256": "509a7f88bd25250560a686244daa8364c8c3303ad3e19a0e0d5341baf25812d9"
+    },
+    "retail/store-replenishment-proposal/validation/holdout-a.json": {
+      "bytes": 8350,
+      "sha256": "97a2984399276647ccfbcc4952118e75b3e2ed6ebdfe39b9752f6fe91e56bad9"
+    },
+    "retail/store-replenishment-proposal/validation/holdout-b.json": {
+      "bytes": 8422,
+      "sha256": "dcc47838a18265e7afd212bb321c0cba6526ccb794345952bfd66c6e89f4d527"
+    },
+    "retail/store-replenishment-proposal/validation/negative-ambiguous-route.json": {
+      "bytes": 7509,
+      "sha256": "9c12ab0ba09942f7b329e09d3ca4a50a030e91780a64bfa28004924535cf2350"
+    },
+    "retail/store-replenishment-proposal/validation/negative-contradictory.json": {
+      "bytes": 7481,
+      "sha256": "c50801bbc50ab35b2a6df62eaebf6d2728eb09736b139240e33a82f0590f527a"
+    },
+    "retail/store-replenishment-proposal/validation/negative-duplicate.json": {
+      "bytes": 7422,
+      "sha256": "6d1f362f5aacb1777450a581b766fe45cc794e141a834d1f59935badaad09965"
+    },
+    "retail/store-replenishment-proposal/validation/negative-malformed.json": {
+      "bytes": 7462,
+      "sha256": "efabaf24d6e3cbe86a9ac52a94a66749aaaad92613fb90f510233bf2df7014e1"
+    },
+    "retail/store-replenishment-proposal/validation/negative-out-of-window.json": {
+      "bytes": 7435,
+      "sha256": "a7370c97bb8e01595f698e40fcf6ecda9517cb701dd5d19f5df7dedb373dad80"
+    },
+    "retail/store-replenishment-proposal/validation/negative-overdue-inbound.json": {
+      "bytes": 8339,
+      "sha256": "731a9e095cac4d50adfb941a9ed44fd99fe6bb1a43fcfaf2445950d28b7493b4"
+    },
+    "retail/store-replenishment-proposal/workflow.json": {
+      "bytes": 5983,
+      "sha256": "ebda3bdbfe566b767edaff216ecf8c9df32be391f899f65f848b0fac096176ff"
+    },
+    "run_tests.py": {
+      "bytes": 898,
+      "sha256": "757b5a1109ea92987e696642227dd7800260e2b73a93183b0e3ca484ca4d9f80"
+    },
+    "tests/__init__.py": {
+      "bytes": 83,
+      "sha256": "d5b3264a9d80e8c53c6f7f3fdf3223e0174ea04eabd3b6dea5946fbf1b3dd41d"
+    },
+    "tests/fixtures.py": {
+      "bytes": 7298,
+      "sha256": "c9921ee9ad294ed7a38eceee6d6d348c2a1ab751bc29d81b5faa04d6a23c0085"
+    },
+    "tests/test_cli_roundtrip.py": {
+      "bytes": 4134,
+      "sha256": "3de0660ab78c87ff1fd7b4a013fc5c0860c5d1ef756e39e27b6ecdf09ab59c0c"
+    },
+    "tests/test_contract.py": {
+      "bytes": 7301,
+      "sha256": "66371a8a198dad592639232941e04557f6531db282819f00ed6c86257891fecf"
+    },
+    "tests/test_financial_ap.py": {
+      "bytes": 45974,
+      "sha256": "649fa602393feb58055c2c23f2a86c3423f40d6415568250bc6d79bb27ad21bb"
+    },
+    "tests/test_financial_bank.py": {
+      "bytes": 17350,
+      "sha256": "730c7bcb8117cc55414cc77f685ba0ed2804cbcb617fa76530d2483471d38113"
+    },
+    "tests/test_financial_fees.py": {
+      "bytes": 49987,
+      "sha256": "c6e14c1c6d54c4731941c634f4700bb6457e1d8ea6b07e303cd76611ba1af92b"
+    },
+    "tests/test_health_accession.py": {
+      "bytes": 42925,
+      "sha256": "6ffb596e26ef1bc990456ca7c383bf573eaa0e66c31cf8d964aaf4d3863c2aba"
+    },
+    "tests/test_health_cold_chain.py": {
+      "bytes": 13646,
+      "sha256": "dad9d05c44d3b926a9b5c4e9fd09a10274e4e4df5dffd1243f60e9f0ea11f900"
+    },
+    "tests/test_health_life_sciences.py": {
+      "bytes": 6106,
+      "sha256": "62e1ea039ba24df3cbe099ca498f761d646060ab13895ce63e8738de1194d5a0"
+    },
+    "tests/test_health_site.py": {
+      "bytes": 41905,
+      "sha256": "2fe57cf7991e7f719389b6a23ae0928554d882cde5041961b7d7dfcaba2e8975"
+    },
+    "tests/test_media.py": {
+      "bytes": 42253,
+      "sha256": "09ec5a494421f8010de7d2cf6329341db37c0c5d2880f8b4f7d98c4ecead1940"
+    },
+    "tests/test_media_cleanup.py": {
+      "bytes": 2263,
+      "sha256": "0f321f8556ed85b30284628a29662eb547e382dc80b97428b475a573e695557a"
+    },
+    "tests/test_native.py": {
+      "bytes": 17949,
+      "sha256": "f752205b64b72d6e1beb6c27a69418750eb033415073adf36de6c437b39dce3e"
+    },
+    "tests/test_pipeline.py": {
+      "bytes": 8664,
+      "sha256": "6fb101cf41659c54b001e5990a4d7cac829946708daf21d9c7b8cb5b31603343"
+    },
+    "tests/test_reporting_industries.py": {
+      "bytes": 2600,
+      "sha256": "60e2ef5afcd7f944095857439ab629001e3bffa0a966bb739046b7e9e86e7538"
+    },
+    "tests/test_retail_pack.py": {
+      "bytes": 2861,
+      "sha256": "f22d2b6f2bc1b3366edbb36762c446cf797e24cde3fd018272f928ff6e7991a1"
+    },
+    "tests/test_retail_pricing.py": {
+      "bytes": 35201,
+      "sha256": "a98d6da34c8b2237cb38509420a76ab8164c7ae0042dc6f1b700cbd3ed31184a"
+    },
+    "tests/test_retail_replenishment.py": {
+      "bytes": 13112,
+      "sha256": "285ab339b756045d7dbf3e6be5467a2566330f3e225ba5e9e4b7b599e0d82646"
+    },
+    "tests/test_retail_returns.py": {
+      "bytes": 42687,
+      "sha256": "9d9908c3e891dcdfdb9120e5e709f0aa91122fa6ae7d86c677615db90efa6d41"
+    },
+    "tests/test_staging.py": {
+      "bytes": 2886,
+      "sha256": "bb2b0dfac4e9f5018c36ce2a58c474c9abedb34d4bc727e491cb30c67eacf5ad"
+    },
+    "tests/test_windows_environment.py": {
+      "bytes": 2535,
+      "sha256": "91260380df56090c0022556cbeeb44cdc1ba0b9296067c938e6acced48945bbf"
+    },
+    "validation-summary.json": {
+      "bytes": 4889,
+      "sha256": "1debe27ac53eb903f1a2b94457db10e4031c84178e47286448a7dd8a054cc19a"
+    }
+  },
+  "native_complete": false,
+  "required_plugin_manifest": "manifest.json",
+  "required_plugin_target": "cowork-v1.28",
+  "scenario_count": 15,
+  "schema_version": 1,
+  "scope": "Local synthetic scenario source/data/evidence/media index; not a native acceptance claim"
+}

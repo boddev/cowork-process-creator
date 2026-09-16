@@ -1,0 +1,385 @@
+{
+  "events": [
+    {
+      "caption": "Load synthetic exports; no live sensor or inventory access.",
+      "facts": {
+        "raw_rows": 14,
+        "tables_observed": 8
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-cold-chain-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "products",
+              1
+            ],
+            [
+              "profiles",
+              1
+            ],
+            [
+              "inventory",
+              2
+            ],
+            [
+              "placements",
+              2
+            ],
+            [
+              "sensor_assignments",
+              1
+            ],
+            [
+              "calibrations",
+              1
+            ],
+            [
+              "readings",
+              6
+            ],
+            [
+              "correspondence",
+              0
+            ]
+          ],
+          "title": "Load synthetic exports; no live sensor or inventory access.",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Validate fields and retain export multiplicity, conflicts and exclusions.",
+      "facts": {
+        "export_diagnostics": 1,
+        "source_keys": 14
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-sensor-evidence",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "record_id",
+            "copies",
+            "variants",
+            "state"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "calibrations",
+              "SYN-C-R",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "inventory",
+              "SYN-LOT-U",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "inventory",
+              "SYN-LOT-V",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "placements",
+              "SYN-PL-U",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "placements",
+              "SYN-PL-V",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "products",
+              "SYN-PROD-R",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "profiles",
+              "SYN-PROFILE-R",
+              1,
+              1,
+              "available"
+            ],
+            [
+              "readings",
+              "SYN-R00",
+              1,
+              1,
+              "available"
+            ]
+          ],
+          "title": "Validate fields and retain export multiplicity, conflicts and exclusions.",
+          "total_rows": 14
+        }
+      ]
+    },
+    {
+      "caption": "Join lot profiles, whole-lot placements and related sensor evidence.",
+      "facts": {
+        "lots": 2,
+        "placement_pairs": 2
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-lot-profile-occupancy",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "profile_id",
+            "placements",
+            "sources"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              "SYN-PROFILE-R",
+              1,
+              12
+            ],
+            [
+              "SYN-LOT-V",
+              "SYN-PROFILE-R",
+              1,
+              12
+            ]
+          ],
+          "title": "Join lot profiles, whole-lot placements and related sensor evidence.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Intersect half-open occupancy, sensor, calibration and bounded reading intervals.",
+      "facts": {
+        "derived_pairs": 5,
+        "elementary_intervals": 3,
+        "max_gap_seconds": 600
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "reconstruct-covered-intervals",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "start",
+            "end",
+            "sensor_id",
+            "seconds"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              "2026-09-15T09:05:00Z",
+              "2026-09-15T09:10:00Z",
+              "SYN-SENSOR-R",
+              300
+            ],
+            [
+              "SYN-LOT-U",
+              "2026-09-15T09:10:00Z",
+              "2026-09-15T09:25:00Z",
+              "SYN-SENSOR-R",
+              900
+            ],
+            [
+              "SYN-LOT-V",
+              "2026-09-15T09:10:00Z",
+              "2026-09-15T09:25:00Z",
+              "SYN-SENSOR-R",
+              900
+            ]
+          ],
+          "title": "Intersect half-open occupancy, sensor, calibration and bounded reading intervals.",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Calculate provisional covered and outside seconds before conservative conflict quarantine.",
+      "facts": {
+        "lots_assessed": 2
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "classify-observations",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "occupied_s",
+            "covered_s",
+            "outside_s",
+            "unknown_s"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              1200,
+              300,
+              300,
+              900
+            ],
+            [
+              "SYN-LOT-V",
+              900,
+              0,
+              0,
+              900
+            ]
+          ],
+          "title": "Calculate provisional covered and outside seconds before conservative conflict quarantine.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Keep unknown coverage distinct from zero; do not infer product viability.",
+      "facts": {
+        "flagged_lots": 2
+      },
+      "kind": "exception",
+      "sequence": 6,
+      "step_id": "isolate-coverage-conflicts",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "review_state",
+            "outside_s",
+            "unknown_s",
+            "reasons"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              "pending-quality-review",
+              300,
+              900,
+              "temperature-gap, outside-band"
+            ],
+            [
+              "SYN-LOT-V",
+              "pending-quality-review",
+              0,
+              900,
+              "temperature-gap"
+            ]
+          ],
+          "title": "Keep unknown coverage distinct from zero; do not infer product viability.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Count each reviewed lot's quantity once; keep correspondence as evidence only.",
+      "facts": {
+        "evidence_gap_lots": 2,
+        "no_observed_exception_lots": 0,
+        "review_lots": 2,
+        "review_units": 10,
+        "total_lots": 2
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "aggregate-quality-review",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "quantity_units",
+            "review_required"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              3,
+              true
+            ],
+            [
+              "SYN-LOT-V",
+              7,
+              true
+            ]
+          ],
+          "title": "Count each reviewed lot's quantity once; keep correspondence as evidence only.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Write the draft review packet; no physical action or quality disposition performed.",
+      "facts": {
+        "draft_requests": 2,
+        "intervals": 3,
+        "lots": 2,
+        "physical_actions": false,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "write-excursion-packet",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "action",
+            "reasons"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LOT-U",
+              "request-quality-review",
+              "temperature-gap, outside-band"
+            ],
+            [
+              "SYN-LOT-V",
+              "request-quality-review",
+              "temperature-gap"
+            ]
+          ],
+          "title": "Write the draft review packet; no physical action or quality disposition performed.",
+          "total_rows": 2
+        }
+      ]
+    }
+  ],
+  "input_sha256": "5be81856763a437be462b67bbbf8f4f091db3f01da068d28a6dc1255e529c196",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-02",
+  "schema_version": 1
+}

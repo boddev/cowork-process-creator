@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-07-01T00:00:00Z",
+  "business_utc_offset_minutes": 0,
+  "billing_configuration": {
+    "control_version": "SYN-CTRL-CONFLICT",
+    "approval_state": "approved",
+    "period_start": "2026-06-01",
+    "period_end": "2026-07-01",
+    "currency": "USD",
+    "day_count_basis": "actual-calendar-year",
+    "rounding_mode": "half-up",
+    "variance_tolerance_minor": 1
+  },
+  "engagements": [
+    {"billing_account_id": "SYN-CONFLICT-A", "agreement_id": "SYN-AGR-CONFLICT", "currency": "USD", "active_from": "2026-06-01", "active_to": null}
+  ],
+  "schedule_versions": [
+    {
+      "schedule_id": "SYN-SCH-CONFLICT-1", "billing_account_id": "SYN-CONFLICT-A", "agreement_id": "SYN-AGR-CONFLICT",
+      "effective_from": "2026-06-01", "effective_to": "2026-06-10",
+      "approval_state": "approved", "approved_at": "2026-05-25T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 100}]
+    },
+    {
+      "schedule_id": "SYN-SCH-CONFLICT-2", "billing_account_id": "SYN-CONFLICT-A", "agreement_id": "SYN-AGR-CONFLICT",
+      "effective_from": "2026-06-05", "effective_to": "2026-07-01",
+      "approval_state": "approved", "approved_at": "2026-06-04T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 80}]
+    }
+  ],
+  "synthetic_value_intervals": [
+    {"valuation_id": "SYN-VAL-CONFLICT", "billing_account_id": "SYN-CONFLICT-A", "currency": "USD", "from_date": "2026-06-01", "to_date": "2026-07-01", "billable_value_minor": 10000000}
+  ],
+  "draft_fee_lines": []
+}

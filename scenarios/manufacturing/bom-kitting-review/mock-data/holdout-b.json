@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-01-10",
+  "horizon_end": "2026-01-12",
+  "work_orders": [
+    {"order_id": "B02", "item_id": "BRACKET", "site": "SOUTH", "start_date": "2026-01-12", "quantity": 3, "priority": 2, "requested_version_id": null},
+    {"order_id": "B01", "item_id": "BRACKET", "site": "SOUTH", "start_date": "2026-01-12", "quantity": 3, "priority": 2, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "RIGHT-V", "item_id": "RIGHT", "site": "SOUTH", "valid_from": "2026-01-01", "valid_to": "2026-01-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "B-V", "item_id": "BRACKET", "site": "SOUTH", "valid_from": "2026-01-01", "valid_to": "2026-01-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "LEFT-V", "item_id": "LEFT", "site": "SOUTH", "valid_from": "2026-01-01", "valid_to": "2026-01-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "B-RIGHT", "version_id": "B-V", "component_id": "RIGHT", "line_type": "Phantom", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "R-NUT", "version_id": "RIGHT-V", "component_id": "NUT", "line_type": "Item", "quantity_per": "0.5", "scrap_percent": "0"},
+    {"line_id": "B-LEFT", "version_id": "B-V", "component_id": "LEFT", "line_type": "Phantom", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "L-NUT", "version_id": "LEFT-V", "component_id": "NUT", "line_type": "Item", "quantity_per": "0.5", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "NUT", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "RIGHT", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "BRACKET", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "LEFT", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [
+    {"stock_id": "BN-5", "item_id": "NUT", "site": "SOUTH", "quantity": 5, "reserved_external_qty": 0, "status": "available", "expires_on": null}
+  ],
+  "inbound": []
+}

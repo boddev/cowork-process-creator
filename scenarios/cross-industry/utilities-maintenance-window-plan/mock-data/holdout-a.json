@@ -1,0 +1,44 @@
+{
+  "config": {"as_of": "2026-11-02T07:00:00-05:00", "horizon_start": "2026-11-02T08:00:00-05:00", "horizon_end": "2026-11-02T13:00:00-05:00", "slot_minutes": 30, "max_search_starts": 60},
+  "files": {
+    "work-orders.json": [
+      {"work_order_id": "UT-A01", "priority": 1, "earliest_start": "2026-11-02T08:00:00-05:00", "due_at": "2026-11-02T13:00:00-05:00", "duration_minutes": 90, "craft_code": "EA", "area_resource_id": "A", "tool_resource_id": "T-A1", "predecessors": [], "plan_approved": true, "owner": "PLANNER-A"},
+      {"work_order_id": "UT-A02", "priority": 2, "earliest_start": "2026-11-02T08:00:00-05:00", "due_at": "2026-11-02T13:00:00-05:00", "duration_minutes": 60, "craft_code": "EA", "area_resource_id": "B", "tool_resource_id": "T-A1", "predecessors": ["EXT-A-DONE"], "plan_approved": true, "owner": "PLANNER-A"},
+      {"work_order_id": "UT-A03", "priority": 3, "earliest_start": "2026-11-02T08:00:00-05:00", "due_at": "2026-11-02T13:00:00-05:00", "duration_minutes": 30, "craft_code": "EA", "area_resource_id": "A", "tool_resource_id": null, "predecessors": ["UT-A01"], "plan_approved": true, "owner": "PLANNER-A"},
+      {"work_order_id": "UT-A04", "priority": 4, "earliest_start": "2026-11-02T08:00:00-05:00", "due_at": "2026-11-02T13:00:00-05:00", "duration_minutes": 60, "craft_code": "EA", "area_resource_id": "B", "tool_resource_id": null, "predecessors": [], "plan_approved": true, "owner": "PLANNER-A"}
+    ],
+    "requirements.json": [
+      {"work_order_id": "UT-A01", "item_id": "KA", "required_quantity": 2},
+      {"work_order_id": "UT-A02", "item_id": "KB", "required_quantity": 1},
+      {"work_order_id": "UT-A04", "item_id": "KD", "required_quantity": 2}
+    ],
+    "kit-components.json": [
+      {"kit_component_id": "KA-READY", "work_order_id": "UT-A01", "item_id": "KA", "reserved_quantity": 2, "available_at": "2026-11-02T08:00:00-05:00"},
+      {"kit_component_id": "KA-SURPLUS", "work_order_id": "UT-A01", "item_id": "KA", "reserved_quantity": 5, "available_at": "2026-11-02T12:00:00-05:00"},
+      {"kit_component_id": "KB-READY", "work_order_id": "UT-A02", "item_id": "KB", "reserved_quantity": 1, "available_at": "2026-11-02T08:00:00-05:00"},
+      {"kit_component_id": "KD-FIRST", "work_order_id": "UT-A04", "item_id": "KD", "reserved_quantity": 1, "available_at": "2026-11-02T12:00:00-05:00"},
+      {"kit_component_id": "KD-SECOND", "work_order_id": "UT-A04", "item_id": "KD", "reserved_quantity": 1, "available_at": "2026-11-02T12:30:00-05:00"}
+    ],
+    "resources.json": [
+      {"resource_id": "CE-A01", "kind": "crew", "craft_code": "EA", "capacity": 1},
+      {"resource_id": "CE-A02", "kind": "crew", "craft_code": "EA", "capacity": 1},
+      {"resource_id": "T-A1", "kind": "tool", "craft_code": null, "capacity": 1},
+      {"resource_id": "A", "kind": "area", "craft_code": null, "capacity": 1},
+      {"resource_id": "B", "kind": "area", "craft_code": null, "capacity": 1}
+    ],
+    "resource-windows.json": [
+      {"window_id": "WA-C1", "resource_id": "CE-A01", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T13:00:00-05:00"},
+      {"window_id": "WA-C2", "resource_id": "CE-A02", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T13:00:00-05:00"},
+      {"window_id": "WA-T1", "resource_id": "T-A1", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T13:00:00-05:00"},
+      {"window_id": "WA-A", "resource_id": "A", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T13:00:00-05:00"},
+      {"window_id": "WA-B", "resource_id": "B", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T13:00:00-05:00"}
+    ],
+    "commitments.json": [
+      {"commitment_id": "BOOK-A-CE1", "resource_id": "CE-A01", "start": "2026-11-02T08:00:00-05:00", "end": "2026-11-02T09:00:00-05:00"},
+      {"commitment_id": "BOOK-A-T1", "resource_id": "T-A1", "start": "2026-11-02T10:00:00-05:00", "end": "2026-11-02T11:00:00-05:00"}
+    ],
+    "prerequisite-status.json": [
+      {"prerequisite_id": "EXT-A-DONE", "state": "complete", "completed_at": "2026-11-02T07:00:00-05:00", "recorded_at": "2026-11-02T07:00:00-05:00"}
+    ]
+  }
+}

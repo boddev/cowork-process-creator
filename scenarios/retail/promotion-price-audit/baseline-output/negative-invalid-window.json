@@ -1,0 +1,41 @@
+{
+  "exceptions": [
+    {
+      "code": "FUTURE_AUDIT_WINDOW",
+      "evidence_ids": [],
+      "message": "The final included audit day must not be after as_of.",
+      "observation_id": null,
+      "path": "policy.audit_end"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "FUTURE_AUDIT_WINDOW",
+        "currency": null,
+        "evidence_ids": [],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "The final included audit day must not be after as_of.",
+        "next_action": "Correct the source export or policy and rerun the audit.",
+        "observation_id": null,
+        "observed_on": null,
+        "owner": "Pricing operations analyst",
+        "sku": null,
+        "store_id": null
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [],
+    "reconciliation": null,
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [],
+      "owner_role": "Pricing operations analyst",
+      "policy": null,
+      "review_state": "input-rejected"
+    },
+    "rule_selection": []
+  },
+  "schema_version": 1,
+  "status": "rejected"
+}

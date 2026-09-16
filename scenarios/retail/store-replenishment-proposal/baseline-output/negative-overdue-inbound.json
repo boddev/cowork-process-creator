@@ -1,0 +1,97 @@
+{
+  "exceptions": [
+    {
+      "code": "overdue-inbound",
+      "message": "Overdue in-transit evidence blocks this store/SKU proposal.",
+      "on": "2099-01-01",
+      "reference": "SYN-RECEIPT-OVERDUE",
+      "sku": "SYN-SKU-Z",
+      "store_id": "SYN-STORE-Z",
+      "units": 2
+    }
+  ],
+  "outputs": {
+    "allocation_ledger": [],
+    "daily_projection": [],
+    "dc_capacity_controls": [
+      {
+        "dc_id": "SYN-DC-Z",
+        "dispatch_on": "2099-01-02",
+        "opening_case_capacity": 2,
+        "proposed_cases": 0,
+        "remaining_case_capacity": 2
+      }
+    ],
+    "dc_stock_controls": [
+      {
+        "dc_id": "SYN-DC-Z",
+        "opening_available_units": 10,
+        "proposed_units": 0,
+        "remaining_units": 10,
+        "sku": "SYN-SKU-Z"
+      }
+    ],
+    "inbound_register": [
+      {
+        "disposition": "overdue",
+        "eta": "2099-01-01",
+        "receipt_id": "SYN-RECEIPT-OVERDUE",
+        "remaining_units": 2,
+        "sku": "SYN-SKU-Z",
+        "store_id": "SYN-STORE-Z"
+      }
+    ],
+    "proposals": [
+      {
+        "arrival_on": "2099-01-02",
+        "arrival_opening_units": null,
+        "case_pack": 1,
+        "closing_units": null,
+        "coverage_end": "2099-01-02",
+        "dc_id": "SYN-DC-Z",
+        "deferred_units": null,
+        "dispatch_on": "2099-01-02",
+        "limits": [
+          "overdue-inbound"
+        ],
+        "opening_available_units": 2,
+        "post_arrival_lost_units": null,
+        "pre_arrival_lost_units": null,
+        "priority": 1,
+        "proposed_cases": 0,
+        "proposed_units": 0,
+        "raw_required_units": null,
+        "requested_cases": null,
+        "requested_units": null,
+        "rounding_excess_units": null,
+        "safety_shortfall_units": null,
+        "sku": "SYN-SKU-Z",
+        "status": "blocked",
+        "store_id": "SYN-STORE-Z"
+      }
+    ],
+    "review_packet": {
+      "action_authorized": false,
+      "as_of": "2099-01-02",
+      "next_action": "Review proposal quantities, dated shortages, and DC controls before any separate business action.",
+      "owner_role": "Replenishment planner",
+      "policy_id": "SYN-POLICY-OVERDUE",
+      "review_days": 1,
+      "review_required": true,
+      "totals": {
+        "blocked_pairs": 1,
+        "deferred_units": 0,
+        "exception_count": 1,
+        "lost_units": 0,
+        "pairs": 1,
+        "proposed_cases": 0,
+        "proposed_units": 0,
+        "requested_cases": 0,
+        "requested_units": 0,
+        "safety_shortfall_units": 0
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

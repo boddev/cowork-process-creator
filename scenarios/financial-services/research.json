@@ -1,0 +1,770 @@
+{
+  "schema_version": 1,
+  "industry": "financial-services",
+  "title": "Financial services enterprise workflow research",
+  "research_date": "2026-09-14",
+  "phase": "research-only",
+  "catalog_status": "proposed-awaiting-parent-approval",
+  "fictional_company": "SYN-FIN Demonstration Company",
+  "implementation_created": false,
+  "required_build_gate": "15-scenario research catalog approved/build",
+  "foundation_contract": {
+    "version": 1,
+    "commit": "d641b1f34328e5293e043d5975d0944b485236c0",
+    "path": "scenarios/SCENARIO_CONTRACT.md",
+    "state": "read-only interface reference; shared files unchanged"
+  },
+  "boundaries": {
+    "synthetic_only": true,
+    "live_actions": false,
+    "human_review": "pending",
+    "native_status": "not-run-blocked",
+    "native_as_of": "2026-09-14",
+    "native_unblock_requires": [
+      "Restored approved Computer Use tools",
+      "Unlocked accessible native session",
+      "Parent-coordinated authorization"
+    ],
+    "historical_n00": "UNKNOWN after Publishing; not a pass",
+    "frozen_artifacts": "Creator 0.2.1 runtime, old dist/native artifacts, and historical documentation remain unchanged",
+    "prohibited": [
+      "Live banking, brokerage, customer, account, balance, or transaction data",
+      "Ledger posting, invoice posting, payment, client debit, refund execution, or trading",
+      "Investment advice, contract interpretation, or regulatory-compliance claims",
+      "Backend or authoring API, custom MCP server, Azure resources, database, queue, or gateway",
+      "External scheduler, workflow engine, model/media service, runner, or device agent",
+      "Runtime installers or package installation",
+      "Native browser, Playwright, private API, cookie, token, or shell workaround",
+      "Fake local native plugin ZIP or generated/Installed/native-passed claims",
+      "Push, pull request, or release"
+    ]
+  },
+  "source_verification": {
+    "policy": "Use retrieved primary text, not search-generated narratives or invented URLs.",
+    "verified_source_ids": ["B1", "B2", "B3", "P1", "P2", "P3", "F1", "F2"],
+    "unverified_candidates": [
+      {
+        "publisher": "U.S. Securities and Exchange Commission",
+        "title": "Division of Examinations Observations: Investment Advisers' Fee Calculations",
+        "url": "https://www.sec.gov/files/exams-risk-alert-fee-calculations.pdf",
+        "announcement_url": "https://www.sec.gov/newsroom/whats-new/division-examinations-observations-investment-advisers-fee-calculations",
+        "discovery": "Indexed primary-source links",
+        "retrieval": "HTTP 403 for direct PDF and announcement retrieval",
+        "full_content_verified": false,
+        "used_for_rules": false,
+        "limitation": "Do not cite examination findings, exact quotations, or regulatory duties from inaccessible text. Search-suggested alternate filenames were discarded."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "B1",
+      "title": "Reconcile bank statements by using advanced bank reconciliation",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/reconcile-bank-statements-advanced-bank-reconciliation",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Validate the bank statement", "Reconcile the bank statement"],
+      "supported_claims": [
+        "The documented product validates account/currency, statement opening continuity, date overlap, line dates, and opening plus lines equals closing.",
+        "The worksheet uses cutoff dates, matched/unmatched amounts, and single or grouped matches.",
+        "The product describes tolerated penny differences and correction posting."
+      ],
+      "limitations": "Product-specific and feature-dependent, not an accounting standard. This corpus excludes all posting and does not implement the full Finance import or reconciliation product."
+    },
+    {
+      "id": "B2",
+      "title": "Set up bank reconciliation matching rules",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/set-up-bank-reconciliation-matching-rules",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Introduction", "Set up bank reconciliation matching rule sets"],
+      "supported_claims": [
+        "The documented default may match the first bank document satisfying a rule.",
+        "A named configuration option requires manual matching when multiple documents match on amount.",
+        "Matching rule sets run rules in sequence."
+      ],
+      "limitations": "The corpus intentionally chooses ambiguity review, not first-match behavior. Manifest-constrained batches and graph-wide collision holds are stronger invented sample controls."
+    },
+    {
+      "id": "B3",
+      "title": "Advanced bank reconciliation setup process",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/cash-bank-management/configure-advanced-bank-reconciliation",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Transaction code mapping", "Cash and bank management parameters", "Bank account reconciliation options"],
+      "supported_claims": [
+        "Account-specific transaction-code mapping constrains matching.",
+        "Date-difference validation can override matching-rule choices.",
+        "Bank reconciliation options include penny tolerance, sign orientation, and time-zone interpretation."
+      ],
+      "limitations": "No universal threshold, native connection, import-schema compatibility, or source access is established."
+    },
+    {
+      "id": "P1",
+      "title": "Accounts payable invoice matching overview",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/accounts-payable/accounts-payable-invoice-matching",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Three-way matching", "Two-way, price totals matching", "Related functionality"],
+      "supported_claims": [
+        "Three-way matching compares invoice and purchase-order price information and invoice quantities with selected product receipts.",
+        "Documented tolerance configurations use percentages and amounts; in a combined price-total configuration either exceeded limit produces a discrepancy.",
+        "Discrepancies can be retained for review or correction."
+      ],
+      "limitations": "The sample symmetric unit-price plus per-line absolute cap is not Finance's complete cumulative price-total policy. Tax, discounts, charges, currency conversions, and last-invoice cumulative checks are not implemented."
+    },
+    {
+      "id": "P2",
+      "title": "Vendor invoices overview",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/accounts-payable/vendor-invoices-overview",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Preventing invoice submission to workflow", "Matching vendor invoices to product receipts"],
+      "supported_claims": [
+        "Configured controls can block submission for a duplicate number already present on a posted invoice.",
+        "Invoice matching may select partial receipt quantities.",
+        "Invoices can reflect receipts available through the current date rather than the full ordered quantity."
+      ],
+      "limitations": "The synthetic business key, normalization, capacity algorithm, and hold precedence are sample choices, not a claim about every Finance configuration."
+    },
+    {
+      "id": "P3",
+      "title": "Record vendor invoice and match against received quantity",
+      "publisher": "Microsoft",
+      "url": "https://learn.microsoft.com/dynamics365/finance/accounts-payable/tasks/record-vendor-invoice-match-against-received-quantity",
+      "accessed": "2026-09-14",
+      "verification": "Full page fetched and read with Microsoft Learn documentation tool",
+      "sections": ["Introduction", "Record and match a vendor invoice to a product receipt"],
+      "supported_claims": [
+        "The documented actors are an accounts payable manager or accounting manager.",
+        "The setup uses three-way matching and discrepancy approval configuration.",
+        "The procedure reviews matched product receipts and matching details."
+      ],
+      "limitations": "A product walkthrough and its own demo data are not a native test of this corpus. This process stops at review files."
+    },
+    {
+      "id": "F1",
+      "title": "Advisor Fees",
+      "publisher": "Interactive Brokers",
+      "url": "https://www.interactivebrokers.com/en/pricing/advisor-fees.php",
+      "accessed": "2026-09-14",
+      "verification": "HTTP 200 text/html; relevant public HTML read with Python standard-library urllib and HTMLParser, with no browser/login/cookies",
+      "sections": ["Automatic Billing", "Blended Fee", "Send Fee Invoice Notifications to Your Clients", "Notes"],
+      "supported_claims": [
+        "The vendor offers annualized net-liquidation-value fees and blended fees with separate net-asset-value ranges and annual percentages.",
+        "The notes say fee configuration requests pending client authorization are not in effect.",
+        "The described fee notices identify calculation method, amount, and covered period."
+      ],
+      "limitations": "Vendor-specific context only. The corpus does not submit invoices, debit clients, infer real consent, reproduce regulatory statements, or implement IBKR billing."
+    },
+    {
+      "id": "F2",
+      "title": "Automatic Billing Methods and Examples",
+      "publisher": "Interactive Brokers",
+      "url": "https://www.interactivebrokers.com/en/general/advisor-client-fee-examples.php",
+      "accessed": "2026-09-14",
+      "verification": "HTTP 200 text/html; relevant public HTML read with Python standard-library urllib and HTMLParser, with no browser/login/cookies",
+      "sections": ["Percent of Net Liquidation Value", "Flat Fee"],
+      "supported_claims": [
+        "The vendor's displayed annualized-percent daily example uses a 252-business-day divisor.",
+        "The flat-fee example also states a 252-day allocation convention."
+      ],
+      "limitations": "Evidence that calculation basis must be explicit, not support for the synthetic 365/366 calendar-day formula. Flat fees and performance fees are outside scope."
+    }
+  ],
+  "common_semantics": {
+    "policy_provenance": "Every numerical threshold, fee schedule, key, ordering rule, and approximation below is a fictional company policy pending catalog approval.",
+    "formats": {
+      "inputs": "UTF-8 JSON objects; no duplicate keys or nonfinite numbers",
+      "negative_cases": "Parseable JSON objects with deliberately invalid business records",
+      "native_procedure": "Markdown plus workflow and connection JSON",
+      "native_demonstration": "Foundation-rendered WebM of actual synthetic baseline trace",
+      "unsupported_parsers": ["PDF/OCR", "Excel", "CSV import adapters", "BAI2", "MT940", "CAMT.053", "Broker-specific exports"]
+    },
+    "identifiers": {
+      "synthetic_prefix": "SYN-",
+      "normalization": "Trim outer ASCII whitespace and uppercase ASCII letters for reference and vendor-number comparison only; preserve punctuation and leading zeros.",
+      "technical_key_uniqueness": "Reject every repeated primary key, even identical rows.",
+      "fuzzy_matching": false,
+      "descriptions": "Opaque context; never executable instructions or join authority."
+    },
+    "numeric": {
+      "money": "True JSON integers in minor units; no bool, float, numeric-string, null, or nonfinite coercion",
+      "currency_exponents": {"USD": 2, "EUR": 2},
+      "quantity": "True integer milliunits",
+      "rates": "True integer basis points",
+      "max_abs_money_minor": 1000000000000,
+      "max_quantity_milliunits": 1000000000,
+      "max_rate_or_tolerance_bps": 10000,
+      "fee_intermediate_precision": "Exact integer rational arithmetic with unbounded integer precision and bounded input values",
+      "amount_rounding": "Explicit half-up; fee scenario additionally supports explicitly selected half-even",
+      "foreign_exchange": "Unsupported; do not net or convert currencies."
+    },
+    "temporal": {
+      "as_of": "Required offset-bearing RFC3339 timestamp, not wall clock",
+      "business_utc_offset_minutes": "Required true integer from -840 through 840",
+      "date_only": "Strict YYYY-MM-DD in supplied fixed-offset business calendar",
+      "dst_and_holidays": "Not inferred or approximated; no IANA database or runtime install dependency",
+      "missing_temporal_evidence": "Visible hold or integrity rejection as specified per scenario, never newest-record or forward-fill guessing"
+    },
+    "row_limits": {"default_max_rows_per_source": 5000, "overflow": "Reject explicitly; never truncate"},
+    "ordering": "Scope then business ID then source row ID; exception arrays ordered by scope, record ID, code; independent of source array order.",
+    "integrity_failure": "Reject entire case before trusted financial outputs; retain explicit diagnostics.",
+    "result_envelope": ["schema_version", "status", "outputs", "exceptions"],
+    "statuses": ["completed", "completed_with_exceptions", "rejected"],
+    "review_boundary": "All completed reports have human_review=pending and live_action=none. Synthetic approved input metadata grants no real authorization.",
+    "control_approval": "Top-level synthetic control configuration must be approved. Pending controls reject with policy-not-approved before financial decisions; unknown approval enum is malformed. Pending PO or fee-schedule evidence is separately handled as a business condition."
+  },
+  "runtime_and_connections": {
+    "baseline": "Future existing-Python stdlib solve(payload)->(result,events) plus foundation scenario_support.run_cli; no Creator or generated-plugin imports.",
+    "allowed_stdlib": ["json", "datetime", "fractions", "decimal", "collections", "pathlib", "integer arithmetic"],
+    "external_calls": false,
+    "connection_metadata": {
+      "schema_version": 1,
+      "mode": "mock-exports-only",
+      "availability": "not-required",
+      "connections": [],
+      "note": "Supplied synthetic exported JSON and native output files only; no endpoint/auth. Real source integrations and host capabilities remain unverified."
+    },
+    "creator_allowlist": ["HOW_TO.md", "workflow.json", "connections.json", "mock-data/demo.json", "demo/baseline.webm"],
+    "creator_exclusions": ["research.md", "research.json", "scenario.json", "sources.json", "baseline.py", "shared code", "expected", "baseline-output", "holdouts", "negative cases", "validation answers"],
+    "media_boundary": "Foundation renders 30-90 seconds from actual observed trace; not a real financial application recording or native test."
+  },
+  "scenarios": [
+    {
+      "id": "financial-services-01",
+      "slug": "bank-ledger-reconciliation",
+      "title": "Bank-statement-to-ledger reconciliation review packet",
+      "workflow_family": "evidence-constrained-bank-ledger-matching",
+      "risk_level": "high",
+      "actors": [
+        {"role": "Treasury operations analyst", "responsibility": "Prepare immutable export-based candidate reconciliation"},
+        {"role": "Accounting controller", "responsibility": "Review bridge, ambiguity, new items, and proposed corrections"},
+        {"role": "Source data owner", "responsibility": "Resolve incomplete or contradictory source evidence"}
+      ],
+      "trigger": "Operator supplies complete statement close, ledger snapshot, controls, and explicit cutoff/as_of; no scheduler.",
+      "bounded_scope": "One statement period per synthetic account/currency, allowing independent account scopes; current-period matching and opening-difference explanation only.",
+      "end_state": "Every row accounted for; complete review packet with bridges and unresolved queues, not ledger posting or an actual reconciled/approved bank account.",
+      "source_ids": ["B1", "B2", "B3"],
+      "data_sources": [
+        {
+          "name": "statement_headers",
+          "key": ["legal_entity_id", "account_id", "statement_id"],
+          "fields": ["currency", "from_date", "through_date", "opening_minor", "closing_minor", "prior_statement_close_minor", "prior_statement_through_date"],
+          "constraints": "Bank prior-close continuity, no overlapping account periods, supported currency."
+        },
+        {
+          "name": "bank_lines",
+          "key": ["bank_line_id"],
+          "fields": ["statement header key", "booked_at", "amount_minor", "bank_code", "reference", "batch_id"],
+          "constraints": "Dates inside header period; raw header/previous-close and line amounts share declared source orientation and are all normalized together."
+        },
+        {
+          "name": "ledger_snapshot",
+          "key": ["ledger_line_id"],
+          "fields": ["scope/period header", "opening_minor", "closing_minor", "posted_at", "amount_minor", "ledger_type", "reference", "expected_bank_date"],
+          "constraints": "Closing checksum uses exactly the included period/as_of rows; outside-period/future extra rows are separately excluded."
+        },
+        {
+          "name": "mapping_and_controls",
+          "key": ["legal_entity_id", "account_id", "bank_code"],
+          "fields": ["ledger_type", "sign_orientation", "control_version", "approval_state", "cutoff_date", "windows", "tolerances"],
+          "constraints": "One mapping per account/code; controls are synthetic declarations, not real approval."
+        },
+        {
+          "name": "batch_manifests",
+          "key": ["legal_entity_id", "account_id", "batch_id"],
+          "fields": ["member_ledger_ids"],
+          "constraints": "Nonempty exact membership, all members exist, no duplicate or reused members."
+        }
+      ],
+      "parameters": {
+        "currency_default": "USD",
+        "business_utc_offset_minutes_default": 0,
+        "max_match_calendar_days_default": 2,
+        "single_amount_tolerance_minor_default": 0,
+        "batch_amount_tolerance_minor": 0,
+        "timing_grace_calendar_days_default": 2,
+        "stale_after_calendar_days_default": 5,
+        "cutoff_rule": "cutoff_date equals statement through_date and is not after the business date of as_of",
+        "as_of_required": true,
+        "policy_label": "All thresholds and defaults are invented company choices."
+      },
+      "rules": [
+        {"id": "bank-source-validation", "kind": "source-backed", "source_ids": ["B1"], "description": "Validate statement scope, continuity, dates, and opening/line/closing consistency before reconciliation."},
+        {"id": "bank-date-and-type-controls", "kind": "source-backed", "source_ids": ["B3"], "description": "Use explicitly configured date differences and account-specific transaction-type mappings."},
+        {"id": "bank-ambiguity-review", "kind": "source-backed", "source_ids": ["B2"], "description": "Choose the documented manual-review approach for multiple matches rather than first-match defaults."},
+        {"id": "bank-batch-manifest", "kind": "sample-policy", "source_ids": [], "description": "Reserve exact manifest members before singles; require one bank line and exact signed sum; no subset search or fallback."},
+        {"id": "bank-symmetric-uniqueness", "kind": "sample-policy", "source_ids": [], "description": "Build all eligible edges; hold the entire connected component if either side has multiple candidates; no greedy match."},
+        {"id": "bank-penny-review", "kind": "sample-policy", "source_ids": ["B1"], "description": "Tolerated single-pair deltas stay explicit pending corrections; no posting."},
+        {"id": "bank-timing-review", "kind": "sample-policy", "source_ids": [], "description": "Only explicit expected_bank_date within post-cutoff grace supports pending-clearance; stale age is strictly greater than threshold."},
+        {"id": "bank-bridge-closure", "kind": "sample-policy", "source_ids": [], "description": "Conserve every included row and bridge opening difference, unmatched signed sums, and candidate deltas; opening difference is not explained away."}
+      ],
+      "workflow": [
+        {"id": "intake-exports", "kind": "input", "operation": "Load statement, ledger, manifest, and control exports", "visible_evidence": "Source counts, control version, period and cutoff"},
+        {"id": "validate-close", "kind": "validation", "operation": "Validate integrity and both close checksums", "visible_evidence": "Stated and independently computed closes; validation diagnostics"},
+        {"id": "normalize-cutoff", "kind": "validation", "operation": "Apply sign declarations, fixed-offset dates, mapping and exclusions", "visible_evidence": "Source/normalized sign and local date; future exclusions"},
+        {"id": "join-candidates", "kind": "join", "operation": "Resolve manifests and construct all eligible single edges", "visible_evidence": "Member IDs, group sums, gaps, candidate cardinalities"},
+        {"id": "decide-matches", "kind": "decision", "operation": "Select unambiguous complete groups and symmetric-unique singles", "visible_evidence": "Matched row IDs, exact sums, minor-unit deltas"},
+        {"id": "route-unresolved", "kind": "exception", "operation": "Classify all remaining rows without guessing", "visible_evidence": "Ambiguity, bank-only fee, timing, stale, amount/date/type issues"},
+        {"id": "bridge-balances", "kind": "decision", "operation": "Reconcile the signed arithmetic bridge", "visible_evidence": "Opening difference, unmatched amounts, match deltas, closing difference"},
+        {"id": "emit-review-packet", "kind": "output", "operation": "Create complete immutable review result", "visible_evidence": "Groups, unresolved/excluded rows, per-scope totals, pending controller review"}
+      ],
+      "decision_semantics": {
+        "singles": "Same entity/account/currency, same nonempty canonical reference, mapped type, absolute calendar-day gap <= configured window, absolute amount delta <= configured single tolerance.",
+        "batches": "One bank line and its exact manifest; every member same scope/type and within date window; exact signed sum; failed batch members cannot fall back to singles.",
+        "ambiguity": "Hold entire connected candidate component; do not optimize count, choose nearest, or use input order.",
+        "bridge_formula": "closing_bank-closing_ledger = opening_bank-opening_ledger + unmatched_bank-unmatched_ledger + sum(match_deltas)",
+        "opening_difference": "Explicit unresolved opening item; prior-period transaction detail is outside this bounded scope.",
+        "approval": "Candidate classification only; all corrections, new items, ambiguity resolution, and controller sign-off remain pending."
+      },
+      "planned_outputs": ["matches", "unmatched_bank", "unmatched_ledger", "excluded", "scope_summaries", "review", "control_provenance"],
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "input_design": "June 2026 USD, one scope; both openings 100000 cents. Bank +12000,-7500,-250,+3000. Ledger +12000,-5000,-2500,+3000,+3000,-4000. -7500 explicitly groups -5000/-2500. Bank +3000 has two equal-reference ledger candidates. -4000 June 30 expects July 1 clearing.",
+          "independent_derivation": [
+            "Bank close 100000+12000-7500-250+3000=107250.",
+            "Ledger close 100000+12000-5000-2500+3000+3000-4000=106500.",
+            "Exactly two groups consume two bank and three ledger rows.",
+            "Unmatched bank sum 2750; unmatched ledger sum 2000; closing difference 750.",
+            "Ambiguous candidates, bank-only fee, and pending clearing remain review items."
+          ],
+          "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-ambiguity-review", "bank-batch-manifest", "bank-symmetric-uniqueness", "bank-timing-review", "bank-bridge-closure"]
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "Three-member batch, second account with reused reference, nonzero tolerance boundary, and date-gap failure.",
+          "input_design": "Account A zero openings: bank +3000,+10002,-1000; ledger +1000,+1500,+500,+10000,-1000. First three ledger rows form exact batch; +10002/+10000 have a two-day gap, tolerance 2. Negative pair has five-day gap. Account B opens 50000, then a separate +7000 pair with reused reference.",
+          "independent_derivation": [
+            "A closes 12002 versus 12000; 2-cent candidate adjustment remains pending.",
+            "A's -1000 pair is not matched outside the two-day window.",
+            "B closes 57000 on both sides; no cross-account candidate.",
+            "Exactly three groups; bridge accounts for every unmatched row."
+          ],
+          "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-batch-manifest", "bank-symmetric-uniqueness", "bank-penny-review", "bank-timing-review", "bank-bridge-closure"]
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "Offset-sensitive month end, future exclusion, and a three-cent delta outside a two-cent tolerance; no grouped matches.",
+          "input_design": "July 2026, offset -300, as_of 2026-08-01T04:59:59Z. Zero openings. Bank +20000 at 04:30Z August 1 and +1003; ledger +20000,+1000,-1500 expected August 1 clearing, plus +9900 at 05:00Z excluded.",
+          "independent_derivation": [
+            "04:30Z maps to July 31 locally; 05:00Z maps to August 1 and is after as_of.",
+            "Only +20000 matches; +1003/+1000 exceeds tolerance.",
+            "Bank close 21003; included ledger close 19500; difference 1503.",
+            "Unmatched bridge 1003-(1000-1500)=1503, with one future row visibly excluded."
+          ],
+          "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-symmetric-uniqueness", "bank-penny-review", "bank-timing-review", "bank-bridge-closure"]
+        },
+        {
+          "id": "negative-malformed",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["malformed-input"],
+          "input_design": "Parseable JSON with bank amount true alongside valid records.",
+          "independent_derivation": ["Boolean is not an integer money field; reject before joins or trusted totals."],
+          "covers": ["bank-source-validation"]
+        },
+        {
+          "id": "negative-contradictory",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["contradictory-evidence"],
+          "input_design": "Typed bank header closing 100001 while opening plus eligible lines equals 100000.",
+          "independent_derivation": ["Contradictory header arithmetic rejects before matching; do not invent a one-cent correction."],
+          "covers": ["bank-source-validation", "bank-bridge-closure"]
+        }
+      ],
+      "independent_expected_strategy": {
+        "method": "independent-manual-derivation before baseline code or execution",
+        "work": ["Enumerate exact candidate graph and manifest membership", "Compute both header checksums independently", "Partition every included row exactly once", "Add signed bridge components", "Specify exact reasons and stable row ordering"],
+        "prohibited": ["Copying baseline output", "Re-running baseline to populate expected", "Importing baseline or generated plugin to calculate goldens"],
+        "limitation": "Author declaration of implementation independence, not independent human approval."
+      },
+      "post_gate_targeted_checks": ["Reused batch member", "Duplicate technical ID", "Competing bank rows for one ledger row", "Unmapped type", "Currency mismatch", "Exact date/tolerance/stale boundaries", "Unsupported timestamps", "Input permutation invariance"],
+      "integration_gaps": ["Actual bank and ledger export access", "Source integrity/completeness", "Mapping ownership", "Prior-period open-item detail", "Verified Finance/bank connection", "Supported real statement parser"],
+      "excluded_live_functions": ["Journal or correction posting", "Payment or settlement", "Real account authorization", "Reversal engine", "Live balance query"]
+    },
+    {
+      "id": "financial-services-02",
+      "slug": "ap-three-way-match",
+      "title": "AP three-way invoice, PO, and receipt exception matching",
+      "workflow_family": "procurement-quantity-price-exception-matching",
+      "risk_level": "high",
+      "actors": [
+        {"role": "AP analyst", "responsibility": "Reconcile synthetic draft invoices to PO, receipt, and history evidence"},
+        {"role": "Procurement or receiving owner", "responsibility": "Resolve price, quantity, approval, and receipt issues"},
+        {"role": "AP manager", "responsibility": "Review complete packet without posting or paying"}
+      ],
+      "trigger": "Operator supplies invoice batch, matching exports, and explicit as_of.",
+      "bounded_scope": "Positive-quantity purchase-order invoices using same-currency and same-unit receipt evidence, zero charges/tax/discounts, and explicit historical allocations.",
+      "end_state": "Full invoice/line comparison, proposed non-overlapping allocation register, remaining capacity, exception ownership, and pending review; no payment.",
+      "source_ids": ["P1", "P2", "P3"],
+      "data_sources": [
+        {
+          "name": "invoice_headers_and_lines",
+          "key": ["invoice_id", "line_id for lines"],
+          "fields": ["legal_entity_id", "vendor_id", "currency", "vendor_invoice_number", "invoice_at", "header_net_minor", "po_id", "po_line_id", "unit", "quantity_milliunits", "unit_price_minor", "line_net_minor", "selected_receipt_quantities"],
+          "constraints": "Unique header/line IDs, header equals rounded line sum, canonical business duplicate key separate from primary key."
+        },
+        {
+          "name": "po_lines",
+          "key": ["legal_entity_id", "po_id", "po_line_id"],
+          "fields": ["vendor_id", "currency", "unit", "ordered_milliunits", "unit_price_minor", "approval_state", "approved_at"],
+          "constraints": "Exact invoice scope/unit join and approved-by-as_of eligibility."
+        },
+        {
+          "name": "receipt_lines",
+          "key": ["receipt_line_id"],
+          "fields": ["po line key", "unit", "quantity_milliunits", "received_at", "posted_at", "status"],
+          "constraints": "Only posted-by-as_of evidence can supply capacity; receipt timestamp alone is insufficient."
+        },
+        {
+          "name": "historical_invoice_headers",
+          "key": ["historical_invoice_id"],
+          "fields": ["legal_entity_id", "vendor_id", "vendor_invoice_number", "status", "posted_at"],
+          "constraints": "One authoritative header per invoice; incoming duplicate business keys are holds. Future history is visibly excluded from as_of duplicate/capacity calculations."
+        },
+        {
+          "name": "prior_allocations",
+          "key": ["allocation_id"],
+          "fields": ["historical_invoice_id", "po line key", "receipt_line_id", "quantity_milliunits", "recorded_at"],
+          "constraints": "Existing posted historical invoice/receipt/PO references; aggregate historical use <= receipt and PO quantity. Future allocations are excluded; a recorded-by-cutoff allocation against a not-yet-posted invoice is contradictory."
+        },
+        {
+          "name": "tolerance_configuration",
+          "key": ["control_version"],
+          "fields": ["approval_state", "unit_tolerance_bps", "line_amount_cap_minor", "as_of", "business_utc_offset_minutes"],
+          "constraints": "Synthetic approved controls only, explicit configuration, no real approval claim."
+        }
+      ],
+      "parameters": {
+        "unit_tolerance_bps_default": 200,
+        "line_amount_cap_minor_default": 500,
+        "quantity_scale": 1000,
+        "rounding_mode": "half-up",
+        "currency_default": "USD",
+        "as_of_required": true,
+        "business_utc_offset_minutes_required": true,
+        "policy_label": "Invented symmetric unit-price tolerance and per-line cap, not Finance's complete cumulative price-total policy."
+      },
+      "rules": [
+        {"id": "ap-three-way-evidence", "kind": "source-backed", "source_ids": ["P1", "P3"], "description": "Compare invoice/PO prices and invoice/selected-receipt quantities for review."},
+        {"id": "ap-partial-receipts", "kind": "source-backed", "source_ids": ["P2"], "description": "Allow explicitly selected partial receipt quantities and receipt availability by cutoff."},
+        {"id": "ap-duplicate-business-key", "kind": "sample-policy", "source_ids": ["P2"], "description": "Trim/ASCII-uppercase vendor numbers and hold all duplicate entity/vendor/number keys in current or posted history."},
+        {"id": "ap-exact-arithmetic", "kind": "sample-policy", "source_ids": [], "description": "Integer milliunit quantity and minor-unit price; half-up per line; validate header sum; no bool/int coercion."},
+        {"id": "ap-combined-tolerance", "kind": "sample-policy", "source_ids": ["P1"], "description": "Inclusive symmetric unit bps and per-line absolute cap must both pass; zero PO price requires zero invoice price/net."},
+        {"id": "ap-approval-and-cutoff", "kind": "sample-policy", "source_ids": ["P2", "P3"], "description": "Only approved-by-as_of PO and posted-by-as_of receipts can support proposals."},
+        {"id": "ap-selection-and-capacity", "kind": "sample-policy", "source_ids": [], "description": "Explicit selected quantities or sole sufficient receipt; no FIFO/subset guess; hold all eligible invoices on oversubscribed receipt or PO capacity."},
+        {"id": "ap-atomic-review", "kind": "sample-policy", "source_ids": [], "description": "Any line hold holds the whole invoice, with no partial release, real allocation update, posting, or payment."}
+      ],
+      "workflow": [
+        {"id": "intake-documents", "kind": "input", "operation": "Load invoices, POs, receipts, history, and controls", "visible_evidence": "Source counts, batch/as_of"},
+        {"id": "validate-documents", "kind": "validation", "operation": "Check scalar/key/date/arithmetic and historical capacity integrity", "visible_evidence": "Header versus line totals and capacity diagnostics"},
+        {"id": "join-duplicates-and-pos", "kind": "join", "operation": "Join current/history duplicate sets and exact PO keys", "visible_evidence": "Canonical numbers, duplicate IDs, entity/vendor/currency/unit and approval"},
+        {"id": "join-receipt-evidence", "kind": "join", "operation": "Resolve selected quantities and posted-by-as_of availability", "visible_evidence": "Receipt IDs, received/prior-used/available/requested quantities, late evidence"},
+        {"id": "evaluate-price-and-quantity", "kind": "decision", "operation": "Apply exact net, two tolerance limits, and individual capacity tests", "visible_evidence": "Price cross-products, line variance, quantity match and reasons"},
+        {"id": "resolve-capacity-conflicts", "kind": "decision", "operation": "Aggregate all otherwise eligible demand before assignment", "visible_evidence": "Oversubscribed receipt/PO and every competing invoice ID"},
+        {"id": "route-invoice-holds", "kind": "exception", "operation": "Apply atomic invoice holds retaining all evaluations", "visible_evidence": "Duplicate, price, quantity, approval, selection, timing and conflict queues"},
+        {"id": "emit-ap-review", "kind": "output", "operation": "Emit immutable comparison/allocation proposal and AP report", "visible_evidence": "Ready/held totals, capacities, pending review, no payment"}
+      ],
+      "decision_semantics": {
+        "business_duplicate_key": ["legal_entity_id", "vendor_id", "canonical_vendor_invoice_number"],
+        "line_net_formula": "half_up(quantity_milliunits * unit_price_minor / 1000)",
+        "unit_tolerance_test": "abs(invoice_unit_price-po_unit_price)*10000 <= po_unit_price*unit_tolerance_bps",
+        "line_cap_test": "abs(invoice_line_net-half_up(quantity_milliunits*po_unit_price/1000)) <= line_amount_cap_minor",
+        "zero_po_price": "Only zero invoice price/net is eligible; never divide by zero.",
+        "receipt_selection": "Explicit selected quantities sum exactly to invoice quantity; otherwise exactly one eligible positive-capacity receipt must exist and have sufficient capacity. Multiple positive-capacity candidates require selection even if only one could satisfy the full quantity.",
+        "conflict_precedence": "Remove invoices with any individual hold first. On remaining eligible invoices, compute receipt and PO demand simultaneously; hold all participants on every oversubscribed resource. No same-run retry after capacity is freed.",
+        "atomicity": "Any line held means all allocation proposals for that invoice are withheld.",
+        "unsupported_nonzero_components": "Nonzero charges, discounts, tax, or freight cause explicit unsupported-scope invoice hold before applying zero-component line formula, not silent omission. Declared header must still equal declared line-net sum.",
+        "approval": "Approved synthetic controls allow classification only; AP manager and source-owner decisions remain pending."
+      },
+      "planned_outputs": ["invoice_reviews", "line_comparisons", "proposed_allocations", "remaining_capacity", "excluded_receipts", "summary", "review"],
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "input_design": "Four incoming invoices: A 6 units at 1010 cents versus PO1000, explicit receipts 3+3 from capacities3 and4 with1 historically used on second; B5 units at2000 but only3 receipted; C5000-cent duplicate of posted SYN-DUP-09; D1 unit at10300 versus PO10000.",
+          "independent_derivation": [
+            "A net6060, expected6000, 1% price variance, 60-cent line variance, exact6 quantity: sole ready invoice.",
+            "B net10000 held for shortage2; no partial three-unit release.",
+            "C net5000 held as duplicate and consumes nothing.",
+            "D net10300 held because3% exceeds2%, despite300-cent variance <=500.",
+            "Ready6060 + held25300 = intake31360."
+          ],
+          "covers": ["ap-three-way-evidence", "ap-partial-receipts", "ap-duplicate-business-key", "ap-exact-arithmetic", "ap-combined-tolerance", "ap-approval-and-cutoff", "ap-selection-and-capacity", "ap-atomic-review"]
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "Two otherwise valid invoices compete globally; fractional quantity passes exact unit boundary; another fails amount cap while unit percentage passes.",
+          "input_design": "Two separate 20000-cent one-unit invoices request the same one-unit receipt. C1.250 units at816 versus PO800. D100 units at1010 versus PO1000. Default2% and500-cent limits.",
+          "independent_derivation": [
+            "Both one-unit competitors are held, independent of input order.",
+            "C unit variance exactly2%, net1020 versus1000: ready.",
+            "D net101000 versus100000, unit variance1% but1000-cent line variance>500: held.",
+            "Ready1020 + held141000 = intake142020."
+          ],
+          "covers": ["ap-three-way-evidence", "ap-partial-receipts", "ap-exact-arithmetic", "ap-combined-tolerance", "ap-selection-and-capacity", "ap-atomic-review"]
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "Offset boundary, late posting versus physical receipt, pending PO approval, incoming duplicate pair, and exact half-cent rounding.",
+          "input_design": "Offset-300 and as_of2026-08-01T04:59:59Z. A1.250 units at1002 with receipt posted04:30Z. B2 units at3000 receipt posted05:00Z. C4000-cent invoice with pending PO. D/E each500 cents use '  syn-mix-12  ' and 'SYN-MIX-12' for same entity/vendor.",
+          "independent_derivation": [
+            "A1252.5 cents rounds half-up to1253; its receipt is available.",
+            "B6000 held: receipt posting is after as_of, even if physically received earlier.",
+            "C4000 held for missing approved PO.",
+            "D/E both held; combined duplicate amount1000.",
+            "Ready1253 + held11000 = intake12253."
+          ],
+          "covers": ["ap-three-way-evidence", "ap-duplicate-business-key", "ap-exact-arithmetic", "ap-approval-and-cutoff", "ap-selection-and-capacity", "ap-atomic-review"]
+        },
+        {
+          "id": "negative-malformed",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["malformed-input"],
+          "input_design": "Parseable JSON with quantity_milliunits=true.",
+          "independent_derivation": ["Reject boolean quantity before any arithmetic or partial ready allocation."],
+          "covers": ["ap-exact-arithmetic"]
+        },
+        {
+          "id": "negative-contradictory",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["contradictory-evidence"],
+          "input_design": "Authoritative prior allocation uses1001 milliunits from a1000-milliunit receipt.",
+          "independent_derivation": ["Reject contradictory historical capacity; do not clamp remaining capacity or silently consume again."],
+          "covers": ["ap-selection-and-capacity", "ap-atomic-review"]
+        }
+      ],
+      "independent_expected_strategy": {
+        "method": "independent-manual-derivation before baseline code or execution",
+        "work": ["Build canonical invoice-key ledger", "Subtract verified prior receipt/PO allocations", "Calculate every line net and tolerance cross-product", "Remove all individual invoice holds", "Mark all oversubscribed-resource participants simultaneously", "Total ready and held headers independently"],
+        "prohibited": ["Copying baseline output into expected", "Using baseline imports to derive allocations", "Approving only enough arbitrary invoices to fit capacity"],
+        "limitation": "Author declaration of implementation independence, not real AP-manager approval."
+      },
+      "post_gate_targeted_checks": ["Zero-price PO", "Duplicate technical versus business keys", "Ambiguous receipt selection", "Cross-vendor/unit/currency mismatch", "Multi-line PO-capacity competition", "Atomic invoice hold", "Unsupported nonzero charges", "Permutation invariance"],
+      "integration_gaps": ["Actual invoice/PO/receipt/history export access", "Trustworthy prior allocations", "Real approval identity", "Vendor master mapping", "Verified existing Finance connection"],
+      "excluded_live_functions": ["Invoice posting", "Payment", "PO mutation", "Receipt consumption", "Invoice capture/OCR", "Tax engine", "Automated procurement workflow"]
+    },
+    {
+      "id": "financial-services-03",
+      "slug": "advisory-fee-reconciliation",
+      "title": "Advisory fee billing reconciliation",
+      "workflow_family": "effective-dated-tiered-fee-recomputation",
+      "risk_level": "high",
+      "actors": [
+        {"role": "Billing operations analyst", "responsibility": "Recompute draft advisory fees from synthetic approved evidence"},
+        {"role": "Billing manager or compliance reviewer", "responsibility": "Review discrepancies and pending changes without charging clients"},
+        {"role": "Agreement and value-export owner", "responsibility": "Resolve missing or contradictory source coverage"}
+      ],
+      "trigger": "Operator supplies a closed billing period and explicit as_of with synthetic exports.",
+      "bounded_scope": "Marginal annual asset-value fee schedules, constant explicit synthetic value intervals, engagement proration, and exact draft comparison; no actual customer data.",
+      "end_state": "Complete fee-segment and draft-variance packet, comparable-population totals, unresolved evidence and pending sign-off; no debit, trade, investment advice, or regulatory opinion.",
+      "source_ids": ["F1", "F2"],
+      "data_sources": [
+        {
+          "name": "engagements",
+          "key": ["billing_account_id"],
+          "fields": ["agreement_id", "currency", "active_from", "active_to"],
+          "constraints": "Synthetic IDs; active_from inclusive, active_to exclusive or null."
+        },
+        {
+          "name": "schedule_versions",
+          "key": ["schedule_id"],
+          "fields": ["billing_account_id", "agreement_id", "effective_from", "effective_to", "approval_state", "approved_at", "bands"],
+          "constraints": "Exactly one approved known-by-as_of schedule per active day. Pending never overrides; approved overlap is contradictory."
+        },
+        {
+          "name": "synthetic_value_intervals",
+          "key": ["valuation_id"],
+          "fields": ["billing_account_id", "currency", "from_date", "to_date", "billable_value_minor"],
+          "constraints": "Explicit constant value for each half-open interval; exactly one per active day; no interpolation or forward fill."
+        },
+        {
+          "name": "draft_fee_lines",
+          "key": ["draft_id"],
+          "fields": ["billing_account_id", "period_start", "period_end", "currency", "amount_minor", "source_schedule_id"],
+          "constraints": "Nonnegative integer fee amounts. Business key account/period/currency; zero, one, or multiple draft rows must be distinguished; duplicates not summed or selected."
+        },
+        {
+          "name": "billing_configuration",
+          "key": ["control_version"],
+          "fields": ["approval_state", "period_start", "period_end", "as_of", "business_utc_offset_minutes", "currency", "day_count_basis", "rounding_mode", "variance_tolerance_minor"],
+          "constraints": "Explicit fictional agreement choices; period ended by as_of in supplied fixed-offset calendar."
+        }
+      ],
+      "parameters": {
+        "currency": "USD",
+        "day_count_basis_default": "actual-calendar-year",
+        "supported_day_count_bases": ["actual-calendar-year", "act-365-fixed"],
+        "rounding_mode_default": "half-up",
+        "supported_rounding_modes": ["half-up", "half-even"],
+        "variance_tolerance_minor_default": 1,
+        "maximum_period_days": 366,
+        "illustrative_bands": [
+          {"upper_value_minor": 10000000, "annual_rate_bps": 100},
+          {"upper_value_minor": null, "annual_rate_bps": 50}
+        ],
+        "policy_label": "Entire marginal formula, 365/366 basis, effective-change handling, rounding, thresholds, and rates are invented policies, not SEC requirements or IBKR implementation."
+      },
+      "rules": [
+        {"id": "fee-explicit-basis-and-ranges", "kind": "source-backed", "source_ids": ["F1", "F2"], "description": "Treat billing basis and separate value/rate ranges as explicit process inputs; the retrieved vendor example uses252, not this sample365/366."},
+        {"id": "fee-pending-not-effective", "kind": "source-backed", "source_ids": ["F1"], "description": "Pending fee configuration is not treated as effective, consistent with the limited vendor statement; no real consent inferred."},
+        {"id": "fee-effective-coverage", "kind": "sample-policy", "source_ids": [], "description": "Half-open active/schedule/value segments with exactly one approved known-by-as_of schedule and value per billable day; gaps hold, authoritative overlaps reject."},
+        {"id": "fee-marginal-tiers", "kind": "sample-policy", "source_ids": [], "description": "Slice value across contiguous marginal bands; first lower bound0 and final unbounded band; no whole-balance cliff or household aggregation."},
+        {"id": "fee-calendar-proration", "kind": "sample-policy", "source_ids": [], "description": "Include opening day and exclude termination/end day; split calendar years for actual365/366 or explicitly select act-365-fixed."},
+        {"id": "fee-exact-rounding", "kind": "sample-policy", "source_ids": [], "description": "Sum exact rational segment fee units and round once per account/period with explicit half-up or half-even."},
+        {"id": "fee-draft-comparison", "kind": "sample-policy", "source_ids": [], "description": "Exact account/period/currency join, signed draft-minus-computed delta, inclusive tolerance; missing/duplicate drafts are not zero or arbitrary winners."},
+        {"id": "fee-review-closure", "kind": "sample-policy", "source_ids": ["F1"], "description": "Separate comparable totals from missing-draft/uncomputed populations; preserve pending changes and output review only."}
+      ],
+      "workflow": [
+        {"id": "intake-billing-exports", "kind": "input", "operation": "Load engagement, schedule, synthetic value, and draft exports", "visible_evidence": "Counts, period/as_of, synthetic label"},
+        {"id": "validate-billing-evidence", "kind": "validation", "operation": "Validate scalar/key/currency/tier and interval integrity", "visible_evidence": "Closed period, unique keys, approved coverage and contradictions"},
+        {"id": "join-effective-segments", "kind": "join", "operation": "Intersect active dates, approved schedule, value, and year boundaries", "visible_evidence": "Evidence IDs, segment endpoints, active days, pending schedule IDs"},
+        {"id": "calculate-marginal-tiers", "kind": "decision", "operation": "Slice each constant value into rate bands", "visible_evidence": "Band value cents, rate bps, exact annual numerator"},
+        {"id": "prorate-and-round", "kind": "decision", "operation": "Apply exact day-count fractions and one final rounding", "visible_evidence": "Days,365/366 denominator, exact fraction, rounded account cents"},
+        {"id": "join-draft-fees", "kind": "join", "operation": "Find unique exact draft business key", "visible_evidence": "Missing/unique/duplicate population, computed/draft/delta"},
+        {"id": "route-billing-exceptions", "kind": "exception", "operation": "Route evidence gaps, pending changes, duplicate drafts, and variances", "visible_evidence": "Review owners and no-charge correction proposals"},
+        {"id": "emit-billing-review", "kind": "output", "operation": "Produce full account and population review report", "visible_evidence": "Comparable-only totals, missing/uncomputed counts, pending human review"}
+      ],
+      "decision_semantics": {
+        "segment_formula_minor": "sum(band_value_minor*annual_rate_bps)*active_days/(10000*year_denominator)",
+        "account_formula_minor": "round_once(sum(exact_segment_fractions), explicit_rounding_mode)",
+        "approval_as_of": "Approved_at must be <= as_of; approved metadata is synthetic evidence only.",
+        "intervals": "Half-open local calendar dates; opening included, termination/effective-end excluded; missing coverage holds account; approved or value overlap rejects case.",
+        "pending_change": "Visible pending flag; it cannot supersede an otherwise complete approved schedule.",
+        "tiers": "Start at0, strictly increasing finite upper bounds, final unbounded band; apply marginal slices, not last rate to entire value.",
+        "rounding": "Nonnegative exact half cent rounds upward in half-up and to the even cent in half-even; never round individual days or segments to cents.",
+        "draft_join": "Require exactly one account/period/currency draft for comparison; duplicate draft IDs are technical rejection, distinct IDs with duplicate business key are an account hold. Orphan/wrong-period/wrong-currency drafts remain explicit exception rows; optional draft schedule label cannot override approved temporal evidence.",
+        "variance": "draft_minor-computed_minor; positive overstatement, negative understatement, abs(delta)<=tolerance is within sample policy.",
+        "totals": "Comparable accounts only for draft-versus-computed delta; separately show computed-but-missing-draft and uncomputed populations.",
+        "excluded_calculations": ["Householding", "Performance fees", "Flat fees", "Trade-linked fees", "Tax", "Fee minimums", "Market pricing", "Cash-flow adjustments", "Securities-level exclusion inference"]
+      },
+      "planned_outputs": ["account_reviews", "calculation_segments", "draft_comparisons", "pending_changes", "population_totals", "review"],
+      "case_designs": [
+        {
+          "id": "demo",
+          "kind": "demo",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "input_design": "April1-May1,2026. A value150000 dollars, first15days100/50bps bands then15days approved80/40bps; draft10274 cents. B value100000 dollars activeApril11-May1 at100bps with pending50bps request; draft5479. C value50000 dollars full30days at100bps, no draft.",
+          "independent_derivation": [
+            "A annual cents125000 then100000; (125000*15+100000*15)/365=9246.575... ->9247; draft10274 gives+1027.",
+            "B100000*20/365=5479.452... ->5479; pending rate does not apply.",
+            "C50000*30/365=4109.589... ->4110; no draft means missing, not zero.",
+            "Computed total18836; comparable computed14726 vs draft15753; comparable delta1027; missing-draft computed4110."
+          ],
+          "covers": ["fee-explicit-basis-and-ranges", "fee-pending-not-effective", "fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"]
+        },
+        {
+          "id": "holdout-a",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "Leap-year denominator, midperiod value change, active start/termination, and duplicate draft business key.",
+          "input_design": "February2024. A activeFeb15-Mar1,7days value100000 dollars and8days200000 with100/50bps bands; draft5205. B value50000 activeFeb1-Feb11,10days at100bps; two distinct draft IDs both1366 cents for same account/period.",
+          "independent_derivation": [
+            "A(100000*7+150000*8)/366=5191.256... ->5191 cents; draft5205 gives+14.",
+            "B50000*10/366=1366.120... ->1366; duplicate drafts block comparison and are not summed.",
+            "Computed total6557; comparable computed5191 and draft5205 include A only."
+          ],
+          "covers": ["fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"]
+        },
+        {
+          "id": "holdout-b",
+          "kind": "holdout",
+          "expected_status": "completed_with_exceptions",
+          "failure_modes": [],
+          "changed_from_demo": "One-day closed period, exact half-cent tie, one cent above a tier breakpoint, zero tolerance, explicit act-365-fixed, and fixed-offset closure.",
+          "input_design": "Jan1-Jan2,2026; offset-300, as_of2026-01-02T05:00:00Z. A value365 dollars,50bps single band,draft0. B value100000.01 dollars,100/50bps marginal tiers,draft274. half-up, tolerance0.",
+          "independent_derivation": [
+            "A36500*50/(10000*365)=0.5 cent exactly ->1; draft0 gives-1.",
+            "B last band contains1 cent only; fee rounds to274, not a whole-balance lower-tier result.",
+            "Computed275 versus draft274; signed delta-1.",
+            "Separate parameter-only half-even check changes A to0 and leaves B274."
+          ],
+          "covers": ["fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"]
+        },
+        {
+          "id": "negative-malformed",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["malformed-input"],
+          "input_design": "Parseable JSON with annual_rate_bps=true.",
+          "independent_derivation": ["Reject boolean rate; it is not one basis point."],
+          "covers": ["fee-effective-coverage", "fee-exact-rounding"]
+        },
+        {
+          "id": "negative-contradictory",
+          "kind": "negative",
+          "expected_status": "rejected",
+          "failure_modes": ["contradictory-evidence"],
+          "input_design": "Two approved, known-by-as_of schedule versions with different rates cover the same account/day.",
+          "independent_derivation": ["Reject contradictory policy; never choose newest ID/date or fabricate a blended interpretation."],
+          "covers": ["fee-effective-coverage", "fee-pending-not-effective"]
+        }
+      ],
+      "independent_expected_strategy": {
+        "method": "independent-manual-derivation before baseline code or execution",
+        "work": ["List half-open active/schedule/value/year segments", "Count days manually", "Allocate marginal tier values independently", "Record exact numerator/denominator for each segment", "Sum before final rounding and reason about ties", "Identify comparable, missing, duplicate, and uncomputed populations", "Write expected schedule IDs and row reasons as well as amounts"],
+        "prohibited": ["Baseline-derived goldens", "Copying generated output", "Daily cent rounding hidden in expected", "Treating missing or duplicate draft as zero"],
+        "limitation": "Implementation-independent author reasoning, not independent human approval, actual client consent, or compliance attestation."
+      },
+      "post_gate_targeted_checks": ["Half-even tie alternative", "Exact tier boundary", "Missing value day", "Adjacent and overlapping intervals", "Approval after as_of", "Cross-year365/366 segments", "Termination-day exclusion", "Wrong-period/currency draft", "Unsupported household/performance setting", "Permutation invariance"],
+      "integration_gaps": ["Actual signed agreement interpretation", "Approval provenance", "Billable-value completeness", "Custody/billing export access", "Verified business calendar", "Existing approved native connections", "SEC PDF full-content verification"],
+      "excluded_live_functions": ["Client debit", "Fee invoice submission", "Refund execution", "Trading", "Investment advice", "Market pricing", "Real consent or compliance determination"]
+    }
+  ],
+  "post_approval_plan": {
+    "build_condition": "Explicit parent full-15 catalog approval/build plus foundation interfaces/tooling",
+    "case_requirement_per_scenario": "demo + holdout-a + holdout-b + negative-malformed + negative-contradictory",
+    "golden_first": true,
+    "files": ["scenario.json", "workflow.json", "sources.json", "connections.json", "HOW_TO.md", "baseline.py", "mock-data/<case>.json", "expected/<case>.json", "baseline-output/<case>.json", "baseline-output/<case>.trace.json"],
+    "validation": "Existing foundation stdlib checks and scoped boundary tests; compare exact envelopes; preserve expected fingerprints; no runtime/build changes or installs.",
+    "trace": {
+      "provenance": "synthetic-local-baseline",
+      "minimum_demo_events": 8,
+      "required_kinds": ["input", "validation", "join", "decision", "exception", "output"],
+      "first": "input",
+      "last": "output",
+      "values": "Actual row IDs, quantities/amounts, joins, thresholds, intermediate arithmetic, decisions, final outputs; not invented from goldens.",
+      "maximum_table_columns": 6,
+      "maximum_display_rows": 8,
+      "subsets": "Faithful labeled subsets only; total_rows preserves actual size."
+    },
+    "video": {
+      "owner": "shared foundation",
+      "duration_seconds": "30-90",
+      "label": "Synthetic baseline execution visualization - not Cowork or a live system",
+      "input": "Actual compared demo baseline trace",
+      "path": "demo/baseline.webm",
+      "status": "not-created"
+    },
+    "handoff": "Scoped local research commit only now; wait for explicit build gate. Sector artifacts remain under scenarios and native generated plugins are reserved for parent's later root output flow."
+  }
+}

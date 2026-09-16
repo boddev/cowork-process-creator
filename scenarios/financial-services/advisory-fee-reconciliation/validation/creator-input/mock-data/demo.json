@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-05-01T00:00:00Z",
+  "business_utc_offset_minutes": 0,
+  "billing_configuration": {
+    "control_version": "SYN-CTRL-DEMO",
+    "approval_state": "approved",
+    "period_start": "2026-04-01",
+    "period_end": "2026-05-01",
+    "currency": "USD",
+    "day_count_basis": "actual-calendar-year",
+    "rounding_mode": "half-up",
+    "variance_tolerance_minor": 1
+  },
+  "engagements": [
+    {"billing_account_id": "SYN-A", "agreement_id": "SYN-AGR-A", "currency": "USD", "active_from": "2026-04-01", "active_to": null},
+    {"billing_account_id": "SYN-B", "agreement_id": "SYN-AGR-B", "currency": "USD", "active_from": "2026-04-11", "active_to": null},
+    {"billing_account_id": "SYN-C", "agreement_id": "SYN-AGR-C", "currency": "USD", "active_from": "2026-04-01", "active_to": null}
+  ],
+  "schedule_versions": [
+    {
+      "schedule_id": "SYN-SCH-A1", "billing_account_id": "SYN-A", "agreement_id": "SYN-AGR-A",
+      "effective_from": "2026-04-01", "effective_to": "2026-04-16",
+      "approval_state": "approved", "approved_at": "2026-03-20T12:00:00Z",
+      "bands": [{"upper_value_minor": 10000000, "annual_rate_bps": 100}, {"upper_value_minor": null, "annual_rate_bps": 50}]
+    },
+    {
+      "schedule_id": "SYN-SCH-A2", "billing_account_id": "SYN-A", "agreement_id": "SYN-AGR-A",
+      "effective_from": "2026-04-16", "effective_to": "2026-05-01",
+      "approval_state": "approved", "approved_at": "2026-04-15T12:00:00Z",
+      "bands": [{"upper_value_minor": 10000000, "annual_rate_bps": 80}, {"upper_value_minor": null, "annual_rate_bps": 40}]
+    },
+    {
+      "schedule_id": "SYN-SCH-B", "billing_account_id": "SYN-B", "agreement_id": "SYN-AGR-B",
+      "effective_from": "2026-04-01", "effective_to": "2026-05-01",
+      "approval_state": "approved", "approved_at": "2026-03-20T12:00:00Z",
+      "bands": [{"upper_value_minor": 10000000, "annual_rate_bps": 100}, {"upper_value_minor": null, "annual_rate_bps": 50}]
+    },
+    {
+      "schedule_id": "SYN-SCH-B-PENDING", "billing_account_id": "SYN-B", "agreement_id": "SYN-AGR-B",
+      "effective_from": "2026-04-01", "effective_to": "2026-05-01",
+      "approval_state": "pending", "approved_at": null,
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 50}]
+    },
+    {
+      "schedule_id": "SYN-SCH-C", "billing_account_id": "SYN-C", "agreement_id": "SYN-AGR-C",
+      "effective_from": "2026-04-01", "effective_to": "2026-05-01",
+      "approval_state": "approved", "approved_at": "2026-03-20T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 100}]
+    }
+  ],
+  "synthetic_value_intervals": [
+    {"valuation_id": "SYN-VAL-A", "billing_account_id": "SYN-A", "currency": "USD", "from_date": "2026-04-01", "to_date": "2026-05-01", "billable_value_minor": 15000000},
+    {"valuation_id": "SYN-VAL-B", "billing_account_id": "SYN-B", "currency": "USD", "from_date": "2026-04-01", "to_date": "2026-05-01", "billable_value_minor": 10000000},
+    {"valuation_id": "SYN-VAL-C", "billing_account_id": "SYN-C", "currency": "USD", "from_date": "2026-04-01", "to_date": "2026-05-01", "billable_value_minor": 5000000}
+  ],
+  "draft_fee_lines": [
+    {"draft_id": "SYN-DFT-A", "billing_account_id": "SYN-A", "period_start": "2026-04-01", "period_end": "2026-05-01", "currency": "USD", "amount_minor": 10274, "source_schedule_id": "SYN-SCH-A1"},
+    {"draft_id": "SYN-DFT-B", "billing_account_id": "SYN-B", "period_start": "2026-04-01", "period_end": "2026-05-01", "currency": "USD", "amount_minor": 5479, "source_schedule_id": "SYN-SCH-B-PENDING"}
+  ]
+}

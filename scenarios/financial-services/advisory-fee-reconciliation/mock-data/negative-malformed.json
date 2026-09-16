@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-06-01T00:00:00Z",
+  "business_utc_offset_minutes": 0,
+  "billing_configuration": {
+    "control_version": "SYN-CTRL-MAL",
+    "approval_state": "approved",
+    "period_start": "2026-05-01",
+    "period_end": "2026-06-01",
+    "currency": "USD",
+    "day_count_basis": "actual-calendar-year",
+    "rounding_mode": "half-up"
+  },
+  "engagements": [
+    {"billing_account_id": "SYN-MAL-A", "agreement_id": "SYN-AGR-MAL", "currency": "USD", "active_from": "2026-05-01", "active_to": null}
+  ],
+  "schedule_versions": [
+    {
+      "schedule_id": "SYN-SCH-MAL", "billing_account_id": "SYN-MAL-A", "agreement_id": "SYN-AGR-MAL",
+      "effective_from": "2026-05-01", "effective_to": "2026-06-01",
+      "approval_state": "approved", "approved_at": "2026-04-30T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": true}]
+    }
+  ],
+  "synthetic_value_intervals": [
+    {"valuation_id": "SYN-VAL-MAL", "billing_account_id": "SYN-MAL-A", "currency": "USD", "from_date": "2026-05-01", "to_date": "2026-06-01", "billable_value_minor": 10000}
+  ],
+  "draft_fee_lines": []
+}

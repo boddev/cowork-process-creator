@@ -1,0 +1,192 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "6fdfc0e41a0126ff2ba81eaa9e5337a97ff7d15631f34908eaa869ec9f5d297a",
+    "golden_sha256": "f93eda4b8a715390455589aba767dd0da69d7be1d2482fdbfe652f2f7f3c8ae9",
+    "input_sha256": "e6ab7d67889e9a05f608f501ada7b6827122fa353e6b851047016611e1fe2f55",
+    "result": "baseline-output/negative-contradictory.json",
+    "result_sha256": "886ad9e28ea157563d711c2c63b1cb1f68a51265da62558d72e0ae2b8d01387e",
+    "trace": "baseline-output/negative-contradictory.trace.json",
+    "trace_sha256": "6a68897e5ecd334cd9517b5a87666fb23192c70193e6779edbaf2333c89386a3"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "calendar",
+      "collections",
+      "datetime",
+      "fractions",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-contradictory",
+  "documented": {
+    "case_rule_coverage": [
+      "fee-effective-coverage",
+      "fee-pending-not-effective"
+    ],
+    "failure_modes": [
+      "contradictory-evidence"
+    ],
+    "golden_derivation": "Independent June account has approved known-by-as_of100bps and80bps versions on Jun1-Jun10 and Jun5-Jul1. Their intersection is Jun5-Jun10, not an adjacent boundary. Reject whole case with overlapping-approved-schedules, canonical first recordSYN-SCH-CONFLICT-1 and both sorted related IDs. No newest-version, blended rate, or partial financial outputs; retain validation and pending/no-action review only.",
+    "steps": [
+      {
+        "id": "intake-billing-exports",
+        "kind": "input",
+        "rule_ids": [
+          "fee-explicit-basis-and-ranges"
+        ]
+      },
+      {
+        "id": "validate-billing-evidence",
+        "kind": "validation",
+        "rule_ids": [
+          "fee-explicit-basis-and-ranges",
+          "fee-effective-coverage",
+          "fee-marginal-tiers",
+          "fee-pending-not-effective"
+        ]
+      },
+      {
+        "id": "join-effective-segments",
+        "kind": "join",
+        "rule_ids": [
+          "fee-effective-coverage",
+          "fee-calendar-proration",
+          "fee-pending-not-effective"
+        ]
+      },
+      {
+        "id": "calculate-marginal-tiers",
+        "kind": "decision",
+        "rule_ids": [
+          "fee-marginal-tiers"
+        ]
+      },
+      {
+        "id": "prorate-and-round",
+        "kind": "decision",
+        "rule_ids": [
+          "fee-calendar-proration",
+          "fee-exact-rounding"
+        ]
+      },
+      {
+        "id": "join-draft-fees",
+        "kind": "join",
+        "rule_ids": [
+          "fee-draft-comparison"
+        ]
+      },
+      {
+        "id": "route-billing-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "fee-pending-not-effective",
+          "fee-effective-coverage",
+          "fee-draft-comparison",
+          "fee-review-closure"
+        ]
+      },
+      {
+        "id": "emit-billing-review",
+        "kind": "output",
+        "rule_ids": [
+          "fee-review-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-contradictory.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/financial-services/advisory-fee-reconciliation",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.441373,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-billing-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-billing-evidence"
+      },
+      {
+        "kind": "output",
+        "sequence": 3,
+        "step_id": "emit-billing-review"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "financial-services-03",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "2b8a786206a4d57ef1ed896269ca52282af98ab67ddce645b073a9106927e120",
+    "baseline.py": "6fdfc0e41a0126ff2ba81eaa9e5337a97ff7d15631f34908eaa869ec9f5d297a",
+    "connections.json": "e284aac378ac3da3667f77112a04df9fa8e1d6523448a3115b0e75eda36b05ca",
+    "expected/demo.json": "70b59c4dec550dc142e8125f85fee76a3bf070dd9415d0f8cdc2ba73c7fa9e36",
+    "expected/holdout-a.json": "483ee77b7f205107f09194ab66e949ac267c234190d25f43aa7019be4c355ad6",
+    "expected/holdout-b.json": "1a663c734ba0c3bf674f234dc1f8693db1fc7c053912692297ee02e65490bef5",
+    "expected/negative-contradictory.json": "f93eda4b8a715390455589aba767dd0da69d7be1d2482fdbfe652f2f7f3c8ae9",
+    "expected/negative-malformed.json": "57d323ae31b10754c742801f7cde64da9090f6ce3801f5fdee2463b3bcf2babd",
+    "mock-data/demo.json": "b133bf1ec330e9d39be34b4cb2e59db867a4fb985de6b16a4c166e2da309c2a4",
+    "mock-data/holdout-a.json": "6db8b2fa7c0adcc214700e811b315c50d24cacf83f542c636d46c9295765c081",
+    "mock-data/holdout-b.json": "f4110809b629847e343e071c31ec74b75a4e08072edcc937309e4a4e41799b3a",
+    "mock-data/negative-contradictory.json": "e6ab7d67889e9a05f608f501ada7b6827122fa353e6b851047016611e1fe2f55",
+    "mock-data/negative-malformed.json": "11f569b74031905c5a11e3ad5f7d55de9c85b7887c46fb4b7a32ca443feb5b22",
+    "scenario.json": "29d0d649144f545de4b4d475d477fdf67ac56bdcb44c90bac36d7c8739a55045",
+    "sources.json": "5007948419f37a7a46c29ec6ec7cf74f5bba9ef2d7e5f7f1e814566a6c06cd49",
+    "workflow.json": "80b03c9973572fdee2384777557256b752f0d1ff205414ffc0215076683a4bbe"
+  },
+  "state": "baseline_pass"
+}

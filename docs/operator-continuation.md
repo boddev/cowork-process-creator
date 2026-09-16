@@ -1,11 +1,30 @@
-# Native continuation after the desktop lock
+# Native continuation: current source and historical proof
 
-N00 is **not complete**. Source implementation may continue provisionally
-offline, but native acceptance, independent invocation and scheduling cannot.
-Do not use a shell, alternate browser, sign-in change or other workaround to
-bypass the locked Windows session or Computer Use's fail-closed response.
+**Status reviewed September 16, 2026:** source v0.3.0 requires Microsoft's
+native M365 v1.28 `manifest.json`. Claude-compatible packaging and conversion
+are not current output options. The local implementation and 15-scenario
+corpus are complete; **N00 and current native acceptance remain incomplete**.
+No current native release package exists because approved app/publisher
+metadata has not been supplied.
 
-Last observed native actions, in order:
+The last recorded access limitation, on September 14, 2026, was that all
+Computer Use tools had been removed from the operator session. No later
+access confirmation or native observation has been supplied. Continuation
+requires **both** the approved Computer Use tools to be restored **and** an
+unlocked, accessible session. Desktop unlock alone is insufficient.
+
+Do not invoke removed tools or replace them through another UI channel,
+private API, cookies, tokens, shell access, sign-in changes or any other
+workaround. Restoration of the approved tools and normal session access
+must precede any native inspection or action.
+
+Approval to share or merge reviewed source on GitHub does not establish
+native access, approve publisher/legal metadata, authorize Cowork publication,
+or prove installation. Native actions require their own authorization.
+
+## Reconcile the historical operation first
+
+Last observed native actions for the original v0.1.0 proof, in order:
 
 1. Cowork Process Creator was confirmed enabled.
 2. Only that Creator was disabled and its toggle verified off. Unrelated
@@ -14,29 +33,60 @@ Last observed native actions, in order:
 4. **Only you** was verified in the native Publish dialog.
 5. Publish was clicked once. The last observable state was **Publishing...**.
 
-The output publication result is **unknown**, not failed and not Installed.
+That output publication result is **unknown**, not failed and not Installed.
 No fresh independent output task was started. The local 4/1/27.78 result is
 not a substitute.
 
-After the user normally unlocks the desktop, the native operator must inspect
-the full Installed list and the relevant plugin detail before considering a
-repeat publication. If the output is present, do not publish again. If absent,
-first reconcile any still-pending operation or explicit failure. Preserve
-native scope, account and unrelated plugin settings.
+After the approved Computer Use tools are restored and the user has an
+unlocked, accessible session, the native operator must first inspect the full
+Installed list and the relevant plugin detail before considering a repeat
+publication. If the output is present, do not publish again. If absent, first
+reconcile any still-pending operation or explicit failure. Preserve native
+scope, account and unrelated plugin settings. Neither restored tools nor an
+unlock implies that the previous publication succeeded or failed. Do not
+republish the historical source-format ZIP as a current v0.3.0 package.
 
-Only after output acceptance is observed, start a fresh native conversation
-with the output skill and `examples\n00\input-new.json`, reporting month
-2026-09 and a new Markdown filename. Keep the Creator inactive and original
-procedure/video absent. Invoke the output helper through the skill using
-`--input`, **`--month`**, and `--output`. Retrieve the actual report and compare
-its rows/counts/total, without providing the expected result in the prompt.
+If separately authorized to finish the historical N00 comparison, and only
+after the original output's existing installation is observed, use a fresh
+native conversation with its output skill and `examples\n00\input-new.json`,
+reporting month 2026-09 and a new Markdown filename. Keep the Creator inactive
+and original procedure/video absent. Invoke the output helper through the
+skill using `--input`, **`--month`**, and `--output`. Retrieve the actual report
+and compare its rows/counts/total without supplying the expected result in
+the prompt.
 
 The original output SHA256 is
 `15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419`.
 Expected evaluator-only result: four included, one excluded, total 27.78.
-Direct canonical v1.28 acceptance still requires real publisher metadata;
-native scheduling and broader media behavior remain separate unobserved gates.
+This would address only the historical output, not current Microsoft-format
+acceptance. Historical v0.1.x/v0.2.x source ZIPs remain unchanged and inherit
+no new acceptance from source publication.
 
-Expanded v0.2.x artifacts are provisional offline candidates. They inherit
-none of the installation or execution claims belonging to the original
-v0.1.0 proof artifacts.
+## Current Microsoft-format packages and scenarios
+
+Supply approved, distinct app UUIDs and the publisher name, website, privacy
+and terms URLs before building current packages. See
+[Microsoft packaging](MICROSOFT_PACKAGING.md) for the exact metadata format.
+Do not fabricate these values, reuse temporary test metadata or switch to a
+Claude manifest when metadata is missing. Root `manifest.json`, the v1.28
+schema, icons, declared skills and required connector tool descriptors must
+be present; local structure checks are not Cowork acceptance.
+
+The completed corpus contains 15 scenarios, 96 baseline cases, 15 synthetic
+baseline-trace videos and 15 input-only bundles. **Zero scenario plugins have
+been generated, installed or independently invoked in native Cowork.** The
+videos are not recordings of live business applications or Cowork.
+
+When native work is authorized and accessible, follow
+[the scenario protocol](../scenarios/HOW_TO.md). Give the Creator only each
+prepared procedure, workflow, connection metadata, demo input and video.
+Withhold baseline code, expected outputs and holdouts from authoring. Require
+an actual Microsoft-format ZIP generated by the native Creator, then record
+installation and fresh independent invocations separately. The completed
+local baselines and videos cannot substitute for those steps.
+
+Current status is in [provisional-status.json](provisional-status.json),
+[native-manifest-status.json](native-manifest-status.json) and
+[the native pending matrix](../output/status.json). Scheduling and broader
+native media behavior remain separate unobserved gates. This public guide
+contains no private session identifiers, evidence locations or captures.

@@ -1,0 +1,570 @@
+{
+  "exceptions": [
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "expiring-soon",
+      "reason_codes": [
+        "expiring-soon"
+      ],
+      "requirement_id": "SYN-R2",
+      "site_id": "SYN-S1"
+    },
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "expired",
+      "reason_codes": [
+        "expired"
+      ],
+      "requirement_id": "SYN-R4",
+      "site_id": "SYN-S1"
+    },
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "protocol-version-mismatch",
+      "reason_codes": [
+        "protocol-version-mismatch"
+      ],
+      "requirement_id": "SYN-R1",
+      "site_id": "SYN-S2"
+    },
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "unavailable-evidence",
+      "reason_codes": [
+        "unavailable-evidence"
+      ],
+      "requirement_id": "SYN-R2",
+      "site_id": "SYN-S2"
+    },
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "missing-document",
+      "reason_codes": [
+        "missing-document"
+      ],
+      "requirement_id": "SYN-R3",
+      "site_id": "SYN-S2"
+    }
+  ],
+  "outputs": {
+    "as_of_date": "2026-09-14",
+    "draft_review_queue": [
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": "2026-09-16",
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE1",
+        "reason_code": "expiring-soon",
+        "requirement_id": "SYN-R2",
+        "routing": "draft-new",
+        "site_id": "SYN-S1"
+      },
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": "2026-09-16",
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE1",
+        "reason_code": "expired",
+        "requirement_id": "SYN-R4",
+        "routing": "draft-new",
+        "site_id": "SYN-S1"
+      },
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": null,
+        "existing_task_ids": [
+          "SYN-K1"
+        ],
+        "owner_role_id": "SYN-ROLE2",
+        "reason_code": "protocol-version-mismatch",
+        "requirement_id": "SYN-R1",
+        "routing": "existing-task",
+        "site_id": "SYN-S2"
+      },
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": "2026-09-16",
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE2",
+        "reason_code": "unavailable-evidence",
+        "requirement_id": "SYN-R2",
+        "routing": "draft-new",
+        "site_id": "SYN-S2"
+      },
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": "2026-09-16",
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE2",
+        "reason_code": "missing-document",
+        "requirement_id": "SYN-R3",
+        "routing": "draft-new",
+        "site_id": "SYN-S2"
+      }
+    ],
+    "evidence_register": [
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A1",
+        "source_refs": [
+          "SYN-EXPORT-A1"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A2",
+        "source_refs": [
+          "SYN-EXPORT-A2"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A3",
+        "source_refs": [
+          "SYN-EXPORT-A3"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A4",
+        "source_refs": [
+          "SYN-EXPORT-A4"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A5",
+        "source_refs": [
+          "SYN-EXPORT-A5"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact",
+          "unavailable-metadata"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A6",
+        "source_refs": [
+          "SYN-EXPORT-A6"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-A7",
+        "source_refs": [
+          "SYN-EXPORT-A7"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D1",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D2",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D3",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D4",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D5",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D6",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-D7",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "task-linked"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-K1",
+        "source_refs": [],
+        "table": "open_review_tasks"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-R1",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-R2",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-R3",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-R4",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "in-scope"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-S1",
+        "source_refs": [],
+        "table": "sites"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "in-scope"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-S2",
+        "source_refs": [],
+        "table": "sites"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "context"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-T1",
+        "source_refs": [],
+        "table": "trials"
+      }
+    ],
+    "human_review_required": true,
+    "policy_id": "SYN-POLICY-DEMO",
+    "requirement_matrix": [
+      {
+        "assessment_state": "no-exception",
+        "days_to_expiry": null,
+        "document_type": "protocol",
+        "effective_expiry": null,
+        "expiry_basis": "none",
+        "primary_reason": null,
+        "reason_codes": [],
+        "requirement_id": "SYN-R1",
+        "selected_document_id": "SYN-D1",
+        "site_id": "SYN-S1",
+        "source_refs": [
+          "artifacts/SYN-A1",
+          "documents/SYN-D1",
+          "requirements/SYN-R1",
+          "sites/SYN-S1",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "warning",
+        "days_to_expiry": 0,
+        "document_type": "ethics-opinion",
+        "effective_expiry": "2026-09-14",
+        "expiry_basis": "explicit",
+        "primary_reason": "expiring-soon",
+        "reason_codes": [
+          "expiring-soon"
+        ],
+        "requirement_id": "SYN-R2",
+        "selected_document_id": "SYN-D2",
+        "site_id": "SYN-S1",
+        "source_refs": [
+          "artifacts/SYN-A2",
+          "documents/SYN-D2",
+          "requirements/SYN-R2",
+          "sites/SYN-S1",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "no-exception",
+        "days_to_expiry": null,
+        "document_type": "qualification",
+        "effective_expiry": null,
+        "expiry_basis": "none",
+        "primary_reason": null,
+        "reason_codes": [],
+        "requirement_id": "SYN-R3",
+        "selected_document_id": "SYN-D3",
+        "site_id": "SYN-S1",
+        "source_refs": [
+          "artifacts/SYN-A3",
+          "documents/SYN-D3",
+          "requirements/SYN-R3",
+          "sites/SYN-S1",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "review",
+        "days_to_expiry": -1,
+        "document_type": "training",
+        "effective_expiry": "2026-09-13",
+        "expiry_basis": "refresh",
+        "primary_reason": "expired",
+        "reason_codes": [
+          "expired"
+        ],
+        "requirement_id": "SYN-R4",
+        "selected_document_id": "SYN-D4",
+        "site_id": "SYN-S1",
+        "source_refs": [
+          "artifacts/SYN-A4",
+          "documents/SYN-D4",
+          "requirements/SYN-R4",
+          "sites/SYN-S1",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "review",
+        "days_to_expiry": null,
+        "document_type": "protocol",
+        "effective_expiry": null,
+        "expiry_basis": "none",
+        "primary_reason": "protocol-version-mismatch",
+        "reason_codes": [
+          "protocol-version-mismatch"
+        ],
+        "requirement_id": "SYN-R1",
+        "selected_document_id": "SYN-D5",
+        "site_id": "SYN-S2",
+        "source_refs": [
+          "artifacts/SYN-A5",
+          "documents/SYN-D5",
+          "requirements/SYN-R1",
+          "sites/SYN-S2",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "review",
+        "days_to_expiry": 109,
+        "document_type": "ethics-opinion",
+        "effective_expiry": "2027-01-01",
+        "expiry_basis": "explicit",
+        "primary_reason": "unavailable-evidence",
+        "reason_codes": [
+          "unavailable-evidence"
+        ],
+        "requirement_id": "SYN-R2",
+        "selected_document_id": "SYN-D6",
+        "site_id": "SYN-S2",
+        "source_refs": [
+          "artifacts/SYN-A6",
+          "documents/SYN-D6",
+          "requirements/SYN-R2",
+          "sites/SYN-S2",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "review",
+        "days_to_expiry": null,
+        "document_type": "qualification",
+        "effective_expiry": null,
+        "expiry_basis": null,
+        "primary_reason": "missing-document",
+        "reason_codes": [
+          "missing-document"
+        ],
+        "requirement_id": "SYN-R3",
+        "selected_document_id": null,
+        "site_id": "SYN-S2",
+        "source_refs": [
+          "requirements/SYN-R3",
+          "sites/SYN-S2",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      },
+      {
+        "assessment_state": "no-exception",
+        "days_to_expiry": 290,
+        "document_type": "training",
+        "effective_expiry": "2027-07-01",
+        "expiry_basis": "refresh",
+        "primary_reason": null,
+        "reason_codes": [],
+        "requirement_id": "SYN-R4",
+        "selected_document_id": "SYN-D7",
+        "site_id": "SYN-S2",
+        "source_refs": [
+          "artifacts/SYN-A7",
+          "documents/SYN-D7",
+          "requirements/SYN-R4",
+          "sites/SYN-S2",
+          "trials/SYN-T1"
+        ],
+        "trial_id": "SYN-T1"
+      }
+    ],
+    "scope_notice": "Administrative export completeness only; qualified reviewer owns disposition. No authenticity, site activation, ethics, enrollment, or compliance determination.",
+    "site_summary": [
+      {
+        "no_exception_count": 2,
+        "quarantined_count": 0,
+        "required_count": 4,
+        "review_count": 1,
+        "site_id": "SYN-S1",
+        "warning_count": 1
+      },
+      {
+        "no_exception_count": 1,
+        "quarantined_count": 0,
+        "required_count": 4,
+        "review_count": 3,
+        "site_id": "SYN-S2",
+        "warning_count": 0
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

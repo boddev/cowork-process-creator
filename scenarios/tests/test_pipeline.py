@@ -12,7 +12,7 @@ from scenarios._shared.common import ContractError, file_digest
 from scenarios._shared.contract import load_scenario
 from scenarios._shared.pipeline import check_case_evidence, golden_lock, run_case
 from scenarios._shared.reporting import build_catalog, write_reports
-from scenarios.tests.fixtures import dump, make_scenario, modify_json, temporary_directory
+from scenarios.tests.fixtures import copy_scenario, dump, make_scenario, modify_json, temporary_directory
 
 
 class PipelineTests(unittest.TestCase):
@@ -43,6 +43,20 @@ class PipelineTests(unittest.TestCase):
         result = run_case(self.scenario, case, replace=True)
         self.assertEqual(result["state"], "baseline_failed")
         self.assertIn("lock", " ".join(result["errors"]))
+
+    def test_copied_scenario_execution_preserves_original_source_and_evidence(self):
+        self.assertEqual(run_case(self.scenario, self.scenario.case("demo"))["state"], "baseline_pass")
+        before = {path.relative_to(self.root): path.read_bytes()
+                  for path in self.root.rglob("*") if path.is_file()}
+        copied = load_scenario(copy_scenario(self.root, Path(self.temporary.name) / "copied-corpus"))
+        self.assertNotEqual(copied.root, self.scenario.root)
+        for case in copied.cases:
+            report = run_case(copied, case, replace=True)
+            self.assertEqual(report["state"], "baseline_pass", report["errors"])
+            self.assertEqual(check_case_evidence(copied, case)["state"], "baseline_pass")
+        after = {path.relative_to(self.root): path.read_bytes()
+                 for path in self.root.rglob("*") if path.is_file()}
+        self.assertEqual(before, after)
 
     def test_modification_during_baseline_is_detected(self):
         real_run = subprocess.run

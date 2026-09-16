@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "INVALID_DECIMAL", "message": "Expected a canonical decimal string with at most four fractional places.", "order_id": null, "source_type": "bom_lines", "source_id": "BAD-L1", "field": "quantity_per"},
+    {"code": "INVALID_DECIMAL", "message": "Expected a canonical decimal string with at most four fractional places.", "order_id": null, "source_type": "bom_lines", "source_id": "BAD-L2", "field": "quantity_per"},
+    {"code": "MALFORMED_FIELD", "message": "Expected an integer in 0..1000000; booleans are not integers.", "order_id": null, "source_type": "stock_lots", "source_id": "BAD-S1", "field": "quantity"},
+    {"code": "MALFORMED_FIELD", "message": "Expected an integer in 1..1000000; booleans are not integers.", "order_id": "BAD01", "source_type": "work_orders", "source_id": "BAD01", "field": "quantity"},
+    {"code": "RESERVATION_EXCEEDS_STOCK", "message": "External reservations exceed physical stock.", "order_id": null, "source_type": "stock_lots", "source_id": "BAD-S2", "field": "reserved_external_qty"}
+  ]
+}

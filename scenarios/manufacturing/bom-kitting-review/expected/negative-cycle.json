@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "BOM_CYCLE", "message": "BOM expansion repeats ancestor item CY.", "order_id": "CY01", "source_type": "bom_lines", "source_id": "M-TO-C", "field": "component_id"}
+  ]
+}

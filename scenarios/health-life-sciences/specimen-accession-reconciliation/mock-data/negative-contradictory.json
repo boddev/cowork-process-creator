@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-17T12:00:00Z",
+  "policy": {"policy_id":"SYN-C-POLICY","accession_sla_minutes":60},
+  "orders": [
+    {"order_id":"SYN-C-O1","subject_token":"SYN-C-U1","ordered_at":"2026-09-17T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-C-O2","subject_token":"SYN-C-U2","ordered_at":"2026-09-17T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-C-O3","subject_token":"SYN-C-U3","ordered_at":"2026-09-17T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-C-O4","subject_token":"SYN-C-U4","ordered_at":"2026-09-17T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"}
+  ],
+  "order_lines": [
+    {"order_line_id":"SYN-C-L1","order_id":"SYN-C-O1","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-C-L2","order_id":"SYN-C-O2","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-C-L3","order_id":"SYN-C-O3","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-C-L4","order_id":"SYN-C-O4","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"}
+  ],
+  "order_events": [
+    {"event_id":"SYN-C-E1","order_id":"SYN-C-O1","event_seq":1,"effective_at":"2026-09-17T08:00:00Z","recorded_at":"2026-09-17T08:01:00Z","state":"active"},
+    {"event_id":"SYN-C-E2","order_id":"SYN-C-O2","event_seq":1,"effective_at":"2026-09-17T08:00:00Z","recorded_at":"2026-09-17T07:59:00Z","state":"active"},
+    {"event_id":"SYN-C-E3","order_id":"SYN-C-O3","event_seq":1,"effective_at":"2026-09-17T08:00:00Z","recorded_at":"2026-09-17T08:01:00Z","state":"active"},
+    {"event_id":"SYN-C-E4A","order_id":"SYN-C-O4","event_seq":2,"effective_at":"2026-09-17T08:00:00Z","recorded_at":"2026-09-17T08:01:00Z","state":"active"},
+    {"event_id":"SYN-C-E4C","order_id":"SYN-C-O4","event_seq":2,"effective_at":"2026-09-17T08:00:00Z","recorded_at":"2026-09-17T08:02:00Z","state":"cancelled"}
+  ],
+  "receipts": [
+    {"receipt_id":"SYN-C-R1","specimen_id":"SYN-C-S1","order_id":"SYN-C-O1","subject_token":"SYN-C-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-17T09:00:00Z","received_at":"2026-09-17T10:00:00Z"},
+    {"receipt_id":"SYN-C-R2","specimen_id":"SYN-C-S2","order_id":"SYN-C-O1","subject_token":"SYN-C-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-17T09:05:00Z","received_at":"2026-09-17T10:05:00Z"},
+    {"receipt_id":"SYN-C-R3","specimen_id":"SYN-C-S3","order_id":"SYN-C-O2","subject_token":"SYN-C-U2","specimen_kind":"SYN-K1","collected_at":"2026-09-17T10:00:00Z","received_at":"2026-09-17T09:00:00Z"},
+    {"receipt_id":"SYN-C-R4","specimen_id":"SYN-C-S4","order_id":"SYN-C-O3","subject_token":"SYN-C-U3","specimen_kind":"SYN-K1","collected_at":"2026-09-17T09:00:00Z","received_at":"2026-09-17T10:00:00Z"},
+    {"receipt_id":"SYN-C-R5","specimen_id":"SYN-C-S5","order_id":"SYN-C-O4","subject_token":"SYN-C-U4","specimen_kind":"SYN-K1","collected_at":"2026-09-17T09:00:00Z","received_at":"2026-09-17T10:00:00Z"}
+  ],
+  "accessions": [
+    {"accession_id":"SYN-C-A1","specimen_id":"SYN-C-S1","order_line_id":"SYN-C-L1","subject_token":"SYN-C-U1","test_code":"SYN-T1","accessioned_at":"2026-09-17T10:10:00Z","recorded_at":"2026-09-17T10:11:00Z"},
+    {"accession_id":"SYN-C-A1","specimen_id":"SYN-C-S1","order_line_id":"SYN-C-L1","subject_token":"SYN-C-U1","test_code":"SYN-T2","accessioned_at":"2026-09-17T10:10:00Z","recorded_at":"2026-09-17T10:11:00Z"},
+    {"accession_id":"SYN-C-A2","specimen_id":"SYN-C-S1","order_line_id":"SYN-C-L1","subject_token":"SYN-C-UX","test_code":"SYN-T1","accessioned_at":"2026-09-17T10:12:00Z","recorded_at":"2026-09-17T10:13:00Z"},
+    {"accession_id":"SYN-C-A3","specimen_id":"SYN-C-S3","order_line_id":"SYN-C-L2","subject_token":"SYN-C-U2","test_code":"SYN-T1","accessioned_at":"2026-09-17T08:59:00Z","recorded_at":"2026-09-17T09:10:00Z"},
+    {"accession_id":"SYN-C-A4","specimen_id":"SYN-C-S4","order_line_id":"SYN-C-L3","subject_token":"SYN-C-U3","test_code":"SYN-T1","accessioned_at":"2026-09-17T10:05:00Z","recorded_at":"2026-09-17T10:10:00Z"}
+  ],
+  "test_catalog": [
+    {"test_code":"SYN-T1","expected_specimen_kind":"SYN-K1","policy_ref":"SYN-CATALOG-POLICY"}
+  ],
+  "clarifications": []
+}

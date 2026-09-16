@@ -1,0 +1,49 @@
+{
+  "config": {"as_of": "2026-12-02T12:00:00Z", "period_start": "2026-11-01", "period_end": "2026-12-01", "draft_tolerance": "0.00"},
+  "files": {
+    "projects.json": [
+      {"project_id": "P-B1", "client_id": "CLIENT-B1", "contract_id": "CONTRACT-B1", "currency": "USD", "period_cap": "500.00", "owner": "ACCOUNTANT-B1"},
+      {"project_id": "P-B2", "client_id": "CLIENT-B2", "contract_id": "CONTRACT-B2", "currency": "EUR", "period_cap": "250.00", "owner": "ACCOUNTANT-B2"}
+    ],
+    "rates.json": [
+      {"rate_id": "RB1", "project_id": "P-B1", "role_code": "consultant", "currency": "USD", "valid_from": "2026-11-01", "valid_to": "2026-12-01", "hourly_rate": "100.00"},
+      {"rate_id": "RB2", "project_id": "P-B2", "role_code": "consultant", "currency": "EUR", "valid_from": "2026-11-01", "valid_to": "2026-12-01", "hourly_rate": "90.00"}
+    ],
+    "time-entries.json": [
+      {"time_id": "TB1", "project_id": "P-B1", "person_id": "PERSON-B1", "role_code": "consultant", "service_date": "2026-11-01", "minutes": 1, "chargeable": true},
+      {"time_id": "TB2", "project_id": "P-B1", "person_id": "PERSON-B2", "role_code": "consultant", "service_date": "2026-11-02", "minutes": 1, "chargeable": true},
+      {"time_id": "TB3", "project_id": "P-B2", "person_id": "PERSON-B3", "role_code": "consultant", "service_date": "2026-11-03", "minutes": 60, "chargeable": true},
+      {"time_id": "TB4", "project_id": "P-B2", "person_id": "PERSON-B4", "role_code": "consultant", "service_date": "2026-12-01", "minutes": 60, "chargeable": true}
+    ],
+    "expense-entries.json": [
+      {"expense_id": "EB1", "project_id": "P-B1", "person_id": "PERSON-B1", "service_date": "2026-11-04", "category": "meals", "amount": "20.00", "currency": "USD", "receipt_reference": null, "chargeable": true},
+      {"expense_id": "EB2", "project_id": "P-B1", "person_id": "PERSON-B2", "service_date": "2026-11-05", "category": "travel", "amount": "15.00", "currency": "EUR", "receipt_reference": null, "chargeable": true},
+      {"expense_id": "EB3", "project_id": "P-B2", "person_id": "PERSON-B3", "service_date": "2026-11-06", "category": "travel", "amount": "30.00", "currency": "EUR", "receipt_reference": null, "chargeable": true}
+    ],
+    "approval-events.json": [
+      {"approval_event_id": "AB-EB1", "entry_type": "expense", "entry_id": "EB1", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-EB2", "entry_type": "expense", "entry_id": "EB2", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-EB3", "entry_type": "expense", "entry_id": "EB3", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-TB1", "entry_type": "time", "entry_id": "TB1", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-TB2", "entry_type": "time", "entry_id": "TB2", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-TB3", "entry_type": "time", "entry_id": "TB3", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AB-TB4", "entry_type": "time", "entry_id": "TB4", "revision": 1, "recorded_at": "2026-12-02T11:00:00Z", "decision": "approved"}
+    ],
+    "billed-transactions.json": [{"billed_id": "BB", "entry_type": "time", "entry_id": "HIST-B2", "project_id": "P-B2", "invoice_id": "INVOICE-B2", "service_date": "2026-11-01", "amount": "160.00", "currency": "EUR", "billed_at": "2026-11-10T09:00:00Z"}],
+    "draft-invoices.json": [
+      {"draft_id": "DB1", "project_id": "P-B1", "currency": "USD", "period_start": "2026-11-01", "period_end": "2026-12-01", "state": "draft"},
+      {"draft_id": "DB2", "project_id": "P-B2", "currency": "EUR", "period_start": "2026-11-01", "period_end": "2026-12-01", "state": "draft"}
+    ],
+    "draft-lines.json": [
+      {"line_id": "LB1", "draft_id": "DB1", "entry_type": "time", "entry_id": "TB1", "amount": "1.66"},
+      {"line_id": "LB2", "draft_id": "DB1", "entry_type": "expense", "entry_id": "EB1", "amount": "20.00"},
+      {"line_id": "LB3", "draft_id": "DB2", "entry_type": "time", "entry_id": "TB3", "amount": "90.00"}
+    ],
+    "expense-policies.json": [
+      {"category": "meals", "currency": "USD", "max_amount": "60.00", "receipt_required_at": "30.00"},
+      {"category": "travel", "currency": "USD", "max_amount": "100.00", "receipt_required_at": "30.00"},
+      {"category": "meals", "currency": "EUR", "max_amount": "60.00", "receipt_required_at": "30.00"},
+      {"category": "travel", "currency": "EUR", "max_amount": "100.00", "receipt_required_at": "30.00"}
+    ]
+  }
+}

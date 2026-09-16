@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-08-01",
+  "horizon_end": "2026-08-03",
+  "work_orders": [
+    {"order_id": "C01", "item_id": "C", "site": "CENTRAL", "start_date": "2026-08-02", "quantity": 1, "priority": 1, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "C-V2", "item_id": "C", "site": "CENTRAL", "valid_from": "2026-08-01", "valid_to": "2026-12-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "C-V1", "item_id": "C", "site": "CENTRAL", "valid_from": "2026-01-01", "valid_to": "2026-12-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "C-L1", "version_id": "C-V1", "component_id": "C-PART", "line_type": "Item", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "C-L2", "version_id": "C-V2", "component_id": "C-PART", "line_type": "Item", "quantity_per": "2", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "C", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "C-PART", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [],
+  "inbound": []
+}

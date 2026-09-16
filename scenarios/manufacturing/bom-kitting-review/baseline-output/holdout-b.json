@@ -1,0 +1,236 @@
+{
+  "exceptions": [
+    {
+      "code": "MATERIAL_SHORTAGE",
+      "field": null,
+      "message": "Required material is not fully assigned.",
+      "order_id": "B02",
+      "source_id": "NUT",
+      "source_type": "items"
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-01-10",
+    "closure": {
+      "approval_required": true,
+      "inventory_mutated": false,
+      "orders_released": false,
+      "production_authorized": false,
+      "reservations_created": false,
+      "review_only": true,
+      "substitutions_made": false
+    },
+    "component_requirements": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 3,
+        "assigned_qty": 3,
+        "available_now_qty": 5,
+        "component_id": "NUT",
+        "exact_qty": "3",
+        "expected_before_need_qty": 0,
+        "gap_qty": 0,
+        "order_id": "B01",
+        "required_qty": 3
+      },
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 2,
+        "assigned_qty": 2,
+        "available_now_qty": 2,
+        "component_id": "NUT",
+        "exact_qty": "3",
+        "expected_before_need_qty": 0,
+        "gap_qty": 1,
+        "order_id": "B02",
+        "required_qty": 3
+      }
+    ],
+    "component_totals": [
+      {
+        "assigned_expected_qty": 0,
+        "assigned_now_qty": 5,
+        "assigned_qty": 5,
+        "component_id": "NUT",
+        "gap_qty": 1,
+        "required_qty": 6,
+        "site": "SOUTH"
+      }
+    ],
+    "excluded_orders": [],
+    "exploded_paths": [
+      {
+        "component_id": "NUT",
+        "exact_qty": "1.5",
+        "order_id": "B01",
+        "path": [
+          "B-LEFT",
+          "L-NUT"
+        ]
+      },
+      {
+        "component_id": "NUT",
+        "exact_qty": "1.5",
+        "order_id": "B01",
+        "path": [
+          "B-RIGHT",
+          "R-NUT"
+        ]
+      },
+      {
+        "component_id": "NUT",
+        "exact_qty": "1.5",
+        "order_id": "B02",
+        "path": [
+          "B-LEFT",
+          "L-NUT"
+        ]
+      },
+      {
+        "component_id": "NUT",
+        "exact_qty": "1.5",
+        "order_id": "B02",
+        "path": [
+          "B-RIGHT",
+          "R-NUT"
+        ]
+      }
+    ],
+    "horizon_end": "2026-01-12",
+    "order_reviews": [
+      {
+        "approval_required": true,
+        "item_id": "BRACKET",
+        "need_by": "2026-01-12",
+        "order_id": "B01",
+        "priority": 2,
+        "production_authorized": false,
+        "quantity": 3,
+        "review_owners": [
+          "Material planner",
+          "Production planner"
+        ],
+        "short_components": [],
+        "site": "SOUTH",
+        "state": "covered-now-review"
+      },
+      {
+        "approval_required": true,
+        "item_id": "BRACKET",
+        "need_by": "2026-01-12",
+        "order_id": "B02",
+        "priority": 2,
+        "production_authorized": false,
+        "quantity": 3,
+        "review_owners": [
+          "Material planner",
+          "Stores reviewer",
+          "Production planner"
+        ],
+        "short_components": [
+          "NUT"
+        ],
+        "site": "SOUTH",
+        "state": "shortage-review"
+      }
+    ],
+    "order_sequence": [
+      "B01",
+      "B02"
+    ],
+    "review_queue": [
+      "B02"
+    ],
+    "selected_versions": [
+      {
+        "item_id": "BRACKET",
+        "order_id": "B01",
+        "parent_path": [],
+        "selection": "active-default",
+        "version_id": "B-V"
+      },
+      {
+        "item_id": "LEFT",
+        "order_id": "B01",
+        "parent_path": [
+          "B-LEFT"
+        ],
+        "selection": "active-default",
+        "version_id": "LEFT-V"
+      },
+      {
+        "item_id": "RIGHT",
+        "order_id": "B01",
+        "parent_path": [
+          "B-RIGHT"
+        ],
+        "selection": "active-default",
+        "version_id": "RIGHT-V"
+      },
+      {
+        "item_id": "BRACKET",
+        "order_id": "B02",
+        "parent_path": [],
+        "selection": "active-default",
+        "version_id": "B-V"
+      },
+      {
+        "item_id": "LEFT",
+        "order_id": "B02",
+        "parent_path": [
+          "B-LEFT"
+        ],
+        "selection": "active-default",
+        "version_id": "LEFT-V"
+      },
+      {
+        "item_id": "RIGHT",
+        "order_id": "B02",
+        "parent_path": [
+          "B-RIGHT"
+        ],
+        "selection": "active-default",
+        "version_id": "RIGHT-V"
+      }
+    ],
+    "shadow_allocations": [
+      {
+        "component_id": "NUT",
+        "order_id": "B01",
+        "quantity": 3,
+        "source_id": "BN-5",
+        "source_type": "stock_lots"
+      },
+      {
+        "component_id": "NUT",
+        "order_id": "B02",
+        "quantity": 2,
+        "source_id": "BN-5",
+        "source_type": "stock_lots"
+      }
+    ],
+    "source_balances": [
+      {
+        "assigned_qty": 5,
+        "item_id": "NUT",
+        "net_qty": 5,
+        "remaining_qty": 0,
+        "site": "SOUTH",
+        "source_id": "BN-5",
+        "source_type": "stock_lots"
+      }
+    ],
+    "summary": {
+      "covered_now_orders": 1,
+      "covered_with_expected_orders": 0,
+      "excluded_orders": 0,
+      "in_scope_orders": 2,
+      "resolved_orders": 2,
+      "shortage_orders": 1,
+      "unresolved_orders": 0
+    },
+    "supply_exclusions": []
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

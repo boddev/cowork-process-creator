@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-12-31",
+  "policy": {"policy_id": "SYN-POLICY-B", "warning_days": 7, "draft_review_days": 3, "max_rows_per_table": 10, "max_total_rows": 30, "max_derived_pairs": 4},
+  "trials": [
+    {"trial_id": "SYN-TB", "required_protocol_version": 4}
+  ],
+  "sites": [
+    {"site_id": "SYN-SB1", "trial_id": "SYN-TB", "site_kind": "research", "owner_role_id": "SYN-ROLEB1", "in_scope": true},
+    {"site_id": "SYN-SB2", "trial_id": "SYN-TB", "site_kind": "satellite", "owner_role_id": "SYN-ROLEB2", "in_scope": true},
+    {"site_id": "SYN-SB3", "trial_id": "SYN-TB", "site_kind": "research", "owner_role_id": "SYN-ROLEB3", "in_scope": false}
+  ],
+  "requirements": [
+    {"requirement_id": "SYN-RB1", "site_kind": "research", "document_type": "protocol", "match_protocol_version": true, "signature_required": true, "expiry_required": false, "refresh_days": null},
+    {"requirement_id": "SYN-RB2", "site_kind": "research", "document_type": "training", "match_protocol_version": false, "signature_required": false, "expiry_required": true, "refresh_days": 7},
+    {"requirement_id": "SYN-RB3", "site_kind": "satellite", "document_type": "qualification", "match_protocol_version": false, "signature_required": false, "expiry_required": true, "refresh_days": null},
+    {"requirement_id": "SYN-RB4", "site_kind": "satellite", "document_type": "ethics-opinion", "match_protocol_version": false, "signature_required": false, "expiry_required": false, "refresh_days": 9},
+    {"requirement_id": "SYN-RB5", "site_kind": "laboratory", "document_type": "training", "match_protocol_version": false, "signature_required": false, "expiry_required": false, "refresh_days": null}
+  ],
+  "documents": [
+    {"document_id": "SYN-DB1", "site_id": "SYN-SB1", "document_type": "protocol", "version_seq": 1, "protocol_version": 4, "issued_on": "2026-12-01", "effective_on": "2026-12-01", "recorded_on": "2026-12-01", "expires_on": null, "artifact_id": "SYN-AB1", "signature_recorded": true},
+    {"document_id": "SYN-DB2", "site_id": "SYN-SB1", "document_type": "protocol", "version_seq": 2, "protocol_version": 3, "issued_on": "2026-12-30", "effective_on": "2026-12-30", "recorded_on": "2026-12-31", "expires_on": null, "artifact_id": "SYN-AB2", "signature_recorded": false},
+    {"document_id": "SYN-DB3", "site_id": "SYN-SB1", "document_type": "training", "version_seq": 1, "protocol_version": null, "issued_on": "2026-12-31", "effective_on": "2026-12-31", "recorded_on": "2026-12-31", "expires_on": "2027-01-09", "artifact_id": "SYN-AB3", "signature_recorded": false},
+    {"document_id": "SYN-DB3", "site_id": "SYN-SB1", "document_type": "training", "version_seq": 1, "protocol_version": null, "issued_on": "2026-12-31", "effective_on": "2026-12-31", "recorded_on": "2026-12-31", "expires_on": "2027-01-09", "artifact_id": "SYN-AB3", "signature_recorded": false},
+    {"document_id": "SYN-DB4", "site_id": "SYN-SB2", "document_type": "qualification", "version_seq": 1, "protocol_version": null, "issued_on": "2026-12-01", "effective_on": "2026-12-01", "recorded_on": "2026-12-01", "expires_on": null, "artifact_id": "SYN-AB4", "signature_recorded": false},
+    {"document_id": "SYN-DB5", "site_id": "SYN-SB2", "document_type": "ethics-opinion", "version_seq": 1, "protocol_version": null, "issued_on": "2026-12-30", "effective_on": "2026-12-30", "recorded_on": "2026-12-30", "expires_on": "2027-01-08", "artifact_id": "SYN-AB5", "signature_recorded": false},
+    {"document_id": "SYN-DB6", "site_id": "SYN-SB3", "document_type": "protocol", "version_seq": 9, "protocol_version": 4, "issued_on": "2026-12-31", "effective_on": "2026-12-31", "recorded_on": "2026-12-31", "expires_on": null, "artifact_id": "SYN-AB6", "signature_recorded": false}
+  ],
+  "artifacts": [
+    {"artifact_id": "SYN-AB1", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AB1"},
+    {"artifact_id": "SYN-AB2", "export_available": false, "readability_attested": true, "source_ref": "SYN-EXPORT-AB2"},
+    {"artifact_id": "SYN-AB3", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AB3"},
+    {"artifact_id": "SYN-AB4", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AB4"},
+    {"artifact_id": "SYN-AB5", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AB5"},
+    {"artifact_id": "SYN-AB6", "export_available": false, "readability_attested": true, "source_ref": "SYN-EXPORT-AB6"}
+  ],
+  "open_review_tasks": []
+}

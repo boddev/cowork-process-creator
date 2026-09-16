@@ -1,0 +1,112 @@
+{
+  "historical_snapshot": true,
+  "status_scope": "Sector validation before shared media completion and the Windows environment fix; current corpus facts supersede the pending media and runner notes below.",
+  "superseded_by": ["../../../catalog.json", "../demo/baseline.media.json", "../../../IMPLEMENTATION_NOTES.md"],
+  "cases": [
+    {
+      "business_status": "completed_with_exceptions",
+      "case_id": "demo",
+      "comparison": "pass",
+      "observed_stages": 9,
+      "report": "validation/demo.json",
+      "result": "baseline-output/demo.json",
+      "state": "baseline_pass",
+      "trace": "baseline-output/demo.trace.json"
+    },
+    {
+      "business_status": "completed_with_exceptions",
+      "case_id": "holdout-a",
+      "comparison": "pass",
+      "observed_stages": 9,
+      "report": "validation/holdout-a.json",
+      "result": "baseline-output/holdout-a.json",
+      "state": "baseline_pass",
+      "trace": "baseline-output/holdout-a.trace.json"
+    },
+    {
+      "business_status": "completed_with_exceptions",
+      "case_id": "holdout-b",
+      "comparison": "pass",
+      "observed_stages": 9,
+      "report": "validation/holdout-b.json",
+      "result": "baseline-output/holdout-b.json",
+      "state": "baseline_pass",
+      "trace": "baseline-output/holdout-b.trace.json"
+    },
+    {
+      "business_status": "rejected",
+      "case_id": "negative-malformed",
+      "comparison": "pass",
+      "observed_stages": 2,
+      "report": "validation/negative-malformed.json",
+      "result": "baseline-output/negative-malformed.json",
+      "state": "baseline_pass",
+      "trace": "baseline-output/negative-malformed.trace.json"
+    },
+    {
+      "business_status": "completed_with_exceptions",
+      "case_id": "negative-contradictory",
+      "comparison": "pass",
+      "observed_stages": 9,
+      "report": "validation/negative-contradictory.json",
+      "result": "baseline-output/negative-contradictory.json",
+      "state": "baseline_pass",
+      "trace": "baseline-output/negative-contradictory.trace.json"
+    }
+  ],
+  "independent_oracles": {
+    "cases": 5,
+    "derivations": "scenario.json case derivation fields",
+    "lock": "validation/golden-lock.json",
+    "lock_revisions": 0,
+    "lock_sha256": "9b48a94d9a47a09d3d2a83bb606fba261eefc1411041f253e4c4575a93a40c80",
+    "method": "independent-manual-derivation",
+    "note": "Complete manual results and their row accounting were checked before lock creation while baseline.py was still an unexecuted stub. Baseline and solve were first invoked only afterward. No post-lock input, oracle, or derivation changes occurred.",
+    "state": "unchanged-since-pre-execution-lock"
+  },
+  "media": {
+    "owner": "shared foundation",
+    "path": "demo/baseline.webm",
+    "produced_here": false,
+    "state": "central-production-pending"
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "provenance": "observed-trusted-local-development-validation",
+  "scenario_id": "cross-industry-01",
+  "schema_version": 1,
+  "state": "baseline_pass",
+  "tests": {
+    "baseline_sha256": "a7f33e98236ddc6430c64d5f18d4141a312d0741c83357413eedb0bd2ed3dd8a",
+    "command": "python -B -m unittest discover -s scenarios\\cross-industry\\logistics-pod-charge-review -p test_baseline.py -v",
+    "cwd": "<repository>",
+    "path_recording": "Original repository working directory; private checkout path omitted.",
+    "duration_seconds": 4.189,
+    "errors": 0,
+    "evidence": "validation/unittest.log",
+    "evidence_sha256": "a84f48190be1864df523fd37b1c2ccdec1075d54b966bcc734747b7b5b9e1b3f",
+    "exit_code": 0,
+    "failures": 0,
+    "last_run_scope": "Pure solve plus ordinary-environment shared adapter CLI; no persistent run_case execution.",
+    "result": "pass",
+    "runner": "Python standard-library unittest",
+    "skipped": 0,
+    "test_file_sha256": "f5181fa6b2a801bda1f6c47e2b0788788a99a7395000a301faaca9332f1d18f0",
+    "tests_run": 50
+  },
+  "unresolved_local_issues": [
+    "Nonblocking shared-runner host observation: a literal %SystemDrive%/ProgramData/Microsoft/Windows/Caches directory containing four Windows .db cache files appeared inside the scenario during local run_case executions. These generated cache artifacts were removed without reading their contents. The shared runner's restricted subprocess environment omits SystemDrive, which is a suspected cause; shared code was not changed. Parent-owned follow-up is needed if later runs recreate the directory. Business comparisons, traces, and immutable oracles remain verified."
+  ]
+}

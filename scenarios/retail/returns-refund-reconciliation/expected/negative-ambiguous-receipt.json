@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "ambiguous-receipt", "message": "original_orders contains multiple orders for store/receipt SYN-STORE-E/SYN-RECEIPT-E.", "scope": "input", "entity_id": "SYN-STORE-E/SYN-RECEIPT-E"}
+  ]
+}

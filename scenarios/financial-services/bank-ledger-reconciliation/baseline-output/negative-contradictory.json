@@ -1,0 +1,18 @@
+{
+  "exceptions": [
+    {
+      "code": "contradictory-evidence",
+      "message": "Normalized bank opening plus included lines does not equal closing.",
+      "record_id": "SYN-N",
+      "scope_id": "SYN-N"
+    }
+  ],
+  "outputs": {
+    "review": {
+      "human_review": "pending",
+      "live_action": "none"
+    }
+  },
+  "schema_version": 1,
+  "status": "rejected"
+}

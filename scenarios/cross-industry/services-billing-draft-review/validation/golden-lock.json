@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independently: P1 time 120/60*100=200 and 90/60*100=150, plus receipted travel 80, gives 430. Pending T3 and previously billed T6 contribute zero; meals 60 are wholly held above cap 50. Draft 560-10-100-100+80=430. P1 prior 100+430=530 is below 2000. P2 time 120/60*120=240 and 30/60*120=60, plus meals 40, gives 340; travel 90 has no required receipt. Historical source-absent prior 200+340=540 exceeds 500 by 40, holding all 340. Missing T5 60 remains diagnostic-only. USD known candidates 770, prior 300, raw/computable draft 840, comparison delta -70, known entry holds 150, cap holds 340, reviewable subtotal 430. Ten entries, two drafts, two projects, two prior rows, five draft diagnostics, eight review exceptions.",
+      "expected_sha256": "c3160bf2066ce8cbc7658e320a1625bb98deba897b70c9beb9009a4d945c30ab",
+      "input_sha256": "b78d8f6954632553153b8a5fb0c1218e89b51e7588200e997bcfb89f016b23c6"
+    },
+    "holdout-a": {
+      "derivation": "Materially changed October period, one different project, new rate interval boundary and policy caps. A1 on Oct 14: 50/60*150=125; A2 on Oct 15: 75/60*180=225. Travel 49.99 without receipt is allowed, travel 50.00 without receipt is held at equality, and receipted meals 40 are allowed, yielding 439.99. A3 revision 2 recall exactly at cutoff defeats revision 1; revision 3 one second later is ignored. A4 is nonchargeable. Source-absent prior 560.01+439.99=1000 exactly, so no cap hold. Draft 499.99-60 recalled A3=439.99, delta -60. Seven entries, one draft, one project, one prior row, one draft diagnostic, two review exceptions.",
+      "expected_sha256": "84035fcca0d018c82184140703c0f8b828ad926809b758d8db410a260325b4b6",
+      "input_sha256": "27afa5b57ea4fa87651545ea652dff64448c7abba1d3140f7950af82f7d7efd9"
+    },
+    "holdout-b": {
+      "derivation": "Materially changed November data, separate USD/EUR projects, receipt threshold 30, fractional-minute pricing and period-end exclusion. USD one-minute entries each round 100/60 to 1.67, so 1.67+1.67+20=23.34 (not 23.33). Draft 21.66 needs +0.01 and +1.67. EUR 15 against the USD project is quarantined without an inferred converted charge; target amount and complete USD project/draft comparison remain null, while known USD line comparisons remain 23.34 versus 21.66, delta 1.68. EUR time is 60/60*90=90; prior 160+90=250 exactly. EUR expense 30 lacks a receipt at equality, and Dec 1 time is outside November. Known held source-currency expenses total EUR 45, including the mismatched EUR 15; uncomputed entry count is one. Currency totals are never combined. Seven entries, two drafts, two projects, one prior row, two draft diagnostics, four review exceptions.",
+      "expected_sha256": "596a3af6fabde185141263a51b35a75116b3e6b283cd546f11417751fda14e91",
+      "input_sha256": "e7c6865d627d583b0defabd6137b805d23ac8daa8d7423d951b536bc8e7f9094"
+    },
+    "negative-contradictory": {
+      "derivation": "C1 has approved and recalled events at the same highest eligible revision 2. Their different recorded timestamps cannot break a revision conflict. Its otherwise 60/60*100 line remains uncomputed and its 100 draft amount is quarantined, with clarify-not-remove. Separate PC2 C2 is 30/60*120=60 and matches its 60 draft. Known candidate/computable expected/computable draft totals are each USD 60, computable variance zero, raw draft 160, quarantined draft 100. PC1 proposed consumption/full draft comparison remain null rather than invented zero totals. Two entries, two projects, two drafts, no prior rows, one diagnostic, two clarification exceptions.",
+      "expected_sha256": "23f8649a58e8dd1155c819e3153ad422e613b5e3bcfd1c0c07ede9e5ca02cbed",
+      "input_sha256": "1b5b28bb8b6d6a9acf71c017a29753482f716ba0249590b4342f3fe8c2c20e33"
+    },
+    "negative-malformed": {
+      "derivation": "The otherwise complete nine-export bundle includes expense EM amount -12.00. The fixed-two-decimal nonnegative charge schema rejects it with invalid-amount and the exact offending field; outputs is empty. No credit, reimbursement, candidate amount, or partial successful packet is inferred.",
+      "expected_sha256": "d95f0a537af83ee4b87ddedb2651b7768b6bbccc828c448a5e739db5a2442310",
+      "input_sha256": "e83f1eff949854e47620c3311c5fc036f3fc791ae65415851be917715d7605bc"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Cross-industry Professional Services scenario owner",
+    "description": "The five complete result envelopes were written manually from the approved research procedure and independent line arithmetic before executing solve or the baseline. Arrays, reason messages, unknown amounts, scoped comparisons, and review owners were specified before implementation; the shared golden lock freezes those bytes. This is an independent author declaration, not independent human or native proof.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1
+}

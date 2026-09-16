@@ -1,0 +1,14 @@
+{
+  "config": {"as_of": "2026-12-03", "reporting_month": "2026-12", "horizon_days": 7, "tolerance_days": 0, "urgency_days": 2, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "N01", "supplier_id": "SN01", "item_id": "BRACKET", "ordered_qty": 10, "original_requested_receipt": "2026-12-01", "state": "open"},
+    {"line_id": "N02", "supplier_id": "SN01", "item_id": "CLIP", "ordered_qty": 4, "original_requested_receipt": "2026-12-04", "state": "open"}
+  ],
+  "receipt_events": [
+    {"event_id": "E-N01", "line_id": "N01", "posted_on": "2026-12-01", "qty": 5, "reversal_of": null},
+    {"event_id": "V-N01", "line_id": "N02", "posted_on": "2026-12-02", "qty": 5, "reversal_of": "E-N01"}
+  ],
+  "confirmations": [],
+  "requirements": [],
+  "suppliers": [{"supplier_id": "SN01", "buyer_role": "Exceptions buyer"}]
+}

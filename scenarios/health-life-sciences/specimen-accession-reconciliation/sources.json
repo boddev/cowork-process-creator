@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "hls-src-cms-clia-manual",
+      "title": "CMS State Operations Manual, Appendix C - Survey Procedures and Interpretive Guidelines for Laboratories and Laboratory Services",
+      "url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/som107ap_c_lab.pdf",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "accessed": "2026-09-14",
+      "scope": "Fetched research provenance: cover Rev. 236 issued 2026-01-23; cited sections Rev. 233 issued/effective/implementation 2025-09-12. D5203 (PDF p124), D5301-D5309 (pp134-137), D5311-D5313 (pp137-140), D5391 (pp141-142). Retrieved PDF SHA-256 b6937df6f41c22541e55094f5345912289e3406e1fea6e0a4f28b86bb7566f66.",
+      "supported_claims": [
+        "D5203 / 493.1232 addresses identification through receipt, accessioning, and subsequent phases.",
+        "D5301-D5305 / 493.1241(a),(c) addresses requests and requisition information; this scenario implements only a synthetic administrative subset.",
+        "D5309 / 493.1241(e) addresses accurate transcription from requisitions into a record system or LIS.",
+        "D5311-D5313 / 493.1242(a),(b) addresses written labeling/handling procedures and documenting receipt date and time.",
+        "D5391 / 493.1249(a) addresses monitoring and correction of preanalytic-system problems."
+      ],
+      "limitations": "Not a complete requisition or regulatory analysis. Synthetic subject tokens are not actual identification. Provider authorization, specimen suitability/acceptance/rejection, testing, and results are outside this workflow. Token, field, cardinality, time-selection, queue, and SLA rules are invented policy, not CMS mandates."
+    },
+    {
+      "id": "hls-src-cms-clia-overview",
+      "title": "Clinical Laboratory Improvement Amendments (CLIA)",
+      "url": "https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "accessed": "2026-09-14",
+      "scope": "Fetched HTML overview: CLIA program scope and test-complexity context.",
+      "supported_claims": [
+        "CMS describes the scope of human laboratory testing covered by the CLIA program.",
+        "CMS distinguishes requirements according to test-method complexity."
+      ],
+      "limitations": "Overview context only; not evidence for an accession algorithm, queue SLA, certification, or this report establishing compliance."
+    },
+    {
+      "id": "hls-src-who-lqms",
+      "title": "Laboratory quality management system: handbook - publication overview",
+      "url": "https://www.who.int/publications/i/item/9789241548274",
+      "publisher": "World Health Organization",
+      "accessed": "2026-09-14",
+      "scope": "Fetched public publication overview only.",
+      "supported_claims": [
+        "The overview includes administrative stakeholders in laboratory quality management."
+      ],
+      "limitations": "No unexamined handbook chapter, ISO requirement, specimen rule, or accreditation claim is inferred. The mock procedure is not clinical laboratory operation."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "exceptions": [
+    {
+      "code": "duplicate-record",
+      "message": "Collapsed identical duplicate source row.",
+      "owner_role": null,
+      "subject": "observations:MFG-RA11"
+    },
+    {
+      "code": "missing-certificate",
+      "message": "No current matching certificate is available.",
+      "owner_role": "QA reviewer",
+      "subject": "MFG-H02"
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-10-02",
+    "packet_state": "review-required",
+    "review_queue": [
+      {
+        "age_days": 0,
+        "approval_required": true,
+        "certificate_ids": [],
+        "hold_snapshot_date": "2026-10-02",
+        "hold_state": "held",
+        "item_id": "MFG-BAR",
+        "lot_id": "MFG-H02",
+        "open_nc_ids": [],
+        "overdue": false,
+        "physical_held_qty": 9,
+        "production_authorized": false,
+        "quality_order_id": "MFG-QH02",
+        "rank": 1,
+        "reason_codes": [
+          "missing-certificate"
+        ],
+        "receipt_date": "2026-10-02",
+        "received_qty": 9,
+        "review_state": "evidence-gap",
+        "reviewer_role": "QA reviewer",
+        "site": "MFG-WEST",
+        "supplier_id": "MFG-SUP-GAMMA",
+        "test_checks": [
+          {
+            "failed_result_ids": [],
+            "maximum": "10.20",
+            "minimum": "10.00",
+            "observations": [
+              {
+                "evidence_state": "active",
+                "result_id": "MFG-RA21",
+                "specimen_id": "MFG-SA21",
+                "value": "10.10"
+              },
+              {
+                "evidence_state": "active",
+                "result_id": "MFG-RA22",
+                "specimen_id": "MFG-SA22",
+                "value": "10.15"
+              }
+            ],
+            "observed_specimens": 2,
+            "required_specimens": 2,
+            "requirement_id": "MFG-SPEC-BAR",
+            "state": "complete",
+            "test_id": "MFG-WIDTH"
+          }
+        ]
+      },
+      {
+        "age_days": 1,
+        "approval_required": true,
+        "certificate_ids": [
+          "MFG-CA01"
+        ],
+        "hold_snapshot_date": "2026-10-02",
+        "hold_state": "held",
+        "item_id": "MFG-BAR",
+        "lot_id": "MFG-H01",
+        "open_nc_ids": [],
+        "overdue": false,
+        "physical_held_qty": 12,
+        "production_authorized": false,
+        "quality_order_id": "MFG-QH01",
+        "rank": 2,
+        "reason_codes": [],
+        "receipt_date": "2026-10-01",
+        "received_qty": 12,
+        "review_state": "evidence-complete",
+        "reviewer_role": "QA reviewer",
+        "site": "MFG-WEST",
+        "supplier_id": "MFG-SUP-DELTA",
+        "test_checks": [
+          {
+            "failed_result_ids": [],
+            "maximum": "10.20",
+            "minimum": "10.00",
+            "observations": [
+              {
+                "evidence_state": "active",
+                "result_id": "MFG-RA11",
+                "specimen_id": "MFG-SA11",
+                "value": "10.00"
+              },
+              {
+                "evidence_state": "active",
+                "result_id": "MFG-RA12",
+                "specimen_id": "MFG-SA12",
+                "value": "10.20"
+              }
+            ],
+            "observed_specimens": 2,
+            "required_specimens": 2,
+            "requirement_id": "MFG-SPEC-BAR",
+            "state": "complete",
+            "test_id": "MFG-WIDTH"
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "known_held_qty": 21,
+      "lot_count": 2,
+      "received_qty": 21,
+      "review_quantities": {
+        "data-review": 0,
+        "evidence-complete": 12,
+        "evidence-gap": 9,
+        "nonconformance-review": 0
+      },
+      "unknown_hold_lot_ids": []
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

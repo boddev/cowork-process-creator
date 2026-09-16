@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "snapshot": {"as_of": "2026-10-02T12:00:00Z", "period_start": "2026-09-01", "period_end": "2026-10-01", "review_only": true},
+    "entries": [
+      {"entry_type": "time", "entry_id": "C1", "project_id": "PC1", "currency": "USD", "approval_revision": 2, "approval_event_ids": ["AC1-2A", "AC1-2R"], "future_approval_event_ids": [], "rate_id": null, "policy_key": null, "billed_ids": [], "status": "quarantined", "reason": "contradictory-approval", "message": "Highest as-of approval revision conflicts; clarification is required.", "expected_amount": null, "held_amount": null, "cap_held": false},
+      {"entry_type": "time", "entry_id": "C2", "project_id": "PC2", "currency": "USD", "approval_revision": 1, "approval_event_ids": ["AC2-1"], "future_approval_event_ids": [], "rate_id": "RC2", "policy_key": null, "billed_ids": [], "status": "candidate", "reason": "candidate-time", "message": "Approved time priced at the unique effective rate.", "expected_amount": "60.00", "held_amount": null, "cap_held": false}
+    ],
+    "prior_billing": [],
+    "draft_details": [
+      {"draft_id": "DC1", "line_id": "LC1", "project_id": "PC1", "currency": "USD", "entry_type": "time", "entry_id": "C1", "draft_amount": "100.00", "expected_amount": null, "delta": null, "action": "clarify-not-remove", "diagnostic_only": true, "reason": "contradictory-approval", "message": "Highest as-of approval revision conflicts; clarification is required."},
+      {"draft_id": "DC2", "line_id": "LC2", "project_id": "PC2", "currency": "USD", "entry_type": "time", "entry_id": "C2", "draft_amount": "60.00", "expected_amount": "60.00", "delta": "0.00", "action": "match", "diagnostic_only": false, "reason": "draft-match", "message": "Draft amount matches the computed entry amount."}
+    ],
+    "drafts": [
+      {"draft_id": "DC1", "project_id": "PC1", "currency": "USD", "status": "clarification", "line_count": 1, "draft_amount": "100.00", "computable_draft_amount": "0.00", "quarantined_draft_amount": "100.00", "computable_expected_amount": "0.00", "expected_amount": null, "variance": null, "comparison_complete": false},
+      {"draft_id": "DC2", "project_id": "PC2", "currency": "USD", "status": "reconciled", "line_count": 1, "draft_amount": "60.00", "computable_draft_amount": "60.00", "quarantined_draft_amount": "0.00", "computable_expected_amount": "60.00", "expected_amount": "60.00", "variance": "0.00", "comparison_complete": true}
+    ],
+    "projects": [
+      {"project_id": "PC1", "currency": "USD", "owner": "ACCOUNTANT-C1", "entry_count": 1, "eligible_new_amount": "0.00", "prior_billed_amount": "0.00", "period_cap": "1000.00", "known_consumption": "0.00", "proposed_consumption": null, "cap_overage": null, "cap_hold": false, "cap_held_amount": "0.00", "reviewable_new_amount": "0.00", "calculation_complete": false, "draft_ids": ["DC1"]},
+      {"project_id": "PC2", "currency": "USD", "owner": "ACCOUNTANT-C2", "entry_count": 1, "eligible_new_amount": "60.00", "prior_billed_amount": "0.00", "period_cap": "1000.00", "known_consumption": "60.00", "proposed_consumption": "60.00", "cap_overage": "0.00", "cap_hold": false, "cap_held_amount": "0.00", "reviewable_new_amount": "60.00", "calculation_complete": true, "draft_ids": ["DC2"]}
+    ],
+    "currency_totals": [
+      {"currency": "USD", "eligible_new_amount": "60.00", "prior_billed_amount": "0.00", "cap_held_amount": "0.00", "reviewable_new_amount": "60.00", "known_entry_hold_amount": "0.00", "uncomputed_entry_count": 1, "draft_amount": "160.00", "computable_draft_amount": "60.00", "quarantined_draft_amount": "100.00", "computable_expected_amount": "60.00", "computable_variance": "0.00", "comparison_complete": false}
+    ],
+    "closure": {"entry_count": 2, "draft_count": 2, "project_count": 2, "prior_billing_count": 0, "diagnostic_count": 1, "exception_count": 2}
+  },
+  "exceptions": [
+    {"code": "contradictory-approval", "message": "Highest as-of approval revision conflicts; clarification is required.", "owner": "ACCOUNTANT-C1", "project_id": "PC1", "entry_type": "time", "entry_id": "C1", "draft_id": null, "line_id": null, "action": "clarify-evidence", "diagnostic_only": true},
+    {"code": "contradictory-approval", "message": "Highest as-of approval revision conflicts; clarification is required.", "owner": "ACCOUNTANT-C1", "project_id": "PC1", "entry_type": "time", "entry_id": "C1", "draft_id": "DC1", "line_id": "LC1", "action": "clarify-not-remove", "diagnostic_only": true}
+  ]
+}

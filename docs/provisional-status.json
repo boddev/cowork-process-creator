@@ -1,8 +1,26 @@
 {
-  "version": "0.2.1",
+  "version": "0.3.0",
+  "documentation_updated": "2026-09-16",
   "status": "Draft",
-  "scope": "Completed provisional offline implementation; native gates are not complete",
-  "artifact": {
+  "scope": "Completed offline source implementation and enterprise scenario corpus; no current native release or completed native gates",
+  "target": "cowork-v1.28",
+  "required_manifest": "manifest.json",
+  "alternative_manifest_fallback": false,
+  "public_copy_note": "Private session/task identifiers, evidence locations, captures and incidental local artifacts are excluded. Historical synthetic artifact hashes are not current native acceptance claims.",
+  "native_access_limitation": {
+    "as_of": "2026-09-14",
+    "approved_computer_use_tools": "removed from the operator session",
+    "continuation_requires": "Approved Computer Use tools restored AND an unlocked, accessible session",
+    "desktop_unlock_alone_is_sufficient": false,
+    "native_observations_after_publishing": "none",
+    "workarounds_permitted": false,
+    "prohibited_alternatives": "Removed-tool invocation, alternate UI channels, private APIs, cookie/token access, shell or sign-in workarounds"
+  },
+  "artifact": null,
+  "artifact_blocker": "Approved distinct per-package app UUIDs and publisher name, website, privacy and terms metadata have not been supplied. No real v0.3.0 release ZIP or alternative-format fallback is created.",
+  "historical_preview_artifact": {
+    "version": "0.2.1",
+    "scope": "Preserved published compatible-source preview, not a current native Microsoft package",
     "path": "dist\\v0.2.1\\creator.zip",
     "target": "compatible-source",
     "sha256": "9251dabf6c57e44e2ab77a17982837c584082fccbfb00a3ca42cafa2af136c08",
@@ -20,13 +38,41 @@
     "N03": "Typed revisioned blueprint, evidence links, control flow, decisions and freshness checks implemented",
     "N04": "Native capability and real metadata mapping with separate availability/setup gaps implemented",
     "N05": "Standalone output source assembly, reusable patterns and bounded helper generation guidance implemented",
-    "N06": "Source subset checker, canonical manifest/connector composer, ZIP builder and metadata gates implemented",
+    "N06": "Source subset checker, native-only M365 v1.28 manifest/connector composer, ZIP builder and required supplied-metadata gates implemented; alternate package targets rejected",
     "N07": "Hash-inventoried source checkpoints, new-directory resume and conservative edit-preserving three-way merge implemented",
     "N08_offline": "Source/helper/package/correction regressions and controlled synthetic cases executed",
     "N09_offline": "Pattern catalog, three distinct workflow families, adversarial variants, public metadata example and end-user/extension documentation implemented"
   },
   "local_results": {
+    "source_version": "0.3.0",
+    "recorded_run_date": "2026-09-16",
+    "creator_command": "python -B -m unittest discover -s tests -q",
+    "creator_tests_passed": 78,
+    "scenario_import_reporting_command": "python -B -m unittest scenarios.tests.test_native scenarios.tests.test_reporting_industries -q",
+    "scenario_import_reporting_tests_passed": 20,
+    "failed": 0,
+    "python_version_actually_exercised": "3.13.14",
+    "platform_actually_exercised": "Windows",
+    "package_scope": "Temporary syntax-only metadata and local package/runtime exercises; no approved release metadata or host acceptance",
+    "model_activation_runs": 0,
+    "native_claims": "none",
+    "documentation_update_reran_source_or_corpus_tests": false
+  },
+  "scenario_corpus": {
+    "scope": "Completed offline synthetic scenarios; not native plugin generation",
+    "scenarios": 15,
+    "cases": 96,
+    "baseline_comparisons_passed": 96,
+    "synthetic_trace_videos": 15,
+    "input_only_bundles": 15,
+    "native_complete": false,
+    "details": "scenarios\\validation-summary.json"
+  },
+  "historical_v0_2_1_local_results": {
+    "scope": "Recorded for the unchanged v0.2.1 preview; not current-source or native results",
     "test_command": "python -B -m unittest discover -s tests -v",
+    "python_version_actually_exercised": "3.13.14",
+    "platform_actually_exercised": "Windows",
     "passed": 71,
     "failed": 0,
     "release_case_count": 15,
@@ -69,37 +115,80 @@
     {
       "id": "public-provenance-closure",
       "result": "The optional packaged Learn example now includes the exact original 4950-byte raw response alongside definitions/provenance; no native connection or new runtime requirement is implied."
+    },
+    {
+      "id": "native-microsoft-manifest-only",
+      "result": "All current builder/project APIs, release/N00 commands and scenario import require native M365 manifest v1.28. Supplied publishing metadata is mandatory; Claude-compatible output fallback is rejected. Local shape checks never promote an artifact to Installed."
     }
   ],
   "native_readiness": {
     "expanded_candidate_installed": "unverified",
     "expanded_candidate_invoked": "unverified",
     "independent_output_invocation": "unverified",
-    "direct_canonical_v1_28_acceptance": "unverified; approved publishing metadata missing",
+    "direct_canonical_v1_28_acceptance": "unverified; native-only source implemented, approved publishing metadata missing",
+    "scenario_plugins_generated": 0,
+    "scenario_plugins_installed": 0,
+    "scenario_independent_native_invocations": 0,
     "scheduling": "not-exercised",
     "real_cowork_learn_connection": "unverified; public metadata observation is not native availability",
-    "N00": "blocked-desktop-locked; original output publication acceptance UNKNOWN",
-    "N08": "blocked pending separately authorized native exercises",
+    "N00": "blocked-approved-tools-unavailable; original output publication acceptance UNKNOWN and no later native observation",
+    "N08": "blocked until approved Computer Use tools are restored and an unlocked accessible session supports separately authorized native exercises",
     "inherited_claims_from_v0_1_artifacts": false
   },
   "limits": [
     "No host UI/access workaround was attempted by the coding session.",
+    "As of 2026-09-14 desktop unlock alone cannot resume native work; approved Computer Use tools must also be restored.",
     "Current text/Python/JSON source subset is not full arbitrary Microsoft schema support or a code sandbox.",
-    "Source-format export does not silently project remote connector/auth/descriptor declarations.",
+    "Native output preserves declared connector/auth/tool-descriptor bindings. Editable source checkpoints are not installable plugin packages or an alternative-host fallback.",
     "Native video evidence was a static silent synthetic clip via an already-present native decoder and three visually inspected frames.",
     "Native control, permissions, legal approval and actual media/semantic understanding are not proved by authoring JSON records.",
-    "Original v0.1.0/v0.1.1/native artifacts remain unchanged; earlier v0.2.0 and intermediate v0.2.1 artifacts are preserved but are not the final handoff candidate."
+    "Historical v0.1.0/v0.1.1/native proof and v0.2.x artifacts remain unchanged; none is the current v0.3.0 Microsoft-format package."
   ],
   "superseded_candidate": {
     "path": "dist\\v0.2.0\\creator.zip",
     "sha256": "13061a6bf42442fa36dbd984a39c7dee91a1e77d9ba131120f7c0bd19cd1f0b6",
     "not_final_handoff": true
   },
-  "handoff": {
+  "historical_github_source_publication": {
+    "observation_date": "2026-09-14",
+    "authorization_date": "2026-09-14",
+    "authorization_provenance": "Explicit user approval for public source sharing",
+    "repository": "https://github.com/boddev/cowork-process-creator",
+    "visibility_observed": "public",
+    "default_branch": "main",
+    "commit": "1915f046b59c30c576cdaecb50ecfb6e092d23a2",
+    "release": "https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1",
+    "release_state_observed": "published prerelease, not a draft",
+    "release_assets": ["creator.zip", "creator.report.json"],
+    "artifact_sha256": "9251dabf6c57e44e2ab77a17982837c584082fccbfb00a3ca42cafa2af136c08",
+    "native_acceptance_implication": "none",
+    "private_evidence_published": false,
+    "observation_scope": "Historical observation during the original public-sharing task, not a statement of current remote main or current release compatibility. No new GitHub or native action taken for this documentation-only update."
+  },
+  "publication_handoff": {
+    "as_of": "2026-09-16",
+    "authorization_scope": "Reviewed intended changes may be integrated with current published main while preserving existing business behavior",
+    "execution_owner": "Separate integration workstream; merge and publication outcomes are not observed by this documentation-only task",
+    "history_boundary": "Export reviewed current-tree changes only; do not publish unsanitized local ancestry or include private evidence and incidental local files",
+    "native_authorization": "Unchanged; source-integration approval does not grant native access, publisher/legal approval or Cowork publication"
+  },
+  "historical_preview_handoff": {
     "inventory": "dist\\v0.2.1\\inventory.json",
     "release_report": "dist\\v0.2.1\\release.json",
     "offline_cases": "dist\\v0.2.1\\offline-cases.json",
     "disclosed_intent_status": "dist\\v0.2.1\\evals\\intent-case-status.json",
+    "operator_continuation": "docs\\operator-continuation.md",
+    "user_guide": "docs\\user-guide.md",
+    "extension_guide": "docs\\extensions.md"
+  },
+  "handoff": {
+    "packaging_requirements": "docs\\MICROSOFT_PACKAGING.md",
+    "manifest_status": "docs\\native-manifest-status.json",
+    "scenario_summary": "scenarios\\validation-summary.json",
+    "scenario_catalog": "scenarios\\catalog.json",
+    "complete_scenario_procedures": "scenarios\\ALL_SCENARIOS_HOW_TO.md",
+    "native_pending_matrix": "output\\status.json",
+    "disclosed_intent_status": "evals\\intent-case-status.json",
     "operator_continuation": "docs\\operator-continuation.md",
     "user_guide": "docs\\user-guide.md",
     "extension_guide": "docs\\extensions.md"

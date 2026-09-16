@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2027-01-05",
+    "packet_state": "review-required",
+    "review_queue": [
+      {
+        "rank": 1, "lot_id": "MFG-H12", "item_id": "MFG-UNKNOWN", "supplier_id": "MFG-SUP-ZETA", "site": "MFG-EAST", "quality_order_id": "MFG-QH12", "receipt_date": "2027-01-05",
+        "received_qty": 4, "physical_held_qty": 4, "hold_state": "held", "hold_snapshot_date": "2027-01-05", "age_days": 0, "overdue": false,
+        "review_state": "data-review", "reviewer_role": "QA intake reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["missing-certificate", "unknown-item"], "certificate_ids": [], "open_nc_ids": [], "test_checks": []
+      },
+      {
+        "rank": 2, "lot_id": "MFG-H11", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-EPSILON", "site": "MFG-EAST", "quality_order_id": "MFG-QH11", "receipt_date": "2027-01-04",
+        "received_qty": 6, "physical_held_qty": 6, "hold_state": "held", "hold_snapshot_date": "2027-01-05", "age_days": 1, "overdue": false,
+        "review_state": "nonconformance-review", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["failed-test", "pending-retest"], "certificate_ids": ["MFG-CB11"], "open_nc_ids": [],
+        "test_checks": [{
+          "test_id": "MFG-DIAM", "requirement_id": "MFG-SPEC-2027", "minimum": "4.90", "maximum": "5.10", "required_specimens": 1, "observed_specimens": 1,
+          "state": "failed", "failed_result_ids": ["MFG-RB11"],
+          "observations": [
+            {"result_id": "MFG-RB11", "specimen_id": "MFG-SB11", "value": "4.85", "evidence_state": "active"},
+            {"result_id": "MFG-RB12", "specimen_id": "MFG-SB11", "value": "4.95", "evidence_state": "pending-retest"}
+          ]
+        }]
+      }
+    ],
+    "totals": {"lot_count": 2, "received_qty": 10, "known_held_qty": 10, "unknown_hold_lot_ids": [], "review_quantities": {"data-review": 4, "nonconformance-review": 6, "evidence-gap": 0, "evidence-complete": 0}}
+  },
+  "exceptions": [
+    {"code": "failed-test", "message": "MFG-DIAM has out-of-limit active results: MFG-RB11.", "subject": "MFG-H11", "owner_role": "QA reviewer"},
+    {"code": "missing-certificate", "message": "No current matching certificate is available.", "subject": "MFG-H12", "owner_role": "QA intake reviewer"},
+    {"code": "pending-retest", "message": "MFG-DIAM has unapproved retest evidence: MFG-RB12.", "subject": "MFG-H11", "owner_role": "QA reviewer"},
+    {"code": "unknown-item", "message": "Item MFG-UNKNOWN is absent from the item export.", "subject": "MFG-H12", "owner_role": "QA intake reviewer"}
+  ]
+}

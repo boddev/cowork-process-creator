@@ -1,0 +1,13 @@
+{
+  "exceptions": [
+    {
+      "code": "duplicate-key",
+      "entity_id": "SYN-REQUEST-D",
+      "message": "requests repeats primary key SYN-REQUEST-D.",
+      "scope": "input"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}
