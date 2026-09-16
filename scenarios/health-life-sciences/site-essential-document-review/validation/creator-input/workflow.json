@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "hls-01-record-control",
+      "description": "Preserve identifiable records, version and location references, dated evidence, and exported availability/readability metadata; do not equate a filename with genuine evidence.",
+      "provenance": {
+        "kind": "source-backed",
+        "source_ids": ["hls-src-ich-e6r3"],
+        "note": "Appendix C.2-C.3 supports record-control concepts. This administrative export cannot authenticate signatures, readability, or a real repository."
+      }
+    },
+    {
+      "id": "hls-01-checklist",
+      "description": "Expand each in-scope site's supplied kind against the supplied requirement table through its trial context; never infer a universal essential-record checklist.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "The four demo categories, site kinds, protocol matching, signatures, and all applicability criteria are invented company checklist policy, not mandates attributed to ICH."
+      }
+    },
+    {
+      "id": "hls-01-as-of-version",
+      "description": "Require effective_on and recorded_on <= as_of_date, then choose the unique highest version without fallback. Quarantine eligible impossible chronology, conflicting IDs, top-version ties, ambiguous context, and conflicting selected artifact metadata.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Future and superseded evidence remains explicit. A conflicted immutable document ID with any eligible candidate is unsafe; wholly future records cannot replace a current document."
+      }
+    },
+    {
+      "id": "hls-01-expiry",
+      "description": "Take the earlier of explicit expiry and issued_on + refresh_days. Null refresh does not invent an annual expiry; absent required expiry is a distinct evidence gap.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "All refresh periods and expiry requirements are configurable mock administrative review rules, not universal regulatory expiration periods."
+      }
+    },
+    {
+      "id": "hls-01-date-boundaries",
+      "description": "Expiry is inclusive: dates before as-of are expired; zero through warning_days remaining is expiring-soon. Calendar-day addition determines draft follow-up.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Warning and draft-follow-up windows are sample conveniences. No wall clock, timezone conversion, or business-day adjustment is used."
+      }
+    },
+    {
+      "id": "hls-01-review-routing",
+      "description": "Keep all evaluable reasons in documented priority, join as-of open tasks by site/requirement/reason, and draft only absent requests with an unambiguous owner. Reconcile counts and retain qualified human disposition.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "No task is sent or closed. Quarantined evidence has only conflict, not invented downstream facts; warnings also require administrative review."
+      }
+    },
+    {
+      "id": "hls-01-input-bounds",
+      "description": "Validate exact schemas, SYN- identifiers, strict dates, integer bounds, and row/grid ceilings before assessment. Malformed parseable records reject only the input packet.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Hard maxima are 1000 rows per table, 5000 total rows, and 10000 site/requirement pairs; configured limits may be smaller."
+      }
+    },
+    {
+      "id": "hls-01-duplicates",
+      "description": "Collapse identical copies sharing a record ID, retain multiplicity and conflicting variants, preserve unmatched/out-of-scope references, and never choose a first-wins conflicting record.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Distinct document IDs remain distinct evidence even at the same version. Duplicate exports and duplicate existing task keys are separate issues."
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "load-review-export",
+      "kind": "input",
+      "title": "Load synthetic review exports",
+      "rule_ids": ["hls-01-record-control", "hls-01-input-bounds"],
+      "procedure": "Read the supplied JSON object only. Capture actual as-of/policy fields and raw counts for the six export tables."
+    },
+    {
+      "id": "validate-record-evidence",
+      "kind": "validation",
+      "title": "Validate and preserve export anomalies",
+      "rule_ids": ["hls-01-input-bounds", "hls-01-duplicates"],
+      "procedure": "Validate exact types and configured ceilings. Collapse identical copies with provenance, detect conflicting IDs and chronology, and stop with a rejected input envelope on structural errors."
+    },
+    {
+      "id": "expand-site-requirements",
+      "kind": "join",
+      "title": "Expand contextual requirement grid",
+      "rule_ids": ["hls-01-checklist", "hls-01-input-bounds"],
+      "procedure": "Join in-scope site kinds to requirement kinds and site trial IDs to trial context. Bound the union of site/requirement pairs before allocation, including missing-document cells."
+    },
+    {
+      "id": "select-as-of-documents",
+      "kind": "join",
+      "title": "Resolve dates, versions, and artifact references",
+      "rule_ids": ["hls-01-as-of-version", "hls-01-record-control", "hls-01-duplicates"],
+      "procedure": "Join by site and document type, filter both dates inclusively, preserve excluded evidence, detect quarantine conditions, select the unique greatest version, and join its artifact metadata without fallback."
+    },
+    {
+      "id": "assess-checklist-gaps",
+      "kind": "decision",
+      "title": "Assess configured administrative evidence",
+      "rule_ids": ["hls-01-checklist", "hls-01-expiry", "hls-01-date-boundaries"],
+      "procedure": "Evaluate exported availability/readability, signature metadata, protocol match, and explicit/derived expiry; retain ordered reasons and primary reason with no real-record authentication claim."
+    },
+    {
+      "id": "route-evidence-exceptions",
+      "kind": "exception",
+      "title": "Link existing tasks or prepare draft requests",
+      "rule_ids": ["hls-01-review-routing", "hls-01-duplicates"],
+      "procedure": "Join every current reason to as-of task metadata. Preserve all matching IDs, expose duplicate task keys, block ambiguous routing, and create no live work."
+    },
+    {
+      "id": "reconcile-review-counts",
+      "kind": "decision",
+      "title": "Reconcile grid and queue counts",
+      "rule_ids": ["hls-01-checklist", "hls-01-review-routing"],
+      "procedure": "For each in-scope site verify required = no-exception + warning + review, with quarantined a subset of review. Verify unique site/requirement/reason queue keys."
+    },
+    {
+      "id": "write-review-packet",
+      "kind": "output",
+      "title": "Write the review-ready administrative packet",
+      "rule_ids": ["hls-01-record-control", "hls-01-review-routing"],
+      "procedure": "Return the complete shared result envelope, sorted matrix, site summaries, evidence register, and unsent draft queue. Preserve the mandatory human-review boundary and explicit input-packet meaning of rejected."
+    }
+  ]
+}

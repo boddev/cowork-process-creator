@@ -1,0 +1,8 @@
+{
+  "schema_version":1,"batch_id":"SYN-AP-BAD-BOOL","as_of":"2026-09-14T12:00:00Z","business_utc_offset_minutes":0,
+  "controls":{"control_version":"SYN-CTRL-01","approval_state":"approved"},
+  "invoices":[{"invoice_id":"SYN-BAD-INV","legal_entity_id":"SYN-ENT-01","vendor_id":"SYN-VEN-01","currency":"USD","vendor_invoice_number":"SYN-BAD-001","invoice_at":"2026-09-10T10:00:00Z","header_net_minor":1000,"lines":[{"line_id":"SYN-LINE-01","po_id":"SYN-BAD-PO","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":true,"unit_price_minor":1000,"line_net_minor":1000}]}],
+  "po_lines":[{"legal_entity_id":"SYN-ENT-01","po_id":"SYN-BAD-PO","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-01","currency":"USD","unit":"EA","ordered_milliunits":1000,"unit_price_minor":1000,"approval_state":"approved","approved_at":"2026-09-01T09:00:00Z"}],
+  "receipt_lines":[{"receipt_line_id":"SYN-BAD-R","legal_entity_id":"SYN-ENT-01","po_id":"SYN-BAD-PO","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-01","currency":"USD","unit":"EA","quantity_milliunits":1000,"received_at":"2026-09-08T08:00:00Z","status":"posted","posted_at":"2026-09-08T09:00:00Z"}],
+  "historical_invoices":[],"prior_allocations":[]
+}

@@ -1,0 +1,623 @@
+{
+  "exceptions": [
+    {
+      "code": "po-capacity-conflict",
+      "field": null,
+      "line_id": null,
+      "message": "All otherwise eligible invoices competing for an oversubscribed PO line are held.",
+      "owner_role": "Procurement owner",
+      "record_id": "SYN-HA-A",
+      "source": "invoices"
+    },
+    {
+      "code": "receipt-capacity-conflict",
+      "field": null,
+      "line_id": null,
+      "message": "All otherwise eligible invoices competing for an oversubscribed receipt are held.",
+      "owner_role": "Receiving owner",
+      "record_id": "SYN-HA-A",
+      "source": "invoices"
+    },
+    {
+      "code": "po-capacity-conflict",
+      "field": null,
+      "line_id": null,
+      "message": "All otherwise eligible invoices competing for an oversubscribed PO line are held.",
+      "owner_role": "Procurement owner",
+      "record_id": "SYN-HA-B",
+      "source": "invoices"
+    },
+    {
+      "code": "receipt-capacity-conflict",
+      "field": null,
+      "line_id": null,
+      "message": "All otherwise eligible invoices competing for an oversubscribed receipt are held.",
+      "owner_role": "Receiving owner",
+      "record_id": "SYN-HA-B",
+      "source": "invoices"
+    },
+    {
+      "code": "line-amount-out-of-tolerance",
+      "field": null,
+      "line_id": "SYN-LINE-01",
+      "message": "The line-net difference exceeds the inclusive minor-unit cap.",
+      "owner_role": "Procurement owner",
+      "record_id": "SYN-HA-D",
+      "source": "invoice-lines"
+    }
+  ],
+  "outputs": {
+    "capacity_conflicts": [
+      {
+        "available_milliunits": 1000,
+        "competing_invoice_ids": [
+          "SYN-HA-A",
+          "SYN-HA-B"
+        ],
+        "currency": "USD",
+        "demand_milliunits": 2000,
+        "legal_entity_id": "SYN-ENT-01",
+        "po_id": "SYN-HA-PO-X",
+        "po_line_id": "SYN-LINE-01",
+        "receipt_line_id": null,
+        "resource_type": "po-line",
+        "unit": "EA",
+        "vendor_id": "SYN-VEN-01"
+      },
+      {
+        "available_milliunits": 1000,
+        "competing_invoice_ids": [
+          "SYN-HA-A",
+          "SYN-HA-B"
+        ],
+        "currency": "USD",
+        "demand_milliunits": 2000,
+        "legal_entity_id": "SYN-ENT-01",
+        "po_id": "SYN-HA-PO-X",
+        "po_line_id": "SYN-LINE-01",
+        "receipt_line_id": "SYN-HA-R-X",
+        "resource_type": "receipt",
+        "unit": "EA",
+        "vendor_id": "SYN-VEN-01"
+      }
+    ],
+    "context": {
+      "as_of": "2026-08-15T18:00:00Z",
+      "batch_id": "SYN-AP-HA",
+      "business_date": "2026-08-15",
+      "business_utc_offset_minutes": 0,
+      "control_version": "SYN-CTRL-HA",
+      "line_amount_cap_minor": 500,
+      "max_rows_per_source": 5000,
+      "source_counts": {
+        "historical_invoices": 0,
+        "invoice_lines": 4,
+        "invoices": 4,
+        "po_lines": 3,
+        "prior_allocations": 0,
+        "receipt_lines": 3,
+        "selected_receipts": 2
+      },
+      "unit_tolerance_bps": 200
+    },
+    "excluded_receipts": [],
+    "historical_invoices": [],
+    "invoice_reviews": [
+      {
+        "canonical_vendor_invoice_number": "SYN-HA-001",
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "currency": "USD",
+        "declared_line_net_minor": 20000,
+        "duplicate_historical_invoice_ids": [],
+        "duplicate_invoice_ids": [],
+        "header_net_minor": 20000,
+        "invoice_at": "2026-08-15T10:00:00Z",
+        "invoice_id": "SYN-HA-A",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_ids": [
+          "SYN-LINE-01"
+        ],
+        "proposed_net_minor": 0,
+        "reason_codes": [
+          "po-capacity-conflict",
+          "receipt-capacity-conflict"
+        ],
+        "status": "held",
+        "vendor_id": "SYN-VEN-01",
+        "vendor_invoice_number": "SYN-HA-001"
+      },
+      {
+        "canonical_vendor_invoice_number": "SYN-HA-002",
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "currency": "USD",
+        "declared_line_net_minor": 20000,
+        "duplicate_historical_invoice_ids": [],
+        "duplicate_invoice_ids": [],
+        "header_net_minor": 20000,
+        "invoice_at": "2026-08-15T10:00:00Z",
+        "invoice_id": "SYN-HA-B",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_ids": [
+          "SYN-LINE-01"
+        ],
+        "proposed_net_minor": 0,
+        "reason_codes": [
+          "po-capacity-conflict",
+          "receipt-capacity-conflict"
+        ],
+        "status": "held",
+        "vendor_id": "SYN-VEN-01",
+        "vendor_invoice_number": "SYN-HA-002"
+      },
+      {
+        "canonical_vendor_invoice_number": "SYN-HA-003",
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "currency": "USD",
+        "declared_line_net_minor": 1020,
+        "duplicate_historical_invoice_ids": [],
+        "duplicate_invoice_ids": [],
+        "header_net_minor": 1020,
+        "invoice_at": "2026-08-15T10:00:00Z",
+        "invoice_id": "SYN-HA-C",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_ids": [
+          "SYN-LINE-01"
+        ],
+        "proposed_net_minor": 1020,
+        "reason_codes": [],
+        "status": "ready-for-review",
+        "vendor_id": "SYN-VEN-01",
+        "vendor_invoice_number": "SYN-HA-003"
+      },
+      {
+        "canonical_vendor_invoice_number": "SYN-HA-004",
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "currency": "USD",
+        "declared_line_net_minor": 101000,
+        "duplicate_historical_invoice_ids": [],
+        "duplicate_invoice_ids": [],
+        "header_net_minor": 101000,
+        "invoice_at": "2026-08-15T10:00:00Z",
+        "invoice_id": "SYN-HA-D",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_ids": [
+          "SYN-LINE-01"
+        ],
+        "proposed_net_minor": 0,
+        "reason_codes": [
+          "line-amount-out-of-tolerance"
+        ],
+        "status": "held",
+        "vendor_id": "SYN-VEN-01",
+        "vendor_invoice_number": "SYN-HA-004"
+      }
+    ],
+    "line_comparisons": [
+      {
+        "calculated_line_net_minor": 20000,
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "conflict_reason_codes": [
+          "po-capacity-conflict",
+          "receipt-capacity-conflict"
+        ],
+        "currency": "USD",
+        "individual_reason_codes": [],
+        "invoice_id": "SYN-HA-A",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_id": "SYN-LINE-01",
+        "line_net_minor": 20000,
+        "po": {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_milliunits": 1000,
+          "currency": "USD",
+          "join_matches": true,
+          "ordered_milliunits": 1000,
+          "shortage_milliunits": 0,
+          "unit": "EA",
+          "unit_price_minor": 20000,
+          "vendor_id": "SYN-VEN-01"
+        },
+        "po_id": "SYN-HA-PO-X",
+        "po_line_id": "SYN-LINE-01",
+        "price": {
+          "line_cap_pass": true,
+          "line_difference_minor": 0,
+          "po_line_net_minor": 20000,
+          "unit_difference_minor": 0,
+          "unit_price_pass": true,
+          "unit_test_left": 0,
+          "unit_test_right": 4000000
+        },
+        "proposed_quantity_milliunits": 0,
+        "quantity_milliunits": 1000,
+        "receipts": {
+          "available_milliunits": 1000,
+          "eligible_ids": [
+            "SYN-HA-R-X"
+          ],
+          "selection_mode": "explicit",
+          "selections": [
+            {
+              "available_milliunits": 1000,
+              "eligible": true,
+              "quantity_milliunits": 1000,
+              "receipt_line_id": "SYN-HA-R-X"
+            }
+          ],
+          "shortage_milliunits": 0,
+          "total_selected_milliunits": 1000
+        },
+        "status": "held",
+        "unit": "EA",
+        "unit_price_minor": 20000,
+        "vendor_id": "SYN-VEN-01"
+      },
+      {
+        "calculated_line_net_minor": 20000,
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "conflict_reason_codes": [
+          "po-capacity-conflict",
+          "receipt-capacity-conflict"
+        ],
+        "currency": "USD",
+        "individual_reason_codes": [],
+        "invoice_id": "SYN-HA-B",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_id": "SYN-LINE-01",
+        "line_net_minor": 20000,
+        "po": {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_milliunits": 1000,
+          "currency": "USD",
+          "join_matches": true,
+          "ordered_milliunits": 1000,
+          "shortage_milliunits": 0,
+          "unit": "EA",
+          "unit_price_minor": 20000,
+          "vendor_id": "SYN-VEN-01"
+        },
+        "po_id": "SYN-HA-PO-X",
+        "po_line_id": "SYN-LINE-01",
+        "price": {
+          "line_cap_pass": true,
+          "line_difference_minor": 0,
+          "po_line_net_minor": 20000,
+          "unit_difference_minor": 0,
+          "unit_price_pass": true,
+          "unit_test_left": 0,
+          "unit_test_right": 4000000
+        },
+        "proposed_quantity_milliunits": 0,
+        "quantity_milliunits": 1000,
+        "receipts": {
+          "available_milliunits": 1000,
+          "eligible_ids": [
+            "SYN-HA-R-X"
+          ],
+          "selection_mode": "explicit",
+          "selections": [
+            {
+              "available_milliunits": 1000,
+              "eligible": true,
+              "quantity_milliunits": 1000,
+              "receipt_line_id": "SYN-HA-R-X"
+            }
+          ],
+          "shortage_milliunits": 0,
+          "total_selected_milliunits": 1000
+        },
+        "status": "held",
+        "unit": "EA",
+        "unit_price_minor": 20000,
+        "vendor_id": "SYN-VEN-01"
+      },
+      {
+        "calculated_line_net_minor": 1020,
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "conflict_reason_codes": [],
+        "currency": "USD",
+        "individual_reason_codes": [],
+        "invoice_id": "SYN-HA-C",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_id": "SYN-LINE-01",
+        "line_net_minor": 1020,
+        "po": {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_milliunits": 1250,
+          "currency": "USD",
+          "join_matches": true,
+          "ordered_milliunits": 1250,
+          "shortage_milliunits": 0,
+          "unit": "EA",
+          "unit_price_minor": 800,
+          "vendor_id": "SYN-VEN-01"
+        },
+        "po_id": "SYN-HA-PO-C",
+        "po_line_id": "SYN-LINE-01",
+        "price": {
+          "line_cap_pass": true,
+          "line_difference_minor": 20,
+          "po_line_net_minor": 1000,
+          "unit_difference_minor": 16,
+          "unit_price_pass": true,
+          "unit_test_left": 160000,
+          "unit_test_right": 160000
+        },
+        "proposed_quantity_milliunits": 1250,
+        "quantity_milliunits": 1250,
+        "receipts": {
+          "available_milliunits": 1250,
+          "eligible_ids": [
+            "SYN-HA-R-C"
+          ],
+          "selection_mode": "sole-receipt",
+          "selections": [
+            {
+              "available_milliunits": 1250,
+              "eligible": true,
+              "quantity_milliunits": 1250,
+              "receipt_line_id": "SYN-HA-R-C"
+            }
+          ],
+          "shortage_milliunits": 0,
+          "total_selected_milliunits": 1250
+        },
+        "status": "proposed",
+        "unit": "EA",
+        "unit_price_minor": 816,
+        "vendor_id": "SYN-VEN-01"
+      },
+      {
+        "calculated_line_net_minor": 101000,
+        "components": {
+          "charges_minor": 0,
+          "discounts_minor": 0,
+          "freight_minor": 0,
+          "tax_minor": 0
+        },
+        "conflict_reason_codes": [],
+        "currency": "USD",
+        "individual_reason_codes": [
+          "line-amount-out-of-tolerance"
+        ],
+        "invoice_id": "SYN-HA-D",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_id": "SYN-LINE-01",
+        "line_net_minor": 101000,
+        "po": {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_milliunits": 100000,
+          "currency": "USD",
+          "join_matches": true,
+          "ordered_milliunits": 100000,
+          "shortage_milliunits": 0,
+          "unit": "EA",
+          "unit_price_minor": 1000,
+          "vendor_id": "SYN-VEN-01"
+        },
+        "po_id": "SYN-HA-PO-D",
+        "po_line_id": "SYN-LINE-01",
+        "price": {
+          "line_cap_pass": false,
+          "line_difference_minor": 1000,
+          "po_line_net_minor": 100000,
+          "unit_difference_minor": 10,
+          "unit_price_pass": true,
+          "unit_test_left": 100000,
+          "unit_test_right": 200000
+        },
+        "proposed_quantity_milliunits": 0,
+        "quantity_milliunits": 100000,
+        "receipts": {
+          "available_milliunits": 100000,
+          "eligible_ids": [
+            "SYN-HA-R-D"
+          ],
+          "selection_mode": "sole-receipt",
+          "selections": [
+            {
+              "available_milliunits": 100000,
+              "eligible": true,
+              "quantity_milliunits": 100000,
+              "receipt_line_id": "SYN-HA-R-D"
+            }
+          ],
+          "shortage_milliunits": 0,
+          "total_selected_milliunits": 100000
+        },
+        "status": "held",
+        "unit": "EA",
+        "unit_price_minor": 1010,
+        "vendor_id": "SYN-VEN-01"
+      }
+    ],
+    "prior_allocations": [],
+    "proposed_allocations": [
+      {
+        "currency": "USD",
+        "invoice_id": "SYN-HA-C",
+        "legal_entity_id": "SYN-ENT-01",
+        "line_id": "SYN-LINE-01",
+        "po_id": "SYN-HA-PO-C",
+        "po_line_id": "SYN-LINE-01",
+        "quantity_milliunits": 1250,
+        "receipt_line_id": "SYN-HA-R-C",
+        "unit": "EA",
+        "vendor_id": "SYN-VEN-01"
+      }
+    ],
+    "remaining_capacity": {
+      "po_lines": [
+        {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_for_proposals": true,
+          "before_proposals_milliunits": 1250,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "ordered_milliunits": 1250,
+          "po_id": "SYN-HA-PO-C",
+          "po_line_id": "SYN-LINE-01",
+          "proposed_milliunits": 1250,
+          "remaining_milliunits": 0,
+          "unit": "EA",
+          "unit_price_minor": 800,
+          "vendor_id": "SYN-VEN-01"
+        },
+        {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_for_proposals": true,
+          "before_proposals_milliunits": 100000,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "ordered_milliunits": 100000,
+          "po_id": "SYN-HA-PO-D",
+          "po_line_id": "SYN-LINE-01",
+          "proposed_milliunits": 0,
+          "remaining_milliunits": 100000,
+          "unit": "EA",
+          "unit_price_minor": 1000,
+          "vendor_id": "SYN-VEN-01"
+        },
+        {
+          "approval_state": "approved",
+          "approved_at": "2026-08-01T09:00:00Z",
+          "available_for_proposals": true,
+          "before_proposals_milliunits": 1000,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "ordered_milliunits": 1000,
+          "po_id": "SYN-HA-PO-X",
+          "po_line_id": "SYN-LINE-01",
+          "proposed_milliunits": 0,
+          "remaining_milliunits": 1000,
+          "unit": "EA",
+          "unit_price_minor": 20000,
+          "vendor_id": "SYN-VEN-01"
+        }
+      ],
+      "receipts": [
+        {
+          "available_at_as_of": true,
+          "before_proposals_milliunits": 1250,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "po_id": "SYN-HA-PO-C",
+          "po_line_id": "SYN-LINE-01",
+          "posted_at": "2026-08-10T09:00:00Z",
+          "posted_business_date": "2026-08-10",
+          "proposed_milliunits": 1250,
+          "quantity_milliunits": 1250,
+          "receipt_line_id": "SYN-HA-R-C",
+          "received_at": "2026-08-10T08:00:00Z",
+          "remaining_milliunits": 0,
+          "status": "posted",
+          "unit": "EA",
+          "vendor_id": "SYN-VEN-01"
+        },
+        {
+          "available_at_as_of": true,
+          "before_proposals_milliunits": 100000,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "po_id": "SYN-HA-PO-D",
+          "po_line_id": "SYN-LINE-01",
+          "posted_at": "2026-08-10T09:00:00Z",
+          "posted_business_date": "2026-08-10",
+          "proposed_milliunits": 0,
+          "quantity_milliunits": 100000,
+          "receipt_line_id": "SYN-HA-R-D",
+          "received_at": "2026-08-10T08:00:00Z",
+          "remaining_milliunits": 100000,
+          "status": "posted",
+          "unit": "EA",
+          "vendor_id": "SYN-VEN-01"
+        },
+        {
+          "available_at_as_of": true,
+          "before_proposals_milliunits": 1000,
+          "currency": "USD",
+          "historical_used_milliunits": 0,
+          "legal_entity_id": "SYN-ENT-01",
+          "po_id": "SYN-HA-PO-X",
+          "po_line_id": "SYN-LINE-01",
+          "posted_at": "2026-08-10T09:00:00Z",
+          "posted_business_date": "2026-08-10",
+          "proposed_milliunits": 0,
+          "quantity_milliunits": 1000,
+          "receipt_line_id": "SYN-HA-R-X",
+          "received_at": "2026-08-10T08:00:00Z",
+          "remaining_milliunits": 1000,
+          "status": "posted",
+          "unit": "EA",
+          "vendor_id": "SYN-VEN-01"
+        }
+      ]
+    },
+    "review": {
+      "human_review": "pending",
+      "live_action": "none",
+      "owner_role": "AP manager"
+    },
+    "summary": [
+      {
+        "currency": "USD",
+        "held_invoice_count": 3,
+        "held_net_minor": 141000,
+        "intake_net_minor": 142020,
+        "invoice_count": 4,
+        "legal_entity_id": "SYN-ENT-01",
+        "ready_invoice_count": 1,
+        "ready_net_minor": 1020,
+        "vendor_id": "SYN-VEN-01"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

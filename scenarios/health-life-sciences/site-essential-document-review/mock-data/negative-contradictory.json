@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-09-14",
+  "policy": {"policy_id": "SYN-POLICY-C", "warning_days": 0, "draft_review_days": 2, "max_rows_per_table": 10, "max_total_rows": 20, "max_derived_pairs": 3},
+  "trials": [
+    {"trial_id": "SYN-TC", "required_protocol_version": 2}
+  ],
+  "sites": [
+    {"site_id": "SYN-SC", "trial_id": "SYN-TC", "site_kind": "research", "owner_role_id": "SYN-ROLEC", "in_scope": true}
+  ],
+  "requirements": [
+    {"requirement_id": "SYN-RC1", "site_kind": "research", "document_type": "protocol", "match_protocol_version": true, "signature_required": true, "expiry_required": false, "refresh_days": null},
+    {"requirement_id": "SYN-RC2", "site_kind": "research", "document_type": "training", "match_protocol_version": false, "signature_required": false, "expiry_required": true, "refresh_days": null},
+    {"requirement_id": "SYN-RC3", "site_kind": "research", "document_type": "qualification", "match_protocol_version": false, "signature_required": false, "expiry_required": false, "refresh_days": null}
+  ],
+  "documents": [
+    {"document_id": "SYN-DC1", "site_id": "SYN-SC", "document_type": "protocol", "version_seq": 2, "protocol_version": 2, "issued_on": "2026-09-01", "effective_on": "2026-09-01", "recorded_on": "2026-09-02", "expires_on": null, "artifact_id": "SYN-AC1", "signature_recorded": true},
+    {"document_id": "SYN-DC1", "site_id": "SYN-SC", "document_type": "protocol", "version_seq": 2, "protocol_version": 2, "issued_on": "2026-09-01", "effective_on": "2026-09-01", "recorded_on": "2026-09-02", "expires_on": null, "artifact_id": "SYN-AC1", "signature_recorded": false},
+    {"document_id": "SYN-DC2", "site_id": "SYN-SC", "document_type": "training", "version_seq": 1, "protocol_version": null, "issued_on": "2026-09-12", "effective_on": "2026-09-10", "recorded_on": "2026-09-13", "expires_on": "2026-09-11", "artifact_id": "SYN-AC2", "signature_recorded": false},
+    {"document_id": "SYN-DC3", "site_id": "SYN-SC", "document_type": "qualification", "version_seq": 1, "protocol_version": null, "issued_on": "2026-09-01", "effective_on": "2026-09-01", "recorded_on": "2026-09-01", "expires_on": null, "artifact_id": "SYN-AC3", "signature_recorded": false}
+  ],
+  "artifacts": [
+    {"artifact_id": "SYN-AC1", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AC1"},
+    {"artifact_id": "SYN-AC2", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AC2"},
+    {"artifact_id": "SYN-AC3", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AC3"}
+  ],
+  "open_review_tasks": [
+    {"task_id": "SYN-KC1", "site_id": "SYN-SC", "requirement_id": "SYN-RC1", "reason_code": "conflict", "opened_on": "2026-09-13"},
+    {"task_id": "SYN-KC2", "site_id": "SYN-SC", "requirement_id": "SYN-RC1", "reason_code": "conflict", "opened_on": "2026-09-14"}
+  ]
+}

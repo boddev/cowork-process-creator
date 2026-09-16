@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "bom-validity",
+      "description": "BOM versions have approval, activation, and date/site/quantity validity; these are separate concepts.",
+      "provenance": {"kind": "source-backed", "source_ids": ["b-bom"], "note": "Concept only; the exact selection algorithm is the version-selection sample policy."}
+    },
+    {
+      "id": "phantom-structure",
+      "description": "Expand Phantom groupings into material components; Item lines terminate the material path.",
+      "provenance": {"kind": "source-backed", "source_ids": ["b-bom", "b-phantom"], "note": "No route merging, pegged supply, vendor operations, formulas, or production execution."}
+    },
+    {
+      "id": "blocked-inventory",
+      "description": "Blocked inventory is not available; normalized physical sources must not be duplicated by overlapping hold records.",
+      "provenance": {"kind": "source-backed", "source_ids": ["q-blocking"], "note": "Exact status and reservation handling are documented sample policy, not an ERP transaction implementation."}
+    },
+    {
+      "id": "input-contract",
+      "description": "Require the exact tables and fields, strict dates and types, finite canonical decimals, EA units, 200 rows per table, bounded quantities, the shared 8 MiB input/result file limit, and consistent IDs; malformed or contradictory input rejects without a plan.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "All limits and rejection codes are defined in HOW_TO.md; booleans are not quantities and absent data is not zero."}
+    },
+    {
+      "id": "duplicate-evidence",
+      "description": "Collapse identical same-primary-ID rows once with a reported exception; conflicting same-ID records reject, never last-row-wins.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "Rows with different IDs remain distinct, including equal-valued BOM paths."}
+    },
+    {
+      "id": "order-scope",
+      "description": "Use the explicit inclusive as_of through horizon_end window; report out-of-scope orders and allocate in start_date, ascending priority, order_id order.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "No wall clock, calendar engine, scheduling optimization, or overdue demand inference."}
+    },
+    {
+      "id": "version-selection",
+      "description": "Select exactly one approved active applicable default, or the explicitly requested approved applicable version even if inactive. Apply the order's start date/site and exact parent demand quantity at every Phantom level. Ambiguous defaults reject; invalid or missing selection leaves the order unresolved.",
+      "provenance": {"kind": "sample-policy", "source_ids": ["b-bom"], "note": "All validity boundaries are inclusive. Explicit root selection does not authorize an invalid version or choose a newest version; Phantom levels use defaults."}
+    },
+    {
+      "id": "graph-safety",
+      "description": "Support Item and Phantom only; reject ancestor cycles, more than eight line levels, more than 5000 expanded line-path occurrences per input, and any nonzero Phantom scrap. Count Phantom prefixes and unresolved branches as well as Item leaves.",
+      "provenance": {"kind": "sample-policy", "source_ids": ["b-phantom"], "note": "An empty applicable BOM is unresolved rather than zero demand. Cycle/depth/path errors reject the entire result; repeated Phantom paths are bounded even when they reach no Item leaves. Paths are not deduplicated by equal quantities."}
+    },
+    {
+      "id": "leaf-rounding",
+      "description": "Multiply exact Decimal parent quantity by quantity_per along each path, apply scrap_percent only to Item leaves, sum by order/component, then ceil once to whole EA. Canonical quantity_per and scrap_percent have at most four fractional places; scrap is 0..25 percent.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "No binary floats, per-path ceiling, or intermediate phantom rounding. Per-order/component required EA is limited to 1000000."}
+    },
+    {
+      "id": "stock-eligibility",
+      "description": "Match component and site; available status, known required expiry, expiry at or after need date, and physical less external reservations determine eligible current stock. External reservations exclude these orders by definition.",
+      "provenance": {"kind": "sample-policy", "source_ids": ["q-blocking"], "note": "Wrong-site, hold, blocked, expired, missing controlled expiry, and fully reserved sources are excluded. The remaining nominal source balance is not itself availability."}
+    },
+    {
+      "id": "inbound-eligibility",
+      "description": "Only same-site confirmed inbound with as_of < expected_on <= need date is prospective supply. Unconfirmed, overdue/same-day unreceived, late, unknown-item, and wrong-site supply is not current availability.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "Future receipts are expectations, not physical stock or evidence of their eventual lot quality/expiry."}
+    },
+    {
+      "id": "stable-shadow-allocation",
+      "description": "Conserve one report-local balance per source across orders. Use eligible stock before inbound, earliest stock expiry with undated stock last, earliest receipt date, then case-sensitive source ID. Retain partial incomplete-kit assignments without backtracking.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "Component and site totals reconcile; no solver, globally optimal schedule, reservation, substitution, or inventory mutation is claimed."}
+    },
+    {
+      "id": "unknown-evidence",
+      "description": "Report unknown item/version references and orphan BOM lines. An order with any unresolved product, component, or Phantom selection has no partial requirement or allocation ledger; unrelated resolvable orders may still be reviewed.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "Never create master data, infer an EA conversion, treat missing expiry as valid, or silently fall back from a requested version."}
+    },
+    {
+      "id": "review-closure",
+      "description": "Emit selected versions, exact paths, demand, eligibility, assigned-now/prospective quantities, source conservation, exclusions, reviewer states, and a queue; all outcomes require human review and prohibit production authorization.",
+      "provenance": {"kind": "sample-policy", "source_ids": [], "note": "Covered-now and covered-with-expected-receipt are calculation states, not permission to kit, release, reserve, or manufacture."}
+    }
+  ],
+  "steps": [
+    {"id": "intake", "kind": "input", "title": "Read the logical exports", "rule_ids": ["input-contract"], "procedure": "Read the bundled JSON snapshot, explicit dates, and actual row counts. Do not claim physical multi-file ingestion."},
+    {"id": "validate-structure", "kind": "validation", "title": "Validate and reconcile source records", "rule_ids": ["input-contract", "duplicate-evidence", "graph-safety"], "procedure": "Validate exact fields, types, dates, IDs, units, line types, canonical decimals, and physical/reserved quantities. Collapse identical duplicates once. Reject malformed or contradictory records before calculating a plan."},
+    {"id": "select-bom", "kind": "join", "title": "Join demand to approved root versions", "rule_ids": ["order-scope", "bom-validity", "version-selection", "unknown-evidence"], "procedure": "Order the in-scope work orders. Join item and version exports with inclusive site/date/quantity conditions; distinguish an explicit approved alternative from an active default. Retain unresolved reasons rather than inventing a version."},
+    {"id": "expand-phantoms", "kind": "join", "title": "Traverse actual material paths", "rule_ids": ["phantom-structure", "version-selection", "graph-safety", "unknown-evidence"], "procedure": "Walk sorted BOM line IDs; join Phantom demands to valid default versions using exact parent quantities. Track ancestors, line depth, and the input-wide leaf-path count. Record selected versions and exact material paths only for completely resolvable orders."},
+    {"id": "calculate-demand", "kind": "decision", "title": "Sum first and round once", "rule_ids": ["leaf-rounding"], "procedure": "Sum exact leaf quantities per order/component, including leaf-only scrap, then apply one whole-EA ceiling and the component quantity bound."},
+    {"id": "join-supply", "kind": "join", "title": "Explain eligible and excluded sources", "rule_ids": ["blocked-inventory", "stock-eligibility", "inbound-eligibility", "unknown-evidence"], "procedure": "Cross-reference each requirement with component-matching stock and inbound. Record the first applicable exclusion reason; do not convert a late, blocked, wrong-site, or unknown source into availability."},
+    {"id": "shadow-allocate", "kind": "decision", "title": "Assign from conserved report-local balances", "rule_ids": ["order-scope", "stable-shadow-allocation"], "procedure": "Walk orders and components deterministically. Snapshot remaining eligible current and future pools, then consume stock before inbound using expiry/date/source-ID ties. Leave partial incomplete-kit assignments in the report."},
+    {"id": "collect-exceptions", "kind": "exception", "title": "Expose evidence gaps and shortages", "rule_ids": ["unknown-evidence", "stock-eligibility", "inbound-eligibility", "review-closure"], "procedure": "Combine actual duplicate, scope, unknown-reference, supply-exclusion, and material-gap observations. Preserve explicit rejection reasons and never publish a partial plan for a fatal error."},
+    {"id": "reconcile-plan", "kind": "decision", "title": "Reconcile quantities and reviewer work", "rule_ids": ["stable-shadow-allocation", "review-closure"], "procedure": "Reconcile required = assigned + gap and each nominal source net = assigned + remaining. Classify unresolved, shortage, expected-receipt, and current-coverage review states; assign role-based review ownership and stable queue ordering."},
+    {"id": "close-plan", "kind": "output", "title": "Close the office review calculation", "rule_ids": ["review-closure"], "procedure": "Write the shared result envelope and actual trace. Mark every successful calculation review-only with no authorization, reservations, inventory changes, substitutions, or releases. Native execution remains unverified."}
+  ]
+}

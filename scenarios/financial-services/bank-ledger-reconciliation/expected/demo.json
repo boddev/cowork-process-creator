@@ -1,0 +1,36 @@
+{
+  "schema_version": 1, "status": "completed_with_exceptions",
+  "outputs": {
+    "controls": {"control_version": "SYN-CONTROL", "approval_state": "approved", "as_of": "2026-07-01T00:00:00Z", "business_utc_offset_minutes": 0, "cutoff_date": "2026-06-30", "max_match_calendar_days": 2, "single_amount_tolerance_minor": 0, "timing_grace_calendar_days": 2, "stale_after_calendar_days": 5, "max_rows_per_source": 5000},
+    "matches": [
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B1", "ledger_line_ids": ["SYN-L1"], "kind": "single", "bank_minor": 12000, "ledger_minor": 12000, "delta_minor": 0, "max_date_gap_days": 1, "decision": "candidate-match"},
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B2", "ledger_line_ids": ["SYN-L2", "SYN-L3"], "kind": "batch", "bank_minor": -7500, "ledger_minor": -7500, "delta_minor": 0, "max_date_gap_days": 1, "decision": "candidate-match"}
+    ],
+    "bank_reviews": [
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B1", "local_date": "2026-06-29", "amount_minor": 12000, "canonical_reference": "SYN-DIRECT", "mapped_type": "RECEIPT", "candidate_ledger_ids": ["SYN-L1"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B2", "local_date": "2026-06-30", "amount_minor": -7500, "canonical_reference": "SYN-BATCH", "mapped_type": "PAYMENT", "candidate_ledger_ids": ["SYN-L2", "SYN-L3"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B3", "local_date": "2026-06-30", "amount_minor": -250, "canonical_reference": "SYN-FEE", "mapped_type": "FEE", "candidate_ledger_ids": [], "disposition": "unmatched", "reason_codes": ["bank-only-fee"]},
+      {"scope_id": "SYN-D", "bank_line_id": "SYN-B4", "local_date": "2026-06-29", "amount_minor": 3000, "canonical_reference": "SYN-AMB", "mapped_type": "RECEIPT", "candidate_ledger_ids": ["SYN-L4", "SYN-L5"], "disposition": "ambiguous", "reason_codes": ["ambiguous-match"]}
+    ],
+    "ledger_reviews": [
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L1", "local_date": "2026-06-28", "amount_minor": 12000, "canonical_reference": "SYN-DIRECT", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B1"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L2", "local_date": "2026-06-29", "amount_minor": -5000, "canonical_reference": "SYN-PART-A", "ledger_type": "PAYMENT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B2"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L3", "local_date": "2026-06-29", "amount_minor": -2500, "canonical_reference": "SYN-PART-B", "ledger_type": "PAYMENT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B2"], "disposition": "candidate-match", "reason_codes": []},
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L4", "local_date": "2026-06-29", "amount_minor": 3000, "canonical_reference": "SYN-AMB", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B4"], "disposition": "ambiguous", "reason_codes": ["ambiguous-match"]},
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L5", "local_date": "2026-06-30", "amount_minor": 3000, "canonical_reference": "SYN-AMB", "ledger_type": "RECEIPT", "expected_bank_date": null, "candidate_bank_ids": ["SYN-B4"], "disposition": "ambiguous", "reason_codes": ["ambiguous-match"]},
+      {"scope_id": "SYN-D", "ledger_line_id": "SYN-L6", "local_date": "2026-06-30", "amount_minor": -4000, "canonical_reference": "SYN-TIMING", "ledger_type": "PAYMENT", "expected_bank_date": "2026-07-01", "candidate_bank_ids": [], "disposition": "pending-clearance", "reason_codes": ["pending-clearance"]}
+    ],
+    "excluded": [],
+    "scope_summaries": [
+      {"scope_id": "SYN-D", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT", "statement_id": "SYN-JUNE", "currency": "USD", "from_date": "2026-06-01", "through_date": "2026-06-30", "opening_bank_minor": 100000, "opening_ledger_minor": 100000, "closing_bank_minor": 107250, "closing_ledger_minor": 106500, "included_bank_count": 4, "included_ledger_count": 6, "matched_group_count": 2, "matched_bank_count": 2, "matched_ledger_count": 3, "unresolved_bank_count": 2, "unresolved_ledger_count": 3, "unmatched_bank_minor": 2750, "unmatched_ledger_minor": 2000, "match_delta_minor": 0, "opening_difference_minor": 0, "closing_difference_minor": 750, "bridge_minor": 750, "disposition": "review-required"}
+    ],
+    "review": {"human_review": "pending", "live_action": "none"}
+  },
+  "exceptions": [
+    {"scope_id": "SYN-D", "record_id": "SYN-B3", "code": "bank-only-fee", "message": "Bank-only fee requires a separate source-owner review."},
+    {"scope_id": "SYN-D", "record_id": "SYN-B4", "code": "ambiguous-match", "message": "Multiple eligible candidates require manual matching."},
+    {"scope_id": "SYN-D", "record_id": "SYN-L4", "code": "ambiguous-match", "message": "Multiple eligible candidates require manual matching."},
+    {"scope_id": "SYN-D", "record_id": "SYN-L5", "code": "ambiguous-match", "message": "Multiple eligible candidates require manual matching."},
+    {"scope_id": "SYN-D", "record_id": "SYN-L6", "code": "pending-clearance", "message": "Expected clearing is after cutoff within the configured grace window."}
+  ]
+}

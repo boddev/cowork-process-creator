@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-09-14",
+    "packet_state": "review-required",
+    "review_queue": [
+      {
+        "rank": 1, "lot_id": "MFG-L02", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-BETA", "site": "MFG-EAST", "quality_order_id": "MFG-Q02", "receipt_date": "2026-09-12",
+        "received_qty": 200, "physical_held_qty": 200, "hold_state": "held", "hold_snapshot_date": "2026-09-14", "age_days": 2, "overdue": false,
+        "review_state": "nonconformance-review", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["failed-test", "open-nonconformance"], "certificate_ids": ["MFG-C02"], "open_nc_ids": ["MFG-NC02"],
+        "test_checks": [{
+          "test_id": "MFG-DIAM", "requirement_id": "MFG-SPEC-DIAM", "minimum": "4.90", "maximum": "5.10", "required_specimens": 3, "observed_specimens": 3,
+          "state": "failed", "failed_result_ids": ["MFG-R22"],
+          "observations": [
+            {"result_id": "MFG-R21", "specimen_id": "MFG-S21", "value": "5.00", "evidence_state": "active"},
+            {"result_id": "MFG-R22", "specimen_id": "MFG-S22", "value": "5.13", "evidence_state": "active"},
+            {"result_id": "MFG-R23", "specimen_id": "MFG-S23", "value": "4.99", "evidence_state": "active"}
+          ]
+        }]
+      },
+      {
+        "rank": 2, "lot_id": "MFG-L03", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-ALPHA", "site": "MFG-EAST", "quality_order_id": "MFG-Q03", "receipt_date": "2026-09-10",
+        "received_qty": 80, "physical_held_qty": 80, "hold_state": "held", "hold_snapshot_date": "2026-09-14", "age_days": 4, "overdue": false,
+        "review_state": "evidence-gap", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["insufficient-specimens", "missing-certificate"], "certificate_ids": [], "open_nc_ids": [],
+        "test_checks": [{
+          "test_id": "MFG-DIAM", "requirement_id": "MFG-SPEC-DIAM", "minimum": "4.90", "maximum": "5.10", "required_specimens": 3, "observed_specimens": 2,
+          "state": "incomplete", "failed_result_ids": [],
+          "observations": [
+            {"result_id": "MFG-R31", "specimen_id": "MFG-S31", "value": "5.02", "evidence_state": "active"},
+            {"result_id": "MFG-R32", "specimen_id": "MFG-S32", "value": "5.04", "evidence_state": "active"}
+          ]
+        }]
+      },
+      {
+        "rank": 3, "lot_id": "MFG-L01", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-ALPHA", "site": "MFG-EAST", "quality_order_id": "MFG-Q01", "receipt_date": "2026-09-08",
+        "received_qty": 1000, "physical_held_qty": 1000, "hold_state": "held", "hold_snapshot_date": "2026-09-14", "age_days": 6, "overdue": true,
+        "review_state": "evidence-complete", "reviewer_role": "QA reviewer", "approval_required": true, "production_authorized": false,
+        "reason_codes": ["overdue-review"], "certificate_ids": ["MFG-C01"], "open_nc_ids": [],
+        "test_checks": [{
+          "test_id": "MFG-DIAM", "requirement_id": "MFG-SPEC-DIAM", "minimum": "4.90", "maximum": "5.10", "required_specimens": 3, "observed_specimens": 3,
+          "state": "complete", "failed_result_ids": [],
+          "observations": [
+            {"result_id": "MFG-R11", "specimen_id": "MFG-S11", "value": "4.99", "evidence_state": "active"},
+            {"result_id": "MFG-R12", "specimen_id": "MFG-S12", "value": "5.00", "evidence_state": "active"},
+            {"result_id": "MFG-R13", "specimen_id": "MFG-S13", "value": "5.01", "evidence_state": "active"}
+          ]
+        }]
+      }
+    ],
+    "totals": {"lot_count": 3, "received_qty": 1280, "known_held_qty": 1280, "unknown_hold_lot_ids": [], "review_quantities": {"data-review": 0, "nonconformance-review": 200, "evidence-gap": 80, "evidence-complete": 1000}}
+  },
+  "exceptions": [
+    {"code": "failed-test", "message": "MFG-DIAM has out-of-limit active results: MFG-R22.", "subject": "MFG-L02", "owner_role": "QA reviewer"},
+    {"code": "insufficient-specimens", "message": "MFG-DIAM requires 3 distinct specimens; found 2.", "subject": "MFG-L03", "owner_role": "QA reviewer"},
+    {"code": "missing-certificate", "message": "No current matching certificate is available.", "subject": "MFG-L03", "owner_role": "QA reviewer"},
+    {"code": "open-nonconformance", "message": "Open nonconformances: MFG-NC02.", "subject": "MFG-L02", "owner_role": "QA reviewer"},
+    {"code": "overdue-review", "message": "Review age 6 exceeds 5 calendar days.", "subject": "MFG-L01", "owner_role": "QA reviewer"}
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "exceptions": [
+    {
+      "code": "INVALID_RATE",
+      "evidence_ids": [],
+      "message": "Percent-off value must be an integer from 1 through 10000 basis points.",
+      "observation_id": null,
+      "path": "promotions.SYN-PROMO-BAD.value"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "INVALID_RATE",
+        "currency": null,
+        "evidence_ids": [],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "Percent-off value must be an integer from 1 through 10000 basis points.",
+        "next_action": "Correct the source export or policy and rerun the audit.",
+        "observation_id": null,
+        "observed_on": null,
+        "owner": "Pricing operations analyst",
+        "sku": null,
+        "store_id": null
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [],
+    "reconciliation": null,
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [],
+      "owner_role": "Pricing operations analyst",
+      "policy": null,
+      "review_state": "input-rejected"
+    },
+    "rule_selection": []
+  },
+  "schema_version": 1,
+  "status": "rejected"
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1, "synthetic": true,
+  "config": {"control_version": "SYN-CONTROL", "approval_state": "approved", "as_of": "2026-07-01T00:00:00Z", "business_utc_offset_minutes": 0, "cutoff_date": "2026-06-30", "max_match_calendar_days": 2, "single_amount_tolerance_minor": 0, "timing_grace_calendar_days": 2, "stale_after_calendar_days": 5, "max_rows_per_source": 5000},
+  "scopes": [
+    {"scope_id": "SYN-D", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT", "statement_id": "SYN-JUNE", "currency": "USD", "from_date": "2026-06-01", "through_date": "2026-06-30", "prior_statement_through_date": "2026-05-31", "bank_opening_minor": 100000, "bank_closing_minor": 107250, "prior_bank_closing_minor": 100000, "ledger_opening_minor": 100000, "ledger_closing_minor": 106500, "bank_sign": 1, "ledger_sign": 1}
+  ],
+  "bank_lines": [
+    {"bank_line_id": "SYN-B1", "scope_id": "SYN-D", "booked_at": "2026-06-29T12:00:00Z", "amount_minor": 12000, "bank_code": "DEP", "reference": " syn-direct ", "batch_id": null},
+    {"bank_line_id": "SYN-B2", "scope_id": "SYN-D", "booked_at": "2026-06-30T12:00:00Z", "amount_minor": -7500, "bank_code": "OUT", "reference": "SYN-BATCH", "batch_id": "SYN-BATCH"},
+    {"bank_line_id": "SYN-B3", "scope_id": "SYN-D", "booked_at": "2026-06-30T14:00:00Z", "amount_minor": -250, "bank_code": "FEE", "reference": "SYN-FEE", "batch_id": null},
+    {"bank_line_id": "SYN-B4", "scope_id": "SYN-D", "booked_at": "2026-06-29T14:00:00Z", "amount_minor": 3000, "bank_code": "DEP", "reference": "SYN-AMB", "batch_id": null}
+  ],
+  "ledger_lines": [
+    {"ledger_line_id": "SYN-L1", "scope_id": "SYN-D", "posted_at": "2026-06-28T12:00:00Z", "amount_minor": 12000, "ledger_type": "RECEIPT", "reference": "SYN-DIRECT", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-L2", "scope_id": "SYN-D", "posted_at": "2026-06-29T12:00:00Z", "amount_minor": -5000, "ledger_type": "PAYMENT", "reference": "SYN-PART-A", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-L3", "scope_id": "SYN-D", "posted_at": "2026-06-29T13:00:00Z", "amount_minor": -2500, "ledger_type": "PAYMENT", "reference": "SYN-PART-B", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-L4", "scope_id": "SYN-D", "posted_at": "2026-06-29T14:00:00Z", "amount_minor": 3000, "ledger_type": "RECEIPT", "reference": "SYN-AMB", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-L5", "scope_id": "SYN-D", "posted_at": "2026-06-30T14:00:00Z", "amount_minor": 3000, "ledger_type": "RECEIPT", "reference": "SYN-AMB", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-L6", "scope_id": "SYN-D", "posted_at": "2026-06-30T15:00:00Z", "amount_minor": -4000, "ledger_type": "PAYMENT", "reference": "SYN-TIMING", "expected_bank_date": "2026-07-01"}
+  ],
+  "mappings": [
+    {"scope_id": "SYN-D", "bank_code": "DEP", "ledger_type": "RECEIPT"},
+    {"scope_id": "SYN-D", "bank_code": "OUT", "ledger_type": "PAYMENT"},
+    {"scope_id": "SYN-D", "bank_code": "FEE", "ledger_type": "FEE"}
+  ],
+  "batches": [{"scope_id": "SYN-D", "batch_id": "SYN-BATCH", "member_ledger_ids": ["SYN-L2", "SYN-L3"]}]
+}

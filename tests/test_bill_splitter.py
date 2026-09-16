@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 import subprocess
@@ -12,11 +13,12 @@ from decimal import Decimal, localcontext
 from itertools import permutations
 from pathlib import Path
 
-from test_builder import ROOT, builder
+from test_builder import ROOT, builder, native_metadata
 
 EXAMPLE = ROOT / "examples" / "bill-splitter"
 CANDIDATE = EXAMPLE / "candidate"
 SKILL = CANDIDATE / "skills" / "split-restaurant-bill"
+ARCHIVE = EXAMPLE / "archive" / "v1.0.1"
 MODULE_SPEC = importlib.util.spec_from_file_location("bill_splitter_tests", SKILL / "scripts" / "split_bill.py")
 split_bill = importlib.util.module_from_spec(MODULE_SPEC)
 sys.path.insert(0, str(SKILL / "scripts"))
@@ -295,46 +297,138 @@ class BillSplitterTests(unittest.TestCase):
         self.assertFalse(target.exists())
 
     def test_owned_references_resolve_and_source_packages_without_original_assets(self):
-        payload, spec = builder.assemble(CANDIDATE, "compatible-source")
+        metadata_path = native_metadata(self.root)
+        payload, spec = builder.assemble(CANDIDATE, metadata_path=metadata_path)
         self.assertEqual(spec["schema_version"], "creator-plugin-1")
         self.assertEqual(set(payload), {
-            ".claude-plugin/plugin.json",
+            "manifest.json", "color.png", "outline.png",
             "skills/split-restaurant-bill/SKILL.md",
             "skills/split-restaurant-bill/references/helper-contract.md",
             "skills/split-restaurant-bill/references/template-layout.md",
             "skills/split-restaurant-bill/scripts/safe_json.py",
             "skills/split-restaurant-bill/scripts/split_bill.py",
         })
+        manifest = json.loads(payload["manifest.json"])
+        metadata = json.loads(metadata_path.read_bytes())
+        self.assertEqual(manifest["manifestVersion"], "1.28")
+        self.assertEqual(manifest["$schema"], builder.SCHEMA)
+        self.assertEqual(manifest["version"], spec["version"])
+        self.assertEqual(manifest["id"], metadata["app_id"])
+        self.assertEqual(manifest["developer"], metadata["developer"])
+        self.assertEqual(manifest["agentSkills"], [{"folder": "./skills/split-restaurant-bill"}])
         text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
         for pointer in ("references/helper-contract.md", "references/template-layout.md", "scripts/split_bill.py"):
             self.assertIn(pointer, text)
             self.assertTrue(SKILL.joinpath(*pointer.split("/")).is_file())
 
     def test_extracted_package_runs_without_creator_or_creation_evidence(self):
-        installed = self.root / "installed"
-        with zipfile.ZipFile(EXAMPLE / "bill-splitter.zip") as archive:
-            archive.extractall(installed)
-        script = installed / "skills" / "split-restaurant-bill" / "scripts" / "split_bill.py"
-        result, target = self.invoke(json.dumps(self.meal), script=script)
-        self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(json.loads(target.read_text(encoding="utf-8")), self.expected)
-        self.assertFalse((installed / "examples").exists())
-        self.assertFalse((installed / "skills" / "create-process-plugin").exists())
+        native_fixture = self.root / "native-syntax-fixture.zip"
+        builder.build(CANDIDATE, native_fixture, self.root / "fixture-report.json",
+                      metadata_path=native_metadata(self.root))
+        for label, package in (("historical", ARCHIVE / "bill-splitter.zip"),
+                               ("native-syntax-fixture", native_fixture)):
+            with self.subTest(package=label):
+                installed = self.root / label
+                with zipfile.ZipFile(package) as archive:
+                    archive.extractall(installed)
+                script = installed / "skills" / "split-restaurant-bill" / "scripts" / "split_bill.py"
+                result, target = self.invoke(json.dumps(self.meal), script=script,
+                                             output=self.root / (label + "-result.json"))
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(json.loads(target.read_text(encoding="utf-8")), self.expected)
+                self.assertFalse((installed / "examples").exists())
+                self.assertFalse((installed / "skills" / "create-process-plugin").exists())
 
-    def test_download_and_report_match_the_current_candidate(self):
+    def test_native_build_and_report_match_the_current_candidate(self):
         rebuilt = self.root / "rebuilt.zip"
-        report = builder.build(CANDIDATE, rebuilt, self.root / "rebuilt.json", "compatible-source")
-        self.assertEqual((EXAMPLE / "bill-splitter.zip").read_bytes(), rebuilt.read_bytes())
-        published = json.loads((EXAMPLE / "bill-splitter.report.json").read_text(encoding="utf-8"))
-        for field in ("plugin", "target", "sha256", "size_bytes", "files"):
-            with self.subTest(field=field):
-                self.assertEqual(published[field], report[field])
-        self.assertEqual(published["status"], "Draft")
-        self.assertEqual(published["artifact_kind"], "compatible-source-export")
-        self.assertEqual(published["host_acceptance"], "unverified")
-        self.assertEqual(published["native_execution"], "not_attested_by_builder")
-        self.assertEqual(published["manual_invocation"], "unverified")
-        self.assertEqual(published["scheduling"], "not_exercised")
+        metadata_path = native_metadata(self.root)
+        report = builder.build(CANDIDATE, rebuilt, self.root / "rebuilt.json",
+                               metadata_path=metadata_path)
+        payload, spec = builder.assemble(CANDIDATE, metadata_path=metadata_path)
+        self.assertEqual(rebuilt.read_bytes(), builder.zip_bytes(payload))
+        self.assertEqual(report, json.loads((self.root / "rebuilt.json").read_bytes()))
+        self.assertEqual(report["plugin"], spec["name"])
+        self.assertEqual(report["target"], "cowork-v1.28")
+        self.assertEqual(report["sha256"], hashlib.sha256(rebuilt.read_bytes()).hexdigest())
+        self.assertEqual(report["size_bytes"], rebuilt.stat().st_size)
+        self.assertEqual(report["files"], [
+            {"path": name, "sha256": hashlib.sha256(content).hexdigest(), "size_bytes": len(content)}
+            for name, content in sorted(payload.items())
+        ])
+        self.assertEqual(report["status"], "Package built")
+        self.assertEqual(report["artifact_kind"], "native-package")
+        self.assertEqual(report["host_acceptance"], "unverified")
+        self.assertEqual(report["native_execution"], "not_attested_by_builder")
+        self.assertEqual(report["manual_invocation"], "unverified")
+        self.assertEqual(report["scheduling"], "not_exercised")
+
+    def test_missing_metadata_blocks_packaging_without_output_or_fallback(self):
+        package, report = self.root / "blocked.zip", self.root / "blocked.json"
+        with self.assertRaisesRegex(builder.BuildError, "requires --metadata"):
+            builder.build(CANDIDATE, package, report)
+        result = subprocess.run(
+            [sys.executable, "-B", str(ROOT / "appPackage" / "skills" / "build-output-plugin" /
+                                      "scripts" / "creator_builder.py"),
+             "build", "--source", str(CANDIDATE), "--output", str(package), "--report", str(report)],
+            cwd=self.root, capture_output=True, text=True, timeout=30,
+        )
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertIn("requires --metadata", json.loads(result.stderr)["error"])
+        self.assertFalse(package.exists())
+        self.assertFalse(report.exists())
+
+    def test_alternative_target_cannot_package_the_current_candidate(self):
+        metadata_path = native_metadata(self.root)
+        package, report = self.root / "wrong-target.zip", self.root / "wrong-target.json"
+        with self.assertRaisesRegex(builder.BuildError, "Only native Microsoft"):
+            builder.assemble(CANDIDATE, "compatible-source", metadata_path)
+        with self.assertRaisesRegex(builder.BuildError, "Only native Microsoft"):
+            builder.build(CANDIDATE, package, report, "compatible-source", metadata_path)
+        self.assertFalse(package.exists())
+        self.assertFalse(report.exists())
+
+    def test_historical_archive_is_frozen_and_separate_from_blocked_native_output(self):
+        status = json.loads((EXAMPLE / "status.json").read_bytes())
+        spec = json.loads((CANDIDATE / "plugin-spec.json").read_bytes())
+        self.assertEqual(status["source_version"], spec["version"])
+        self.assertEqual(status["creator_builder_version"], builder.VERSION)
+        self.assertEqual(status["required_target"], "cowork-v1.28")
+        self.assertEqual(status["required_manifest"], "manifest.json")
+        self.assertFalse(status["alternative_manifest_fallback"])
+        self.assertEqual(status["build_status"], "blocked_pending_approved_publishing_metadata")
+        self.assertEqual(status["publishing_metadata"]["status"], "not_supplied")
+        self.assertIsNone(status["package"])
+        self.assertEqual(status["native_execution"], "not_run")
+        for field in ("host_acceptance", "manual_invocation", "workbook_creation"):
+            self.assertEqual(status[field], "unverified")
+        historical = status["historical_archive"]
+        self.assertFalse(historical["current_distributable"])
+        self.assertEqual(historical["version"], "1.0.1")
+        self.assertNotEqual(historical["version"], spec["version"])
+        self.assertEqual(EXAMPLE / historical["path"], ARCHIVE / "bill-splitter.zip")
+        self.assertEqual(EXAMPLE / historical["report"], ARCHIVE / "bill-splitter.report.json")
+        content = (ARCHIVE / "bill-splitter.zip").read_bytes()
+        report = json.loads((ARCHIVE / "bill-splitter.report.json").read_bytes())
+        self.assertEqual(hashlib.sha256(content).hexdigest(),
+                         "d50f635cfa3d40e81087a4f80e261f812a1c095fb33a700aba38ea2738e7f5a3")
+        self.assertEqual(report["sha256"], historical["sha256"])
+        self.assertEqual(report["size_bytes"], len(content))
+        self.assertEqual(historical["size_bytes"], len(content))
+        self.assertEqual(report["target"], historical["target"])
+        self.assertEqual(report["artifact_kind"], "compatible-source-export")
+        self.assertEqual(report["status"], "Draft")
+        self.assertEqual(report["host_acceptance"], "unverified")
+        with zipfile.ZipFile(ARCHIVE / "bill-splitter.zip") as archive:
+            self.assertEqual(set(archive.namelist()), {item["path"] for item in report["files"]})
+            self.assertEqual(json.loads(archive.read(".claude-plugin/plugin.json"))["version"], "1.0.1")
+            for item in report["files"]:
+                resource = archive.read(item["path"])
+                self.assertEqual(hashlib.sha256(resource).hexdigest(), item["sha256"])
+                self.assertEqual(len(resource), item["size_bytes"])
+                if item["path"].startswith("skills/"):
+                    self.assertEqual(resource, CANDIDATE.joinpath(*item["path"].split("/")).read_bytes())
+        self.assertFalse((EXAMPLE / "bill-splitter.zip").exists())
+        self.assertFalse((EXAMPLE / "bill-splitter.report.json").exists())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,420 @@
+{
+  "events": [
+    {
+      "caption": "Inventory the actual mock export tables.",
+      "facts": {},
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "source_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "items",
+              1
+            ],
+            [
+              "reviewer_routes",
+              1
+            ],
+            [
+              "lots",
+              2
+            ],
+            [
+              "test_requirements",
+              1
+            ],
+            [
+              "observations",
+              2
+            ],
+            [
+              "certificates",
+              1
+            ],
+            [
+              "hold_snapshot",
+              2
+            ],
+            [
+              "nonconformances",
+              0
+            ]
+          ],
+          "title": "Inventory the actual mock export tables.",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Validate keys, typed values, physical holds and retest relationships.",
+      "facts": {
+        "duplicate_groups": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "source_rows",
+            "unique_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "items",
+              1,
+              1
+            ],
+            [
+              "reviewer_routes",
+              1,
+              1
+            ],
+            [
+              "lots",
+              2,
+              2
+            ],
+            [
+              "test_requirements",
+              1,
+              1
+            ],
+            [
+              "observations",
+              2,
+              2
+            ],
+            [
+              "certificates",
+              1,
+              1
+            ],
+            [
+              "hold_snapshot",
+              2,
+              2
+            ],
+            [
+              "nonconformances",
+              0,
+              0
+            ]
+          ],
+          "title": "Validate keys, typed values, physical holds and retest relationships.",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Match lots to requirements, physical holds and reviewer roles.",
+      "facts": {
+        "as_of": "2027-01-05",
+        "lots": 2
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-lot-context",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "item_id",
+            "tests",
+            "held_qty",
+            "reviewer"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "MFG-H11",
+              "MFG-PIN",
+              1,
+              6,
+              "QA reviewer"
+            ],
+            [
+              "MFG-H12",
+              "MFG-UNKNOWN",
+              0,
+              4,
+              "QA intake reviewer"
+            ]
+          ],
+          "title": "Match lots to requirements, physical holds and reviewer roles.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Resolve actual observation dates and approved retest lineage.",
+      "facts": {
+        "active": 1,
+        "pending": 1
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "resolve-evidence",
+      "tables": [
+        {
+          "columns": [
+            "result_id",
+            "lot_id",
+            "specimen",
+            "value",
+            "evidence_state"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "MFG-RB11",
+              "MFG-H11",
+              "MFG-SB11",
+              "4.85",
+              "active"
+            ],
+            [
+              "MFG-RB12",
+              "MFG-H11",
+              "MFG-SB11",
+              "4.95",
+              "pending-retest"
+            ]
+          ],
+          "title": "Resolve actual observation dates and approved retest lineage.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Evaluate required specimens, decimal limits and supporting evidence.",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "evaluate-tests",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "test_id",
+            "required",
+            "observed",
+            "failed",
+            "state"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "MFG-H11",
+              "MFG-DIAM",
+              1,
+              1,
+              1,
+              "failed"
+            ]
+          ],
+          "title": "Evaluate required specimens, decimal limits and supporting evidence.",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Apply review precedence without authorizing material disposition.",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "classify-review",
+      "tables": [
+        {
+          "columns": [
+            "lot_id",
+            "review_state",
+            "received_qty",
+            "age_days",
+            "reason_codes"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "MFG-H11",
+              "nonconformance-review",
+              6,
+              1,
+              "failed-test, pending-retest"
+            ],
+            [
+              "MFG-H12",
+              "data-review",
+              4,
+              0,
+              "missing-certificate, unknown-item"
+            ]
+          ],
+          "title": "Apply review precedence without authorizing material disposition.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Preserve evidence gaps, failed observations and review owners.",
+      "facts": {
+        "exception_count": 4
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "subject",
+            "owner",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "failed-test",
+              "MFG-H11",
+              "QA reviewer",
+              "MFG-DIAM has out-of-limit active results: MFG-RB11."
+            ],
+            [
+              "missing-certificate",
+              "MFG-H12",
+              "QA intake reviewer",
+              "No current matching certificate is available."
+            ],
+            [
+              "pending-retest",
+              "MFG-H11",
+              "QA reviewer",
+              "MFG-DIAM has unapproved retest evidence: MFG-RB12."
+            ],
+            [
+              "unknown-item",
+              "MFG-H12",
+              "QA intake reviewer",
+              "Item MFG-UNKNOWN is absent from the item export."
+            ]
+          ],
+          "title": "Preserve evidence gaps, failed observations and review owners.",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Order the review queue by category, age and stable lot identifier.",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 8,
+      "step_id": "order-review",
+      "tables": [
+        {
+          "columns": [
+            "rank",
+            "lot_id",
+            "review_state",
+            "reviewer",
+            "received_qty",
+            "age_days"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              1,
+              "MFG-H12",
+              "data-review",
+              "QA intake reviewer",
+              4,
+              0
+            ],
+            [
+              2,
+              "MFG-H11",
+              "nonconformance-review",
+              "QA reviewer",
+              6,
+              1
+            ]
+          ],
+          "title": "Order the review queue by category, age and stable lot identifier.",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Close the review-only packet with reconciled physical quantities.",
+      "facts": {
+        "known_held_qty": 10,
+        "lot_count": 2,
+        "production_authorized": false,
+        "received_qty": 10,
+        "unknown_holds": 0
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "close-packet",
+      "tables": [
+        {
+          "columns": [
+            "review_state",
+            "received_qty"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "data-review",
+              4
+            ],
+            [
+              "nonconformance-review",
+              6
+            ],
+            [
+              "evidence-gap",
+              0
+            ],
+            [
+              "evidence-complete",
+              0
+            ]
+          ],
+          "title": "Close the review-only packet with reconciled physical quantities.",
+          "total_rows": 4
+        }
+      ]
+    }
+  ],
+  "input_sha256": "09930f4f9fc42cc627bc2cf782160d60c8b670a6bcf71636137ba230e9a26a7f",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-01",
+  "schema_version": 1
+}

@@ -1,33 +1,51 @@
 {
   "schema_version": "n00-status-1",
-  "overall": "native-gate-blocked-desktop-locked",
-  "scope": "Historical native evidence for the provisional implementation; public source sharing does not establish native Cowork acceptance or deployment",
-  "public_copy_note": "Private session and task identifiers are omitted; original local evidence is preserved outside the public repository.",
+  "documentation_updated": "2026-09-16",
+  "overall": "native-gate-blocked-approved-tools-unavailable",
+  "scope": "Historical N00 evidence and current native blockers; public source sharing does not establish native Cowork acceptance or deployment",
+  "public_copy_note": "Private session/task identifiers, evidence locations, captures and private planning/evidence-bundle fingerprints are omitted. Original private evidence remains outside the public repository; synthetic artifact hashes are retained for historical identification.",
   "expanded_candidate_status": "docs\\provisional-status.json",
-  "continuation_plan_sha256": "8a0cd45a5dbcf326f2966c1e6678128dc7aa493221dd5d62185580606f753e00",
+  "current_source": {
+    "version": "0.3.0",
+    "target": "cowork-v1.28",
+    "required_manifest": "manifest.json",
+    "alternative_manifest_fallback": false,
+    "release_package": "not-created; approved per-package app identity and publisher name/website/privacy/terms metadata have not been supplied",
+    "host_acceptance": "unverified",
+    "scenario_plugins_generated": 0,
+    "scenario_plugins_installed": 0,
+    "scenario_independent_native_invocations": 0,
+    "inherits_historical_native_acceptance": false,
+    "details": "docs\\native-manifest-status.json"
+  },
   "native_continuation": {
-    "blocker": "Windows desktop locked; Computer Use failed closed because the session is not active",
+    "access_limitation_as_of": "2026-09-14",
+    "blocker": "All Computer Use tools were removed from the operator session. Native continuation requires restored approved Computer Use tools AND an unlocked, accessible session; desktop unlock alone is insufficient.",
+    "approved_computer_use_tools": "removed",
+    "required_to_resume": [
+      "Approved Computer Use tools restored",
+      "Unlocked, accessible session",
+      "Separately authorized native actions",
+      "Reconcile actual Installed state before further publication; do not republish a historical source-format archive as a current package"
+    ],
     "no_access_workaround_permitted": true,
+    "prohibited_alternatives": "Do not invoke removed tools or substitute another UI channel, private API, cookie/token access, shell access or sign-in workaround.",
     "creator_plugin": "Only Cowork Process Creator was disabled and its toggle was verified off; unrelated plugins preserved",
     "output_publication": "UNKNOWN",
     "last_action": "Selected the exact ready-items.zip, verified Only you, clicked Publish once",
     "last_visible_state": "Publishing...",
+    "native_observations_since_last_visible_state": "none",
     "independent_native_task_started": false,
-    "resume_rule": "After normal user unlock, inspect Installed plugins before any repeat publication. Do not infer rejection or success, and do not publish again blindly."
+    "resume_rule": "Only after approved Computer Use tools are restored AND an unlocked accessible session is available, inspect Installed plugins before any repeat publication. Do not infer rejection or success, and do not publish again blindly."
   },
-  "canonical_target": "cowork-m365-unified-manifest-v1.28",
-  "approved_plan_sha256": "03743B3DCD6F43D58AA2D75886AC1C66E34746919067479DAB4713CF5489D6CD",
+  "canonical_target": "cowork-v1.28",
   "native_evidence_bundle": {
-    "path": ".local\\native-output-15d75761c98a\\n00-evidence.zip",
-    "sha256": "fda9fd0ed6a1dc037ea583fde26d19c1a19059cfffcce206ad496ff8a0a77bf1",
-    "size_bytes": 46434,
-    "entry_count": 5,
+    "availability": "Retained privately; not distributed with the repository",
     "not_a_plugin_upload_archive": true,
     "inner_plugin_and_build_report_match_separate_downloads": true,
-    "observations_sha256": "a1c12011e7779a69198702e73b4ad412974c5f9dd5db49d30f304f50ef6b532a",
-    "runtime_probe_sha256": "07b38f59d97127f0469665c224ee3c0e4804acba5de3399c82e9f94ccb38ae07",
-    "test_results_sha256": "4bc51effba74f59607d7fd446f91ad0aeaf3d80cbf209b41e9b3202d12e45a70"
+    "public_record_scope": "Historical inspection outcome only; no private evidence content, location or fingerprint"
   },
+  "artifact_readiness_scope": "The following artifacts and readiness labels are historical v0.1.x observations, not current v0.3.0 packages or current installed-state assertions.",
   "artifacts": [
     {
       "role": "initial-creator-bootstrap-installed-via-native-conversion",
@@ -38,10 +56,10 @@
       "target": "compatible-source",
       "readiness": "Installed",
       "installed_filename": "creator-n00.zip",
-      "installation_evidence": "Parent observed Cowork Process Creator under Installed with Enable on after an identical-byte short-name retry. Not direct canonical v1.28 archive acceptance."
+      "installation_evidence": "The native operator observed Cowork Process Creator under Installed with Enable on after an identical-byte short-name retry. Not direct canonical v1.28 archive acceptance."
     },
     {
-      "role": "current-hardened-creator-bootstrap",
+      "role": "historical-hardened-creator-bootstrap",
       "version": "0.1.1",
       "path": "dist\\n00-v0.1.1\\creator-n00.zip",
       "sha256": "f31dc061a1d55d797c1ea2008d4bb049c3509f1afee921db20ba3ee88158add1",
@@ -61,7 +79,8 @@
     {
       "role": "actual-native-generated-output",
       "version": "0.1.0",
-      "path": ".local\\native-output-15d75761c98a\\ready-items.zip",
+      "artifact_name": "ready-items.zip",
+      "availability": "Historical synthetic output retained privately; not a current release",
       "sha256": "15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419",
       "size_bytes": 10591,
       "target": "compatible-source",
@@ -78,7 +97,7 @@
       "step": "native-access",
       "status": "observed",
       "evidence_kind": "parent-operator-report",
-      "detail": "Authenticated real Cowork in the existing Edge Work profile at https://copilot.cloud.microsoft/cowork; Customize Plugins/Skills and native tasks/automation UI. No new credentials, consent or permission changes."
+      "detail": "Historical observation of authenticated real Cowork in the pre-existing authorized account; Customize Plugins/Skills and native tasks/automation UI were available. No new credentials, consent or permission changes. This is not a current access confirmation."
     },
     {
       "step": "native-python-primitive",
@@ -169,13 +188,14 @@
       "step": "generated-output-upload",
       "status": "unknown-after-publication-attempt",
       "evidence_kind": "parent-operator-last-observation",
-      "detail": "Exact ready-items.zip selected, Only you verified, Publish clicked once. Last visible state Publishing... before desktop lock. Acceptance UNKNOWN. Reconcile Installed list before any retry."
+      "detail": "Exact ready-items.zip selected, Only you verified, Publish clicked once. Last visible state Publishing... before desktop lock; no later native observation exists. Acceptance UNKNOWN. As of 2026-09-14 the approved Computer Use tools are removed; restore those tools and an unlocked accessible session before reconciling Installed state or considering a retry."
     },
     {"step": "independent-new-input-invocation", "status": "unverified"},
-    {"step": "canonical-v1.28-package", "status": "blocked", "detail": "Approved publisher/legal metadata and app identity have not been supplied. No native release ZIP generated."},
+    {"step": "canonical-v1.28-package", "status": "blocked", "detail": "Current v0.3.0 source implements native-only Microsoft v1.28 packaging. Approved publisher/legal metadata and app identity have not been supplied; no real native release ZIP is generated and no Claude-compatible fallback is allowed."},
     {"step": "native-schedule", "status": "not-exercised", "detail": "Outside this first proof attempt."}
   ],
   "native_output_local_inspection": {
+    "scope": "Historical v0.1.0 output inspection, not current v0.3.0 evidence",
     "not_native_invocation": true,
     "archive_sha256": "15d75761c98a1a20818a86ae6a1ec2e96bd83de92fdd4d08184ba6647adf7419",
     "test_runner": "python -B -m unittest discover -s tests\\native -v",
@@ -193,6 +213,7 @@
     "details": "docs\\native-output-inspection.md"
   },
   "local_evidence": {
+    "scope": "Historical v0.1.1 developer evidence; current source and corpus results are recorded separately in docs\\provisional-status.json",
     "not_native_proof": true,
     "builder_version": "0.1.1",
     "creator_archive_sha256": "f31dc061a1d55d797c1ea2008d4bb049c3509f1afee921db20ba3ee88158add1",

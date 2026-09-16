@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-09-14",
+  "policy": {"policy_id": "SYN-POLICY-N", "warning_days": 0, "draft_review_days": 0, "max_rows_per_table": 10, "max_total_rows": 20, "max_derived_pairs": 2},
+  "trials": [
+    {"trial_id": "SYN-TN", "required_protocol_version": 1}
+  ],
+  "sites": [
+    {"site_id": "SYN-SN", "trial_id": "SYN-TN", "site_kind": "research", "owner_role_id": "SYN-ROLEN", "in_scope": true}
+  ],
+  "requirements": [
+    {"requirement_id": "SYN-RN", "site_kind": "research", "document_type": "protocol", "match_protocol_version": true, "signature_required": true, "expiry_required": false, "refresh_days": null}
+  ],
+  "documents": [
+    {"document_id": "SYN-DN", "site_id": "SYN-SN", "document_type": "protocol", "version_seq": true, "protocol_version": 1, "issued_on": "2026-02-30", "effective_on": "2026-03-01", "recorded_on": "2026-03-02", "expires_on": null, "artifact_id": "SYN-AN", "signature_recorded": true}
+  ],
+  "artifacts": [
+    {"artifact_id": "SYN-AN", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AN"}
+  ],
+  "open_review_tasks": []
+}

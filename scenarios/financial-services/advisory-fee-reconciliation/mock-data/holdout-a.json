@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "as_of": "2024-03-01T00:00:00Z",
+  "business_utc_offset_minutes": 0,
+  "billing_configuration": {
+    "control_version": "SYN-CTRL-LEAP",
+    "approval_state": "approved",
+    "period_start": "2024-02-01",
+    "period_end": "2024-03-01",
+    "currency": "USD",
+    "day_count_basis": "actual-calendar-year",
+    "rounding_mode": "half-up",
+    "variance_tolerance_minor": 1
+  },
+  "engagements": [
+    {"billing_account_id": "SYN-LEAP-A", "agreement_id": "SYN-AGR-LEAP-A", "currency": "USD", "active_from": "2024-02-15", "active_to": null},
+    {"billing_account_id": "SYN-LEAP-B", "agreement_id": "SYN-AGR-LEAP-B", "currency": "USD", "active_from": "2024-01-01", "active_to": "2024-02-11"}
+  ],
+  "schedule_versions": [
+    {
+      "schedule_id": "SYN-SCH-LEAP-A", "billing_account_id": "SYN-LEAP-A", "agreement_id": "SYN-AGR-LEAP-A",
+      "effective_from": "2024-02-01", "effective_to": "2024-03-01",
+      "approval_state": "approved", "approved_at": "2024-01-15T12:00:00Z",
+      "bands": [{"upper_value_minor": 10000000, "annual_rate_bps": 100}, {"upper_value_minor": null, "annual_rate_bps": 50}]
+    },
+    {
+      "schedule_id": "SYN-SCH-LEAP-B", "billing_account_id": "SYN-LEAP-B", "agreement_id": "SYN-AGR-LEAP-B",
+      "effective_from": "2024-02-01", "effective_to": "2024-03-01",
+      "approval_state": "approved", "approved_at": "2024-01-15T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 100}]
+    }
+  ],
+  "synthetic_value_intervals": [
+    {"valuation_id": "SYN-VAL-LEAP-A1", "billing_account_id": "SYN-LEAP-A", "currency": "USD", "from_date": "2024-02-15", "to_date": "2024-02-22", "billable_value_minor": 10000000},
+    {"valuation_id": "SYN-VAL-LEAP-A2", "billing_account_id": "SYN-LEAP-A", "currency": "USD", "from_date": "2024-02-22", "to_date": "2024-03-01", "billable_value_minor": 20000000},
+    {"valuation_id": "SYN-VAL-LEAP-B", "billing_account_id": "SYN-LEAP-B", "currency": "USD", "from_date": "2024-02-01", "to_date": "2024-03-01", "billable_value_minor": 5000000}
+  ],
+  "draft_fee_lines": [
+    {"draft_id": "SYN-DFT-LEAP-A", "billing_account_id": "SYN-LEAP-A", "period_start": "2024-02-01", "period_end": "2024-03-01", "currency": "USD", "amount_minor": 5205, "source_schedule_id": "SYN-SCH-LEAP-A"},
+    {"draft_id": "SYN-DFT-LEAP-B1", "billing_account_id": "SYN-LEAP-B", "period_start": "2024-02-01", "period_end": "2024-03-01", "currency": "USD", "amount_minor": 1366, "source_schedule_id": "SYN-SCH-LEAP-B"},
+    {"draft_id": "SYN-DFT-LEAP-B2", "billing_account_id": "SYN-LEAP-B", "period_start": "2024-02-01", "period_end": "2024-03-01", "currency": "USD", "amount_minor": 1366, "source_schedule_id": null}
+  ]
+}

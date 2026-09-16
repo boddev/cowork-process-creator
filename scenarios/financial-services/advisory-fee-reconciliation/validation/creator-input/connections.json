@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Supplied synthetic JSON exports and host-local review files only; no endpoint, authentication, credential, or live connection. Real agreement interpretation, approval provenance, valuation completeness, custody/billing exports, calendars, host capabilities, and native connections remain unverified."
+}

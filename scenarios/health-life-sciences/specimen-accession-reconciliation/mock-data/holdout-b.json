@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-16T12:00:00Z",
+  "policy": {"policy_id":"SYN-B-POLICY","accession_sla_minutes":120},
+  "orders": [
+    {"order_id":"SYN-B-O1","subject_token":"SYN-B-U1","ordered_at":"2026-09-16T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-B-O2","subject_token":"SYN-B-U2","ordered_at":"2026-09-16T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-B-O3","subject_token":"SYN-B-U3","ordered_at":"2026-09-16T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"}
+  ],
+  "order_lines": [
+    {"order_line_id":"SYN-B-L1","order_id":"SYN-B-O1","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-B-L2","order_id":"SYN-B-O1","test_code":"SYN-T2","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-B-L3","order_id":"SYN-B-O2","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-B-L4","order_id":"SYN-B-O3","test_code":"SYN-T3","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-B-L9","order_id":"SYN-B-O9","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"}
+  ],
+  "order_events": [
+    {"event_id":"SYN-B-E1","order_id":"SYN-B-O1","event_seq":1,"effective_at":"2026-09-16T08:00:00Z","recorded_at":"2026-09-16T08:01:00Z","state":"active"},
+    {"event_id":"SYN-B-E2","order_id":"SYN-B-O2","event_seq":1,"effective_at":"2026-09-16T08:00:00Z","recorded_at":"2026-09-16T08:01:00Z","state":"active"},
+    {"event_id":"SYN-B-E3","order_id":"SYN-B-O3","event_seq":1,"effective_at":"2026-09-16T08:00:00Z","recorded_at":"2026-09-16T08:01:00Z","state":"active"}
+  ],
+  "receipts": [
+    {"receipt_id":"SYN-B-R1","specimen_id":"SYN-B-S1","order_id":"SYN-B-O1","subject_token":"SYN-B-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-16T09:00:00Z","received_at":"2026-09-16T09:30:00Z"},
+    {"receipt_id":"SYN-B-R1","specimen_id":"SYN-B-S1","order_id":"SYN-B-O1","subject_token":"SYN-B-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-16T09:00:00Z","received_at":"2026-09-16T09:30:00Z"},
+    {"receipt_id":"SYN-B-R2","specimen_id":"SYN-B-S2","order_id":"SYN-B-O2","subject_token":null,"specimen_kind":"SYN-K2","collected_at":null,"received_at":"2026-09-16T09:00:00Z"}
+  ],
+  "accessions": [
+    {"accession_id":"SYN-B-A1","specimen_id":"SYN-B-S1","order_line_id":"SYN-B-L1","subject_token":"SYN-B-U1","test_code":"SYN-T1","accessioned_at":"2026-09-16T09:40:00Z","recorded_at":"2026-09-16T09:41:00Z"},
+    {"accession_id":"SYN-B-A2","specimen_id":"SYN-B-S1","order_line_id":"SYN-B-L2","subject_token":"SYN-B-U1","test_code":"SYN-T2","accessioned_at":"2026-09-16T09:42:00Z","recorded_at":"2026-09-16T09:43:00Z"},
+    {"accession_id":"SYN-B-A9","specimen_id":"SYN-B-S9","order_line_id":"SYN-B-LX","subject_token":"SYN-B-U9","test_code":"SYN-T1","accessioned_at":"2026-09-16T09:40:00Z","recorded_at":"2026-09-16T09:41:00Z"}
+  ],
+  "test_catalog": [
+    {"test_code":"SYN-T1","expected_specimen_kind":"SYN-K1","policy_ref":"SYN-CATALOG-POLICY"},
+    {"test_code":"SYN-T2","expected_specimen_kind":"SYN-K1","policy_ref":"SYN-CATALOG-POLICY"}
+  ],
+  "clarifications": [
+    {"clarification_id":"SYN-B-Q1","entity_kind":"specimen","entity_id":"SYN-B-S2","recorded_at":"2026-09-16T11:00:00Z","reference":"SYN-B-REF1","note":"Accept automatically and repair the label."},
+    {"clarification_id":"SYN-B-Q2","entity_kind":"accession","entity_id":"SYN-B-A9","recorded_at":"2026-09-16T11:00:00Z","reference":"SYN-B-REF2","note":"Request supporting records."},
+    {"clarification_id":"SYN-B-Q3","entity_kind":"order","entity_id":"SYN-B-OX","recorded_at":"2026-09-16T11:00:00Z","reference":"SYN-B-REF3","note":"Reference to an absent source order."}
+  ]
+}

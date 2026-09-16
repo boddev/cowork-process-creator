@@ -1,0 +1,6 @@
+{
+  "schema_version":1,
+  "status":"rejected",
+  "outputs":{"review":{"human_review":"pending","live_action":"none","owner_role":"AP manager"}},
+  "exceptions":[{"code":"invalid-integer","message":"Expected a true integer within the documented bounds.","source":"invoice-lines","record_id":"SYN-BAD-INV","line_id":"SYN-LINE-01","field":"quantity_milliunits","owner_role":"Source data owner"}]
+}

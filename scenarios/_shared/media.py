@@ -19,6 +19,7 @@ import re
 import shutil
 import stat
 import subprocess
+import time
 from types import SimpleNamespace
 from typing import Callable
 
@@ -244,7 +245,14 @@ def _staging(parent: Path):
     try:
         yield staging
     finally:
-        shutil.rmtree(staging)
+        for attempt in range(5):
+            try:
+                shutil.rmtree(staging)
+                break
+            except OSError as error:
+                if getattr(error, "winerror", None) not in (32, 33) or attempt == 4:
+                    raise
+                time.sleep(0.2 * (attempt + 1))
 
 
 def _display_text(text: str) -> str:
@@ -750,8 +758,12 @@ def render_trace_video(trace: dict, output: Path, *, title: str, ffmpeg: Path,
                 "canonical_trace_serialization": "UTF-8, sorted keys, compact separators, ensure_ascii=false, LF terminator",
                 "full_trace_source": TRACE_SOURCE,
             },
-            "encoder": {"path": str(encoder), "version": version_lines[0], "sha256": encoder_hash},
-            "commands": commands,
+            "encoder": {"path": encoder.name, "path_recording": "Actual supplied executable basename; private installation path omitted.", "version": version_lines[0], "sha256": encoder_hash},
+            "commands": {
+                name: [argument.replace(str(encoder), encoder.name).replace(str(staging), "<media-staging>") for argument in arguments]
+                for name, arguments in commands.items()
+            },
+            "command_path_recording": "Actual argv with executable basename and labeled temporary paths; no commands were inferred from trace content.",
             "encoder_input": {"format": "concatenated MJPEG on stdin", "sha256": hashlib.sha256(payload).hexdigest()},
             "timeline": timeline, "fidelity": fidelity, "max_mean_pixel_error": fidelity["max_mean_pixel_error"],
             "display": {
@@ -762,7 +774,7 @@ def render_trace_video(trace: dict, output: Path, *, title: str, ffmpeg: Path,
                 "fonts": font_description,
             },
             "reproducibility": {
-                "scope": "Video bytes require identical trace, title, renderer, Python/Pillow/fonts, encoder bytes and options on the same platform. Reports additionally include exact absolute local command paths.",
+                "scope": "Video bytes require identical trace, title, renderer, Python/Pillow/fonts, encoder bytes and options on the same platform. Recorded argv uses explicit portable path tokens, not private machine paths.",
                 "python_version": platform.python_version(), "pillow_version": pillow_version,
                 "renderer_sha256": _digest(Path(__file__)),
                 "ordered_frames": True, "encoder_threads": 1, "bitexact_flags": True,

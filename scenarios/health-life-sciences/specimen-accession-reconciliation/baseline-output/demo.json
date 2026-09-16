@@ -1,0 +1,240 @@
+{
+  "exceptions": [
+    {
+      "code": "missing-link",
+      "entity_key": "row:SYN-D-O9|-|SYN-D-S5",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-link"
+      ]
+    },
+    {
+      "code": "identity-mismatch",
+      "entity_key": "row:SYN-D-O5|SYN-D-L5|SYN-D-S6",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "identity-mismatch"
+      ]
+    },
+    {
+      "code": "accession-overdue",
+      "entity_key": "row:SYN-D-O4|SYN-D-L4|SYN-D-S4",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "accession-overdue"
+      ]
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-09-14T12:00:00Z",
+    "clinical_disposition_performed": false,
+    "draft_clarification_queue": [
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-D-O9|-|SYN-D-S5",
+        "existing_clarification_refs": [],
+        "owner_role_id": null,
+        "reason_codes": [
+          "missing-link"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-D-O5|SYN-D-L5|SYN-D-S6",
+        "existing_clarification_refs": [
+          "SYN-D-REF1"
+        ],
+        "owner_role_id": "SYN-ROLE-ORDER",
+        "reason_codes": [
+          "identity-mismatch"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-D-O4|SYN-D-L4|SYN-D-S4",
+        "existing_clarification_refs": [],
+        "owner_role_id": "SYN-ROLE-ORDER",
+        "reason_codes": [
+          "accession-overdue"
+        ]
+      }
+    ],
+    "duplicate_records": [],
+    "excluded_evidence": [],
+    "policy_id": "SYN-D-POLICY",
+    "qualified_review_required": true,
+    "reconciliation_rows": [
+      {
+        "accession_ids": [
+          "SYN-D-A1"
+        ],
+        "administrative_state": "reconciled",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-D-O1",
+        "order_line_id": "SYN-D-L1",
+        "reason_codes": [],
+        "receipt_ids": [
+          "SYN-D-R1"
+        ],
+        "source_refs": [
+          "accessions:SYN-D-A1@1",
+          "order_events:SYN-D-E1@1",
+          "order_lines:SYN-D-L1@1",
+          "orders:SYN-D-O1@1",
+          "receipts:SYN-D-R1@1",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-D-S1",
+        "state_event_ids": [
+          "SYN-D-E1"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "pending-within-window",
+        "age_seconds": 1800,
+        "imported_order_state": "active",
+        "order_id": "SYN-D-O2",
+        "order_line_id": "SYN-D-L2",
+        "reason_codes": [],
+        "receipt_ids": [
+          "SYN-D-R2"
+        ],
+        "source_refs": [
+          "order_events:SYN-D-E2@2",
+          "order_lines:SYN-D-L2@2",
+          "orders:SYN-D-O2@2",
+          "receipts:SYN-D-R2@2",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-D-S2",
+        "state_event_ids": [
+          "SYN-D-E2"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "pending-within-window",
+        "age_seconds": 3600,
+        "imported_order_state": "active",
+        "order_id": "SYN-D-O3",
+        "order_line_id": "SYN-D-L3",
+        "reason_codes": [],
+        "receipt_ids": [
+          "SYN-D-R3"
+        ],
+        "source_refs": [
+          "order_events:SYN-D-E3@3",
+          "order_lines:SYN-D-L3@3",
+          "orders:SYN-D-O3@3",
+          "receipts:SYN-D-R3@3",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-D-S3",
+        "state_event_ids": [
+          "SYN-D-E3"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "review",
+        "age_seconds": 3660,
+        "imported_order_state": "active",
+        "order_id": "SYN-D-O4",
+        "order_line_id": "SYN-D-L4",
+        "reason_codes": [
+          "accession-overdue"
+        ],
+        "receipt_ids": [
+          "SYN-D-R4"
+        ],
+        "source_refs": [
+          "order_events:SYN-D-E4@4",
+          "order_lines:SYN-D-L4@4",
+          "orders:SYN-D-O4@4",
+          "receipts:SYN-D-R4@4",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-D-S4",
+        "state_event_ids": [
+          "SYN-D-E4"
+        ]
+      },
+      {
+        "accession_ids": [
+          "SYN-D-A6"
+        ],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-D-O5",
+        "order_line_id": "SYN-D-L5",
+        "reason_codes": [
+          "identity-mismatch"
+        ],
+        "receipt_ids": [
+          "SYN-D-R6"
+        ],
+        "source_refs": [
+          "accessions:SYN-D-A6@2",
+          "clarifications:SYN-D-Q1@1",
+          "order_events:SYN-D-E5@5",
+          "order_lines:SYN-D-L5@5",
+          "orders:SYN-D-O5@5",
+          "receipts:SYN-D-R6@6",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-D-S6",
+        "state_event_ids": [
+          "SYN-D-E5"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "unknown",
+        "order_id": "SYN-D-O9",
+        "order_line_id": null,
+        "reason_codes": [
+          "missing-link"
+        ],
+        "receipt_ids": [
+          "SYN-D-R5"
+        ],
+        "source_refs": [
+          "receipts:SYN-D-R5@5"
+        ],
+        "specimen_id": "SYN-D-S5",
+        "state_event_ids": []
+      }
+    ],
+    "sla_seconds": 3600,
+    "summary": {
+      "duplicate_rows_collapsed": 0,
+      "excluded_records": 0,
+      "ledger_rows": 6,
+      "pending_within_window": 2,
+      "reconciled": 1,
+      "review": 3,
+      "unique_order_lines": 5,
+      "unique_received_specimens": 6,
+      "unmatched_records": 1
+    },
+    "unmatched_records": [
+      {
+        "reason_codes": [
+          "missing-link"
+        ],
+        "record_id": "SYN-D-R5",
+        "source_refs": [
+          "receipts:SYN-D-R5@5"
+        ],
+        "table": "receipts"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

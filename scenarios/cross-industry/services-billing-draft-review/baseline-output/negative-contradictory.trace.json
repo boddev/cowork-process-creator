@@ -1,0 +1,466 @@
+{
+  "events": [
+    {
+      "caption": "Inventory the supplied synthetic exports and frozen service period; no other files or systems are read.",
+      "facts": {
+        "as_of": "2026-10-02T12:00:00Z",
+        "logical_exports": 9,
+        "period_end": "2026-10-01",
+        "period_start": "2026-09-01"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-billing-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval-events.json",
+              4
+            ],
+            [
+              "billed-transactions.json",
+              0
+            ],
+            [
+              "draft-invoices.json",
+              2
+            ],
+            [
+              "draft-lines.json",
+              2
+            ],
+            [
+              "expense-entries.json",
+              0
+            ],
+            [
+              "expense-policies.json",
+              0
+            ],
+            [
+              "projects.json",
+              2
+            ],
+            [
+              "rates.json",
+              2
+            ]
+          ],
+          "title": "Supplied logical exports (first 8 rows)",
+          "total_rows": 9
+        }
+      ]
+    },
+    {
+      "caption": "All nine export schemas, types, intervals and primary keys passed validation.",
+      "facts": {
+        "duplicate_primary_keys": 0,
+        "records": 14,
+        "tolerance": "0.00",
+        "valid": true
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-billing-data",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "validated_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval-events.json",
+              4
+            ],
+            [
+              "billed-transactions.json",
+              0
+            ],
+            [
+              "draft-invoices.json",
+              2
+            ],
+            [
+              "draft-lines.json",
+              2
+            ],
+            [
+              "expense-entries.json",
+              0
+            ],
+            [
+              "expense-policies.json",
+              0
+            ],
+            [
+              "projects.json",
+              2
+            ],
+            [
+              "rates.json",
+              2
+            ]
+          ],
+          "title": "Validated exports (first 8 rows)",
+          "total_rows": 9
+        }
+      ]
+    },
+    {
+      "caption": "Join current entries to projects, as-of approval revisions, raw prior billing and current draft details.",
+      "facts": {
+        "entries": 2,
+        "matched_projects": 2,
+        "prior_rows": 0,
+        "projects": 2,
+        "source_absent_prior": 0
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-billing-evidence",
+      "tables": [
+        {
+          "columns": [
+            "entry",
+            "project",
+            "approval_ids",
+            "prior_rows",
+            "active_lines",
+            "rate_matches"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "time:C1",
+              "PC1",
+              "AC1-2A,AC1-2R",
+              0,
+              1,
+              1
+            ],
+            [
+              "time:C2",
+              "PC2",
+              "AC2-1",
+              0,
+              1,
+              1
+            ]
+          ],
+          "title": "Actual evidence joins",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Resolve unique highest as-of revisions and explicit exclusions; contradictions are never turned into removal decisions.",
+      "facts": {
+        "entries": 2,
+        "excluded": 0,
+        "future_approvals_ignored": 0,
+        "uncomputed": 1
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "resolve-entry-eligibility",
+      "tables": [
+        {
+          "columns": [
+            "entry",
+            "revision",
+            "event_ids",
+            "future_events",
+            "status",
+            "reason"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "time:C1",
+              2,
+              "AC1-2A,AC1-2R",
+              0,
+              "quarantined",
+              "contradictory-approval"
+            ],
+            [
+              "time:C2",
+              1,
+              "AC2-1",
+              0,
+              "candidate",
+              "candidate-time"
+            ]
+          ],
+          "title": "Actual revision and eligibility outcomes",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Price time half-up per entry; enforce whole-expense caps and inclusive receipt thresholds without FX or truncation.",
+      "facts": {
+        "candidates": 1,
+        "expense_entries": 0,
+        "policy_holds": 0,
+        "time_entries": 2
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "price-candidate-entries",
+      "tables": [
+        {
+          "columns": [
+            "entry_id",
+            "minutes",
+            "rate_id",
+            "hourly_rate",
+            "amount",
+            "status"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "C1",
+              60,
+              null,
+              null,
+              null,
+              "quarantined"
+            ],
+            [
+              "C2",
+              30,
+              "RC2",
+              "120.00",
+              "60.00",
+              "candidate"
+            ]
+          ],
+          "title": "Time pricing",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "entry_id",
+            "amount",
+            "cap",
+            "receipt_at",
+            "receipt",
+            "status"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Expense evidence",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Compare actual draft lines and missing candidates before project cap gating; ambiguous evidence stays uncomputed.",
+      "facts": {
+        "actual_lines": 2,
+        "comparison_rows": 2,
+        "nonmatch_rows": 1,
+        "uncomputed_rows": 1
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "compare-draft-details",
+      "tables": [
+        {
+          "columns": [
+            "draft",
+            "entry",
+            "draft_amount",
+            "computed_amount",
+            "delta",
+            "action"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "DC1",
+              "time:C1",
+              "100.00",
+              null,
+              null,
+              "clarify-not-remove"
+            ],
+            [
+              "DC2",
+              "time:C2",
+              "60.00",
+              "60.00",
+              "0.00",
+              "match"
+            ]
+          ],
+          "title": "Actual detail comparisons",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Add raw as-of period billing to rounded candidates; equality is allowed and proven excess holds the whole project's new candidates.",
+      "facts": {
+        "cap_held_projects": 0,
+        "counted_prior_rows": 0,
+        "incomplete_projects": 1,
+        "projects": 2
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "check-project-caps",
+      "tables": [
+        {
+          "columns": [
+            "project",
+            "currency",
+            "prior",
+            "new",
+            "cap",
+            "overage"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "PC1",
+              "USD",
+              "0.00",
+              "0.00",
+              "1000.00",
+              null
+            ],
+            [
+              "PC2",
+              "USD",
+              "0.00",
+              "60.00",
+              "1000.00",
+              "0.00"
+            ]
+          ],
+          "title": "Project cap arithmetic",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "billed_id",
+            "source_present",
+            "currency",
+            "amount",
+            "cap_amount",
+            "disposition"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Raw ledger cap contributions",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Assign actual entry holds, project holds and draft correction or clarification items to human reviewers; no financial action is taken.",
+      "facts": {
+        "clarifications": 2,
+        "diagnostic_only": 2,
+        "exceptions": 2
+      },
+      "kind": "exception",
+      "sequence": 8,
+      "step_id": "triage-billing-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "project",
+            "entry",
+            "draft",
+            "owner",
+            "action",
+            "reason"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "PC1",
+              "C1",
+              null,
+              "ACCOUNTANT-C1",
+              "clarify-evidence",
+              "contradictory-approval"
+            ],
+            [
+              "PC1",
+              "C1",
+              "DC1",
+              "ACCOUNTANT-C1",
+              "clarify-not-remove",
+              "contradictory-approval"
+            ]
+          ],
+          "title": "Owned review packet",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Emit the complete synthetic review-only packet with separate currency subtotals, explicit null comparisons and no invoice or posting actions.",
+      "facts": {
+        "currencies": 1,
+        "drafts": 2,
+        "entries": 2,
+        "exceptions": 2,
+        "projects": 2,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "emit-billing-review",
+      "tables": [
+        {
+          "columns": [
+            "currency",
+            "candidates",
+            "cap_held",
+            "reviewable",
+            "raw_draft",
+            "complete"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "USD",
+              "60.00",
+              "0.00",
+              "60.00",
+              "160.00",
+              false
+            ]
+          ],
+          "title": "Final currency-separated facts",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "1b5b28bb8b6d6a9acf71c017a29753482f716ba0249590b4342f3fe8c2c20e33",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-03",
+  "schema_version": 1
+}

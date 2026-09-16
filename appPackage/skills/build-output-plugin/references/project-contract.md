@@ -120,10 +120,11 @@ siblings are packaged in this same directory; no cross-skill imports are used.
   `description`, `body`, `companions`; companions have `path`, `content`.
   Tool files have `path`, `content` (JSON text). No downloads or installations.
 - `build --project PATH --output NEW_ZIP --report NEW_JSON --target
-  cowork-v1.28|compatible-source [--metadata APPROVED_JSON]`: require coherent
+  cowork-v1.28 --metadata APPROVED_JSON`: require coherent
   evidence/coverage/evaluations, then invoke the bundled package builder.
-  Canonical metadata remains mandatory. Synthetic profiles and source exports
-  are explicitly Draft; neither inherits old installation claims.
+  Microsoft publishing metadata is mandatory. No alternative manifest target
+  is supported. Synthetic profiles remain Draft and do not inherit old
+  installation claims; missing metadata allows a source checkpoint only.
 - `checkpoint --project PATH --output NEW_ZIP`: export a hash-inventoried
   creation-source bundle, excluding raw attachments and publishing secrets.
 - `resume --bundle ZIP --output NEW_PROJECT_DIRECTORY`: verify the complete

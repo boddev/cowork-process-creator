@@ -1,0 +1,395 @@
+{
+  "events": [
+    {
+      "caption": "Loaded the bundled source map and raw export counts. Null metadata means absent or invalid, never a default price or count.",
+      "facts": {
+        "as_of": "2099-09-01",
+        "audit_end": "2099-09-02",
+        "audit_start": "2099-09-01",
+        "tolerance_minor": 0
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-price-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "logical_filename",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stores",
+              "stores.json",
+              1
+            ],
+            [
+              "products",
+              "products.json",
+              1
+            ],
+            [
+              "base_prices",
+              "base-prices.json",
+              0
+            ],
+            [
+              "promotions",
+              "promotions.json",
+              0
+            ],
+            [
+              "promotion_scope",
+              "promotion-scope.json",
+              0
+            ],
+            [
+              "price_exceptions",
+              "price-exceptions.json",
+              0
+            ],
+            [
+              "observations",
+              "observed-prices.json",
+              1
+            ]
+          ],
+          "title": "Named export tables (all roles)",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Validated exact schemas, synthetic identifiers, integer domains, supported rules, calendar windows, unique keys and all foreign keys.",
+      "facts": {
+        "records_checked": 3,
+        "references_checked": true,
+        "valid": true,
+        "validation_errors": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-pricing-records",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "records",
+            "primary_key",
+            "valid"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stores",
+              1,
+              "store_id",
+              true
+            ],
+            [
+              "products",
+              1,
+              "sku",
+              true
+            ],
+            [
+              "base_prices",
+              0,
+              "price_id",
+              true
+            ],
+            [
+              "promotions",
+              0,
+              "promotion_id",
+              true
+            ],
+            [
+              "promotion_scope",
+              0,
+              "promotion_id|store_id|sku|line_type",
+              true
+            ],
+            [
+              "price_exceptions",
+              0,
+              "exception_id",
+              true
+            ],
+            [
+              "observations",
+              1,
+              "observation_id",
+              true
+            ]
+          ],
+          "title": "Validated export keys (all roles)",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Matched exact store/SKU/unit/currency dimensions, then half-open dates. Every matching version remains visible; ambiguous or missing evidence is not guessed.",
+      "facts": {
+        "ambiguous_approvals": 0,
+        "ambiguous_bases": 0,
+        "excluded_before_join": 1,
+        "included": 0,
+        "missing_bases": 0,
+        "unique_bases": 0
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-store-sku-prices",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "date",
+            "store / SKU",
+            "active_base_ids",
+            "approved_exception_ids",
+            "evidence_state"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Observation joins (ordered prefix)",
+          "total_rows": 0
+        },
+        {
+          "columns": [
+            "observation_id",
+            "kind",
+            "reference_id",
+            "valid_from",
+            "valid_to",
+            "active"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Dimensional versions and date/approval matches (ordered prefix)",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Tested every promotion against every included observation: enabled, date, currency, unit and explicit include/exclude scope. All failed filters are retained.",
+      "facts": {
+        "eligible_pairs": 0,
+        "filtered_pairs": 0,
+        "promotion_observation_pairs": 0
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "select-active-promotions",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "promotion_id",
+            "date_match",
+            "included",
+            "excluded",
+            "eligibility"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Actual candidate filters (ordered prefix)",
+          "total_rows": 0
+        },
+        {
+          "columns": [
+            "observation_id",
+            "date",
+            "eligible_ids",
+            "filtered_rules"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Eligible rules by observation (ordered prefix)",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Resolved the unique-evidence gate, approved exceptions and highest-priority competition using exact unrounded amounts. Suppressed rules never stack.",
+      "facts": {
+        "approved_overrides": 0,
+        "base_only_rows": 0,
+        "included_rows": 0,
+        "suppressed_rules": 0,
+        "tied_rows": 0
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "resolve-price-policy",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "basis",
+            "rule_or_reference_ids",
+            "priority",
+            "unrounded_minor",
+            "decision"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Actual candidate and fallback decisions (ordered prefix)",
+          "total_rows": 0
+        },
+        {
+          "columns": [
+            "observation_id",
+            "promotion_id",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Eligible but suppressed (ordered prefix)",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Rounded each selected unit price exactly once with ROUND_HALF_UP. Delta is observed minus rounded price; equality to tolerance is a match, not an exception.",
+      "facts": {
+        "compared_rows": 0,
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "round-and-compare",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "unrounded_minor",
+            "expected_minor",
+            "observed_minor",
+            "delta_minor",
+            "disposition"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Unit-price comparisons (ordered prefix)",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Registered actual discrepancies, missing/ambiguous evidence and out-of-period rows for human review. No issue authorizes a price change.",
+      "facts": {
+        "action_authorized": false,
+        "excluded_count": 1,
+        "issue_count": 1
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "register-audit-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "observation_id",
+            "code",
+            "evidence_ids",
+            "owner"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-OBS-OUT",
+              "OUT_OF_AUDIT_WINDOW",
+              "",
+              "Pricing operations analyst"
+            ]
+          ],
+          "title": "Human issue queue (ordered prefix)",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "observation_id",
+            "observed_on",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-OBS-OUT",
+              "2099-09-02",
+              "at-or-after-audit-end"
+            ]
+          ],
+          "title": "Excluded observations (ordered prefix)",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Published the full audit, rule-selection ledger, excluded register, issue queue and reconciled review packet. This is local synthetic evidence, not native execution.",
+      "facts": {
+        "action_authorized": false,
+        "business_status": "completed_with_exceptions",
+        "included_observations": 0,
+        "input_observations": 1,
+        "issue_count": 1,
+        "reconciled": true
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "publish-price-review",
+      "tables": [
+        {
+          "columns": [
+            "store_id",
+            "currency",
+            "matched",
+            "mismatched",
+            "not_evaluable",
+            "out_of_scope"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-STORE-N",
+              "USD",
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "title": "Reconciliation by store and currency (ordered prefix)",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "owner_role",
+            "review_state",
+            "action_authorized"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "Pricing operations analyst",
+              "review-required",
+              false
+            ]
+          ],
+          "title": "Review packet",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "a069871d22827d38279c2a7615881c2b5f9e7b537cdf4763855d7d744e883075",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-03",
+  "schema_version": 1
+}

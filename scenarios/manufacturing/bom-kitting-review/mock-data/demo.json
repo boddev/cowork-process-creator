@@ -1,0 +1,35 @@
+{
+  "as_of": "2026-09-14",
+  "horizon_end": "2026-09-17",
+  "work_orders": [
+    {"order_id": "W02", "item_id": "R", "site": "MAIN", "start_date": "2026-09-17", "quantity": 2, "priority": 1, "requested_version_id": null},
+    {"order_id": "W01", "item_id": "R", "site": "MAIN", "start_date": "2026-09-16", "quantity": 3, "priority": 1, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "R-V1", "item_id": "R", "site": "MAIN", "valid_from": "2026-01-01", "valid_to": "2026-12-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "MOD-V1", "item_id": "MODULE", "site": "MAIN", "valid_from": "2026-01-01", "valid_to": "2026-12-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "R-FRAME", "version_id": "R-V1", "component_id": "FRAME", "line_type": "Item", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "R-MODULE", "version_id": "R-V1", "component_id": "MODULE", "line_type": "Phantom", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "M-SCREW", "version_id": "MOD-V1", "component_id": "SCREW", "line_type": "Item", "quantity_per": "4", "scrap_percent": "0"},
+    {"line_id": "M-BOLT", "version_id": "MOD-V1", "component_id": "BOLT", "line_type": "Item", "quantity_per": "2", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "R", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "MODULE", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "FRAME", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "BOLT", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "SCREW", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [
+    {"stock_id": "S-FRAME", "item_id": "FRAME", "site": "MAIN", "quantity": 4, "reserved_external_qty": 0, "status": "available", "expires_on": null},
+    {"stock_id": "S-BOLT", "item_id": "BOLT", "site": "MAIN", "quantity": 8, "reserved_external_qty": 2, "status": "available", "expires_on": null},
+    {"stock_id": "S-SCREW", "item_id": "SCREW", "site": "MAIN", "quantity": 20, "reserved_external_qty": 0, "status": "available", "expires_on": null},
+    {"stock_id": "S-BLOCK", "item_id": "BOLT", "site": "MAIN", "quantity": 100, "reserved_external_qty": 0, "status": "blocked", "expires_on": null}
+  ],
+  "inbound": [
+    {"receipt_id": "I-FRAME", "item_id": "FRAME", "site": "MAIN", "expected_on": "2026-09-17", "quantity": 1, "confirmed": true},
+    {"receipt_id": "I-BOLT", "item_id": "BOLT", "site": "MAIN", "expected_on": "2026-09-18", "quantity": 3, "confirmed": true}
+  ]
+}

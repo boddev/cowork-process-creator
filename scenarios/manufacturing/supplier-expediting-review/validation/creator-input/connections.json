@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "One supplied synthetic JSON file contains five independently named logical export tables. No endpoint, authentication, credentials, native connection ID, ERP access, or mail access is required or claimed. Native file-reading and output capabilities remain unverified; logical joins are not physical multi-file ingestion."
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "financial-services-01",
+  "title": "Bank-statement-to-ledger reconciliation review packet",
+  "industry": "financial-services",
+  "workflow_family": "evidence-constrained-bank-ledger-matching",
+  "description": "Validate synthetic bank and ledger closes, resolve only unambiguous evidence-constrained groups, and emit an exhaustive controller review packet without posting.",
+  "owner_role": "Accounting controller",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "SYN-FIN Demonstration Company is fictional. All thresholds, keys and control approvals are sample policies, not financial advice, accounting standards, real permissions or ledger postings."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Financial services scenario author",
+    "description": "Full row dispositions, candidate sets, match membership, exception reasons and signed bridges were hand-derived from the procedure before baseline implementation/execution. Exact expected JSON was authored independently; this is not a claim of independent human approval."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-ambiguity-review", "bank-batch-manifest", "bank-symmetric-uniqueness", "bank-timing-review", "bank-bridge-closure"],
+      "failure_modes": [],
+      "derivation": "Hand-derived before implementation: bank 100000+12000-7500-250+3000=107250; ledger 100000+12000-5000-2500+3000+3000-4000=106500. SYN-B1/SYN-L1 and SYN-B2/{SYN-L2,SYN-L3} are the only isolated groups. SYN-B4 has both SYN-L4 and SYN-L5, so all three remain ambiguous. SYN-B3 is a bank-only fee; SYN-L6 is pending July 1 clearance. Unmatched bank2750 minus ledger2000 is the750 closing difference. Two groups; two unmatched bank and three unmatched ledger rows."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-batch-manifest", "bank-symmetric-uniqueness", "bank-penny-review", "bank-timing-review", "bank-bridge-closure"],
+      "failure_modes": [],
+      "derivation": "Changed scopes, membership, timing and tolerance: A bank3000+10002-1000=12002; A ledger1000+1500+500+10000-1000=12000. Explicit three-member batch exact, 10002/10000 pair at inclusive2day and2cent limits is a pending correction, -1000 pair with5day gap is not matched. Ledger age5 is not stale at threshold5. B opens50000 and has isolated7000 pair with reused reference, closing57000. Three groups, no cross-account edge, aggregate currency difference2 with no posting."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["bank-source-validation", "bank-date-and-type-controls", "bank-symmetric-uniqueness", "bank-penny-review", "bank-timing-review", "bank-bridge-closure"],
+      "failure_modes": [],
+      "derivation": "Changed offset and cutoff: -300minutes makes2026-08-01T04:30Z July31;05:00Z is August1 and after as_of04:59:59Z. Only20000 pair matches. Bank1003/ledger1000 exceeds2cent tolerance. Ledger-1500 has expected August1 clearing. Future9900 excluded. Bank close21003, included ledger19500, gap1503=1003-(1000-1500). One matched group, one bank mismatch, one ledger mismatch and one timing item."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected", "covers": ["bank-source-validation"], "failure_modes": ["malformed-input"],
+      "derivation": "A valid JSON boolean true in bank_lines[0].amount_minor is not a true integer. Reject at scalar validation before joins or trusted totals; diagnostic path and no-action review envelope are hand-specified."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json",
+      "expected_status": "rejected", "covers": ["bank-source-validation", "bank-bridge-closure"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "Scope SYN-N declares bank opening100000 and no lines but closing100001. Bank checksum contradiction rejects before matching. No one-cent correction is invented; outputs contain only pending/no-action review."
+    }
+  ]
+}

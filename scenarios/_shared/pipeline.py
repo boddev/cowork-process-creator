@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import platform
 import subprocess
 import sys
 import tempfile
@@ -18,6 +19,17 @@ NATIVE_BLOCKER = (
     "Old N00 was last Publishing... with unknown outcome and Creator disabled; "
     "inspect real Installed state before any retry."
 )
+
+_OS_ENVIRONMENT_KEYS = {
+    "SYSTEMROOT", "WINDIR", "SYSTEMDRIVE", "USERPROFILE", "LOCALAPPDATA",
+    "APPDATA", "PROGRAMDATA", "ALLUSERSPROFILE", "HOMEDRIVE", "HOMEPATH",
+    "TEMP", "TMP", "LANG", "LC_ALL",
+}
+
+
+def baseline_environment() -> dict[str, str]:
+    """Keep OS directory resolution, but no Python paths, credentials or tokens."""
+    return {key: value for key, value in os.environ.items() if key.upper() in _OS_ENVIRONMENT_KEYS}
 
 
 def native_pending() -> dict:
@@ -122,24 +134,40 @@ def run_case(scenario: Scenario, case: dict, *, replace: bool = False, timeout: 
                 "--output", str(staged_result), "--trace", str(staged_trace),
             ]
             report["execution"] = {
-                "command": command,
-                "cwd": str(scenario.root),
+                "command": [
+                    Path(sys.executable).name, "-B", "-I", "baseline.py",
+                    "--input", case["input"], "--output", "<temporary>/result.json",
+                    "--trace", "<temporary>/trace.json",
+                ],
+                "cwd": "scenarios/" + scenario.root.parent.name + "/" + scenario.root.name,
+                "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
                 "timeout_seconds": timeout,
                 "returncode": None,
                 "runtime": "trusted developer Python baseline; not Creator or Cowork",
-            }
-            environment = {
-                key: value for key, value in os.environ.items()
-                if key.upper() in {"SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LANG", "LC_ALL"}
+                "python_version": platform.python_version(),
+                "platform": sys.platform,
             }
             process = subprocess.run(
-                command, cwd=scenario.root, env=environment, stdin=subprocess.DEVNULL,
+                command, cwd=scenario.root, env=baseline_environment(), stdin=subprocess.DEVNULL,
                 capture_output=True, timeout=timeout, check=False,
             )
+            substitutions = [
+                (str(staging), "<temporary>"),
+                (str(scenario.root), "<scenario>"),
+                (str(scenario.root.parent.parent.parent), "<repository>"),
+                (str(Path.home()), "<home>"),
+            ]
+
+            def public_diagnostic(content: bytes) -> str:
+                value = content.decode("utf-8", errors="replace")[-8000:]
+                for original, replacement in sorted(substitutions, key=lambda item: len(item[0]), reverse=True):
+                    value = value.replace(original, replacement).replace(original.replace("\\", "/"), replacement)
+                return value
+
             report["execution"].update({
                 "returncode": process.returncode,
-                "stdout": process.stdout.decode("utf-8", errors="replace")[-8000:],
-                "stderr": process.stderr.decode("utf-8", errors="replace")[-8000:],
+                "stdout": public_diagnostic(process.stdout),
+                "stderr": public_diagnostic(process.stderr),
             })
             after = source_hashes(scenario)
             mutations = [name for name in before if before[name] != after[name]]

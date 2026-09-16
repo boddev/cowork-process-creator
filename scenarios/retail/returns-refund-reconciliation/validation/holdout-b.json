@@ -1,0 +1,239 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "e487e4364472adbbf997a97ab93de3d6f817d55126b7c854f2ae1937a1cb682a",
+    "golden_sha256": "e03a7b1af0a651baab84f61ff4d72e7e294be2e918a648ca71a7eed8f674a77b",
+    "input_sha256": "a9b4945c984b90a05cb892f7d9760149fa4792ec503e756bfb9300d92d359144",
+    "result": "baseline-output/holdout-b.json",
+    "result_sha256": "793d2b0cc3877bf19c1075d8a795145208e088133989d4b555abdb4f2a6fbb4a",
+    "trace": "baseline-output/holdout-b.trace.json",
+    "trace_sha256": "8755fe28aa53ea9d14dcd15ff67b9b8c09da44ea91ab1bdf09ebd562adc3ec3d"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "datetime",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "holdout-b",
+  "documented": {
+    "case_rule_coverage": [
+      "inclusive-return-window",
+      "quantity-reservation",
+      "original-entitlement",
+      "incremental-refund"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "Different September10-11 period, September4 purchase, window7, partial disabled, GBP Q2 M999 T0 capture999 and explicit empty opening history. September10 request asks3, exceeding2; propose0, defer3, consume nothing. September11 request asks1 at age7; half-up 999/2=500, tax0. One unit and499 remain. One partial-not-allowed exception.",
+    "steps": [
+      {
+        "id": "load-return-exports",
+        "kind": "input",
+        "rule_ids": [
+          "strict-mock-records"
+        ]
+      },
+      {
+        "id": "validate-return-records",
+        "kind": "validation",
+        "rule_ids": [
+          "strict-mock-records",
+          "inclusive-return-window"
+        ]
+      },
+      {
+        "id": "link-original-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "original-line-eligibility"
+        ]
+      },
+      {
+        "id": "reconcile-opening-ledger",
+        "kind": "decision",
+        "rule_ids": [
+          "closed-opening-history",
+          "history-reconciliation",
+          "confirmed-refund-cap",
+          "history-freshness-and-tax",
+          "original-entitlement"
+        ]
+      },
+      {
+        "id": "apply-return-policy",
+        "kind": "decision",
+        "rule_ids": [
+          "inclusive-return-window",
+          "condition-and-reason"
+        ]
+      },
+      {
+        "id": "reserve-proposed-quantities",
+        "kind": "decision",
+        "rule_ids": [
+          "quantity-reservation"
+        ]
+      },
+      {
+        "id": "calculate-original-refund",
+        "kind": "decision",
+        "rule_ids": [
+          "original-entitlement",
+          "incremental-refund",
+          "confirmed-refund-cap"
+        ]
+      },
+      {
+        "id": "quarantine-return-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "closed-opening-history",
+          "history-reconciliation",
+          "original-line-eligibility",
+          "review-only-closure"
+        ]
+      },
+      {
+        "id": "publish-return-review",
+        "kind": "output",
+        "rule_ids": [
+          "review-only-closure",
+          "incremental-refund"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/holdout-b.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/retail/returns-refund-reconciliation",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.506409,
+  "kind": "holdout",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-return-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-return-records"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "link-original-evidence"
+      },
+      {
+        "kind": "decision",
+        "sequence": 4,
+        "step_id": "reconcile-opening-ledger"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "apply-return-policy"
+      },
+      {
+        "kind": "decision",
+        "sequence": 6,
+        "step_id": "reserve-proposed-quantities"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "calculate-original-refund"
+      },
+      {
+        "kind": "exception",
+        "sequence": 8,
+        "step_id": "quarantine-return-exceptions"
+      },
+      {
+        "kind": "output",
+        "sequence": 9,
+        "step_id": "publish-return-review"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "retail-02",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "90979a38905a60a6ac2f55519138849975ea182e15868787bb2cbcf9ba51e898",
+    "baseline.py": "e487e4364472adbbf997a97ab93de3d6f817d55126b7c854f2ae1937a1cb682a",
+    "connections.json": "8bda59dbcde4da79da0dfe86e0fdc7e51d2f44a681f5341bcfaf27924a88b838",
+    "expected/demo.json": "80439d0485d9f10b5e01fdbf548fb0b83405634ab71d9121716dc1f0e7dfd0bc",
+    "expected/holdout-a.json": "c07254e706080a6d8605696d928bec4a030e53d8baecfdf84c9b7fe76dce65b5",
+    "expected/holdout-b.json": "e03a7b1af0a651baab84f61ff4d72e7e294be2e918a648ca71a7eed8f674a77b",
+    "expected/negative-ambiguous-receipt.json": "55542915f78a34005961dde363ab8c5b7cebba354a390a13c41dda781dc9bdd1",
+    "expected/negative-contradictory.json": "c5abf14630c962b8f812cfccb2cf4e2fac8b9553d0b383a7555af1f5c7f09ad2",
+    "expected/negative-current-period-history.json": "b6c491bc854c44e5c08247b30c357017523c3e421c64499137fa8bcfd2695b7c",
+    "expected/negative-duplicate.json": "e136e6d5e0ec69ac26d6854b6bbaa9617ac59be2bc92cff92c5711c11be526f2",
+    "expected/negative-malformed.json": "7e0abe722f2ae213bb0757a2011013ea072feb396254077b9f20e8655d0af234",
+    "expected/negative-out-of-window.json": "4628cb144b8748156f0a124fdfc13313a4c74d6901b725763eda59fdc00be4d9",
+    "expected/negative-unconfirmed-payment.json": "486aee04b612c2e1b88dbcdff2cfdf37cd88d216fdff6fa955cb8f1f74628dad",
+    "mock-data/demo.json": "26a42ca68acb4e1ce19a51228161553c9c2652c67df24aaa28021ad86ab9c03b",
+    "mock-data/holdout-a.json": "13fc2ba9e2730baa8cefb005b0efed275bfcde35e13192a569379f5e27534699",
+    "mock-data/holdout-b.json": "a9b4945c984b90a05cb892f7d9760149fa4792ec503e756bfb9300d92d359144",
+    "mock-data/negative-ambiguous-receipt.json": "964a8884b8686830013d8010c722fce1275a9685e5b936c698f1a97f732b093b",
+    "mock-data/negative-contradictory.json": "ec6f8f0a07b0413d0d59f7b7b9509c1aa36ecb18817e0e2be6ff48f9cefd6104",
+    "mock-data/negative-current-period-history.json": "4d0ab7db05d0b52704c6f32213a0a2f958f98399f92048dfec9a2ad7e52da666",
+    "mock-data/negative-duplicate.json": "b4951eb3364a9d872eb6a5b4410dba6a947045f090b49e508ed3b8a1d315c567",
+    "mock-data/negative-malformed.json": "0de8901b07481fe554664d2b339f034e0cb76a9c9bc6cd264eb4908159660f95",
+    "mock-data/negative-out-of-window.json": "c1f09c40409288f4efe7b532aa98d03665e609b1b9325be3c45198630c8a2722",
+    "mock-data/negative-unconfirmed-payment.json": "155580c39dfea195cdc697c860a40b9a6be99e0229c32966d0f703252df1c7a6",
+    "scenario.json": "34c663b074fa1ae0b94df0530f396e1716f09f9d4e0cccb471f14c5bb292acd2",
+    "sources.json": "76dec081a034e030a57f7c94d7fbd1d484c4a2cd95ed3c2153fd52753f46947c",
+    "workflow.json": "350671415e595d3bb96dfc51b6e25978bccaf89abbd6402005172bc29405ceac"
+  },
+  "state": "baseline_pass"
+}

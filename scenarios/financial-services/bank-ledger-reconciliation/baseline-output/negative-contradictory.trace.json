@@ -1,0 +1,83 @@
+{
+  "events": [
+    {
+      "caption": "Load supplied synthetic export rows; no live system or financial action.",
+      "facts": {
+        "synthetic_input": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-exports",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "scopes",
+              1
+            ],
+            [
+              "bank_lines",
+              0
+            ],
+            [
+              "ledger_lines",
+              0
+            ],
+            [
+              "mappings",
+              0
+            ],
+            [
+              "batches",
+              0
+            ]
+          ],
+          "title": "Supplied source counts (null means invalid collection)",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Input rejected explicitly; no trusted financial totals or matches emitted.",
+      "facts": {
+        "code": "contradictory-evidence",
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-close",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "record",
+            "code"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-N",
+              "SYN-N",
+              "contradictory-evidence"
+            ]
+          ],
+          "title": "Rejection diagnostic",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "d3e342591e2fa209b73287ed884092e456761ef1544bf754dd2960a868115aa3",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-01",
+  "schema_version": 1
+}

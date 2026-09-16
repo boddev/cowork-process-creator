@@ -1,0 +1,87 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic planning exports without live connections.",
+      "facts": {
+        "logical_exports": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-planning-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work-orders.json",
+              2
+            ],
+            [
+              "requirements.json",
+              0
+            ],
+            [
+              "kit-components.json",
+              0
+            ],
+            [
+              "resources.json",
+              2
+            ],
+            [
+              "resource-windows.json",
+              2
+            ],
+            [
+              "commitments.json",
+              0
+            ],
+            [
+              "prerequisite-status.json",
+              0
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Rejected invalid or contradictory planning input before creating a plan.",
+      "facts": {
+        "code": "cyclic-prerequisite",
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-planning-data",
+      "tables": [
+        {
+          "columns": [
+            "path",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "files.work-orders.json",
+              "cyclic-prerequisite",
+              "Internal prerequisites contain a cycle."
+            ]
+          ],
+          "title": "Explicit rejection",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "a9d91bd4f2f4bf2d3a6b4e24d4f5aab55c80d3af91d1f2c1cb02ef8656b46014",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-02",
+  "schema_version": 1
+}

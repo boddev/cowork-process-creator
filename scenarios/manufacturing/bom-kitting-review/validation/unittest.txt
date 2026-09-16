@@ -1,0 +1,46 @@
+test_5000_leaf_paths_allowed_and_5001_stops_expansion (test_baseline.BaselineTests.test_5000_leaf_paths_allowed_and_5001_stops_expansion) ... ok
+test_all_case_quantities_reconcile_by_source_and_component (test_baseline.BaselineTests.test_all_case_quantities_reconcile_by_source_and_component) ... ok
+test_all_complete_independent_goldens (test_baseline.BaselineTests.test_all_complete_independent_goldens) ... ok
+test_bad_quantities_dates_ranges_and_boolean_types (test_baseline.BaselineTests.test_bad_quantities_dates_ranges_and_boolean_types) ... ok
+test_cli_invalid_json_and_existing_files_fail_without_overwrite (test_baseline.BaselineTests.test_cli_invalid_json_and_existing_files_fail_without_overwrite) ... ok
+test_default_requires_approved_and_active (test_baseline.BaselineTests.test_default_requires_approved_and_active) ... ok
+test_duplicate_identity_not_value_and_conflicting_ids_reject (test_baseline.BaselineTests.test_duplicate_identity_not_value_and_conflicting_ids_reject) ... ok
+test_earliest_expiry_then_null_and_source_id (test_baseline.BaselineTests.test_earliest_expiry_then_null_and_source_id) ... ok
+test_effective_change_and_expiry_receipt_inclusive_boundary (test_baseline.BaselineTests.test_effective_change_and_expiry_receipt_inclusive_boundary) ... ok
+test_eight_levels_allowed_and_ninth_rejected (test_baseline.BaselineTests.test_eight_levels_allowed_and_ninth_rejected) ... ok
+test_empty_bom_is_unresolved_not_zero_demand (test_baseline.BaselineTests.test_empty_bom_is_unresolved_not_zero_demand) ... ok
+test_empty_phantom_paths_are_bounded_without_item_leaves (test_baseline.BaselineTests.test_empty_phantom_paths_are_bounded_without_item_leaves) ... ok
+test_exact_schema_and_row_limits (test_baseline.BaselineTests.test_exact_schema_and_row_limits) ... ok
+test_explicit_selection_disambiguates_only_requested_root (test_baseline.BaselineTests.test_explicit_selection_disambiguates_only_requested_root) ... ok
+test_inbound_date_source_ties_stock_first_and_conservation (test_baseline.BaselineTests.test_inbound_date_source_ties_stock_first_and_conservation) ... ok
+test_input_is_not_mutated_and_repeated_calls_are_isolated (test_baseline.BaselineTests.test_input_is_not_mutated_and_repeated_calls_are_isolated) ... ok
+test_invalid_explicit_request_never_falls_back (test_baseline.BaselineTests.test_invalid_explicit_request_never_falls_back) ... ok
+test_leaf_scrap_explicit_inactive_and_source_id_tie (test_baseline.BaselineTests.test_leaf_scrap_explicit_inactive_and_source_id_tie) ... ok
+test_once_per_component_ceiling_and_equal_order_tie (test_baseline.BaselineTests.test_once_per_component_ceiling_and_equal_order_tie) ... ok
+test_orphan_line_is_reported_without_inventing_a_join (test_baseline.BaselineTests.test_orphan_line_is_reported_without_inventing_a_join) ... ok
+test_oversized_result_rejects_instead_of_truncating (test_baseline.BaselineTests.test_oversized_result_rejects_instead_of_truncating) ... ok
+test_partial_kit_assignment_is_not_backtracked (test_baseline.BaselineTests.test_partial_kit_assignment_is_not_backtracked) ... ok
+test_persistent_pipeline_evidence_and_native_blockers (test_baseline.BaselineTests.test_persistent_pipeline_evidence_and_native_blockers) ... ok
+test_phantom_and_item_ancestor_cycles_reject (test_baseline.BaselineTests.test_phantom_and_item_ancestor_cycles_reject) ... ok
+test_phantom_paths_count_toward_the_same_5000_limit (test_baseline.BaselineTests.test_phantom_paths_count_toward_the_same_5000_limit) ... ok
+test_phantom_version_uses_exact_unrounded_parent_quantity (test_baseline.BaselineTests.test_phantom_version_uses_exact_unrounded_parent_quantity) ... ok
+test_requirement_overflow_is_not_a_partial_plan (test_baseline.BaselineTests.test_requirement_overflow_is_not_a_partial_plan) ... ok
+test_scope_boundaries_and_no_in_scope_orders (test_baseline.BaselineTests.test_scope_boundaries_and_no_in_scope_orders) ... ok
+test_shuffled_exports_preserve_results_and_trace (test_baseline.BaselineTests.test_shuffled_exports_preserve_results_and_trace) ... ok
+test_small_exact_eight_level_decimal_never_rounds_to_zero (test_baseline.BaselineTests.test_small_exact_eight_level_decimal_never_rounds_to_zero) ... ok
+test_start_date_precedes_priority_then_order_id (test_baseline.BaselineTests.test_start_date_precedes_priority_then_order_id) ... ok
+test_static_import_boundary (test_baseline.BaselineTests.test_static_import_boundary) ... ok
+test_stock_exclusion_precedence_and_external_reservation (test_baseline.BaselineTests.test_stock_exclusion_precedence_and_external_reservation) ... ok
+test_strict_canonical_decimal_types_and_bounds (test_baseline.BaselineTests.test_strict_canonical_decimal_types_and_bounds) ... ok
+test_ten_actual_stages_and_trace_table_bounds (test_baseline.BaselineTests.test_ten_actual_stages_and_trace_table_bounds) ... ok
+test_trace_changes_with_executed_supply_not_a_storyboard (test_baseline.BaselineTests.test_trace_changes_with_executed_supply_not_a_storyboard) ... ok
+test_unconfirmed_overdue_wrong_site_and_late_inbound (test_baseline.BaselineTests.test_unconfirmed_overdue_wrong_site_and_late_inbound) ... ok
+test_unknown_branch_does_not_hide_known_cycle (test_baseline.BaselineTests.test_unknown_branch_does_not_hide_known_cycle) ... ok
+test_unknown_component_discards_all_partial_order_ledgers (test_baseline.BaselineTests.test_unknown_component_discards_all_partial_order_ledgers) ... ok
+test_unknown_master_expiry_and_unreceived_inbound_are_not_supply (test_baseline.BaselineTests.test_unknown_master_expiry_and_unreceived_inbound_are_not_supply) ... ok
+test_unsupported_lines_units_and_phantom_scrap (test_baseline.BaselineTests.test_unsupported_lines_units_and_phantom_scrap) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 2.832s
+
+OK

@@ -1,0 +1,92 @@
+{
+  "events": [
+    {
+      "caption": "Inventory the actual mock export tables.",
+      "facts": {},
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "source_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "items",
+              1
+            ],
+            [
+              "reviewer_routes",
+              1
+            ],
+            [
+              "lots",
+              1
+            ],
+            [
+              "test_requirements",
+              1
+            ],
+            [
+              "observations",
+              2
+            ],
+            [
+              "certificates",
+              1
+            ],
+            [
+              "hold_snapshot",
+              1
+            ],
+            [
+              "nonconformances",
+              0
+            ]
+          ],
+          "title": "Inventory the actual mock export tables.",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Reject contradictory or malformed input; no review packet is issued.",
+      "facts": {
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "subject",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "contradictory-evidence",
+              "observations:MFG-CONFLICT",
+              "Conflicting rows share a primary identifier."
+            ]
+          ],
+          "title": "Reject contradictory or malformed input; no review packet is issued.",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "d540d82eaa236e2164beb91d0ff26e0991b8e7cd813468916b475c25cf35c412",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-01",
+  "schema_version": 1
+}

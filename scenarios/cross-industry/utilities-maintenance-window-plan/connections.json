@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Seven logical synthetic JSON export arrays inside one attached payload; local review outputs only. No endpoints, credentials, native connection availability, live maintenance access or scheduling authority are implied."
+}

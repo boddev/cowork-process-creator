@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-10-01",
+    "horizon_end": "2026-10-03",
+    "order_sequence": ["A01"],
+    "selected_versions": [
+      {"order_id": "A01", "parent_path": [], "item_id": "WINDOW", "version_id": "WIN-NEW", "selection": "active-default"}
+    ],
+    "exploded_paths": [
+      {"order_id": "A01", "path": ["NEW-PANE"], "component_id": "PANE", "exact_qty": "4"}
+    ],
+    "component_requirements": [
+      {"order_id": "A01", "component_id": "PANE", "exact_qty": "4", "required_qty": 4, "available_now_qty": 1, "expected_before_need_qty": 3, "assigned_now_qty": 1, "assigned_expected_qty": 3, "assigned_qty": 4, "gap_qty": 0}
+    ],
+    "shadow_allocations": [
+      {"order_id": "A01", "component_id": "PANE", "source_type": "stock_lots", "source_id": "HA-BOUND", "quantity": 1},
+      {"order_id": "A01", "component_id": "PANE", "source_type": "inbound", "source_id": "HA-IN", "quantity": 3}
+    ],
+    "source_balances": [
+      {"source_type": "stock_lots", "source_id": "HA-BOUND", "item_id": "PANE", "site": "NORTH", "net_qty": 1, "assigned_qty": 1, "remaining_qty": 0},
+      {"source_type": "stock_lots", "source_id": "HA-EARLY", "item_id": "PANE", "site": "NORTH", "net_qty": 2, "assigned_qty": 0, "remaining_qty": 2},
+      {"source_type": "stock_lots", "source_id": "HA-OTHER", "item_id": "PANE", "site": "EAST", "net_qty": 10, "assigned_qty": 0, "remaining_qty": 10},
+      {"source_type": "inbound", "source_id": "HA-IN", "item_id": "PANE", "site": "NORTH", "net_qty": 3, "assigned_qty": 3, "remaining_qty": 0}
+    ],
+    "supply_exclusions": [
+      {"order_id": "A01", "component_id": "PANE", "source_type": "stock_lots", "source_id": "HA-EARLY", "reason": "expired-before-need"},
+      {"order_id": "A01", "component_id": "PANE", "source_type": "stock_lots", "source_id": "HA-OTHER", "reason": "wrong-site"}
+    ],
+    "excluded_orders": [],
+    "order_reviews": [
+      {"order_id": "A01", "item_id": "WINDOW", "site": "NORTH", "need_by": "2026-10-03", "quantity": 2, "priority": 3, "state": "covered-with-expected-receipt-review", "short_components": [], "review_owners": ["Material planner", "Production planner"], "approval_required": true, "production_authorized": false}
+    ],
+    "review_queue": ["A01"],
+    "component_totals": [
+      {"site": "NORTH", "component_id": "PANE", "required_qty": 4, "assigned_now_qty": 1, "assigned_expected_qty": 3, "assigned_qty": 4, "gap_qty": 0}
+    ],
+    "summary": {"in_scope_orders": 1, "resolved_orders": 1, "unresolved_orders": 0, "excluded_orders": 0, "shortage_orders": 0, "covered_now_orders": 0, "covered_with_expected_orders": 1},
+    "closure": {"review_only": true, "approval_required": true, "production_authorized": false, "inventory_mutated": false, "reservations_created": false, "substitutions_made": false, "orders_released": false}
+  },
+  "exceptions": [
+    {"code": "SUPPLY_EXCLUSIONS", "message": "2 order/source eligibility exclusion(s) require review.", "order_id": null, "source_type": null, "source_id": null, "field": null}
+  ]
+}

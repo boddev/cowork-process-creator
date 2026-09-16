@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independent worksheet: A has PO7000 milliunits minus prior1000=6000; receipts A1=3000 and A2=4000 minus prior1000=3000. Explicit3000+3000 meets6000. 6000*1010/1000=6060, PO net6000, unit cross-products100000<=200000 and line delta60<=500. Allocate A1/A2 by3000 each, leaving both and PO-A at0. B requests5000 against sole receipt3000: shortage2000, no selection/proposal, hold10000; PO-B remains5000 and receipt-B3000. C raw number canonicalizes to SYN-DUP-09, matching SYN-HIST-DUP; its otherwise exact1000-milliunit/5000-cent line remains held and leaves PO/receipt1000. D unit delta300 gives3000000>2000000, though net delta300<=500; hold10300 and leave1000. All exact joins and individual line evidence remain visible. No globally competing eligible invoices. Ready6060+held25300=intake31360; four headers/four lines/four POs/five receipts/two historical headers/one prior allocation/two explicit selection rows.",
+      "expected_sha256": "5ef08d1b58cdc5b3187adbf0e1141f532c945a183f49fd63889d72e16f9743b9",
+      "input_sha256": "dd08e5f68cacb91db58cefc7fc6ca2b2161ea7f165e2677d7e56e66577c628ae"
+    },
+    "holdout-a": {
+      "derivation": "Different from demo: A and B each independently pass a1000-milliunit/20000-cent line but together demand2000 from both PO-X and receipt-X capacity1000. Both resources report both competitors; both invoices held, capacities remain1000. C1250*816/1000=1020 versus PO1250*800/1000=1000. Unit delta16 gives160000=160000, line delta20<=500; propose1250, leaving0. D100000*1010/1000=101000 versus100000 at PO1000: unit100000<=200000 passes but line delta1000>500 holds D before competition, leaving100000. Ready1020+held(20000+20000+101000)=142020. Four headers/lines, three POs/receipts, no history, two explicit selection rows.",
+      "expected_sha256": "5fb598d6c5f8098eaa018842f55d523104cbab240772bedebd504dff2484b65d",
+      "input_sha256": "da16faa4aebe60debae802bad39219747968b268ce8c9ffb6b4e0ae629025dfb"
+    },
+    "holdout-b": {
+      "derivation": "Different entity/vendor, fixed offset-300, as_of2026-08-01T04:59:59Z gives business date2026-07-31. A receipt04:30Z is eligible;1250*1002/1000=1252.5 rounds HALF_UP to1253 versus PO1250; unit20000<=200000 and line delta3 pass. Propose1250 leaving0. B receipt05:00Z is after cutoff despite03:00Z physical receipt: explicitly exclude2000, local posting date2026-08-01, no capacity/selection, hold6000. PO-B remains2000. C PO pending: retain otherwise exact1000-milliunit/4000-cent comparison and selection but hold4000 and leave1000. D/E numbers normalize to SYN-MIX-12: both hold500, retain individually valid selections and leave shared PO/receipt2000; removed before competition so no conflict claim. Ready1253+held11000=intake12253. Five headers/lines, four POs/receipts, no history or explicit selections.",
+      "expected_sha256": "8e3bd5e5c9a1f6b2022190e38b57d26e87bee472887fc87a95b3ba9747cc739c",
+      "input_sha256": "946fee9879128d4fe8a629b32a9c3cf953c2aca5d756af96ff71922e266d64c3"
+    },
+    "negative-contradictory": {
+      "derivation": "All scalar and join evidence is valid, but posted historical allocation SYN-CAP-A consumes1001 milliunits from SYN-CAP-R containing1000. PO capacity2000 is deliberately not the contradictory resource. Reject historical-receipt-overallocated at the receipt quantity field; never clamp1000-1001, assign the incoming line, or emit partial totals.",
+      "expected_sha256": "0274d748039701e599fb55f463ebe0909607d8150c8e11c20bea401be14544ca",
+      "input_sha256": "131db651a93f729f08ef5a97c4a73277a30e1d2ebb0b76a335ace1465b89e559"
+    },
+    "negative-malformed": {
+      "derivation": "The true JSON boolean at invoice SYN-BAD-INV / line SYN-LINE-01 quantity_milliunits is not a true integer. Emit invalid-integer for that source field before arithmetic or trusted financial outputs. Only pending review metadata accompanies the diagnostic.",
+      "expected_sha256": "d7cb63dec8fba1fae94a9fb5b2f66fa65065015fe9c7835096f073285c34b54e",
+      "input_sha256": "a46fa5c6429b8e34f64fe5551f34f3765d20603469f98e82fea3e602b784b960"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Financial-services AP scenario owner",
+    "description": "Full envelopes manually authored from approved FS-02 arithmetic and document/capacity worksheets before writing baseline business logic or executing it. No computed baseline output or baseline import used to derive or repair answers. The pre-execution golden lock preserves those declarations; this is not independent human AP approval.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "financial-services-02",
+  "schema_version": 1
+}

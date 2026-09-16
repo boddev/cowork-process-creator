@@ -1,0 +1,19 @@
+{
+  "as_of": "2026-03-01",
+  "horizon_end": "2026-03-04",
+  "work_orders": [
+    {"order_id": "UL01", "item_id": "UNITR", "site": "LINE", "start_date": "2026-03-02", "quantity": 2, "priority": 4, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "UL-V", "item_id": "UNITR", "site": "LINE", "valid_from": "2026-03-01", "valid_to": "2026-03-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "UL-L1", "version_id": "UL-V", "component_id": "SERVICE", "line_type": "Vendor", "quantity_per": "1", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "UNITR", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "SERVICE", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [],
+  "inbound": []
+}

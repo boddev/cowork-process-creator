@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "One synthetic attachment contains six logical export arrays. Their filenames are table labels, never paths to open or connection identifiers. No credentials, native connectors, carrier, TMS, delivery, AP, voucher, or payment access is required or permitted."
+}

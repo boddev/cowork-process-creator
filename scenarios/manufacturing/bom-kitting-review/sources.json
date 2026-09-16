@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "b-bom",
+      "title": "Bills of materials and formulas",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/bill-of-material-bom",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "BOM lines, approval versus activation, and date/site/quantity-constrained versions.",
+      "supported_claims": [
+        "BOM version validity can depend on date, site, and quantity.",
+        "Approval and activation are distinct; activation identifies a default rather than every usable alternative.",
+        "Item, Phantom, Pegged supply, and Vendor lines have different effects."
+      ],
+      "limitations": "Already fetched in the approved manufacturing research catalog on the accessed date. This is conceptual ERP documentation, not evidence of live access. Unique-default rejection, exact decimal arithmetic, thresholds, and office-only allocation are sample policies, not a reproduction of the ERP engine."
+    },
+    {
+      "id": "b-phantom",
+      "title": "Phantom items",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/phantom-items",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Expanding multilevel engineering groupings into material components.",
+      "supported_claims": [
+        "Phantom structures can flatten multilevel groupings into manufacturing components.",
+        "Phantom processing is different from consuming the phantom grouping as an ordinary material item."
+      ],
+      "limitations": "Already fetched in the approved research catalog. No route merging, capacity planning, production estimation, or physical kitting is implemented. Eight levels, 5000 expanded line paths, leaf-only scrap, and once-per-component ceiling are explicit synthetic policies."
+    },
+    {
+      "id": "q-blocking",
+      "title": "Inventory blocking",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-blocking",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Distinguishing physical stock, reserved quantities, and blocked inventory.",
+      "supported_claims": [
+        "Blocking can prevent inventory from being processed or consumed.",
+        "Overlapping blocking records must not be added as separate physical inventory."
+      ],
+      "limitations": "Already fetched in the approved research catalog. Inputs are one normalized row per physical stock source, not a sum of ERP blocking transactions. Status, expiry, reservation, and inbound eligibility rules here are conservative sample policies. No inventory operation is performed."
+    }
+  ]
+}

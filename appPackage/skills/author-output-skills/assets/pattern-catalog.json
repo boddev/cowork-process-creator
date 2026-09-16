@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "catalog_version": "0.2.1",
+  "catalog_version": "0.3.0",
   "kind": "packaged-authoring-guidance",
   "native_execution_claim": "unverified",
   "components": [

@@ -1,0 +1,487 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic exports without changing any source row.",
+      "facts": {
+        "as_of": "2024-03-01T00:00:00Z",
+        "period_end": "2024-03-01",
+        "period_start": "2024-02-01",
+        "synthetic_only": true
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-billing-exports",
+      "tables": [
+        {
+          "columns": [
+            "source",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "engagements",
+              2
+            ],
+            [
+              "schedule_versions",
+              2
+            ],
+            [
+              "synthetic_value_intervals",
+              3
+            ],
+            [
+              "draft_fee_lines",
+              3
+            ]
+          ],
+          "title": "Observed input source counts",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Validated the closed period, strict integers and IDs, marginal ranges, references, and nonoverlapping authoritative intervals.",
+      "facts": {
+        "accepted": true,
+        "currency": "USD",
+        "eligible_schedules": 2,
+        "excluded_schedules": 0,
+        "period_days": 29,
+        "tolerance_minor": 1
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-billing-evidence",
+      "tables": [
+        {
+          "columns": [
+            "control",
+            "value"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "approval",
+              "approved"
+            ],
+            [
+              "day_count_basis",
+              "actual-calendar-year"
+            ],
+            [
+              "rounding_mode",
+              "half-up"
+            ],
+            [
+              "fixed_offset_minutes",
+              0
+            ]
+          ],
+          "title": "Validated sample controls",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Intersected active dates with eligible schedule/value boundaries and applicable calendar-year boundaries; preserved coverage holds.",
+      "facts": {
+        "billable_accounts": 2,
+        "excluded_changes": 0,
+        "held_accounts": 0,
+        "segments": 3
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-effective-segments",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "start",
+            "end",
+            "days",
+            "schedule",
+            "value_id"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              "2024-02-15",
+              "2024-02-22",
+              7,
+              "SYN-SCH-LEAP-A",
+              "SYN-VAL-LEAP-A1"
+            ],
+            [
+              "SYN-LEAP-A",
+              "2024-02-22",
+              "2024-03-01",
+              8,
+              "SYN-SCH-LEAP-A",
+              "SYN-VAL-LEAP-A2"
+            ],
+            [
+              "SYN-LEAP-B",
+              "2024-02-01",
+              "2024-02-11",
+              10,
+              "SYN-SCH-LEAP-B",
+              "SYN-VAL-LEAP-B"
+            ]
+          ],
+          "title": "Actual effective-date joins",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Allocated each computed segment's value across every marginal band, including zero slices, and multiplied cents by annual bps.",
+      "facts": {
+        "band_slices": 5,
+        "cent_rounding_applied": false,
+        "numerator_unit": "cent-basis-points"
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "calculate-marginal-tiers",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "segment",
+            "band",
+            "value_minor",
+            "annual_bps",
+            "annual_numerator"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              1,
+              1,
+              10000000,
+              100,
+              1000000000
+            ],
+            [
+              "SYN-LEAP-A",
+              1,
+              2,
+              0,
+              50,
+              0
+            ],
+            [
+              "SYN-LEAP-A",
+              2,
+              1,
+              10000000,
+              100,
+              1000000000
+            ],
+            [
+              "SYN-LEAP-A",
+              2,
+              2,
+              10000000,
+              50,
+              500000000
+            ],
+            [
+              "SYN-LEAP-B",
+              1,
+              1,
+              5000000,
+              100,
+              500000000
+            ]
+          ],
+          "title": "Observed marginal tier arithmetic",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Computed exact reduced segment fractions; summed them before the sole account-period cent rounding.",
+      "facts": {
+        "basis": "actual-calendar-year",
+        "rounding_mode": "half-up",
+        "rounding_scope": "account-period"
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "prorate-and-round",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "segment",
+            "days",
+            "year_divisor",
+            "numerator",
+            "denominator"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              1,
+              7,
+              366,
+              350000,
+              183
+            ],
+            [
+              "SYN-LEAP-A",
+              2,
+              8,
+              366,
+              200000,
+              61
+            ],
+            [
+              "SYN-LEAP-B",
+              1,
+              10,
+              366,
+              250000,
+              183
+            ]
+          ],
+          "title": "Exact segment fees in cents",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "account",
+            "exact_minor",
+            "rounded_minor",
+            "decision"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              "950000/183",
+              5191,
+              "below-half-down"
+            ],
+            [
+              "SYN-LEAP-B",
+              "250000/183",
+              1366,
+              "below-half-down"
+            ]
+          ],
+          "title": "One final rounding per account",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Classified every draft by the exact account/period/currency key; only a unique draft on a computed account has a signed comparison.",
+      "facts": {
+        "comparable_accounts": 1,
+        "draft_rows": 3,
+        "tolerance_minor": 1
+      },
+      "kind": "join",
+      "sequence": 6,
+      "step_id": "join-draft-fees",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "draft_count",
+            "computed_minor",
+            "draft_minor",
+            "delta_minor",
+            "decision"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              1,
+              5191,
+              5205,
+              14,
+              "draft-overstatement"
+            ],
+            [
+              "SYN-LEAP-B",
+              2,
+              1366,
+              null,
+              null,
+              "duplicate-drafts"
+            ]
+          ],
+          "title": "Actual account draft comparisons",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "account",
+            "draft",
+            "amount_minor",
+            "source_label",
+            "disposition"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              "SYN-DFT-LEAP-A",
+              5205,
+              "SYN-SCH-LEAP-A",
+              "compared"
+            ],
+            [
+              "SYN-LEAP-B",
+              "SYN-DFT-LEAP-B1",
+              1366,
+              "SYN-SCH-LEAP-B",
+              "duplicate-draft"
+            ],
+            [
+              "SYN-LEAP-B",
+              "SYN-DFT-LEAP-B2",
+              1366,
+              null,
+              "duplicate-draft"
+            ]
+          ],
+          "title": "Every draft disposition",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Routed actual missing evidence, excluded changes, draft holds, and variances without charging or refunding anyone.",
+      "facts": {
+        "exceptions": 2,
+        "flagged_accounts": 2,
+        "live_action": "none"
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "route-billing-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "account",
+            "record",
+            "code",
+            "start",
+            "end"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "SYN-LEAP-A",
+              "SYN-DFT-LEAP-A",
+              "draft-overstatement",
+              "2024-02-01",
+              "2024-03-01"
+            ],
+            [
+              "SYN-LEAP-B",
+              "SYN-DFT-LEAP-B1",
+              "duplicate-drafts",
+              "2024-02-01",
+              "2024-03-01"
+            ]
+          ],
+          "title": "Sorted billing review queue",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Emitted full account, segment, tier, draft, and source dispositions with separate comparison populations and pending human review.",
+      "facts": {
+        "comparable_delta_minor": 14,
+        "computed_minor": 6557,
+        "human_review": "pending",
+        "live_action": "none",
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "emit-billing-review",
+      "tables": [
+        {
+          "columns": [
+            "population",
+            "accounts",
+            "computed_minor",
+            "draft_minor",
+            "delta_minor"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "computed",
+              2,
+              6557,
+              null,
+              null
+            ],
+            [
+              "comparable",
+              1,
+              5191,
+              5205,
+              14
+            ],
+            [
+              "computed_missing_draft",
+              0,
+              0,
+              null,
+              null
+            ],
+            [
+              "computed_duplicate_drafts",
+              1,
+              1366,
+              null,
+              null
+            ],
+            [
+              "uncomputed",
+              0,
+              null,
+              null,
+              null
+            ],
+            [
+              "not_billable",
+              0,
+              null,
+              null,
+              null
+            ]
+          ],
+          "title": "Observed population totals in cents",
+          "total_rows": 6
+        }
+      ]
+    }
+  ],
+  "input_sha256": "6db8b2fa7c0adcc214700e811b315c50d24cacf83f542c636d46c9295765c081",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "financial-services-03",
+  "schema_version": 1
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "plugin": "restaurant-bill-splitter",
+  "source_version": "1.1.0",
+  "creator_builder_version": "0.3.0",
+  "required_host": "Microsoft Copilot Cowork",
+  "required_target": "cowork-v1.28",
+  "required_manifest": "manifest.json",
+  "alternative_manifest_fallback": false,
+  "package": null,
+  "build_status": "blocked_pending_approved_publishing_metadata",
+  "publishing_metadata": {
+    "status": "not_supplied",
+    "required_fields": [
+      "app_id",
+      "developer.name",
+      "developer.websiteUrl",
+      "developer.privacyUrl",
+      "developer.termsOfUseUrl"
+    ]
+  },
+  "host_acceptance": "unverified",
+  "native_execution": "not_run",
+  "manual_invocation": "unverified",
+  "workbook_creation": "unverified",
+  "scheduling": "not_exercised",
+  "historical_archive": {
+    "version": "1.0.1",
+    "path": "archive/v1.0.1/bill-splitter.zip",
+    "report": "archive/v1.0.1/bill-splitter.report.json",
+    "target": "compatible-source",
+    "sha256": "d50f635cfa3d40e81087a4f80e261f812a1c095fb33a700aba38ea2738e7f5a3",
+    "size_bytes": 37037,
+    "current_distributable": false
+  }
+}

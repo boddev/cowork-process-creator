@@ -1,0 +1,31 @@
+{
+  "schema_version": 1, "status": "completed_with_exceptions",
+  "outputs": {
+    "proposals": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "dispatch_on": "2099-05-01", "arrival_on": "2099-05-02", "coverage_end": "2099-05-03", "priority": 10, "case_pack": 5, "opening_available_units": 0, "arrival_opening_units": 0, "raw_required_units": 6, "requested_units": 10, "requested_cases": 2, "proposed_units": 10, "proposed_cases": 2, "deferred_units": 0, "rounding_excess_units": 4, "closing_units": 5, "pre_arrival_lost_units": 1, "post_arrival_lost_units": 0, "safety_shortfall_units": 0, "status": "full", "limits": []},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "dispatch_on": "2099-05-01", "arrival_on": "2099-05-02", "coverage_end": "2099-05-03", "priority": 20, "case_pack": 5, "opening_available_units": 5, "arrival_opening_units": 4, "raw_required_units": 3, "requested_units": 5, "requested_cases": 1, "proposed_units": 5, "proposed_cases": 1, "deferred_units": 0, "rounding_excess_units": 2, "closing_units": 5, "pre_arrival_lost_units": 0, "post_arrival_lost_units": 0, "safety_shortfall_units": 0, "status": "full", "limits": []}
+    ],
+    "daily_projection": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "day": "2099-05-01", "phase": "before-arrival", "opening_units": 0, "inbound_units": 0, "proposed_units": 0, "demand_units": 1, "fulfilled_units": 0, "lost_units": 1, "closing_units": 0},
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "day": "2099-05-02", "phase": "coverage", "opening_units": 0, "inbound_units": 0, "proposed_units": 10, "demand_units": 2, "fulfilled_units": 2, "lost_units": 0, "closing_units": 8},
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "day": "2099-05-03", "phase": "coverage", "opening_units": 8, "inbound_units": 0, "proposed_units": 0, "demand_units": 3, "fulfilled_units": 3, "lost_units": 0, "closing_units": 5},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "day": "2099-05-01", "phase": "before-arrival", "opening_units": 5, "inbound_units": 0, "proposed_units": 0, "demand_units": 1, "fulfilled_units": 1, "lost_units": 0, "closing_units": 4},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "day": "2099-05-02", "phase": "coverage", "opening_units": 4, "inbound_units": 0, "proposed_units": 5, "demand_units": 2, "fulfilled_units": 2, "lost_units": 0, "closing_units": 7},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "day": "2099-05-03", "phase": "coverage", "opening_units": 7, "inbound_units": 0, "proposed_units": 0, "demand_units": 2, "fulfilled_units": 2, "lost_units": 0, "closing_units": 5}
+    ],
+    "inbound_register": [],
+    "dc_stock_controls": [{"dc_id": "SYN-DC-2", "sku": "SYN-SKU-RED", "opening_available_units": 22, "proposed_units": 15, "remaining_units": 7}],
+    "dc_capacity_controls": [{"dc_id": "SYN-DC-2", "dispatch_on": "2099-05-01", "opening_case_capacity": 3, "proposed_cases": 3, "remaining_case_capacity": 0}],
+    "allocation_ledger": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "requested_cases": 2, "stock_cases_before": 4, "capacity_cases_before": 3, "proposed_cases": 2, "stock_units_after": 12, "capacity_cases_after": 1},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "requested_cases": 1, "stock_cases_before": 2, "capacity_cases_before": 1, "proposed_cases": 1, "stock_units_after": 7, "capacity_cases_after": 0}
+    ],
+    "review_packet": {
+      "policy_id": "SYN-POLICY-MAY", "as_of": "2099-05-01", "review_days": 2,
+      "owner_role": "Replenishment planner", "action_authorized": false, "review_required": true,
+      "totals": {"pairs": 2, "blocked_pairs": 0, "requested_units": 15, "requested_cases": 3, "proposed_units": 15, "proposed_cases": 3, "deferred_units": 0, "lost_units": 1, "safety_shortfall_units": 0, "exception_count": 1},
+      "next_action": "Review proposal quantities, dated shortages, and DC controls before any separate business action."
+    }
+  },
+  "exceptions": [{"code": "lost-demand", "message": "Forecast demand is unfilled on the stated day.", "reference": "SYN-STORE-D|SYN-SKU-RED", "store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "on": "2099-05-01", "units": 1}]
+}

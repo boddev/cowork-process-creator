@@ -1,0 +1,62 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independent arithmetic in stable date/store/SKU/observation order: TEA 1999-300=1699 at priority20 exclusive, suppressing best50% and priority10 40%; SOAP 999*0.9*0.8=719.28 beats 749.25, rounds719; MUG 1999*0.5=999.5 rounds1000; next-day TEA approved exception1550. Observed1699,720,999,1550 gives deltas0,+1,-1,0 and two matches/two mismatches. Disabled, expired, wrong-currency/unit and explicitly excluded TEAFILTER never competes.",
+      "expected_sha256": "4a840a3d2e389bd3cfaa9e4160173f595a7152cb6f00256cb0dc1882b0bd57ed",
+      "input_sha256": "b804fe5ef352e79aa831ea05e835af5e95cd3e9080e02bacb38b1fe525f9a7b3"
+    },
+    "holdout-a": {
+      "derivation": "Changed November period, identities, filenames, prices and tolerance1. 1005*0.9=904.5 rounds905; observed906 matches tolerance. Exclusive SYN-PROMO-A at20% and SYN-PROMO-B amount201 both yield804; tuple A wins with both contenders recorded, best50% suppressed; observed805 also matches tolerance. Third observation at November3 exclusive audit end is excluded with null expected price. Counts3 input,2 included matches,1 out-of-scope.",
+      "expected_sha256": "bdd2f47f68ba0d9f5d239efc1795098933cae3084709cbdc54dae3dad73bc084",
+      "input_sha256": "877d372b37fb16a38018d1c06a98e109f2bff73814c8ea4e2d1175b80807818e"
+    },
+    "holdout-b": {
+      "derivation": "Changed December dates, rule composition and base1099. December5 compound (1099-99)*0.875=875 beats best1099*0.8=879.2; observed875 matches. All promotions expire December6, so that day expects base1099; observed875 has delta-224 and is a mismatch. Counts2 included,1 match,1 mismatch.",
+      "expected_sha256": "4338e981262e2815a9c237403db3d3397293aa8b8f19e63330e1cca874f892ea",
+      "input_sha256": "90a4370302a8b7e276a51e759453d0dfade6cce74b4d32a33e3bd3763737c4ce"
+    },
+    "negative-ambiguous-exception": {
+      "derivation": "One valid base1000 but two active approved exceptions900 and950. Preserve both exception IDs, do not apply either approval, and report AMBIGUOUS_APPROVED_EXCEPTION with null raw, expected and delta. The sole observation is not evaluable.",
+      "expected_sha256": "ebd8c91775eb8beb72d52f01074394f2bff1b712a6e94479190b8e0e7d2e925d",
+      "input_sha256": "62f29acc9da3e80f99c19ef79cc0c272c1ff7c4fe9f7372a5b53ee1e1b4fb9a1"
+    },
+    "negative-contradictory": {
+      "derivation": "Two exact store/SKU/unit/currency base windows contain September1 with1000 and900. Both base IDs remain visible; AMBIGUOUS_BASE_PRICE quarantines the one observation with null base, raw, expected and delta. No cheapest/first-match choice.",
+      "expected_sha256": "aca169497d5a304ca3c677e7073eb374a02f9a67803fa3acdec97373d30a9fad",
+      "input_sha256": "e8977f56e52a2437725d6d205a713bf25e806c8632eea0748a59a466e7704f14"
+    },
+    "negative-duplicate": {
+      "derivation": "Two observation rows reuse SYN-OBS-DUP despite different observed prices. Reject the bundle with DUPLICATE_KEY at observations.SYN-OBS-DUP; neither silent deduplication nor double counting is allowed.",
+      "expected_sha256": "885c43d15053fd34a3d5b8744acbf9f5307c335453cd7c8cf3220d289713dd37",
+      "input_sha256": "84a1ba036830e782be2303e003715118f5d3219f29b7801c83433c79d0bb34a4"
+    },
+    "negative-invalid-window": {
+      "derivation": "The September1 final included audit day is after the August31 as_of. Reject with FUTURE_AUDIT_WINDOW at policy.audit_end before joining records; no disposition counts or prices are asserted.",
+      "expected_sha256": "a7e184ad9cc40386efd233e1859e1a673b3fb6ee00dc47e00839b487755fc39e",
+      "input_sha256": "59a3fcba80466a26dc2a8285bcc2a4abd267c8276406f63e72b184ef3de95c52"
+    },
+    "negative-malformed": {
+      "derivation": "Percent-off value10001 violates the1..10000 basis-point domain. Reject with INVALID_RATE at promotions.SYN-PROMO-BAD.value before price evaluation; empty business ledgers and null reconciliation/policy do not invent prices or counts.",
+      "expected_sha256": "fe967902d7e6030f7281621e64e483a8d7417493dc39144e02458c8087f3fa96",
+      "input_sha256": "a344cab7a5ec7520e25cdb10f055ad60f854f520a9712b94b3783f017719cfb7"
+    },
+    "negative-missing-base": {
+      "derivation": "The only dimensional base candidate expires exactly September1, the observation date. Its date_match is false; active base IDs are empty. MISSING_BASE_PRICE leaves raw, expected and delta null and counts the observation as not evaluable.",
+      "expected_sha256": "38466606b5f22ecc45acbc68bba7e2d7d6c9da59b569922bde53973b06cfca58",
+      "input_sha256": "f3d4525927f6143afe0e996b801f1742953e49454720cfab3273d34076268f94"
+    },
+    "negative-out-of-window": {
+      "derivation": "Observation dated September2 equals the exclusive audit end. With no base rows, it is still excluded rather than assigned a missing-base error or evaluated. One input,zero included,one out-of-scope; expected/delta are null.",
+      "expected_sha256": "978c6343e611c9d19ddf643ca5b92c3549a39268e28d36eeed95786dfb1cc03a",
+      "input_sha256": "a069871d22827d38279c2a7615881c2b5f9e7b537cdf4763855d7d744e883075"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Retail pricing scenario owner",
+    "description": "Complete expected JSONs were manually authored from the approved retail-03 research arithmetic and the written procedure before any baseline execution or solve import. All inputs and expected bytes are frozen with the shared golden_lock. Trace and baseline outputs are never used to generate or repair these answers. This declaration is not independent human review or native proof.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "retail-03",
+  "schema_version": 1
+}

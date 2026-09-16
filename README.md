@@ -1,6 +1,9 @@
 # Self-contained Cowork Process Creator
 
-**v0.2.1 is a provisional offline implementation, not a native release claim.**
+**Current source v0.3.0 targets native Microsoft Copilot Cowork packages only.**
+Generated plugins require a root M365 v1.28 `manifest.json`, icons and declared
+skills/resources. Missing approved publisher metadata blocks packaging;
+Claude-compatible manifests and conversion are no longer an output option.
 Eight focused skills guide Cowork from a procedure plus video or ordered
 screenshots to a reusable output plugin. A bundled Python-standard-library
 toolkit validates authoring contracts, assembles source, composes its supported
@@ -14,14 +17,15 @@ End users do not install Python, wiqd, ATK, FFmpeg or developer tooling.
 If the required existing native capability is missing, the workflow stops
 with that limitation.
 
-## Download the preview
+## Historical preview, not the current native package
 
-Get [creator.zip](https://github.com/boddev/cowork-process-creator/releases/download/v0.2.1/creator.zip)
-from the [v0.2.1 preview release](https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1).
-This is a **compatible-source preview**, not a canonical v1.28 package or
-a claim of native acceptance for this version. See the
-[user guide](docs/user-guide.md) for Cowork's native upload/conversion path
-and the current limitations.
+The preserved [v0.2.1 preview release](https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1)
+uses a **Claude-compatible source layout** and relies on Microsoft host
+conversion. It is not the native Microsoft manifest package now required.
+It remains historical evidence and has not been silently replaced.
+No new native release ZIP is available until approved publisher metadata is
+supplied. See [Microsoft packaging](docs/MICROSOFT_PACKAGING.md) and the
+[user guide](docs/user-guide.md).
 
 The ZIP is 230,892 bytes, with SHA-256:
 
@@ -53,15 +57,17 @@ The ordinary development path uses only Python's standard library:
 
 ```powershell
 python -B -m unittest discover -s tests -v
-python -B scripts\build_release.py
+python -B scripts\build_release.py --metadata-dir .local\publishing
 ```
 
-The release builder produces short-name artifacts under `dist\v0.2.1`:
-`creator.zip`, its source-only build report, release/inventory JSON, and three
+With valid supplied metadata, the release builder produces native packages
+under `dist\v0.3.0`: `creator.zip`, its build report, release/inventory JSON, and three
 distinct synthetic file-workflow examples with output plugins, source/resume
 bundles, real local helper outputs, coverage and expected negative cases.
 It also carries a clearly separate real-public-MCP metadata example whose
-Cowork availability remains unknown. It performs no network calls.
+Cowork availability remains unknown. Without the metadata directory, the
+command fails explicitly and produces no release directory or fallback ZIP.
+It performs no network calls.
 
 Existing differing release directories are not overwritten: bump the version
 or pass a new `--output` directory. Original v0.1.0/v0.1.1 and native proof
@@ -72,13 +78,25 @@ dependencies.
 
 [Restaurant bill splitter](examples/bill-splitter/README.md) adapts a
 contributor-generated skill into the existing candidate-and-fixtures layout.
-**[Download its ZIP](examples/bill-splitter/bill-splitter.zip?raw=1)** and follow
-the example's Cowork quick start; no local build or Creator installation is
-required. It includes an independent arithmetic helper, workbook layout
-reference and synthetic regression cases. The original recording and workbook
-are not required at runtime. This is a compatible-source preview; native
-installation and workbook creation remain unverified. It is separate from the
-Creator preview release artifacts.
+Its current v1.1.0 candidate targets native Microsoft manifest v1.28 only;
+packaging is blocked until approved app/publisher metadata is supplied.
+The arithmetic helper, workbook layout, procedure and independent fixtures
+are preserved. The earlier v1.0.1 ZIP and report are retained unchanged under
+the example's `archive` directory, not offered as a current native package.
+Native installation, independent invocation and workbook creation remain
+unverified. The original recording, workbook and Creator are not runtime
+dependencies.
+
+## Enterprise scenarios
+
+The [enterprise corpus](scenarios/HOW_TO.md) includes 15 implemented synthetic
+scenarios, 96 independent-golden baseline cases, 15 baseline-trace videos and
+15 input-only staging bundles across five directory packs and seven business
+industries. Read the [complete how-to collection](scenarios/ALL_SCENARIOS_HOW_TO.md)
+and [local evidence catalog](scenarios/catalog.json). These are local baseline
+artifacts, not native Creator outputs: no scenario plugin has been generated,
+installed or independently invoked in Cowork. Root [output](output/README.md)
+contains only the blocked native status.
 
 ## Toolkit and source layout
 
@@ -104,17 +122,16 @@ Microsoft/JSON Schema validator.
 
 ## Targets and connections
 
-`compatible-source` is a labeled Draft export for native conversion. The
-canonical `cowork-v1.28` target composes only the supported manifest subset
-with supplied app identity and approved publisher URLs. No placeholders or
-future repository URLs are generated.
+The only package target, `cowork-v1.28`, composes Microsoft's supported
+manifest subset with supplied app identity and approved publisher URLs.
+No placeholders, guessed legal URLs or alternative host manifests are generated.
 
 Remote connector support preserves real tool metadata, including titles,
 multiline descriptions, nullable schemas and default annotations. Canonical
-remote connectors require an included `mcpToolDescription.file`. The source
-export deliberately rejects remote declarations it cannot preserve
-losslessly; reuse a verified existing native connection or use canonical
-packaging with actual setup metadata instead.
+remote connectors require an included `mcpToolDescription.file`. The native
+package preserves remote declarations and their actual supplied tool metadata;
+reuse a verified existing native connection or provide its real supported
+configuration. Missing setup stays visible.
 
 The optional Microsoft Learn snapshot is real, public and provenance-backed.
 It is not a required Creator connection, proof of Cowork availability, or

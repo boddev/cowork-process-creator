@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "retail-01",
+  "title": "Store replenishment proposal with inventory and DC constraints",
+  "industry": "retail",
+  "workflow_family": "constrained-inventory-allocation",
+  "description": "Reconcile independent synthetic stock, residual demand, inbound, route and dispatch-capacity exports into whole-case review proposals and dated shortage controls.",
+  "owner_role": "Replenishment planner",
+  "risk_level": "medium",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "Invented residual-demand, lost-sales, safety, case-ceiling and DC-priority policies. No order, reservation, shipment or actual inventory update."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Retail sector author",
+    "description": "All nine expected JSON files were manually enumerated from the approved research arithmetic and written policy before any baseline execution. They are not copied from baseline output and do not imply independent human or native review."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["replenishment-review", "planning-evidence", "quantity-multiples", "input-contract", "net-stock-once", "dated-coverage", "inbound-cutoff", "coverage-requirement", "whole-case-allocation", "review-only-closure"],
+      "failure_modes": [],
+      "derivation": "Opening available store units are 8,3,4; DC BLUE=12-2-1=9 and GOLD=43-2-1=40. After two days, store stock is4,0,0 and B has lost1. Coverage raw needs4,6,8 become case requests6,6,8. Priority A,B,C allocates6,3,4: BLUE stock limits B, remaining four-case dispatch budget limits C. Close6,1,0; B loses another1 and C2; safety shortfalls0,2,2. Total proposed13/4cases, deferred7, lost4; seven exact review exceptions. Received/cancelled zero-remaining rows add no supply."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["input-contract", "net-stock-once", "dated-coverage", "coverage-requirement", "whole-case-allocation", "review-only-closure"],
+      "failure_modes": [],
+      "derivation": "Changed filenames, May dates, one-day lead, two-day review, pack5, DC22/capacity3 and new stores/SKU/demands. D loses1 before arrival; coverage demand5+safety1=6 rounds10. E starts arrival with4; demand4+safety3-4=3 rounds5. Allocate15/3cases, DC remains7. Both close5 with no final safety gap. One dated lost-demand exception remains."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["input-contract", "dated-coverage", "inbound-cutoff", "coverage-requirement", "whole-case-allocation", "review-only-closure"],
+      "failure_modes": [],
+      "derivation": "Changed June dates/filenames, zero lead, two-day review, new SKU/stores and pack4. F starts6 with demand1+1 and safety2: no request, close4. Its11-unit June17 receipt is outside June15-16 coverage and not counted. G starts1 with demand3+2 and safety2: raw6 rounds8; one-case capacity allows4. G closes0 with no lost demand, safety gap2. DC remains16. Three exceptions: allocation4 deferred, late11, safety2."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected", "covers": ["input-contract", "quantity-multiples"], "failure_modes": ["malformed-input"],
+      "derivation": "case_pack=0 violates the positive-integer field rule before any need or allocation calculation. Rejected outputs are empty; the error points to routes[0].case_pack."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json",
+      "expected_status": "rejected", "covers": ["input-contract", "net-stock-once"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "Physical on-hand2 cannot contain disjoint reserved2 plus blocked1. Reject the store-stock evidence with contradictory-stock; no proposal or negative stock fallback."
+    },
+    {
+      "id": "negative-duplicate", "kind": "negative", "input": "mock-data/negative-duplicate.json", "expected": "expected/negative-duplicate.json",
+      "expected_status": "rejected", "covers": ["input-contract", "inbound-cutoff"], "failure_modes": ["duplicate-key"],
+      "derivation": "Two receipts reuse SYN-RECEIPT-DUP. Reject the duplicated inbound primary key rather than count two units or silently deduplicate."
+    },
+    {
+      "id": "negative-ambiguous-route", "kind": "negative", "input": "mock-data/negative-ambiguous-route.json", "expected": "expected/negative-ambiguous-route.json",
+      "expected_status": "rejected", "covers": ["input-contract", "whole-case-allocation"], "failure_modes": ["ambiguous-evidence", "duplicate-key"],
+      "derivation": "The same store/SKU has two otherwise supplied DC routes. The store/SKU route primary key is duplicate; reject instead of choosing either DC or pooling supply."
+    },
+    {
+      "id": "negative-out-of-window", "kind": "negative", "input": "mock-data/negative-out-of-window.json", "expected": "expected/negative-out-of-window.json",
+      "expected_status": "rejected", "covers": ["input-contract", "dated-coverage"], "failure_modes": ["out-of-window"],
+      "derivation": "The store snapshot is December31 but run as-of is January1. Reject the mismatched opening date, not a current-stock assumption."
+    },
+    {
+      "id": "negative-overdue-inbound", "kind": "negative", "input": "mock-data/negative-overdue-inbound.json", "expected": "expected/negative-overdue-inbound.json",
+      "expected_status": "completed_with_exceptions", "covers": ["inbound-cutoff", "review-only-closure"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "Two in-transit units have ETA January1 before January2 as-of. Quarantine the sole store/SKU. Proposal units/cases are0; unknown need, projection and shortage fields are null, no allocation/daily rows, DC10 and capacity2 unchanged. Known-only totals are0 with blocked_pairs1; one overdue-inbound exception preserves the two-unit receipt."
+    }
+  ]
+}

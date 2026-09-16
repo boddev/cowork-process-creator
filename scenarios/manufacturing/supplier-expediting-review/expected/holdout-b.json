@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "receipt_reconciliation": [
+      {
+        "line_id": "B01", "supplier_id": "SB01", "item_id": "PLATE-A", "state": "open", "ordered_qty": 10, "original_requested_receipt": "2027-02-04", "deadline": "2027-02-04",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 10, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "outside-reporting-month", "otif": null, "performance_pending": false
+      },
+      {
+        "line_id": "B02", "supplier_id": "SB02", "item_id": "PLATE-B", "state": "open", "ordered_qty": 10, "original_requested_receipt": "2027-02-04", "deadline": "2027-02-04",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 10, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "outside-reporting-month", "otif": null, "performance_pending": false
+      },
+      {
+        "line_id": "H-B01", "supplier_id": "SB01", "item_id": "OLD-PIN", "state": "cancelled", "ordered_qty": 9, "original_requested_receipt": "2027-01-20", "deadline": "2027-01-20",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 9, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "cancelled", "otif": null, "performance_pending": false
+      },
+      {
+        "line_id": "H-B02", "supplier_id": "SB02", "item_id": "OLD-RING", "state": "cancelled", "ordered_qty": 4, "original_requested_receipt": "2027-01-31", "deadline": "2027-01-31",
+        "net_received_qty": 0, "credited_received_qty": 0, "on_time_qty": 0, "open_qty": 4, "overreceipt_qty": 0,
+        "receipt_event_ids": [], "active_receipt_ids": [], "voided_receipt_ids": [], "reversal_event_ids": [], "future_event_ids": [],
+        "cohort_status": "cancelled", "otif": null, "performance_pending": false
+      }
+    ],
+    "overall_performance": {"numerator": 0, "denominator": 0, "percent": null, "low_performance": null, "line_ids": [], "pending_line_ids": []},
+    "supplier_performance": [
+      {"supplier_id": "SB01", "buyer_role": "West materials buyer", "numerator": 0, "denominator": 0, "percent": null, "low_performance": null, "line_ids": [], "pending_line_ids": []},
+      {"supplier_id": "SB02", "buyer_role": "East materials buyer", "numerator": 0, "denominator": 0, "percent": null, "low_performance": null, "line_ids": [], "pending_line_ids": []}
+    ],
+    "cohort_exclusions": [
+      {"line_id": "B01", "reason": "outside-reporting-month"},
+      {"line_id": "B02", "reason": "outside-reporting-month"},
+      {"line_id": "H-B01", "reason": "cancelled"},
+      {"line_id": "H-B02", "reason": "cancelled"}
+    ],
+    "confirmation_review": [
+      {"line_id": "B01", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "missing", "in_scope": true, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "B02", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "missing", "in_scope": true, "supply_qty": 0, "future_confirmation_ids": ["C-B02"], "superseded_confirmation_ids": []},
+      {"line_id": "H-B01", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "cancelled", "in_scope": false, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []},
+      {"line_id": "H-B02", "confirmation_id": null, "recorded_on": null, "confirmed_receipt": null, "remaining_qty": null, "state": "cancelled", "in_scope": false, "supply_qty": 0, "future_confirmation_ids": [], "superseded_confirmation_ids": []}
+    ],
+    "requirement_coverage": [
+      {"requirement_id": "RQ-B01", "line_id": "B01", "need_by": "2027-02-04", "unmet_qty": 10, "criticality": "critical", "in_scope": true, "assessment": "allocated", "confirmation_id": null, "covered_qty": 0, "shortage_qty": 10},
+      {"requirement_id": "RQ-B02", "line_id": "B02", "need_by": "2027-02-04", "unmet_qty": 10, "criticality": "critical", "in_scope": true, "assessment": "allocated", "confirmation_id": null, "covered_qty": 0, "shortage_qty": 10}
+    ],
+    "buyer_review_queue": [
+      {
+        "rank": 1, "line_id": "B01", "supplier_id": "SB01", "buyer_role": "West materials buyer", "priority": "P1", "earliest_need_by": "2027-02-04",
+        "open_qty": 10, "shortage_qty": 10, "confirmed_receipt": null, "low_performance": null, "reason_codes": ["critical-shortage", "missing-confirmation"],
+        "draft_questions": ["Review uncovered critical demand and request a feasible receipt-date plan.", "Obtain a dated confirmation of remaining quantity and receipt date."], "send_status": "unsent", "approval_required": true
+      },
+      {
+        "rank": 2, "line_id": "B02", "supplier_id": "SB02", "buyer_role": "East materials buyer", "priority": "P1", "earliest_need_by": "2027-02-04",
+        "open_qty": 10, "shortage_qty": 10, "confirmed_receipt": null, "low_performance": null, "reason_codes": ["critical-shortage", "missing-confirmation"],
+        "draft_questions": ["Review uncovered critical demand and request a feasible receipt-date plan.", "Obtain a dated confirmation of remaining quantity and receipt date."], "send_status": "unsent", "approval_required": true
+      }
+    ],
+    "review_closure": {
+      "as_of": "2027-02-01", "reporting_month": "2027-01", "horizon_end": "2027-02-06", "urgency_end": "2027-02-04", "tolerance_days": 0, "low_performance_percent": 90,
+      "line_count": 4, "active_open_qty": 20, "in_scope_unmet_qty": 20, "covered_qty": 0, "shortage_qty": 20, "unresolved_requirement_count": 0, "unresolved_unmet_qty": 0,
+      "queue_count": 2, "exception_count": 4, "state": "review-prepared", "owner_role": "Buyer and material planner", "approval_required": true, "messages_sent": 0, "orders_changed": 0,
+      "boundary": "Mock calendar-day review; no live purchasing or communication."
+    }
+  },
+  "exceptions": [
+    {"code": "EMPTY_COHORT", "message": "No eligible purchase lines; performance percentage and low-performance flag are null.", "table": "po_schedule_lines", "record_id": null, "field": "original_requested_receipt"},
+    {"code": "FUTURE_CONFIRMATION", "message": "Confirmation recorded after as-of is excluded from promise selection.", "table": "confirmations", "record_id": "C-B02", "field": "recorded_on"},
+    {"code": "MISSING_CONFIRMATION", "message": "No confirmation recorded by as-of for an in-scope open line.", "table": "po_schedule_lines", "record_id": "B01", "field": null},
+    {"code": "MISSING_CONFIRMATION", "message": "No confirmation recorded by as-of for an in-scope open line.", "table": "po_schedule_lines", "record_id": "B02", "field": null}
+  ]
+}

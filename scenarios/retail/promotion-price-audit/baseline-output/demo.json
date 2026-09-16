@@ -1,0 +1,519 @@
+{
+  "exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "evidence_ids": [
+        "SYN-BASE-SOAP",
+        "SYN-PROMO-SOAP10",
+        "SYN-PROMO-SOAP20"
+      ],
+      "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+      "observation_id": "SYN-OBS-02",
+      "path": "observations.SYN-OBS-02"
+    },
+    {
+      "code": "PRICE_MISMATCH",
+      "evidence_ids": [
+        "SYN-BASE-MUG",
+        "SYN-PROMO-MUG50"
+      ],
+      "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+      "observation_id": "SYN-OBS-03",
+      "path": "observations.SYN-OBS-03"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "PRICE_MISMATCH",
+        "currency": "USD",
+        "evidence_ids": [
+          "SYN-BASE-SOAP",
+          "SYN-PROMO-SOAP10",
+          "SYN-PROMO-SOAP20"
+        ],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+        "next_action": "Review the observation, chosen rules and rounding with the pricing reviewer.",
+        "observation_id": "SYN-OBS-02",
+        "observed_on": "2099-10-10",
+        "owner": "Pricing operations analyst",
+        "sku": "SYN-SKU-02-SOAP",
+        "store_id": "SYN-STORE-01"
+      },
+      {
+        "code": "PRICE_MISMATCH",
+        "currency": "USD",
+        "evidence_ids": [
+          "SYN-BASE-MUG",
+          "SYN-PROMO-MUG50"
+        ],
+        "issue_id": "SYN-ISSUE-0002",
+        "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+        "next_action": "Review the observation, chosen rules and rounding with the pricing reviewer.",
+        "observation_id": "SYN-OBS-03",
+        "observed_on": "2099-10-10",
+        "owner": "Pricing operations analyst",
+        "sku": "SYN-SKU-03-MUG",
+        "store_id": "SYN-STORE-01"
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": 1999,
+        "base_price_ids": [
+          "SYN-BASE-TEA"
+        ],
+        "currency": "USD",
+        "delta_minor": 0,
+        "disposition": "match",
+        "expected_minor": 1699,
+        "observation_id": "SYN-OBS-01",
+        "observed_minor": 1699,
+        "observed_on": "2099-10-10",
+        "pricing_basis": "exclusive",
+        "selected_promotion_ids": [
+          "SYN-PROMO-TEAEX"
+        ],
+        "sku": "SYN-SKU-01-TEA",
+        "store_id": "SYN-STORE-01",
+        "unit": "EA",
+        "unrounded_minor": "1699"
+      },
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": 999,
+        "base_price_ids": [
+          "SYN-BASE-SOAP"
+        ],
+        "currency": "USD",
+        "delta_minor": 1,
+        "disposition": "mismatch",
+        "expected_minor": 719,
+        "observation_id": "SYN-OBS-02",
+        "observed_minor": 720,
+        "observed_on": "2099-10-10",
+        "pricing_basis": "compound",
+        "selected_promotion_ids": [
+          "SYN-PROMO-SOAP10",
+          "SYN-PROMO-SOAP20"
+        ],
+        "sku": "SYN-SKU-02-SOAP",
+        "store_id": "SYN-STORE-01",
+        "unit": "EA",
+        "unrounded_minor": "719.28"
+      },
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": 1999,
+        "base_price_ids": [
+          "SYN-BASE-MUG"
+        ],
+        "currency": "USD",
+        "delta_minor": -1,
+        "disposition": "mismatch",
+        "expected_minor": 1000,
+        "observation_id": "SYN-OBS-03",
+        "observed_minor": 999,
+        "observed_on": "2099-10-10",
+        "pricing_basis": "best-price",
+        "selected_promotion_ids": [
+          "SYN-PROMO-MUG50"
+        ],
+        "sku": "SYN-SKU-03-MUG",
+        "store_id": "SYN-STORE-01",
+        "unit": "EA",
+        "unrounded_minor": "999.5"
+      },
+      {
+        "active_exception_ids": [
+          "SYN-EX-TEA"
+        ],
+        "applied_exception_id": "SYN-EX-TEA",
+        "base_minor": 1999,
+        "base_price_ids": [
+          "SYN-BASE-TEA"
+        ],
+        "currency": "USD",
+        "delta_minor": 0,
+        "disposition": "match",
+        "expected_minor": 1550,
+        "observation_id": "SYN-OBS-04",
+        "observed_minor": 1550,
+        "observed_on": "2099-10-11",
+        "pricing_basis": "approved-exception",
+        "selected_promotion_ids": [],
+        "sku": "SYN-SKU-01-TEA",
+        "store_id": "SYN-STORE-01",
+        "unit": "EA",
+        "unrounded_minor": "1550"
+      }
+    ],
+    "reconciliation": {
+      "included_observations": 4,
+      "input_observations": 4,
+      "matched": 2,
+      "mismatched": 2,
+      "not_evaluable": 0,
+      "out_of_scope": 0,
+      "reconciled": true
+    },
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [
+        {
+          "currency": "USD",
+          "included_observations": 4,
+          "input_observations": 4,
+          "matched": 2,
+          "mismatched": 2,
+          "not_evaluable": 0,
+          "out_of_scope": 0,
+          "store_id": "SYN-STORE-01"
+        }
+      ],
+      "owner_role": "Pricing operations analyst",
+      "policy": {
+        "as_of": "2099-10-11",
+        "audit_end": "2099-10-12",
+        "audit_start": "2099-10-10",
+        "date_basis": "store-local-calendar",
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "review_state": "review-required"
+    },
+    "rule_selection": [
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-TEA"
+          }
+        ],
+        "candidates": [
+          {
+            "mode": "exclusive",
+            "promotion_ids": [
+              "SYN-PROMO-TEAEX"
+            ],
+            "unrounded_minor": "1699"
+          }
+        ],
+        "exception_checks": [
+          {
+            "approved": true,
+            "date_match": false,
+            "exception_id": "SYN-EX-TEA"
+          }
+        ],
+        "observation_id": "SYN-OBS-01",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-MUG50",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP10",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP20",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP25",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAEX",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAFILTER",
+            "reasons": [
+              "disabled",
+              "outside-validity",
+              "currency-mismatch",
+              "unit-mismatch",
+              "explicit-exclusion"
+            ]
+          }
+        ],
+        "suppressed_promotions": [
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reason": "lower-priority"
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reason": "exclusive-present"
+          }
+        ],
+        "tied_promotion_sets": [],
+        "winning_priority": 20
+      },
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-SOAP"
+          }
+        ],
+        "candidates": [
+          {
+            "mode": "compound",
+            "promotion_ids": [
+              "SYN-PROMO-SOAP10",
+              "SYN-PROMO-SOAP20"
+            ],
+            "unrounded_minor": "719.28"
+          },
+          {
+            "mode": "best-price",
+            "promotion_ids": [
+              "SYN-PROMO-SOAP25"
+            ],
+            "unrounded_minor": "749.25"
+          }
+        ],
+        "exception_checks": [],
+        "observation_id": "SYN-OBS-02",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-MUG50",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP10",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP20",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP25",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAEX",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAFILTER",
+            "reasons": [
+              "disabled",
+              "outside-validity",
+              "currency-mismatch",
+              "unit-mismatch",
+              "not-included"
+            ]
+          }
+        ],
+        "suppressed_promotions": [
+          {
+            "promotion_id": "SYN-PROMO-SOAP25",
+            "reason": "higher-price"
+          }
+        ],
+        "tied_promotion_sets": [],
+        "winning_priority": 10
+      },
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-MUG"
+          }
+        ],
+        "candidates": [
+          {
+            "mode": "best-price",
+            "promotion_ids": [
+              "SYN-PROMO-MUG50"
+            ],
+            "unrounded_minor": "999.5"
+          }
+        ],
+        "exception_checks": [],
+        "observation_id": "SYN-OBS-03",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-MUG50",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP10",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP20",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP25",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAEX",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAFILTER",
+            "reasons": [
+              "disabled",
+              "outside-validity",
+              "currency-mismatch",
+              "unit-mismatch",
+              "not-included"
+            ]
+          }
+        ],
+        "suppressed_promotions": [],
+        "tied_promotion_sets": [],
+        "winning_priority": 10
+      },
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-TEA"
+          }
+        ],
+        "candidates": [],
+        "exception_checks": [
+          {
+            "approved": true,
+            "date_match": true,
+            "exception_id": "SYN-EX-TEA"
+          }
+        ],
+        "observation_id": "SYN-OBS-04",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-MUG50",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP10",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP20",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-SOAP25",
+            "reasons": [
+              "not-included"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAEX",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAFILTER",
+            "reasons": [
+              "disabled",
+              "outside-validity",
+              "currency-mismatch",
+              "unit-mismatch",
+              "explicit-exclusion"
+            ]
+          }
+        ],
+        "suppressed_promotions": [
+          {
+            "promotion_id": "SYN-PROMO-TEA40",
+            "reason": "approved-exception"
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEA50",
+            "reason": "approved-exception"
+          },
+          {
+            "promotion_id": "SYN-PROMO-TEAEX",
+            "reason": "approved-exception"
+          }
+        ],
+        "tied_promotion_sets": [],
+        "winning_priority": null
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

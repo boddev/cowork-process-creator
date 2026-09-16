@@ -1,0 +1,81 @@
+{
+  "exceptions": [
+    {
+      "code": "OUT_OF_AUDIT_WINDOW",
+      "evidence_ids": [],
+      "message": "Observation is outside the half-open audit window; no price was evaluated.",
+      "observation_id": "SYN-OBS-OUT",
+      "path": "observations.SYN-OBS-OUT"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "OUT_OF_AUDIT_WINDOW",
+        "currency": "USD",
+        "evidence_ids": [],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "Observation is outside the half-open audit window; no price was evaluated.",
+        "next_action": "Confirm the intended audit period; keep this observation outside this review.",
+        "observation_id": "SYN-OBS-OUT",
+        "observed_on": "2099-09-02",
+        "owner": "Pricing operations analyst",
+        "sku": "SYN-SKU-N",
+        "store_id": "SYN-STORE-N"
+      }
+    ],
+    "out_of_scope": [
+      {
+        "currency": "USD",
+        "delta_minor": null,
+        "disposition": "out-of-scope",
+        "expected_minor": null,
+        "observation_id": "SYN-OBS-OUT",
+        "observed_minor": 1200,
+        "observed_on": "2099-09-02",
+        "reason": "at-or-after-audit-end",
+        "sku": "SYN-SKU-N",
+        "store_id": "SYN-STORE-N",
+        "unit": "EA"
+      }
+    ],
+    "price_audit": [],
+    "reconciliation": {
+      "included_observations": 0,
+      "input_observations": 1,
+      "matched": 0,
+      "mismatched": 0,
+      "not_evaluable": 0,
+      "out_of_scope": 1,
+      "reconciled": true
+    },
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [
+        {
+          "currency": "USD",
+          "included_observations": 0,
+          "input_observations": 1,
+          "matched": 0,
+          "mismatched": 0,
+          "not_evaluable": 0,
+          "out_of_scope": 1,
+          "store_id": "SYN-STORE-N"
+        }
+      ],
+      "owner_role": "Pricing operations analyst",
+      "policy": {
+        "as_of": "2099-09-01",
+        "audit_end": "2099-09-02",
+        "audit_start": "2099-09-01",
+        "date_basis": "store-local-calendar",
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "review_state": "review-required"
+    },
+    "rule_selection": []
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

@@ -1,0 +1,454 @@
+{
+  "exceptions": [
+    {
+      "code": "orphan-evidence",
+      "entity_ref": "products:SYN-PROD-N",
+      "message": "Export evidence has no matching parent."
+    },
+    {
+      "code": "duplicate-evidence",
+      "entity_ref": "readings:SYN-O00",
+      "message": "Repeated identical export evidence."
+    },
+    {
+      "code": "missing-calibration",
+      "entity_ref": "inventory:SYN-LOT-M",
+      "message": "Quality review required: missing-calibration."
+    },
+    {
+      "code": "outside-band",
+      "entity_ref": "inventory:SYN-LOT-M",
+      "message": "Quality review required: outside-band."
+    },
+    {
+      "code": "missing-profile",
+      "entity_ref": "inventory:SYN-LOT-N",
+      "message": "Quality review required: missing-profile."
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-09-16T10:20:00Z",
+    "correspondence": [
+      {
+        "correspondence_id": "SYN-COR-M",
+        "lot_id": "SYN-LOT-M",
+        "note": "SYN-NOTE claims release; evidence only.",
+        "recorded_at": "2026-09-16T10:15:00Z",
+        "reference": "SYN-REF-M",
+        "source_role_id": "SYN-ROLE-Q"
+      }
+    ],
+    "draft_quality_requests": [
+      {
+        "action": "request-quality-review",
+        "lot_id": "SYN-LOT-M",
+        "owner_role_id": "SYN-ROLE-Q",
+        "prior_correspondence_ids": [
+          "SYN-COR-M"
+        ],
+        "reason_codes": [
+          "missing-calibration",
+          "outside-band"
+        ]
+      },
+      {
+        "action": "request-quality-review",
+        "lot_id": "SYN-LOT-N",
+        "owner_role_id": "SYN-ROLE-Q",
+        "prior_correspondence_ids": [],
+        "reason_codes": [
+          "missing-profile"
+        ]
+      }
+    ],
+    "duration_model": "bounded-zero-order-hold",
+    "evidence_register": [
+      {
+        "occurrences": 1,
+        "record_id": "SYN-C-NEW",
+        "state": "available",
+        "table": "calibrations",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-C-OLD",
+        "state": "available",
+        "table": "calibrations",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-COR-M",
+        "state": "available",
+        "table": "correspondence",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-M",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-N",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-W",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-LOT-Z",
+        "state": "available",
+        "table": "inventory",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-M0",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-M1",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-N",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-W",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PL-Z",
+        "state": "available",
+        "table": "placements",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROD-N",
+        "state": "orphan",
+        "table": "products",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROD-R",
+        "state": "available",
+        "table": "products",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROD-W",
+        "state": "available",
+        "table": "products",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROFILE-R",
+        "state": "available",
+        "table": "profiles",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-PROFILE-W",
+        "state": "available",
+        "table": "profiles",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-N00",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-N10",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-N20",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 2,
+        "record_id": "SYN-O00",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-O10",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-O20",
+        "state": "available",
+        "table": "readings",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-AS-NEW",
+        "state": "available",
+        "table": "sensor_assignments",
+        "variants": 1
+      },
+      {
+        "occurrences": 1,
+        "record_id": "SYN-AS-OLD",
+        "state": "available",
+        "table": "sensor_assignments",
+        "variants": 1
+      }
+    ],
+    "interval_ledger": [
+      {
+        "end": "2026-09-16T10:10:00Z",
+        "evidence_state": "outside-band",
+        "lot_id": "SYN-LOT-M",
+        "overlap_seconds": 600,
+        "placement_ids": [
+          "SYN-PL-M0"
+        ],
+        "reading_ids": [
+          "SYN-O00"
+        ],
+        "sensor_id": "SYN-SENSOR-OLD",
+        "start": "2026-09-16T10:00:00Z",
+        "temperature_tenths_c": 80
+      },
+      {
+        "end": "2026-09-16T10:20:00Z",
+        "evidence_state": "unknown",
+        "lot_id": "SYN-LOT-M",
+        "overlap_seconds": 600,
+        "placement_ids": [
+          "SYN-PL-M1"
+        ],
+        "reading_ids": [
+          "SYN-N10"
+        ],
+        "sensor_id": "SYN-SENSOR-NEW",
+        "start": "2026-09-16T10:10:00Z",
+        "temperature_tenths_c": null
+      },
+      {
+        "end": "2026-09-16T10:20:00Z",
+        "evidence_state": "unknown",
+        "lot_id": "SYN-LOT-N",
+        "overlap_seconds": 1200,
+        "placement_ids": [
+          "SYN-PL-N"
+        ],
+        "reading_ids": [],
+        "sensor_id": null,
+        "start": "2026-09-16T10:00:00Z",
+        "temperature_tenths_c": null
+      },
+      {
+        "end": "2026-09-16T10:10:00Z",
+        "evidence_state": "inside-band",
+        "lot_id": "SYN-LOT-W",
+        "overlap_seconds": 600,
+        "placement_ids": [
+          "SYN-PL-W"
+        ],
+        "reading_ids": [
+          "SYN-O00"
+        ],
+        "sensor_id": "SYN-SENSOR-OLD",
+        "start": "2026-09-16T10:00:00Z",
+        "temperature_tenths_c": 80
+      },
+      {
+        "end": "2026-09-16T10:10:00Z",
+        "evidence_state": "inside-band",
+        "lot_id": "SYN-LOT-Z",
+        "overlap_seconds": 600,
+        "placement_ids": [
+          "SYN-PL-Z"
+        ],
+        "reading_ids": [
+          "SYN-O00"
+        ],
+        "sensor_id": "SYN-SENSOR-OLD",
+        "start": "2026-09-16T10:00:00Z",
+        "temperature_tenths_c": 80
+      }
+    ],
+    "inventory_summary": {
+      "evidence_gap_lots": 2,
+      "no_observed_exception_lots": 2,
+      "review_lots": 2,
+      "review_units": 10,
+      "total_lots": 4
+    },
+    "lot_review": [
+      {
+        "covered_seconds": 600,
+        "lot_id": "SYN-LOT-M",
+        "modeled_outside_seconds": 600,
+        "observed_outside_reading_ids": [
+          "SYN-O00"
+        ],
+        "occupied_seconds": 1200,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-R",
+        "profile_id": "SYN-PROFILE-R",
+        "quantity_units": 8,
+        "reason_codes": [
+          "missing-calibration",
+          "outside-band"
+        ],
+        "review_state": "pending-quality-review",
+        "source_refs": [
+          "calibrations:SYN-C-NEW",
+          "calibrations:SYN-C-OLD",
+          "correspondence:SYN-COR-M",
+          "inventory:SYN-LOT-M",
+          "placements:SYN-PL-M0",
+          "placements:SYN-PL-M1",
+          "products:SYN-PROD-R",
+          "profiles:SYN-PROFILE-R",
+          "readings:SYN-N00",
+          "readings:SYN-N10",
+          "readings:SYN-N20",
+          "readings:SYN-O00",
+          "readings:SYN-O10",
+          "readings:SYN-O20",
+          "sensor_assignments:SYN-AS-NEW",
+          "sensor_assignments:SYN-AS-OLD"
+        ],
+        "temperature_max_tenths_c": 80,
+        "temperature_min_tenths_c": 50,
+        "unknown_seconds": 600
+      },
+      {
+        "covered_seconds": 0,
+        "lot_id": "SYN-LOT-N",
+        "modeled_outside_seconds": null,
+        "observed_outside_reading_ids": [],
+        "occupied_seconds": 1200,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-N",
+        "profile_id": "SYN-PROFILE-MISSING",
+        "quantity_units": 2,
+        "reason_codes": [
+          "missing-profile"
+        ],
+        "review_state": "pending-quality-review",
+        "source_refs": [
+          "calibrations:SYN-C-OLD",
+          "inventory:SYN-LOT-N",
+          "placements:SYN-PL-N",
+          "products:SYN-PROD-N",
+          "readings:SYN-O00",
+          "readings:SYN-O10",
+          "readings:SYN-O20",
+          "sensor_assignments:SYN-AS-OLD"
+        ],
+        "temperature_max_tenths_c": null,
+        "temperature_min_tenths_c": null,
+        "unknown_seconds": 1200
+      },
+      {
+        "covered_seconds": 600,
+        "lot_id": "SYN-LOT-W",
+        "modeled_outside_seconds": 0,
+        "observed_outside_reading_ids": [],
+        "occupied_seconds": 600,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-W",
+        "profile_id": "SYN-PROFILE-W",
+        "quantity_units": 3,
+        "reason_codes": [],
+        "review_state": "no-observed-exception",
+        "source_refs": [
+          "calibrations:SYN-C-OLD",
+          "inventory:SYN-LOT-W",
+          "placements:SYN-PL-W",
+          "products:SYN-PROD-W",
+          "profiles:SYN-PROFILE-W",
+          "readings:SYN-O00",
+          "readings:SYN-O10",
+          "readings:SYN-O20",
+          "sensor_assignments:SYN-AS-OLD"
+        ],
+        "temperature_max_tenths_c": 80,
+        "temperature_min_tenths_c": 80,
+        "unknown_seconds": 0
+      },
+      {
+        "covered_seconds": 600,
+        "lot_id": "SYN-LOT-Z",
+        "modeled_outside_seconds": 0,
+        "observed_outside_reading_ids": [],
+        "occupied_seconds": 600,
+        "owner_role_id": "SYN-ROLE-Q",
+        "product_id": "SYN-PROD-W",
+        "profile_id": "SYN-PROFILE-W",
+        "quantity_units": 5,
+        "reason_codes": [],
+        "review_state": "no-observed-exception",
+        "source_refs": [
+          "calibrations:SYN-C-OLD",
+          "inventory:SYN-LOT-Z",
+          "placements:SYN-PL-Z",
+          "products:SYN-PROD-W",
+          "profiles:SYN-PROFILE-W",
+          "readings:SYN-O00",
+          "readings:SYN-O10",
+          "readings:SYN-O20",
+          "sensor_assignments:SYN-AS-OLD"
+        ],
+        "temperature_max_tenths_c": 80,
+        "temperature_min_tenths_c": 80,
+        "unknown_seconds": 0
+      }
+    ],
+    "physical_actions_performed": false,
+    "policy_id": "SYN-POLICY-MOVE",
+    "quality_disposition_required": true,
+    "window_start": "2026-09-16T10:00:00Z"
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

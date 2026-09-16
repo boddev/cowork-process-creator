@@ -685,7 +685,9 @@ class LocalFileTests(unittest.TestCase):
         self.assertFalse(result["provenance_details"]["renderer_ran_baseline"])
         self.assertEqual(result["synthetic_label_every_frame"], media.LABEL)
         self.assertEqual(set(result["commands"]), {"version", "encode", "decode", "probe"})
-        self.assertTrue(all(command[0] == str(_KNOWN_ENCODER) for command in result["commands"].values()))
+        self.assertTrue(all(command[0] == _KNOWN_ENCODER.name for command in result["commands"].values()))
+        self.assertNotIn(str(_KNOWN_ENCODER.parent), json.dumps(result["commands"]))
+        self.assertEqual(result["encoder"]["path"], _KNOWN_ENCODER.name)
         self.assertEqual(len(result["fidelity"]["frames"]), result["frame_count"])
         self.assertTrue(result["fidelity"]["all_frames_decoded_and_compared"])
         self.assertLessEqual(result["fidelity"]["max_mean_pixel_error"], 6)
@@ -697,7 +699,10 @@ class LocalFileTests(unittest.TestCase):
         with mock.patch.object(media, "_run_command", wraps=media._run_command) as run:
             repeated = media.render_trace_video(trace, self.output, title=title,
                                                 ffmpeg=_KNOWN_ENCODER, evidence=evidence)
-        self.assertEqual([call.args[0] for call in run.call_args_list],
+        staging_path = str(Path(run.call_args_list[1].args[0][-1]).parent)
+        recorded = [[argument.replace(str(_KNOWN_ENCODER), _KNOWN_ENCODER.name).replace(staging_path, "<media-staging>")
+                     for argument in call.args[0]] for call in run.call_args_list]
+        self.assertEqual(recorded,
                          [repeated["commands"][phase] for phase in ("version", "encode", "decode", "probe")])
         self.assertEqual(hashlib.sha256(run.call_args_list[1].args[1]).hexdigest(),
                          repeated["encoder_input"]["sha256"])

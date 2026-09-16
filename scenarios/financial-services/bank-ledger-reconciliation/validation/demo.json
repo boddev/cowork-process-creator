@@ -1,0 +1,213 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "2600911ded5b7a7e22bdbdc7394bd6879277a45b02beb1fdfc06d6b346af6861",
+    "golden_sha256": "1538eb48ac4964424668463918e866d4228645e775de9d2d250ea56e4d148734",
+    "input_sha256": "f240b29d51feaad49ff4dc3a9f6f1a158cfbdcf8e64eb1467ffd75e0f5b60a0d",
+    "result": "baseline-output/demo.json",
+    "result_sha256": "ce061f91dda8719979c5a9e2b9d37b9edaf7efc58671df90384a85589369c5f9",
+    "trace": "baseline-output/demo.trace.json",
+    "trace_sha256": "dd2a44e688c62f064f33e3a1a196816278965471b1c0980a95ff53b362647b1b"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "copy",
+      "datetime",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "demo",
+  "documented": {
+    "case_rule_coverage": [
+      "bank-source-validation",
+      "bank-date-and-type-controls",
+      "bank-ambiguity-review",
+      "bank-batch-manifest",
+      "bank-symmetric-uniqueness",
+      "bank-timing-review",
+      "bank-bridge-closure"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "Hand-derived before implementation: bank 100000+12000-7500-250+3000=107250; ledger 100000+12000-5000-2500+3000+3000-4000=106500. SYN-B1/SYN-L1 and SYN-B2/{SYN-L2,SYN-L3} are the only isolated groups. SYN-B4 has both SYN-L4 and SYN-L5, so all three remain ambiguous. SYN-B3 is a bank-only fee; SYN-L6 is pending July 1 clearance. Unmatched bank2750 minus ledger2000 is the750 closing difference. Two groups; two unmatched bank and three unmatched ledger rows.",
+    "steps": [
+      {
+        "id": "intake-exports",
+        "kind": "input",
+        "rule_ids": [
+          "bank-source-validation"
+        ]
+      },
+      {
+        "id": "validate-close",
+        "kind": "validation",
+        "rule_ids": [
+          "bank-source-validation"
+        ]
+      },
+      {
+        "id": "normalize-cutoff",
+        "kind": "validation",
+        "rule_ids": [
+          "bank-date-and-type-controls"
+        ]
+      },
+      {
+        "id": "join-candidates",
+        "kind": "join",
+        "rule_ids": [
+          "bank-batch-manifest",
+          "bank-symmetric-uniqueness"
+        ]
+      },
+      {
+        "id": "decide-matches",
+        "kind": "decision",
+        "rule_ids": [
+          "bank-ambiguity-review",
+          "bank-penny-review"
+        ]
+      },
+      {
+        "id": "route-unresolved",
+        "kind": "exception",
+        "rule_ids": [
+          "bank-ambiguity-review",
+          "bank-timing-review"
+        ]
+      },
+      {
+        "id": "bridge-balances",
+        "kind": "decision",
+        "rule_ids": [
+          "bank-bridge-closure"
+        ]
+      },
+      {
+        "id": "emit-review-packet",
+        "kind": "output",
+        "rule_ids": [
+          "bank-bridge-closure",
+          "bank-penny-review"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/demo.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/financial-services/bank-ledger-reconciliation",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.503021,
+  "kind": "demo",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-close"
+      },
+      {
+        "kind": "validation",
+        "sequence": 3,
+        "step_id": "normalize-cutoff"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "join-candidates"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "decide-matches"
+      },
+      {
+        "kind": "exception",
+        "sequence": 6,
+        "step_id": "route-unresolved"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "bridge-balances"
+      },
+      {
+        "kind": "output",
+        "sequence": 8,
+        "step_id": "emit-review-packet"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "financial-services-01",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "a1aa4689f554da91e3cdc1b394e626a83208876989a4e08b50286f8a2556b429",
+    "baseline.py": "2600911ded5b7a7e22bdbdc7394bd6879277a45b02beb1fdfc06d6b346af6861",
+    "connections.json": "565132a561c6685f597b819bccaed34266c1dcd520737f2b4385952e37dc9918",
+    "expected/demo.json": "1538eb48ac4964424668463918e866d4228645e775de9d2d250ea56e4d148734",
+    "expected/holdout-a.json": "c0852fe49458aaca7c8da66aa6ea52fbd57f59a8ed4578fdc08f3d26a8f31fa9",
+    "expected/holdout-b.json": "b88b330ea51b5e485d4f49e1b497fff204716e21cb9ac3cc4ccfe1dabc61ef8d",
+    "expected/negative-contradictory.json": "9bd98fb9f3ca4f0e587d4cf901809921e12b01c376069ce2d08ad93c3efe172a",
+    "expected/negative-malformed.json": "4ea7610ae5148239a47a24fabb67313c207f4f2004ad0ffc26670cf45c48fecb",
+    "mock-data/demo.json": "f240b29d51feaad49ff4dc3a9f6f1a158cfbdcf8e64eb1467ffd75e0f5b60a0d",
+    "mock-data/holdout-a.json": "9b307911691cf9993cb6c9e7c4f73effb8441620e1c36a88c4679a97d9ad8b5d",
+    "mock-data/holdout-b.json": "20ed3af9a21eeb28b9d87f3ef36c2775ead7e95ca75bbdd3350f8d1197906c3e",
+    "mock-data/negative-contradictory.json": "d3e342591e2fa209b73287ed884092e456761ef1544bf754dd2960a868115aa3",
+    "mock-data/negative-malformed.json": "475e410cff5d99ef70e9c290e5164bbb3dacc154055e097216ccac0ce07a0cf0",
+    "scenario.json": "f3b87034c510b5d606b12df761b06bfd2e5691ecaa0f299c9223a0cd6a0a805d",
+    "sources.json": "f9b26ac24f86ce9fc95a0bdb6acec498d5e7ef583ba7ae269624396dee885d29",
+    "workflow.json": "2f8dcc929bd56ab652e4ebd0416a6796faa75e475f21e538e3c9a2e706da2bb8"
+  },
+  "state": "baseline_pass"
+}

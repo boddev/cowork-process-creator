@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {"review": {"human_review": "pending", "live_action": "none"}},
+  "exceptions": [
+    {"scope_id": null, "record_id": "input", "code": "malformed-input", "message": "bank_lines[0].amount_minor must be a true integer in [-1000000000000, 1000000000000]."}
+  ]
+}

@@ -8,7 +8,7 @@ from pathlib import Path
 
 from .common import ContractError, load_json, no_links
 from .contract import discover
-from .native import compare_native_import, inspect_zip
+from .native import compare_native_import, inspect_cowork_plugin
 from .pipeline import check_case_evidence, run_case
 from .reporting import build_catalog, coverage, write_reports
 from .staging import media_evidence, stage_creator_inputs
@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
             artifact = no_links(args.artifact).resolve()
             if not artifact.is_relative_to(no_links(output_root).resolve()):
                 raise ContractError("Inspect native plugin artifacts already supplied under root output")
-            _print(inspect_zip(artifact))
+            _print(inspect_cowork_plugin(artifact))
             return 0
         scenarios = discover(root)
         if args.scenario:

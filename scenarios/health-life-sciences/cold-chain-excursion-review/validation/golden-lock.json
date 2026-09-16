@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independent pre-code interval worksheet: A occupies 1800s, with R10 and R15 each holding outside for 300s => 600 outside. B enters 09:15 and occupies 900s, overlapping only R15 => 300 outside. F's three 600s spans are at -250,-200,-150, all inclusive-profile values =>1800 covered and zero outside. No unknowns. Review quantities10+6=16 counted once. Twelve ledger rows:6A+3B+3F. Twenty-five distinct source IDs, all available. Complete expected envelope authored manually before baseline execution.",
+      "expected_sha256": "f321bd7a498d0e6919b48a829ea1e5cfe89428ba38439ece46884c95fe77a2e8",
+      "input_sha256": "7df92e50dd5466e6994c2a621d2f5d7de772fc316e764eff61a11e1e61a7dbaa"
+    },
+    "holdout-a": {
+      "derivation": "Cardinality changes from3 lots/2profiles to2 lots/1profile, with a new day and finite exits. U occupies09:05-09:25=1200s:300 covered outside then900 wholly unknown because the original15-minute gap exceeds600. V enters exactly09:10 and occupies900 unknown seconds; no overlap with the prior outside point/segment. R25 at exit and R35 after as-of do not create point flags. U min/max50/90, V50/50 from occupied points. Review3+7=10, two gap lots. Future R35 is listed once; all14 source entries enumerated manually.",
+      "expected_sha256": "c049911da0d59e23bc45707787a9b2a84cf8f3f24ad7fee3116a52657718e958",
+      "input_sha256": "5be81856763a437be462b67bbbf8f4f091db3f01da068d28a6dc1255e529c196"
+    },
+    "holdout-b": {
+      "derivation": "Cardinality changes to4lots/5placements/3products and policy gap1200 with R band30..70. M's old-unit600s at80 is outside; its new-unit600s begins exactly when new certificate expires, so unknown without assigning a value. N's absent profile makes1200s unknown and outside null. W and Z each occupy600s at80 inside their0..100 profile. Review8+2=10; two no-exception lots. O00 exact repeated row counts2 occurrences but one point and no time duplication. Missing-profile product is orphan evidence. Note claiming release remains text; no actions. All25 source entries and five intervals manually enumerated.",
+      "expected_sha256": "f2aff57530eca059989b1c49e6fac13e447abde118e945cfee900ed88c25fd51",
+      "input_sha256": "e70c62205f880ecedcfcd5da6d6c1b3a3cf00e795dec12b4520f6bf348cc3f29"
+    },
+    "negative-contradictory": {
+      "derivation": "X has overlapping whole-lot placements and conflicting same-time sensorX temperatures50/90. Occupied union10:00-10:20 is1200s, not1800: one unknown ledger row with both placement IDs, no point/minmax attribution, outside null, review9 units. Y has an unambiguous1200s interval at50 within20..80, so covered1200,outside0, no review. Distinct conflicting reading IDs remain individually available source entries rather than becoming primary-key conflicts. All16 source entries are manually enumerated.",
+      "expected_sha256": "5068864b8f8aa518fbcf5bf127fbcfda02c5d4f2161871e37e3e87ea906e840b",
+      "input_sha256": "9b364abb104cb0485f93b513ad349906afeb94482d06d4ef83f0c4973bb41abb"
+    },
+    "negative-malformed": {
+      "derivation": "The supplied boolean max_gap_seconds is not a JSON integer. First validation diagnostic is invalid-input at policy.max_gap_seconds, with the specified integer1..86400 message; business outputs are empty. No product is rejected and no interval is evaluated.",
+      "expected_sha256": "068ab697051d68e924c23c11dd479917169ef865526b3e5436c18de0ba551a89",
+      "input_sha256": "9c1cd6cfcc1023e2984be9c3a324412ac1a00f50942d774ebd8de411ee8ed1c9"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Health and Life Sciences sector author",
+    "description": "All five complete expected envelopes were manually authored before baseline.py existed or was executed, using interval diagrams, integer endpoint differences, explicit source inventories and unique-lot sums. This is author-declared independent derivation, not independent human review. Shared golden_lock freezes inputs and expectations before the first subprocess run.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "hls-02",
+  "schema_version": 1
+}

@@ -1,0 +1,559 @@
+{
+  "events": [
+    {
+      "caption": "Inventoried the supplied logical exports and explicit policy from one synthetic JSON snapshot.",
+      "facts": {
+        "as_of": "2026-09-14",
+        "logical_tables_present": 5,
+        "reporting_month": "2026-09"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows",
+            "shape"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "po_schedule_lines",
+              4,
+              "array"
+            ],
+            [
+              "receipt_events",
+              4,
+              "array"
+            ],
+            [
+              "confirmations",
+              2,
+              "array"
+            ],
+            [
+              "requirements",
+              3,
+              "array"
+            ],
+            [
+              "suppliers",
+              2,
+              "array"
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Validated fields, bounded quantities, unique identities, full reversal relations, and eligible equal-date promises.",
+      "facts": {
+        "duplicate_rows_removed": 0,
+        "eligible_confirmations": 2,
+        "reversals_validated": 0,
+        "unique_rows": 15
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-events",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows",
+            "unique_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "po_schedule_lines",
+              4,
+              4
+            ],
+            [
+              "receipt_events",
+              4,
+              4
+            ],
+            [
+              "confirmations",
+              2,
+              2
+            ],
+            [
+              "requirements",
+              3,
+              3
+            ],
+            [
+              "suppliers",
+              2,
+              2
+            ]
+          ],
+          "title": "Validated source inventory",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Joined source records by exact purchase line and supplier IDs; unmatched identities remain explicit review work.",
+      "facts": {
+        "known_owner_lines": 4,
+        "orphan_records": 0,
+        "purchase_lines": 4
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-purchase-context",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "supplier_id",
+            "buyer",
+            "receipts",
+            "confirmations",
+            "requirements"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "P01",
+              "S01",
+              "Northern components buyer",
+              2,
+              0,
+              0
+            ],
+            [
+              "P02",
+              "S01",
+              "Northern components buyer",
+              1,
+              2,
+              2
+            ],
+            [
+              "P03",
+              "S02",
+              "Packaging buyer",
+              1,
+              0,
+              0
+            ],
+            [
+              "P04",
+              "S02",
+              "Packaging buyer",
+              0,
+              0,
+              1
+            ]
+          ],
+          "title": "Purchase context",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Folded as-of posted receipts and full voids; credited quantities are capped without concealing overreceipt.",
+      "facts": {
+        "credited_received_qty": 170,
+        "future_events": 0,
+        "net_received_qty": 170,
+        "voided_receipts": 0
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "reconcile-receipts",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "ordered",
+            "net",
+            "on_time",
+            "open",
+            "overreceipt"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "P01",
+              100,
+              100,
+              60,
+              0,
+              0
+            ],
+            [
+              "P02",
+              80,
+              20,
+              20,
+              60,
+              0
+            ],
+            [
+              "P03",
+              50,
+              50,
+              50,
+              0,
+              0
+            ],
+            [
+              "P04",
+              40,
+              0,
+              0,
+              40,
+              0
+            ]
+          ],
+          "title": "Receipt reconciliation",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Measured the fixed original-requested-date cohort; exact denominators, null history, and pending tolerance stay visible.",
+      "facts": {
+        "denominator": 2,
+        "excluded_lines": 2,
+        "numerator": 1,
+        "pending_lines": 0,
+        "percent": "50.00"
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "measure-performance",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "successful",
+            "cohort",
+            "percent",
+            "pending"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "overall",
+              1,
+              2,
+              "50.00",
+              0
+            ],
+            [
+              "S01",
+              0,
+              1,
+              "0.00",
+              0
+            ],
+            [
+              "S02",
+              1,
+              1,
+              "100.00",
+              0
+            ]
+          ],
+          "title": "Overall and supplier performance",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "line_id",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "P02",
+              "future-requested-date"
+            ],
+            [
+              "P04",
+              "future-requested-date"
+            ]
+          ],
+          "title": "Cohort exclusions",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Selected latest as-of receipt-date promises; missing or stale ETAs supply no prospective coverage.",
+      "facts": {
+        "future_records": 0,
+        "in_scope_lines": 2,
+        "selected_records": 1,
+        "usable_prospective_qty": 60
+      },
+      "kind": "join",
+      "sequence": 6,
+      "step_id": "select-confirmations",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "confirmation_id",
+            "receipt_date",
+            "state",
+            "in_scope",
+            "supply_qty"
+          ],
+          "highlight_rows": [
+            3
+          ],
+          "rows": [
+            [
+              "P01",
+              null,
+              null,
+              "not-open",
+              false,
+              0
+            ],
+            [
+              "P02",
+              "C-P02B",
+              "2026-09-18",
+              "current",
+              true,
+              60
+            ],
+            [
+              "P03",
+              null,
+              null,
+              "not-open",
+              false,
+              0
+            ],
+            [
+              "P04",
+              null,
+              null,
+              "missing",
+              true,
+              0
+            ]
+          ],
+          "title": "Selected promises",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Allocated each current promise pool once by need date and requirement ID; late supply cannot cover earlier demand.",
+      "facts": {
+        "assessed_requirements": 3,
+        "covered_qty": 10,
+        "outside_horizon": 0,
+        "shortage_qty": 90,
+        "unresolved_in_scope": 0
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "evaluate-demand",
+      "tables": [
+        {
+          "columns": [
+            "line_id",
+            "requirement_id",
+            "need_by",
+            "unmet",
+            "covered",
+            "shortage"
+          ],
+          "highlight_rows": [
+            0,
+            2
+          ],
+          "rows": [
+            [
+              "P02",
+              "R-P02A",
+              "2026-09-16",
+              50,
+              0,
+              50
+            ],
+            [
+              "P02",
+              "R-P02B",
+              "2026-09-20",
+              10,
+              10,
+              0
+            ],
+            [
+              "P04",
+              "R-P04",
+              "2026-09-21",
+              40,
+              0,
+              40
+            ]
+          ],
+          "title": "Requirement coverage",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Collected 1 evidence exception(s); unresolved identities and dates remain buyer-owned review work.",
+      "facts": {
+        "exceptions": 1,
+        "pending_lines": 0,
+        "unresolved_in_scope": 0
+      },
+      "kind": "exception",
+      "sequence": 8,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "table",
+            "record_id",
+            "field"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "MISSING_CONFIRMATION",
+              "po_schedule_lines",
+              "P04",
+              null
+            ]
+          ],
+          "title": "Evidence exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Ranked buyer questions by priority, earliest need, descending shortage, then line ID; every row is unsent.",
+      "facts": {
+        "messages_sent": 0,
+        "p1_rows": 1,
+        "p2_rows": 1,
+        "p3_rows": 0,
+        "queue_rows": 2
+      },
+      "kind": "decision",
+      "sequence": 9,
+      "step_id": "rank-queue",
+      "tables": [
+        {
+          "columns": [
+            "rank",
+            "line_id",
+            "priority",
+            "need_by",
+            "shortage",
+            "buyer"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              1,
+              "P02",
+              "P1",
+              "2026-09-16",
+              50,
+              "Northern components buyer"
+            ],
+            [
+              2,
+              "P04",
+              "P2",
+              "2026-09-21",
+              40,
+              "Packaging buyer"
+            ]
+          ],
+          "title": "Unsent buyer queue",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Closed the review-prepared report with reconciled quantities and buyer approval required; no purchasing or communication occurred.",
+      "facts": {
+        "approval_required": true,
+        "covered_qty": 10,
+        "queue_rows": 2,
+        "shortage_qty": 90,
+        "unmet_qty": 100,
+        "unresolved_qty": 0
+      },
+      "kind": "output",
+      "sequence": 10,
+      "step_id": "close-review",
+      "tables": [
+        {
+          "columns": [
+            "artifact",
+            "rows",
+            "state"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "receipt_reconciliation",
+              4,
+              "reconciled"
+            ],
+            [
+              "overall_performance",
+              2,
+              "explicit denominator"
+            ],
+            [
+              "cohort_exclusions",
+              2,
+              "explained"
+            ],
+            [
+              "requirement_coverage",
+              3,
+              "assessed or explicitly unresolved"
+            ],
+            [
+              "buyer_review_queue",
+              2,
+              "unsent; approval required"
+            ],
+            [
+              "exceptions",
+              1,
+              "buyer-owned"
+            ]
+          ],
+          "title": "Review closure",
+          "total_rows": 6
+        }
+      ]
+    }
+  ],
+  "input_sha256": "d2989af517f4351a6c824f8f4d9c407646e7f9d710d5ce8968e12a7e110d526e",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-02",
+  "schema_version": 1
+}

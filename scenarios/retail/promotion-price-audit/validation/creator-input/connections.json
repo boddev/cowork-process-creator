@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Only independently named synthetic export tables bundled in JSON are used. No native connector, endpoint, account, authentication, payment token or business access is supplied or required. An approval reference is synthetic evidence, not authority to act."
+}

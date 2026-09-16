@@ -1,13 +1,16 @@
+import io
 import json
 import stat
+import struct
 import unittest
 import zipfile
+import zlib
 from pathlib import Path
 from unittest import mock
 
 from scenarios._shared.common import ContractError, file_digest
 from scenarios._shared.contract import load_scenario
-from scenarios._shared.native import compare_native_import, inspect_zip
+from scenarios._shared.native import COWORK_SCHEMA, compare_native_import, inspect_cowork_plugin, inspect_zip
 from scenarios._shared.pipeline import run_case
 from scenarios._shared.staging import stage_creator_inputs
 from scenarios.tests.fixtures import dump, make_scenario, modify_json, temporary_directory
@@ -65,6 +68,70 @@ class ZipInspectionTests(unittest.TestCase):
         with self.assertRaises(ContractError):
             inspect_zip(self.path)
 
+    def underdeclare_entry(self, payload, compression, declared_size=6):
+        with zipfile.ZipFile(self.path, "w", compression=compression) as archive:
+            archive.writestr("data.txt", payload)
+        content = bytearray(self.path.read_bytes())
+        central = content.index(b"PK\x01\x02")
+        prefix_crc = zlib.crc32(payload[:declared_size]) & 0xFFFFFFFF
+        struct.pack_into("<I", content, 14, prefix_crc)
+        struct.pack_into("<I", content, 22, declared_size)
+        struct.pack_into("<I", content, central + 16, prefix_crc)
+        struct.pack_into("<I", content, central + 24, declared_size)
+        self.path.write_bytes(content)
+
+    def test_underdeclared_stream_cannot_supply_only_a_prefix_hash(self):
+        for method in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+            with self.subTest(method=method):
+                self.underdeclare_entry(b"PREFIX" + b"x" * 4096, method)
+                with self.assertRaises(ContractError):
+                    inspect_zip(self.path)
+
+    def test_underdeclared_compressed_bomb_is_rejected_before_expanding_it(self):
+        self.underdeclare_entry(b"PREFIX" + b"x" * 2_000_000, zipfile.ZIP_DEFLATED)
+        with mock.patch("scenarios._shared.native.ENTRY_LIMIT", 1024):
+            with self.assertRaises(ContractError):
+                inspect_zip(self.path)
+
+    def test_valid_stored_and_deflated_entries_retain_full_hashes(self):
+        import hashlib
+        payload = bytes(range(256)) * 13
+        for method in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+            with self.subTest(method=method):
+                with zipfile.ZipFile(self.path, "w", compression=method) as archive:
+                    archive.writestr("data.txt", payload)
+                    archive.writestr("empty.txt", b"")
+                report = inspect_zip(self.path)
+                self.assertEqual(report["expanded_bytes"], len(payload))
+                self.assertEqual(report["entries"][0]["sha256"], hashlib.sha256(payload).hexdigest())
+
+    def test_truncated_deflate_stream_is_rejected(self):
+        with zipfile.ZipFile(self.path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr("data.txt", b"some compressible text" * 100)
+        content = bytearray(self.path.read_bytes())
+        central = content.index(b"PK\x01\x02")
+        declared_compressed = struct.unpack_from("<I", content, 18)[0]
+        struct.pack_into("<I", content, 18, declared_compressed - 1)
+        struct.pack_into("<I", content, central + 20, declared_compressed - 1)
+        self.path.write_bytes(content)
+        with self.assertRaisesRegex(ContractError, "incomplete DEFLATE"):
+            inspect_zip(self.path)
+
+    def test_zip64_local_sizes_and_data_descriptors_are_supported(self):
+        class NonSeeking(io.BytesIO):
+            def seek(self, *args):
+                raise OSError("Unit-test stream is not seekable")
+
+        for descriptor in (False, True):
+            with self.subTest(descriptor=descriptor):
+                output = NonSeeking() if descriptor else io.BytesIO()
+                with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                    with archive.open("data.txt", "w", force_zip64=True) as member:
+                        member.write(b"exact stream bytes")
+                self.path.write_bytes(output.getvalue())
+                report = inspect_zip(self.path)
+                self.assertEqual(report["expanded_bytes"], len(b"exact stream bytes"))
+
 
 class NativeImportTests(unittest.TestCase):
     def setUp(self):
@@ -87,8 +154,30 @@ class NativeImportTests(unittest.TestCase):
         actual_dir = self.output / "unit-01"
         actual_dir.mkdir(parents=True)
         plugin = actual_dir / "unit-test-only.zip"
+        # Syntactic fixture only; not an authorized publisher or a native host run.
+        manifest = {
+            "$schema": COWORK_SCHEMA, "manifestVersion": "1.28", "version": "1.0.0",
+            "id": "9f7a3c20-caaa-4b9b-9f5b-9e0c43f6f101",
+            "developer": {"name": "Unit fixture", "websiteUrl": "https://www.microsoft.com",
+                          "privacyUrl": "https://privacy.microsoft.com/privacystatement",
+                          "termsOfUseUrl": "https://www.microsoft.com/servicesagreement"},
+            "name": {"short": "Unit fixture", "full": "Unit fixture"},
+            "description": {"short": "Not a native run", "full": "Unit fixture, not a real observed native plugin"},
+            "accentColor": "#264669", "icons": {"color": "color.png", "outline": "outline.png"},
+            "agentSkills": [{"folder": "./skills/unit-skill"}],
+        }
+
+        def icon(size):
+            def chunk(kind, data):
+                return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xFFFFFFFF)
+            return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", size, size, 8, 6, 0, 0, 0))
+                    + chunk(b"IDAT", zlib.compress((b"\0" + b"\0\0\0\0" * size) * size)) + chunk(b"IEND", b""))
+
         with zipfile.ZipFile(plugin, "w") as archive:
-            archive.writestr("UNIT-ONLY.txt", "Not a generated native artifact")
+            archive.writestr("manifest.json", json.dumps(manifest))
+            archive.writestr("color.png", icon(192))
+            archive.writestr("outline.png", icon(32))
+            archive.writestr("skills/unit-skill/SKILL.md", '---\nname: unit-skill\ndescription: "Unit fixture"\n---\n# Unit only\n')
         evidence = actual_dir / "unit-evidence.txt"
         evidence.write_text("UNIT TEST: not a Cowork capture; only an operator claim fixture", encoding="utf-8")
         files = [{"path": "unit-01/unit-evidence.txt", "sha256": file_digest(evidence)}]
@@ -136,6 +225,43 @@ class NativeImportTests(unittest.TestCase):
         self.assertEqual(receipt["native"]["observed"], [])
         self.assertEqual(receipt["declared"]["creation"]["evidence_id"], "declared-creation")
         self.assertEqual(receipt["observed_locally"]["plugin_inspection"]["execution"], "not_run")
+        self.assertEqual(receipt["observed_locally"]["plugin_inspection"]["package_target"], "cowork-v1.28")
+
+    def test_claude_source_archive_cannot_pass_the_native_plugin_gate(self):
+        plugin = self.output / self.claim["plugin"]["path"]
+        with zipfile.ZipFile(plugin, "w") as archive:
+            archive.writestr(".claude-plugin/plugin.json", '{"name":"unit-fixture","version":"1.0.0"}')
+        self.claim["plugin"]["sha256"] = file_digest(plugin)
+        dump(self.descriptor, self.claim)
+        with self.assertRaisesRegex(ContractError, "root manifest.json"):
+            compare_native_import(self.scenario, self.descriptor, self.output)
+        with self.assertRaises(ContractError):
+            inspect_cowork_plugin(plugin)
+
+    def test_wrong_version_or_missing_native_resources_are_rejected(self):
+        plugin = self.output / self.claim["plugin"]["path"]
+        with zipfile.ZipFile(plugin) as archive:
+            original = {name: archive.read(name) for name in archive.namelist()}
+        for variant in ("devPreview", "missing-skill", "missing-icon", "connector-without-tools", "dual-format"):
+            contents = dict(original)
+            manifest = json.loads(contents["manifest.json"])
+            if variant == "devPreview":
+                manifest["manifestVersion"] = "devPreview"
+            elif variant == "missing-skill":
+                del contents["skills/unit-skill/SKILL.md"]
+            elif variant == "missing-icon":
+                del contents["outline.png"]
+            elif variant == "connector-without-tools":
+                manifest["agentConnectors"] = [{"id": "unit", "displayName": "Unit",
+                    "toolSource": {"remoteMcpServer": {"mcpServerUrl": "https://learn.microsoft.com/api/mcp"}}}]
+            else:
+                contents["plugin.json"] = b'{"name":"portable-format"}'
+            contents["manifest.json"] = json.dumps(manifest).encode("utf-8")
+            with zipfile.ZipFile(plugin, "w") as archive:
+                for name, content in contents.items():
+                    archive.writestr(name, content)
+            with self.subTest(variant=variant), self.assertRaises(ContractError):
+                inspect_cowork_plugin(plugin)
 
     def test_missing_case_not_hidden_by_matching_supplied_payload(self):
         self.claim["invocations"].pop()

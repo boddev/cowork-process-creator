@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-01-02T05:00:00Z",
+  "business_utc_offset_minutes": -300,
+  "billing_configuration": {
+    "control_version": "SYN-CTRL-TIE",
+    "approval_state": "approved",
+    "period_start": "2026-01-01",
+    "period_end": "2026-01-02",
+    "currency": "USD",
+    "day_count_basis": "act-365-fixed",
+    "rounding_mode": "half-up",
+    "variance_tolerance_minor": 0
+  },
+  "engagements": [
+    {"billing_account_id": "SYN-TIE-A", "agreement_id": "SYN-AGR-TIE-A", "currency": "USD", "active_from": "2026-01-01", "active_to": null},
+    {"billing_account_id": "SYN-TIE-B", "agreement_id": "SYN-AGR-TIE-B", "currency": "USD", "active_from": "2026-01-01", "active_to": null}
+  ],
+  "schedule_versions": [
+    {
+      "schedule_id": "SYN-SCH-TIE-A", "billing_account_id": "SYN-TIE-A", "agreement_id": "SYN-AGR-TIE-A",
+      "effective_from": "2026-01-01", "effective_to": "2026-01-02",
+      "approval_state": "approved", "approved_at": "2025-12-31T12:00:00Z",
+      "bands": [{"upper_value_minor": null, "annual_rate_bps": 50}]
+    },
+    {
+      "schedule_id": "SYN-SCH-TIE-B", "billing_account_id": "SYN-TIE-B", "agreement_id": "SYN-AGR-TIE-B",
+      "effective_from": "2026-01-01", "effective_to": "2026-01-02",
+      "approval_state": "approved", "approved_at": "2025-12-31T12:00:00Z",
+      "bands": [{"upper_value_minor": 10000000, "annual_rate_bps": 100}, {"upper_value_minor": null, "annual_rate_bps": 50}]
+    }
+  ],
+  "synthetic_value_intervals": [
+    {"valuation_id": "SYN-VAL-TIE-A", "billing_account_id": "SYN-TIE-A", "currency": "USD", "from_date": "2026-01-01", "to_date": "2026-01-02", "billable_value_minor": 36500},
+    {"valuation_id": "SYN-VAL-TIE-B", "billing_account_id": "SYN-TIE-B", "currency": "USD", "from_date": "2026-01-01", "to_date": "2026-01-02", "billable_value_minor": 10000001}
+  ],
+  "draft_fee_lines": [
+    {"draft_id": "SYN-DFT-TIE-A", "billing_account_id": "SYN-TIE-A", "period_start": "2026-01-01", "period_end": "2026-01-02", "currency": "USD", "amount_minor": 0},
+    {"draft_id": "SYN-DFT-TIE-B", "billing_account_id": "SYN-TIE-B", "period_start": "2026-01-01", "period_end": "2026-01-02", "currency": "USD", "amount_minor": 274}
+  ]
+}

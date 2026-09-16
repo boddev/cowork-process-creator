@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "manufacturing-01",
+  "title": "Incoming-lot quality evidence and disposition review packet",
+  "industry": "manufacturing",
+  "workflow_family": "evidence-gating-and-review-routing",
+  "description": "Reconcile mock receipt, specification, specimen, certificate, hold and nonconformance exports into an evidence-completeness and QA review packet without releasing inventory.",
+  "owner_role": "QA/material-review-board reviewer",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "All data and thresholds are fictional. Evidence-complete is not material acceptance, a certificate, quarantine release, or production authorization."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Manufacturing scenario owner",
+    "description": "All five fixture and expected JSON pairs and these derivations were manually authored before baseline.py existed or ran. Row classifications, retained specimen values, queue order and totals were reasoned from the procedure; no baseline output supplied expected values. This is an author declaration, not independent human certification."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json", "expected_status": "completed_with_exceptions",
+      "covers": ["source-inventory", "source-quality-evidence", "physical-hold", "dated-requirements", "specimen-evaluation", "certificate-review", "nonconformance-precedence", "queue-closure", "input-safety"],
+      "failure_modes": [],
+      "derivation": "Receipt quantities 1000+200+80=1280. Three distinct in-range L01 specimens and certificate valid through as_of give evidence-complete; age6>5 adds overdue-review but cannot release it. L02 includes active 5.13>5.10 plus openNC02 so NC review, preserving both reasons. L03 has two of three specimens and no certificate so evidence-gap. Queue category order yields L02,L03,L01; physical held quantities total1280 without additive blocking transactions. Full observations and all business fields were manually written."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json", "expected_status": "completed_with_exceptions",
+      "covers": ["input-safety", "dated-requirements", "specimen-evaluation", "certificate-review", "queue-closure"],
+      "failure_modes": [],
+      "derivation": "Different October item/site/specification and two-specimen policy. H01 values exactly10.00 and10.20 are inclusive and its certificate remains current on10-02; identical RA11 duplication contributes once. H02 passes two values but lacks a certificate. H02 gap sorts before H01 complete despite reversed input. 9+12=21 received/held; no overdue at ages0/1 against threshold2. Duplicate and missing-certificate exceptions are manually ordered."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json", "expected_status": "completed_with_exceptions",
+      "covers": ["dated-requirements", "retest-lineage", "specimen-evaluation", "unknown-evidence", "queue-closure"],
+      "failure_modes": [],
+      "derivation": "New January one-specimen requirement. H11 initial4.85 is below4.90; unapproved4.95 replacement remains pending and does not supersede the failed active specimen. H12's item is absent, so its requirements are unresolved and it gets the explicitly configured fallback role; no certificate is also retained as a reason. Data-review H12 precedes NC-review H11, quantities4+6=10. Full original/pending values are manually retained."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json", "expected_status": "rejected",
+      "covers": ["input-safety"], "failure_modes": ["malformed-input"],
+      "derivation": "Boolean true is not an integer quantity even though Python bool subclasses int. First structural failure is lots:MFG-BAD.received_qty; exact invalid-field error, empty outputs and no packet were authored before any implementation."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json", "expected_status": "rejected",
+      "covers": ["input-safety", "retest-lineage"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "Two rows with resultID MFG-CONFLICT have different values5.00/5.50. A primary identifier cannot refer to both facts. Reject the entire packet with explicit conflicting-row error, never last-row-wins or select passing evidence."
+    }
+  ]
+}

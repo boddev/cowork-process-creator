@@ -1,0 +1,12 @@
+{
+  "exceptions": [
+    {
+      "code": "cyclic-prerequisite",
+      "message": "Internal prerequisites contain a cycle.",
+      "path": "files.work-orders.json"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

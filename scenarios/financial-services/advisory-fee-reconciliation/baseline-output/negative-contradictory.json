@@ -1,0 +1,31 @@
+{
+  "exceptions": [
+    {
+      "billing_account_id": "SYN-CONFLICT-A",
+      "code": "overlapping-approved-schedules",
+      "field": null,
+      "from_date": "2026-06-05",
+      "message": "Approved schedules overlap; no authoritative schedule can be selected.",
+      "record_id": "SYN-SCH-CONFLICT-1",
+      "related_ids": [
+        "SYN-SCH-CONFLICT-1",
+        "SYN-SCH-CONFLICT-2"
+      ],
+      "to_date": "2026-06-10"
+    }
+  ],
+  "outputs": {
+    "review": {
+      "human_review": "pending",
+      "live_action": "none",
+      "owner_role": "Billing manager or compliance reviewer",
+      "summary": "Synthetic review only; no fee invoice, debit, refund, trade, advice, or regulatory opinion."
+    },
+    "validation": {
+      "accepted": false,
+      "rejected_before_calculation": true
+    }
+  },
+  "schema_version": 1,
+  "status": "rejected"
+}

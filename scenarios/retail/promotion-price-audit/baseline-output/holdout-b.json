@@ -1,0 +1,201 @@
+{
+  "exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "evidence_ids": [
+        "SYN-BASE-B"
+      ],
+      "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+      "observation_id": "SYN-OBS-B2",
+      "path": "observations.SYN-OBS-B2"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "PRICE_MISMATCH",
+        "currency": "CAD",
+        "evidence_ids": [
+          "SYN-BASE-B"
+        ],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "Absolute observed-minus-expected delta exceeds the configured tolerance.",
+        "next_action": "Review the observation, chosen rules and rounding with the pricing reviewer.",
+        "observation_id": "SYN-OBS-B2",
+        "observed_on": "2099-12-06",
+        "owner": "Pricing operations analyst",
+        "sku": "SYN-SKU-B-COMPOUND",
+        "store_id": "SYN-STORE-B"
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": 1099,
+        "base_price_ids": [
+          "SYN-BASE-B"
+        ],
+        "currency": "CAD",
+        "delta_minor": 0,
+        "disposition": "match",
+        "expected_minor": 875,
+        "observation_id": "SYN-OBS-B1",
+        "observed_minor": 875,
+        "observed_on": "2099-12-05",
+        "pricing_basis": "compound",
+        "selected_promotion_ids": [
+          "SYN-PROMO-B-AMOUNT99",
+          "SYN-PROMO-B-PERCENT1250"
+        ],
+        "sku": "SYN-SKU-B-COMPOUND",
+        "store_id": "SYN-STORE-B",
+        "unit": "EA",
+        "unrounded_minor": "875"
+      },
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": 1099,
+        "base_price_ids": [
+          "SYN-BASE-B"
+        ],
+        "currency": "CAD",
+        "delta_minor": -224,
+        "disposition": "mismatch",
+        "expected_minor": 1099,
+        "observation_id": "SYN-OBS-B2",
+        "observed_minor": 875,
+        "observed_on": "2099-12-06",
+        "pricing_basis": "base",
+        "selected_promotion_ids": [],
+        "sku": "SYN-SKU-B-COMPOUND",
+        "store_id": "SYN-STORE-B",
+        "unit": "EA",
+        "unrounded_minor": "1099"
+      }
+    ],
+    "reconciliation": {
+      "included_observations": 2,
+      "input_observations": 2,
+      "matched": 1,
+      "mismatched": 1,
+      "not_evaluable": 0,
+      "out_of_scope": 0,
+      "reconciled": true
+    },
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [
+        {
+          "currency": "CAD",
+          "included_observations": 2,
+          "input_observations": 2,
+          "matched": 1,
+          "mismatched": 1,
+          "not_evaluable": 0,
+          "out_of_scope": 0,
+          "store_id": "SYN-STORE-B"
+        }
+      ],
+      "owner_role": "Pricing operations analyst",
+      "policy": {
+        "as_of": "2099-12-06",
+        "audit_end": "2099-12-07",
+        "audit_start": "2099-12-05",
+        "date_basis": "store-local-calendar",
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "review_state": "review-required"
+    },
+    "rule_selection": [
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-B"
+          }
+        ],
+        "candidates": [
+          {
+            "mode": "compound",
+            "promotion_ids": [
+              "SYN-PROMO-B-AMOUNT99",
+              "SYN-PROMO-B-PERCENT1250"
+            ],
+            "unrounded_minor": "875"
+          },
+          {
+            "mode": "best-price",
+            "promotion_ids": [
+              "SYN-PROMO-B-BEST20"
+            ],
+            "unrounded_minor": "879.2"
+          }
+        ],
+        "exception_checks": [],
+        "observation_id": "SYN-OBS-B1",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-B-AMOUNT99",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-B-BEST20",
+            "reasons": []
+          },
+          {
+            "promotion_id": "SYN-PROMO-B-PERCENT1250",
+            "reasons": []
+          }
+        ],
+        "suppressed_promotions": [
+          {
+            "promotion_id": "SYN-PROMO-B-BEST20",
+            "reason": "higher-price"
+          }
+        ],
+        "tied_promotion_sets": [],
+        "winning_priority": 8
+      },
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-B"
+          }
+        ],
+        "candidates": [],
+        "exception_checks": [],
+        "observation_id": "SYN-OBS-B2",
+        "promotion_filters": [
+          {
+            "promotion_id": "SYN-PROMO-B-AMOUNT99",
+            "reasons": [
+              "outside-validity"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-B-BEST20",
+            "reasons": [
+              "outside-validity"
+            ]
+          },
+          {
+            "promotion_id": "SYN-PROMO-B-PERCENT1250",
+            "reasons": [
+              "outside-validity"
+            ]
+          }
+        ],
+        "suppressed_promotions": [],
+        "tied_promotion_sets": [],
+        "winning_priority": null
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

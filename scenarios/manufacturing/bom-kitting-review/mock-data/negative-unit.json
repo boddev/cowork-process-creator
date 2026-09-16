@@ -1,0 +1,19 @@
+{
+  "as_of": "2026-04-01",
+  "horizon_end": "2026-04-04",
+  "work_orders": [
+    {"order_id": "UM01", "item_id": "MIXER", "site": "BENCH", "start_date": "2026-04-03", "quantity": 1, "priority": 2, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "UM-V", "item_id": "MIXER", "site": "BENCH", "valid_from": "2026-04-01", "valid_to": "2026-04-30", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "UM-L1", "version_id": "UM-V", "component_id": "WEIGHT", "line_type": "Item", "quantity_per": "2", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "MIXER", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "WEIGHT", "unit": "KG", "expiry_controlled": false}
+  ],
+  "stock_lots": [],
+  "inbound": []
+}

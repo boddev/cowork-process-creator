@@ -12,8 +12,23 @@ from .staging import check_media
 REQUIRED_INDUSTRIES = {"manufacturing", "health-life-sciences", "financial-services", "retail"}
 
 
+def business_industry(scenario: Scenario) -> str:
+    directory_label = scenario.manifest["industry"]
+    if directory_label != "cross-industry":
+        return directory_label
+    research = load_json(scenario.root.parent / "research.json")
+    candidates = research.get("candidates") if isinstance(research, dict) else None
+    if not isinstance(candidates, list):
+        raise ContractError("Cross-industry classification requires its approved research catalog")
+    matches = [item for item in candidates if isinstance(item, dict) and item.get("id") == scenario.id]
+    if len(matches) != 1 or matches[0].get("industry") not in {"logistics", "energy-utilities", "professional-services"}:
+        raise ContractError("Scenario lacks a unique source-backed business-industry label")
+    return matches[0]["industry"]
+
+
 def coverage(scenarios: list[Scenario], *, full: bool = False) -> dict:
     industries = Counter(scenario.manifest["industry"] for scenario in scenarios)
+    business_industries = Counter(business_industry(scenario) for scenario in scenarios)
     families = Counter(scenario.manifest["workflow_family"] for scenario in scenarios)
     case_kinds = Counter(case["kind"] for scenario in scenarios for case in scenario.cases)
     procedure_groups, demo_groups, mechanics_groups = defaultdict(list), defaultdict(list), defaultdict(list)
@@ -43,6 +58,10 @@ def coverage(scenarios: list[Scenario], *, full: bool = False) -> dict:
         "scenario_count": len(scenarios),
         "case_count": sum(case_kinds.values()),
         "industry_counts": dict(sorted(industries.items())),
+        "directory_pack_count": len(industries),
+        "business_industry_counts": dict(sorted(business_industries.items())),
+        "business_industry_count": len(business_industries),
+        "industry_label_provenance": "Directory packs retain schema identity; cross-industry business labels come from the approved sector research catalog.",
         "workflow_family_counts": dict(sorted(families.items())),
         "case_kind_counts": dict(sorted(case_kinds.items())),
         "identical_procedure_groups": repeated_procedures,
@@ -99,6 +118,7 @@ def build_catalog(scenarios: list[Scenario], *, full: bool = False) -> dict:
             "id": scenario.id,
             "title": scenario.manifest["title"],
             "industry": scenario.manifest["industry"],
+            "business_industry": business_industry(scenario),
             "workflow_family": scenario.manifest["workflow_family"],
             "path": scenario.root.parent.name + "/" + scenario.root.name,
             "procedure": "HOW_TO.md",
@@ -114,6 +134,8 @@ def build_catalog(scenarios: list[Scenario], *, full: bool = False) -> dict:
     return {
         "schema_version": 1,
         "provenance": "foundation-observed-local-corpus",
+        "required_plugin_target": "cowork-v1.28",
+        "required_plugin_manifest": "manifest.json",
         "coverage": metrics,
         "local_baselines_ready": baseline_ready,
         "local_media_ready": media_ready,
@@ -138,6 +160,7 @@ def write_reports(root: Path, output_root: Path, catalog: dict) -> None:
         "or matching imported payload is evidence of native generation or independent invocation.",
         "",
         f"Implemented scenarios: **{metrics['scenario_count']}**. Cases: **{metrics['case_count']}**.",
+        f"Directory packs: **{metrics['directory_pack_count']}**; business industries: **{metrics['business_industry_count']}**.",
         f"Local baselines ready: **{str(catalog['local_baselines_ready']).lower()}**.",
         f"Local media ready: **{str(catalog['local_media_ready']).lower()}**.",
         f"Local corpus ready: **{str(catalog['local_corpus_ready']).lower()}**.",
@@ -151,7 +174,7 @@ def write_reports(root: Path, output_root: Path, catalog: dict) -> None:
         passed = sum(case["state"] == "baseline_pass" for case in entry["cases"])
         link = f"[{_cell(entry['title'])}]({entry['path']}/HOW_TO.md)"
         lines.append(
-            f"| {link} | {_cell(entry['industry'])} | {_cell(entry['workflow_family'])} | "
+            f"| {link} | {_cell(entry['business_industry'])} | {_cell(entry['workflow_family'])} | "
             f"{passed}/{len(entry['cases'])} | {_cell(entry['media']['state'])} | creation blocked; install/invoke not run |"
         )
     if not catalog["scenarios"]:
@@ -185,6 +208,10 @@ def write_reports(root: Path, output_root: Path, catalog: dict) -> None:
         "provenance": "foundation-generated-pending-matrix",
         "native_gate_as_of": "2026-09-14",
         "native_complete": False,
+        "required_plugin_target": "cowork-v1.28",
+        "required_plugin_manifest": "manifest.json",
+        "alternative_manifest_fallback": False,
+        "publishing_metadata": "approved per-package app/publisher metadata required; not supplied by this corpus",
         "native": native_pending(),
         "implemented_scenario_count": metrics["scenario_count"],
         "required_scenario_count": 15,
@@ -212,3 +239,26 @@ def write_reports(root: Path, output_root: Path, catalog: dict) -> None:
     write_json(root / "catalog.json", catalog, replace=True)
     write_bytes(root / "VALIDATION_REPORT.md", "\n".join(lines).encode("utf-8"), replace=True)
     write_json(status_path, pending, replace=True)
+    guide = [
+        "# Enterprise scenarios: complete how-to collection", "",
+        "This single document collects the complete procedures for the implemented",
+        "synthetic scenarios. Each chapter identifies its original scenario directory;",
+        "relative command/data paths refer to that directory, not this collection.",
+        "Use [the corpus how-to](HOW_TO.md) for baseline execution, video creation,",
+        "native input staging and the blocked native comparison protocol.", "",
+        "**All data and processes are mock, review-only workflows.** No native Creator",
+        "generation or independent Cowork invocation is implied by these procedures.", "",
+        "## Contents", "",
+    ]
+    for entry in catalog["scenarios"]:
+        guide.append(f"- [{entry['title']}](#{entry['id']}) - {entry['business_industry']}")
+    for entry in catalog["scenarios"]:
+        procedure = root / entry["path"] / "HOW_TO.md"
+        guide.extend([
+            "", "---", "", f'<a id="{entry["id"]}"></a>', "",
+            f"## {entry['title']}", "",
+            f"Scenario ID: `{entry['id']}`. Directory: `{entry['path']}`.",
+            f"[Original single-scenario how-to]({entry['path']}/HOW_TO.md)", "",
+            procedure.read_text(encoding="utf-8").strip(), "",
+        ])
+    write_bytes(root / "ALL_SCENARIOS_HOW_TO.md", "\n".join(guide).encode("utf-8"), replace=True)

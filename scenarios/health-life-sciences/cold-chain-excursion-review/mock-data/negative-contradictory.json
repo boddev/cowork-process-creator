@@ -1,0 +1,32 @@
+{
+  "window_start": "2026-09-17T10:00:00Z",
+  "as_of": "2026-09-17T10:20:00Z",
+  "policy": {"policy_id": "SYN-POLICY-CONFLICT", "max_gap_seconds": 1200, "max_rows_per_table": 1000, "max_total_rows": 5000, "max_derived_pairs": 10000},
+  "products": [{"product_id": "SYN-PROD-R", "profile_id": "SYN-PROFILE-R"}],
+  "profiles": [{"profile_id": "SYN-PROFILE-R", "lower_tenths_c": 20, "upper_tenths_c": 80, "policy_ref": "SYN-RULE-R"}],
+  "inventory": [
+    {"lot_id": "SYN-LOT-X", "product_id": "SYN-PROD-R", "quantity_units": 9, "owner_role_id": "SYN-ROLE-Q"},
+    {"lot_id": "SYN-LOT-Y", "product_id": "SYN-PROD-R", "quantity_units": 1, "owner_role_id": "SYN-ROLE-Q"}
+  ],
+  "placements": [
+    {"placement_id": "SYN-PL-X1", "lot_id": "SYN-LOT-X", "unit_id": "SYN-UNIT-X", "entered_at": "2026-09-17T10:00:00Z", "left_at": null},
+    {"placement_id": "SYN-PL-X2", "lot_id": "SYN-LOT-X", "unit_id": "SYN-UNIT-Y", "entered_at": "2026-09-17T10:10:00Z", "left_at": null},
+    {"placement_id": "SYN-PL-Y", "lot_id": "SYN-LOT-Y", "unit_id": "SYN-UNIT-Y", "entered_at": "2026-09-17T10:00:00Z", "left_at": null}
+  ],
+  "sensor_assignments": [
+    {"assignment_id": "SYN-AS-X", "sensor_id": "SYN-SENSOR-X", "unit_id": "SYN-UNIT-X", "valid_from": "2026-09-17T09:00:00Z", "valid_until": null},
+    {"assignment_id": "SYN-AS-Y", "sensor_id": "SYN-SENSOR-Y", "unit_id": "SYN-UNIT-Y", "valid_from": "2026-09-17T09:00:00Z", "valid_until": null}
+  ],
+  "calibrations": [
+    {"calibration_id": "SYN-C-X", "sensor_id": "SYN-SENSOR-X", "valid_from": "2026-09-17T09:00:00Z", "valid_until": "2026-09-18T00:00:00Z", "recorded_at": "2026-09-17T09:00:00Z", "attestation_ref": "SYN-CERT-X"},
+    {"calibration_id": "SYN-C-Y", "sensor_id": "SYN-SENSOR-Y", "valid_from": "2026-09-17T09:00:00Z", "valid_until": "2026-09-18T00:00:00Z", "recorded_at": "2026-09-17T09:00:00Z", "attestation_ref": "SYN-CERT-Y"}
+  ],
+  "readings": [
+    {"reading_id": "SYN-X00A", "sensor_id": "SYN-SENSOR-X", "observed_at": "2026-09-17T10:00:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-X00B", "sensor_id": "SYN-SENSOR-X", "observed_at": "2026-09-17T10:00:00Z", "temperature_tenths_c": 90},
+    {"reading_id": "SYN-X20", "sensor_id": "SYN-SENSOR-X", "observed_at": "2026-09-17T10:20:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-Y00", "sensor_id": "SYN-SENSOR-Y", "observed_at": "2026-09-17T10:00:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-Y20", "sensor_id": "SYN-SENSOR-Y", "observed_at": "2026-09-17T10:20:00Z", "temperature_tenths_c": 50}
+  ],
+  "correspondence": []
+}

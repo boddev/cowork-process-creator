@@ -1,0 +1,219 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "ad146f9a32b2d1b5c43264049392aa742a10ca71252fefa22bb7f48212ce7599",
+    "golden_sha256": "fa4ad94538fb544fcf67c99fb4773112b84b3282fc8f915d947e05c9be8d18e7",
+    "input_sha256": "382ef60675b1aa948ad6938aa6ccaef4fa3021201df0e15c13d36921253d35f2",
+    "result": "baseline-output/demo.json",
+    "result_sha256": "1bb17ee02a7e97d16e07e24685fcf85c6d8ea8e7787f614404c814027f9b3044",
+    "trace": "baseline-output/demo.trace.json",
+    "trace_sha256": "dab2bbc40c53fda0c1fd0d744e54d4d790b968237d22ad67bdadff3da3f3279e"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "datetime",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "demo",
+  "documented": {
+    "case_rule_coverage": [
+      "hls-01-record-control",
+      "hls-01-checklist",
+      "hls-01-as-of-version",
+      "hls-01-expiry",
+      "hls-01-date-boundaries",
+      "hls-01-review-routing",
+      "hls-01-input-bounds"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "Manual grid: S1 and S2 each match R1-R4, exactly 8 cells. D1-D7 are eligible unique version 1; S2/R3 has no document. S1/R1 and S1/R3 have allowed null expiry, and S2/R4 has correct protocol/signature and refresh expiry 2026-07-01 + 365 = 2027-07-01, 290 days after as-of. S1/R2 explicit 2026-09-14 equals as-of: 0 days, warning rather than expired. S1/R4 refresh 2025-09-13 + 365 = 2026-09-13 beats explicit 2026-12-31: -1 day, expired. S2/R1 protocol 2 differs from required 3. S2/R2 artifact A6 is readable=false despite available=true, so unavailable-evidence; explicit 2027-01-01 is 16+31+30+31+1 = 109 days away. Totals 8 = 3 no-exception + 1 warning + 4 review; site splits (2,1,1) and (1,0,3). Five reason keys give five exceptions and five queue rows. K1 already matches S2/R1, so only four new drafts, due 2026-09-16. All 22 table/key groups appear once in the register: seven artifacts, seven documents, one task, four requirements, two sites, one trial.",
+    "steps": [
+      {
+        "id": "load-review-export",
+        "kind": "input",
+        "rule_ids": [
+          "hls-01-record-control",
+          "hls-01-input-bounds"
+        ]
+      },
+      {
+        "id": "validate-record-evidence",
+        "kind": "validation",
+        "rule_ids": [
+          "hls-01-input-bounds",
+          "hls-01-duplicates"
+        ]
+      },
+      {
+        "id": "expand-site-requirements",
+        "kind": "join",
+        "rule_ids": [
+          "hls-01-checklist",
+          "hls-01-input-bounds"
+        ]
+      },
+      {
+        "id": "select-as-of-documents",
+        "kind": "join",
+        "rule_ids": [
+          "hls-01-as-of-version",
+          "hls-01-record-control",
+          "hls-01-duplicates"
+        ]
+      },
+      {
+        "id": "assess-checklist-gaps",
+        "kind": "decision",
+        "rule_ids": [
+          "hls-01-checklist",
+          "hls-01-expiry",
+          "hls-01-date-boundaries"
+        ]
+      },
+      {
+        "id": "route-evidence-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "hls-01-review-routing",
+          "hls-01-duplicates"
+        ]
+      },
+      {
+        "id": "reconcile-review-counts",
+        "kind": "decision",
+        "rule_ids": [
+          "hls-01-checklist",
+          "hls-01-review-routing"
+        ]
+      },
+      {
+        "id": "write-review-packet",
+        "kind": "output",
+        "rule_ids": [
+          "hls-01-record-control",
+          "hls-01-review-routing"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/demo.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/health-life-sciences/site-essential-document-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.419998,
+  "kind": "demo",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-review-export"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-record-evidence"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "expand-site-requirements"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "select-as-of-documents"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "assess-checklist-gaps"
+      },
+      {
+        "kind": "exception",
+        "sequence": 6,
+        "step_id": "route-evidence-exceptions"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "reconcile-review-counts"
+      },
+      {
+        "kind": "output",
+        "sequence": 8,
+        "step_id": "write-review-packet"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "hls-01",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "dad8bda03d9b88019f6a6ee65d6923adc2084d68b0f0c911473850026c6dcf89",
+    "baseline.py": "ad146f9a32b2d1b5c43264049392aa742a10ca71252fefa22bb7f48212ce7599",
+    "connections.json": "a9fd4ee458a2b8e13e5e36b29aba0453a3d6ad4fe3ad88de3f48ea8ab6cd6fb9",
+    "expected/demo.json": "fa4ad94538fb544fcf67c99fb4773112b84b3282fc8f915d947e05c9be8d18e7",
+    "expected/holdout-a.json": "a3840e86746d771417ab931a64c1dc9d94cfb4541a49c591a17c5bbf2e57f9b8",
+    "expected/holdout-b.json": "598378691d773af0f81662a62ae5f1ed949fbd90d1ed286ed4cde4266d1754b1",
+    "expected/negative-contradictory.json": "9f76f7b64c27d64c9db3a9aefc655ade90b86e64c84426f465133d60d0ce6579",
+    "expected/negative-malformed.json": "54047f64a00efbc0d67cb9e4dd08ea3e291a8b0c684fefa129346940648b23fa",
+    "mock-data/demo.json": "382ef60675b1aa948ad6938aa6ccaef4fa3021201df0e15c13d36921253d35f2",
+    "mock-data/holdout-a.json": "8879703785241435533628a3180e4acf9e079d18e8a70cbf5c4c9ef2518cd6b7",
+    "mock-data/holdout-b.json": "4a065a05f3e1323360d36840253ea41e9b5385541e3a4b20d4786d2266f9a9e7",
+    "mock-data/negative-contradictory.json": "f8a7bc061ccd0ee135bcf84c0188e3220e600b9e018c6adb9d658425a9a39a23",
+    "mock-data/negative-malformed.json": "8cc92cd57ed4132a32101d355fc78a13231883302193a15e642442b70f53bd6a",
+    "scenario.json": "1568f23e3aef13aba4aa8d7b21985f0a5592622fe4bf46b87c177bbcb41f3ac3",
+    "sources.json": "bc07ea6fcf086ad927551f2c5714a335f83ebcd1d7f81918a45cd20de272bc17",
+    "workflow.json": "e0dcf08620fdb74e35d76392eb8263c13c6dd880efca97e084816dac0ad3623c"
+  },
+  "state": "baseline_pass"
+}

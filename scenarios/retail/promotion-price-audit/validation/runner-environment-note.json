@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "scenario_id": "retail-03",
+  "provenance": "developer-observation-of-local-runner-residue",
+  "historical_snapshot": true,
+  "current_status": "Superseded by the shared Windows environment fix and completed corpus validation. The runner now preserves OS path variables, and all ten pricing cases plus actual media are complete. See ../../../IMPLEMENTATION_NOTES.md and ../../../catalog.json. The native access gate remains blocked.",
+  "observation": "After shared run_case executions with the Windows Store Python 3.13 executable, a literal %SystemDrive% directory inside this owned scenario contained four Windows cache database files under ProgramData/Microsoft/Windows/Caches. Their contents were not read or used as scenario evidence.",
+  "parent_confirmed_cause": "The parent confirmed that the minimal Windows child environment in scenarios\\_shared\\pipeline.py causes Store Python to create incidental scenario-local Windows cache files. Foundation is fixing the environment; no patched subprocess execution has been performed here.",
+  "shared_subprocess_gate": "Paused until the parent explicitly relays the foundation environment fix. Do not run affected shared run_case subprocesses in the meantime. Direct in-process solve tests do not use that stripped environment.",
+  "local_business_result": "All ten cases passed exact comparisons and current-hash evidence checks. The unexpected files were not inputs, goldens, baseline outputs or trace evidence.",
+  "cleanup": "Removed only the literal %SystemDrive% subtree inside this scenario; checked the normal generated artifacts and golden lock again afterward. Repeating isolated run_case with the same runtime/environment may recreate this residue.",
+  "previously_removed_files": [
+    "%SystemDrive%\\ProgramData\\Microsoft\\Windows\\Caches\\{6AF0698E-D558-4F6E-9B3C-3716689AF493}.2.ver0x0000000000000001.db",
+    "%SystemDrive%\\ProgramData\\Microsoft\\Windows\\Caches\\{7C10A217-909B-4908-83A2-8E2AE4816075}.2.ver0x0000000000000001.db",
+    "%SystemDrive%\\ProgramData\\Microsoft\\Windows\\Caches\\{DDF571F2-BE98-426D-8288-1A9A39C3FDA2}.2.ver0x0000000000000001.db",
+    "%SystemDrive%\\ProgramData\\Microsoft\\Windows\\Caches\\cversions.2.db"
+  ],
+  "latest_metadata_observation": "No pricing-local cache directory remained when the parent pause was received. No scoped files were staged. Cache contents were never read.",
+  "shared_changes_made": false,
+  "follow_up_owner": "Parent/shared-foundation owner",
+  "follow_up": "Await the parent's relay of the foundation fix before further shared subprocess execution. Keep source/docs stable and preserve locked input/golden bytes, including CRLF. No shared helper change, package installation, native workaround, staging, commit or business-oracle revision was made here."
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "notice": "Planning review only; not safe-to-work clearance or authorization.",
+    "planning_window": {"as_of": "2026-10-05T07:00:00Z", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T16:00:00Z", "slot_minutes": 30, "max_search_starts": 100},
+    "orders": [
+      {"work_order_id": "UT-D01", "disposition": "proposed", "reason": null, "ready_at": "2026-10-05T08:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-D02", "disposition": "proposed", "reason": null, "ready_at": "2026-10-05T09:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 7},
+      {"work_order_id": "UT-D03", "disposition": "proposed", "reason": null, "ready_at": "2026-10-05T09:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1},
+      {"work_order_id": "UT-D04", "disposition": "deferred", "reason": "kit-shortage", "ready_at": null, "missing_materials": [{"item_id": "KIT-A", "required": 3, "reserved": 1, "missing": 2}], "pending_predecessors": [], "search_starts": 0},
+      {"work_order_id": "UT-D05", "disposition": "deferred", "reason": "prerequisite-unresolved", "ready_at": null, "missing_materials": [], "pending_predecessors": ["EXT-OPEN"], "search_starts": 0},
+      {"work_order_id": "UT-D06", "disposition": "proposed", "reason": null, "ready_at": "2026-10-05T10:00:00Z", "missing_materials": [], "pending_predecessors": [], "search_starts": 1}
+    ],
+    "proposals": [
+      {"work_order_id": "UT-D01", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T09:00:00Z", "duration_minutes": 60, "crew_id": "CE1", "area_id": "A1", "tool_id": "T1", "contingent_on": []},
+      {"work_order_id": "UT-D03", "start": "2026-10-05T09:00:00Z", "end": "2026-10-05T10:00:00Z", "duration_minutes": 60, "crew_id": "CM1", "area_id": "A3", "tool_id": null, "contingent_on": ["UT-D01"]},
+      {"work_order_id": "UT-D06", "start": "2026-10-05T10:00:00Z", "end": "2026-10-05T11:30:00Z", "duration_minutes": 90, "crew_id": "CM1", "area_id": "A3", "tool_id": null, "contingent_on": []},
+      {"work_order_id": "UT-D02", "start": "2026-10-05T12:00:00Z", "end": "2026-10-05T14:00:00Z", "duration_minutes": 120, "crew_id": "CE1", "area_id": "A2", "tool_id": "T1", "contingent_on": []}
+    ],
+    "conflicts": [
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T09:00:00Z", "crew_id": "CE1", "resource_id": "CE1", "reason": "existing-booking", "blocking_id": "BOOK-D-CE1"},
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T09:30:00Z", "crew_id": null, "resource_id": "T1", "reason": "existing-booking", "blocking_id": "BOOK-D-T1"},
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T10:00:00Z", "crew_id": null, "resource_id": "T1", "reason": "existing-booking", "blocking_id": "BOOK-D-T1"},
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T10:30:00Z", "crew_id": null, "resource_id": "T1", "reason": "existing-booking", "blocking_id": "BOOK-D-T1"},
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T11:00:00Z", "crew_id": null, "resource_id": "T1", "reason": "existing-booking", "blocking_id": "BOOK-D-T1"},
+      {"work_order_id": "UT-D02", "candidate_start": "2026-10-05T11:30:00Z", "crew_id": null, "resource_id": "T1", "reason": "existing-booking", "blocking_id": "BOOK-D-T1"}
+    ],
+    "review_queue": [
+      {"work_order_id": "UT-D04", "code": "kit-shortage", "owner": "PLANNER-D", "next_action": "Review the order-specific reservation shortage with the material planner."},
+      {"work_order_id": "UT-D05", "code": "prerequisite-unresolved", "owner": "PLANNER-D", "next_action": "Clarify predecessor evidence or replan the dependent order."}
+    ],
+    "resource_load": [
+      {"resource_id": "A1", "kind": "area", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 60, "total_booked_minutes": 60},
+      {"resource_id": "A2", "kind": "area", "available_minutes": 360, "committed_minutes": 0, "proposed_minutes": 120, "total_booked_minutes": 120},
+      {"resource_id": "A3", "kind": "area", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 150, "total_booked_minutes": 150},
+      {"resource_id": "A4", "kind": "area", "available_minutes": 480, "committed_minutes": 0, "proposed_minutes": 0, "total_booked_minutes": 0},
+      {"resource_id": "CE1", "kind": "crew", "available_minutes": 480, "committed_minutes": 60, "proposed_minutes": 180, "total_booked_minutes": 240},
+      {"resource_id": "CM1", "kind": "crew", "available_minutes": 240, "committed_minutes": 0, "proposed_minutes": 150, "total_booked_minutes": 150},
+      {"resource_id": "T1", "kind": "tool", "available_minutes": 480, "committed_minutes": 60, "proposed_minutes": 180, "total_booked_minutes": 240}
+    ],
+    "summary": {"work_orders": 6, "proposed": 4, "deferred": 2, "job_minutes": 330, "rejected_candidates": 6}
+  },
+  "exceptions": [
+    {"code": "kit-shortage", "message": "Reserved kit quantity is insufficient.", "work_order_id": "UT-D04"},
+    {"code": "prerequisite-unresolved", "message": "A prerequisite lacks an eligible completion or contingent proposal.", "work_order_id": "UT-D05"}
+  ]
+}

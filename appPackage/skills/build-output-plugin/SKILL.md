@@ -1,6 +1,6 @@
 ---
 name: build-output-plugin
-description: "Check, assemble and package a revisioned Creator project using this skill's bundled deterministic toolkit. Use for native resource/runtime probing, exact JSON contracts, coverage and hash checks, canonical or compatible-source ZIPs, source checkpoints, verified resume and conflict-preserving corrections."
+description: "Check, assemble and package a revisioned Creator project as a native Microsoft Copilot Cowork v1.28 plugin using the bundled toolkit. Use for runtime probing, JSON contracts, coverage and hash checks, approved publishing metadata, source checkpoints, verified resume and edit-preserving corrections. Never substitute a Claude-compatible manifest."
 ---
 
 # Build and preserve a Creator project
@@ -43,7 +43,7 @@ for an end user to install or run Python:
 init --project PATH --id ID --title TITLE --purpose PURPOSE
 check --project PATH [--report NEW_JSON]
 assemble --plan JSON --output NEW_CANDIDATE_DIR
-build --project PATH --output NEW_ZIP --report NEW_JSON --target cowork-v1.28|compatible-source [--metadata APPROVED_JSON]
+build --project PATH --output NEW_ZIP --report NEW_JSON --target cowork-v1.28 --metadata APPROVED_JSON
 checkpoint --project PATH --output NEW_ZIP
 resume --bundle ZIP --output NEW_PROJECT_DIR
 merge --base ZIP --current PROJECT --proposed PROJECT --output NEW_PROJECT
@@ -78,19 +78,17 @@ The lower-level `creator_builder.py` commands `validate` and `build` inspect
 and package the supported source subset. They cannot substitute for project
 evidence/coverage checks or bypass a failed project build.
 
-## Choose an honest target
+## Produce the Microsoft Cowork package
 
-- **`cowork-v1.28`:** canonical M365 Unified App Manifest 1.28. Require the
-  supplied approved metadata file described by the target rules, including
-  app identity and publisher/website/privacy/terms information. Never
-  invent legal URLs, OAuth registrations, endpoints or permission claims.
-- **`compatible-source`:** separate source format for a possible native
-  import/conversion route. Label it **Draft source export**, not a canonical
-  ZIP or established host acceptance. Conversion of old skills-only output
-  does not prove current companion compatibility. This emitted subset
-  rejects declared remote connectors; use canonical packaging with real
-  metadata or a verified existing native connection, without dropping
-  required bindings to force a source export.
+Use only **`cowork-v1.28`**: a root `manifest.json` with the official v1.28
+schema and `agentSkills` declarations, icons and actual referenced resources.
+Require supplied approved app identity and publisher/website/privacy/terms
+metadata. Never invent legal URLs, registrations, endpoints or permissions.
+
+Do not generate `.claude-plugin/plugin.json` or rely on host conversion.
+If metadata or a necessary native binding is missing, return a clearly
+incomplete source checkpoint and the precise gap, not an alternative-format
+plugin or a fabricated native-ready ZIP.
 
 The toolkit checks its emitted subset, not the full Microsoft schema, and
 is not a sandbox. Synthetic profiles remain Draft even when local contract

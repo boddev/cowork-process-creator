@@ -1,0 +1,47 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "As-of 2026-09-14; horizon ends 09-24 and urgency ends 09-17. P01 has 60 on time plus 40 late: net/credited 100, on-time 60, open 0, OTIF false. P03 has 50 on time: OTIF true. Included IDs P01,P03 give 1/2=50.00%, low=true. S01 has 0/1=0.00%; S02 1/1=100.00%. Future requested dates exclude P02,P04. P02 has 20 posted, open 60; C-P02B supersedes C-P02A by recorded date. Its 60 promised for 09-18 cannot cover R-P02A's 50 needed 09-16, but covers R-P02B's 10 needed 09-20. The first late requirement does not consume supply. P02 shortage 50 is critical within urgency: P1. P04 has open/unmet 40, no confirmation, shortage 40: P2 with shortage then missing-confirmation reasons. Queue P02,P04 is unsent. Only exception is missing confirmation for P04. Closure: four lines, active open 100, in-scope unmet 100 = covered 10 + shortage 90 + unresolved 0; two queue rows, one exception.",
+      "expected_sha256": "edc573a35ca0ca0941bd3699e3863cf63e9a64c915edcb9d3ed24303f6dee719",
+      "input_sha256": "d2989af517f4351a6c824f8f4d9c407646e7f9d710d5ce8968e12a7e110d526e"
+    },
+    "holdout-a": {
+      "derivation": "Different month boundary, supplier, quantities, and tolerance: as-of 2026-10-05, September reporting, tolerance 2, horizon through 10-12, urgency through 10-07. Both original requested dates are 09-30, deadlines 10-02. A01's seven received on 10-02 meet the inclusive deadline: net/on-time 7, open 0, true. V-A02 on 10-01 fully voids R-A02's eight received 09-30: active IDs empty, voided R-A02, applied reversal V-A02, net/on-time 0, open 8, false. Overall and SA01 are 1/2=50.00%, low=true. C-A02 recorded 10-05 promises eight for that same day; RQ-A02 needs eight that day, so prospective coverage is 8, shortage 0. Original date remains overdue: one P2 row with overdue-original only. No exceptions; completed. Closure: two lines, open 8, unmet 8 = covered 8 + shortage 0; queue 1, exceptions 0. No receipt is fabricated from the same-day promise.",
+      "expected_sha256": "b918b7068471b80a25edfcfa14756ffad325229e20858b211557be875d29d340",
+      "input_sha256": "1696af0a04fd59da505e02b24d3ba01937edf44196e0101ed3993b3b96fcb9c3"
+    },
+    "holdout-b": {
+      "derivation": "As-of 2027-02-01, January reporting, horizon through 02-06 and urgency through 02-04. Reversed input ordering and distinct new suppliers exercise deterministic IDs, not demo relabeling. H-B01 and H-B02 are cancelled, so their nominal open 9 and 4 do not enter active open totals or the cohort. B01/B02 are outside January; cancelled exclusions precede date exclusions. All historical numerators/denominators are 0/0, percentages and low flags null. C-B02 recorded 02-02 is future evidence despite a 02-04 receipt date; neither open line has an eligible confirmation. Each critical requirement is ten needed on the inclusive urgency boundary 02-04, covered 0, shortage 10. Equal P1/date/shortage rows sort B01 before B02. Exceptions sort EMPTY_COHORT, FUTURE_CONFIRMATION C-B02, MISSING_CONFIRMATION B01, MISSING_CONFIRMATION B02. Closure: four lines, active open 20, unmet 20 = covered 0 + shortage 20; queue 2, exceptions 4.",
+      "expected_sha256": "44b127250ea45e454e4575682125eef771a657a1ee52b9df9d95a40aae6d5299",
+      "input_sha256": "8040ee14c2bf053a9ee73c6a046ebcbce4bc43a3ef8f8687fbd3bef7f5c22c62"
+    },
+    "holdout-c": {
+      "derivation": "As-of 2026-11-10, tolerance 2, horizon through 11-15, urgency through 11-12. C01's duplicate R-C01 counts once: net 6, credit/on-time 4, overreceipt 2, open 0, OTIF true. C02's R-C02 contributes three; its valid reversal RV-C02 is posted 11-11, so is future/excluded, not applied: true. C03 has zero received, open 5, due 11-10, deadline 11-12: false but provisional. Overall and S-C1 are 2/3=66.67%, low=true, pending C03. C04 is future-requested; C05 lacks an original date. S-C2 and UNKNOWN have no history and null ratios. C03's past 11-09 ETA is stale, contributes no supply and creates P3 confirmation work, not an overdue-original reason because due equals as-of. C04's six current promised units for 11-12 allocate in requirement-ID order: R-C41 gets 4, R-C42 gets 2 with shortage 2, R-C43 (11-16) is outside horizon with null coverage/gap. All ten unmet units validate against open 10, including that out-of-horizon two. C05 has unknown buyer master, no requested date/confirmation, and shortage 2. X-C01 and U-C01 reference C99: no invented purchase line or receipt credit; in-scope unmet 1 is unresolved. Queue order C04 P2/date11-12/gap2, C05 P2/date11-15/gap2, C03 P3/null date/gap0. Ten sorted exceptions: duplicate, future receipt, missing confirmation, missing requested date, orphan receipt, orphan requirement, overreceipt, pending tolerance, stale confirmation, unknown supplier. Closure: five lines, active open 17, in-scope unmet 11 = covered 6 + shortage 4 + unresolved 1; queue 3, exceptions 10.",
+      "expected_sha256": "2cfc8d5296439b723110ca3f1f318c02aab0f2ed8030e7f8e2cfb573e1a18280",
+      "input_sha256": "e3bb1a03324a3d95f2620be859602e215e8c48dd51a70119b9c1e8e3bfcfe949"
+    },
+    "negative-conflicting-id": {
+      "derivation": "E-N10 occurs twice with the same line, posting date, and null reversal but different quantities, three and four. This is not an identical duplicate and cannot be summed or last-row-selected. The duplicate-integrity phase emits one CONFLICTING_ID for receipt_events/E-N10/event_id and rejects with empty outputs before reconciliation.",
+      "expected_sha256": "8f3933bb38503e19386edaa04e052594f7ed58c0707f2d8e6831743270e65444",
+      "input_sha256": "e3ca5e8d389ed07b7cc35a610eeb2125a85bf9c939ca02f2af278f5377a81150"
+    },
+    "negative-contradictory": {
+      "derivation": "Both source records are structurally well-formed and their dates and quantities are valid. E-N01 is an original five-unit receipt on N01. V-N01 purports to reverse those five on N02, a different purchase line. Exact quantity does not cure wrong-line identity. Emit one INVALID_REVERSAL for V-N01/reversal_of, related_id E-N01, then reject with empty outputs at validation; neither line gets convenient receipt credit.",
+      "expected_sha256": "4069bd417b15334a7fd4300767cd83b9d098e8046c12b3982c88c54e5b5c9d12",
+      "input_sha256": "f420942ad2adc8880bd539bdef5542d4d6568b7d6ef19c4681d61865cc707b6c"
+    },
+    "negative-malformed": {
+      "derivation": "The payload remains a parseable JSON object with all logical tables. Config reporting_month 2026-13 is not a calendar month. Receipt row zero is a string rather than an object. M-R01 qty is the string five, not an integer. Shape validation collects these three independent MALFORMED_INPUT errors, sorts config before receipt_events and the unidentified row before M-R01, and stops after intake/validation. outputs is exactly {}; no performance, allocation, or queue may be emitted.",
+      "expected_sha256": "528c5bedb0f18c38c562ee29b697ea4257a7265fbccdeef2ea9df99ca7c58926",
+      "input_sha256": "272052005c8fc312223996e58a41efb2601d6fb39b31dbe8197afb33db5d9bc6"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Supplier expediting scenario owner",
+    "description": "The complete original fixtures, expected envelopes, and case derivations were authored manually from the written procedure before baseline implementation or execution. No baseline result is an oracle. Exact arrays, messages, quantities, nulls, and closure totals were reasoned independently. This is an author declaration, not independent human certification.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "manufacturing-02",
+  "schema_version": 1
+}

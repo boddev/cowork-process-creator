@@ -33,8 +33,8 @@ as permission.
 
 Existing-native mode reuses an exposed platform tool. Packaged-remote mode
 needs the actual supported connector configuration and included tool
-descriptor; use the build skill's canonical rules. The compatible-source
-export does not promise lossless connector/auth conversion.
+descriptor; use the build skill's Microsoft v1.28 manifest rules. Do not
+substitute another host's connection or manifest format.
 
 The service's own identity and legal terms are not approved publisher
 metadata for this Creator or its generated plugins.

@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Hand-derived before implementation: bank 100000+12000-7500-250+3000=107250; ledger 100000+12000-5000-2500+3000+3000-4000=106500. SYN-B1/SYN-L1 and SYN-B2/{SYN-L2,SYN-L3} are the only isolated groups. SYN-B4 has both SYN-L4 and SYN-L5, so all three remain ambiguous. SYN-B3 is a bank-only fee; SYN-L6 is pending July 1 clearance. Unmatched bank2750 minus ledger2000 is the750 closing difference. Two groups; two unmatched bank and three unmatched ledger rows.",
+      "expected_sha256": "1538eb48ac4964424668463918e866d4228645e775de9d2d250ea56e4d148734",
+      "input_sha256": "f240b29d51feaad49ff4dc3a9f6f1a158cfbdcf8e64eb1467ffd75e0f5b60a0d"
+    },
+    "holdout-a": {
+      "derivation": "Changed scopes, membership, timing and tolerance: A bank3000+10002-1000=12002; A ledger1000+1500+500+10000-1000=12000. Explicit three-member batch exact, 10002/10000 pair at inclusive2day and2cent limits is a pending correction, -1000 pair with5day gap is not matched. Ledger age5 is not stale at threshold5. B opens50000 and has isolated7000 pair with reused reference, closing57000. Three groups, no cross-account edge, aggregate currency difference2 with no posting.",
+      "expected_sha256": "c0852fe49458aaca7c8da66aa6ea52fbd57f59a8ed4578fdc08f3d26a8f31fa9",
+      "input_sha256": "9b307911691cf9993cb6c9e7c4f73effb8441620e1c36a88c4679a97d9ad8b5d"
+    },
+    "holdout-b": {
+      "derivation": "Changed offset and cutoff: -300minutes makes2026-08-01T04:30Z July31;05:00Z is August1 and after as_of04:59:59Z. Only20000 pair matches. Bank1003/ledger1000 exceeds2cent tolerance. Ledger-1500 has expected August1 clearing. Future9900 excluded. Bank close21003, included ledger19500, gap1503=1003-(1000-1500). One matched group, one bank mismatch, one ledger mismatch and one timing item.",
+      "expected_sha256": "b88b330ea51b5e485d4f49e1b497fff204716e21cb9ac3cc4ccfe1dabc61ef8d",
+      "input_sha256": "20ed3af9a21eeb28b9d87f3ef36c2775ead7e95ca75bbdd3350f8d1197906c3e"
+    },
+    "negative-contradictory": {
+      "derivation": "Scope SYN-N declares bank opening100000 and no lines but closing100001. Bank checksum contradiction rejects before matching. No one-cent correction is invented; outputs contain only pending/no-action review.",
+      "expected_sha256": "9bd98fb9f3ca4f0e587d4cf901809921e12b01c376069ce2d08ad93c3efe172a",
+      "input_sha256": "d3e342591e2fa209b73287ed884092e456761ef1544bf754dd2960a868115aa3"
+    },
+    "negative-malformed": {
+      "derivation": "A valid JSON boolean true in bank_lines[0].amount_minor is not a true integer. Reject at scalar validation before joins or trusted totals; diagnostic path and no-action review envelope are hand-specified.",
+      "expected_sha256": "4ea7610ae5148239a47a24fabb67313c207f4f2004ad0ffc26670cf45c48fecb",
+      "input_sha256": "475e410cff5d99ef70e9c290e5164bbb3dacc154055e097216ccac0ce07a0cf0"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Financial services scenario author",
+    "description": "Full row dispositions, candidate sets, match membership, exception reasons and signed bridges were hand-derived from the procedure before baseline implementation/execution. Exact expected JSON was authored independently; this is not a claim of independent human approval.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "financial-services-01",
+  "schema_version": 1
+}

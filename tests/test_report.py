@@ -10,7 +10,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from test_builder import CANDIDATE, ROOT, builder
+from test_builder import CANDIDATE, ROOT, builder, native_metadata
 
 sys.dont_write_bytecode = True
 REPORT_PATH = CANDIDATE / "skills" / "ready-items-report" / "scripts" / "report.py"
@@ -97,12 +97,12 @@ class ReportTests(unittest.TestCase):
             self.assertFalse(output_path.exists())
 
     def test_installed_output_runs_on_new_input_without_creator_or_evidence(self):
-        payload, _ = builder.assemble(CANDIDATE, "compatible-source")
+        payload, _ = builder.assemble(CANDIDATE, builder.TARGET, native_metadata(self.root))
         archive_path = self.root / "output.zip"
         archive_path.write_bytes(builder.zip_bytes(payload))
         installed = self.root / "installed-output"
         with zipfile.ZipFile(archive_path) as archive:
-            self.assertEqual(len(archive.namelist()), 4)
+            self.assertEqual(len(archive.namelist()), 6)
             archive.extractall(installed)
         input_path, output_path = self.root / "runtime.json", self.root / "new-report.md"
         input_path.write_text(json.dumps(self.data), encoding="utf-8")
@@ -117,7 +117,7 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(output_path.read_text(encoding="utf-8"), expected)
         self.assertFalse((installed / "skills" / "create-process-plugin").exists())
         self.assertFalse((installed / "examples").exists())
-        self.assertFalse(any(path.suffix in {".png", ".mp4"} for path in installed.rglob("*")))
+        self.assertFalse(any(path.suffix in {".png", ".mp4"} for path in (installed / "skills").rglob("*")))
 
 
 if __name__ == "__main__":

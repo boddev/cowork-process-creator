@@ -1,0 +1,89 @@
+{
+  "events": [
+    {
+      "caption": "Inventoried the supplied synthetic attachment; no external files or services were read.",
+      "facts": {
+        "as_of": "2026-09-14T12:00:00Z",
+        "boundary": "synthetic file review only",
+        "logical_arrays": 6,
+        "supplied_records": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-exports",
+      "tables": [
+        {
+          "columns": [
+            "export_label",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "shipments.json",
+              1
+            ],
+            [
+              "pod-events.json",
+              1
+            ],
+            [
+              "rate-cards.json",
+              1
+            ],
+            [
+              "carrier-invoices.json",
+              1
+            ],
+            [
+              "invoice-lines.json",
+              3
+            ],
+            [
+              "review-history.json",
+              0
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Rejected malformed records before joining or pricing.",
+      "facts": {
+        "outcome": "rejected",
+        "supplied_records": 7,
+        "validation_issues": 1
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-records",
+      "tables": [
+        {
+          "columns": [
+            "location",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "invoice-lines.json:LG-L-M01-LH.amount",
+              "invalid-amount",
+              "Amount must be a nonnegative decimal string with exactly two fraction..."
+            ]
+          ],
+          "title": "Validation issues",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "fab01e6d568c8587b5bcdd9d94beba11c9212e90d078ceb0e38b75b64fb9db81",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-01",
+  "schema_version": 1
+}

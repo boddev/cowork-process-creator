@@ -1,0 +1,209 @@
+{
+  "exceptions": [
+    {
+      "action": "clarify-evidence",
+      "code": "contradictory-approval",
+      "diagnostic_only": true,
+      "draft_id": null,
+      "entry_id": "C1",
+      "entry_type": "time",
+      "line_id": null,
+      "message": "Highest as-of approval revision conflicts; clarification is required.",
+      "owner": "ACCOUNTANT-C1",
+      "project_id": "PC1"
+    },
+    {
+      "action": "clarify-not-remove",
+      "code": "contradictory-approval",
+      "diagnostic_only": true,
+      "draft_id": "DC1",
+      "entry_id": "C1",
+      "entry_type": "time",
+      "line_id": "LC1",
+      "message": "Highest as-of approval revision conflicts; clarification is required.",
+      "owner": "ACCOUNTANT-C1",
+      "project_id": "PC1"
+    }
+  ],
+  "outputs": {
+    "closure": {
+      "diagnostic_count": 1,
+      "draft_count": 2,
+      "entry_count": 2,
+      "exception_count": 2,
+      "prior_billing_count": 0,
+      "project_count": 2
+    },
+    "currency_totals": [
+      {
+        "cap_held_amount": "0.00",
+        "comparison_complete": false,
+        "computable_draft_amount": "60.00",
+        "computable_expected_amount": "60.00",
+        "computable_variance": "0.00",
+        "currency": "USD",
+        "draft_amount": "160.00",
+        "eligible_new_amount": "60.00",
+        "known_entry_hold_amount": "0.00",
+        "prior_billed_amount": "0.00",
+        "quarantined_draft_amount": "100.00",
+        "reviewable_new_amount": "60.00",
+        "uncomputed_entry_count": 1
+      }
+    ],
+    "draft_details": [
+      {
+        "action": "clarify-not-remove",
+        "currency": "USD",
+        "delta": null,
+        "diagnostic_only": true,
+        "draft_amount": "100.00",
+        "draft_id": "DC1",
+        "entry_id": "C1",
+        "entry_type": "time",
+        "expected_amount": null,
+        "line_id": "LC1",
+        "message": "Highest as-of approval revision conflicts; clarification is required.",
+        "project_id": "PC1",
+        "reason": "contradictory-approval"
+      },
+      {
+        "action": "match",
+        "currency": "USD",
+        "delta": "0.00",
+        "diagnostic_only": false,
+        "draft_amount": "60.00",
+        "draft_id": "DC2",
+        "entry_id": "C2",
+        "entry_type": "time",
+        "expected_amount": "60.00",
+        "line_id": "LC2",
+        "message": "Draft amount matches the computed entry amount.",
+        "project_id": "PC2",
+        "reason": "draft-match"
+      }
+    ],
+    "drafts": [
+      {
+        "comparison_complete": false,
+        "computable_draft_amount": "0.00",
+        "computable_expected_amount": "0.00",
+        "currency": "USD",
+        "draft_amount": "100.00",
+        "draft_id": "DC1",
+        "expected_amount": null,
+        "line_count": 1,
+        "project_id": "PC1",
+        "quarantined_draft_amount": "100.00",
+        "status": "clarification",
+        "variance": null
+      },
+      {
+        "comparison_complete": true,
+        "computable_draft_amount": "60.00",
+        "computable_expected_amount": "60.00",
+        "currency": "USD",
+        "draft_amount": "60.00",
+        "draft_id": "DC2",
+        "expected_amount": "60.00",
+        "line_count": 1,
+        "project_id": "PC2",
+        "quarantined_draft_amount": "0.00",
+        "status": "reconciled",
+        "variance": "0.00"
+      }
+    ],
+    "entries": [
+      {
+        "approval_event_ids": [
+          "AC1-2A",
+          "AC1-2R"
+        ],
+        "approval_revision": 2,
+        "billed_ids": [],
+        "cap_held": false,
+        "currency": "USD",
+        "entry_id": "C1",
+        "entry_type": "time",
+        "expected_amount": null,
+        "future_approval_event_ids": [],
+        "held_amount": null,
+        "message": "Highest as-of approval revision conflicts; clarification is required.",
+        "policy_key": null,
+        "project_id": "PC1",
+        "rate_id": null,
+        "reason": "contradictory-approval",
+        "status": "quarantined"
+      },
+      {
+        "approval_event_ids": [
+          "AC2-1"
+        ],
+        "approval_revision": 1,
+        "billed_ids": [],
+        "cap_held": false,
+        "currency": "USD",
+        "entry_id": "C2",
+        "entry_type": "time",
+        "expected_amount": "60.00",
+        "future_approval_event_ids": [],
+        "held_amount": null,
+        "message": "Approved time priced at the unique effective rate.",
+        "policy_key": null,
+        "project_id": "PC2",
+        "rate_id": "RC2",
+        "reason": "candidate-time",
+        "status": "candidate"
+      }
+    ],
+    "prior_billing": [],
+    "projects": [
+      {
+        "calculation_complete": false,
+        "cap_held_amount": "0.00",
+        "cap_hold": false,
+        "cap_overage": null,
+        "currency": "USD",
+        "draft_ids": [
+          "DC1"
+        ],
+        "eligible_new_amount": "0.00",
+        "entry_count": 1,
+        "known_consumption": "0.00",
+        "owner": "ACCOUNTANT-C1",
+        "period_cap": "1000.00",
+        "prior_billed_amount": "0.00",
+        "project_id": "PC1",
+        "proposed_consumption": null,
+        "reviewable_new_amount": "0.00"
+      },
+      {
+        "calculation_complete": true,
+        "cap_held_amount": "0.00",
+        "cap_hold": false,
+        "cap_overage": "0.00",
+        "currency": "USD",
+        "draft_ids": [
+          "DC2"
+        ],
+        "eligible_new_amount": "60.00",
+        "entry_count": 1,
+        "known_consumption": "60.00",
+        "owner": "ACCOUNTANT-C2",
+        "period_cap": "1000.00",
+        "prior_billed_amount": "0.00",
+        "project_id": "PC2",
+        "proposed_consumption": "60.00",
+        "reviewable_new_amount": "60.00"
+      }
+    ],
+    "snapshot": {
+      "as_of": "2026-10-02T12:00:00Z",
+      "period_end": "2026-10-01",
+      "period_start": "2026-09-01",
+      "review_only": true
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

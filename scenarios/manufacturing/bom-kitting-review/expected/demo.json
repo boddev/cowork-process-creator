@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-09-14",
+    "horizon_end": "2026-09-17",
+    "order_sequence": ["W01", "W02"],
+    "selected_versions": [
+      {"order_id": "W01", "parent_path": [], "item_id": "R", "version_id": "R-V1", "selection": "active-default"},
+      {"order_id": "W01", "parent_path": ["R-MODULE"], "item_id": "MODULE", "version_id": "MOD-V1", "selection": "active-default"},
+      {"order_id": "W02", "parent_path": [], "item_id": "R", "version_id": "R-V1", "selection": "active-default"},
+      {"order_id": "W02", "parent_path": ["R-MODULE"], "item_id": "MODULE", "version_id": "MOD-V1", "selection": "active-default"}
+    ],
+    "exploded_paths": [
+      {"order_id": "W01", "path": ["R-FRAME"], "component_id": "FRAME", "exact_qty": "3"},
+      {"order_id": "W01", "path": ["R-MODULE", "M-BOLT"], "component_id": "BOLT", "exact_qty": "6"},
+      {"order_id": "W01", "path": ["R-MODULE", "M-SCREW"], "component_id": "SCREW", "exact_qty": "12"},
+      {"order_id": "W02", "path": ["R-FRAME"], "component_id": "FRAME", "exact_qty": "2"},
+      {"order_id": "W02", "path": ["R-MODULE", "M-BOLT"], "component_id": "BOLT", "exact_qty": "4"},
+      {"order_id": "W02", "path": ["R-MODULE", "M-SCREW"], "component_id": "SCREW", "exact_qty": "8"}
+    ],
+    "component_requirements": [
+      {"order_id": "W01", "component_id": "BOLT", "exact_qty": "6", "required_qty": 6, "available_now_qty": 6, "expected_before_need_qty": 0, "assigned_now_qty": 6, "assigned_expected_qty": 0, "assigned_qty": 6, "gap_qty": 0},
+      {"order_id": "W01", "component_id": "FRAME", "exact_qty": "3", "required_qty": 3, "available_now_qty": 4, "expected_before_need_qty": 0, "assigned_now_qty": 3, "assigned_expected_qty": 0, "assigned_qty": 3, "gap_qty": 0},
+      {"order_id": "W01", "component_id": "SCREW", "exact_qty": "12", "required_qty": 12, "available_now_qty": 20, "expected_before_need_qty": 0, "assigned_now_qty": 12, "assigned_expected_qty": 0, "assigned_qty": 12, "gap_qty": 0},
+      {"order_id": "W02", "component_id": "BOLT", "exact_qty": "4", "required_qty": 4, "available_now_qty": 0, "expected_before_need_qty": 0, "assigned_now_qty": 0, "assigned_expected_qty": 0, "assigned_qty": 0, "gap_qty": 4},
+      {"order_id": "W02", "component_id": "FRAME", "exact_qty": "2", "required_qty": 2, "available_now_qty": 1, "expected_before_need_qty": 1, "assigned_now_qty": 1, "assigned_expected_qty": 1, "assigned_qty": 2, "gap_qty": 0},
+      {"order_id": "W02", "component_id": "SCREW", "exact_qty": "8", "required_qty": 8, "available_now_qty": 8, "expected_before_need_qty": 0, "assigned_now_qty": 8, "assigned_expected_qty": 0, "assigned_qty": 8, "gap_qty": 0}
+    ],
+    "shadow_allocations": [
+      {"order_id": "W01", "component_id": "BOLT", "source_type": "stock_lots", "source_id": "S-BOLT", "quantity": 6},
+      {"order_id": "W01", "component_id": "FRAME", "source_type": "stock_lots", "source_id": "S-FRAME", "quantity": 3},
+      {"order_id": "W01", "component_id": "SCREW", "source_type": "stock_lots", "source_id": "S-SCREW", "quantity": 12},
+      {"order_id": "W02", "component_id": "FRAME", "source_type": "stock_lots", "source_id": "S-FRAME", "quantity": 1},
+      {"order_id": "W02", "component_id": "FRAME", "source_type": "inbound", "source_id": "I-FRAME", "quantity": 1},
+      {"order_id": "W02", "component_id": "SCREW", "source_type": "stock_lots", "source_id": "S-SCREW", "quantity": 8}
+    ],
+    "source_balances": [
+      {"source_type": "stock_lots", "source_id": "S-BLOCK", "item_id": "BOLT", "site": "MAIN", "net_qty": 100, "assigned_qty": 0, "remaining_qty": 100},
+      {"source_type": "stock_lots", "source_id": "S-BOLT", "item_id": "BOLT", "site": "MAIN", "net_qty": 6, "assigned_qty": 6, "remaining_qty": 0},
+      {"source_type": "stock_lots", "source_id": "S-FRAME", "item_id": "FRAME", "site": "MAIN", "net_qty": 4, "assigned_qty": 4, "remaining_qty": 0},
+      {"source_type": "stock_lots", "source_id": "S-SCREW", "item_id": "SCREW", "site": "MAIN", "net_qty": 20, "assigned_qty": 20, "remaining_qty": 0},
+      {"source_type": "inbound", "source_id": "I-BOLT", "item_id": "BOLT", "site": "MAIN", "net_qty": 3, "assigned_qty": 0, "remaining_qty": 3},
+      {"source_type": "inbound", "source_id": "I-FRAME", "item_id": "FRAME", "site": "MAIN", "net_qty": 1, "assigned_qty": 1, "remaining_qty": 0}
+    ],
+    "supply_exclusions": [
+      {"order_id": "W01", "component_id": "BOLT", "source_type": "stock_lots", "source_id": "S-BLOCK", "reason": "blocked-status"},
+      {"order_id": "W01", "component_id": "BOLT", "source_type": "inbound", "source_id": "I-BOLT", "reason": "late"},
+      {"order_id": "W01", "component_id": "FRAME", "source_type": "inbound", "source_id": "I-FRAME", "reason": "late"},
+      {"order_id": "W02", "component_id": "BOLT", "source_type": "stock_lots", "source_id": "S-BLOCK", "reason": "blocked-status"},
+      {"order_id": "W02", "component_id": "BOLT", "source_type": "inbound", "source_id": "I-BOLT", "reason": "late"}
+    ],
+    "excluded_orders": [],
+    "order_reviews": [
+      {"order_id": "W01", "item_id": "R", "site": "MAIN", "need_by": "2026-09-16", "quantity": 3, "priority": 1, "state": "covered-now-review", "short_components": [], "review_owners": ["Material planner", "Production planner"], "approval_required": true, "production_authorized": false},
+      {"order_id": "W02", "item_id": "R", "site": "MAIN", "need_by": "2026-09-17", "quantity": 2, "priority": 1, "state": "shortage-review", "short_components": ["BOLT"], "review_owners": ["Material planner", "Stores reviewer", "Production planner"], "approval_required": true, "production_authorized": false}
+    ],
+    "review_queue": ["W02"],
+    "component_totals": [
+      {"site": "MAIN", "component_id": "BOLT", "required_qty": 10, "assigned_now_qty": 6, "assigned_expected_qty": 0, "assigned_qty": 6, "gap_qty": 4},
+      {"site": "MAIN", "component_id": "FRAME", "required_qty": 5, "assigned_now_qty": 4, "assigned_expected_qty": 1, "assigned_qty": 5, "gap_qty": 0},
+      {"site": "MAIN", "component_id": "SCREW", "required_qty": 20, "assigned_now_qty": 20, "assigned_expected_qty": 0, "assigned_qty": 20, "gap_qty": 0}
+    ],
+    "summary": {"in_scope_orders": 2, "resolved_orders": 2, "unresolved_orders": 0, "excluded_orders": 0, "shortage_orders": 1, "covered_now_orders": 1, "covered_with_expected_orders": 0},
+    "closure": {"review_only": true, "approval_required": true, "production_authorized": false, "inventory_mutated": false, "reservations_created": false, "substitutions_made": false, "orders_released": false}
+  },
+  "exceptions": [
+    {"code": "MATERIAL_SHORTAGE", "message": "Required material is not fully assigned.", "order_id": "W02", "source_type": "items", "source_id": "BOLT", "field": null},
+    {"code": "SUPPLY_EXCLUSIONS", "message": "5 order/source eligibility exclusion(s) require review.", "order_id": null, "source_type": null, "source_id": null, "field": null}
+  ]
+}

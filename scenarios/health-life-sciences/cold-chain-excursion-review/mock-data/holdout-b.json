@@ -1,0 +1,47 @@
+{
+  "window_start": "2026-09-16T10:00:00Z",
+  "as_of": "2026-09-16T10:20:00Z",
+  "policy": {"policy_id": "SYN-POLICY-MOVE", "max_gap_seconds": 1200, "max_rows_per_table": 1000, "max_total_rows": 5000, "max_derived_pairs": 10000},
+  "products": [
+    {"product_id": "SYN-PROD-R", "profile_id": "SYN-PROFILE-R"},
+    {"product_id": "SYN-PROD-N", "profile_id": "SYN-PROFILE-MISSING"},
+    {"product_id": "SYN-PROD-W", "profile_id": "SYN-PROFILE-W"}
+  ],
+  "profiles": [
+    {"profile_id": "SYN-PROFILE-R", "lower_tenths_c": 30, "upper_tenths_c": 70, "policy_ref": "SYN-RULE-R"},
+    {"profile_id": "SYN-PROFILE-W", "lower_tenths_c": 0, "upper_tenths_c": 100, "policy_ref": "SYN-RULE-W"}
+  ],
+  "inventory": [
+    {"lot_id": "SYN-LOT-M", "product_id": "SYN-PROD-R", "quantity_units": 8, "owner_role_id": "SYN-ROLE-Q"},
+    {"lot_id": "SYN-LOT-N", "product_id": "SYN-PROD-N", "quantity_units": 2, "owner_role_id": "SYN-ROLE-Q"},
+    {"lot_id": "SYN-LOT-W", "product_id": "SYN-PROD-W", "quantity_units": 3, "owner_role_id": "SYN-ROLE-Q"},
+    {"lot_id": "SYN-LOT-Z", "product_id": "SYN-PROD-W", "quantity_units": 5, "owner_role_id": "SYN-ROLE-Q"}
+  ],
+  "placements": [
+    {"placement_id": "SYN-PL-M0", "lot_id": "SYN-LOT-M", "unit_id": "SYN-UNIT-OLD", "entered_at": "2026-09-16T10:00:00Z", "left_at": "2026-09-16T10:10:00Z"},
+    {"placement_id": "SYN-PL-M1", "lot_id": "SYN-LOT-M", "unit_id": "SYN-UNIT-NEW", "entered_at": "2026-09-16T10:10:00Z", "left_at": null},
+    {"placement_id": "SYN-PL-N", "lot_id": "SYN-LOT-N", "unit_id": "SYN-UNIT-OLD", "entered_at": "2026-09-16T10:00:00Z", "left_at": null},
+    {"placement_id": "SYN-PL-W", "lot_id": "SYN-LOT-W", "unit_id": "SYN-UNIT-OLD", "entered_at": "2026-09-16T10:00:00Z", "left_at": "2026-09-16T10:10:00Z"},
+    {"placement_id": "SYN-PL-Z", "lot_id": "SYN-LOT-Z", "unit_id": "SYN-UNIT-OLD", "entered_at": "2026-09-16T10:00:00Z", "left_at": "2026-09-16T10:10:00Z"}
+  ],
+  "sensor_assignments": [
+    {"assignment_id": "SYN-AS-OLD", "sensor_id": "SYN-SENSOR-OLD", "unit_id": "SYN-UNIT-OLD", "valid_from": "2026-09-16T09:00:00Z", "valid_until": null},
+    {"assignment_id": "SYN-AS-NEW", "sensor_id": "SYN-SENSOR-NEW", "unit_id": "SYN-UNIT-NEW", "valid_from": "2026-09-16T09:00:00Z", "valid_until": null}
+  ],
+  "calibrations": [
+    {"calibration_id": "SYN-C-OLD", "sensor_id": "SYN-SENSOR-OLD", "valid_from": "2026-09-16T09:00:00Z", "valid_until": "2026-09-16T11:00:00Z", "recorded_at": "2026-09-16T09:00:00Z", "attestation_ref": "SYN-CERT-OLD"},
+    {"calibration_id": "SYN-C-NEW", "sensor_id": "SYN-SENSOR-NEW", "valid_from": "2026-09-16T09:00:00Z", "valid_until": "2026-09-16T10:10:00Z", "recorded_at": "2026-09-16T09:00:00Z", "attestation_ref": "SYN-CERT-NEW"}
+  ],
+  "readings": [
+    {"reading_id": "SYN-O00", "sensor_id": "SYN-SENSOR-OLD", "observed_at": "2026-09-16T10:00:00Z", "temperature_tenths_c": 80},
+    {"reading_id": "SYN-O00", "sensor_id": "SYN-SENSOR-OLD", "observed_at": "2026-09-16T10:00:00Z", "temperature_tenths_c": 80},
+    {"reading_id": "SYN-O10", "sensor_id": "SYN-SENSOR-OLD", "observed_at": "2026-09-16T10:10:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-O20", "sensor_id": "SYN-SENSOR-OLD", "observed_at": "2026-09-16T10:20:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-N00", "sensor_id": "SYN-SENSOR-NEW", "observed_at": "2026-09-16T10:00:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-N10", "sensor_id": "SYN-SENSOR-NEW", "observed_at": "2026-09-16T10:10:00Z", "temperature_tenths_c": 50},
+    {"reading_id": "SYN-N20", "sensor_id": "SYN-SENSOR-NEW", "observed_at": "2026-09-16T10:20:00Z", "temperature_tenths_c": 50}
+  ],
+  "correspondence": [
+    {"correspondence_id": "SYN-COR-M", "lot_id": "SYN-LOT-M", "recorded_at": "2026-09-16T10:15:00Z", "source_role_id": "SYN-ROLE-Q", "reference": "SYN-REF-M", "note": "SYN-NOTE claims release; evidence only."}
+  ]
+}

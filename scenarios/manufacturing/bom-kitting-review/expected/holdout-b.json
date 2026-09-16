@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-01-10",
+    "horizon_end": "2026-01-12",
+    "order_sequence": ["B01", "B02"],
+    "selected_versions": [
+      {"order_id": "B01", "parent_path": [], "item_id": "BRACKET", "version_id": "B-V", "selection": "active-default"},
+      {"order_id": "B01", "parent_path": ["B-LEFT"], "item_id": "LEFT", "version_id": "LEFT-V", "selection": "active-default"},
+      {"order_id": "B01", "parent_path": ["B-RIGHT"], "item_id": "RIGHT", "version_id": "RIGHT-V", "selection": "active-default"},
+      {"order_id": "B02", "parent_path": [], "item_id": "BRACKET", "version_id": "B-V", "selection": "active-default"},
+      {"order_id": "B02", "parent_path": ["B-LEFT"], "item_id": "LEFT", "version_id": "LEFT-V", "selection": "active-default"},
+      {"order_id": "B02", "parent_path": ["B-RIGHT"], "item_id": "RIGHT", "version_id": "RIGHT-V", "selection": "active-default"}
+    ],
+    "exploded_paths": [
+      {"order_id": "B01", "path": ["B-LEFT", "L-NUT"], "component_id": "NUT", "exact_qty": "1.5"},
+      {"order_id": "B01", "path": ["B-RIGHT", "R-NUT"], "component_id": "NUT", "exact_qty": "1.5"},
+      {"order_id": "B02", "path": ["B-LEFT", "L-NUT"], "component_id": "NUT", "exact_qty": "1.5"},
+      {"order_id": "B02", "path": ["B-RIGHT", "R-NUT"], "component_id": "NUT", "exact_qty": "1.5"}
+    ],
+    "component_requirements": [
+      {"order_id": "B01", "component_id": "NUT", "exact_qty": "3", "required_qty": 3, "available_now_qty": 5, "expected_before_need_qty": 0, "assigned_now_qty": 3, "assigned_expected_qty": 0, "assigned_qty": 3, "gap_qty": 0},
+      {"order_id": "B02", "component_id": "NUT", "exact_qty": "3", "required_qty": 3, "available_now_qty": 2, "expected_before_need_qty": 0, "assigned_now_qty": 2, "assigned_expected_qty": 0, "assigned_qty": 2, "gap_qty": 1}
+    ],
+    "shadow_allocations": [
+      {"order_id": "B01", "component_id": "NUT", "source_type": "stock_lots", "source_id": "BN-5", "quantity": 3},
+      {"order_id": "B02", "component_id": "NUT", "source_type": "stock_lots", "source_id": "BN-5", "quantity": 2}
+    ],
+    "source_balances": [
+      {"source_type": "stock_lots", "source_id": "BN-5", "item_id": "NUT", "site": "SOUTH", "net_qty": 5, "assigned_qty": 5, "remaining_qty": 0}
+    ],
+    "supply_exclusions": [],
+    "excluded_orders": [],
+    "order_reviews": [
+      {"order_id": "B01", "item_id": "BRACKET", "site": "SOUTH", "need_by": "2026-01-12", "quantity": 3, "priority": 2, "state": "covered-now-review", "short_components": [], "review_owners": ["Material planner", "Production planner"], "approval_required": true, "production_authorized": false},
+      {"order_id": "B02", "item_id": "BRACKET", "site": "SOUTH", "need_by": "2026-01-12", "quantity": 3, "priority": 2, "state": "shortage-review", "short_components": ["NUT"], "review_owners": ["Material planner", "Stores reviewer", "Production planner"], "approval_required": true, "production_authorized": false}
+    ],
+    "review_queue": ["B02"],
+    "component_totals": [
+      {"site": "SOUTH", "component_id": "NUT", "required_qty": 6, "assigned_now_qty": 5, "assigned_expected_qty": 0, "assigned_qty": 5, "gap_qty": 1}
+    ],
+    "summary": {"in_scope_orders": 2, "resolved_orders": 2, "unresolved_orders": 0, "excluded_orders": 0, "shortage_orders": 1, "covered_now_orders": 1, "covered_with_expected_orders": 0},
+    "closure": {"review_only": true, "approval_required": true, "production_authorized": false, "inventory_mutated": false, "reservations_created": false, "substitutions_made": false, "orders_released": false}
+  },
+  "exceptions": [
+    {"code": "MATERIAL_SHORTAGE", "message": "Required material is not fully assigned.", "order_id": "B02", "source_type": "items", "source_id": "NUT", "field": null}
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2028-02-29",
+  "policy": {"policy_id": "SYN-POLICY-A", "warning_days": 30, "draft_review_days": 0, "max_rows_per_table": 20, "max_total_rows": 50, "max_derived_pairs": 3},
+  "trials": [
+    {"trial_id": "SYN-TA", "required_protocol_version": 7}
+  ],
+  "sites": [
+    {"site_id": "SYN-SA", "trial_id": "SYN-TA", "site_kind": "research", "owner_role_id": "SYN-ROLEA", "in_scope": true}
+  ],
+  "requirements": [
+    {"requirement_id": "SYN-RA1", "site_kind": "research", "document_type": "ethics-opinion", "match_protocol_version": false, "signature_required": false, "expiry_required": true, "refresh_days": null},
+    {"requirement_id": "SYN-RA2", "site_kind": "research", "document_type": "training", "match_protocol_version": true, "signature_required": true, "expiry_required": true, "refresh_days": 31},
+    {"requirement_id": "SYN-RA3", "site_kind": "research", "document_type": "qualification", "match_protocol_version": false, "signature_required": false, "expiry_required": false, "refresh_days": null}
+  ],
+  "documents": [
+    {"document_id": "SYN-DA1", "site_id": "SYN-SA", "document_type": "ethics-opinion", "version_seq": 1, "protocol_version": null, "issued_on": "2028-01-01", "effective_on": "2028-01-01", "recorded_on": "2028-01-01", "expires_on": "2028-03-30", "artifact_id": "SYN-AA1", "signature_recorded": false},
+    {"document_id": "SYN-DA2", "site_id": "SYN-SA", "document_type": "ethics-opinion", "version_seq": 2, "protocol_version": null, "issued_on": "2028-02-28", "effective_on": "2028-02-29", "recorded_on": "2028-03-01", "expires_on": "2028-04-30", "artifact_id": "SYN-AA2", "signature_recorded": false},
+    {"document_id": "SYN-DA3", "site_id": "SYN-SA", "document_type": "training", "version_seq": 1, "protocol_version": 7, "issued_on": "2028-02-29", "effective_on": "2028-02-29", "recorded_on": "2028-02-29", "expires_on": "2028-04-05", "artifact_id": "SYN-AA3", "signature_recorded": true},
+    {"document_id": "SYN-DA4", "site_id": "SYN-SA", "document_type": "qualification", "version_seq": 1, "protocol_version": null, "issued_on": "2028-02-20", "effective_on": "2028-02-20", "recorded_on": "2028-02-20", "expires_on": null, "artifact_id": "SYN-AA4", "signature_recorded": false},
+    {"document_id": "SYN-DA5", "site_id": "SYN-SA", "document_type": "training", "version_seq": 2, "protocol_version": 7, "issued_on": "2028-02-28", "effective_on": "2028-03-01", "recorded_on": "2028-02-28", "expires_on": "2028-04-02", "artifact_id": "SYN-AA5", "signature_recorded": false}
+  ],
+  "artifacts": [
+    {"artifact_id": "SYN-AA1", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AA1"},
+    {"artifact_id": "SYN-AA2", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AA2"},
+    {"artifact_id": "SYN-AA3", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AA3"},
+    {"artifact_id": "SYN-AA4", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AA4"},
+    {"artifact_id": "SYN-AA5", "export_available": true, "readability_attested": true, "source_ref": "SYN-EXPORT-AA5"}
+  ],
+  "open_review_tasks": [
+    {"task_id": "SYN-KA1", "site_id": "SYN-SA", "requirement_id": "SYN-RA1", "reason_code": "expiring-soon", "opened_on": "2028-02-29"},
+    {"task_id": "SYN-KA2", "site_id": "SYN-SA", "requirement_id": "SYN-RA1", "reason_code": "expiring-soon", "opened_on": "2028-03-01"}
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "exceptions": [
+    {
+      "code": "allocation-limited",
+      "message": "Whole-case request exceeds available DC stock or capacity.",
+      "on": "2099-06-15",
+      "reference": "SYN-STORE-G|SYN-SKU-SILVER",
+      "sku": "SYN-SKU-SILVER",
+      "store_id": "SYN-STORE-G",
+      "units": 4
+    },
+    {
+      "code": "late-inbound",
+      "message": "Receipt is after coverage and contributes no stock.",
+      "on": "2099-06-17",
+      "reference": "SYN-INBOUND-JUNE",
+      "sku": "SYN-SKU-SILVER",
+      "store_id": "SYN-STORE-F",
+      "units": 11
+    },
+    {
+      "code": "safety-shortfall",
+      "message": "Projected closing stock is below safety policy.",
+      "on": "2099-06-16",
+      "reference": "SYN-STORE-G|SYN-SKU-SILVER",
+      "sku": "SYN-SKU-SILVER",
+      "store_id": "SYN-STORE-G",
+      "units": 2
+    }
+  ],
+  "outputs": {
+    "allocation_ledger": [
+      {
+        "capacity_cases_after": 1,
+        "capacity_cases_before": 1,
+        "dc_id": "SYN-DC-3",
+        "proposed_cases": 0,
+        "requested_cases": 0,
+        "sku": "SYN-SKU-SILVER",
+        "stock_cases_before": 5,
+        "stock_units_after": 20,
+        "store_id": "SYN-STORE-F"
+      },
+      {
+        "capacity_cases_after": 0,
+        "capacity_cases_before": 1,
+        "dc_id": "SYN-DC-3",
+        "proposed_cases": 1,
+        "requested_cases": 2,
+        "sku": "SYN-SKU-SILVER",
+        "stock_cases_before": 5,
+        "stock_units_after": 16,
+        "store_id": "SYN-STORE-G"
+      }
+    ],
+    "daily_projection": [
+      {
+        "closing_units": 5,
+        "day": "2099-06-15",
+        "demand_units": 1,
+        "fulfilled_units": 1,
+        "inbound_units": 0,
+        "lost_units": 0,
+        "opening_units": 6,
+        "phase": "coverage",
+        "proposed_units": 0,
+        "sku": "SYN-SKU-SILVER",
+        "store_id": "SYN-STORE-F"
+      },
+      {
+        "closing_units": 4,
+        "day": "2099-06-16",
+        "demand_units": 1,
+        "fulfilled_units": 1,
+        "inbound_units": 0,
+        "lost_units": 0,
+        "opening_units": 5,
+        "phase": "coverage",
+        "proposed_units": 0,
+        "sku": "SYN-SKU-SILVER",
+        "store_id": "SYN-STORE-F"
+      },
+      {
+        "closing_units": 2,
+        "day": "2099-06-15",
+        "demand_units": 3,
+        "fulfilled_units": 3,
+        "inbound_units": 0,
+        "lost_units": 0,
+        "opening_units": 1,
+        "phase": "coverage",
+        "proposed_units": 4,
+        "sku": "SYN-SKU-SILVER",
+        "store_id": "SYN-STORE-G"
+      },
+      {
+        "closing_units": 0,
+        "day": "2099-06-16",
+        "demand_units": 2,
+        "fulfilled_units": 2,
+        "inbound_units": 0,
+        "lost_units": 0,
+        "opening_units": 2,
+        "phase": "coverage",
+        "proposed_units": 0,
+        "sku": "SYN-SKU-SILVER",
+        "store_id": "SYN-STORE-G"
+      }
+    ],
+    "dc_capacity_controls": [
+      {
+        "dc_id": "SYN-DC-3",
+        "dispatch_on": "2099-06-15",
+        "opening_case_capacity": 1,
+        "proposed_cases": 1,
+        "remaining_case_capacity": 0
+      }
+    ],
+    "dc_stock_controls": [
+      {
+        "dc_id": "SYN-DC-3",
+        "opening_available_units": 20,
+        "proposed_units": 4,
+        "remaining_units": 16,
+        "sku": "SYN-SKU-SILVER"
+      }
+    ],
+    "inbound_register": [
+      {
+        "disposition": "after-coverage",
+        "eta": "2099-06-17",
+        "receipt_id": "SYN-INBOUND-JUNE",
+        "remaining_units": 11,
+        "sku": "SYN-SKU-SILVER",
+        "store_id": "SYN-STORE-F"
+      }
+    ],
+    "proposals": [
+      {
+        "arrival_on": "2099-06-15",
+        "arrival_opening_units": 6,
+        "case_pack": 4,
+        "closing_units": 4,
+        "coverage_end": "2099-06-16",
+        "dc_id": "SYN-DC-3",
+        "deferred_units": 0,
+        "dispatch_on": "2099-06-15",
+        "limits": [],
+        "opening_available_units": 6,
+        "post_arrival_lost_units": 0,
+        "pre_arrival_lost_units": 0,
+        "priority": 1,
+        "proposed_cases": 0,
+        "proposed_units": 0,
+        "raw_required_units": 0,
+        "requested_cases": 0,
+        "requested_units": 0,
+        "rounding_excess_units": 0,
+        "safety_shortfall_units": 0,
+        "sku": "SYN-SKU-SILVER",
+        "status": "no-need",
+        "store_id": "SYN-STORE-F"
+      },
+      {
+        "arrival_on": "2099-06-15",
+        "arrival_opening_units": 1,
+        "case_pack": 4,
+        "closing_units": 0,
+        "coverage_end": "2099-06-16",
+        "dc_id": "SYN-DC-3",
+        "deferred_units": 4,
+        "dispatch_on": "2099-06-15",
+        "limits": [
+          "dc-capacity"
+        ],
+        "opening_available_units": 1,
+        "post_arrival_lost_units": 0,
+        "pre_arrival_lost_units": 0,
+        "priority": 2,
+        "proposed_cases": 1,
+        "proposed_units": 4,
+        "raw_required_units": 6,
+        "requested_cases": 2,
+        "requested_units": 8,
+        "rounding_excess_units": 2,
+        "safety_shortfall_units": 2,
+        "sku": "SYN-SKU-SILVER",
+        "status": "partial",
+        "store_id": "SYN-STORE-G"
+      }
+    ],
+    "review_packet": {
+      "action_authorized": false,
+      "as_of": "2099-06-15",
+      "next_action": "Review proposal quantities, dated shortages, and DC controls before any separate business action.",
+      "owner_role": "Replenishment planner",
+      "policy_id": "SYN-POLICY-JUNE",
+      "review_days": 2,
+      "review_required": true,
+      "totals": {
+        "blocked_pairs": 0,
+        "deferred_units": 4,
+        "exception_count": 3,
+        "lost_units": 0,
+        "pairs": 2,
+        "proposed_cases": 1,
+        "proposed_units": 4,
+        "requested_cases": 2,
+        "requested_units": 8,
+        "safety_shortfall_units": 2
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

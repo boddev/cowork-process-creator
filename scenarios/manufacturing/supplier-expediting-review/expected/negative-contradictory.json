@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "INVALID_REVERSAL", "message": "Reversal must uniquely void an existing same-line receipt in full on or after its posting date.", "table": "receipt_events", "record_id": "V-N01", "field": "reversal_of", "related_id": "E-N01"}
+  ]
+}

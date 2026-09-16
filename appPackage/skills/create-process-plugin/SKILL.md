@@ -102,11 +102,11 @@ cross-skill filesystem access.
    actually available environment. Record failures and unrun cases, and
    refresh hashes after changes. Structural packaging cannot bypass
    evidence, coverage, decision or evaluation blockers.
-8. **Package or export.** Use the project build path for a coherent candidate.
-   Canonical `cowork-v1.28` requires approved publisher metadata;
-   `compatible-source` is a separate Draft source target. If blocked, export
-   creation source and explicit gaps instead of claiming an executable
-   package. Export a checked checkpoint before relying on a later session.
+8. **Package for Microsoft Cowork.** Use the project build path with only
+   `cowork-v1.28`, a root `manifest.json` and approved publisher metadata.
+   Never use a Claude/source manifest or conversion as a fallback. If blocked,
+   export editable creation source and explicit gaps without calling it an
+   installable plugin. Export a checkpoint before relying on a later session.
 
 ## Return a usable, accurately labeled handoff
 

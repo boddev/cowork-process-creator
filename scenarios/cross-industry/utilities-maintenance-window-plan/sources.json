@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "ibm-work-orders",
+      "title": "Work orders overview",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=tracking-work-orders-overview",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "scope": "Fetched primary body for Maximo Manage continuous-delivery work-order overview.",
+      "supported_claims": ["A work order specifies a task and the labor, materials, services, and tools required for it."],
+      "limitations": "No equipment condition, physical maintenance instructions, authorization or scheduling algorithm is established by this source."
+    },
+    {
+      "id": "ibm-resource-scheduling",
+      "title": "Scheduling work based on resource availability",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=view-scheduling-work-based-resource-availability",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "scope": "Fetched primary body describing Maximo Manage Graphical Scheduling availability review.",
+      "supported_claims": ["Planning considers start/end requirements and craft, asset, location, item and tool availability.", "The documented planning process checks resource availability and adjusts schedules."],
+      "limitations": "The fictional greedy search, capacities, kit policy and priorities are not IBM's solver, a standard, or safe-to-work clearance."
+    },
+    {
+      "id": "ibm-resource-view",
+      "title": "Resource planning in schedules",
+      "url": "https://www.ibm.com/docs/en/maximo-manage/cd?topic=overview-resource-planning-in-schedules",
+      "publisher": "IBM",
+      "accessed": "2026-09-14",
+      "scope": "Fetched primary body for required/available craft hours and other resource calendars.",
+      "supported_claims": ["Resource views distinguish required and available craft hours.", "Other resource availability includes assets, locations, items and tools with calendar context."],
+      "limitations": "Calendar availability is planning evidence, not a physical, legal or safety authorization. No industry-wide staffing, work-window or overtime standard is inferred."
+    }
+  ]
+}

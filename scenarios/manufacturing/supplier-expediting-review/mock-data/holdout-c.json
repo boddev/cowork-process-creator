@@ -1,0 +1,32 @@
+{
+  "config": {"as_of": "2026-11-10", "reporting_month": "2026-11", "horizon_days": 5, "tolerance_days": 2, "urgency_days": 2, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "C05", "supplier_id": "UNKNOWN", "item_id": "GASKET", "ordered_qty": 2, "original_requested_receipt": null, "state": "open"},
+    {"line_id": "C03", "supplier_id": "S-C1", "item_id": "HUB", "ordered_qty": 5, "original_requested_receipt": "2026-11-10", "state": "open"},
+    {"line_id": "C01", "supplier_id": "S-C1", "item_id": "BOLT", "ordered_qty": 4, "original_requested_receipt": "2026-11-08", "state": "open"},
+    {"line_id": "C04", "supplier_id": "S-C2", "item_id": "WASHER", "ordered_qty": 10, "original_requested_receipt": "2026-11-14", "state": "open"},
+    {"line_id": "C02", "supplier_id": "S-C1", "item_id": "NUT", "ordered_qty": 3, "original_requested_receipt": "2026-11-09", "state": "open"}
+  ],
+  "receipt_events": [
+    {"event_id": "RV-C02", "line_id": "C02", "posted_on": "2026-11-11", "qty": 3, "reversal_of": "R-C02"},
+    {"event_id": "R-C01", "line_id": "C01", "posted_on": "2026-11-08", "qty": 6, "reversal_of": null},
+    {"event_id": "U-C01", "line_id": "C99", "posted_on": "2026-11-10", "qty": 1, "reversal_of": null},
+    {"event_id": "R-C02", "line_id": "C02", "posted_on": "2026-11-09", "qty": 3, "reversal_of": null},
+    {"event_id": "R-C01", "line_id": "C01", "posted_on": "2026-11-08", "qty": 6, "reversal_of": null}
+  ],
+  "confirmations": [
+    {"confirmation_id": "C-C04", "line_id": "C04", "recorded_on": "2026-11-10", "confirmed_receipt": "2026-11-12", "remaining_qty": 6},
+    {"confirmation_id": "C-C03", "line_id": "C03", "recorded_on": "2026-11-09", "confirmed_receipt": "2026-11-09", "remaining_qty": 5}
+  ],
+  "requirements": [
+    {"requirement_id": "R-C43", "line_id": "C04", "need_by": "2026-11-16", "unmet_qty": 2, "criticality": "critical"},
+    {"requirement_id": "R-C42", "line_id": "C04", "need_by": "2026-11-12", "unmet_qty": 4, "criticality": "normal"},
+    {"requirement_id": "X-C01", "line_id": "C99", "need_by": "2026-11-13", "unmet_qty": 1, "criticality": "normal"},
+    {"requirement_id": "R-C05", "line_id": "C05", "need_by": "2026-11-15", "unmet_qty": 2, "criticality": "normal"},
+    {"requirement_id": "R-C41", "line_id": "C04", "need_by": "2026-11-12", "unmet_qty": 4, "criticality": "critical"}
+  ],
+  "suppliers": [
+    {"supplier_id": "S-C2", "buyer_role": "Planning buyer"},
+    {"supplier_id": "S-C1", "buyer_role": "History buyer"}
+  ]
+}

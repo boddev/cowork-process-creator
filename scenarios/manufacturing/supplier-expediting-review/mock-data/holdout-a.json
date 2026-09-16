@@ -1,0 +1,19 @@
+{
+  "config": {"as_of": "2026-10-05", "reporting_month": "2026-09", "horizon_days": 7, "tolerance_days": 2, "urgency_days": 2, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "A02", "supplier_id": "SA01", "item_id": "VALVE", "ordered_qty": 8, "original_requested_receipt": "2026-09-30", "state": "open"},
+    {"line_id": "A01", "supplier_id": "SA01", "item_id": "SEAL", "ordered_qty": 7, "original_requested_receipt": "2026-09-30", "state": "open"}
+  ],
+  "receipt_events": [
+    {"event_id": "V-A02", "line_id": "A02", "posted_on": "2026-10-01", "qty": 8, "reversal_of": "R-A02"},
+    {"event_id": "R-A02", "line_id": "A02", "posted_on": "2026-09-30", "qty": 8, "reversal_of": null},
+    {"event_id": "R-A01", "line_id": "A01", "posted_on": "2026-10-02", "qty": 7, "reversal_of": null}
+  ],
+  "confirmations": [
+    {"confirmation_id": "C-A02", "line_id": "A02", "recorded_on": "2026-10-05", "confirmed_receipt": "2026-10-05", "remaining_qty": 8}
+  ],
+  "requirements": [
+    {"requirement_id": "RQ-A02", "line_id": "A02", "need_by": "2026-10-05", "unmet_qty": 8, "criticality": "critical"}
+  ],
+  "suppliers": [{"supplier_id": "SA01", "buyer_role": "September buyer"}]
+}

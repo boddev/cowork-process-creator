@@ -1,0 +1,93 @@
+{
+  "events": [
+    {
+      "caption": "Loaded the supplied synthetic metadata packet; the six export counts include repeated rows.",
+      "facts": {
+        "array_rows": 5,
+        "as_of_date": "2026-09-14",
+        "policy_id": "SYN-POLICY-N"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-review-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "trials",
+              1
+            ],
+            [
+              "sites",
+              1
+            ],
+            [
+              "requirements",
+              1
+            ],
+            [
+              "documents",
+              1
+            ],
+            [
+              "artifacts",
+              1
+            ],
+            [
+              "open_review_tasks",
+              0
+            ]
+          ],
+          "title": "Raw export tables",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Rejected the input packet during business validation; no document assessment or task drafting ran.",
+      "facts": {
+        "errors": 2,
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-record-evidence",
+      "tables": [
+        {
+          "columns": [
+            "path",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "documents[0].issued_on",
+              "invalid-input",
+              "Expected a real Gregorian date in YYYY-MM-DD."
+            ],
+            [
+              "documents[0].version_seq",
+              "invalid-input",
+              "Expected an integer from 1 through 1000000 (not boolean)."
+            ]
+          ],
+          "title": "Input-packet errors",
+          "total_rows": 2
+        }
+      ]
+    }
+  ],
+  "input_sha256": "8cc92cd57ed4132a32101d355fc78a13231883302193a15e642442b70f53bd6a",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-01",
+  "schema_version": 1
+}

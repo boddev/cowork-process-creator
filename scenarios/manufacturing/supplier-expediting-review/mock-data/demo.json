@@ -1,0 +1,28 @@
+{
+  "config": {"as_of": "2026-09-14", "reporting_month": "2026-09", "horizon_days": 10, "tolerance_days": 0, "urgency_days": 3, "low_performance_percent": 90},
+  "po_schedule_lines": [
+    {"line_id": "P01", "supplier_id": "S01", "item_id": "BEARING", "ordered_qty": 100, "original_requested_receipt": "2026-09-10", "state": "open"},
+    {"line_id": "P02", "supplier_id": "S01", "item_id": "SHAFT", "ordered_qty": 80, "original_requested_receipt": "2026-09-16", "state": "open"},
+    {"line_id": "P03", "supplier_id": "S02", "item_id": "CARTON", "ordered_qty": 50, "original_requested_receipt": "2026-09-12", "state": "open"},
+    {"line_id": "P04", "supplier_id": "S02", "item_id": "INSERT", "ordered_qty": 40, "original_requested_receipt": "2026-09-21", "state": "open"}
+  ],
+  "receipt_events": [
+    {"event_id": "R-P01A", "line_id": "P01", "posted_on": "2026-09-09", "qty": 60, "reversal_of": null},
+    {"event_id": "R-P01B", "line_id": "P01", "posted_on": "2026-09-12", "qty": 40, "reversal_of": null},
+    {"event_id": "R-P02", "line_id": "P02", "posted_on": "2026-09-13", "qty": 20, "reversal_of": null},
+    {"event_id": "R-P03", "line_id": "P03", "posted_on": "2026-09-12", "qty": 50, "reversal_of": null}
+  ],
+  "confirmations": [
+    {"confirmation_id": "C-P02A", "line_id": "P02", "recorded_on": "2026-09-11", "confirmed_receipt": "2026-09-16", "remaining_qty": 60},
+    {"confirmation_id": "C-P02B", "line_id": "P02", "recorded_on": "2026-09-14", "confirmed_receipt": "2026-09-18", "remaining_qty": 60}
+  ],
+  "requirements": [
+    {"requirement_id": "R-P02A", "line_id": "P02", "need_by": "2026-09-16", "unmet_qty": 50, "criticality": "critical"},
+    {"requirement_id": "R-P02B", "line_id": "P02", "need_by": "2026-09-20", "unmet_qty": 10, "criticality": "normal"},
+    {"requirement_id": "R-P04", "line_id": "P04", "need_by": "2026-09-21", "unmet_qty": 40, "criticality": "normal"}
+  ],
+  "suppliers": [
+    {"supplier_id": "S01", "buyer_role": "Northern components buyer"},
+    {"supplier_id": "S02", "buyer_role": "Packaging buyer"}
+  ]
+}

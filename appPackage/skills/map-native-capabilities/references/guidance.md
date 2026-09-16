@@ -83,10 +83,10 @@ endpoint, tool and authorization metadata accepted by the selected target.
 Route serialization to the build skill's pinned source/target rules rather
 than guessing manifest keys.
 
-The current compatible-source subset rejects declared remote connectors.
-Use canonical packaging with approved metadata or an actually verified
-existing native connection where suitable. Otherwise export creation source
-and the blocker; do not omit a required tool binding to force conversion.
+Use native Microsoft Cowork v1.28 packaging with approved metadata, or an
+actually verified existing native connection where suitable. Otherwise export
+editable creation source and the blocker. Do not omit a required tool binding
+or use a Claude-compatible manifest to force a package through conversion.
 
 `packaged-remote` describes configuration of an existing endpoint, not an
 MCP authoring server or a deployment request. A schema-valid URL is neither

@@ -1,0 +1,9 @@
+{
+  "schema_version":1,"batch_id":"SYN-AP-BAD-CAP","as_of":"2026-09-14T12:00:00Z","business_utc_offset_minutes":0,
+  "controls":{"control_version":"SYN-CTRL-01","approval_state":"approved"},
+  "invoices":[{"invoice_id":"SYN-CAP-INV","legal_entity_id":"SYN-ENT-01","vendor_id":"SYN-VEN-01","currency":"USD","vendor_invoice_number":"SYN-CAP-001","invoice_at":"2026-09-10T10:00:00Z","header_net_minor":1000,"lines":[{"line_id":"SYN-LINE-01","po_id":"SYN-CAP-PO","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":1000,"unit_price_minor":1000,"line_net_minor":1000}]}],
+  "po_lines":[{"legal_entity_id":"SYN-ENT-01","po_id":"SYN-CAP-PO","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-01","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":1000,"approval_state":"approved","approved_at":"2026-09-01T09:00:00Z"}],
+  "receipt_lines":[{"receipt_line_id":"SYN-CAP-R","legal_entity_id":"SYN-ENT-01","po_id":"SYN-CAP-PO","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-01","currency":"USD","unit":"EA","quantity_milliunits":1000,"received_at":"2026-09-08T08:00:00Z","status":"posted","posted_at":"2026-09-08T09:00:00Z"}],
+  "historical_invoices":[{"historical_invoice_id":"SYN-CAP-H","legal_entity_id":"SYN-ENT-01","vendor_id":"SYN-VEN-01","currency":"USD","vendor_invoice_number":"SYN-CAP-PRIOR","status":"posted","posted_at":"2026-09-09T09:00:00Z"}],
+  "prior_allocations":[{"allocation_id":"SYN-CAP-A","historical_invoice_id":"SYN-CAP-H","legal_entity_id":"SYN-ENT-01","po_id":"SYN-CAP-PO","po_line_id":"SYN-LINE-01","receipt_line_id":"SYN-CAP-R","quantity_milliunits":1001,"recorded_at":"2026-09-10T09:00:00Z"}]
+}

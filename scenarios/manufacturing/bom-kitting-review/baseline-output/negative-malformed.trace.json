@@ -1,0 +1,219 @@
+{
+  "events": [
+    {
+      "caption": "Read one synthetic JSON bundle containing six independent logical exports; no live or physical multi-file ingestion.",
+      "facts": {
+        "business_connections": 0,
+        "logical_exports": 6
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows_received"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work_orders",
+              1
+            ],
+            [
+              "bom_versions",
+              1
+            ],
+            [
+              "bom_lines",
+              2
+            ],
+            [
+              "items",
+              2
+            ],
+            [
+              "stock_lots",
+              2
+            ],
+            [
+              "inbound",
+              0
+            ]
+          ],
+          "title": "Received logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Source structure or business values failed validation before material calculation.",
+      "facts": {
+        "fatal_errors": 5
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-structure",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "INVALID_DECIMAL",
+              null,
+              "BAD-L1",
+              "quantity_per",
+              "Expected a canonical decimal string with at most four fractional places."
+            ],
+            [
+              "INVALID_DECIMAL",
+              null,
+              "BAD-L2",
+              "quantity_per",
+              "Expected a canonical decimal string with at most four fractional places."
+            ],
+            [
+              "MALFORMED_FIELD",
+              null,
+              "BAD-S1",
+              "quantity",
+              "Expected an integer in 0..1000000; booleans are not integers."
+            ],
+            [
+              "MALFORMED_FIELD",
+              "BAD01",
+              "BAD01",
+              "quantity",
+              "Expected an integer in 1..1000000; booleans are not integers."
+            ],
+            [
+              "RESERVATION_EXCEEDS_STOCK",
+              null,
+              "BAD-S2",
+              "reserved_external_qty",
+              "External reservations exceed physical stock."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Fatal business evidence supersedes partial calculations; no material plan is published.",
+      "facts": {
+        "fatal_errors": 5
+      },
+      "kind": "exception",
+      "sequence": 3,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "order_id",
+            "source_id",
+            "field",
+            "message_prefix"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "INVALID_DECIMAL",
+              null,
+              "BAD-L1",
+              "quantity_per",
+              "Expected a canonical decimal string with at most four fractional places."
+            ],
+            [
+              "INVALID_DECIMAL",
+              null,
+              "BAD-L2",
+              "quantity_per",
+              "Expected a canonical decimal string with at most four fractional places."
+            ],
+            [
+              "MALFORMED_FIELD",
+              null,
+              "BAD-S1",
+              "quantity",
+              "Expected an integer in 0..1000000; booleans are not integers."
+            ],
+            [
+              "MALFORMED_FIELD",
+              "BAD01",
+              "BAD01",
+              "quantity",
+              "Expected an integer in 1..1000000; booleans are not integers."
+            ],
+            [
+              "RESERVATION_EXCEEDS_STOCK",
+              null,
+              "BAD-S2",
+              "reserved_external_qty",
+              "External reservations exceed physical stock."
+            ]
+          ],
+          "title": "Observed exceptions",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "The input was rejected. No assignments or production authorization were emitted.",
+      "facts": {
+        "exceptions": 5,
+        "output_keys": 0,
+        "status": "rejected"
+      },
+      "kind": "output",
+      "sequence": 4,
+      "step_id": "close-plan",
+      "tables": [
+        {
+          "columns": [
+            "status",
+            "plan_emitted",
+            "production_authorized"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "rejected",
+              false,
+              false
+            ]
+          ],
+          "title": "Rejected review",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "2f4107b2222f6c6f8bcb8056f6a7218b41eeef84c3b5cc349ab7daacc018fdce",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-02-01",
+  "horizon_end": "2026-02-05",
+  "work_orders": [
+    {"order_id": "CY01", "item_id": "CY", "site": "CELL", "start_date": "2026-02-03", "quantity": 1, "priority": 1, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "CY-V", "item_id": "CY", "site": "CELL", "valid_from": "2026-02-01", "valid_to": "2026-02-28", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "MID-V", "item_id": "MID", "site": "CELL", "valid_from": "2026-02-01", "valid_to": "2026-02-28", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "C-TO-M", "version_id": "CY-V", "component_id": "MID", "line_type": "Phantom", "quantity_per": "1", "scrap_percent": "0"},
+    {"line_id": "M-TO-C", "version_id": "MID-V", "component_id": "CY", "line_type": "Phantom", "quantity_per": "1", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "CY", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "MID", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [],
+  "inbound": []
+}

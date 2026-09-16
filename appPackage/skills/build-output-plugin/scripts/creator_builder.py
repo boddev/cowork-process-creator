@@ -16,7 +16,8 @@ import zlib
 from pathlib import Path
 from urllib.parse import urlsplit
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
+TARGET = "cowork-v1.28"
 SPEC_VERSION = "creator-plugin-1"
 SCHEMA = "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json"
 MAX_COMPANIONS = 20
@@ -447,7 +448,7 @@ def source_payload(source: Path) -> tuple[dict[str, bytes], dict, list]:
 
 
 def publishing_metadata(path: Path | None) -> dict:
-    require(path is not None, "cowork-v1.28 requires --metadata with supplied app_id and approved publisher name/website/privacy/terms URLs; compatible-source is a separately labeled draft export")
+    require(path is not None, "cowork-v1.28 requires --metadata with supplied app_id and approved publisher name/website/privacy/terms URLs; missing metadata blocks packaging, with no alternative-format fallback")
     check_regular(path)
     require(path.stat().st_size <= 20_000, "Publishing metadata exceeds the prototype size ceiling")
     check_text(path.read_bytes(), "Publishing metadata")
@@ -481,33 +482,24 @@ def png_icon(size: int, outline: bool) -> bytes:
     return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", header) + chunk(b"IDAT", zlib.compress(bytes(rows), level=9)) + chunk(b"IEND", b"")
 
 
-def assemble(source: Path, target: str, metadata_path: Path | None = None) -> tuple[dict[str, bytes], dict]:
+def assemble(source: Path, target: str = TARGET, metadata_path: Path | None = None) -> tuple[dict[str, bytes], dict]:
+    require(target == TARGET, "Only native Microsoft Copilot Cowork packages are supported: use cowork-v1.28 with approved metadata; Claude-compatible source ZIPs are not plugin outputs")
     payload, spec, connectors = source_payload(source)
-    if target == "cowork-v1.28":
-        metadata = publishing_metadata(metadata_path)
-        manifest = {
-            "$schema": SCHEMA, "manifestVersion": "1.28", "version": spec["version"],
-            "id": metadata["app_id"], "developer": metadata["developer"],
-            "name": {"short": spec["title"], "full": spec["title"]},
-            "description": {"short": spec["summary"], "full": spec["description"]},
-            "icons": {"color": "color.png", "outline": "outline.png"},
-            "accentColor": "#264669",
-            "agentSkills": [{"folder": "./skills/" + name} for name in sorted(spec["skills"])],
-        }
-        payload["manifest.json"] = json_bytes(manifest)
-        payload["color.png"] = png_icon(192, outline=False)
-        payload["outline.png"] = png_icon(32, outline=True)
-        if connectors:
-            manifest["agentConnectors"] = connectors
-            payload["manifest.json"] = json_bytes(manifest)
-    elif target == "compatible-source":
-        require(not connectors, "compatible-source cannot preserve the declared remote connector/auth/tool-descriptor subset; use cowork-v1.28 with real metadata or an existing native connection, not a lossy conversion")
-        require(metadata_path is None, "compatible-source does not consume publishing metadata; use the canonical target instead")
-        payload[".claude-plugin/plugin.json"] = json_bytes({
-            "name": spec["name"], "version": spec["version"], "description": spec["description"],
-        })
-    else:
-        raise BuildError("Unsupported package target")
+    metadata = publishing_metadata(metadata_path)
+    manifest = {
+        "$schema": SCHEMA, "manifestVersion": "1.28", "version": spec["version"],
+        "id": metadata["app_id"], "developer": metadata["developer"],
+        "name": {"short": spec["title"], "full": spec["title"]},
+        "description": {"short": spec["summary"], "full": spec["description"]},
+        "icons": {"color": "color.png", "outline": "outline.png"},
+        "accentColor": "#264669",
+        "agentSkills": [{"folder": "./skills/" + name} for name in sorted(spec["skills"])],
+    }
+    if connectors:
+        manifest["agentConnectors"] = connectors
+    payload["manifest.json"] = json_bytes(manifest)
+    payload["color.png"] = png_icon(192, outline=False)
+    payload["outline.png"] = png_icon(32, outline=True)
     return payload, spec
 
 
@@ -532,7 +524,8 @@ def write_new_file(path: Path, content: bytes) -> None:
         raise
 
 
-def build(source: Path, output: Path, report_path: Path, target: str, metadata_path: Path | None = None) -> dict:
+def build(source: Path, output: Path, report_path: Path, target: str = TARGET, metadata_path: Path | None = None) -> dict:
+    require(target == TARGET, "Only native Microsoft Copilot Cowork packages are supported; alternative source ZIPs cannot satisfy a plugin build")
     source_resolved = source.resolve(strict=True)
     for destination in (output, report_path):
         require(not destination.exists() and not destination.is_symlink(), f"{destination.name}: refusing to overwrite existing output")
@@ -547,14 +540,14 @@ def build(source: Path, output: Path, report_path: Path, target: str, metadata_p
         "builder_version": VERSION,
         "target": target,
         "plugin": spec["name"],
-        "status": "Package built" if target == "cowork-v1.28" else "Draft",
-        "artifact_kind": "native-package" if target == "cowork-v1.28" else "compatible-source-export",
+        "status": "Package built",
+        "artifact_kind": "native-package",
         "validation_scope": "Creator emitted source/manifest/descriptor subset; not the full Microsoft schema or a code sandbox",
         "host_acceptance": "unverified",
         "native_execution": "not_attested_by_builder",
         "manual_invocation": "unverified",
         "scheduling": "not_exercised",
-        "publishing_metadata": "supplied; syntax checked only" if target == "cowork-v1.28" else "not supplied or represented by this source format",
+        "publishing_metadata": "supplied; syntax checked only",
         "sha256": hashlib.sha256(archive).hexdigest(),
         "size_bytes": len(archive),
         "files": [{"path": name, "size_bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()} for name, data in sorted(payload.items())],
@@ -578,7 +571,7 @@ def main() -> int:
     build_parser.add_argument("--source", type=Path, required=True)
     build_parser.add_argument("--output", type=Path, required=True)
     build_parser.add_argument("--report", type=Path, required=True)
-    build_parser.add_argument("--target", choices=("cowork-v1.28", "compatible-source"), default="cowork-v1.28")
+    build_parser.add_argument("--target", choices=(TARGET,), default=TARGET)
     build_parser.add_argument("--metadata", type=Path)
     args = parser.parse_args()
     try:

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Only synthetic local file exports are used. No live LIS/EHR, provider-authorization lookup, endpoint, authentication, accession write, notification, or clinical action is provisioned or implied. Native creation, installation, and independent invocation remain blocked pending approved Computer Use tools, an unlocked accessible session, and coordinator authorization."
+}

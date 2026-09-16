@@ -6,9 +6,9 @@ The runtime skill reads a new receipt, confirms diners and shares, calculates
 exact per-person amounts, and uses existing native spreadsheet facilities to
 create a new workbook. No business connection, sending or scheduling is involved.
 
-For a ready-to-download package and Cowork import instructions, start with the
-[quick start](README.md). End users do not need to run the development commands
-below.
+For current native packaging prerequisites and the blocked package status,
+start with the [example guide](README.md). No current native ZIP is available;
+end users do not need to run the development commands below.
 
 ## Layout and runtime boundary
 
@@ -19,8 +19,8 @@ and expected-output fixtures. The candidate uses the current
 
 | File | Purpose |
 |---|---|
-| `README.md` | Download link, Cowork quick start and source-build instructions |
-| `bill-splitter.zip` / `bill-splitter.report.json` | Generated runtime-only preview and its source-only build report |
+| `README.md` / `status.json` | Native-only build prerequisites and truthful blocked package status |
+| `archive/v1.0.1/bill-splitter.zip` / `bill-splitter.report.json` | Unchanged historical compatible-source preview and original report, not current native output |
 | `candidate/skills/split-restaurant-bill/SKILL.md` | Receipt-reading, clarification, calculation and workbook workflow |
 | `candidate/skills/split-restaurant-bill/scripts/split_bill.py` | Bounded standard-library JSON-to-JSON arithmetic helper |
 | `candidate/skills/split-restaurant-bill/scripts/safe_json.py` | Owned copy of the bounded JSON pattern, adapted for exact numeric parsing |
@@ -34,8 +34,8 @@ dependencies. The original workbook is optional: the owned layout reference
 describes how to recreate it, or a user can supply a template on a future run.
 None of those original attachments, the original source archive, or workbook
 lock files is included in this contribution or its output package. The
-downloadable `bill-splitter.zip` is newly built from this adapted candidate,
-not a copy of the original archive.
+archived v1.0.1 ZIP was built from the earlier adapted candidate, not copied
+from the original supplied archive. It is not relabeled as a native package.
 
 An invocation requires a new receipt and 1-8 diner names. Confirm the share
 assignments and tip basis before calculating; support at most 20 receipt
@@ -71,19 +71,22 @@ Run from the repository root using the existing standard-library test runner:
 python -B -m unittest discover -s tests -p test_bill_splitter.py -v
 ```
 
-To exercise the helper or export its source, use new output paths. The commands
-below refuse to overwrite earlier files; choose another name on a subsequent
-run.
+To exercise the helper or validate its source, use new output paths. The
+native build additionally requires this app's already-approved metadata file;
+it is not supplied by this repository. These commands refuse to overwrite
+earlier files; choose another name on a subsequent run.
 
 ```powershell
 New-Item -ItemType Directory -Force .local\bill-splitter | Out-Null
 python -B examples\bill-splitter\candidate\skills\split-restaurant-bill\scripts\split_bill.py --input examples\bill-splitter\input-new.json --output .local\bill-splitter\split.json
 python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py validate --source examples\bill-splitter\candidate
-python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py build --source examples\bill-splitter\candidate --target compatible-source --output .local\bill-splitter\bill-splitter.zip --report .local\bill-splitter\bill-splitter.report.json
+python -B appPackage\skills\build-output-plugin\scripts\creator_builder.py build --source examples\bill-splitter\candidate --target cowork-v1.28 --metadata .local\publishing\restaurant-bill-splitter.json --output .local\bill-splitter\bill-splitter.zip --report .local\bill-splitter\bill-splitter.report.json
 ```
 
-The compatible-source export is **Draft**, not a canonical v1.28 package or
-workflow-readiness attestation. The supplied archive was an output plugin,
+Current packaging requires native Microsoft manifest v1.28, with no alternate
+target or conversion fallback. It is blocked until approved app/publisher
+metadata is supplied, and a local build is not workflow-readiness or native
+acceptance evidence. The originally supplied archive was an output plugin,
 not a creation-source checkpoint: no canonical blueprint, host profile,
 coverage ledger or revision-bound evaluation record was supplied. These
 source-only commands do not replace `creator_project.py check` for an
@@ -95,8 +98,11 @@ No authoring history or native evaluation evidence has been fabricated.
 Original supplied archive: `restaurant-bill-splitter-source.zip`.
 SHA-256: `939527c87777887134b4986534621c88c0ce185baff37eb0148afc2e897636f9`.
 The original archive and local source assets remain unchanged.
-The original plugin was version 1.0.0; this adapted candidate is version 1.0.1
-so it can be distinguished from that generated artifact.
+The original plugin was version 1.0.0. The adapted compatible-source version
+1.0.1 and its report are now archived unchanged. Current source version 1.1.0
+changes only the packaging contract and its documentation/status: the helper,
+skill resources, business steps and independent input/expected fixture bytes
+are unchanged from the published contribution.
 
 The contribution adds the repository's source manifest and moves the original
 standalone test cases into the root `unittest` suite rather than shipping

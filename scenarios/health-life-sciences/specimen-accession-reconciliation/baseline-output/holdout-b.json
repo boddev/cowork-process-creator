@@ -1,0 +1,335 @@
+{
+  "exceptions": [
+    {
+      "code": "missing-link",
+      "entity_key": "clarifications:SYN-B-Q3",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-link"
+      ]
+    },
+    {
+      "code": "missing-link",
+      "entity_key": "row:-|SYN-B-LX|SYN-B-S9",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-link",
+        "missing-receipt"
+      ]
+    },
+    {
+      "code": "missing-link",
+      "entity_key": "row:SYN-B-O9|SYN-B-L9|-",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-link",
+        "missing-receipt"
+      ]
+    },
+    {
+      "code": "missing-identity",
+      "entity_key": "row:SYN-B-O2|SYN-B-L3|SYN-B-S2",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-identity",
+        "specimen-label-mismatch",
+        "missing-collection-time"
+      ]
+    },
+    {
+      "code": "missing-test-metadata",
+      "entity_key": "row:SYN-B-O3|SYN-B-L4|-",
+      "message": "Administrative evidence requires qualified review; no clinical action.",
+      "reason_codes": [
+        "missing-test-metadata",
+        "missing-receipt"
+      ]
+    },
+    {
+      "code": "duplicate-export",
+      "entity_key": "receipts:SYN-B-R1",
+      "message": "Identical export rows collapsed without changing evidence.",
+      "reason_codes": [
+        "duplicate-export"
+      ]
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-09-16T12:00:00Z",
+    "clinical_disposition_performed": false,
+    "draft_clarification_queue": [
+      {
+        "action": "request-administrative-review",
+        "entity_key": "clarifications:SYN-B-Q3",
+        "existing_clarification_refs": [],
+        "owner_role_id": null,
+        "reason_codes": [
+          "missing-link"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:-|SYN-B-LX|SYN-B-S9",
+        "existing_clarification_refs": [
+          "SYN-B-REF2"
+        ],
+        "owner_role_id": null,
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-B-O9|SYN-B-L9|-",
+        "existing_clarification_refs": [],
+        "owner_role_id": null,
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-B-O2|SYN-B-L3|SYN-B-S2",
+        "existing_clarification_refs": [
+          "SYN-B-REF1"
+        ],
+        "owner_role_id": "SYN-ROLE-ORDER",
+        "reason_codes": [
+          "missing-identity",
+          "specimen-label-mismatch",
+          "missing-collection-time"
+        ]
+      },
+      {
+        "action": "request-administrative-review",
+        "entity_key": "row:SYN-B-O3|SYN-B-L4|-",
+        "existing_clarification_refs": [],
+        "owner_role_id": "SYN-ROLE-ORDER",
+        "reason_codes": [
+          "missing-test-metadata",
+          "missing-receipt"
+        ]
+      }
+    ],
+    "duplicate_records": [
+      {
+        "record_id": "SYN-B-R1",
+        "source_rows": [
+          1,
+          2
+        ],
+        "table": "receipts"
+      }
+    ],
+    "excluded_evidence": [],
+    "policy_id": "SYN-B-POLICY",
+    "qualified_review_required": true,
+    "reconciliation_rows": [
+      {
+        "accession_ids": [
+          "SYN-B-A9"
+        ],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "unknown",
+        "order_id": null,
+        "order_line_id": "SYN-B-LX",
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ],
+        "receipt_ids": [],
+        "source_refs": [
+          "accessions:SYN-B-A9@3",
+          "clarifications:SYN-B-Q2@2"
+        ],
+        "specimen_id": "SYN-B-S9",
+        "state_event_ids": []
+      },
+      {
+        "accession_ids": [
+          "SYN-B-A1"
+        ],
+        "administrative_state": "reconciled",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-B-O1",
+        "order_line_id": "SYN-B-L1",
+        "reason_codes": [],
+        "receipt_ids": [
+          "SYN-B-R1"
+        ],
+        "source_refs": [
+          "accessions:SYN-B-A1@1",
+          "order_events:SYN-B-E1@1",
+          "order_lines:SYN-B-L1@1",
+          "orders:SYN-B-O1@1",
+          "receipts:SYN-B-R1@1",
+          "receipts:SYN-B-R1@2",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-B-S1",
+        "state_event_ids": [
+          "SYN-B-E1"
+        ]
+      },
+      {
+        "accession_ids": [
+          "SYN-B-A2"
+        ],
+        "administrative_state": "reconciled",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-B-O1",
+        "order_line_id": "SYN-B-L2",
+        "reason_codes": [],
+        "receipt_ids": [
+          "SYN-B-R1"
+        ],
+        "source_refs": [
+          "accessions:SYN-B-A2@2",
+          "order_events:SYN-B-E1@1",
+          "order_lines:SYN-B-L2@2",
+          "orders:SYN-B-O1@1",
+          "receipts:SYN-B-R1@1",
+          "receipts:SYN-B-R1@2",
+          "test_catalog:SYN-T2@2"
+        ],
+        "specimen_id": "SYN-B-S1",
+        "state_event_ids": [
+          "SYN-B-E1"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-B-O2",
+        "order_line_id": "SYN-B-L3",
+        "reason_codes": [
+          "missing-identity",
+          "specimen-label-mismatch",
+          "missing-collection-time"
+        ],
+        "receipt_ids": [
+          "SYN-B-R2"
+        ],
+        "source_refs": [
+          "clarifications:SYN-B-Q1@1",
+          "order_events:SYN-B-E2@2",
+          "order_lines:SYN-B-L3@3",
+          "orders:SYN-B-O2@2",
+          "receipts:SYN-B-R2@3",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": "SYN-B-S2",
+        "state_event_ids": [
+          "SYN-B-E2"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "active",
+        "order_id": "SYN-B-O3",
+        "order_line_id": "SYN-B-L4",
+        "reason_codes": [
+          "missing-test-metadata",
+          "missing-receipt"
+        ],
+        "receipt_ids": [],
+        "source_refs": [
+          "order_events:SYN-B-E3@3",
+          "order_lines:SYN-B-L4@4",
+          "orders:SYN-B-O3@3"
+        ],
+        "specimen_id": null,
+        "state_event_ids": [
+          "SYN-B-E3"
+        ]
+      },
+      {
+        "accession_ids": [],
+        "administrative_state": "review",
+        "age_seconds": null,
+        "imported_order_state": "unknown",
+        "order_id": "SYN-B-O9",
+        "order_line_id": "SYN-B-L9",
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ],
+        "receipt_ids": [],
+        "source_refs": [
+          "order_lines:SYN-B-L9@5",
+          "test_catalog:SYN-T1@1"
+        ],
+        "specimen_id": null,
+        "state_event_ids": []
+      }
+    ],
+    "sla_seconds": 7200,
+    "summary": {
+      "duplicate_rows_collapsed": 1,
+      "excluded_records": 0,
+      "ledger_rows": 6,
+      "pending_within_window": 0,
+      "reconciled": 2,
+      "review": 4,
+      "unique_order_lines": 5,
+      "unique_received_specimens": 2,
+      "unmatched_records": 4
+    },
+    "unmatched_records": [
+      {
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ],
+        "record_id": "SYN-B-A9",
+        "source_refs": [
+          "accessions:SYN-B-A9@3"
+        ],
+        "table": "accessions"
+      },
+      {
+        "reason_codes": [
+          "missing-link"
+        ],
+        "record_id": "SYN-B-Q3",
+        "source_refs": [
+          "clarifications:SYN-B-Q3@3"
+        ],
+        "table": "clarifications"
+      },
+      {
+        "reason_codes": [
+          "missing-test-metadata",
+          "missing-receipt"
+        ],
+        "record_id": "SYN-B-L4",
+        "source_refs": [
+          "order_lines:SYN-B-L4@4"
+        ],
+        "table": "order_lines"
+      },
+      {
+        "reason_codes": [
+          "missing-link",
+          "missing-receipt"
+        ],
+        "record_id": "SYN-B-L9",
+        "source_refs": [
+          "order_lines:SYN-B-L9@5"
+        ],
+        "table": "order_lines"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

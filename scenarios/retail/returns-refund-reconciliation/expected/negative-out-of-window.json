@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "request_proposals": [
+      {
+        "request_id": "SYN-REQUEST-W", "requested_on": "2099-10-09",
+        "supplied_keys": {"store_id": "SYN-STORE-W", "receipt_id": "SYN-RECEIPT-W", "order_id": "SYN-ORDER-W", "invoice_id": "SYN-INVOICE-W", "line_id": "SYN-LINE-W", "sku": "SYN-SKU-W"},
+        "reason": "wrong-size", "condition": "unworn", "requested_qty": 1, "join_status": "matched",
+        "original": {"order_id": "SYN-ORDER-W", "store_id": "SYN-STORE-W", "receipt_id": "SYN-RECEIPT-W", "invoice_id": "SYN-INVOICE-W", "line_id": "SYN-LINE-W", "sku": "SYN-SKU-W", "currency": "USD", "payment_reference": "SYN-CARD-W"},
+        "disposition": "ineligible", "reason_codes": ["return-window-exceeded"], "age_days": 8,
+        "prior_qty": 0, "earlier_proposed_qty": 0, "available_qty": 1, "proposed_qty": 0, "deferred_qty": 1,
+        "entitlement_before": {"qty": 0, "merchandise_minor": 0, "tax_minor": 0},
+        "entitlement_after": {"qty": 0, "merchandise_minor": 0, "tax_minor": 0},
+        "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_total_minor": 0
+      }
+    ],
+    "line_eligibility": [
+      {
+        "order_id": "SYN-ORDER-W", "line_id": "SYN-LINE-W", "sku": "SYN-SKU-W", "currency": "USD", "quarantined": false,
+        "original_qty": 1, "original_merchandise_minor": 700, "original_tax_minor": 70,
+        "observed_posted_qty": 0, "observed_posted_merchandise_minor": 0, "observed_posted_tax_minor": 0,
+        "prior_qty": 0, "prior_merchandise_minor": 0, "prior_tax_minor": 0,
+        "proposed_qty": 0, "proposed_merchandise_minor": 0, "proposed_tax_minor": 0,
+        "remaining_qty": 1, "remaining_merchandise_minor": 700, "remaining_tax_minor": 70
+      }
+    ],
+    "order_money_controls": [
+      {
+        "order_id": "SYN-ORDER-W", "currency": "USD", "payment_reference": "SYN-CARD-W", "payment_method": "card", "confirmed": true, "quarantined": false, "reason_codes": [],
+        "authorized_minor": 770, "captured_minor": 770, "original_merchandise_minor": 700, "original_tax_minor": 70, "original_total_minor": 770,
+        "observed_posted_minor": 0, "prior_minor": 0,
+        "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_minor": 0,
+        "prior_plus_proposed_minor": 0, "remaining_minor": 770, "cap_ok": true
+      }
+    ],
+    "currency_controls": [
+      {"currency": "USD", "order_count": 1, "quarantined_order_count": 0, "reconciled_order_count": 1, "captured_minor": 770, "reconciled_captured_minor": 770, "prior_minor": 0, "proposed_merchandise_minor": 0, "proposed_tax_minor": 0, "proposed_minor": 0, "prior_plus_proposed_minor": 0, "remaining_minor": 770}
+    ],
+    "review_packet": {
+      "action_authorized": false, "owner_role": "Returns reconciliation analyst",
+      "as_of": "2099-10-09", "period_start": "2099-10-09", "period_end": "2099-10-09", "window_days": 7, "allow_partial_requests": true,
+      "request_count": 1, "proposed_qty": 0, "deferred_qty": 1, "exception_count": 1,
+      "unresolved_request_ids": [], "quarantined_order_ids": [], "review_request_ids": ["SYN-REQUEST-W"],
+      "next_actions": [
+        "Verify source completeness and resolve every exception with the original transaction owner.",
+        "Review proposals against current authorized return and payment policy; this packet grants no approval.",
+        "Use an authorized operational process only after separate approval; no refund, order or stock change was executed."
+      ]
+    }
+  },
+  "exceptions": [
+    {"code": "return-window-exceeded", "message": "Request age exceeds the configured inclusive return window.", "scope": "request", "entity_id": "SYN-REQUEST-W"}
+  ]
+}

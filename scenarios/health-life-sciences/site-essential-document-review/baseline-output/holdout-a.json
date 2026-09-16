@@ -1,0 +1,316 @@
+{
+  "exceptions": [
+    {
+      "code": "requirement-review",
+      "message": "Configured administrative evidence needs qualified review.",
+      "primary_reason": "expiring-soon",
+      "reason_codes": [
+        "expiring-soon"
+      ],
+      "requirement_id": "SYN-RA1",
+      "site_id": "SYN-SA"
+    }
+  ],
+  "outputs": {
+    "as_of_date": "2028-02-29",
+    "draft_review_queue": [
+      {
+        "action": "request-evidence-review",
+        "draft_review_by": null,
+        "existing_task_ids": [
+          "SYN-KA1"
+        ],
+        "owner_role_id": "SYN-ROLEA",
+        "reason_code": "expiring-soon",
+        "requirement_id": "SYN-RA1",
+        "routing": "existing-task",
+        "site_id": "SYN-SA"
+      }
+    ],
+    "evidence_register": [
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-AA1",
+        "source_refs": [
+          "SYN-EXPORT-AA1"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-AA2",
+        "source_refs": [
+          "SYN-EXPORT-AA2"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-AA3",
+        "source_refs": [
+          "SYN-EXPORT-AA3"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced",
+          "selected-artifact"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-AA4",
+        "source_refs": [
+          "SYN-EXPORT-AA4"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "referenced"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-AA5",
+        "source_refs": [
+          "SYN-EXPORT-AA5"
+        ],
+        "table": "artifacts"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-DA1",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "future-recorded"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-DA2",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-DA3",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "selected"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-DA4",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "future-effective"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-DA5",
+        "source_refs": [],
+        "table": "documents"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "task-linked"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-KA1",
+        "source_refs": [],
+        "table": "open_review_tasks"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "future-task"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-KA2",
+        "source_refs": [],
+        "table": "open_review_tasks"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-RA1",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-RA2",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "applicable"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-RA3",
+        "source_refs": [],
+        "table": "requirements"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "in-scope"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-SA",
+        "source_refs": [],
+        "table": "sites"
+      },
+      {
+        "conflicting_variants": [],
+        "copies": 1,
+        "dispositions": [
+          "context"
+        ],
+        "distinct_variants": 1,
+        "record_id": "SYN-TA",
+        "source_refs": [],
+        "table": "trials"
+      }
+    ],
+    "human_review_required": true,
+    "policy_id": "SYN-POLICY-A",
+    "requirement_matrix": [
+      {
+        "assessment_state": "warning",
+        "days_to_expiry": 30,
+        "document_type": "ethics-opinion",
+        "effective_expiry": "2028-03-30",
+        "expiry_basis": "explicit",
+        "primary_reason": "expiring-soon",
+        "reason_codes": [
+          "expiring-soon"
+        ],
+        "requirement_id": "SYN-RA1",
+        "selected_document_id": "SYN-DA1",
+        "site_id": "SYN-SA",
+        "source_refs": [
+          "artifacts/SYN-AA1",
+          "artifacts/SYN-AA2",
+          "documents/SYN-DA1",
+          "documents/SYN-DA2",
+          "requirements/SYN-RA1",
+          "sites/SYN-SA",
+          "trials/SYN-TA"
+        ],
+        "trial_id": "SYN-TA"
+      },
+      {
+        "assessment_state": "no-exception",
+        "days_to_expiry": 31,
+        "document_type": "training",
+        "effective_expiry": "2028-03-31",
+        "expiry_basis": "refresh",
+        "primary_reason": null,
+        "reason_codes": [],
+        "requirement_id": "SYN-RA2",
+        "selected_document_id": "SYN-DA3",
+        "site_id": "SYN-SA",
+        "source_refs": [
+          "artifacts/SYN-AA3",
+          "artifacts/SYN-AA5",
+          "documents/SYN-DA3",
+          "documents/SYN-DA5",
+          "requirements/SYN-RA2",
+          "sites/SYN-SA",
+          "trials/SYN-TA"
+        ],
+        "trial_id": "SYN-TA"
+      },
+      {
+        "assessment_state": "no-exception",
+        "days_to_expiry": null,
+        "document_type": "qualification",
+        "effective_expiry": null,
+        "expiry_basis": "none",
+        "primary_reason": null,
+        "reason_codes": [],
+        "requirement_id": "SYN-RA3",
+        "selected_document_id": "SYN-DA4",
+        "site_id": "SYN-SA",
+        "source_refs": [
+          "artifacts/SYN-AA4",
+          "documents/SYN-DA4",
+          "requirements/SYN-RA3",
+          "sites/SYN-SA",
+          "trials/SYN-TA"
+        ],
+        "trial_id": "SYN-TA"
+      }
+    ],
+    "scope_notice": "Administrative export completeness only; qualified reviewer owns disposition. No authenticity, site activation, ethics, enrollment, or compliance determination.",
+    "site_summary": [
+      {
+        "no_exception_count": 2,
+        "quarantined_count": 0,
+        "required_count": 3,
+        "review_count": 0,
+        "site_id": "SYN-SA",
+        "warning_count": 1
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

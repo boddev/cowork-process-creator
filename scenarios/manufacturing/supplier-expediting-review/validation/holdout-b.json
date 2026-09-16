@@ -1,0 +1,255 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "baf33324311706bfb350d64cf3c54b3a19eac5446803a75c9acfc0009521319e",
+    "golden_sha256": "44b127250ea45e454e4575682125eef771a657a1ee52b9df9d95a40aae6d5299",
+    "input_sha256": "8040ee14c2bf053a9ee73c6a046ebcbce4bc43a3ef8f8687fbd3bef7f5c22c62",
+    "result": "baseline-output/holdout-b.json",
+    "result_sha256": "f71f54e5f5eac95631079b6ee380a2a641001c0b43dd2475ee11107d305ac6cf",
+    "trace": "baseline-output/holdout-b.trace.json",
+    "trace_sha256": "d9172cf3788bddfbb6803ea88e47df7f33b7664c397fcbc4750188df3028da17"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "datetime",
+      "decimal",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "holdout-b",
+  "documented": {
+    "case_rule_coverage": [
+      "bounded-inputs",
+      "fixed-cohort",
+      "exact-performance",
+      "confirmation-as-of",
+      "pegged-demand-allocation",
+      "review-scope",
+      "stable-buyer-queue",
+      "evidence-exceptions",
+      "review-closure"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "As-of 2027-02-01, January reporting, horizon through 02-06 and urgency through 02-04. Reversed input ordering and distinct new suppliers exercise deterministic IDs, not demo relabeling. H-B01 and H-B02 are cancelled, so their nominal open 9 and 4 do not enter active open totals or the cohort. B01/B02 are outside January; cancelled exclusions precede date exclusions. All historical numerators/denominators are 0/0, percentages and low flags null. C-B02 recorded 02-02 is future evidence despite a 02-04 receipt date; neither open line has an eligible confirmation. Each critical requirement is ten needed on the inclusive urgency boundary 02-04, covered 0, shortage 10. Equal P1/date/shortage rows sort B01 before B02. Exceptions sort EMPTY_COHORT, FUTURE_CONFIRMATION C-B02, MISSING_CONFIRMATION B01, MISSING_CONFIRMATION B02. Closure: four lines, active open 20, unmet 20 = covered 0 + shortage 20; queue 2, exceptions 4.",
+    "steps": [
+      {
+        "id": "intake",
+        "kind": "input",
+        "rule_ids": [
+          "posted-receipt-scope",
+          "bounded-inputs"
+        ]
+      },
+      {
+        "id": "validate-events",
+        "kind": "validation",
+        "rule_ids": [
+          "bounded-inputs",
+          "duplicate-integrity",
+          "full-reversal-as-of",
+          "confirmation-as-of",
+          "evidence-exceptions"
+        ]
+      },
+      {
+        "id": "join-purchase-context",
+        "kind": "join",
+        "rule_ids": [
+          "posted-receipt-scope",
+          "receipt-date-basis",
+          "evidence-exceptions"
+        ]
+      },
+      {
+        "id": "reconcile-receipts",
+        "kind": "decision",
+        "rule_ids": [
+          "full-reversal-as-of",
+          "pegged-demand-allocation"
+        ]
+      },
+      {
+        "id": "measure-performance",
+        "kind": "decision",
+        "rule_ids": [
+          "receipt-performance-review",
+          "receipt-date-basis",
+          "fixed-cohort",
+          "exact-performance"
+        ]
+      },
+      {
+        "id": "select-confirmations",
+        "kind": "join",
+        "rule_ids": [
+          "confirmation-as-of",
+          "review-scope"
+        ]
+      },
+      {
+        "id": "evaluate-demand",
+        "kind": "decision",
+        "rule_ids": [
+          "pegged-demand-allocation",
+          "review-scope"
+        ]
+      },
+      {
+        "id": "collect-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "evidence-exceptions",
+          "exact-performance"
+        ]
+      },
+      {
+        "id": "rank-queue",
+        "kind": "decision",
+        "rule_ids": [
+          "stable-buyer-queue",
+          "receipt-performance-review"
+        ]
+      },
+      {
+        "id": "close-review",
+        "kind": "output",
+        "rule_ids": [
+          "review-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/holdout-b.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/manufacturing/supplier-expediting-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.456471,
+  "kind": "holdout",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-events"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "join-purchase-context"
+      },
+      {
+        "kind": "decision",
+        "sequence": 4,
+        "step_id": "reconcile-receipts"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "measure-performance"
+      },
+      {
+        "kind": "join",
+        "sequence": 6,
+        "step_id": "select-confirmations"
+      },
+      {
+        "kind": "decision",
+        "sequence": 7,
+        "step_id": "evaluate-demand"
+      },
+      {
+        "kind": "exception",
+        "sequence": 8,
+        "step_id": "collect-exceptions"
+      },
+      {
+        "kind": "decision",
+        "sequence": 9,
+        "step_id": "rank-queue"
+      },
+      {
+        "kind": "output",
+        "sequence": 10,
+        "step_id": "close-review"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "manufacturing-02",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "bae330290ecca699048aaca1e94821d0c05e0dba4b5786ac9068385cb0e15f4e",
+    "baseline.py": "baf33324311706bfb350d64cf3c54b3a19eac5446803a75c9acfc0009521319e",
+    "connections.json": "97cc4d3bd8a5f817ebb8dd74e03cec8ba489e70bc76e82b929f84574188bdaaf",
+    "expected/demo.json": "edc573a35ca0ca0941bd3699e3863cf63e9a64c915edcb9d3ed24303f6dee719",
+    "expected/holdout-a.json": "b918b7068471b80a25edfcfa14756ffad325229e20858b211557be875d29d340",
+    "expected/holdout-b.json": "44b127250ea45e454e4575682125eef771a657a1ee52b9df9d95a40aae6d5299",
+    "expected/holdout-c.json": "2cfc8d5296439b723110ca3f1f318c02aab0f2ed8030e7f8e2cfb573e1a18280",
+    "expected/negative-conflicting-id.json": "8f3933bb38503e19386edaa04e052594f7ed58c0707f2d8e6831743270e65444",
+    "expected/negative-contradictory.json": "4069bd417b15334a7fd4300767cd83b9d098e8046c12b3982c88c54e5b5c9d12",
+    "expected/negative-malformed.json": "528c5bedb0f18c38c562ee29b697ea4257a7265fbccdeef2ea9df99ca7c58926",
+    "mock-data/demo.json": "d2989af517f4351a6c824f8f4d9c407646e7f9d710d5ce8968e12a7e110d526e",
+    "mock-data/holdout-a.json": "1696af0a04fd59da505e02b24d3ba01937edf44196e0101ed3993b3b96fcb9c3",
+    "mock-data/holdout-b.json": "8040ee14c2bf053a9ee73c6a046ebcbce4bc43a3ef8f8687fbd3bef7f5c22c62",
+    "mock-data/holdout-c.json": "e3bb1a03324a3d95f2620be859602e215e8c48dd51a70119b9c1e8e3bfcfe949",
+    "mock-data/negative-conflicting-id.json": "e3ca5e8d389ed07b7cc35a610eeb2125a85bf9c939ca02f2af278f5377a81150",
+    "mock-data/negative-contradictory.json": "f420942ad2adc8880bd539bdef5542d4d6568b7d6ef19c4681d61865cc707b6c",
+    "mock-data/negative-malformed.json": "272052005c8fc312223996e58a41efb2601d6fb39b31dbe8197afb33db5d9bc6",
+    "scenario.json": "67ba6a52d96e57fc0dbc0e66cd50d0d0055ed62bc65d4d116074229b2b61a0c5",
+    "sources.json": "dc73bdf1364d9adcf425498f2579112062c2a8651dcdc8fd1811721200f88e9a",
+    "workflow.json": "0a524f5588de6e08cf10170d4f5f2e7f205a7d78ba3159044c9747ea9ed51c12"
+  },
+  "state": "baseline_pass"
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "invalid-duration", "message": "Expected an integer from 1 to 44640 (booleans are invalid).", "path": "files.work-orders.json[0].duration_minutes"}
+  ]
+}

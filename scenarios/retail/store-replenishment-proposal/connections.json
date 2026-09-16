@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Read exported synthetic JSON tables bundled by logical filename and write a native file output only. No inventory endpoint, account, authentication or transfer permission exists. A real Oracle/Dynamics backend is unverified and not required or deployed."
+}

@@ -1,0 +1,45 @@
+{
+  "config": {"as_of": "2026-11-02T12:00:00Z", "period_start": "2026-10-01", "period_end": "2026-11-01", "draft_tolerance": "0.00"},
+  "files": {
+    "projects.json": [{"project_id": "P-A", "client_id": "CLIENT-A", "contract_id": "CONTRACT-A", "currency": "USD", "period_cap": "1000.00", "owner": "ACCOUNTANT-A"}],
+    "rates.json": [
+      {"rate_id": "RA1", "project_id": "P-A", "role_code": "consultant", "currency": "USD", "valid_from": "2026-10-01", "valid_to": "2026-10-15", "hourly_rate": "150.00"},
+      {"rate_id": "RA2", "project_id": "P-A", "role_code": "consultant", "currency": "USD", "valid_from": "2026-10-15", "valid_to": "2026-11-01", "hourly_rate": "180.00"}
+    ],
+    "time-entries.json": [
+      {"time_id": "A1", "project_id": "P-A", "person_id": "PERSON-A1", "role_code": "consultant", "service_date": "2026-10-14", "minutes": 50, "chargeable": true},
+      {"time_id": "A2", "project_id": "P-A", "person_id": "PERSON-A2", "role_code": "consultant", "service_date": "2026-10-15", "minutes": 75, "chargeable": true},
+      {"time_id": "A3", "project_id": "P-A", "person_id": "PERSON-A3", "role_code": "consultant", "service_date": "2026-10-16", "minutes": 20, "chargeable": true},
+      {"time_id": "A4", "project_id": "P-A", "person_id": "PERSON-A4", "role_code": "consultant", "service_date": "2026-10-17", "minutes": 60, "chargeable": false}
+    ],
+    "expense-entries.json": [
+      {"expense_id": "EA1", "project_id": "P-A", "person_id": "PERSON-A1", "service_date": "2026-10-18", "category": "travel", "amount": "49.99", "currency": "USD", "receipt_reference": null, "chargeable": true},
+      {"expense_id": "EA2", "project_id": "P-A", "person_id": "PERSON-A2", "service_date": "2026-10-19", "category": "travel", "amount": "50.00", "currency": "USD", "receipt_reference": null, "chargeable": true},
+      {"expense_id": "EA3", "project_id": "P-A", "person_id": "PERSON-A3", "service_date": "2026-10-20", "category": "meals", "amount": "40.00", "currency": "USD", "receipt_reference": "RECEIPT-EA3", "chargeable": true}
+    ],
+    "approval-events.json": [
+      {"approval_event_id": "AA-EA1", "entry_type": "expense", "entry_id": "EA1", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA-EA2", "entry_type": "expense", "entry_id": "EA2", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA-EA3", "entry_type": "expense", "entry_id": "EA3", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA1", "entry_type": "time", "entry_id": "A1", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA2", "entry_type": "time", "entry_id": "A2", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA3-1", "entry_type": "time", "entry_id": "A3", "revision": 1, "recorded_at": "2026-10-20T09:00:00Z", "decision": "approved"},
+      {"approval_event_id": "AA3-2", "entry_type": "time", "entry_id": "A3", "revision": 2, "recorded_at": "2026-11-02T12:00:00Z", "decision": "recalled"},
+      {"approval_event_id": "AA3-3", "entry_type": "time", "entry_id": "A3", "revision": 3, "recorded_at": "2026-11-02T12:00:01Z", "decision": "approved"},
+      {"approval_event_id": "AA4", "entry_type": "time", "entry_id": "A4", "revision": 1, "recorded_at": "2026-10-25T09:00:00Z", "decision": "approved"}
+    ],
+    "billed-transactions.json": [{"billed_id": "BA", "entry_type": "time", "entry_id": "PREV-A", "project_id": "P-A", "invoice_id": "INVOICE-A", "service_date": "2026-10-03", "amount": "560.01", "currency": "USD", "billed_at": "2026-10-05T09:00:00Z"}],
+    "draft-invoices.json": [{"draft_id": "DA", "project_id": "P-A", "currency": "USD", "period_start": "2026-10-01", "period_end": "2026-11-01", "state": "draft"}],
+    "draft-lines.json": [
+      {"line_id": "LA1", "draft_id": "DA", "entry_type": "time", "entry_id": "A1", "amount": "125.00"},
+      {"line_id": "LA2", "draft_id": "DA", "entry_type": "time", "entry_id": "A2", "amount": "225.00"},
+      {"line_id": "LA3", "draft_id": "DA", "entry_type": "time", "entry_id": "A3", "amount": "60.00"},
+      {"line_id": "LA4", "draft_id": "DA", "entry_type": "expense", "entry_id": "EA1", "amount": "49.99"},
+      {"line_id": "LA5", "draft_id": "DA", "entry_type": "expense", "entry_id": "EA3", "amount": "40.00"}
+    ],
+    "expense-policies.json": [
+      {"category": "meals", "currency": "USD", "max_amount": "60.00", "receipt_required_at": "50.00"},
+      {"category": "travel", "currency": "USD", "max_amount": "150.00", "receipt_required_at": "50.00"}
+    ]
+  }
+}

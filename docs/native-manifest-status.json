@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-14",
+  "source_version": "0.3.0",
+  "required_host": "Microsoft Copilot Cowork",
+  "required_target": "cowork-v1.28",
+  "required_manifest": "manifest.json",
+  "alternative_manifest_fallback": false,
+  "implemented": [
+    "Builder and project APIs/CLIs reject Claude-compatible or other non-native package targets",
+    "Release and N00 builders require valid supplied per-package native publishing metadata",
+    "Every generated native package contains the root v1.28 manifest, icons, skills and referenced tool descriptors",
+    "Scenario plugin inspection/import rejects Claude-layout, wrong-version and missing native-resource packages",
+    "Runtime authoring/review guidance and scenario native prompts require Microsoft's manifest",
+    "Temporary syntax-only test metadata is never treated as approved release metadata"
+  ],
+  "current_artifacts": {
+    "v0_3_native_release": "not-created; approved publishing metadata has not been supplied",
+    "scenario_native_plugins_generated": 0,
+    "scenario_native_plugins_installed": 0,
+    "native_access": "blocked pending restored approved tools and an unlocked accessible session",
+    "historical_v0_2_1_preview": "unchanged Claude-compatible source export; not a native Microsoft manifest package",
+    "historical_preview_sha256": "9251dabf6c57e44e2ab77a17982837c584082fccbfb00a3ca42cafa2af136c08"
+  },
+  "metadata_needed": [
+    "Supplied app_id UUID for each independently installed package",
+    "Approved developer.name",
+    "Approved HTTPS developer.websiteUrl",
+    "Approved HTTPS developer.privacyUrl",
+    "Approved HTTPS developer.termsOfUseUrl"
+  ],
+  "acceptance": {
+    "native_microsoft_package_shape_covered_by_local_tests": true,
+    "full_arbitrary_microsoft_schema_validation": false,
+    "actual_cowork_acceptance": "unverified",
+    "native_independent_invocation": "unverified",
+    "published_or_pushed_this_change": false
+  }
+}

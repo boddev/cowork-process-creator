@@ -1,0 +1,4 @@
+{
+  "schema_version": 1, "status": "rejected", "outputs": {},
+  "exceptions": [{"code": "duplicate-key", "message": "Duplicate inbound key.", "reference": "inbound:SYN-RECEIPT-DUP"}]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "policy": {
+    "policy_id": "SYN-POLICY-MAY",
+    "as_of": "2099-05-01",
+    "review_days": 2,
+    "partial_cases_allowed": true,
+    "source_files": {"store_stock": "may-stores.json", "dc_stock": "may-dc.json", "demand": "may-demand.json", "inbound": "may-receipts.json", "routes": "may-routes.json", "capacity": "may-capacity.json"}
+  },
+  "files": {
+    "may-stores.json": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "snapshot_on": "2099-05-01", "on_hand_units": 1, "reserved_units": 1, "blocked_units": 0},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "snapshot_on": "2099-05-01", "on_hand_units": 5, "reserved_units": 0, "blocked_units": 0}
+    ],
+    "may-dc.json": [{"dc_id": "SYN-DC-2", "sku": "SYN-SKU-RED", "snapshot_on": "2099-05-01", "on_hand_units": 25, "reserved_units": 2, "blocked_units": 1}],
+    "may-demand.json": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "demand_on": "2099-05-01", "units": 1},
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "demand_on": "2099-05-02", "units": 2},
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "demand_on": "2099-05-03", "units": 3},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "demand_on": "2099-05-01", "units": 1},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "demand_on": "2099-05-02", "units": 2},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "demand_on": "2099-05-03", "units": 2}
+    ],
+    "may-receipts.json": [],
+    "may-routes.json": [
+      {"store_id": "SYN-STORE-D", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "lead_days": 1, "case_pack": 5, "safety_units": 1, "priority": 10},
+      {"store_id": "SYN-STORE-E", "sku": "SYN-SKU-RED", "dc_id": "SYN-DC-2", "lead_days": 1, "case_pack": 5, "safety_units": 3, "priority": 20}
+    ],
+    "may-capacity.json": [{"dc_id": "SYN-DC-2", "dispatch_on": "2099-05-01", "remaining_case_capacity": 3}]
+  }
+}

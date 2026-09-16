@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "as_of": "2099-12-06", "audit_start": "2099-12-05", "audit_end": "2099-12-07",
+    "tolerance_minor": 0, "rounding": "ROUND_HALF_UP",
+    "source_files": {
+      "stores": "stores.json", "products": "products.json", "base_prices": "base-prices.json",
+      "promotions": "promotions.json", "promotion_scope": "promotion-scope.json",
+      "price_exceptions": "price-exceptions.json", "observations": "observed-prices.json"
+    }
+  },
+  "exports": {
+    "stores.json": [{"store_id": "SYN-STORE-B", "currency": "CAD", "date_basis": "store-local-calendar"}],
+    "products.json": [{"sku": "SYN-SKU-B-COMPOUND", "unit": "EA"}],
+    "base-prices.json": [
+      {"price_id": "SYN-BASE-B", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "valid_from": "2099-12-01", "valid_to": "2099-12-10", "currency": "CAD", "unit": "EA", "price_minor": 1099}
+    ],
+    "promotions.json": [
+      {"promotion_id": "SYN-PROMO-B-PERCENT1250", "enabled": true, "valid_from": "2099-12-05", "valid_to": "2099-12-06", "currency": "CAD", "unit": "EA", "priority": 8, "mode": "compound", "type": "percent-off", "value": 1250},
+      {"promotion_id": "SYN-PROMO-B-BEST20", "enabled": true, "valid_from": "2099-12-05", "valid_to": "2099-12-06", "currency": "CAD", "unit": "EA", "priority": 8, "mode": "best-price", "type": "percent-off", "value": 2000},
+      {"promotion_id": "SYN-PROMO-B-AMOUNT99", "enabled": true, "valid_from": "2099-12-05", "valid_to": "2099-12-06", "currency": "CAD", "unit": "EA", "priority": 8, "mode": "compound", "type": "amount-off", "value": 99}
+    ],
+    "promotion-scope.json": [
+      {"promotion_id": "SYN-PROMO-B-BEST20", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-B-AMOUNT99", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-B-PERCENT1250", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "line_type": "include"}
+    ],
+    "price-exceptions.json": [],
+    "observed-prices.json": [
+      {"observation_id": "SYN-OBS-B2", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "observed_on": "2099-12-06", "currency": "CAD", "unit": "EA", "observed_minor": 875},
+      {"observation_id": "SYN-OBS-B1", "store_id": "SYN-STORE-B", "sku": "SYN-SKU-B-COMPOUND", "observed_on": "2099-12-05", "currency": "CAD", "unit": "EA", "observed_minor": 875}
+    ]
+  }
+}

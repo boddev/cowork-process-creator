@@ -1,0 +1,90 @@
+{
+  "events": [
+    {
+      "caption": "Load synthetic exports; no live sensor or inventory access.",
+      "facts": {
+        "raw_rows": 0,
+        "tables_observed": 8
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-cold-chain-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "products",
+              0
+            ],
+            [
+              "profiles",
+              0
+            ],
+            [
+              "inventory",
+              0
+            ],
+            [
+              "placements",
+              0
+            ],
+            [
+              "sensor_assignments",
+              0
+            ],
+            [
+              "calibrations",
+              0
+            ],
+            [
+              "readings",
+              0
+            ],
+            [
+              "correspondence",
+              0
+            ]
+          ],
+          "title": "Load synthetic exports; no live sensor or inventory access.",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Reject the invalid input packet, not any product.",
+      "facts": {
+        "code": "invalid-input",
+        "status": "rejected"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-sensor-evidence",
+      "tables": [
+        {
+          "columns": [
+            "field",
+            "diagnostic"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "policy.max_gap_seconds",
+              "policy.max_gap_seconds must be an integer in 1..86400."
+            ]
+          ],
+          "title": "Reject the invalid input packet, not any product.",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "9c1cd6cfcc1023e2984be9c3a324412ac1a00f50942d774ebd8de411ee8ed1c9",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-02",
+  "schema_version": 1
+}

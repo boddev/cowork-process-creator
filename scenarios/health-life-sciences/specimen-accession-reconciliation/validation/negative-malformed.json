@@ -1,0 +1,185 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "18ee71568efeee91bfe1ac4904787360fb52fb00b081a2096bc2a681e5e9a501",
+    "golden_sha256": "a4f88e772e74d59e13e76618fa84d9539fb393516cc1d098e83bf8845b39f96f",
+    "input_sha256": "a19ff56f861b3097c72cc5453fcd3b7af510667454b7ca2661c1fdd9b635d2aa",
+    "result": "baseline-output/negative-malformed.json",
+    "result_sha256": "442ba1e84c671c5e3fe39868853ffc4b1a4c7d91ccfecd7442b596dd517f5d6a",
+    "trace": "baseline-output/negative-malformed.trace.json",
+    "trace_sha256": "f14cef9365bbbedc1b1de21581bcc5176dbcba3e62ae661e8ed6e750883a3361"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "dataclasses",
+      "datetime",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-malformed",
+  "documented": {
+    "case_rule_coverage": [
+      "hls-03-bounded-input"
+    ],
+    "failure_modes": [
+      "malformed-input"
+    ],
+    "golden_derivation": "Manually enumerated five invalid fields before execution: impossible February 30 effective timestamp; boolean sequence (not integer); recorded timestamp using +00:00 instead of canonical Z; boolean accession SLA; boolean receipt row instead of an object. Lexical one-based path order is order_events[1].effective_at, order_events[1].event_seq, order_events[1].recorded_at, policy.accession_sla_minutes, receipts[1]. The expected result rejects only this input packet, has outputs {}, and five explicit malformed-input diagnostics. No joins, ages, or clinical disposition are inferred.",
+    "steps": [
+      {
+        "id": "load-accession-export",
+        "kind": "input",
+        "rule_ids": [
+          "hls-03-bounded-input"
+        ]
+      },
+      {
+        "id": "validate-reconciliation-records",
+        "kind": "validation",
+        "rule_ids": [
+          "hls-03-bounded-input",
+          "hls-03-cardinality"
+        ]
+      },
+      {
+        "id": "resolve-as-of-orders",
+        "kind": "join",
+        "rule_ids": [
+          "hls-03-as-of-events"
+        ]
+      },
+      {
+        "id": "join-receipts-accessions",
+        "kind": "join",
+        "rule_ids": [
+          "hls-03-exact-reconciliation",
+          "hls-03-cardinality",
+          "hls-03-bounded-input"
+        ]
+      },
+      {
+        "id": "assess-record-consistency",
+        "kind": "decision",
+        "rule_ids": [
+          "hls-03-identification-evidence",
+          "hls-03-time-order",
+          "hls-03-review-precedence"
+        ]
+      },
+      {
+        "id": "age-and-reconcile-backlog",
+        "kind": "decision",
+        "rule_ids": [
+          "hls-03-accession-window",
+          "hls-03-count-conservation"
+        ]
+      },
+      {
+        "id": "route-accession-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "hls-03-review-precedence",
+          "hls-03-exact-reconciliation"
+        ]
+      },
+      {
+        "id": "write-accession-report",
+        "kind": "output",
+        "rule_ids": [
+          "hls-03-count-conservation",
+          "hls-03-identification-evidence"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-malformed.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/health-life-sciences/specimen-accession-reconciliation",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.450616,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-accession-export"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-reconciliation-records"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "hls-03",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "bab66d4d495cac8d0f052f9160ce111d194f9a7e72f9c9989c6928a71ef87405",
+    "baseline.py": "18ee71568efeee91bfe1ac4904787360fb52fb00b081a2096bc2a681e5e9a501",
+    "connections.json": "af91247f9066c7317d928dfce78d49f715e46208dfe99e2f16ae1b6d0292d767",
+    "expected/demo.json": "561bddeab8a1b1ac4b5a249740f3351e4a0f7fb2be2349a988193ccaac985391",
+    "expected/holdout-a.json": "293e7d363fe11b45962e88be81eccdbbc997a902c4b3fc581e0c20aac86b3267",
+    "expected/holdout-b.json": "0034f67a056a9783191fa8aaf16975ac55f8eadf59d77e6e52c80a8149fc4396",
+    "expected/negative-contradictory.json": "b2c4726453d54be322afe1a0ecb854e772fff219d67fe3fb18f8d6be5ed08a47",
+    "expected/negative-malformed.json": "a4f88e772e74d59e13e76618fa84d9539fb393516cc1d098e83bf8845b39f96f",
+    "mock-data/demo.json": "ac539809e359242620bd0becb1f7ebe96c389d60e5d807beb1528e2dac59c657",
+    "mock-data/holdout-a.json": "78b7552cc08f2c499aaa091742caae1b1488fe921d43cc15353b24cd823d8bbe",
+    "mock-data/holdout-b.json": "8447391768cbb57428ec1ec798198acbe9e3c0199b804c431ba1c9eeffa7e426",
+    "mock-data/negative-contradictory.json": "bfda9beeba2b9fa3c211f213376b2508fcbbb400f97beb97cab6db1eea4375f6",
+    "mock-data/negative-malformed.json": "a19ff56f861b3097c72cc5453fcd3b7af510667454b7ca2661c1fdd9b635d2aa",
+    "scenario.json": "5de710d07c157ef1c7eeb731b6161b6aef76b73c164134a4c7d5722a56803da1",
+    "sources.json": "0a0c1c13833f2754f7926be90fb097ddb356c6dee3d8e2baffce4b41da0a27f0",
+    "workflow.json": "c799a41f683397942785729affc29fc23d47a4199266c340306c0b26df29b3b3"
+  },
+  "state": "baseline_pass"
+}

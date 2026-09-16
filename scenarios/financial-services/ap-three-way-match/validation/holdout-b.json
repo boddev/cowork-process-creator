@@ -1,0 +1,221 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "a0f998c8f24995eb3bca9bec6e45dad537f398a2a589b70459fa62484db24d48",
+    "golden_sha256": "8e3bd5e5c9a1f6b2022190e38b57d26e87bee472887fc87a95b3ba9747cc739c",
+    "input_sha256": "946fee9879128d4fe8a629b32a9c3cf953c2aca5d756af96ff71922e266d64c3",
+    "result": "baseline-output/holdout-b.json",
+    "result_sha256": "ce374a0d7d706e53499a796aeee56baeff13a48c8e21622e2deb19a2d2c7b582",
+    "trace": "baseline-output/holdout-b.trace.json",
+    "trace_sha256": "785a88d42b426790b657a65f8cf0b67d9451e0e99ca4c8ea41feda27cbe5da3b"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "copy",
+      "datetime",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "holdout-b",
+  "documented": {
+    "case_rule_coverage": [
+      "ap-three-way-evidence",
+      "ap-duplicate-business-key",
+      "ap-exact-arithmetic",
+      "ap-approval-and-cutoff",
+      "ap-selection-and-capacity",
+      "ap-atomic-review"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "Different entity/vendor, fixed offset-300, as_of2026-08-01T04:59:59Z gives business date2026-07-31. A receipt04:30Z is eligible;1250*1002/1000=1252.5 rounds HALF_UP to1253 versus PO1250; unit20000<=200000 and line delta3 pass. Propose1250 leaving0. B receipt05:00Z is after cutoff despite03:00Z physical receipt: explicitly exclude2000, local posting date2026-08-01, no capacity/selection, hold6000. PO-B remains2000. C PO pending: retain otherwise exact1000-milliunit/4000-cent comparison and selection but hold4000 and leave1000. D/E numbers normalize to SYN-MIX-12: both hold500, retain individually valid selections and leave shared PO/receipt2000; removed before competition so no conflict claim. Ready1253+held11000=intake12253. Five headers/lines, four POs/receipts, no history or explicit selections.",
+    "steps": [
+      {
+        "id": "intake-documents",
+        "kind": "input",
+        "rule_ids": [
+          "ap-exact-arithmetic"
+        ]
+      },
+      {
+        "id": "validate-documents",
+        "kind": "validation",
+        "rule_ids": [
+          "ap-exact-arithmetic",
+          "ap-approval-and-cutoff",
+          "ap-selection-and-capacity"
+        ]
+      },
+      {
+        "id": "join-duplicates-and-pos",
+        "kind": "join",
+        "rule_ids": [
+          "ap-three-way-evidence",
+          "ap-duplicate-business-key",
+          "ap-approval-and-cutoff"
+        ]
+      },
+      {
+        "id": "join-receipt-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "ap-partial-receipts",
+          "ap-selection-and-capacity",
+          "ap-approval-and-cutoff"
+        ]
+      },
+      {
+        "id": "evaluate-price-and-quantity",
+        "kind": "decision",
+        "rule_ids": [
+          "ap-exact-arithmetic",
+          "ap-combined-tolerance",
+          "ap-atomic-review"
+        ]
+      },
+      {
+        "id": "resolve-capacity-conflicts",
+        "kind": "decision",
+        "rule_ids": [
+          "ap-selection-and-capacity",
+          "ap-atomic-review"
+        ]
+      },
+      {
+        "id": "route-invoice-holds",
+        "kind": "exception",
+        "rule_ids": [
+          "ap-duplicate-business-key",
+          "ap-atomic-review"
+        ]
+      },
+      {
+        "id": "emit-ap-review",
+        "kind": "output",
+        "rule_ids": [
+          "ap-three-way-evidence",
+          "ap-atomic-review"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/holdout-b.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/financial-services/ap-three-way-match",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.432054,
+  "kind": "holdout",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-documents"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-documents"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "join-duplicates-and-pos"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "join-receipt-evidence"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "evaluate-price-and-quantity"
+      },
+      {
+        "kind": "decision",
+        "sequence": 6,
+        "step_id": "resolve-capacity-conflicts"
+      },
+      {
+        "kind": "exception",
+        "sequence": 7,
+        "step_id": "route-invoice-holds"
+      },
+      {
+        "kind": "output",
+        "sequence": 8,
+        "step_id": "emit-ap-review"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "financial-services-02",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "c925c34da154c456a88d26f261b604fb141c1d118e66101f46e6d8e68e55c14b",
+    "baseline.py": "a0f998c8f24995eb3bca9bec6e45dad537f398a2a589b70459fa62484db24d48",
+    "connections.json": "80ae4199b97b88b16c83b958eada97751921f9115ca01f44606a3d1ae64fd23e",
+    "expected/demo.json": "5ef08d1b58cdc5b3187adbf0e1141f532c945a183f49fd63889d72e16f9743b9",
+    "expected/holdout-a.json": "5fb598d6c5f8098eaa018842f55d523104cbab240772bedebd504dff2484b65d",
+    "expected/holdout-b.json": "8e3bd5e5c9a1f6b2022190e38b57d26e87bee472887fc87a95b3ba9747cc739c",
+    "expected/negative-contradictory.json": "0274d748039701e599fb55f463ebe0909607d8150c8e11c20bea401be14544ca",
+    "expected/negative-malformed.json": "d7cb63dec8fba1fae94a9fb5b2f66fa65065015fe9c7835096f073285c34b54e",
+    "mock-data/demo.json": "dd08e5f68cacb91db58cefc7fc6ca2b2161ea7f165e2677d7e56e66577c628ae",
+    "mock-data/holdout-a.json": "da16faa4aebe60debae802bad39219747968b268ce8c9ffb6b4e0ae629025dfb",
+    "mock-data/holdout-b.json": "946fee9879128d4fe8a629b32a9c3cf953c2aca5d756af96ff71922e266d64c3",
+    "mock-data/negative-contradictory.json": "131db651a93f729f08ef5a97c4a73277a30e1d2ebb0b76a335ace1465b89e559",
+    "mock-data/negative-malformed.json": "a46fa5c6429b8e34f64fe5551f34f3765d20603469f98e82fea3e602b784b960",
+    "scenario.json": "e7c4835fb36b68c1e0d16dedb8d7f5aa90335d0b7bc0f8159464da88430eeec9",
+    "sources.json": "9f710091c69e29f8898ab2dadeb4a0cec3a317e4d9adbcfea612c46ea61a07e5",
+    "workflow.json": "6cc88097b0af0f635acf175104862c924c77a53a308d320e2bf1317a935cdd28"
+  },
+  "state": "baseline_pass"
+}

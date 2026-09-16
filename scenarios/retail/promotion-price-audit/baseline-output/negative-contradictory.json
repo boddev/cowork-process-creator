@@ -1,0 +1,116 @@
+{
+  "exceptions": [
+    {
+      "code": "AMBIGUOUS_BASE_PRICE",
+      "evidence_ids": [
+        "SYN-BASE-N1",
+        "SYN-BASE-N2"
+      ],
+      "message": "More than one base price matches the observation dimensions and date.",
+      "observation_id": "SYN-OBS-N1",
+      "path": "observations.SYN-OBS-N1"
+    }
+  ],
+  "outputs": {
+    "issue_queue": [
+      {
+        "code": "AMBIGUOUS_BASE_PRICE",
+        "currency": "USD",
+        "evidence_ids": [
+          "SYN-BASE-N1",
+          "SYN-BASE-N2"
+        ],
+        "issue_id": "SYN-ISSUE-0001",
+        "message": "More than one base price matches the observation dimensions and date.",
+        "next_action": "Resolve overlapping base-price versions; do not choose a price automatically.",
+        "observation_id": "SYN-OBS-N1",
+        "observed_on": "2099-09-01",
+        "owner": "Pricing operations analyst",
+        "sku": "SYN-SKU-N",
+        "store_id": "SYN-STORE-N"
+      }
+    ],
+    "out_of_scope": [],
+    "price_audit": [
+      {
+        "active_exception_ids": [],
+        "applied_exception_id": null,
+        "base_minor": null,
+        "base_price_ids": [
+          "SYN-BASE-N1",
+          "SYN-BASE-N2"
+        ],
+        "currency": "USD",
+        "delta_minor": null,
+        "disposition": "not-evaluable",
+        "expected_minor": null,
+        "observation_id": "SYN-OBS-N1",
+        "observed_minor": 1000,
+        "observed_on": "2099-09-01",
+        "pricing_basis": "not-evaluable",
+        "selected_promotion_ids": [],
+        "sku": "SYN-SKU-N",
+        "store_id": "SYN-STORE-N",
+        "unit": "EA",
+        "unrounded_minor": null
+      }
+    ],
+    "reconciliation": {
+      "included_observations": 1,
+      "input_observations": 1,
+      "matched": 0,
+      "mismatched": 0,
+      "not_evaluable": 1,
+      "out_of_scope": 0,
+      "reconciled": true
+    },
+    "review_packet": {
+      "action_authorized": false,
+      "counts_by_store_currency": [
+        {
+          "currency": "USD",
+          "included_observations": 1,
+          "input_observations": 1,
+          "matched": 0,
+          "mismatched": 0,
+          "not_evaluable": 1,
+          "out_of_scope": 0,
+          "store_id": "SYN-STORE-N"
+        }
+      ],
+      "owner_role": "Pricing operations analyst",
+      "policy": {
+        "as_of": "2099-09-01",
+        "audit_end": "2099-09-02",
+        "audit_start": "2099-09-01",
+        "date_basis": "store-local-calendar",
+        "rounding": "ROUND_HALF_UP",
+        "tolerance_minor": 0
+      },
+      "review_state": "review-required"
+    },
+    "rule_selection": [
+      {
+        "base_checks": [
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-N1"
+          },
+          {
+            "date_match": true,
+            "price_id": "SYN-BASE-N2"
+          }
+        ],
+        "candidates": [],
+        "exception_checks": [],
+        "observation_id": "SYN-OBS-N1",
+        "promotion_filters": [],
+        "suppressed_promotions": [],
+        "tied_promotion_sets": [],
+        "winning_priority": null
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1, "synthetic": true,
+  "policy": {"policy_id": "SYN-POLICY-AMBIGUOUS", "as_of": "2099-01-01", "review_days": 1, "partial_cases_allowed": true, "source_files": {"store_stock": "s.json", "dc_stock": "d.json", "demand": "q.json", "inbound": "i.json", "routes": "r.json", "capacity": "c.json"}},
+  "files": {
+    "s.json": [{"store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "snapshot_on": "2099-01-01", "on_hand_units": 2, "reserved_units": 0, "blocked_units": 0}],
+    "d.json": [
+      {"dc_id": "SYN-DC-Z", "sku": "SYN-SKU-Z", "snapshot_on": "2099-01-01", "on_hand_units": 10, "reserved_units": 0, "blocked_units": 0},
+      {"dc_id": "SYN-DC-Y", "sku": "SYN-SKU-Z", "snapshot_on": "2099-01-01", "on_hand_units": 20, "reserved_units": 0, "blocked_units": 0}
+    ],
+    "q.json": [{"store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "demand_on": "2099-01-01", "units": 1}],
+    "i.json": [],
+    "r.json": [
+      {"store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "dc_id": "SYN-DC-Z", "lead_days": 0, "case_pack": 1, "safety_units": 0, "priority": 1},
+      {"store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "dc_id": "SYN-DC-Y", "lead_days": 0, "case_pack": 1, "safety_units": 0, "priority": 1}
+    ],
+    "c.json": [
+      {"dc_id": "SYN-DC-Z", "dispatch_on": "2099-01-01", "remaining_case_capacity": 2},
+      {"dc_id": "SYN-DC-Y", "dispatch_on": "2099-01-01", "remaining_case_capacity": 4}
+    ]
+  }
+}

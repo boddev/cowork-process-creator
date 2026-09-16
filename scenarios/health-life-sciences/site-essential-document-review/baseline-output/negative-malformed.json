@@ -1,0 +1,17 @@
+{
+  "exceptions": [
+    {
+      "code": "invalid-input",
+      "message": "Expected a real Gregorian date in YYYY-MM-DD.",
+      "path": "documents[0].issued_on"
+    },
+    {
+      "code": "invalid-input",
+      "message": "Expected an integer from 1 through 1000000 (not boolean).",
+      "path": "documents[0].version_seq"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

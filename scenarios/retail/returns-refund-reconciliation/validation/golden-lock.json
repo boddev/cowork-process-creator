@@ -1,0 +1,62 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "July 2, 2099; 30-day inclusive window, partial enabled. Order 1 Q3 M1000 T100, prior Q1 M333 T33. Cumulative Q2 gives M667 T67: first request receives 334+34=368; second asks2 but remaining1 receives 333+33=366 and defers1. New M667 T67 total734; prior366 plus734 equals1100, no remaining units. Order2 age31 is excluded, keeping2200. Unknown receipt remains unresolved with no assigned currency. Across USD originals: captured3300, prior366, new734, projected1100, remaining2200; two proposed units and three deferred. Three request exceptions in request order.",
+      "expected_sha256": "80439d0485d9f10b5e01fdbf548fb0b83405634ab71d9121716dc1f0e7dfd0bc",
+      "input_sha256": "26a42ca68acb4e1ce19a51228161553c9c2652c67df24aaa28021ad86ab9c03b"
+    },
+    "holdout-a": {
+      "derivation": "Different August15 period, window14, EUR original purchased August1 on the inclusive boundary; Q4 M1999 T161 capture2160. Prior1 is500+40=540. Asking2 advances cumulative quantity to3: M1499 T121, so new999+81=1080. Remaining1 carries500+40=540; prior plus new1620. Exactly one full proposal and no exceptions.",
+      "expected_sha256": "c07254e706080a6d8605696d928bec4a030e53d8baecfdf84c9b7fe76dce65b5",
+      "input_sha256": "13fc2ba9e2730baa8cefb005b0efed275bfcde35e13192a569379f5e27534699"
+    },
+    "holdout-b": {
+      "derivation": "Different September10-11 period, September4 purchase, window7, partial disabled, GBP Q2 M999 T0 capture999 and explicit empty opening history. September10 request asks3, exceeding2; propose0, defer3, consume nothing. September11 request asks1 at age7; half-up 999/2=500, tax0. One unit and499 remain. One partial-not-allowed exception.",
+      "expected_sha256": "e03a7b1af0a651baab84f61ff4d72e7e294be2e918a648ca71a7eed8f674a77b",
+      "input_sha256": "a9b4945c984b90a05cb892f7d9760149fa4792ec503e756bfb9300d92d359144"
+    },
+    "negative-ambiguous-receipt": {
+      "derivation": "October8 contains two distinct original order IDs, invoice IDs and card references but the same store/receipt. Reject ambiguous-receipt before using supplied order hints to choose a winner. No proposal or control output is admissible.",
+      "expected_sha256": "55542915f78a34005961dde363ab8c5b7cebba354a390a13c41dda781dc9bdd1",
+      "input_sha256": "964a8884b8686830013d8010c722fce1275a9685e5b936c698f1a97f732b093b"
+    },
+    "negative-contradictory": {
+      "derivation": "October6 original Q2 M1000 T100 capture1100; posted prior1 records M499 T50. Independent entitlement at1 is500+50, not499+50. Retain observed prior549, quarantine the whole order, make authoritative prior/remaining controls null, and propose zero. Currency totals explicitly exclude the one quarantined order from reconciled captured/prior/remaining money.",
+      "expected_sha256": "c5abf14630c962b8f812cfccb2cf4e2fac8b9553d0b383a7555af1f5c7f09ad2",
+      "input_sha256": "ec6f8f0a07b0413d0d59f7b7b9509c1aa36ecb18817e0e2be6ff48f9cefd6104"
+    },
+    "negative-current-period-history": {
+      "derivation": "October10 intake period also contains a posted October10 historical event. Although its Q1 M500 T50 fits original Q2 M1000 T100 mathematically, it is not an opening event. Retain observed550, quarantine the order, use null authoritative eligibility/money and zero proposal instead of subtracting or ignoring it as if disjoint.",
+      "expected_sha256": "b6c491bc854c44e5c08247b30c357017523c3e421c64499137fa8bcfd2695b7c",
+      "input_sha256": "4d0ab7db05d0b52704c6f32213a0a2f958f98399f92048dfec9a2ad7e52da666"
+    },
+    "negative-duplicate": {
+      "derivation": "The October7 input includes the same request primary key twice. Structural duplicate-key rejection precedes joining or money allocation; outputs are empty, not silently deduplicated.",
+      "expected_sha256": "e136e6d5e0ec69ac26d6854b6bbaa9617ac59be2bc92cff92c5711c11be526f2",
+      "input_sha256": "b4951eb3364a9d872eb6a5b4410dba6a947045f090b49e508ed3b8a1d315c567"
+    },
+    "negative-malformed": {
+      "derivation": "The standalone October5 bundle contains requested_qty=true, not an integer quantity. Reject at requests.requested_qty with invalid-record and no business outputs; never coerce true to one.",
+      "expected_sha256": "7e0abe722f2ae213bb0757a2011013ea072feb396254077b9f20e8655d0af234",
+      "input_sha256": "0de8901b07481fe554664d2b339f034e0cb76a9c9bc6cd264eb4908159660f95"
+    },
+    "negative-out-of-window": {
+      "derivation": "October9 request for October1 purchase has age8 versus window7. Q1 M700 T70 capture770 with no prior: zero proposal and one deferred unit; valid line/order still retain one unit and770, with return-window-exceeded. This is sample policy review, not a legal-right decision.",
+      "expected_sha256": "4628cb144b8748156f0a124fdfc13313a4c74d6901b725763eda59fdc00be4d9",
+      "input_sha256": "c1f09c40409288f4efe7b532aa98d03665e609b1b9325be3c45198630c8a2722"
+    },
+    "negative-unconfirmed-payment": {
+      "derivation": "October11 request, original Q1 M300 T30, capture/authorization330 and explicit empty history. Confirmation=false is sufficient to quarantine the entire order despite otherwise balanced arithmetic. Proposed money is0; authoritative prior/remaining are null, observed posted money0 is only a raw count-derived observation.",
+      "expected_sha256": "486aee04b612c2e1b88dbcdff2cfdf37cd88d216fdff6fa955cb8f1f74628dad",
+      "input_sha256": "155580c39dfea195cdc697c860a40b9a6be99e0229c32966d0f703252df1c7a6"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Retail returns scenario owner",
+    "description": "The ten literal expected JSON objects were authored from the approved procedure and independent integer arithmetic before baseline implementation or execution. The manifest records each derivation; the shared pre-execution golden lock freezes inputs, answers and derivations. No expected object is produced by solving, copying baseline outputs or importing baseline logic. This declaration is not independent human sign-off.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "retail-02",
+  "schema_version": 1
+}

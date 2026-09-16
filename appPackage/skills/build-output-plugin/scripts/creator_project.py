@@ -296,7 +296,8 @@ def merge(base_bundle: Path, current: Path, proposed: Path, destination: Path) -
     return {"status": "Draft", "project_id": base_meta["project_id"], "blueprint_revision": proposed_meta["blueprint_revision"], "base_sha256": digest, "files": len(restored), "conflicts": [], "native_acceptance": "unverified", "requires_host_recheck": True, "requires_evaluation_refresh": True}
 
 
-def build_project(project: Path, output: Path, report_path: Path, target: str, metadata: Path | None = None) -> dict:
+def build_project(project: Path, output: Path, report_path: Path, target: str = b.TARGET, metadata: Path | None = None) -> dict:
+    b.require(target == b.TARGET, "Output plugins must use native Microsoft Cowork manifest v1.28; no Claude-compatible fallback")
     checked = c.validate_project(project)
     b.require(checked["ready"], "Project is not ready to package: " + "; ".join(item["code"] + " at " + item["reference"] for item in checked["blockers"]))
     b.require(not output.resolve().is_relative_to(project.resolve()) and not report_path.resolve().is_relative_to(project.resolve()), "Build outputs must be outside the creation project")
@@ -341,7 +342,7 @@ def main() -> int:
     build = commands.add_parser("build")
     for flag in ("project", "output", "report"):
         build.add_argument("--" + flag, type=Path, required=True)
-    build.add_argument("--target", choices=("cowork-v1.28", "compatible-source"), default="cowork-v1.28")
+    build.add_argument("--target", choices=(b.TARGET,), default=b.TARGET)
     build.add_argument("--metadata", type=Path)
     save = commands.add_parser("checkpoint")
     save.add_argument("--project", type=Path, required=True)

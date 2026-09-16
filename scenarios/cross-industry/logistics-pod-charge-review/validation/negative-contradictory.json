@@ -1,0 +1,225 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "a7f33e98236ddc6430c64d5f18d4141a312d0741c83357413eedb0bd2ed3dd8a",
+    "golden_sha256": "020efa8c9292ade6c17507d682e51e8dd87ab4e7734d77d5ed9bbb1371eea50a",
+    "input_sha256": "faec0af61da810c076744ca5b357ddc6e78ddac28a29efa750def858c717fded",
+    "result": "baseline-output/negative-contradictory.json",
+    "result_sha256": "85fff03fb679a1512b29a80ecbbe93aa6dd822c9933d678ea8a1d8fee79b8beb",
+    "trace": "baseline-output/negative-contradictory.trace.json",
+    "trace_sha256": "161fb6344a47abafe6a678f99b4829ddb2b9d63a631a13a4af71a0677798d2b9"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "datetime",
+      "decimal",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-contradictory",
+  "documented": {
+    "case_rule_coverage": [
+      "snapshot-selection",
+      "complete-accounting"
+    ],
+    "failure_modes": [
+      "contradictory-evidence"
+    ],
+    "golden_derivation": "Independent pre-execution derivation: C01 has two distinct POD IDs at eligible top revision 2, reporting 10 versus 9 units. Neither is selected, even though one matches the shipment; both dispositions are ambiguous. C01's unique rate is selected but expected amount and dwell remain null; billed 550 is held. C02 has one eligible POD with 3600s dwell/free, so 100+10+0=110 matches. Invoice line sum 660 compares ONLY 110 with 110; comparison is incomplete. Ready 110 + held 550 = billed 660, computable variance 0. All 2 shipments, 1 invoice, 6 lines, 3 POD rows, and 2 rates are included; the sole issue is C01 contradictory-pod.",
+    "steps": [
+      {
+        "id": "intake-exports",
+        "kind": "input",
+        "rule_ids": [
+          "complete-accounting"
+        ]
+      },
+      {
+        "id": "validate-records",
+        "kind": "validation",
+        "rule_ids": [
+          "invoice-integrity",
+          "snapshot-selection"
+        ]
+      },
+      {
+        "id": "join-exports",
+        "kind": "join",
+        "rule_ids": [
+          "delivery-evidence",
+          "freight-match",
+          "rate-selection"
+        ]
+      },
+      {
+        "id": "select-evidence",
+        "kind": "decision",
+        "rule_ids": [
+          "snapshot-selection",
+          "rate-selection"
+        ]
+      },
+      {
+        "id": "calculate-charges",
+        "kind": "decision",
+        "rule_ids": [
+          "charge-formula"
+        ]
+      },
+      {
+        "id": "compare-charges",
+        "kind": "decision",
+        "rule_ids": [
+          "freight-match",
+          "variance-threshold",
+          "invoice-integrity"
+        ]
+      },
+      {
+        "id": "triage-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "pod-age-and-closure",
+          "complete-accounting"
+        ]
+      },
+      {
+        "id": "revisit-prior-cases",
+        "kind": "decision",
+        "rule_ids": [
+          "pod-age-and-closure"
+        ]
+      },
+      {
+        "id": "emit-review-packet",
+        "kind": "output",
+        "rule_ids": [
+          "complete-accounting"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-contradictory.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/cross-industry/logistics-pod-charge-review",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.430957,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-records"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "join-exports"
+      },
+      {
+        "kind": "decision",
+        "sequence": 4,
+        "step_id": "select-evidence"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "calculate-charges"
+      },
+      {
+        "kind": "decision",
+        "sequence": 6,
+        "step_id": "compare-charges"
+      },
+      {
+        "kind": "exception",
+        "sequence": 7,
+        "step_id": "triage-exceptions"
+      },
+      {
+        "kind": "decision",
+        "sequence": 8,
+        "step_id": "revisit-prior-cases"
+      },
+      {
+        "kind": "output",
+        "sequence": 9,
+        "step_id": "emit-review-packet"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "cross-industry-01",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "11a596f5870d4dcf482599195a94ab2f97bc9faae930e54f405d0ae2dc63df7e",
+    "baseline.py": "a7f33e98236ddc6430c64d5f18d4141a312d0741c83357413eedb0bd2ed3dd8a",
+    "connections.json": "fdd0d4239cc2d1368a4b174f606921655329a0a984847b13d535e4a2103d9c13",
+    "expected/demo.json": "e962277545f0984a697cb78853a2906a3ea1a0b3724751b57b456f527d31caaa",
+    "expected/holdout-a.json": "4db4a927ec0348fd0960bdfa88a6ba4f071600ff93fb1ecc9858944718589614",
+    "expected/holdout-b.json": "1f7c384955b435145656a39ec695145557919e05feefc96fb75ff6dd21026cec",
+    "expected/negative-contradictory.json": "020efa8c9292ade6c17507d682e51e8dd87ab4e7734d77d5ed9bbb1371eea50a",
+    "expected/negative-malformed.json": "3ee8e019a9c6d544e50b010e547d721aa0dedf90e4e04fb87d6b488cc3570821",
+    "mock-data/demo.json": "1419540e5985f272598d1efa7f9ad076d7b7c2823a0e43e33af405f17ce4bbc4",
+    "mock-data/holdout-a.json": "917b49127110a68942fb0d4f19b6f739f496027b59df38fc33229c2ec448203c",
+    "mock-data/holdout-b.json": "abc43a6e1c12b16c1e3ae0306e03d15f8e10b2a0d85e49d4d87f7f9a1bd28687",
+    "mock-data/negative-contradictory.json": "faec0af61da810c076744ca5b357ddc6e78ddac28a29efa750def858c717fded",
+    "mock-data/negative-malformed.json": "fab01e6d568c8587b5bcdd9d94beba11c9212e90d078ceb0e38b75b64fb9db81",
+    "scenario.json": "39e9ef07259a6bd343fffecac23bb78854ade15eca811cc1bd307dcf29d0462c",
+    "sources.json": "39c13256102d0007bc9823295d3935c420702513f50dfc1cd7889e5b90bcab95",
+    "workflow.json": "68d7ee5e15bb841df34a57cce0977d7f04479aae87e65aa4015005e6aec9e79a"
+  },
+  "state": "baseline_pass"
+}

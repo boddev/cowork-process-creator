@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of_date": "2026-09-14",
+    "policy_id": "SYN-POLICY-C",
+    "human_review_required": true,
+    "scope_notice": "Administrative export completeness only; qualified reviewer owns disposition. No authenticity, site activation, ethics, enrollment, or compliance determination.",
+    "requirement_matrix": [
+      {"site_id": "SYN-SC", "trial_id": "SYN-TC", "requirement_id": "SYN-RC1", "document_type": "protocol", "selected_document_id": null, "assessment_state": "quarantined", "primary_reason": "conflict", "reason_codes": ["conflict"], "effective_expiry": null, "expiry_basis": null, "days_to_expiry": null, "source_refs": ["artifacts/SYN-AC1", "documents/SYN-DC1", "requirements/SYN-RC1", "sites/SYN-SC", "trials/SYN-TC"]},
+      {"site_id": "SYN-SC", "trial_id": "SYN-TC", "requirement_id": "SYN-RC2", "document_type": "training", "selected_document_id": null, "assessment_state": "quarantined", "primary_reason": "conflict", "reason_codes": ["conflict"], "effective_expiry": null, "expiry_basis": null, "days_to_expiry": null, "source_refs": ["artifacts/SYN-AC2", "documents/SYN-DC2", "requirements/SYN-RC2", "sites/SYN-SC", "trials/SYN-TC"]},
+      {"site_id": "SYN-SC", "trial_id": "SYN-TC", "requirement_id": "SYN-RC3", "document_type": "qualification", "selected_document_id": "SYN-DC3", "assessment_state": "no-exception", "primary_reason": null, "reason_codes": [], "effective_expiry": null, "expiry_basis": "none", "days_to_expiry": null, "source_refs": ["artifacts/SYN-AC3", "documents/SYN-DC3", "requirements/SYN-RC3", "sites/SYN-SC", "trials/SYN-TC"]}
+    ],
+    "site_summary": [
+      {"site_id": "SYN-SC", "required_count": 3, "no_exception_count": 1, "warning_count": 0, "review_count": 2, "quarantined_count": 2}
+    ],
+    "evidence_register": [
+      {"table": "artifacts", "record_id": "SYN-AC1", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced"], "source_refs": ["SYN-EXPORT-AC1"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-AC2", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced"], "source_refs": ["SYN-EXPORT-AC2"], "conflicting_variants": []},
+      {"table": "artifacts", "record_id": "SYN-AC3", "copies": 1, "distinct_variants": 1, "dispositions": ["referenced", "selected-artifact"], "source_refs": ["SYN-EXPORT-AC3"], "conflicting_variants": []},
+      {
+        "table": "documents", "record_id": "SYN-DC1", "copies": 2, "distinct_variants": 2, "dispositions": ["conflicting-id", "quarantined"], "source_refs": [],
+        "conflicting_variants": [
+          {"copies": 1, "record": {"document_id": "SYN-DC1", "site_id": "SYN-SC", "document_type": "protocol", "version_seq": 2, "protocol_version": 2, "issued_on": "2026-09-01", "effective_on": "2026-09-01", "recorded_on": "2026-09-02", "expires_on": null, "artifact_id": "SYN-AC1", "signature_recorded": false}},
+          {"copies": 1, "record": {"document_id": "SYN-DC1", "site_id": "SYN-SC", "document_type": "protocol", "version_seq": 2, "protocol_version": 2, "issued_on": "2026-09-01", "effective_on": "2026-09-01", "recorded_on": "2026-09-02", "expires_on": null, "artifact_id": "SYN-AC1", "signature_recorded": true}}
+        ]
+      },
+      {"table": "documents", "record_id": "SYN-DC2", "copies": 1, "distinct_variants": 1, "dispositions": ["impossible-chronology", "quarantined"], "source_refs": [], "conflicting_variants": []},
+      {"table": "documents", "record_id": "SYN-DC3", "copies": 1, "distinct_variants": 1, "dispositions": ["selected"], "source_refs": [], "conflicting_variants": []},
+      {"table": "open_review_tasks", "record_id": "SYN-KC1", "copies": 1, "distinct_variants": 1, "dispositions": ["task-linked"], "source_refs": [], "conflicting_variants": []},
+      {"table": "open_review_tasks", "record_id": "SYN-KC2", "copies": 1, "distinct_variants": 1, "dispositions": ["task-linked"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-RC1", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-RC2", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "requirements", "record_id": "SYN-RC3", "copies": 1, "distinct_variants": 1, "dispositions": ["applicable"], "source_refs": [], "conflicting_variants": []},
+      {"table": "sites", "record_id": "SYN-SC", "copies": 1, "distinct_variants": 1, "dispositions": ["in-scope"], "source_refs": [], "conflicting_variants": []},
+      {"table": "trials", "record_id": "SYN-TC", "copies": 1, "distinct_variants": 1, "dispositions": ["context"], "source_refs": [], "conflicting_variants": []}
+    ],
+    "draft_review_queue": [
+      {"site_id": "SYN-SC", "requirement_id": "SYN-RC1", "reason_code": "conflict", "owner_role_id": "SYN-ROLEC", "existing_task_ids": ["SYN-KC1", "SYN-KC2"], "action": "request-evidence-review", "routing": "existing-task", "draft_review_by": null},
+      {"site_id": "SYN-SC", "requirement_id": "SYN-RC2", "reason_code": "conflict", "owner_role_id": "SYN-ROLEC", "existing_task_ids": [], "action": "request-evidence-review", "routing": "draft-new", "draft_review_by": "2026-09-16"}
+    ]
+  },
+  "exceptions": [
+    {"code": "conflicting-evidence", "message": "Conflicting values share a record ID; no arbitrary variant was chosen.", "table": "documents", "record_id": "SYN-DC1", "variant_count": 2},
+    {"code": "duplicate-open-tasks", "message": "Multiple existing tasks match one review key; no new task was drafted.", "site_id": "SYN-SC", "requirement_id": "SYN-RC1", "reason_code": "conflict", "task_ids": ["SYN-KC1", "SYN-KC2"]},
+    {"code": "impossible-chronology", "message": "Document date order is impossible; eligible dependent requirements are quarantined.", "table": "documents", "record_id": "SYN-DC2", "violations": ["issued-after-effective", "expiry-before-issued"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-SC", "requirement_id": "SYN-RC1", "primary_reason": "conflict", "reason_codes": ["conflict"]},
+    {"code": "requirement-review", "message": "Configured administrative evidence needs qualified review.", "site_id": "SYN-SC", "requirement_id": "SYN-RC2", "primary_reason": "conflict", "reason_codes": ["conflict"]}
+  ]
+}

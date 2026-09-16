@@ -1,0 +1,29 @@
+{
+  "exceptions": [
+    {
+      "code": "MALFORMED_INPUT",
+      "field": "reporting_month",
+      "message": "Expected YYYY-MM in the range 2000-01 through 2100-12.",
+      "record_id": null,
+      "table": "config"
+    },
+    {
+      "code": "MALFORMED_INPUT",
+      "field": null,
+      "message": "Expected an object.",
+      "record_id": null,
+      "row_index": 0,
+      "table": "receipt_events"
+    },
+    {
+      "code": "MALFORMED_INPUT",
+      "field": "qty",
+      "message": "Expected an integer from 1 through 1000000.",
+      "record_id": "M-R01",
+      "table": "receipt_events"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

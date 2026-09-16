@@ -1,0 +1,200 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "e2ae5a69fc9a48242d9340d7bad83d92ae675f76b98c35e0f0f63146861ec1bb",
+    "golden_sha256": "a7e184ad9cc40386efd233e1859e1a673b3fb6ee00dc47e00839b487755fc39e",
+    "input_sha256": "59a3fcba80466a26dc2a8285bcc2a4abd267c8276406f63e72b184ef3de95c52",
+    "result": "baseline-output/negative-invalid-window.json",
+    "result_sha256": "9ebb3da3808ea604f9436b2b2a6372036fd30f7456377d40aac43acbf95adb25",
+    "trace": "baseline-output/negative-invalid-window.trace.json",
+    "trace_sha256": "4ff4c5bd09781cefdbf6e8cc240f1d9c2cf22544e17dda9d3c36daeffa251bca"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "datetime",
+      "decimal",
+      "fractions",
+      "json",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-invalid-window",
+  "documented": {
+    "case_rule_coverage": [
+      "validate-mock-exports",
+      "half-open-windows"
+    ],
+    "failure_modes": [
+      "malformed-input",
+      "future-audit-window"
+    ],
+    "golden_derivation": "The September1 final included audit day is after the August31 as_of. Reject with FUTURE_AUDIT_WINDOW at policy.audit_end before joining records; no disposition counts or prices are asserted.",
+    "steps": [
+      {
+        "id": "load-price-exports",
+        "kind": "input",
+        "rule_ids": [
+          "store-date-price-review",
+          "validate-mock-exports"
+        ]
+      },
+      {
+        "id": "validate-pricing-records",
+        "kind": "validation",
+        "rule_ids": [
+          "validate-mock-exports",
+          "half-open-windows"
+        ]
+      },
+      {
+        "id": "join-store-sku-prices",
+        "kind": "join",
+        "rule_ids": [
+          "half-open-windows",
+          "unique-price-evidence"
+        ]
+      },
+      {
+        "id": "select-active-promotions",
+        "kind": "decision",
+        "rule_ids": [
+          "discount-applicability",
+          "scope-and-status"
+        ]
+      },
+      {
+        "id": "resolve-price-policy",
+        "kind": "decision",
+        "rule_ids": [
+          "configurable-concurrency",
+          "unique-price-evidence",
+          "exception-and-priority",
+          "exclusive-competition",
+          "best-versus-compound",
+          "deterministic-ties"
+        ]
+      },
+      {
+        "id": "round-and-compare",
+        "kind": "decision",
+        "rule_ids": [
+          "half-up-and-tolerance"
+        ]
+      },
+      {
+        "id": "register-audit-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "unique-price-evidence",
+          "review-only-price-audit"
+        ]
+      },
+      {
+        "id": "publish-price-review",
+        "kind": "output",
+        "rule_ids": [
+          "review-only-price-audit"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-invalid-window.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/retail/promotion-price-audit",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.531383,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-price-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-pricing-records"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "retail-03",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "ee27f98e0531091758519e12ecf398b75a71199a4f5da2129cdc9583122b8500",
+    "baseline.py": "e2ae5a69fc9a48242d9340d7bad83d92ae675f76b98c35e0f0f63146861ec1bb",
+    "connections.json": "2dbfd759c6a3455fa4ec9d6b2b088599042611e92c0a158502cbfbab65e75522",
+    "expected/demo.json": "4a840a3d2e389bd3cfaa9e4160173f595a7152cb6f00256cb0dc1882b0bd57ed",
+    "expected/holdout-a.json": "bdd2f47f68ba0d9f5d239efc1795098933cae3084709cbdc54dae3dad73bc084",
+    "expected/holdout-b.json": "4338e981262e2815a9c237403db3d3397293aa8b8f19e63330e1cca874f892ea",
+    "expected/negative-ambiguous-exception.json": "ebd8c91775eb8beb72d52f01074394f2bff1b712a6e94479190b8e0e7d2e925d",
+    "expected/negative-contradictory.json": "aca169497d5a304ca3c677e7073eb374a02f9a67803fa3acdec97373d30a9fad",
+    "expected/negative-duplicate.json": "885c43d15053fd34a3d5b8744acbf9f5307c335453cd7c8cf3220d289713dd37",
+    "expected/negative-invalid-window.json": "a7e184ad9cc40386efd233e1859e1a673b3fb6ee00dc47e00839b487755fc39e",
+    "expected/negative-malformed.json": "fe967902d7e6030f7281621e64e483a8d7417493dc39144e02458c8087f3fa96",
+    "expected/negative-missing-base.json": "38466606b5f22ecc45acbc68bba7e2d7d6c9da59b569922bde53973b06cfca58",
+    "expected/negative-out-of-window.json": "978c6343e611c9d19ddf643ca5b92c3549a39268e28d36eeed95786dfb1cc03a",
+    "mock-data/demo.json": "b804fe5ef352e79aa831ea05e835af5e95cd3e9080e02bacb38b1fe525f9a7b3",
+    "mock-data/holdout-a.json": "877d372b37fb16a38018d1c06a98e109f2bff73814c8ea4e2d1175b80807818e",
+    "mock-data/holdout-b.json": "90a4370302a8b7e276a51e759453d0dfade6cce74b4d32a33e3bd3763737c4ce",
+    "mock-data/negative-ambiguous-exception.json": "62f29acc9da3e80f99c19ef79cc0c272c1ff7c4fe9f7372a5b53ee1e1b4fb9a1",
+    "mock-data/negative-contradictory.json": "e8977f56e52a2437725d6d205a713bf25e806c8632eea0748a59a466e7704f14",
+    "mock-data/negative-duplicate.json": "84a1ba036830e782be2303e003715118f5d3219f29b7801c83433c79d0bb34a4",
+    "mock-data/negative-invalid-window.json": "59a3fcba80466a26dc2a8285bcc2a4abd267c8276406f63e72b184ef3de95c52",
+    "mock-data/negative-malformed.json": "a344cab7a5ec7520e25cdb10f055ad60f854f520a9712b94b3783f017719cfb7",
+    "mock-data/negative-missing-base.json": "f3d4525927f6143afe0e996b801f1742953e49454720cfab3273d34076268f94",
+    "mock-data/negative-out-of-window.json": "a069871d22827d38279c2a7615881c2b5f9e7b537cdf4763855d7d744e883075",
+    "scenario.json": "4c6136b184f6c1849d4ef8b401d1dcbd2d9c28b98dc5f5588dbbb944ebf7d2e7",
+    "sources.json": "f9a4090a1b5f24a77f2b4de02aef700c649d48efc218d696042efc1348a86211",
+    "workflow.json": "aba8264935675d549a7979d5e8ce5d91e056786686d0d1ad5fe7234243b7c52e"
+  },
+  "state": "baseline_pass"
+}

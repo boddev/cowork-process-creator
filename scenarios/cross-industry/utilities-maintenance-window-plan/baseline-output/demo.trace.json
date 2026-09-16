@@ -1,0 +1,536 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic planning exports without live connections.",
+      "facts": {
+        "logical_exports": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-planning-exports",
+      "tables": [
+        {
+          "columns": [
+            "export",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "work-orders.json",
+              6
+            ],
+            [
+              "requirements.json",
+              5
+            ],
+            [
+              "kit-components.json",
+              5
+            ],
+            [
+              "resources.json",
+              7
+            ],
+            [
+              "resource-windows.json",
+              7
+            ],
+            [
+              "commitments.json",
+              2
+            ],
+            [
+              "prerequisite-status.json",
+              1
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Validated schemas, references, acyclic dependencies and existing bookings.",
+      "facts": {
+        "cutoff": "2026-10-05T07:00:00Z",
+        "resources": 7,
+        "work_orders": 6
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-planning-data",
+      "tables": [
+        {
+          "columns": [
+            "start",
+            "end",
+            "grid_minutes",
+            "start_limit"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "2026-10-05T08:00:00Z",
+              "2026-10-05T16:00:00Z",
+              30,
+              100
+            ]
+          ],
+          "title": "Validated intervals",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Joined requirements, order-reserved kits, crews, fixed resources and predecessor evidence.",
+      "facts": {
+        "joined_orders": 6
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-readiness-evidence",
+      "tables": [
+        {
+          "columns": [
+            "order",
+            "craft",
+            "crews",
+            "area",
+            "tool",
+            "items"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "UT-D01",
+              "E",
+              1,
+              "A1",
+              "T1",
+              1
+            ],
+            [
+              "UT-D02",
+              "E",
+              1,
+              "A2",
+              "T1",
+              1
+            ],
+            [
+              "UT-D03",
+              "M",
+              1,
+              "A3",
+              null,
+              1
+            ],
+            [
+              "UT-D04",
+              "E",
+              1,
+              "A4",
+              null,
+              1
+            ],
+            [
+              "UT-D05",
+              "M",
+              1,
+              "A3",
+              null,
+              1
+            ],
+            [
+              "UT-D06",
+              "M",
+              1,
+              "A3",
+              null,
+              0
+            ]
+          ],
+          "title": "Joined work requirements",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Computed administrative, reserved-kit and external evidence gates; internal predecessors remain contingent.",
+      "facts": {
+        "external_pending_orders": 1,
+        "kit_shortage_orders": 1
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "assess-readiness",
+      "tables": [
+        {
+          "columns": [
+            "order",
+            "plan_approved",
+            "missing_items",
+            "external_pending",
+            "internal_deps"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "UT-D01",
+              true,
+              0,
+              0,
+              0
+            ],
+            [
+              "UT-D02",
+              true,
+              0,
+              0,
+              0
+            ],
+            [
+              "UT-D03",
+              true,
+              0,
+              0,
+              1
+            ],
+            [
+              "UT-D04",
+              true,
+              1,
+              0,
+              0
+            ],
+            [
+              "UT-D05",
+              true,
+              0,
+              1,
+              0
+            ],
+            [
+              "UT-D06",
+              true,
+              0,
+              0,
+              0
+            ]
+          ],
+          "title": "Preliminary readiness",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Executed dependency-aware grid searches and retained the first feasible crew/resource allocation for each proposed order.",
+      "facts": {
+        "examined_starts": 10,
+        "proposed_orders": 4,
+        "rejected_candidates": 6
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "search-resource-windows",
+      "tables": [
+        {
+          "columns": [
+            "order",
+            "start",
+            "end",
+            "crew",
+            "area",
+            "tool"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "UT-D01",
+              "2026-10-05T08:00:00Z",
+              "2026-10-05T09:00:00Z",
+              "CE1",
+              "A1",
+              "T1"
+            ],
+            [
+              "UT-D03",
+              "2026-10-05T09:00:00Z",
+              "2026-10-05T10:00:00Z",
+              "CM1",
+              "A3",
+              null
+            ],
+            [
+              "UT-D06",
+              "2026-10-05T10:00:00Z",
+              "2026-10-05T11:30:00Z",
+              "CM1",
+              "A3",
+              null
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T12:00:00Z",
+              "2026-10-05T14:00:00Z",
+              "CE1",
+              "A2",
+              "T1"
+            ]
+          ],
+          "title": "Actual contingent proposals",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Recorded real failed candidates and owned planning questions; these are not work instructions or clearance.",
+      "facts": {
+        "conflict_rows": 6,
+        "deferred_orders": 2
+      },
+      "kind": "exception",
+      "sequence": 6,
+      "step_id": "record-conflicts",
+      "tables": [
+        {
+          "columns": [
+            "order",
+            "start",
+            "resource",
+            "reason",
+            "blocking_id"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "rows": [
+            [
+              "UT-D02",
+              "2026-10-05T09:00:00Z",
+              "CE1",
+              "existing-booking",
+              "BOOK-D-CE1"
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T09:30:00Z",
+              "T1",
+              "existing-booking",
+              "BOOK-D-T1"
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T10:00:00Z",
+              "T1",
+              "existing-booking",
+              "BOOK-D-T1"
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T10:30:00Z",
+              "T1",
+              "existing-booking",
+              "BOOK-D-T1"
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T11:00:00Z",
+              "T1",
+              "existing-booking",
+              "BOOK-D-T1"
+            ],
+            [
+              "UT-D02",
+              "2026-10-05T11:30:00Z",
+              "T1",
+              "existing-booking",
+              "BOOK-D-T1"
+            ]
+          ],
+          "title": "Rejected candidates",
+          "total_rows": 6
+        },
+        {
+          "columns": [
+            "order",
+            "reason",
+            "owner"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "UT-D04",
+              "kit-shortage",
+              "PLANNER-D"
+            ],
+            [
+              "UT-D05",
+              "prerequisite-unresolved",
+              "PLANNER-D"
+            ]
+          ],
+          "title": "Deferred review queue",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Summed proposed resource minutes separately from existing commitments and unioned available windows for reporting only.",
+      "facts": {
+        "job_minutes": 330,
+        "resources": 7
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "summarize-resource-load",
+      "tables": [
+        {
+          "columns": [
+            "resource",
+            "kind",
+            "available",
+            "committed",
+            "proposed",
+            "total"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "A1",
+              "area",
+              240,
+              0,
+              60,
+              60
+            ],
+            [
+              "A2",
+              "area",
+              360,
+              0,
+              120,
+              120
+            ],
+            [
+              "A3",
+              "area",
+              240,
+              0,
+              150,
+              150
+            ],
+            [
+              "A4",
+              "area",
+              480,
+              0,
+              0,
+              0
+            ],
+            [
+              "CE1",
+              "crew",
+              480,
+              60,
+              180,
+              240
+            ],
+            [
+              "CM1",
+              "crew",
+              240,
+              0,
+              150,
+              150
+            ],
+            [
+              "T1",
+              "tool",
+              480,
+              60,
+              180,
+              240
+            ]
+          ],
+          "title": "Resource planning occupancy",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Closed a complete synthetic planning review packet. Planning review only; not safe-to-work clearance or authorization.",
+      "facts": {
+        "deferred": 2,
+        "job_minutes": 330,
+        "proposed": 4,
+        "rejected_candidates": 6,
+        "work_orders": 6
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "emit-contingent-plan",
+      "tables": [
+        {
+          "columns": [
+            "order",
+            "disposition",
+            "reason",
+            "examined_starts"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "UT-D01",
+              "proposed",
+              null,
+              1
+            ],
+            [
+              "UT-D02",
+              "proposed",
+              null,
+              7
+            ],
+            [
+              "UT-D03",
+              "proposed",
+              null,
+              1
+            ],
+            [
+              "UT-D04",
+              "deferred",
+              "kit-shortage",
+              0
+            ],
+            [
+              "UT-D05",
+              "deferred",
+              "prerequisite-unresolved",
+              0
+            ],
+            [
+              "UT-D06",
+              "proposed",
+              null,
+              1
+            ]
+          ],
+          "title": "Final order dispositions",
+          "total_rows": 6
+        }
+      ]
+    }
+  ],
+  "input_sha256": "08dc35949e5d6445b39bfbe21cd1a7bfd149eee573324302567177a4d8385cab",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-02",
+  "schema_version": 1
+}

@@ -1,0 +1,105 @@
+{
+  "events": [
+    {
+      "caption": "Inventoried the supplied logical exports and explicit policy from one synthetic JSON snapshot.",
+      "facts": {
+        "as_of": "2026-09-14",
+        "logical_tables_present": 5,
+        "reporting_month": "2026-13"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows",
+            "shape"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "po_schedule_lines",
+              1,
+              "array"
+            ],
+            [
+              "receipt_events",
+              2,
+              "array"
+            ],
+            [
+              "confirmations",
+              0,
+              "array"
+            ],
+            [
+              "requirements",
+              0,
+              "array"
+            ],
+            [
+              "suppliers",
+              1,
+              "array"
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Rejected input shape with 3 fatal issue(s); no business report was produced.",
+      "facts": {
+        "fatal_errors": 3,
+        "phase": "input shape"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-events",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "table",
+            "record_id",
+            "field"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2
+          ],
+          "rows": [
+            [
+              "MALFORMED_INPUT",
+              "config",
+              null,
+              "reporting_month"
+            ],
+            [
+              "MALFORMED_INPUT",
+              "receipt_events",
+              null,
+              null
+            ],
+            [
+              "MALFORMED_INPUT",
+              "receipt_events",
+              "M-R01",
+              "qty"
+            ]
+          ],
+          "title": "Validation failures",
+          "total_rows": 3
+        }
+      ]
+    }
+  ],
+  "input_sha256": "272052005c8fc312223996e58a41efb2601d6fb39b31dbe8197afb33db5d9bc6",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "manufacturing-02",
+  "schema_version": 1
+}

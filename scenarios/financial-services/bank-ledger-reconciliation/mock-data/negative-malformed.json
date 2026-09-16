@@ -1,0 +1,9 @@
+{
+  "schema_version": 1, "synthetic": true,
+  "config": {"control_version": "SYN-CONTROL-N", "approval_state": "approved", "as_of": "2026-07-01T00:00:00Z", "business_utc_offset_minutes": 0, "cutoff_date": "2026-06-30", "max_match_calendar_days": 2, "single_amount_tolerance_minor": 0, "timing_grace_calendar_days": 2, "stale_after_calendar_days": 5, "max_rows_per_source": 5000},
+  "scopes": [{"scope_id": "SYN-N", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT-N", "statement_id": "SYN-JUNE-N", "currency": "USD", "from_date": "2026-06-01", "through_date": "2026-06-30", "prior_statement_through_date": "2026-05-31", "bank_opening_minor": 100000, "bank_closing_minor": 100000, "prior_bank_closing_minor": 100000, "ledger_opening_minor": 100000, "ledger_closing_minor": 100000, "bank_sign": 1, "ledger_sign": 1}],
+  "bank_lines": [{"bank_line_id": "SYN-BAD-B", "scope_id": "SYN-N", "booked_at": "2026-06-30T12:00:00Z", "amount_minor": true, "bank_code": "DEP", "reference": "SYN-BAD", "batch_id": null}],
+  "ledger_lines": [],
+  "mappings": [{"scope_id": "SYN-N", "bank_code": "DEP", "ledger_type": "RECEIPT"}],
+  "batches": []
+}

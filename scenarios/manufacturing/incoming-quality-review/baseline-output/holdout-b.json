@@ -1,0 +1,129 @@
+{
+  "exceptions": [
+    {
+      "code": "failed-test",
+      "message": "MFG-DIAM has out-of-limit active results: MFG-RB11.",
+      "owner_role": "QA reviewer",
+      "subject": "MFG-H11"
+    },
+    {
+      "code": "missing-certificate",
+      "message": "No current matching certificate is available.",
+      "owner_role": "QA intake reviewer",
+      "subject": "MFG-H12"
+    },
+    {
+      "code": "pending-retest",
+      "message": "MFG-DIAM has unapproved retest evidence: MFG-RB12.",
+      "owner_role": "QA reviewer",
+      "subject": "MFG-H11"
+    },
+    {
+      "code": "unknown-item",
+      "message": "Item MFG-UNKNOWN is absent from the item export.",
+      "owner_role": "QA intake reviewer",
+      "subject": "MFG-H12"
+    }
+  ],
+  "outputs": {
+    "as_of": "2027-01-05",
+    "packet_state": "review-required",
+    "review_queue": [
+      {
+        "age_days": 0,
+        "approval_required": true,
+        "certificate_ids": [],
+        "hold_snapshot_date": "2027-01-05",
+        "hold_state": "held",
+        "item_id": "MFG-UNKNOWN",
+        "lot_id": "MFG-H12",
+        "open_nc_ids": [],
+        "overdue": false,
+        "physical_held_qty": 4,
+        "production_authorized": false,
+        "quality_order_id": "MFG-QH12",
+        "rank": 1,
+        "reason_codes": [
+          "missing-certificate",
+          "unknown-item"
+        ],
+        "receipt_date": "2027-01-05",
+        "received_qty": 4,
+        "review_state": "data-review",
+        "reviewer_role": "QA intake reviewer",
+        "site": "MFG-EAST",
+        "supplier_id": "MFG-SUP-ZETA",
+        "test_checks": []
+      },
+      {
+        "age_days": 1,
+        "approval_required": true,
+        "certificate_ids": [
+          "MFG-CB11"
+        ],
+        "hold_snapshot_date": "2027-01-05",
+        "hold_state": "held",
+        "item_id": "MFG-PIN",
+        "lot_id": "MFG-H11",
+        "open_nc_ids": [],
+        "overdue": false,
+        "physical_held_qty": 6,
+        "production_authorized": false,
+        "quality_order_id": "MFG-QH11",
+        "rank": 2,
+        "reason_codes": [
+          "failed-test",
+          "pending-retest"
+        ],
+        "receipt_date": "2027-01-04",
+        "received_qty": 6,
+        "review_state": "nonconformance-review",
+        "reviewer_role": "QA reviewer",
+        "site": "MFG-EAST",
+        "supplier_id": "MFG-SUP-EPSILON",
+        "test_checks": [
+          {
+            "failed_result_ids": [
+              "MFG-RB11"
+            ],
+            "maximum": "5.10",
+            "minimum": "4.90",
+            "observations": [
+              {
+                "evidence_state": "active",
+                "result_id": "MFG-RB11",
+                "specimen_id": "MFG-SB11",
+                "value": "4.85"
+              },
+              {
+                "evidence_state": "pending-retest",
+                "result_id": "MFG-RB12",
+                "specimen_id": "MFG-SB11",
+                "value": "4.95"
+              }
+            ],
+            "observed_specimens": 1,
+            "required_specimens": 1,
+            "requirement_id": "MFG-SPEC-2027",
+            "state": "failed",
+            "test_id": "MFG-DIAM"
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "known_held_qty": 10,
+      "lot_count": 2,
+      "received_qty": 10,
+      "review_quantities": {
+        "data-review": 4,
+        "evidence-complete": 0,
+        "evidence-gap": 0,
+        "nonconformance-review": 6
+      },
+      "unknown_hold_lot_ids": []
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

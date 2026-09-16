@@ -1,0 +1,27 @@
+{
+  "as_of": "2026-10-01",
+  "horizon_end": "2026-10-03",
+  "work_orders": [
+    {"order_id": "A01", "item_id": "WINDOW", "site": "NORTH", "start_date": "2026-10-03", "quantity": 2, "priority": 3, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "WIN-OLD", "item_id": "WINDOW", "site": "NORTH", "valid_from": "2026-01-01", "valid_to": "2026-09-30", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true},
+    {"version_id": "WIN-NEW", "item_id": "WINDOW", "site": "NORTH", "valid_from": "2026-10-01", "valid_to": "2026-12-31", "min_order_qty": 2, "max_order_qty": 2, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "OLD-PANE", "version_id": "WIN-OLD", "component_id": "PANE", "line_type": "Item", "quantity_per": "99", "scrap_percent": "0"},
+    {"line_id": "NEW-PANE", "version_id": "WIN-NEW", "component_id": "PANE", "line_type": "Item", "quantity_per": "2", "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "WINDOW", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "PANE", "unit": "EA", "expiry_controlled": true}
+  ],
+  "stock_lots": [
+    {"stock_id": "HA-OTHER", "item_id": "PANE", "site": "EAST", "quantity": 10, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-10-31"},
+    {"stock_id": "HA-EARLY", "item_id": "PANE", "site": "NORTH", "quantity": 2, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-10-02"},
+    {"stock_id": "HA-BOUND", "item_id": "PANE", "site": "NORTH", "quantity": 1, "reserved_external_qty": 0, "status": "available", "expires_on": "2026-10-03"}
+  ],
+  "inbound": [
+    {"receipt_id": "HA-IN", "item_id": "PANE", "site": "NORTH", "expected_on": "2026-10-03", "quantity": 3, "confirmed": true}
+  ]
+}

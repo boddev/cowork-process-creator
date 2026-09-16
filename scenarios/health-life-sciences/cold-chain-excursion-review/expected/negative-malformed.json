@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "invalid-input", "message": "policy.max_gap_seconds must be an integer in 1..86400.", "entity_ref": "policy.max_gap_seconds"}
+  ]
+}

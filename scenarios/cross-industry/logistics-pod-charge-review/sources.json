@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "oracle-pod",
+      "title": "Recording Proof of Delivery",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/recording-proof-of-delivery.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "scope": "Primary body fetched on the accessed date during approved research; JD Edwards EnterpriseOne Transportation Management 9.2 delivery evidence fields.",
+      "supported_claims": ["The documented POD form records delivery date, delivery time, and received-by information."],
+      "limitations": "Does not establish this scenario's revision, quantity, time-order, tariff, or evidence-completeness rules. No live delivery confirmation is performed."
+    },
+    {
+      "id": "oracle-freight-match",
+      "title": "Understanding Invoice Matching",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/understanding-invoice-matching.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "scope": "Primary body fetched on the accessed date during approved research; documented freight invoice matching context.",
+      "supported_claims": ["Freight invoice matching compares invoiced amounts with calculated shipment charges.", "The documented downstream accounts-payable voucher is outside this synthetic review."],
+      "limitations": "Does not supply universal tolerances, rates, a reconciliation algorithm, payment permission, or an Oracle-compatible export schema."
+    },
+    {
+      "id": "oracle-freight-fields",
+      "title": "Matching Freight Invoices",
+      "url": "https://docs.oracle.com/en/applications/jd-edwards/supply-chain-manufacturing/9.2/eoatm/matching-freight-invoices-1.html",
+      "publisher": "Oracle",
+      "accessed": "2026-09-14",
+      "scope": "Primary body fetched on the accessed date during approved research; invoice header and selected freight-charge association.",
+      "supported_claims": ["Invoice header information includes supplier, invoice number, and dates.", "Selected freight charges are associated with the invoice for review."],
+      "limitations": "Neutral synthetic fields are not an Oracle import/API schema; no voucher, carrier contact, AP action, or financial posting is implemented."
+    }
+  ]
+}

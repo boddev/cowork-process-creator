@@ -1,0 +1,14 @@
+{
+  "config": {"as_of": "2026-09-14", "review_age_days": 5, "certificate_required": true, "fallback_reviewer_role": "QA intake reviewer"},
+  "items": [{"item_id": "MFG-PIN", "item_group": "MFG-METAL"}],
+  "reviewer_routes": [{"item_group": "MFG-METAL", "reviewer_role": "QA reviewer"}],
+  "lots": [{"lot_id": "MFG-CONFLICT-LOT", "item_id": "MFG-PIN", "supplier_id": "MFG-SUP-IOTA", "receipt_date": "2026-09-13", "received_qty": 5, "site": "MFG-EAST", "quality_order_id": "MFG-QCONFLICT"}],
+  "test_requirements": [{"requirement_id": "MFG-SPEC-CONFLICT", "item_id": "MFG-PIN", "test_id": "MFG-DIAM", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "minimum": "4.90", "maximum": "5.10", "required_specimens": 1}],
+  "observations": [
+    {"result_id": "MFG-CONFLICT", "lot_id": "MFG-CONFLICT-LOT", "test_id": "MFG-DIAM", "specimen_id": "MFG-SCONFLICT", "value": "5.00", "observed_on": "2026-09-14", "supersedes_result_id": null, "supersession_approved": false},
+    {"result_id": "MFG-CONFLICT", "lot_id": "MFG-CONFLICT-LOT", "test_id": "MFG-DIAM", "specimen_id": "MFG-SCONFLICT", "value": "5.50", "observed_on": "2026-09-14", "supersedes_result_id": null, "supersession_approved": false}
+  ],
+  "certificates": [{"certificate_id": "MFG-CCONFLICT", "lot_id": "MFG-CONFLICT-LOT", "item_id": "MFG-PIN", "valid_through": "2026-10-01", "status": "valid"}],
+  "hold_snapshot": [{"lot_id": "MFG-CONFLICT-LOT", "physical_held_qty": 5, "hold_state": "held", "snapshot_date": "2026-09-14"}],
+  "nonconformances": []
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version":1,"status":"completed_with_exceptions",
+  "outputs":{
+    "context":{"batch_id":"SYN-AP-HB","as_of":"2026-08-01T04:59:59Z","business_utc_offset_minutes":-300,"business_date":"2026-07-31","control_version":"SYN-CTRL-HB","unit_tolerance_bps":200,"line_amount_cap_minor":500,"max_rows_per_source":5000,"source_counts":{"invoices":5,"invoice_lines":5,"po_lines":4,"receipt_lines":4,"historical_invoices":0,"prior_allocations":0,"selected_receipts":0}},
+    "invoice_reviews":[
+      {"invoice_id":"SYN-HB-A","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","vendor_invoice_number":"SYN-HB-001","canonical_vendor_invoice_number":"SYN-HB-001","invoice_at":"2026-07-31T22:00:00Z","header_net_minor":1253,"declared_line_net_minor":1253,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},"line_ids":["SYN-LINE-01"],"duplicate_invoice_ids":[],"duplicate_historical_invoice_ids":[],"status":"ready-for-review","reason_codes":[],"proposed_net_minor":1253},
+      {"invoice_id":"SYN-HB-B","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","vendor_invoice_number":"SYN-HB-002","canonical_vendor_invoice_number":"SYN-HB-002","invoice_at":"2026-07-31T22:00:00Z","header_net_minor":6000,"declared_line_net_minor":6000,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},"line_ids":["SYN-LINE-01"],"duplicate_invoice_ids":[],"duplicate_historical_invoice_ids":[],"status":"held","reason_codes":["receipt-unavailable"],"proposed_net_minor":0},
+      {"invoice_id":"SYN-HB-C","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","vendor_invoice_number":"SYN-HB-003","canonical_vendor_invoice_number":"SYN-HB-003","invoice_at":"2026-07-31T22:00:00Z","header_net_minor":4000,"declared_line_net_minor":4000,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},"line_ids":["SYN-LINE-01"],"duplicate_invoice_ids":[],"duplicate_historical_invoice_ids":[],"status":"held","reason_codes":["po-approval-pending"],"proposed_net_minor":0},
+      {"invoice_id":"SYN-HB-D","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","vendor_invoice_number":"  syn-mix-12  ","canonical_vendor_invoice_number":"SYN-MIX-12","invoice_at":"2026-07-31T22:00:00Z","header_net_minor":500,"declared_line_net_minor":500,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},"line_ids":["SYN-LINE-01"],"duplicate_invoice_ids":["SYN-HB-E"],"duplicate_historical_invoice_ids":[],"status":"held","reason_codes":["duplicate-incoming-invoice"],"proposed_net_minor":0},
+      {"invoice_id":"SYN-HB-E","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","vendor_invoice_number":"SYN-MIX-12","canonical_vendor_invoice_number":"SYN-MIX-12","invoice_at":"2026-07-31T22:00:00Z","header_net_minor":500,"declared_line_net_minor":500,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},"line_ids":["SYN-LINE-01"],"duplicate_invoice_ids":["SYN-HB-D"],"duplicate_historical_invoice_ids":[],"status":"held","reason_codes":["duplicate-incoming-invoice"],"proposed_net_minor":0}
+    ],
+    "line_comparisons":[
+      {
+        "invoice_id":"SYN-HB-A","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-A","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":1250,"unit_price_minor":1002,"line_net_minor":1253,"calculated_line_net_minor":1253,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},
+        "po":{"vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":1250,"unit_price_minor":1000,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_milliunits":1250,"shortage_milliunits":0,"join_matches":true},
+        "price":{"po_line_net_minor":1250,"unit_difference_minor":2,"unit_test_left":20000,"unit_test_right":200000,"unit_price_pass":true,"line_difference_minor":3,"line_cap_pass":true},
+        "receipts":{"eligible_ids":["SYN-HB-R-A"],"available_milliunits":1250,"selection_mode":"sole-receipt","selections":[{"receipt_line_id":"SYN-HB-R-A","quantity_milliunits":1250,"available_milliunits":1250,"eligible":true}],"total_selected_milliunits":1250,"shortage_milliunits":0},
+        "individual_reason_codes":[],"conflict_reason_codes":[],"status":"proposed","proposed_quantity_milliunits":1250
+      },
+      {
+        "invoice_id":"SYN-HB-B","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-B","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":2000,"unit_price_minor":3000,"line_net_minor":6000,"calculated_line_net_minor":6000,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},
+        "po":{"vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":3000,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_milliunits":2000,"shortage_milliunits":0,"join_matches":true},
+        "price":{"po_line_net_minor":6000,"unit_difference_minor":0,"unit_test_left":0,"unit_test_right":600000,"unit_price_pass":true,"line_difference_minor":0,"line_cap_pass":true},
+        "receipts":{"eligible_ids":[],"available_milliunits":0,"selection_mode":"none","selections":[],"total_selected_milliunits":0,"shortage_milliunits":2000},
+        "individual_reason_codes":["receipt-unavailable"],"conflict_reason_codes":[],"status":"held","proposed_quantity_milliunits":0
+      },
+      {
+        "invoice_id":"SYN-HB-C","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-C","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":1000,"unit_price_minor":4000,"line_net_minor":4000,"calculated_line_net_minor":4000,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},
+        "po":{"vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":1000,"unit_price_minor":4000,"approval_state":"pending","approved_at":null,"available_milliunits":1000,"shortage_milliunits":0,"join_matches":true},
+        "price":{"po_line_net_minor":4000,"unit_difference_minor":0,"unit_test_left":0,"unit_test_right":800000,"unit_price_pass":true,"line_difference_minor":0,"line_cap_pass":true},
+        "receipts":{"eligible_ids":["SYN-HB-R-C"],"available_milliunits":1000,"selection_mode":"sole-receipt","selections":[{"receipt_line_id":"SYN-HB-R-C","quantity_milliunits":1000,"available_milliunits":1000,"eligible":true}],"total_selected_milliunits":1000,"shortage_milliunits":0},
+        "individual_reason_codes":["po-approval-pending"],"conflict_reason_codes":[],"status":"held","proposed_quantity_milliunits":0
+      },
+      {
+        "invoice_id":"SYN-HB-D","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-D","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":1000,"unit_price_minor":500,"line_net_minor":500,"calculated_line_net_minor":500,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},
+        "po":{"vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":500,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_milliunits":2000,"shortage_milliunits":0,"join_matches":true},
+        "price":{"po_line_net_minor":500,"unit_difference_minor":0,"unit_test_left":0,"unit_test_right":100000,"unit_price_pass":true,"line_difference_minor":0,"line_cap_pass":true},
+        "receipts":{"eligible_ids":["SYN-HB-R-D"],"available_milliunits":2000,"selection_mode":"sole-receipt","selections":[{"receipt_line_id":"SYN-HB-R-D","quantity_milliunits":1000,"available_milliunits":2000,"eligible":true}],"total_selected_milliunits":1000,"shortage_milliunits":0},
+        "individual_reason_codes":[],"conflict_reason_codes":[],"status":"held","proposed_quantity_milliunits":0
+      },
+      {
+        "invoice_id":"SYN-HB-E","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-D","po_line_id":"SYN-LINE-01","unit":"EA","quantity_milliunits":1000,"unit_price_minor":500,"line_net_minor":500,"calculated_line_net_minor":500,"components":{"tax_minor":0,"charges_minor":0,"discounts_minor":0,"freight_minor":0},
+        "po":{"vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":500,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_milliunits":2000,"shortage_milliunits":0,"join_matches":true},
+        "price":{"po_line_net_minor":500,"unit_difference_minor":0,"unit_test_left":0,"unit_test_right":100000,"unit_price_pass":true,"line_difference_minor":0,"line_cap_pass":true},
+        "receipts":{"eligible_ids":["SYN-HB-R-D"],"available_milliunits":2000,"selection_mode":"sole-receipt","selections":[{"receipt_line_id":"SYN-HB-R-D","quantity_milliunits":1000,"available_milliunits":2000,"eligible":true}],"total_selected_milliunits":1000,"shortage_milliunits":0},
+        "individual_reason_codes":[],"conflict_reason_codes":[],"status":"held","proposed_quantity_milliunits":0
+      }
+    ],
+    "proposed_allocations":[{"invoice_id":"SYN-HB-A","line_id":"SYN-LINE-01","legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","po_id":"SYN-HB-PO-A","po_line_id":"SYN-LINE-01","receipt_line_id":"SYN-HB-R-A","unit":"EA","quantity_milliunits":1250}],
+    "remaining_capacity":{
+      "receipts":[
+        {"receipt_line_id":"SYN-HB-R-A","legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-A","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","quantity_milliunits":1250,"received_at":"2026-07-31T22:00:00Z","status":"posted","posted_at":"2026-08-01T04:30:00Z","posted_business_date":"2026-07-31","available_at_as_of":true,"historical_used_milliunits":0,"before_proposals_milliunits":1250,"proposed_milliunits":1250,"remaining_milliunits":0},
+        {"receipt_line_id":"SYN-HB-R-B","legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-B","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","quantity_milliunits":2000,"received_at":"2026-08-01T03:00:00Z","status":"posted","posted_at":"2026-08-01T05:00:00Z","posted_business_date":"2026-08-01","available_at_as_of":false,"historical_used_milliunits":0,"before_proposals_milliunits":0,"proposed_milliunits":0,"remaining_milliunits":0},
+        {"receipt_line_id":"SYN-HB-R-C","legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-C","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","quantity_milliunits":1000,"received_at":"2026-08-01T03:00:00Z","status":"posted","posted_at":"2026-08-01T04:00:00Z","posted_business_date":"2026-07-31","available_at_as_of":true,"historical_used_milliunits":0,"before_proposals_milliunits":1000,"proposed_milliunits":0,"remaining_milliunits":1000},
+        {"receipt_line_id":"SYN-HB-R-D","legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-D","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","quantity_milliunits":2000,"received_at":"2026-08-01T03:00:00Z","status":"posted","posted_at":"2026-08-01T04:00:00Z","posted_business_date":"2026-07-31","available_at_as_of":true,"historical_used_milliunits":0,"before_proposals_milliunits":2000,"proposed_milliunits":0,"remaining_milliunits":2000}
+      ],
+      "po_lines":[
+        {"legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-A","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":1250,"unit_price_minor":1000,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_for_proposals":true,"historical_used_milliunits":0,"before_proposals_milliunits":1250,"proposed_milliunits":1250,"remaining_milliunits":0},
+        {"legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-B","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":3000,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_for_proposals":true,"historical_used_milliunits":0,"before_proposals_milliunits":2000,"proposed_milliunits":0,"remaining_milliunits":2000},
+        {"legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-C","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":1000,"unit_price_minor":4000,"approval_state":"pending","approved_at":null,"available_for_proposals":false,"historical_used_milliunits":0,"before_proposals_milliunits":1000,"proposed_milliunits":0,"remaining_milliunits":1000},
+        {"legal_entity_id":"SYN-ENT-02","po_id":"SYN-HB-PO-D","po_line_id":"SYN-LINE-01","vendor_id":"SYN-VEN-02","currency":"USD","unit":"EA","ordered_milliunits":2000,"unit_price_minor":500,"approval_state":"approved","approved_at":"2026-07-29T12:00:00Z","available_for_proposals":true,"historical_used_milliunits":0,"before_proposals_milliunits":2000,"proposed_milliunits":0,"remaining_milliunits":2000}
+      ]
+    },
+    "historical_invoices":[],"prior_allocations":[],
+    "excluded_receipts":[{"receipt_line_id":"SYN-HB-R-B","code":"receipt-posted-after-as-of","message":"Receipt posting is after as_of; its quantity is excluded.","quantity_milliunits":2000,"posted_at":"2026-08-01T05:00:00Z","posted_business_date":"2026-08-01"}],
+    "capacity_conflicts":[],
+    "summary":[{"legal_entity_id":"SYN-ENT-02","vendor_id":"SYN-VEN-02","currency":"USD","invoice_count":5,"ready_invoice_count":1,"held_invoice_count":4,"intake_net_minor":12253,"ready_net_minor":1253,"held_net_minor":11000}],
+    "review":{"human_review":"pending","live_action":"none","owner_role":"AP manager"}
+  },
+  "exceptions":[
+    {"code":"receipt-unavailable","message":"No eligible positive-capacity receipt is available by as_of.","source":"invoice-lines","record_id":"SYN-HB-B","line_id":"SYN-LINE-01","field":null,"owner_role":"Receiving owner"},
+    {"code":"po-approval-pending","message":"The PO line is not approved.","source":"invoice-lines","record_id":"SYN-HB-C","line_id":"SYN-LINE-01","field":null,"owner_role":"Procurement owner"},
+    {"code":"duplicate-incoming-invoice","message":"All incoming invoices with this canonical business key are held.","source":"invoices","record_id":"SYN-HB-D","line_id":null,"field":null,"owner_role":"AP manager"},
+    {"code":"duplicate-incoming-invoice","message":"All incoming invoices with this canonical business key are held.","source":"invoices","record_id":"SYN-HB-E","line_id":null,"field":null,"owner_role":"AP manager"},
+    {"code":"receipt-posted-after-as-of","message":"Receipt posting is after as_of; its quantity is excluded.","source":"receipt-lines","record_id":"SYN-HB-R-B","line_id":null,"field":null,"owner_role":"Receiving owner"}
+  ]
+}

@@ -5,13 +5,17 @@ No host automation, plugin execution, package generation, or native attestation.
 from __future__ import annotations
 
 import hashlib
+import re
 import stat
+import struct
+import uuid
 import zipfile
+import zlib
 from pathlib import Path
 
 from .common import (
     ContractError, SHA256, contained_path, file_digest, load_json, no_links,
-    object_fields, path_parts, text, version, write_json,
+    object_fields, parse_json, path_parts, text, version, write_json,
 )
 from .comparison import compare_json
 from .contract import Scenario, validate_result
@@ -21,6 +25,65 @@ from .staging import check_staging
 ZIP_LIMIT = 200_000_000
 EXPANDED_LIMIT = 256_000_000
 ENTRY_LIMIT = 32_000_000
+COWORK_SCHEMA = "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json"
+
+
+def _expanded_digest(path: Path, member: zipfile.ZipInfo) -> tuple[int, str]:
+    """Measure the actual stream; ZipExtFile clips reads at declared file_size."""
+    if member.compress_type not in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+        raise ContractError("Bounded inspection supports only stored or DEFLATE ZIP entries")
+    digest, crc, count = hashlib.sha256(), 0, 0
+
+    def consume(data: bytes) -> None:
+        nonlocal crc, count
+        count += len(data)
+        if count > member.file_size or count > ENTRY_LIMIT:
+            raise ContractError("ZIP entry expanded beyond its declared bounds")
+        digest.update(data)
+        crc = zlib.crc32(data, crc)
+
+    with path.open("rb") as raw:
+        raw.seek(member.header_offset)
+        header = raw.read(30)
+        if len(header) != 30:
+            raise ContractError("ZIP entry has a truncated local header")
+        fields = struct.unpack("<4s5H3I2H", header)
+        if fields[0] != b"PK\x03\x04" or fields[2] != member.flag_bits or fields[3] != member.compress_type:
+            raise ContractError("ZIP local header disagrees with its directory")
+        raw.seek(fields[9] + fields[10], 1)
+        remaining = member.compress_size
+        decoder = zlib.decompressobj(-zlib.MAX_WBITS) if member.compress_type == zipfile.ZIP_DEFLATED else None
+        if decoder is None and member.compress_size != member.file_size:
+            raise ContractError("Stored ZIP entry has inconsistent compressed and expanded lengths")
+        try:
+            while remaining:
+                chunk = raw.read(min(64 * 1024, remaining))
+                if not chunk:
+                    raise ContractError("ZIP entry has a truncated compressed stream")
+                remaining -= len(chunk)
+                if decoder is None:
+                    consume(chunk)
+                    continue
+                pending = chunk
+                while pending:
+                    expanded = decoder.decompress(pending, min(64 * 1024, member.file_size - count + 1))
+                    consume(expanded)
+                    pending = decoder.unconsumed_tail
+                    if decoder.unused_data or (decoder.eof and (pending or remaining)):
+                        raise ContractError("ZIP entry contains bytes after the DEFLATE stream")
+            if decoder is not None:
+                while not decoder.eof:
+                    expanded = decoder.decompress(b"", min(64 * 1024, member.file_size - count + 1))
+                    if not expanded:
+                        break
+                    consume(expanded)
+                if not decoder.eof:
+                    raise ContractError("ZIP entry has an incomplete DEFLATE stream")
+        except zlib.error as error:
+            raise ContractError(f"ZIP entry has an invalid DEFLATE stream: {error}") from error
+    if count != member.file_size or crc & 0xFFFFFFFF != member.CRC:
+        raise ContractError("ZIP actual expanded length or CRC disagrees with its directory")
+    return count, digest.hexdigest()
 
 
 def inspect_zip(path: Path) -> dict:
@@ -62,20 +125,14 @@ def inspect_zip(path: Path) -> dict:
                     raise ContractError("ZIP expanded content exceeds the inspection limit")
                 if member.file_size > 1_000_000 and member.file_size / max(member.compress_size, 1) > 200:
                     raise ContractError("ZIP expansion ratio exceeds the bounded inspection limit")
-                digest = hashlib.sha256()
-                count = 0
-                with archive.open(member) as handle:
-                    for chunk in iter(lambda: handle.read(64 * 1024), b""):
-                        count += len(chunk)
-                        if count > member.file_size or count > ENTRY_LIMIT:
-                            raise ContractError("ZIP entry expanded beyond its declared bounds")
-                        digest.update(chunk)
-                if count != member.file_size:
-                    raise ContractError("ZIP entry length does not match its directory")
+                # Retain zipfile's header/name/overlap checks, but measure raw expansion.
+                with archive.open(member):
+                    pass
+                count, expanded_sha256 = _expanded_digest(path, member)
                 entries.append({
                     "path": member.filename,
                     "size_bytes": count,
-                    "sha256": digest.hexdigest(),
+                    "sha256": expanded_sha256,
                     "directory": member.is_dir(),
                 })
     except (zipfile.BadZipFile, NotImplementedError, RuntimeError) as error:
@@ -95,6 +152,89 @@ def inspect_zip(path: Path) -> dict:
         "generated": False,
         "installed": False,
     }
+
+def inspect_cowork_plugin(path: Path) -> dict:
+    """Check the required native package shape, not the full Microsoft schema."""
+    inspection = inspect_zip(path)
+    files = {entry["path"] for entry in inspection["entries"] if not entry["directory"]}
+    if "manifest.json" not in files:
+        raise ContractError("Microsoft Cowork requires a root manifest.json (v1.28); a Claude-compatible/source ZIP is not a native plugin")
+    if "plugin.json" in files or any(name.startswith((".claude-plugin/", ".cursor-plugin/", ".plugin/")) for name in files):
+        raise ContractError("Native Microsoft Cowork output must not include another host's plugin manifest")
+
+    def resource(value, label):
+        name = text(value, label, maximum=256).removeprefix("./")
+        path_parts(name)
+        if name not in files:
+            raise ContractError(f"{label}: referenced package file is missing")
+        return name
+
+    with zipfile.ZipFile(path) as archive:
+        manifest = parse_json(archive.read("manifest.json"), label="manifest.json")
+        object_fields(manifest, {
+            "$schema", "manifestVersion", "version", "id", "developer", "name",
+            "description", "icons", "accentColor", "agentSkills",
+        }, "Microsoft manifest", optional={"agentConnectors"})
+        if manifest["manifestVersion"] != "1.28" or manifest["$schema"] != COWORK_SCHEMA:
+            raise ContractError("Microsoft Cowork plugin must target the official M365 manifest v1.28, not devPreview or a portable source format")
+        try:
+            identity = uuid.UUID(text(manifest["id"], "manifest.id", maximum=36))
+        except ValueError as error:
+            raise ContractError("Microsoft manifest.id must be a non-nil UUID") from error
+        if identity.int == 0:
+            raise ContractError("Microsoft manifest.id must be a non-nil UUID")
+        if not re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", text(manifest["version"], "manifest.version", maximum=30)):
+            raise ContractError("Microsoft manifest.version must have three decimal components")
+        developer = object_fields(manifest["developer"], {"name", "websiteUrl", "privacyUrl", "termsOfUseUrl"}, "developer")
+        text(developer["name"], "developer.name", maximum=32)
+        for key in ("websiteUrl", "privacyUrl", "termsOfUseUrl"):
+            if not text(developer[key], "developer." + key, maximum=2048).startswith("https://"):
+                raise ContractError("Supplied native publishing metadata must use HTTPS URLs")
+        for field, limits in (("name", {"short": 30, "full": 100}), ("description", {"short": 80, "full": 4000})):
+            values = object_fields(manifest[field], set(limits), "manifest." + field)
+            for key, limit in limits.items():
+                text(values[key], "manifest." + field + "." + key, maximum=limit)
+        if not re.fullmatch(r"#[0-9A-Fa-f]{6}", text(manifest["accentColor"], "accentColor", maximum=7)):
+            raise ContractError("Microsoft manifest accentColor must be a six-digit color")
+        icons = object_fields(manifest["icons"], {"color", "outline"}, "icons")
+        for key, size in (("color", 192), ("outline", 32)):
+            name = resource(icons[key], "icons." + key)
+            with archive.open(name) as stream:
+                header = stream.read(24)
+            if len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", header[16:24]) != (size, size):
+                raise ContractError(f"Microsoft {key} icon must be a {size}x{size} PNG")
+        skills = manifest["agentSkills"]
+        if not isinstance(skills, list) or not 1 <= len(skills) <= 20:
+            raise ContractError("Native scenario plugin must declare 1-20 agentSkills")
+        folders = set()
+        for item in skills:
+            object_fields(item, {"folder"}, "agentSkills entry")
+            folder = text(item["folder"], "agentSkills.folder", maximum=256).removeprefix("./")
+            path_parts(folder)
+            if folder in folders:
+                raise ContractError("Duplicate native skill folder")
+            folders.add(folder)
+            resource(folder + "/SKILL.md", "agentSkills SKILL.md")
+        connectors = manifest.get("agentConnectors", [])
+        if not isinstance(connectors, list) or len(connectors) > 10:
+            raise ContractError("Native package supports at most 10 connectors")
+        for connector in connectors:
+            if not isinstance(connector, dict):
+                raise ContractError("Native connector must be an object")
+            tool_source = object_fields(connector.get("toolSource"), {"remoteMcpServer"}, "connector.toolSource")
+            remote = object_fields(tool_source["remoteMcpServer"], {"mcpServerUrl", "mcpToolDescription"}, "remoteMcpServer", optional={"authorization"})
+            if not text(remote["mcpServerUrl"], "mcpServerUrl", maximum=2048).startswith("https://"):
+                raise ContractError("Native remote connector requires HTTPS")
+            descriptor = object_fields(remote["mcpToolDescription"], {"file"}, "mcpToolDescription")
+            tool_file = resource(descriptor["file"], "mcpToolDescription.file")
+            tool_data = object_fields(parse_json(archive.read(tool_file), label=tool_file), {"tools"}, "tool descriptor")
+            if not isinstance(tool_data["tools"], list) or not tool_data["tools"]:
+                raise ContractError("Native connector descriptor must include actual tools")
+    if file_digest(path) != inspection["sha256"]:
+        raise ContractError("Plugin changed during manifest inspection")
+    inspection["package_target"] = "cowork-v1.28"
+    inspection["manifest_check"] = "Required native scenario-package shape and resource references only; not full Microsoft schema validation or host acceptance."
+    return inspection
 
 
 def _hash(value, label):
@@ -144,7 +284,7 @@ def compare_native_import(scenario: Scenario, observation_path: Path, output_roo
     plugin = object_fields(claim["plugin"], {"path", "sha256"}, "native plugin")
     if not isinstance(plugin["path"], str) or not plugin["path"].startswith(scenario.id + "/"):
         raise ContractError("Native plugin must be a supplied file under output/<scenario-id>")
-    inspection = inspect_zip(contained_path(output_root, plugin["path"]))
+    inspection = inspect_cowork_plugin(contained_path(output_root, plugin["path"]))
     plugin_sha = _hash(plugin["sha256"], "plugin.sha256")
     if plugin_sha != inspection["sha256"]:
         raise ContractError("Downloaded plugin bytes differ from the frozen declared plugin hash")

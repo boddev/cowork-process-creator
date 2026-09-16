@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "fee-explicit-basis-and-ranges",
+      "description": "Require explicit billing basis and rate ranges; validate the exact synthetic input contract, bounded true integers, unique technical IDs, approved controls, and closed fixed-offset period.",
+      "provenance": {
+        "kind": "source-backed",
+        "source_ids": ["f1-advisor-fees", "f2-billing-methods"],
+        "note": "Only the need to state fee basis and ranges is source-backed. The vendor example uses 252 business days. All JSON validation, approval controls, bounds, and calendar choices are sample policies."
+      }
+    },
+    {
+      "id": "fee-pending-not-effective",
+      "description": "Exclude pending schedules and approvals after as_of from authority; preserve them as visible evidence without overriding an eligible approved schedule.",
+      "provenance": {
+        "kind": "source-backed",
+        "source_ids": ["f1-advisor-fees"],
+        "note": "The source says pending configuration requests are not effective. The exact synthetic timestamps, flags, and approval fields are sample policies, not authorization."
+      }
+    },
+    {
+      "id": "fee-effective-coverage",
+      "description": "Join half-open engagement, eligible schedule, and explicit constant value intervals. Gaps hold the entire account. Any overlap of eligible approved schedules or authoritative values rejects the whole case.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Fictional evidence-completeness and contradiction rules; no newest-version selection, interpolation, or forward-fill."
+      }
+    },
+    {
+      "id": "fee-marginal-tiers",
+      "description": "Allocate value into consecutive marginal bands starting at zero, with strictly increasing finite upper bounds and one final unbounded band; preserve zero-valued slices.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Fictional marginal formula, not householding, a whole-balance cliff, or an IBKR implementation."
+      }
+    },
+    {
+      "id": "fee-calendar-proration",
+      "description": "Include start days and exclude end days. Split on eligible evidence and engagement boundaries and January 1 for actual-calendar-year; alternatively use explicit act-365-fixed.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Invented actual-calendar-day policy with 365/366 denominators; no inferred DST, holidays, market prices, or cash flows."
+      }
+    },
+    {
+      "id": "fee-exact-rounding",
+      "description": "Use exact rational minor units for all segment fees. Sum all segment fractions before one account-period rounding, with explicit half-up or half-even and no numeric coercion.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Invented agreement rounding policy. No intermediate cent rounding or floating approximation."
+      }
+    },
+    {
+      "id": "fee-draft-comparison",
+      "description": "Join exact account/period/currency business keys. One draft permits signed draft-minus-computed comparison using inclusive tolerance. Missing and duplicate drafts are not zero or arbitrary winners.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": [],
+        "note": "Fictional comparison and exception precedence. Source schedule labels are context only."
+      }
+    },
+    {
+      "id": "fee-review-closure",
+      "description": "Preserve dispositions for every source row, all account/segment/tier/draft details, excluded changes, and separate comparable, missing-draft, duplicate-draft, uncomputed, and not-billable populations. End with pending human review and no live action.",
+      "provenance": {
+        "kind": "sample-policy",
+        "source_ids": ["f1-advisor-fees"],
+        "note": "Review-only sample closure. The source offers limited context for presenting method, amount, and period; it does not authorize any action here."
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "intake-billing-exports",
+      "kind": "input",
+      "title": "Load synthetic billing exports",
+      "rule_ids": ["fee-explicit-basis-and-ranges"],
+      "procedure": "Read immutable engagement, schedule, value, and draft arrays; record actual counts and supplied period/as_of."
+    },
+    {
+      "id": "validate-billing-evidence",
+      "kind": "validation",
+      "title": "Validate contract and authoritative evidence",
+      "rule_ids": ["fee-explicit-basis-and-ranges", "fee-effective-coverage", "fee-marginal-tiers", "fee-pending-not-effective"],
+      "procedure": "Validate all fields, scalar types, source limits, keys, tier endpoints, fixed-offset closure, approvals, references, and full authoritative intervals before producing trusted fees."
+    },
+    {
+      "id": "join-effective-segments",
+      "kind": "join",
+      "title": "Join effective billing segments",
+      "rule_ids": ["fee-effective-coverage", "fee-calendar-proration", "fee-pending-not-effective"],
+      "procedure": "Intersect active dates with eligible schedules and explicit values, split year boundaries when needed, preserve gaps and excluded changes, and show actual evidence IDs and day counts."
+    },
+    {
+      "id": "calculate-marginal-tiers",
+      "kind": "decision",
+      "title": "Calculate marginal value slices",
+      "rule_ids": ["fee-marginal-tiers"],
+      "procedure": "For coverage-complete accounts, allocate each segment value into every marginal band and record value-times-bps integer numerators, including zero slices."
+    },
+    {
+      "id": "prorate-and-round",
+      "kind": "decision",
+      "title": "Prorate exactly and round once",
+      "rule_ids": ["fee-calendar-proration", "fee-exact-rounding"],
+      "procedure": "Multiply annual numerators by days, divide exactly by 10000 times the day-count denominator, sum exact fractions, and show each account's sole rounding decision."
+    },
+    {
+      "id": "join-draft-fees",
+      "kind": "join",
+      "title": "Compare exact draft business keys",
+      "rule_ids": ["fee-draft-comparison"],
+      "procedure": "Classify every draft, distinguish absence from zero and duplicate business keys from technical ID violations, then compare only a unique exact-key draft for a computed account."
+    },
+    {
+      "id": "route-billing-exceptions",
+      "kind": "exception",
+      "title": "Route unresolved billing evidence",
+      "rule_ids": ["fee-pending-not-effective", "fee-effective-coverage", "fee-draft-comparison", "fee-review-closure"],
+      "procedure": "Sort the actual gap, pending/future approval, draft exclusion, duplicate, missing, and out-of-tolerance exceptions; attach their codes to affected account reviews."
+    },
+    {
+      "id": "emit-billing-review",
+      "kind": "output",
+      "title": "Emit the review-only packet",
+      "rule_ids": ["fee-review-closure"],
+      "procedure": "Return the complete exact envelope, row dispositions, financial details, and disjoint comparison populations with human_review=pending and live_action=none."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Only supplied synthetic exported JSON for invoices, POs, receipts, historical invoices and prior allocations, plus review output files. No endpoint, authentication, credential or live connection is required or provisioned. Actual ERP export access, trustworthy prior allocations, real approval identity, vendor-master mapping and an approved Finance connection remain unverified integration gaps. No invoice posting, payment, receipt mutation, OCR or tax service."
+}

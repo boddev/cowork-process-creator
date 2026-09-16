@@ -1,0 +1,449 @@
+{
+  "events": [
+    {
+      "caption": "Inspect independently mapped mock exports; null counts mean missing or malformed data, never assumed zero history.",
+      "facts": {
+        "allow_partial_requests": false,
+        "as_of": "2099-09-11",
+        "period_end": "2099-09-11",
+        "period_start": "2099-09-10",
+        "window_days": 7
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-return-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "policy",
+              1
+            ],
+            [
+              "original_orders",
+              1
+            ],
+            [
+              "original_lines",
+              1
+            ],
+            [
+              "prior_returns",
+              0
+            ],
+            [
+              "requests",
+              2
+            ]
+          ],
+          "title": "Supplied logical exports",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Exact field sets, synthetic domains, primary keys, receipt uniqueness and order foreign keys passed; business contradictions are checked next.",
+      "facts": {
+        "schema_version": 1,
+        "validated_rows": 4,
+        "validation": "passed"
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-return-records",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "record_count",
+            "primary_key"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "original_orders",
+              1,
+              "order_id"
+            ],
+            [
+              "original_lines",
+              1,
+              "order_id/line_id"
+            ],
+            [
+              "prior_returns",
+              0,
+              "return_event_id"
+            ],
+            [
+              "requests",
+              2,
+              "request_id"
+            ]
+          ],
+          "title": "Validated record domains and unique keys",
+          "total_rows": 4
+        }
+      ]
+    },
+    {
+      "caption": "Resolve store/receipt first, then verify order/invoice and line/SKU; contradictory matches quarantine all implicated originals before allocation.",
+      "facts": {
+        "contradictory_requests": 0,
+        "matched": 2,
+        "unknown_receipts": 0
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "link-original-evidence",
+      "tables": [
+        {
+          "columns": [
+            "request_id",
+            "supplied_receipt",
+            "original_order",
+            "original_line",
+            "join_status"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-REQUEST-B-01",
+              "SYN-RECEIPT-B",
+              "SYN-ORDER-B",
+              "SYN-LINE-B",
+              "matched"
+            ],
+            [
+              "SYN-REQUEST-B-02",
+              "SYN-RECEIPT-B",
+              "SYN-ORDER-B",
+              "SYN-LINE-B",
+              "matched"
+            ]
+          ],
+          "title": "Actual receipt and line joins",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Reconcile original capture and cumulative posted history. Raw observations remain visible; any order fault makes its authoritative eligibility unknown.",
+      "facts": {
+        "certified_opening": true,
+        "pending_events": 0,
+        "posted_events": 0,
+        "quarantined_orders": 0,
+        "voided_events": 0
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "reconcile-opening-ledger",
+      "tables": [
+        {
+          "columns": [
+            "order/line",
+            "fulfilled",
+            "posted_qty",
+            "posted_merch",
+            "posted_tax",
+            "quarantined"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-ORDER-B/SYN-LINE-B",
+              2,
+              0,
+              0,
+              0,
+              false
+            ]
+          ],
+          "title": "Observed original-line opening ledger",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "order_id",
+            "line_paid",
+            "captured",
+            "authorized",
+            "observed_posted",
+            "quarantined"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-ORDER-B",
+              999,
+              999,
+              999,
+              0,
+              false
+            ]
+          ],
+          "title": "Original payment reconciliation",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Evaluate inclusive period and age, original returnability, reason and condition before any quantity-dependent decision.",
+      "facts": {
+        "ineligible_requests": 0,
+        "window_days": 7
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "apply-return-policy",
+      "tables": [
+        {
+          "columns": [
+            "request_id",
+            "age_days",
+            "window",
+            "reason",
+            "condition",
+            "policy_result"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-REQUEST-B-01",
+              6,
+              7,
+              "changed-mind",
+              "unworn",
+              "eligible"
+            ],
+            [
+              "SYN-REQUEST-B-02",
+              7,
+              7,
+              "changed-mind",
+              "unworn",
+              "eligible"
+            ]
+          ],
+          "title": "Actual request policy checks",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "In requested-date/ID order, reserve only new proposed units. Oversized partial-disabled requests and policy exclusions consume nothing.",
+      "facts": {
+        "deferred_qty": 3,
+        "partial_requests_allowed": false,
+        "proposed_qty": 1
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "reserve-proposed-quantities",
+      "tables": [
+        {
+          "columns": [
+            "request_id",
+            "posted_prior",
+            "earlier_proposed",
+            "available",
+            "proposed",
+            "deferred"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-REQUEST-B-01",
+              0,
+              0,
+              2,
+              0,
+              3
+            ],
+            [
+              "SYN-REQUEST-B-02",
+              0,
+              0,
+              2,
+              1,
+              0
+            ]
+          ],
+          "title": "Ordered hypothetical quantity reservations",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Subtract separate original merchandise/tax cumulative entitlements; check projected refunds against captured and authorized money before release.",
+      "facts": {
+        "cap_withdrawals": 0,
+        "reconciled_orders": 1,
+        "rounding": "integer ROUND_HALF_UP"
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "calculate-original-refund",
+      "tables": [
+        {
+          "columns": [
+            "request_id",
+            "merch_before",
+            "merch_after",
+            "tax_before",
+            "tax_after",
+            "new_total"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-REQUEST-B-01",
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              "SYN-REQUEST-B-02",
+              0,
+              500,
+              0,
+              0,
+              500
+            ]
+          ],
+          "title": "Actual cumulative pennies per request",
+          "total_rows": 2
+        },
+        {
+          "columns": [
+            "order_id",
+            "prior",
+            "new",
+            "projected",
+            "captured",
+            "cap_ok"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-ORDER-B",
+              0,
+              500,
+              500,
+              999,
+              true
+            ]
+          ],
+          "title": "Original order refund caps",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Surface order causes before ordered request exceptions; unknown receipts stay unresolved without accusations or invented payment attribution.",
+      "facts": {
+        "exceptions": 1,
+        "quarantined_orders": 0,
+        "unresolved_requests": 0
+      },
+      "kind": "exception",
+      "sequence": 8,
+      "step_id": "quarantine-return-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "scope",
+            "entity_id",
+            "code"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "request",
+              "SYN-REQUEST-B-01",
+              "partial-not-allowed"
+            ]
+          ],
+          "title": "Actual review exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Publish every request and original control with a non-authorizing review packet. Currency money below excludes explicitly counted quarantined orders.",
+      "facts": {
+        "action_authorized": false,
+        "exception_count": 1,
+        "proposed_qty": 1,
+        "quarantined_orders": 0,
+        "request_count": 2,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "publish-return-review",
+      "tables": [
+        {
+          "columns": [
+            "currency",
+            "prior",
+            "new_merch",
+            "new_tax",
+            "new_total",
+            "remaining"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "GBP",
+              0,
+              500,
+              0,
+              500,
+              499
+            ]
+          ],
+          "title": "Reconciled money by currency",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "currency",
+            "orders",
+            "quarantined",
+            "reconciled",
+            "all_captured",
+            "reconciled_captured"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "GBP",
+              1,
+              0,
+              1,
+              999,
+              999
+            ]
+          ],
+          "title": "Currency scope disclosure",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "a9b4945c984b90a05cb892f7d9760149fa4792ec503e756bfb9300d92d359144",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-02",
+  "schema_version": 1
+}

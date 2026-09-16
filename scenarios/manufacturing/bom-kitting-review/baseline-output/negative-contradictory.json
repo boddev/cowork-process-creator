@@ -1,0 +1,15 @@
+{
+  "exceptions": [
+    {
+      "code": "AMBIGUOUS_BOM",
+      "field": "version_id",
+      "message": "Multiple approved active BOM versions match: C-V1, C-V2.",
+      "order_id": "C01",
+      "source_id": "C",
+      "source_type": "items"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

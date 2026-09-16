@@ -1,0 +1,641 @@
+{
+  "events": [
+    {
+      "caption": "Inventoried the supplied synthetic attachment; no external files or services were read.",
+      "facts": {
+        "as_of": "2026-10-02T12:00:00Z",
+        "boundary": "synthetic file review only",
+        "logical_arrays": 6,
+        "supplied_records": 23
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake-exports",
+      "tables": [
+        {
+          "columns": [
+            "export_label",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "shipments.json",
+              3
+            ],
+            [
+              "pod-events.json",
+              5
+            ],
+            [
+              "rate-cards.json",
+              4
+            ],
+            [
+              "carrier-invoices.json",
+              1
+            ],
+            [
+              "invoice-lines.json",
+              9
+            ],
+            [
+              "review-history.json",
+              1
+            ]
+          ],
+          "title": "Logical export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Validated exact schemas, primary IDs, decimal strings, and row-local temporal constraints.",
+      "facts": {
+        "outcome": "validated",
+        "supplied_records": 23,
+        "validation_issues": 0
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-records",
+      "tables": [
+        {
+          "columns": [
+            "export_label",
+            "rows",
+            "schema"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "shipments.json",
+              3,
+              "valid"
+            ],
+            [
+              "pod-events.json",
+              5,
+              "valid"
+            ],
+            [
+              "rate-cards.json",
+              4,
+              "valid"
+            ],
+            [
+              "carrier-invoices.json",
+              1,
+              "valid"
+            ],
+            [
+              "invoice-lines.json",
+              9,
+              "valid"
+            ],
+            [
+              "review-history.json",
+              1,
+              "valid"
+            ]
+          ],
+          "title": "Validated export rows",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Joined every line without deduplication; structural billing holds are retained separately from evidence pricing.",
+      "facts": {
+        "invoices": 1,
+        "missing_header_lines": 0,
+        "orphan_lines": 0,
+        "prior_cases": 1,
+        "shipments": 3
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-exports",
+      "tables": [
+        {
+          "columns": [
+            "shipment_id",
+            "line_rows",
+            "invoice_ids",
+            "POD_rows",
+            "rate_candidates",
+            "billing_holds"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A01",
+              3,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              "LG-A02",
+              3,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              "LG-A03",
+              3,
+              1,
+              3,
+              1,
+              0
+            ]
+          ],
+          "title": "Shipment join counts",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "invoice_id",
+            "currency",
+            "header_total",
+            "line_total",
+            "matches",
+            "faults"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-INV-A1",
+              "USD",
+              "2427.83",
+              "2427.83",
+              true,
+              ""
+            ]
+          ],
+          "title": "Exact invoice header checks",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Excluded future POD independently, then resolved unique eligible revisions and half-open UTC-date rate matches.",
+      "facts": {
+        "ambiguous_POD_rows": 0,
+        "cutoff": "2026-10-02T12:00:00Z",
+        "future_POD_rows": 1,
+        "selected_rates": 3,
+        "usable_POD": 3
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "select-evidence",
+      "tables": [
+        {
+          "columns": [
+            "shipment_id",
+            "POD_id",
+            "rate_id",
+            "rate_date",
+            "usable_POD",
+            "rate_matches"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A01",
+              "LG-POD-A01",
+              "LG-RATE-A01-NEW",
+              "2026-10-01",
+              true,
+              1
+            ],
+            [
+              "LG-A02",
+              "LG-POD-A02",
+              "LG-RATE-A02",
+              "2026-10-01",
+              true,
+              1
+            ],
+            [
+              "LG-A03",
+              "LG-POD-A03-R2",
+              "LG-RATE-A03",
+              "2026-10-02",
+              true,
+              1
+            ]
+          ],
+          "title": "Selected evidence",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "pod_id",
+            "shipment_id",
+            "revision",
+            "recorded_at",
+            "disposition"
+          ],
+          "highlight_rows": [
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "LG-POD-A01",
+              "LG-A01",
+              1,
+              "2026-10-01T01:00:00Z",
+              "selected"
+            ],
+            [
+              "LG-POD-A02",
+              "LG-A02",
+              1,
+              "2026-10-01T11:00:00Z",
+              "selected"
+            ],
+            [
+              "LG-POD-A03-R1",
+              "LG-A03",
+              1,
+              "2026-10-01T12:00:00Z",
+              "superseded"
+            ],
+            [
+              "LG-POD-A03-R2",
+              "LG-A03",
+              2,
+              "2026-10-02T12:00:00Z",
+              "selected"
+            ],
+            [
+              "LG-POD-A03-R3",
+              "LG-A03",
+              3,
+              "2026-10-02T12:00:01Z",
+              "future-excluded"
+            ]
+          ],
+          "title": "All POD revision dispositions",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Rounded each fuel charge half-up and priced exact-second ceiling blocks; caps limit detention money, never block counts.",
+      "facts": {
+        "cap_reductions": 1,
+        "computed_shipments": 3,
+        "fuel_rounding": "ROUND_HALF_UP",
+        "uncomputed_shipments": 0
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "calculate-charges",
+      "tables": [
+        {
+          "columns": [
+            "shipment_id",
+            "linehaul",
+            "fuel",
+            "uncapped_detention",
+            "detention",
+            "expected_amount"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A01",
+              "900.00",
+              "112.50",
+              "20.00",
+              "20.00",
+              "1032.50"
+            ],
+            [
+              "LG-A02",
+              "500.00",
+              "40.00",
+              "120.00",
+              "60.00",
+              "600.00"
+            ],
+            [
+              "LG-A03",
+              "700.00",
+              "70.00",
+              "0.00",
+              "0.00",
+              "770.00"
+            ]
+          ],
+          "title": "Actual charge components",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "shipment_id",
+            "dwell_seconds",
+            "free_seconds",
+            "excess_seconds",
+            "blocks",
+            "cap"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A01",
+              2760,
+              2700,
+              60,
+              1,
+              "60.00"
+            ],
+            [
+              "LG-A02",
+              7260,
+              2700,
+              4560,
+              6,
+              "60.00"
+            ],
+            [
+              "LG-A03",
+              3600,
+              3600,
+              0,
+              0,
+              "100.00"
+            ]
+          ],
+          "title": "Actual detention arithmetic",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Compared only priceable, structurally supported billings with the symmetric inclusive tolerance; other variances stay null.",
+      "facts": {
+        "comparable_shipments": 3,
+        "held_shipments": 1,
+        "ready_shipments": 2
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "compare-charges",
+      "tables": [
+        {
+          "columns": [
+            "shipment_id",
+            "currency",
+            "billed_amount",
+            "expected_amount",
+            "variance",
+            "tolerance"
+          ],
+          "highlight_rows": [
+            1
+          ],
+          "rows": [
+            [
+              "LG-A01",
+              "USD",
+              "1042.83",
+              "1032.50",
+              "10.33",
+              "10.33"
+            ],
+            [
+              "LG-A02",
+              "USD",
+              "615.00",
+              "600.00",
+              "15.00",
+              "6.00"
+            ],
+            [
+              "LG-A03",
+              "USD",
+              "770.00",
+              "770.00",
+              "0.00",
+              "7.70"
+            ]
+          ],
+          "title": "Shipment charge comparison",
+          "total_rows": 3
+        },
+        {
+          "columns": [
+            "shipment_id",
+            "disposition",
+            "issue_codes"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A01",
+              "ready-for-review",
+              ""
+            ],
+            [
+              "LG-A02",
+              "held",
+              "variance"
+            ],
+            [
+              "LG-A03",
+              "ready-for-review",
+              ""
+            ]
+          ],
+          "title": "Observed review branches",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Assigned synthetic review owners and strict missing-POD grace decisions; no carrier contact or business action occurs.",
+      "facts": {
+        "null_prices": 0,
+        "overdue_shipments": 0,
+        "queue_items_before_history": 1
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "triage-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "shipment_id",
+            "entity_id",
+            "code",
+            "owner",
+            "next_action"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-A02",
+              "LG-A02",
+              "variance",
+              "contract-review",
+              "Review the calculated and billed charges; do not authorize payment."
+            ]
+          ],
+          "title": "Owned review queue before history",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "shipment_id",
+            "age_seconds",
+            "grace_seconds",
+            "overdue"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Missing-POD age decisions",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Re-evaluated every prior case without editing history; unresolved evidence cannot establish that a variance has cleared.",
+      "facts": {
+        "closed_proposals": 1,
+        "deferred_proposals": 0,
+        "held_proposals": 0,
+        "prior_cases": 1,
+        "reopened_proposals": 0
+      },
+      "kind": "decision",
+      "sequence": 8,
+      "step_id": "revisit-prior-cases",
+      "tables": [
+        {
+          "columns": [
+            "case_id",
+            "shipment_id",
+            "issue_code",
+            "previous_state",
+            "proposed_state",
+            "reason"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "LG-CASE-A03-POD",
+              "LG-A03",
+              "missing-pod",
+              "evidence-requested",
+              "closed",
+              "condition-cleared"
+            ]
+          ],
+          "title": "Proposed prior-case transitions",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "case_id",
+            "code",
+            "owner"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "History clarification queue",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Emitted every entity and owned issue; currency totals preserve ready/held amounts and compare only paired computed charges.",
+      "facts": {
+        "held_shipments": 1,
+        "invoices": 1,
+        "queue_items": 1,
+        "ready_shipments": 2,
+        "status": "completed_with_exceptions",
+        "uncomputed_shipments": 0
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "emit-review-packet",
+      "tables": [
+        {
+          "columns": [
+            "currency",
+            "billed_total",
+            "ready_lines",
+            "held_lines",
+            "computable_billed",
+            "known_expected"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "USD",
+              "2427.83",
+              "1812.83",
+              "615.00",
+              "2427.83",
+              "2402.50"
+            ]
+          ],
+          "title": "Final currency-isolated review totals",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "artifact",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "shipments",
+              3
+            ],
+            [
+              "invoices",
+              1
+            ],
+            [
+              "invoice_lines",
+              9
+            ],
+            [
+              "pod_evidence",
+              5
+            ],
+            [
+              "rate_evidence",
+              4
+            ],
+            [
+              "case_proposals",
+              1
+            ],
+            [
+              "exceptions",
+              1
+            ]
+          ],
+          "title": "Final artifact row accounting",
+          "total_rows": 7
+        }
+      ]
+    }
+  ],
+  "input_sha256": "917b49127110a68942fb0d4f19b6f739f496027b59df38fc33229c2ec448203c",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "cross-industry-01",
+  "schema_version": 1
+}

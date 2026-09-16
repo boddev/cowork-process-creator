@@ -1,0 +1,196 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "c699d6cf8d5eaa072adeff7ad7e5a5289abc9c5700d16fb11b50c1e23099eb4e",
+    "golden_sha256": "468f0045428a9a3f3cfa96bf45410627ca3c4838075c1c5982beb6cdbb013106",
+    "input_sha256": "0a6e23e23750b312c6fcc0ad3818a57522cc1782ee3fcc0547946ea9b29cf1e6",
+    "result": "baseline-output/negative-malformed.json",
+    "result_sha256": "77ca452cdf3f6aa46ac769d20e593b89c2458acbacba732e3c8caa2064aacc71",
+    "trace": "baseline-output/negative-malformed.trace.json",
+    "trace_sha256": "9f96f851d10671378b97d6976a389932a40a50caa0868a551143694558697c4c"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "datetime",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-malformed",
+  "documented": {
+    "case_rule_coverage": [
+      "input-contract",
+      "quantity-multiples"
+    ],
+    "failure_modes": [
+      "malformed-input"
+    ],
+    "golden_derivation": "case_pack=0 violates the positive-integer field rule before any need or allocation calculation. Rejected outputs are empty; the error points to routes[0].case_pack.",
+    "steps": [
+      {
+        "id": "load-exports",
+        "kind": "input",
+        "rule_ids": [
+          "input-contract",
+          "planning-evidence"
+        ]
+      },
+      {
+        "id": "validate-stock-and-keys",
+        "kind": "validation",
+        "rule_ids": [
+          "input-contract",
+          "net-stock-once",
+          "dated-coverage"
+        ]
+      },
+      {
+        "id": "join-store-supply",
+        "kind": "join",
+        "rule_ids": [
+          "planning-evidence",
+          "inbound-cutoff",
+          "net-stock-once"
+        ]
+      },
+      {
+        "id": "project-before-arrival",
+        "kind": "decision",
+        "rule_ids": [
+          "dated-coverage",
+          "coverage-requirement"
+        ]
+      },
+      {
+        "id": "calculate-case-requests",
+        "kind": "decision",
+        "rule_ids": [
+          "coverage-requirement",
+          "quantity-multiples",
+          "whole-case-allocation"
+        ]
+      },
+      {
+        "id": "allocate-dc-capacity",
+        "kind": "decision",
+        "rule_ids": [
+          "whole-case-allocation",
+          "net-stock-once"
+        ]
+      },
+      {
+        "id": "surface-shortfalls",
+        "kind": "exception",
+        "rule_ids": [
+          "inbound-cutoff",
+          "coverage-requirement",
+          "review-only-closure"
+        ]
+      },
+      {
+        "id": "publish-review-packet",
+        "kind": "output",
+        "rule_ids": [
+          "replenishment-review",
+          "review-only-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-malformed.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/retail/store-replenishment-proposal",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.447531,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "load-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-stock-and-keys"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "retail-01",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "82f543a7909301f2548987bb335e7d10484209c13a0109e72b341108aa49b557",
+    "baseline.py": "c699d6cf8d5eaa072adeff7ad7e5a5289abc9c5700d16fb11b50c1e23099eb4e",
+    "connections.json": "ed7144038d92402e8167ae01439ede14d6695e6ac2c33fe21824793d30d4cd15",
+    "expected/demo.json": "995662ae32604b7d08a5bbdd8a09392def67645db74402565d6c6339d5e0e5ff",
+    "expected/holdout-a.json": "4a9b9dcf1e8651db380bc45759b6787b8171093c077108170b24338859025a2b",
+    "expected/holdout-b.json": "bb11a06a215e94feb88fdcf4523922c852d00f5197d15ac0324b52298d32e53e",
+    "expected/negative-ambiguous-route.json": "342e359d0111453e79ed39bd3dc562359e99e75d2b463b12435c99d7641ae100",
+    "expected/negative-contradictory.json": "067541c197b6e22918a79fc88f3003431dd90efa6bb7bf749fc2f0519d1b18a8",
+    "expected/negative-duplicate.json": "1b56746f08d1f21c4f8e0be700b0136a9bc9922ce10ba39b3482030f58819787",
+    "expected/negative-malformed.json": "468f0045428a9a3f3cfa96bf45410627ca3c4838075c1c5982beb6cdbb013106",
+    "expected/negative-out-of-window.json": "62964422c49a3e2c6fc2875d2f70ba2b467eeb36b6eb5be532d87c2714bd7f61",
+    "expected/negative-overdue-inbound.json": "c896f75089fcbe5043f9fe253f653a6d96d1058d0d5276ec728e2d3bae6111a7",
+    "mock-data/demo.json": "5b667fa333817851ecca1de0de1f247c025caa1e6153f02b81f8185c9c3ef4f0",
+    "mock-data/holdout-a.json": "5997a4490f1cac3913db913bd5fae144277cdeb07bdcebb8914b873fbf6cc98a",
+    "mock-data/holdout-b.json": "a424d9e7423b4c21eb9bb8045a75bc5133b98f45a3e84eaa06c90e997fba1dcb",
+    "mock-data/negative-ambiguous-route.json": "ba2beeef5f281aeabccb39c6223e331d59c485a05a9c5b5f530361cf4a88471b",
+    "mock-data/negative-contradictory.json": "9d35d9c57220592924740e8fcc4ee16b604359e634a2050ade87db01da711549",
+    "mock-data/negative-duplicate.json": "626c9cc88374c660f8271c07e06adf6932cff8512c86ac67f1369a12b5ba863b",
+    "mock-data/negative-malformed.json": "0a6e23e23750b312c6fcc0ad3818a57522cc1782ee3fcc0547946ea9b29cf1e6",
+    "mock-data/negative-out-of-window.json": "17d3a54d874bf0fb3da66218afffb6057fe22291999424c9f202963f00fc3e6f",
+    "mock-data/negative-overdue-inbound.json": "08971537ecc3ff1358e8b50e49e717721f725af663f520488520ecb0b11d3975",
+    "scenario.json": "28d54587d5fce069f85ef3dec8badc6df1f134400d3b959baef90d828d9fe5c1",
+    "sources.json": "e7ed4a0f6f68de4c3ed8c4eacd5a0919d5c87c6b0f188eac2a35bbbf3ea81dc7",
+    "workflow.json": "ebda3bdbfe566b767edaff216ecf8c9df32be391f899f65f848b0fac096176ff"
+  },
+  "state": "baseline_pass"
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Supplied synthetic exported JSON and native output files only; no endpoint or auth. Actual bank/ledger export access, completeness, mapping ownership, real statement parsers and approved Finance/bank connections remain unverified. No real accounts, balances, transactions, journals or payment actions."
+}

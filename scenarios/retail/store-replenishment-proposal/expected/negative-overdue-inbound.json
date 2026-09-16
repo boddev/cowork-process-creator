@@ -1,0 +1,20 @@
+{
+  "schema_version": 1, "status": "completed_with_exceptions",
+  "outputs": {
+    "proposals": [
+      {"store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "dc_id": "SYN-DC-Z", "dispatch_on": "2099-01-02", "arrival_on": "2099-01-02", "coverage_end": "2099-01-02", "priority": 1, "case_pack": 1, "opening_available_units": 2, "arrival_opening_units": null, "raw_required_units": null, "requested_units": null, "requested_cases": null, "proposed_units": 0, "proposed_cases": 0, "deferred_units": null, "rounding_excess_units": null, "closing_units": null, "pre_arrival_lost_units": null, "post_arrival_lost_units": null, "safety_shortfall_units": null, "status": "blocked", "limits": ["overdue-inbound"]}
+    ],
+    "daily_projection": [],
+    "inbound_register": [{"receipt_id": "SYN-RECEIPT-OVERDUE", "store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "eta": "2099-01-01", "remaining_units": 2, "disposition": "overdue"}],
+    "dc_stock_controls": [{"dc_id": "SYN-DC-Z", "sku": "SYN-SKU-Z", "opening_available_units": 10, "proposed_units": 0, "remaining_units": 10}],
+    "dc_capacity_controls": [{"dc_id": "SYN-DC-Z", "dispatch_on": "2099-01-02", "opening_case_capacity": 2, "proposed_cases": 0, "remaining_case_capacity": 2}],
+    "allocation_ledger": [],
+    "review_packet": {
+      "policy_id": "SYN-POLICY-OVERDUE", "as_of": "2099-01-02", "review_days": 1,
+      "owner_role": "Replenishment planner", "action_authorized": false, "review_required": true,
+      "totals": {"pairs": 1, "blocked_pairs": 1, "requested_units": 0, "requested_cases": 0, "proposed_units": 0, "proposed_cases": 0, "deferred_units": 0, "lost_units": 0, "safety_shortfall_units": 0, "exception_count": 1},
+      "next_action": "Review proposal quantities, dated shortages, and DC controls before any separate business action."
+    }
+  },
+  "exceptions": [{"code": "overdue-inbound", "message": "Overdue in-transit evidence blocks this store/SKU proposal.", "reference": "SYN-RECEIPT-OVERDUE", "store_id": "SYN-STORE-Z", "sku": "SYN-SKU-Z", "on": "2099-01-01", "units": 2}]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1, "synthetic": true,
+  "config": {"control_version": "SYN-CONTROL-B", "approval_state": "approved", "as_of": "2026-08-01T04:59:59Z", "business_utc_offset_minutes": -300, "cutoff_date": "2026-07-31", "max_match_calendar_days": 2, "single_amount_tolerance_minor": 2, "timing_grace_calendar_days": 2, "stale_after_calendar_days": 5, "max_rows_per_source": 5000},
+  "scopes": [
+    {"scope_id": "SYN-T", "legal_entity_id": "SYN-ENTITY", "account_id": "SYN-ACCOUNT-T", "statement_id": "SYN-JULY-T", "currency": "USD", "from_date": "2026-07-01", "through_date": "2026-07-31", "prior_statement_through_date": "2026-06-30", "bank_opening_minor": 0, "bank_closing_minor": 21003, "prior_bank_closing_minor": 0, "ledger_opening_minor": 0, "ledger_closing_minor": 19500, "bank_sign": 1, "ledger_sign": 1}
+  ],
+  "bank_lines": [
+    {"bank_line_id": "SYN-T-B1", "scope_id": "SYN-T", "booked_at": "2026-08-01T04:30:00Z", "amount_minor": 20000, "bank_code": "DEP", "reference": "SYN-OFFSET", "batch_id": null},
+    {"bank_line_id": "SYN-T-B2", "scope_id": "SYN-T", "booked_at": "2026-07-31T19:00:00-05:00", "amount_minor": 1003, "bank_code": "DEP", "reference": "SYN-THREE-CENTS", "batch_id": null}
+  ],
+  "ledger_lines": [
+    {"ledger_line_id": "SYN-T-L1", "scope_id": "SYN-T", "posted_at": "2026-07-31T22:00:00-05:00", "amount_minor": 20000, "ledger_type": "RECEIPT", "reference": "SYN-OFFSET", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-T-L2", "scope_id": "SYN-T", "posted_at": "2026-07-31T19:00:00-05:00", "amount_minor": 1000, "ledger_type": "RECEIPT", "reference": "SYN-THREE-CENTS", "expected_bank_date": null},
+    {"ledger_line_id": "SYN-T-L3", "scope_id": "SYN-T", "posted_at": "2026-07-31T22:30:00-05:00", "amount_minor": -1500, "ledger_type": "PAYMENT", "reference": "SYN-TIMING", "expected_bank_date": "2026-08-01"},
+    {"ledger_line_id": "SYN-T-L4", "scope_id": "SYN-T", "posted_at": "2026-08-01T05:00:00Z", "amount_minor": 9900, "ledger_type": "RECEIPT", "reference": "SYN-FUTURE", "expected_bank_date": null}
+  ],
+  "mappings": [{"scope_id": "SYN-T", "bank_code": "DEP", "ledger_type": "RECEIPT"}],
+  "batches": []
+}

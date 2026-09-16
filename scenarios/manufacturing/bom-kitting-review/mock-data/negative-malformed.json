@@ -1,0 +1,23 @@
+{
+  "as_of": "2026-07-01",
+  "horizon_end": "2026-07-03",
+  "work_orders": [
+    {"order_id": "BAD01", "item_id": "BAD-P", "site": "TEST", "start_date": "2026-07-02", "quantity": true, "priority": 1, "requested_version_id": null}
+  ],
+  "bom_versions": [
+    {"version_id": "BAD-V", "item_id": "BAD-P", "site": "TEST", "valid_from": "2026-07-01", "valid_to": "2026-07-31", "min_order_qty": 0, "max_order_qty": 1000000, "approved": true, "active": true}
+  ],
+  "bom_lines": [
+    {"line_id": "BAD-L1", "version_id": "BAD-V", "component_id": "BAD-C", "line_type": "Item", "quantity_per": "NaN", "scrap_percent": "0"},
+    {"line_id": "BAD-L2", "version_id": "BAD-V", "component_id": "BAD-C", "line_type": "Item", "quantity_per": 0.5, "scrap_percent": "0"}
+  ],
+  "items": [
+    {"item_id": "BAD-P", "unit": "EA", "expiry_controlled": false},
+    {"item_id": "BAD-C", "unit": "EA", "expiry_controlled": false}
+  ],
+  "stock_lots": [
+    {"stock_id": "BAD-S1", "item_id": "BAD-C", "site": "TEST", "quantity": -1, "reserved_external_qty": 0, "status": "available", "expires_on": null},
+    {"stock_id": "BAD-S2", "item_id": "BAD-C", "site": "TEST", "quantity": 2, "reserved_external_qty": 3, "status": "available", "expires_on": null}
+  ],
+  "inbound": []
+}

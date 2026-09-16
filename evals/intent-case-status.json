@@ -9,5 +9,12 @@
   "status": "not-executed",
   "model_runs": 0,
   "native_activation_evidence": false,
+  "current_policy_override": {
+    "as_of": "2026-09-14",
+    "source_version": "0.3.0",
+    "affected_case": "personal-export-without-legal-metadata",
+    "expected_now": "Native Microsoft Cowork manifest v1.28 only. Missing approved publisher metadata blocks plugin packaging; return editable source, never a Claude-compatible fallback.",
+    "reason": "A newer explicit user correction supersedes the original case's compatible-source expectation. The original disclosed case bytes remain preserved as historical input, not the current acceptance rule."
+  },
   "note": "The original case file is preserved byte-for-byte and describes its original held-out preparation. It was subsequently disclosed for these instruction revisions. Static content checks/walkthroughs are not native activation results."
 }

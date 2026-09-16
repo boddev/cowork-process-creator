@@ -1,0 +1,15 @@
+{
+  "exceptions": [
+    {
+      "code": "UNSUPPORTED_LINE_TYPE",
+      "field": "line_type",
+      "message": "Only Item and Phantom lines are supported.",
+      "order_id": null,
+      "source_id": "UL-L1",
+      "source_type": "bom_lines"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

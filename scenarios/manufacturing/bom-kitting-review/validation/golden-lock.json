@@ -1,0 +1,62 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "Independent preexecution arithmetic: R-V1 has FRAME 1 and Phantom MODULE 1; MOD-V1 has BOLT 2 and SCREW 4. W01 quantity 3 has paths 3,6,12; W02 quantity 2 has 2,4,8. Net S-BOLT = 8-2 = 6; S-FRAME = 4 and S-SCREW = 20. Order W01 first takes BOLT6, FRAME3, SCREW12. W02 sees BOLT0, FRAME1 plus I-FRAME1 due exactly 09-17, SCREW8; it takes FRAME2 and SCREW8 but has BOLT gap4. Per-component totals ordered BOLT/FRAME/SCREW: demand10/5/20, assigned6/5/20, current6/4/20, future0/1/0, gaps4/0/0. S-BLOCK100 stays unused. I-BOLT3 on09-18 stays unused. Exclusions are W01 blocked bolt, late bolt, late frame; W02 blocked bolt and late bolt: five rows. Exceptions are MATERIAL_SHORTAGE W02/BOLT and SUPPLY_EXCLUSIONS count5. W01 covered-now; W02 shortage, retaining its partial kit. Queue W02. Four selected-version rows, six leaf paths/requirements, six assignments: W01 three, W02 FRAME from stock and inbound plus SCREW three. All source balances and review-only flags are listed in the authored golden.",
+      "expected_sha256": "55e4fd0bb772d6af441f47cd584d57f1a2e5170e2a22fce0d40589376dd54597",
+      "input_sha256": "50e16f896cb6131c49f2601e7f35a3dd39bda2483dd926510fd857aaa4483584"
+    },
+    "holdout-a": {
+      "derivation": "Independent October/site/effective-version boundary case, not a relabeling of demo. A01 quantity2 starts10-03 at NORTH. WIN-OLD ended09-30; WIN-NEW starts10-01 and requires PANE2, so exact and required demand4. HA-OTHER10 at EAST excludes before expiry; HA-EARLY2 expires10-02, one day before need, and excludes. HA-BOUND1 expires10-03 and is eligible inclusively. HA-IN3 arrives10-03 after as_of10-01 and counts prospectively. Pools1 now/3 future; assignments1/3; gap0. Two exclusions produce only SUPPLY_EXCLUSIONS count2; state covered-with-expected-receipt-review and queue A01. Wrong-site and expired nominal balances remain10 and2, not available. Old BOM line99 has no effect.",
+      "expected_sha256": "43c01bc0f95351a76d0d16f999e763d11036d926a6863b9e13e5df8b50086d5a",
+      "input_sha256": "d7b95cf7ce3942b23cab80c5032f3c5ac82203df9dff2f3a7cfbc8445cdfb6fd"
+    },
+    "holdout-b": {
+      "derivation": "Independent January double-Phantom case with reversed B02/B01 input. Both start01-12, priority2, quantity3. B-V branches LEFT1 and RIGHT1, each ending NUT0.5. Exact leaves for each order are1.5 and1.5, summed3 then ceiled3, never2+2. Shared BN-5 contains5. ASCII tie orders B01 before B02; B01 sees5 and takes3, B02 sees2 and takes2/gap1. Total demand6/current assigned5/gap1. B01 covered-now, B02 shortage; only MATERIAL_SHORTAGE B02/NUT, no supply exclusions. Six selected versions, four leaf paths, two requirements and two assignments. This specifically distinguishes aggregate rounding from per-path rounding and shared conservation from independent per-order availability.",
+      "expected_sha256": "d735b8860b418259a723e434d52afa761ead7ceb5d3c8014123e89b74dbd9f8d",
+      "input_sha256": "03efe91754de463cec3884bd9d86a63d633d924ed1a4cf90b3dc107ee2b7cdb8"
+    },
+    "holdout-c": {
+      "derivation": "Independent November explicit-alternative and leaf-scrap case. X01 quantity2 requests approved inactive CASE-ALT, whose min=max2 and dates include11-04. Active CASE-DEFAULT's PIN5 line must not be used. ALT-A yields2*0.5*1.25=1.25 and ALT-B yields2*0.25=0.5; sum1.75 ceilings once to2. S-A1 and S-B2 both expire11-04; S-A is duplicated identically and collapses once. Source-ID tie picks S-A1 then S-B1, leaving S-B1. I-A2 on11-02 is eligible but stock wins, so it stays2. Pool3 now/2 prospective, assigned2 now/0 prospective, gap0 and covered-now. X-OUT11-06 is beyond11-05 horizon and does not select a BOM or allocate. Exceptions exactly DUPLICATE_ROW for one S-A duplicate and ORDER_OUT_OF_SCOPE for X-OUT. Summary one in-scope resolved now-covered order and one excluded. No exception queue or supply exclusions.",
+      "expected_sha256": "ea93712d400b161d9ce2fecf243f86e4ff637c3ea8b6c47961c132b265aa62f9",
+      "input_sha256": "5a2e58e450662f9b678a22b650569eb5ce671f2d9d313e565d097d846052c88a"
+    },
+    "holdout-unknown": {
+      "derivation": "Independent December incomplete-master and uncertain-supply case. U01's product MISSING is absent, so it is unresolved with no fabricated path, requirement, selected version, or assignment. U02 resolves PANEL-V and needs PANE1 on12-03. US-1 has controlled expiry missing; US-2 is hold. UI-L is unconfirmed; UI-O is due on as_of12-01 and unreceived, hence not-future. None contributes current or prospective supply. UI-X9 references absent GHOST and is globally excluded. Thus U02 has required1, assigned0,gap1; both eligible pools0. Nominal source balances stay4,5,7,2,9 in stock-then-inbound ID order but imply no availability. Five exclusion rows include the global unknown supply. Exceptions sorted: MATERIAL_SHORTAGE U02/PANE, ORDER_UNRESOLVED U01, SUPPLY_EXCLUSIONS count5, UNKNOWN_ITEM inbound UI-X, UNKNOWN_ITEM work_orders U01. One unresolved and one shortage order; queue U01,U02; only the known PANE demand contributes to totals.",
+      "expected_sha256": "98f8468d72546d2e15bb728edf0d4b03da531c5fcdc49a45d969c8cb39020527",
+      "input_sha256": "e3121731d6553c4884da6dfd26ae7c1b39f4bcae0c05cd1a417e646931e719c1"
+    },
+    "negative-contradictory": {
+      "derivation": "Independent August version-ambiguity fixture. C01 quantity1 at CENTRAL on08-02 matches both approved active C-V1 (effective01-01) and C-V2 (effective08-01) inclusively. Default selection has two matches, so AMBIGUOUS_BOM identifies C-V1,C-V2 in ID order. The newer date is not a tie-break. The entire output is rejected with outputs{}, not an arbitrary version or a misleading material plan.",
+      "expected_sha256": "2761037abd78a12e48342f369f375404ce1486a32882e671991a59b5c7646f8e",
+      "input_sha256": "cd1f055b3ce0075111e411d8387eabbc0140ac97eeffea9d0b3a8ff24af93c0c"
+    },
+    "negative-cycle": {
+      "derivation": "Independent February two-assembly Phantom cycle. CY01 selects CY-V, follows C-TO-M to MID-V, then M-TO-C points back to ancestor CY. The second edge is a cycle even though all versions, quantities, dates and units are valid. BOM_CYCLE at line M-TO-C/component_id rejects outputs{}; no truncated expansion, zero demand, or assignment is accepted. Separate preauthored direct tests exercise exactly eight/nine levels and 5000/5001 leaf-path bounds without large stored fixtures.",
+      "expected_sha256": "1099613230397b62ac73b93c94743ca3afbc633bd58af020337b7430cc6ea9ab",
+      "input_sha256": "efa8eb43d2070f1b6d159d6b8e9eac6db1a107a7ddb980074ce4dd76efeb0423"
+    },
+    "negative-line": {
+      "derivation": "Independent March fixture with one Vendor line UL-L1. Vendor is a real distinct ERP line type but unsupported by this bounded review. Field validation produces UNSUPPORTED_LINE_TYPE with no BOM interpretation, no substitution to Item, and outputs{}. Direct tests also cover Pegged supply and nonzero Phantom scrap.",
+      "expected_sha256": "8032cb4d8ec64fad0425746e22c6cb554d28f389ce20abcdb629fdf6cc2311f4",
+      "input_sha256": "85801bd00392cce28056c1a85e63c773fefa25322a2a8d3002ab7485dd01a2e0"
+    },
+    "negative-malformed": {
+      "derivation": "Independent parseable business-negative fixture. BAD-L1 quantity_per is string NaN and BAD-L2 is a JSON number0.5 rather than canonical string: two INVALID_DECIMAL errors. BAD-S1 has physical quantity-1: MALFORMED_FIELD. BAD01 quantity=true: MALFORMED_FIELD, not quantity1. BAD-S2 has physical2/reserved3: RESERVATION_EXCEEDS_STOCK. Validation collects these five errors in documented code/order/table/ID/field/message order and produces rejected with outputs{} before BOM selection, graph expansion, or allocation. No expected plan is derived from these invalid quantities.",
+      "expected_sha256": "ced86dcd8d59abc547ce078f4a3120f00582023fa94b77fbd58e10a71a0e147d",
+      "input_sha256": "2f4107b2222f6c6f8bcb8056f6a7218b41eeef84c3b5cc349ab7daacc018fdce"
+    },
+    "negative-unit": {
+      "derivation": "Independent April fixture whose WEIGHT master is KG, not EA. The master row causes UNSUPPORTED_UNIT before demand expansion. No implicit KG-to-EA factor or guessed material quantity exists; expected result is rejected with outputs{}. This distinguishes an unsupported known unit from a missing master, which is unresolved rather than fabricated.",
+      "expected_sha256": "5398093e982720cf21559ad3ac390639d8e7f58f2dafd43d4c6603a14713ea8a",
+      "input_sha256": "14fcd3ff61a6f9fe823febf56e618b7b153993ea88a6c6927a8f3fe21c875a54"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Manufacturing scenario owner",
+    "description": "All ten original inputs, complete expected envelopes, and the derivations below were authored directly from the written procedure before any baseline execution. Arithmetic and exclusion decisions were reasoned from source rows, not generated by solve or copied from observed outputs. This is an explicit author declaration, not a claim of independent human review. Shared pipeline.run_case freezes their hashes before its first subprocess execution.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "manufacturing-03",
+  "schema_version": 1
+}

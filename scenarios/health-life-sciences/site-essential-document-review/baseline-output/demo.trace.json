@@ -1,0 +1,547 @@
+{
+  "events": [
+    {
+      "caption": "Loaded the supplied synthetic metadata packet; the six export counts include repeated rows.",
+      "facts": {
+        "array_rows": 22,
+        "as_of_date": "2026-09-14",
+        "policy_id": "SYN-POLICY-DEMO"
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-review-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "trials",
+              1
+            ],
+            [
+              "sites",
+              2
+            ],
+            [
+              "requirements",
+              4
+            ],
+            [
+              "documents",
+              7
+            ],
+            [
+              "artifacts",
+              7
+            ],
+            [
+              "open_review_tasks",
+              1
+            ]
+          ],
+          "title": "Raw export tables",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Validated schemas and bounds; retained duplicate copies, competing variants, and chronology issues for explicit review.",
+      "facts": {
+        "chronology_groups": 0,
+        "conflicting_keys": 0,
+        "duplicate_copies": 0,
+        "raw_rows": 22,
+        "unique_records": 22
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-record-evidence",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows",
+            "unique_ids",
+            "duplicate_copies",
+            "conflicting_ids"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "trials",
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              "sites",
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              "requirements",
+              4,
+              4,
+              0,
+              0
+            ],
+            [
+              "documents",
+              7,
+              7,
+              0,
+              0
+            ],
+            [
+              "artifacts",
+              7,
+              7,
+              0,
+              0
+            ],
+            [
+              "open_review_tasks",
+              1,
+              1,
+              0,
+              0
+            ]
+          ],
+          "title": "Validated export groups",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Expanded the bounded site-kind checklist, retaining cells whose document evidence is missing or ambiguous.",
+      "facts": {
+        "in_scope_sites": 2,
+        "pair_limit": 100,
+        "required_pairs": 8
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "expand-site-requirements",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "requirement",
+            "document_type",
+            "trial"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-S1",
+              "SYN-R1",
+              "protocol",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R2",
+              "ethics-opinion",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R3",
+              "qualification",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R4",
+              "training",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R1",
+              "protocol",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R2",
+              "ethics-opinion",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R3",
+              "qualification",
+              "SYN-T1"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R4",
+              "training",
+              "SYN-T1"
+            ]
+          ],
+          "title": "Contextual requirement grid",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Filtered effective and recorded dates, selected the unique greatest eligible version, and joined artifact metadata without fallback.",
+      "facts": {
+        "future_candidate_ids_per_cell": 0,
+        "quarantined_cells": 0,
+        "selected_cells": 7
+      },
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "select-as-of-documents",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "requirement",
+            "selected",
+            "eligible_ids",
+            "future_ids",
+            "resolution"
+          ],
+          "highlight_rows": [
+            6
+          ],
+          "rows": [
+            [
+              "SYN-S1",
+              "SYN-R1",
+              "SYN-D1",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R2",
+              "SYN-D2",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R3",
+              "SYN-D3",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S1",
+              "SYN-R4",
+              "SYN-D4",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R1",
+              "SYN-D5",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R2",
+              "SYN-D6",
+              1,
+              0,
+              "selected"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R3",
+              null,
+              0,
+              0,
+              "missing"
+            ],
+            [
+              "SYN-S2",
+              "SYN-R4",
+              "SYN-D7",
+              1,
+              0,
+              "selected"
+            ]
+          ],
+          "title": "As-of version resolution",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Assessed all evaluable metadata gaps; expiry is inclusive and company refresh/warning policies remain distinct from source guidance.",
+      "facts": {
+        "reason_keys": 5,
+        "selected_without_expiry": 3,
+        "warning_days": 30
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "assess-checklist-gaps",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "requirement",
+            "state",
+            "primary_reason",
+            "expiry",
+            "days_remaining"
+          ],
+          "highlight_rows": [
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "rows": [
+            [
+              "SYN-S1",
+              "SYN-R1",
+              "no-exception",
+              null,
+              null,
+              null
+            ],
+            [
+              "SYN-S1",
+              "SYN-R2",
+              "warning",
+              "expiring-soon",
+              "2026-09-14",
+              0
+            ],
+            [
+              "SYN-S1",
+              "SYN-R3",
+              "no-exception",
+              null,
+              null,
+              null
+            ],
+            [
+              "SYN-S1",
+              "SYN-R4",
+              "review",
+              "expired",
+              "2026-09-13",
+              -1
+            ],
+            [
+              "SYN-S2",
+              "SYN-R1",
+              "review",
+              "protocol-version-mismatch",
+              null,
+              null
+            ],
+            [
+              "SYN-S2",
+              "SYN-R2",
+              "review",
+              "unavailable-evidence",
+              "2027-01-01",
+              109
+            ],
+            [
+              "SYN-S2",
+              "SYN-R3",
+              "review",
+              "missing-document",
+              null,
+              null
+            ],
+            [
+              "SYN-S2",
+              "SYN-R4",
+              "no-exception",
+              null,
+              "2027-07-01",
+              290
+            ]
+          ],
+          "title": "Administrative evidence assessment",
+          "total_rows": 8
+        }
+      ]
+    },
+    {
+      "caption": "Linked existing as-of tasks or prepared unsent evidence-review requests; no task was transmitted, closed, or scheduled.",
+      "facts": {
+        "blocked_ambiguous": 0,
+        "draft_new": 4,
+        "exceptions": 5,
+        "existing_task": 1,
+        "queue_keys": 5
+      },
+      "kind": "exception",
+      "sequence": 6,
+      "step_id": "route-evidence-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "requirement",
+            "reason",
+            "routing",
+            "existing_tasks"
+          ],
+          "highlight_rows": [
+            2
+          ],
+          "rows": [
+            [
+              "SYN-S1",
+              "SYN-R2",
+              "expiring-soon",
+              "draft-new",
+              0
+            ],
+            [
+              "SYN-S1",
+              "SYN-R4",
+              "expired",
+              "draft-new",
+              0
+            ],
+            [
+              "SYN-S2",
+              "SYN-R1",
+              "protocol-version-mismatch",
+              "existing-task",
+              1
+            ],
+            [
+              "SYN-S2",
+              "SYN-R2",
+              "unavailable-evidence",
+              "draft-new",
+              0
+            ],
+            [
+              "SYN-S2",
+              "SYN-R3",
+              "missing-document",
+              "draft-new",
+              0
+            ]
+          ],
+          "title": "Evidence-review routing",
+          "total_rows": 5
+        }
+      ]
+    },
+    {
+      "caption": "Reconciled every required cell and unique reason key; quarantined cells are a subset of review, not an extra denominator.",
+      "facts": {
+        "counts_conserved": true,
+        "queue_keys": 5,
+        "queue_unique": true,
+        "required_pairs": 8
+      },
+      "kind": "decision",
+      "sequence": 7,
+      "step_id": "reconcile-review-counts",
+      "tables": [
+        {
+          "columns": [
+            "site",
+            "required",
+            "no_exception",
+            "warning",
+            "review",
+            "quarantined"
+          ],
+          "highlight_rows": [
+            0,
+            1
+          ],
+          "rows": [
+            [
+              "SYN-S1",
+              4,
+              2,
+              1,
+              1,
+              0
+            ],
+            [
+              "SYN-S2",
+              4,
+              1,
+              0,
+              3,
+              0
+            ]
+          ],
+          "title": "Site-count conservation",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Prepared the ordered administrative export-review packet. Qualified human disposition remains required; no real-record authenticity or approval is established.",
+      "facts": {
+        "exceptions": 5,
+        "human_review_required": true,
+        "status": "completed_with_exceptions"
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "write-review-packet",
+      "tables": [
+        {
+          "columns": [
+            "output",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "requirement_matrix",
+              8
+            ],
+            [
+              "site_summary",
+              2
+            ],
+            [
+              "evidence_register",
+              22
+            ],
+            [
+              "draft_review_queue",
+              5
+            ]
+          ],
+          "title": "Completed packet tables",
+          "total_rows": 4
+        }
+      ]
+    }
+  ],
+  "input_sha256": "382ef60675b1aa948ad6938aa6ccaef4fa3021201df0e15c13d36921253d35f2",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-01",
+  "schema_version": 1
+}

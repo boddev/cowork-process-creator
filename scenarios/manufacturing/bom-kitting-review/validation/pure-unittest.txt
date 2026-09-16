@@ -1,0 +1,19 @@
+demo: pure exact comparison PASS; completed_with_exceptions; 10 actual stages
+holdout-a: pure exact comparison PASS; completed_with_exceptions; 10 actual stages
+holdout-b: pure exact comparison PASS; completed_with_exceptions; 10 actual stages
+holdout-c: pure exact comparison PASS; completed_with_exceptions; 10 actual stages
+holdout-unknown: pure exact comparison PASS; completed_with_exceptions; 10 actual stages
+negative-malformed: pure exact comparison PASS; rejected; 4 actual stages
+negative-contradictory: pure exact comparison PASS; rejected; 5 actual stages
+negative-cycle: pure exact comparison PASS; rejected; 6 actual stages
+negative-line: pure exact comparison PASS; rejected; 4 actual stages
+negative-unit: pure exact comparison PASS; rejected; 4 actual stages
+.......................................
+----------------------------------------------------------------------
+Ran 39 tests in 0.636s
+
+OK
+READY: source/HOW_TO/fixtures/independent goldens complete; 10/10 exact comparisons and 39 pure unittests passed.
+Original golden lock unchanged: 3a5c7827a311a29ff29e04fd2954f87943760148e69b92c4c55dd4714866af45
+No run_case, CLI subprocess, Git operation, native access, or input/golden/result changes performed.
+Central video present: False

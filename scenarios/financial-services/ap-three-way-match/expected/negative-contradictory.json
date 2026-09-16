@@ -1,0 +1,6 @@
+{
+  "schema_version":1,
+  "status":"rejected",
+  "outputs":{"review":{"human_review":"pending","live_action":"none","owner_role":"AP manager"}},
+  "exceptions":[{"code":"historical-receipt-overallocated","message":"Historical allocations exceed receipt quantity.","source":"receipt-lines","record_id":"SYN-CAP-R","line_id":null,"field":"quantity_milliunits","owner_role":"Source data owner"}]
+}

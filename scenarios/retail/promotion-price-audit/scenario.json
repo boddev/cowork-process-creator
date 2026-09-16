@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "id": "retail-03",
+  "title": "Store/SKU/date promotion price audit with exception review",
+  "industry": "retail",
+  "workflow_family": "temporal-pricing-rule-audit",
+  "description": "Reconcile synthetic local-calendar observed unit prices against exact dated base evidence, eligible promotions and approved exception fixtures; publish a review-only audit and issue packet.",
+  "owner_role": "Pricing operations analyst",
+  "risk_level": "medium",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "Parent-approved retail-03 design. SYN- identities and 2099 dates are invented. Single-unit, tax-exclusive, two-decimal-currency file audit only; priority, half-open windows, exact ties, final half-up rounding and tolerance are sample policy. No price publication, transaction, financial-loss estimate or legal conclusion."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Retail pricing scenario owner",
+    "description": "Complete expected JSONs were manually authored from the approved retail-03 research arithmetic and the written procedure before any baseline execution or solve import. All inputs and expected bytes are frozen with the shared golden_lock. Trace and baseline outputs are never used to generate or repair these answers. This declaration is not independent human review or native proof."
+  },
+  "cases": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "input": "mock-data/demo.json",
+      "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["store-date-price-review", "discount-applicability", "configurable-concurrency", "validate-mock-exports", "half-open-windows", "unique-price-evidence", "scope-and-status", "exception-and-priority", "exclusive-competition", "best-versus-compound", "half-up-and-tolerance", "review-only-price-audit"],
+      "failure_modes": [],
+      "derivation": "Independent arithmetic in stable date/store/SKU/observation order: TEA 1999-300=1699 at priority20 exclusive, suppressing best50% and priority10 40%; SOAP 999*0.9*0.8=719.28 beats 749.25, rounds719; MUG 1999*0.5=999.5 rounds1000; next-day TEA approved exception1550. Observed1699,720,999,1550 gives deltas0,+1,-1,0 and two matches/two mismatches. Disabled, expired, wrong-currency/unit and explicitly excluded TEAFILTER never competes."
+    },
+    {
+      "id": "holdout-a",
+      "kind": "holdout",
+      "input": "mock-data/holdout-a.json",
+      "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["validate-mock-exports", "half-open-windows", "exclusive-competition", "deterministic-ties", "half-up-and-tolerance", "review-only-price-audit"],
+      "failure_modes": [],
+      "derivation": "Changed November period, identities, filenames, prices and tolerance1. 1005*0.9=904.5 rounds905; observed906 matches tolerance. Exclusive SYN-PROMO-A at20% and SYN-PROMO-B amount201 both yield804; tuple A wins with both contenders recorded, best50% suppressed; observed805 also matches tolerance. Third observation at November3 exclusive audit end is excluded with null expected price. Counts3 input,2 included matches,1 out-of-scope."
+    },
+    {
+      "id": "holdout-b",
+      "kind": "holdout",
+      "input": "mock-data/holdout-b.json",
+      "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["half-open-windows", "unique-price-evidence", "scope-and-status", "best-versus-compound", "half-up-and-tolerance", "review-only-price-audit"],
+      "failure_modes": [],
+      "derivation": "Changed December dates, rule composition and base1099. December5 compound (1099-99)*0.875=875 beats best1099*0.8=879.2; observed875 matches. All promotions expire December6, so that day expects base1099; observed875 has delta-224 and is a mismatch. Counts2 included,1 match,1 mismatch."
+    },
+    {
+      "id": "negative-malformed",
+      "kind": "negative",
+      "input": "mock-data/negative-malformed.json",
+      "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected",
+      "covers": ["validate-mock-exports", "scope-and-status", "half-up-and-tolerance"],
+      "failure_modes": ["malformed-input"],
+      "derivation": "Percent-off value10001 violates the1..10000 basis-point domain. Reject with INVALID_RATE at promotions.SYN-PROMO-BAD.value before price evaluation; empty business ledgers and null reconciliation/policy do not invent prices or counts."
+    },
+    {
+      "id": "negative-contradictory",
+      "kind": "negative",
+      "input": "mock-data/negative-contradictory.json",
+      "expected": "expected/negative-contradictory.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["unique-price-evidence", "review-only-price-audit"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "Two exact store/SKU/unit/currency base windows contain September1 with1000 and900. Both base IDs remain visible; AMBIGUOUS_BASE_PRICE quarantines the one observation with null base, raw, expected and delta. No cheapest/first-match choice."
+    },
+    {
+      "id": "negative-duplicate",
+      "kind": "negative",
+      "input": "mock-data/negative-duplicate.json",
+      "expected": "expected/negative-duplicate.json",
+      "expected_status": "rejected",
+      "covers": ["validate-mock-exports", "review-only-price-audit"],
+      "failure_modes": ["duplicate-key"],
+      "derivation": "Two observation rows reuse SYN-OBS-DUP despite different observed prices. Reject the bundle with DUPLICATE_KEY at observations.SYN-OBS-DUP; neither silent deduplication nor double counting is allowed."
+    },
+    {
+      "id": "negative-ambiguous-exception",
+      "kind": "negative",
+      "input": "mock-data/negative-ambiguous-exception.json",
+      "expected": "expected/negative-ambiguous-exception.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["unique-price-evidence", "exception-and-priority", "review-only-price-audit"],
+      "failure_modes": ["ambiguous-evidence"],
+      "derivation": "One valid base1000 but two active approved exceptions900 and950. Preserve both exception IDs, do not apply either approval, and report AMBIGUOUS_APPROVED_EXCEPTION with null raw, expected and delta. The sole observation is not evaluable."
+    },
+    {
+      "id": "negative-out-of-window",
+      "kind": "negative",
+      "input": "mock-data/negative-out-of-window.json",
+      "expected": "expected/negative-out-of-window.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["half-open-windows", "review-only-price-audit"],
+      "failure_modes": ["out-of-window"],
+      "derivation": "Observation dated September2 equals the exclusive audit end. With no base rows, it is still excluded rather than assigned a missing-base error or evaluated. One input,zero included,one out-of-scope; expected/delta are null."
+    },
+    {
+      "id": "negative-missing-base",
+      "kind": "negative",
+      "input": "mock-data/negative-missing-base.json",
+      "expected": "expected/negative-missing-base.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["half-open-windows", "unique-price-evidence", "review-only-price-audit"],
+      "failure_modes": ["missing-evidence"],
+      "derivation": "The only dimensional base candidate expires exactly September1, the observation date. Its date_match is false; active base IDs are empty. MISSING_BASE_PRICE leaves raw, expected and delta null and counts the observation as not evaluable."
+    },
+    {
+      "id": "negative-invalid-window",
+      "kind": "negative",
+      "input": "mock-data/negative-invalid-window.json",
+      "expected": "expected/negative-invalid-window.json",
+      "expected_status": "rejected",
+      "covers": ["validate-mock-exports", "half-open-windows"],
+      "failure_modes": ["malformed-input", "future-audit-window"],
+      "derivation": "The September1 final included audit day is after the August31 as_of. Reject with FUTURE_AUDIT_WINDOW at policy.audit_end before joining records; no disposition counts or prices are asserted."
+    }
+  ]
+}

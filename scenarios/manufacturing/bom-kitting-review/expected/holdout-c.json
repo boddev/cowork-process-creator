@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-11-01",
+    "horizon_end": "2026-11-05",
+    "order_sequence": ["X01"],
+    "selected_versions": [
+      {"order_id": "X01", "parent_path": [], "item_id": "CASE", "version_id": "CASE-ALT", "selection": "explicit-approved"}
+    ],
+    "exploded_paths": [
+      {"order_id": "X01", "path": ["ALT-A"], "component_id": "PIN", "exact_qty": "1.25"},
+      {"order_id": "X01", "path": ["ALT-B"], "component_id": "PIN", "exact_qty": "0.5"}
+    ],
+    "component_requirements": [
+      {"order_id": "X01", "component_id": "PIN", "exact_qty": "1.75", "required_qty": 2, "available_now_qty": 3, "expected_before_need_qty": 2, "assigned_now_qty": 2, "assigned_expected_qty": 0, "assigned_qty": 2, "gap_qty": 0}
+    ],
+    "shadow_allocations": [
+      {"order_id": "X01", "component_id": "PIN", "source_type": "stock_lots", "source_id": "S-A", "quantity": 1},
+      {"order_id": "X01", "component_id": "PIN", "source_type": "stock_lots", "source_id": "S-B", "quantity": 1}
+    ],
+    "source_balances": [
+      {"source_type": "stock_lots", "source_id": "S-A", "item_id": "PIN", "site": "WEST", "net_qty": 1, "assigned_qty": 1, "remaining_qty": 0},
+      {"source_type": "stock_lots", "source_id": "S-B", "item_id": "PIN", "site": "WEST", "net_qty": 2, "assigned_qty": 1, "remaining_qty": 1},
+      {"source_type": "inbound", "source_id": "I-A", "item_id": "PIN", "site": "WEST", "net_qty": 2, "assigned_qty": 0, "remaining_qty": 2}
+    ],
+    "supply_exclusions": [],
+    "excluded_orders": [
+      {"order_id": "X-OUT", "reason": "after-horizon"}
+    ],
+    "order_reviews": [
+      {"order_id": "X01", "item_id": "CASE", "site": "WEST", "need_by": "2026-11-04", "quantity": 2, "priority": 1, "state": "covered-now-review", "short_components": [], "review_owners": ["Material planner", "Production planner"], "approval_required": true, "production_authorized": false}
+    ],
+    "review_queue": [],
+    "component_totals": [
+      {"site": "WEST", "component_id": "PIN", "required_qty": 2, "assigned_now_qty": 2, "assigned_expected_qty": 0, "assigned_qty": 2, "gap_qty": 0}
+    ],
+    "summary": {"in_scope_orders": 1, "resolved_orders": 1, "unresolved_orders": 0, "excluded_orders": 1, "shortage_orders": 0, "covered_now_orders": 1, "covered_with_expected_orders": 0},
+    "closure": {"review_only": true, "approval_required": true, "production_authorized": false, "inventory_mutated": false, "reservations_created": false, "substitutions_made": false, "orders_released": false}
+  },
+  "exceptions": [
+    {"code": "DUPLICATE_ROW", "message": "Collapsed 1 identical duplicate row(s).", "order_id": null, "source_type": "stock_lots", "source_id": "S-A", "field": null},
+    {"code": "ORDER_OUT_OF_SCOPE", "message": "Order start_date is outside the inclusive review horizon.", "order_id": "X-OUT", "source_type": "work_orders", "source_id": "X-OUT", "field": "start_date"}
+  ]
+}

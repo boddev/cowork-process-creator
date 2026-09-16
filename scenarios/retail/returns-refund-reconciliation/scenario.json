@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "retail-02",
+  "title": "Original-order returns and refund proposal reconciliation",
+  "industry": "retail",
+  "workflow_family": "original-transaction-reconciliation",
+  "description": "Reconcile synthetic return requests to original receipt, line, payment and closed opening history; propose whole-unit original-price refunds with separate tax pennies and human-only review.",
+  "owner_role": "Returns reconciliation analyst",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "All identifiers are invented SYN- references and business dates are in 2099. Return windows, conditions, cumulative allocation and quarantine are configurable sample company policy, not legal advice, live availability or permission to issue money."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Retail returns scenario owner",
+    "description": "The ten literal expected JSON objects were authored from the approved procedure and independent integer arithmetic before baseline implementation or execution. The manifest records each derivation; the shared pre-execution golden lock freezes inputs, answers and derivations. No expected object is produced by solving, copying baseline outputs or importing baseline logic. This declaration is not independent human sign-off."
+  },
+  "cases": [
+    {
+      "id": "demo", "kind": "demo", "input": "mock-data/demo.json", "expected": "expected/demo.json", "expected_status": "completed_with_exceptions",
+      "covers": ["original-line-eligibility", "confirmed-refund-cap", "history-freshness-and-tax", "strict-mock-records", "closed-opening-history", "inclusive-return-window", "condition-and-reason", "original-entitlement", "history-reconciliation", "quantity-reservation", "incremental-refund", "review-only-closure"],
+      "failure_modes": [],
+      "derivation": "July 2, 2099; 30-day inclusive window, partial enabled. Order 1 Q3 M1000 T100, prior Q1 M333 T33. Cumulative Q2 gives M667 T67: first request receives 334+34=368; second asks2 but remaining1 receives 333+33=366 and defers1. New M667 T67 total734; prior366 plus734 equals1100, no remaining units. Order2 age31 is excluded, keeping2200. Unknown receipt remains unresolved with no assigned currency. Across USD originals: captured3300, prior366, new734, projected1100, remaining2200; two proposed units and three deferred. Three request exceptions in request order."
+    },
+    {
+      "id": "holdout-a", "kind": "holdout", "input": "mock-data/holdout-a.json", "expected": "expected/holdout-a.json", "expected_status": "completed",
+      "covers": ["inclusive-return-window", "original-entitlement", "history-reconciliation", "incremental-refund", "review-only-closure"],
+      "failure_modes": [],
+      "derivation": "Different August15 period, window14, EUR original purchased August1 on the inclusive boundary; Q4 M1999 T161 capture2160. Prior1 is500+40=540. Asking2 advances cumulative quantity to3: M1499 T121, so new999+81=1080. Remaining1 carries500+40=540; prior plus new1620. Exactly one full proposal and no exceptions."
+    },
+    {
+      "id": "holdout-b", "kind": "holdout", "input": "mock-data/holdout-b.json", "expected": "expected/holdout-b.json", "expected_status": "completed_with_exceptions",
+      "covers": ["inclusive-return-window", "quantity-reservation", "original-entitlement", "incremental-refund"],
+      "failure_modes": [],
+      "derivation": "Different September10-11 period, September4 purchase, window7, partial disabled, GBP Q2 M999 T0 capture999 and explicit empty opening history. September10 request asks3, exceeding2; propose0, defer3, consume nothing. September11 request asks1 at age7; half-up 999/2=500, tax0. One unit and499 remain. One partial-not-allowed exception."
+    },
+    {
+      "id": "negative-malformed", "kind": "negative", "input": "mock-data/negative-malformed.json", "expected": "expected/negative-malformed.json", "expected_status": "rejected",
+      "covers": ["strict-mock-records", "quantity-reservation"], "failure_modes": ["malformed-input"],
+      "derivation": "The standalone October5 bundle contains requested_qty=true, not an integer quantity. Reject at requests.requested_qty with invalid-record and no business outputs; never coerce true to one."
+    },
+    {
+      "id": "negative-contradictory", "kind": "negative", "input": "mock-data/negative-contradictory.json", "expected": "expected/negative-contradictory.json", "expected_status": "completed_with_exceptions",
+      "covers": ["history-reconciliation", "closed-opening-history", "original-entitlement", "review-only-closure"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "October6 original Q2 M1000 T100 capture1100; posted prior1 records M499 T50. Independent entitlement at1 is500+50, not499+50. Retain observed prior549, quarantine the whole order, make authoritative prior/remaining controls null, and propose zero. Currency totals explicitly exclude the one quarantined order from reconciled captured/prior/remaining money."
+    },
+    {
+      "id": "negative-duplicate", "kind": "negative", "input": "mock-data/negative-duplicate.json", "expected": "expected/negative-duplicate.json", "expected_status": "rejected",
+      "covers": ["strict-mock-records", "quantity-reservation"], "failure_modes": ["duplicate-key"],
+      "derivation": "The October7 input includes the same request primary key twice. Structural duplicate-key rejection precedes joining or money allocation; outputs are empty, not silently deduplicated."
+    },
+    {
+      "id": "negative-ambiguous-receipt", "kind": "negative", "input": "mock-data/negative-ambiguous-receipt.json", "expected": "expected/negative-ambiguous-receipt.json", "expected_status": "rejected",
+      "covers": ["strict-mock-records", "original-line-eligibility"], "failure_modes": ["ambiguous-evidence"],
+      "derivation": "October8 contains two distinct original order IDs, invoice IDs and card references but the same store/receipt. Reject ambiguous-receipt before using supplied order hints to choose a winner. No proposal or control output is admissible."
+    },
+    {
+      "id": "negative-out-of-window", "kind": "negative", "input": "mock-data/negative-out-of-window.json", "expected": "expected/negative-out-of-window.json", "expected_status": "completed_with_exceptions",
+      "covers": ["inclusive-return-window", "quantity-reservation", "review-only-closure"], "failure_modes": ["out-of-window"],
+      "derivation": "October9 request for October1 purchase has age8 versus window7. Q1 M700 T70 capture770 with no prior: zero proposal and one deferred unit; valid line/order still retain one unit and770, with return-window-exceeded. This is sample policy review, not a legal-right decision."
+    },
+    {
+      "id": "negative-current-period-history", "kind": "negative", "input": "mock-data/negative-current-period-history.json", "expected": "expected/negative-current-period-history.json", "expected_status": "completed_with_exceptions",
+      "covers": ["closed-opening-history", "history-freshness-and-tax", "history-reconciliation"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "October10 intake period also contains a posted October10 historical event. Although its Q1 M500 T50 fits original Q2 M1000 T100 mathematically, it is not an opening event. Retain observed550, quarantine the order, use null authoritative eligibility/money and zero proposal instead of subtracting or ignoring it as if disjoint."
+    },
+    {
+      "id": "negative-unconfirmed-payment", "kind": "negative", "input": "mock-data/negative-unconfirmed-payment.json", "expected": "expected/negative-unconfirmed-payment.json", "expected_status": "completed_with_exceptions",
+      "covers": ["confirmed-refund-cap", "history-reconciliation", "review-only-closure"], "failure_modes": ["contradictory-evidence"],
+      "derivation": "October11 request, original Q1 M300 T30, capture/authorization330 and explicit empty history. Confirmation=false is sufficient to quarantine the entire order despite otherwise balanced arithmetic. Proposed money is0; authoritative prior/remaining are null, observed posted money0 is only a raw count-derived observation."
+    }
+  ]
+}

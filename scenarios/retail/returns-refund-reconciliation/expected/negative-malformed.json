@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "invalid-record", "message": "requests.requested_qty must be a positive integer; booleans and fractions are invalid.", "scope": "input", "entity_id": "SYN-REQUEST-M"}
+  ]
+}

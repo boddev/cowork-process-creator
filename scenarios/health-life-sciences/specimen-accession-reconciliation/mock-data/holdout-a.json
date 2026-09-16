@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-15T10:00:00Z",
+  "policy": {"policy_id":"SYN-A-POLICY","accession_sla_minutes":30},
+  "orders": [
+    {"order_id":"SYN-A-O1","subject_token":"SYN-A-U1","ordered_at":"2026-09-15T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-A-O2","subject_token":"SYN-A-U2","ordered_at":"2026-09-15T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-A-O3","subject_token":"SYN-A-U3","ordered_at":"2026-09-15T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"},
+    {"order_id":"SYN-A-O4","subject_token":"SYN-A-U4","ordered_at":"2026-09-15T08:00:00Z","owner_role_id":"SYN-ROLE-ORDER"}
+  ],
+  "order_lines": [
+    {"order_line_id":"SYN-A-L1","order_id":"SYN-A-O1","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-A-L2","order_id":"SYN-A-O2","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-A-L3","order_id":"SYN-A-O3","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"},
+    {"order_line_id":"SYN-A-L4","order_id":"SYN-A-O4","test_code":"SYN-T1","requested_specimen_kind":"SYN-K1"}
+  ],
+  "order_events": [
+    {"event_id":"SYN-A-E1","order_id":"SYN-A-O1","event_seq":1,"effective_at":"2026-09-15T08:00:00Z","recorded_at":"2026-09-15T08:01:00Z","state":"active"},
+    {"event_id":"SYN-A-E1F","order_id":"SYN-A-O1","event_seq":2,"effective_at":"2026-09-15T09:45:00Z","recorded_at":"2026-09-15T10:01:00Z","state":"cancelled"},
+    {"event_id":"SYN-A-E1G","order_id":"SYN-A-O1","event_seq":3,"effective_at":"2026-09-15T10:01:00Z","recorded_at":"2026-09-15T09:59:00Z","state":"cancelled"},
+    {"event_id":"SYN-A-E2","order_id":"SYN-A-O2","event_seq":1,"effective_at":"2026-09-15T08:00:00Z","recorded_at":"2026-09-15T08:01:00Z","state":"active"},
+    {"event_id":"SYN-A-E3","order_id":"SYN-A-O3","event_seq":1,"effective_at":"2026-09-15T08:00:00Z","recorded_at":"2026-09-15T08:01:00Z","state":"active"},
+    {"event_id":"SYN-A-E3C","order_id":"SYN-A-O3","event_seq":2,"effective_at":"2026-09-15T09:15:00Z","recorded_at":"2026-09-15T09:16:00Z","state":"cancelled"},
+    {"event_id":"SYN-A-E4","order_id":"SYN-A-O4","event_seq":1,"effective_at":"2026-09-15T08:00:00Z","recorded_at":"2026-09-15T10:01:00Z","state":"active"},
+    {"event_id":"SYN-A-EO","order_id":"SYN-A-O9","event_seq":1,"effective_at":"2026-09-15T08:00:00Z","recorded_at":"2026-09-15T08:01:00Z","state":"active"}
+  ],
+  "receipts": [
+    {"receipt_id":"SYN-A-R1","specimen_id":"SYN-A-S1","order_id":"SYN-A-O1","subject_token":"SYN-A-U1","specimen_kind":"SYN-K1","collected_at":"2026-09-15T09:00:00Z","received_at":"2026-09-15T09:30:00Z"},
+    {"receipt_id":"SYN-A-R2","specimen_id":"SYN-A-S2","order_id":"SYN-A-O2","subject_token":"SYN-A-U2","specimen_kind":"SYN-K1","collected_at":"2026-09-15T09:00:00Z","received_at":"2026-09-15T09:29:00Z"},
+    {"receipt_id":"SYN-A-R3","specimen_id":"SYN-A-S3","order_id":"SYN-A-O3","subject_token":"SYN-A-U3","specimen_kind":"SYN-K1","collected_at":"2026-09-15T09:00:00Z","received_at":"2026-09-15T09:30:00Z"},
+    {"receipt_id":"SYN-A-R4","specimen_id":"SYN-A-S4","order_id":"SYN-A-O4","subject_token":"SYN-A-U4","specimen_kind":"SYN-K1","collected_at":"2026-09-15T09:50:00Z","received_at":"2026-09-15T10:01:00Z"}
+  ],
+  "accessions": [
+    {"accession_id":"SYN-A-A2","specimen_id":"SYN-A-S2","order_line_id":"SYN-A-L2","subject_token":"SYN-A-U2","test_code":"SYN-T1","accessioned_at":"2026-09-15T09:40:00Z","recorded_at":"2026-09-15T10:01:00Z"},
+    {"accession_id":"SYN-A-A4","specimen_id":"SYN-A-S4","order_line_id":"SYN-A-L4","subject_token":"SYN-A-U4","test_code":"SYN-T1","accessioned_at":"2026-09-15T10:02:00Z","recorded_at":"2026-09-15T10:03:00Z"}
+  ],
+  "test_catalog": [
+    {"test_code":"SYN-T1","expected_specimen_kind":"SYN-K1","policy_ref":"SYN-CATALOG-POLICY"}
+  ],
+  "clarifications": [
+    {"clarification_id":"SYN-A-Q4","entity_kind":"order-line","entity_id":"SYN-A-L4","recorded_at":"2026-09-15T10:01:00Z","reference":"SYN-A-REF4","note":"Future-recorded reference is not available at the cutoff."}
+  ]
+}

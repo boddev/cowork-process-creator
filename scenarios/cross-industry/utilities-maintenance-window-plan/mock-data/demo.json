@@ -1,0 +1,52 @@
+{
+  "config": {"as_of": "2026-10-05T07:00:00Z", "horizon_start": "2026-10-05T08:00:00Z", "horizon_end": "2026-10-05T16:00:00Z", "slot_minutes": 30, "max_search_starts": 100},
+  "files": {
+    "work-orders.json": [
+      {"work_order_id": "UT-D01", "priority": 1, "earliest_start": "2026-10-05T08:00:00Z", "due_at": "2026-10-05T12:00:00Z", "duration_minutes": 60, "craft_code": "E", "area_resource_id": "A1", "tool_resource_id": "T1", "predecessors": [], "plan_approved": true, "owner": "PLANNER-D"},
+      {"work_order_id": "UT-D02", "priority": 2, "earliest_start": "2026-10-05T09:00:00Z", "due_at": "2026-10-05T15:00:00Z", "duration_minutes": 120, "craft_code": "E", "area_resource_id": "A2", "tool_resource_id": "T1", "predecessors": [], "plan_approved": true, "owner": "PLANNER-D"},
+      {"work_order_id": "UT-D03", "priority": 3, "earliest_start": "2026-10-05T08:00:00Z", "due_at": "2026-10-05T12:00:00Z", "duration_minutes": 60, "craft_code": "M", "area_resource_id": "A3", "tool_resource_id": null, "predecessors": ["UT-D01"], "plan_approved": true, "owner": "PLANNER-D"},
+      {"work_order_id": "UT-D04", "priority": 4, "earliest_start": "2026-10-05T08:00:00Z", "due_at": "2026-10-05T16:00:00Z", "duration_minutes": 60, "craft_code": "E", "area_resource_id": "A4", "tool_resource_id": null, "predecessors": [], "plan_approved": true, "owner": "PLANNER-D"},
+      {"work_order_id": "UT-D05", "priority": 5, "earliest_start": "2026-10-05T08:00:00Z", "due_at": "2026-10-05T12:00:00Z", "duration_minutes": 60, "craft_code": "M", "area_resource_id": "A3", "tool_resource_id": null, "predecessors": ["EXT-OPEN"], "plan_approved": true, "owner": "PLANNER-D"},
+      {"work_order_id": "UT-D06", "priority": 6, "earliest_start": "2026-10-05T10:00:00Z", "due_at": "2026-10-05T12:00:00Z", "duration_minutes": 90, "craft_code": "M", "area_resource_id": "A3", "tool_resource_id": null, "predecessors": [], "plan_approved": true, "owner": "PLANNER-D"}
+    ],
+    "requirements.json": [
+      {"work_order_id": "UT-D01", "item_id": "KIT-A", "required_quantity": 2},
+      {"work_order_id": "UT-D02", "item_id": "KIT-B", "required_quantity": 1},
+      {"work_order_id": "UT-D03", "item_id": "KIT-C", "required_quantity": 1},
+      {"work_order_id": "UT-D04", "item_id": "KIT-A", "required_quantity": 3},
+      {"work_order_id": "UT-D05", "item_id": "KIT-C", "required_quantity": 1}
+    ],
+    "kit-components.json": [
+      {"kit_component_id": "KD1", "work_order_id": "UT-D01", "item_id": "KIT-A", "reserved_quantity": 2, "available_at": "2026-10-05T08:00:00Z"},
+      {"kit_component_id": "KD2", "work_order_id": "UT-D02", "item_id": "KIT-B", "reserved_quantity": 1, "available_at": "2026-10-05T09:00:00Z"},
+      {"kit_component_id": "KD3", "work_order_id": "UT-D03", "item_id": "KIT-C", "reserved_quantity": 1, "available_at": "2026-10-05T08:00:00Z"},
+      {"kit_component_id": "KD4", "work_order_id": "UT-D04", "item_id": "KIT-A", "reserved_quantity": 1, "available_at": "2026-10-05T08:00:00Z"},
+      {"kit_component_id": "KD5", "work_order_id": "UT-D05", "item_id": "KIT-C", "reserved_quantity": 1, "available_at": "2026-10-05T08:00:00Z"}
+    ],
+    "resources.json": [
+      {"resource_id": "CE1", "kind": "crew", "craft_code": "E", "capacity": 1},
+      {"resource_id": "CM1", "kind": "crew", "craft_code": "M", "capacity": 1},
+      {"resource_id": "T1", "kind": "tool", "craft_code": null, "capacity": 1},
+      {"resource_id": "A1", "kind": "area", "craft_code": null, "capacity": 1},
+      {"resource_id": "A2", "kind": "area", "craft_code": null, "capacity": 1},
+      {"resource_id": "A3", "kind": "area", "craft_code": null, "capacity": 1},
+      {"resource_id": "A4", "kind": "area", "craft_code": null, "capacity": 1}
+    ],
+    "resource-windows.json": [
+      {"window_id": "WD-CE", "resource_id": "CE1", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T16:00:00Z"},
+      {"window_id": "WD-CM", "resource_id": "CM1", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T12:00:00Z"},
+      {"window_id": "WD-T", "resource_id": "T1", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T16:00:00Z"},
+      {"window_id": "WD-A1", "resource_id": "A1", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T12:00:00Z"},
+      {"window_id": "WD-A2", "resource_id": "A2", "start": "2026-10-05T09:00:00Z", "end": "2026-10-05T15:00:00Z"},
+      {"window_id": "WD-A3", "resource_id": "A3", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T12:00:00Z"},
+      {"window_id": "WD-A4", "resource_id": "A4", "start": "2026-10-05T08:00:00Z", "end": "2026-10-05T16:00:00Z"}
+    ],
+    "commitments.json": [
+      {"commitment_id": "BOOK-D-CE1", "resource_id": "CE1", "start": "2026-10-05T09:00:00Z", "end": "2026-10-05T10:00:00Z"},
+      {"commitment_id": "BOOK-D-T1", "resource_id": "T1", "start": "2026-10-05T11:00:00Z", "end": "2026-10-05T12:00:00Z"}
+    ],
+    "prerequisite-status.json": [
+      {"prerequisite_id": "EXT-OPEN", "state": "open", "completed_at": null, "recorded_at": "2026-10-05T07:00:00Z"}
+    ]
+  }
+}

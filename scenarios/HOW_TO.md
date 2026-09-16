@@ -10,9 +10,22 @@ running Creator and the installed output independently in Cowork.
 accessible session must be restored, followed by parent-coordinated
 authorization. No browser, private API, cookie/token, shell, CLI skill, or model
 run may bypass that gate. The old N00 publication outcome remains unknown;
-inspect actual Installed state before retrying it. Do not publish this corpus.
+inspect actual Installed state before retrying it. Repository publication is
+separate from native actions and requires a reviewed, sanitized snapshot,
+not the private development branch ancestry.
 
 ## Read a scenario
+
+The [single-document how-to collection](ALL_SCENARIOS_HOW_TO.md) includes
+every complete procedure in one place. Relative command/data paths inside a
+chapter refer to that chapter's explicitly named original scenario directory.
+
+Run every existing Creator, shared-tooling and scenario-local unittest suite
+from the repository with `python -B scenarios\run_tests.py`. The opt-in actual
+encoder smoke checks additionally require `SCENARIO_MEDIA_SMOKE=1` and the
+already installed developer encoder/Pillow; no runtime installation is performed.
+See [the validation summary](validation-summary.json) for actual run counts and
+the distinction between local corpus completion and blocked native work.
 
 The [machine-readable catalog](catalog.json) and
 [validation report](VALIDATION_REPORT.md) enumerate only integrated, implemented
@@ -28,7 +41,9 @@ Unit-test fixtures never count toward the required 15 scenarios.
 
 ## Local baseline run
 
-Use the existing developer Python installation with its standard library.
+Use the existing developer Python 3.11+ installation with its standard library.
+The corpus is exercised on Windows Python 3.13.14; it does not inherit native
+execution claims from the older Creator proof or promise a tested 3.10 runtime.
 No Creator, generated plugin, live connection, backend, package download,
 database, or external service is needed. These commands run from the repository
 root in the isolated worktree, never the main checkout.
@@ -81,7 +96,7 @@ and an explicitly supplied, already-present encoder. It never installs either
 and neither becomes an end-user or plugin runtime requirement.
 
 ```powershell
-python -B -m scenarios render --all --replace-generated --ffmpeg "C:\Users\bodonnell\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe"
+python -B -m scenarios render --all --replace-generated --ffmpeg "<absolute-path-to-existing-encoder>"
 ```
 
 The producer reruns each DEMO through the real baseline and independent golden
@@ -95,7 +110,10 @@ narrated clip, or proof that Cowork understands the video.
 `demo/baseline.media.json` records source/result/trace/golden hashes, the actual
 baseline and encoder commands, encoder identity, timeline, frame count,
 decoded fidelity, any display shortening, and the video byte hash.
-The video keeps the exact command from its original baseline run. A later
+Public records preserve actual command arguments with interpreter/encoder
+basenames, scenario-relative inputs and labeled temporary paths, not personal
+machine paths. Runtime versions and binary hashes identify the tools actually
+used. The video keeps that command record from its original baseline run. A later
 baseline rerun may use a different temporary output directory without
 invalidating the video if its input, baseline source, golden, result, trace,
 and scenario title are unchanged.
@@ -136,6 +154,13 @@ state before any retry. Enable/run the real Creator through approved native
 interaction, providing only staged files. Download the actual generated plugin
 under `output/<scenario-id>`; do not replace it with a locally assembled package.
 Record creation observations and the exact downloaded byte hash.
+
+The requested output is a **native Microsoft Copilot Cowork M365 v1.28
+package**, with a root `manifest.json`, correct icons, `agentSkills` folders
+and any required real connector tool descriptors. Do not use
+`.claude-plugin/plugin.json`, `devPreview`, or a host-conversion fallback.
+Approved publisher/app metadata must be supplied for each package. Missing
+metadata is a packaging blocker; source checkpoints are not plugin ZIPs.
 
 Inspect the downloaded ZIP/source read-only before any bounded execution.
 Install the exact output plugin in Cowork and record installation separately.
@@ -186,6 +211,12 @@ alongside the five allowlisted files, never the evaluation corpus:
 
 ```text
 Create a reusable output plugin for the attached HOW_TO procedure and DEMO.
+Target Microsoft Copilot Cowork using its native M365 Unified App Manifest
+v1.28: manifest.json at the ZIP root, icons, agentSkills folders and any
+required real connector mcpToolDescription.file. Do not create a Claude
+Cowork/.claude-plugin source archive or rely on conversion. Use the supplied
+approved publisher/app metadata; if absent, return an explicit packaging
+blocker and editable source instead of an alternative-format plugin.
 Use workflow.json as documented steps, not as an external runtime engine.
 Treat the video as a synthetic visualization of an actually executed local
 baseline, not a recording of Cowork or a live business system. Keep all

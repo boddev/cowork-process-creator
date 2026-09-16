@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "financial-services-03",
+  "title": "Advisory fee billing reconciliation",
+  "industry": "financial-services",
+  "workflow_family": "effective-dated-tiered-fee-recomputation",
+  "description": "Recompute synthetic marginal annual advisory fees from effective-dated evidence and compare draft business keys, producing complete exact calculation and exception review files without charging anyone.",
+  "owner_role": "Billing manager or compliance reviewer",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "Approved fictional catalog policy for SYN-FIN Demonstration Company. All values, controls, IDs, temporal joins, 365/366 calculations, rounding and tolerances are synthetic. No real agreement interpretation, consent, invoice, debit, refund, trade, investment advice, or regulatory opinion."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Financial-services-03 scenario owner",
+    "description": "The full contract and all expected envelopes were authored from the approved research's manual date/tier worksheets before baseline implementation or execution. Reduced segment/account fractions, every tier slice, source disposition, draft decision, population and exception are explicit literals. This is implementation-independent author reasoning, not independent human approval."
+  },
+  "cases": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "input": "mock-data/demo.json",
+      "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["fee-explicit-basis-and-ranges", "fee-pending-not-effective", "fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"],
+      "failure_modes": [],
+      "derivation": "Manually count Apr1-Apr16 and Apr16-May1 as 15 days each. A slices 10000000/5000000 cents at 100/50 then 80/40 bps, giving annual numerators 1250000000/1000000000 and segment fractions 375000/73 and 300000/73 cents. Sum 675000/73, round above-half upward to 9247; draft10274 gives+1027. B opens Apr11:20 days,10000000 cents at100bps and a zero upper-tier slice,400000/73 cents rounds below-half down to5479. Pending50bps version is excluded and flagged. C has5000000 cents at100bps for30 days:300000/73 rounds to4110; no draft is not zero. Computed18836; comparable14726 vs15753,delta1027; missing-draft4110. All approved/value rows are joined; pending row is excluded. Exceptions ordered A overstatement,B pending,C missing."
+    },
+    {
+      "id": "holdout-a",
+      "kind": "holdout",
+      "input": "mock-data/holdout-a.json",
+      "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"],
+      "failure_modes": [],
+      "derivation": "Changed independent leap-February2024 values and engagement dates. A activeFeb15-Mar1:Feb15-Feb22 is7 days at10000000 cents; Feb22-Mar1 is8 days at20000000. Marginal100/50 slices yield annual numerators1000000000 and1500000000. Reduced fee fractions350000/183 and200000/61 sum950000/183; fractional47/183 rounds down to5191. Draft5205 gives+14. B activeFeb1-Feb11 has10 days at5000000 cents and100bps:250000/183 rounds down to1366. Both distinct drafts1366 are duplicate-business-key holds, never summed or selected. Computed6557; only A comparable5191 vs5205,delta14; computed-duplicate population1366."
+    },
+    {
+      "id": "holdout-b",
+      "kind": "holdout",
+      "input": "mock-data/holdout-b.json",
+      "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["fee-effective-coverage", "fee-marginal-tiers", "fee-calendar-proration", "fee-exact-rounding", "fee-draft-comparison", "fee-review-closure"],
+      "failure_modes": [],
+      "derivation": "Changed one-day Jan1-Jan2,2026 period, offset-300 and as_ofJan2T05Z exactly closes local midnight. Explicitact-365-fixed,half-up,tolerance0. A36500 cents times50bps yields1825000/(10000*365)=1/2 cent, half-up1; real zero draft yields-1 understatement. B10000001 cents slices10000000 at100bps plus1 at50bps, annual numerator1000000050; exact reduced fraction20000001/73000 cents rounds above-half to274 and matches draft274. Both comparable:computed275,draft274,delta-1. Parameter-only targeted half-even changes A to0 and leaves B274; this does not change the frozen case."
+    },
+    {
+      "id": "negative-malformed",
+      "kind": "negative",
+      "input": "mock-data/negative-malformed.json",
+      "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected",
+      "covers": ["fee-explicit-basis-and-ranges", "fee-effective-coverage", "fee-exact-rounding"],
+      "failure_modes": ["malformed-input"],
+      "derivation": "A structurally parseable independent May dataset puts true at schedule_versions[SYN-SCH-MAL].bands[0].annual_rate_bps. A boolean is not an integer rate. The first strict validation diagnostic is invalid-integer with bounds0..10000 and the exact account/record/path. Reject before all financial outputs; retain only validation and pending/no-action review."
+    },
+    {
+      "id": "negative-contradictory",
+      "kind": "negative",
+      "input": "mock-data/negative-contradictory.json",
+      "expected": "expected/negative-contradictory.json",
+      "expected_status": "rejected",
+      "covers": ["fee-effective-coverage", "fee-pending-not-effective"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "Independent June account has approved known-by-as_of100bps and80bps versions on Jun1-Jun10 and Jun5-Jul1. Their intersection is Jun5-Jun10, not an adjacent boundary. Reject whole case with overlapping-approved-schedules, canonical first recordSYN-SCH-CONFLICT-1 and both sorted related IDs. No newest-version, blended rate, or partial financial outputs; retain validation and pending/no-action review only."
+    }
+  ]
+}

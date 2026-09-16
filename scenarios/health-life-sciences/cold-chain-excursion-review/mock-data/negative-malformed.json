@@ -1,0 +1,13 @@
+{
+  "window_start": "2026-09-14T09:00:00Z",
+  "as_of": "2026-09-14T09:30:00Z",
+  "policy": {"policy_id": "SYN-POLICY-BAD", "max_gap_seconds": true, "max_rows_per_table": 1000, "max_total_rows": 5000, "max_derived_pairs": 10000},
+  "products": [],
+  "profiles": [],
+  "inventory": [],
+  "placements": [],
+  "sensor_assignments": [],
+  "calibrations": [],
+  "readings": [],
+  "correspondence": []
+}

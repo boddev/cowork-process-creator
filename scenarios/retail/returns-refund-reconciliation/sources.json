@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "r4",
+      "title": "Create returns in POS",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/pos-returns",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Original-transaction-linked return processing. The approved retail research ledger records a full official-page fetch on 2026-09-14, including original lookup, return-history freshness and partial-quantity tax sections.",
+      "supported_claims": [
+        "Original transactions can be located using receipt, order, channel reference or invoice identifiers.",
+        "Original and previously returned quantities inform the available-to-return quantity limit; return reasons are recorded.",
+        "Synchronized offline return quantities can be stale.",
+        "Partial return tax handling can preserve originally charged tax."
+      ],
+      "limitations": "This is public product guidance, not a universal return window, condition policy, statutory entitlement or specification of our cumulative penny-allocation algorithm. The nonvalidated Return product operation is excluded. The locally bundled exports do not establish live return availability. Retrieval is inherited from the approved research ledger, not a new live fetch during implementation."
+    },
+    {
+      "id": "r5",
+      "title": "Linked refunds of previously approved and confirmed transactions",
+      "url": "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/linked-refunds",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Linked-refund concept, prerequisites and supported/unsupported flows. The approved retail research ledger records a full official-page fetch on 2026-09-14.",
+      "supported_claims": [
+        "A linked refund refers to a previously approved and confirmed transaction.",
+        "A refund can be full or partial and cannot exceed the original authorization.",
+        "Execution requires payment configuration and connector capabilities and excludes some exchange, gift-card, receiptless and multi-invoice flows."
+      ],
+      "limitations": "No payment connection, token, account information or authorization to issue money exists here. Confirmation and the single-card reference are synthetic historical evidence only. We also impose a reconciled captured-money cap, whole-unit scope and closed-opening-history rules as conservative sample policy; these are not a complete implementation of Commerce payment processing. Retrieval is inherited from the approved research ledger."
+    }
+  ]
+}

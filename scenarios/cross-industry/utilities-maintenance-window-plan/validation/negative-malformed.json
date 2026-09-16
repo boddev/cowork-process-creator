@@ -1,0 +1,180 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "a6d9ff2ad44d1f9a06d9b734cfa090de8a44dfb8b3143e7847af719eadc35b9e",
+    "golden_sha256": "58f2241cf286534c5aa1b0b24c573a3e251a500dd100adb00981b6f1a4621a55",
+    "input_sha256": "55c3f07a471b3907d6028bf088854589f939966d2c9a0a8d6a79f1e4141c23eb",
+    "result": "baseline-output/negative-malformed.json",
+    "result_sha256": "15c9fe4e99dadd2a9830643cab89d5d7c84005054b563487b5a4c22f4e2c4896",
+    "trace": "baseline-output/negative-malformed.trace.json",
+    "trace_sha256": "9fe7bda4e0d0c13a34062eae04704c2fe591b7b8ab8c8d40accd193adb0ce702"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "collections",
+      "datetime",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "negative-malformed",
+  "documented": {
+    "case_rule_coverage": [
+      "interval-semantics"
+    ],
+    "failure_modes": [
+      "malformed-input"
+    ],
+    "golden_derivation": "A parseable JSON record supplies true as duration_minutes. This is not a valid integer duration; reject at files.work-orders.json[0].duration_minutes with outputs{} before graph/resource planning.",
+    "steps": [
+      {
+        "id": "intake-planning-exports",
+        "kind": "input",
+        "rule_ids": [
+          "work-requirements"
+        ]
+      },
+      {
+        "id": "validate-planning-data",
+        "kind": "validation",
+        "rule_ids": [
+          "prerequisite-order",
+          "interval-semantics",
+          "bounded-search"
+        ]
+      },
+      {
+        "id": "join-readiness-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "work-requirements",
+          "availability-review"
+        ]
+      },
+      {
+        "id": "assess-readiness",
+        "kind": "decision",
+        "rule_ids": [
+          "planning-readiness"
+        ]
+      },
+      {
+        "id": "search-resource-windows",
+        "kind": "decision",
+        "rule_ids": [
+          "prerequisite-order",
+          "window-search",
+          "interval-semantics",
+          "bounded-search"
+        ]
+      },
+      {
+        "id": "record-conflicts",
+        "kind": "exception",
+        "rule_ids": [
+          "conflict-explanation"
+        ]
+      },
+      {
+        "id": "summarize-resource-load",
+        "kind": "decision",
+        "rule_ids": [
+          "planning-closure"
+        ]
+      },
+      {
+        "id": "emit-contingent-plan",
+        "kind": "output",
+        "rule_ids": [
+          "planning-closure"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/negative-malformed.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/cross-industry/utilities-maintenance-window-plan",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.13.14",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.413635,
+  "kind": "negative",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "rejected",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake-planning-exports"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate-planning-data"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "cross-industry-02",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "8f30e438f07e3187194e1bb0d01405fa947fe8a6197de6f31e36f90895ffdbec",
+    "baseline.py": "a6d9ff2ad44d1f9a06d9b734cfa090de8a44dfb8b3143e7847af719eadc35b9e",
+    "connections.json": "2bd69b4ea24debaf50d3f782e358e9db46a80cf587668345beb97738c138809a",
+    "expected/demo.json": "83fa0755a1b912fa8e6afcb5d6171d84c430103e02bd40cfd308f7bb4a8400b5",
+    "expected/holdout-a.json": "b399b9ed233a8ab5f6e60717c6fcdb5351ccf8909629eb1de58e5498e02aba4d",
+    "expected/holdout-b.json": "c6b747ffe210803d60663bfe73d78f56d1c99eecb25e92093e233ebd38a8eb24",
+    "expected/negative-contradictory.json": "fe431feadff5683fbd60bae3364316ea00196c9dfd8c76fa5bfc8a2aa138e643",
+    "expected/negative-malformed.json": "58f2241cf286534c5aa1b0b24c573a3e251a500dd100adb00981b6f1a4621a55",
+    "mock-data/demo.json": "08dc35949e5d6445b39bfbe21cd1a7bfd149eee573324302567177a4d8385cab",
+    "mock-data/holdout-a.json": "8857c023d08775c75ddd9ebbd978bbecaece4a7390d8e0dbe3b9bc3a2a9d963a",
+    "mock-data/holdout-b.json": "6f8fa9c701e4f7eeacda1353d0a14d8df36c93cd0dae7e54be739b8c2ed795d6",
+    "mock-data/negative-contradictory.json": "a9d91bd4f2f4bf2d3a6b4e24d4f5aab55c80d3af91d1f2c1cb02ef8656b46014",
+    "mock-data/negative-malformed.json": "55c3f07a471b3907d6028bf088854589f939966d2c9a0a8d6a79f1e4141c23eb",
+    "scenario.json": "4a85d9f77f3cc53756564fdce26820097b0e4288f9248083b3d59c14339eabea",
+    "sources.json": "3d1b7e189249eefcdfbe5fe98e52f4f5006b098a26953d2f05bc21ee85c77acb",
+    "workflow.json": "b033d161708e403984cfc5149556a89538af8d317ef5d8a5297ddfb40f909b2a"
+  },
+  "state": "baseline_pass"
+}

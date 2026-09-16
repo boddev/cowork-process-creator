@@ -1,0 +1,297 @@
+{
+  "events": [
+    {
+      "caption": "Read the supplied synthetic export bundle; no live inventory connection.",
+      "facts": {
+        "logical_files": 6,
+        "records": 6
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-exports",
+      "tables": [
+        {
+          "columns": [
+            "measure",
+            "count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "logical export files",
+              6
+            ],
+            [
+              "export records",
+              6
+            ]
+          ],
+          "title": "Received bundle",
+          "total_rows": 2
+        }
+      ]
+    },
+    {
+      "caption": "Validated unique keys, disjoint physical stock and every required demand day.",
+      "facts": {
+        "demand_days": 1,
+        "pairs": 1,
+        "review_days": 1
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-stock-and-keys",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "store_stock",
+              1
+            ],
+            [
+              "dc_stock",
+              1
+            ],
+            [
+              "demand",
+              1
+            ],
+            [
+              "inbound",
+              1
+            ],
+            [
+              "routes",
+              1
+            ],
+            [
+              "capacity",
+              1
+            ]
+          ],
+          "title": "Validated logical roles",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Join each store/SKU to its route, opening stock, dated demand and independent receipts.",
+      "facts": {
+        "blocked_pairs": 1,
+        "matched_pairs": 1,
+        "receipts": 1
+      },
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "join-store-supply",
+      "tables": [
+        {
+          "columns": [
+            "store",
+            "sku",
+            "dc",
+            "available",
+            "arrival",
+            "blocked"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-STORE-Z",
+              "SYN-SKU-Z",
+              "SYN-DC-Z",
+              2,
+              "2099-01-02",
+              true
+            ]
+          ],
+          "title": "Joined store/DC supply",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Walk pre-arrival physical stock; lost forecast is not carried forward as a backorder.",
+      "facts": {
+        "lost_units": 0,
+        "pre_arrival_days": 0
+      },
+      "kind": "decision",
+      "sequence": 4,
+      "step_id": "project-before-arrival",
+      "tables": [
+        {
+          "columns": [
+            "store",
+            "day",
+            "opening",
+            "inbound",
+            "lost",
+            "closing"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Physical stock before proposed arrival",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Cover the largest post-arrival deficit and final safety need, then round up to whole cases.",
+      "facts": {
+        "eligible_pairs": 0
+      },
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "calculate-case-requests",
+      "tables": [
+        {
+          "columns": [
+            "store",
+            "sku",
+            "raw units",
+            "case pack",
+            "request units",
+            "cases"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-STORE-Z",
+              "SYN-SKU-Z",
+              null,
+              1,
+              null,
+              null
+            ]
+          ],
+          "title": "Whole-case requests",
+          "total_rows": 1
+        },
+        {
+          "columns": [
+            "store",
+            "sku",
+            "day",
+            "balance",
+            "prefix need"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Unconstrained planning balances",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Allocate in priority order and debit shared DC stock and dispatch case capacity once.",
+      "facts": {
+        "proposed_cases": 0
+      },
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "allocate-dc-capacity",
+      "tables": [
+        {
+          "columns": [
+            "store",
+            "request cases",
+            "stock cases",
+            "capacity",
+            "proposed",
+            "capacity left"
+          ],
+          "highlight_rows": [],
+          "rows": [],
+          "title": "Hypothetical allocation ledger",
+          "total_rows": 0
+        }
+      ]
+    },
+    {
+      "caption": "Re-simulate with actual proposal quantities and expose dated shortages and excluded evidence.",
+      "facts": {
+        "blocked_pairs": 1,
+        "exceptions": 1,
+        "lost_units": 0
+      },
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "surface-shortfalls",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "store",
+            "sku",
+            "day",
+            "units"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "overdue-inbound",
+              "SYN-STORE-Z",
+              "SYN-SKU-Z",
+              "2099-01-01",
+              2
+            ]
+          ],
+          "title": "Review exceptions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Publish the complete review-only proposal, daily projections and reconciled DC controls.",
+      "facts": {
+        "action_authorized": false,
+        "deferred_units": 0,
+        "proposed_cases": 0,
+        "proposed_units": 0,
+        "review_required": true
+      },
+      "kind": "output",
+      "sequence": 8,
+      "step_id": "publish-review-packet",
+      "tables": [
+        {
+          "columns": [
+            "store",
+            "sku",
+            "request",
+            "proposed",
+            "closing",
+            "status"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "SYN-STORE-Z",
+              "SYN-SKU-Z",
+              null,
+              0,
+              null,
+              "blocked"
+            ]
+          ],
+          "title": "Final review proposals",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "08971537ecc3ff1358e8b50e49e717721f725af663f520488520ecb0b11d3975",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-01",
+  "schema_version": 1
+}

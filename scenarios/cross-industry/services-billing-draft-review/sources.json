@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "ms-approvals",
+      "title": "Approvals overview",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/approvals/approvals-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Project Operations approval and recall context, as verified in the approved research.",
+      "supported_claims": ["Approval records relate to time, expense, and material entries.", "Approval creates actuals; cancel or recall can reverse them."],
+      "limitations": "Only context for reading synthetic evidence. No approval, recall, actual creation, or Dynamics connection occurs. Revision selection, export schema, and cutoff rules are fictional sample policy."
+    },
+    {
+      "id": "ms-proforma",
+      "title": "Proforma invoices",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/proforma-invoicing/create-manual-proforma-invoice",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "Draft review context for Project Operations Integrated with ERP.",
+      "supported_claims": ["Proforma review adds a review of approved and unbilled transactions.", "Draft adjustments precede confirmation."],
+      "limitations": "No Dynamics import/API compatibility is claimed. Synthetic local recommendations do not create or adjust an invoice. Pricing, caps, receipts, and reconciliation tolerance are not rules asserted by this source."
+    },
+    {
+      "id": "ms-confirm",
+      "title": "Confirm a proforma project-based invoice",
+      "url": "https://learn.microsoft.com/dynamics365/project-operations/proforma-invoicing/confirm-proforma-invoice",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-09-14",
+      "scope": "The stop-before-confirmation boundary.",
+      "supported_claims": ["Confirmation makes the invoice read-only and creates financial actuals."],
+      "limitations": "The procedure stops before confirmation and performs no financial actuals creation, AR/GL posting, sending, reimbursement, or customer contact."
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "exceptions": [
+    {
+      "code": "contradictory-pod",
+      "entity_id": "LG-C01",
+      "entity_type": "shipment",
+      "message": "Multiple POD rows share the highest eligible revision.",
+      "next_action": "Resolve the conflicting POD revisions in a new synthetic export.",
+      "owner": "freight-review",
+      "shipment_id": "LG-C01"
+    }
+  ],
+  "outputs": {
+    "as_of": "2026-09-14T12:00:00Z",
+    "case_proposals": [],
+    "invoice_lines": [
+      {
+        "amount": "0.00",
+        "charge_code": "detention",
+        "currency": "USD",
+        "disposition": "held",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [
+          "contradictory-pod"
+        ],
+        "line_id": "LG-L-C01-DT",
+        "shipment_id": "LG-C01"
+      },
+      {
+        "amount": "50.00",
+        "charge_code": "fuel",
+        "currency": "USD",
+        "disposition": "held",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [
+          "contradictory-pod"
+        ],
+        "line_id": "LG-L-C01-FU",
+        "shipment_id": "LG-C01"
+      },
+      {
+        "amount": "500.00",
+        "charge_code": "linehaul",
+        "currency": "USD",
+        "disposition": "held",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [
+          "contradictory-pod"
+        ],
+        "line_id": "LG-L-C01-LH",
+        "shipment_id": "LG-C01"
+      },
+      {
+        "amount": "0.00",
+        "charge_code": "detention",
+        "currency": "USD",
+        "disposition": "ready-for-review",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [],
+        "line_id": "LG-L-C02-DT",
+        "shipment_id": "LG-C02"
+      },
+      {
+        "amount": "10.00",
+        "charge_code": "fuel",
+        "currency": "USD",
+        "disposition": "ready-for-review",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [],
+        "line_id": "LG-L-C02-FU",
+        "shipment_id": "LG-C02"
+      },
+      {
+        "amount": "100.00",
+        "charge_code": "linehaul",
+        "currency": "USD",
+        "disposition": "ready-for-review",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [],
+        "line_id": "LG-L-C02-LH",
+        "shipment_id": "LG-C02"
+      }
+    ],
+    "invoices": [
+      {
+        "comparison_complete": false,
+        "computable_billed": "110.00",
+        "computable_variance": "0.00",
+        "currency": "USD",
+        "disposition": "held",
+        "header_matches": true,
+        "header_total": "660.00",
+        "held_line_amount": "550.00",
+        "invoice_id": "LG-INV-C1",
+        "issue_codes": [
+          "contradictory-pod"
+        ],
+        "known_expected": "110.00",
+        "line_total": "660.00",
+        "ready_line_amount": "110.00",
+        "shipment_ids": [
+          "LG-C01",
+          "LG-C02"
+        ]
+      }
+    ],
+    "pod_evidence": [
+      {
+        "disposition": "ambiguous",
+        "pod_id": "LG-POD-C01-A",
+        "recorded_at": "2026-09-14T10:00:00Z",
+        "revision": 2,
+        "shipment_id": "LG-C01"
+      },
+      {
+        "disposition": "ambiguous",
+        "pod_id": "LG-POD-C01-B",
+        "recorded_at": "2026-09-14T10:00:00Z",
+        "revision": 2,
+        "shipment_id": "LG-C01"
+      },
+      {
+        "disposition": "selected",
+        "pod_id": "LG-POD-C02",
+        "recorded_at": "2026-09-14T09:10:00Z",
+        "revision": 1,
+        "shipment_id": "LG-C02"
+      }
+    ],
+    "rate_evidence": [
+      {
+        "candidate_for": [
+          "LG-C01"
+        ],
+        "disposition": "selected",
+        "rate_id": "LG-RATE-C01",
+        "selected_for": [
+          "LG-C01"
+        ]
+      },
+      {
+        "candidate_for": [
+          "LG-C02"
+        ],
+        "disposition": "selected",
+        "rate_id": "LG-RATE-C02",
+        "selected_for": [
+          "LG-C02"
+        ]
+      }
+    ],
+    "shipments": [
+      {
+        "billed_amount": "550.00",
+        "currency": "USD",
+        "detention": null,
+        "detention_blocks": null,
+        "disposition": "held",
+        "dwell_seconds": null,
+        "excess_seconds": null,
+        "expected_amount": null,
+        "fuel": null,
+        "invoice_ids": [
+          "LG-INV-C1"
+        ],
+        "issue_codes": [
+          "contradictory-pod"
+        ],
+        "linehaul": null,
+        "missing_pod_age_seconds": null,
+        "pod_id": null,
+        "pod_overdue": null,
+        "rate_date": "2026-09-14",
+        "rate_id": "LG-RATE-C01",
+        "shipment_id": "LG-C01",
+        "tolerance_amount": null,
+        "variance_amount": null
+      },
+      {
+        "billed_amount": "110.00",
+        "currency": "USD",
+        "detention": "0.00",
+        "detention_blocks": 0,
+        "disposition": "ready-for-review",
+        "dwell_seconds": 3600,
+        "excess_seconds": 0,
+        "expected_amount": "110.00",
+        "fuel": "10.00",
+        "invoice_ids": [
+          "LG-INV-C1"
+        ],
+        "issue_codes": [],
+        "linehaul": "100.00",
+        "missing_pod_age_seconds": null,
+        "pod_id": "LG-POD-C02",
+        "pod_overdue": null,
+        "rate_date": "2026-09-14",
+        "rate_id": "LG-RATE-C02",
+        "shipment_id": "LG-C02",
+        "tolerance_amount": "5.00",
+        "variance_amount": "0.00"
+      }
+    ],
+    "summary": {
+      "currency_totals": [
+        {
+          "billed_total": "660.00",
+          "comparison_complete": false,
+          "computable_billed": "110.00",
+          "computable_variance": "0.00",
+          "currency": "USD",
+          "held_line_amount": "550.00",
+          "known_expected": "110.00",
+          "ready_line_amount": "110.00"
+        }
+      ],
+      "held_shipments": 1,
+      "invoice_count": 1,
+      "line_count": 6,
+      "noncomparable_shipment_ids": [
+        "LG-C01"
+      ],
+      "pod_count": 3,
+      "prior_case_count": 0,
+      "rate_count": 2,
+      "ready_shipments": 1,
+      "shipment_count": 2,
+      "uncomputed_shipment_ids": [
+        "LG-C01"
+      ]
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

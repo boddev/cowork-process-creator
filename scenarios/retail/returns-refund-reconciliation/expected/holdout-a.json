@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "outputs": {
+    "request_proposals": [
+      {
+        "request_id": "SYN-REQUEST-A", "requested_on": "2099-08-15",
+        "supplied_keys": {"store_id": "SYN-STORE-A", "receipt_id": "SYN-RECEIPT-A", "order_id": "SYN-ORDER-A", "invoice_id": "SYN-INVOICE-A", "line_id": "SYN-LINE-A", "sku": "SYN-SKU-A"},
+        "reason": "wrong-size", "condition": "unworn", "requested_qty": 2, "join_status": "matched",
+        "original": {"order_id": "SYN-ORDER-A", "store_id": "SYN-STORE-A", "receipt_id": "SYN-RECEIPT-A", "invoice_id": "SYN-INVOICE-A", "line_id": "SYN-LINE-A", "sku": "SYN-SKU-A", "currency": "EUR", "payment_reference": "SYN-CARD-A"},
+        "disposition": "proposed", "reason_codes": [], "age_days": 14,
+        "prior_qty": 1, "earlier_proposed_qty": 0, "available_qty": 3, "proposed_qty": 2, "deferred_qty": 0,
+        "entitlement_before": {"qty": 1, "merchandise_minor": 500, "tax_minor": 40},
+        "entitlement_after": {"qty": 3, "merchandise_minor": 1499, "tax_minor": 121},
+        "proposed_merchandise_minor": 999, "proposed_tax_minor": 81, "proposed_total_minor": 1080
+      }
+    ],
+    "line_eligibility": [
+      {
+        "order_id": "SYN-ORDER-A", "line_id": "SYN-LINE-A", "sku": "SYN-SKU-A", "currency": "EUR", "quarantined": false,
+        "original_qty": 4, "original_merchandise_minor": 1999, "original_tax_minor": 161,
+        "observed_posted_qty": 1, "observed_posted_merchandise_minor": 500, "observed_posted_tax_minor": 40,
+        "prior_qty": 1, "prior_merchandise_minor": 500, "prior_tax_minor": 40,
+        "proposed_qty": 2, "proposed_merchandise_minor": 999, "proposed_tax_minor": 81,
+        "remaining_qty": 1, "remaining_merchandise_minor": 500, "remaining_tax_minor": 40
+      }
+    ],
+    "order_money_controls": [
+      {
+        "order_id": "SYN-ORDER-A", "currency": "EUR", "payment_reference": "SYN-CARD-A", "payment_method": "card", "confirmed": true, "quarantined": false, "reason_codes": [],
+        "authorized_minor": 2160, "captured_minor": 2160, "original_merchandise_minor": 1999, "original_tax_minor": 161, "original_total_minor": 2160,
+        "observed_posted_minor": 540, "prior_minor": 540,
+        "proposed_merchandise_minor": 999, "proposed_tax_minor": 81, "proposed_minor": 1080,
+        "prior_plus_proposed_minor": 1620, "remaining_minor": 540, "cap_ok": true
+      }
+    ],
+    "currency_controls": [
+      {"currency": "EUR", "order_count": 1, "quarantined_order_count": 0, "reconciled_order_count": 1, "captured_minor": 2160, "reconciled_captured_minor": 2160, "prior_minor": 540, "proposed_merchandise_minor": 999, "proposed_tax_minor": 81, "proposed_minor": 1080, "prior_plus_proposed_minor": 1620, "remaining_minor": 540}
+    ],
+    "review_packet": {
+      "action_authorized": false, "owner_role": "Returns reconciliation analyst",
+      "as_of": "2099-08-15", "period_start": "2099-08-15", "period_end": "2099-08-15", "window_days": 14, "allow_partial_requests": true,
+      "request_count": 1, "proposed_qty": 2, "deferred_qty": 0, "exception_count": 0,
+      "unresolved_request_ids": [], "quarantined_order_ids": [], "review_request_ids": [],
+      "next_actions": [
+        "Verify source completeness and resolve every exception with the original transaction owner.",
+        "Review proposals against current authorized return and payment policy; this packet grants no approval.",
+        "Use an authorized operational process only after separate approval; no refund, order or stock change was executed."
+      ]
+    }
+  },
+  "exceptions": []
+}

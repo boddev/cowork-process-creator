@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of": "2026-09-14T12:00:00Z",
+    "shipments": [
+      {"shipment_id": "LG-D01", "currency": "USD", "invoice_ids": ["LG-INV-D1"], "pod_id": "LG-POD-D01", "rate_id": "LG-RATE-D01", "rate_date": "2026-09-14", "billed_amount": "1130.00", "linehaul": "1000.00", "fuel": "100.00", "detention": "25.00", "expected_amount": "1125.00", "tolerance_amount": "5.00", "variance_amount": "5.00", "dwell_seconds": 4500, "excess_seconds": 900, "detention_blocks": 1, "missing_pod_age_seconds": null, "pod_overdue": null, "disposition": "ready-for-review", "issue_codes": []},
+      {"shipment_id": "LG-D02", "currency": "USD", "invoice_ids": ["LG-INV-D1"], "pod_id": "LG-POD-D02", "rate_id": "LG-RATE-D02", "rate_date": "2026-09-13", "billed_amount": "1000.00", "linehaul": "800.00", "fuel": "80.00", "detention": "75.00", "expected_amount": "955.00", "tolerance_amount": "5.00", "variance_amount": "45.00", "dwell_seconds": 7800, "excess_seconds": 4200, "detention_blocks": 3, "missing_pod_age_seconds": null, "pod_overdue": null, "disposition": "held", "issue_codes": ["variance"]},
+      {"shipment_id": "LG-D03", "currency": "USD", "invoice_ids": ["LG-INV-D2"], "pod_id": null, "rate_id": "LG-RATE-D03", "rate_date": "2026-09-12", "billed_amount": "660.00", "linehaul": null, "fuel": null, "detention": null, "expected_amount": null, "tolerance_amount": null, "variance_amount": null, "dwell_seconds": null, "excess_seconds": null, "detention_blocks": null, "missing_pod_age_seconds": 183600, "pod_overdue": true, "disposition": "held", "issue_codes": ["missing-pod"]},
+      {"shipment_id": "LG-D04", "currency": "USD", "invoice_ids": ["LG-INV-D2"], "pod_id": "LG-POD-D04", "rate_id": "LG-RATE-D04", "rate_date": "2026-09-14", "billed_amount": "440.00", "linehaul": "400.00", "fuel": "40.00", "detention": "0.00", "expected_amount": "440.00", "tolerance_amount": "5.00", "variance_amount": "0.00", "dwell_seconds": 3600, "excess_seconds": 0, "detention_blocks": 0, "missing_pod_age_seconds": null, "pod_overdue": null, "disposition": "ready-for-review", "issue_codes": []}
+    ],
+    "invoices": [
+      {"invoice_id": "LG-INV-D1", "currency": "USD", "shipment_ids": ["LG-D01", "LG-D02"], "header_total": "2130.00", "line_total": "2130.00", "header_matches": true, "computable_billed": "2130.00", "known_expected": "2080.00", "computable_variance": "50.00", "comparison_complete": true, "ready_line_amount": "1130.00", "held_line_amount": "1000.00", "disposition": "held", "issue_codes": ["variance"]},
+      {"invoice_id": "LG-INV-D2", "currency": "USD", "shipment_ids": ["LG-D03", "LG-D04"], "header_total": "1100.00", "line_total": "1100.00", "header_matches": true, "computable_billed": "440.00", "known_expected": "440.00", "computable_variance": "0.00", "comparison_complete": false, "ready_line_amount": "440.00", "held_line_amount": "660.00", "disposition": "held", "issue_codes": ["missing-pod"]}
+    ],
+    "invoice_lines": [
+      {"line_id": "LG-L-D01-DT", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D01", "currency": "USD", "charge_code": "detention", "amount": "30.00", "disposition": "ready-for-review", "issue_codes": []},
+      {"line_id": "LG-L-D01-FU", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D01", "currency": "USD", "charge_code": "fuel", "amount": "100.00", "disposition": "ready-for-review", "issue_codes": []},
+      {"line_id": "LG-L-D01-LH", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D01", "currency": "USD", "charge_code": "linehaul", "amount": "1000.00", "disposition": "ready-for-review", "issue_codes": []},
+      {"line_id": "LG-L-D02-DT", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D02", "currency": "USD", "charge_code": "detention", "amount": "120.00", "disposition": "held", "issue_codes": ["variance"]},
+      {"line_id": "LG-L-D02-FU", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D02", "currency": "USD", "charge_code": "fuel", "amount": "80.00", "disposition": "held", "issue_codes": ["variance"]},
+      {"line_id": "LG-L-D02-LH", "invoice_id": "LG-INV-D1", "shipment_id": "LG-D02", "currency": "USD", "charge_code": "linehaul", "amount": "800.00", "disposition": "held", "issue_codes": ["variance"]},
+      {"line_id": "LG-L-D03-DT", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D03", "currency": "USD", "charge_code": "detention", "amount": "0.00", "disposition": "held", "issue_codes": ["missing-pod"]},
+      {"line_id": "LG-L-D03-FU", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D03", "currency": "USD", "charge_code": "fuel", "amount": "60.00", "disposition": "held", "issue_codes": ["missing-pod"]},
+      {"line_id": "LG-L-D03-LH", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D03", "currency": "USD", "charge_code": "linehaul", "amount": "600.00", "disposition": "held", "issue_codes": ["missing-pod"]},
+      {"line_id": "LG-L-D04-DT", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D04", "currency": "USD", "charge_code": "detention", "amount": "0.00", "disposition": "ready-for-review", "issue_codes": []},
+      {"line_id": "LG-L-D04-FU", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D04", "currency": "USD", "charge_code": "fuel", "amount": "40.00", "disposition": "ready-for-review", "issue_codes": []},
+      {"line_id": "LG-L-D04-LH", "invoice_id": "LG-INV-D2", "shipment_id": "LG-D04", "currency": "USD", "charge_code": "linehaul", "amount": "400.00", "disposition": "ready-for-review", "issue_codes": []}
+    ],
+    "pod_evidence": [
+      {"pod_id": "LG-POD-D01", "shipment_id": "LG-D01", "revision": 1, "recorded_at": "2026-09-14T09:30:00Z", "disposition": "selected"},
+      {"pod_id": "LG-POD-D02", "shipment_id": "LG-D02", "revision": 1, "recorded_at": "2026-09-13T10:00:00Z", "disposition": "selected"},
+      {"pod_id": "LG-POD-D04", "shipment_id": "LG-D04", "revision": 1, "recorded_at": "2026-09-14T10:10:00Z", "disposition": "selected"}
+    ],
+    "rate_evidence": [
+      {"rate_id": "LG-RATE-D01", "candidate_for": ["LG-D01"], "selected_for": ["LG-D01"], "disposition": "selected"},
+      {"rate_id": "LG-RATE-D02", "candidate_for": ["LG-D02"], "selected_for": ["LG-D02"], "disposition": "selected"},
+      {"rate_id": "LG-RATE-D03", "candidate_for": ["LG-D03"], "selected_for": ["LG-D03"], "disposition": "selected"},
+      {"rate_id": "LG-RATE-D04", "candidate_for": ["LG-D04"], "selected_for": ["LG-D04"], "disposition": "selected"}
+    ],
+    "case_proposals": [
+      {"case_id": "LG-CASE-D02-VAR", "shipment_id": "LG-D02", "issue_code": "variance", "previous_state": "resolved", "proposed_state": "reopened", "owner": "claims-desk", "reason": "condition-present"},
+      {"case_id": "LG-CASE-D04-POD", "shipment_id": "LG-D04", "issue_code": "missing-pod", "previous_state": "open", "proposed_state": "closed", "owner": "delivery-desk", "reason": "condition-cleared"}
+    ],
+    "summary": {
+      "shipment_count": 4, "invoice_count": 2, "line_count": 12, "pod_count": 3, "rate_count": 4, "prior_case_count": 2,
+      "ready_shipments": 2, "held_shipments": 2,
+      "uncomputed_shipment_ids": ["LG-D03"], "noncomparable_shipment_ids": ["LG-D03"],
+      "currency_totals": [
+        {"currency": "USD", "billed_total": "3230.00", "ready_line_amount": "1570.00", "held_line_amount": "1660.00", "computable_billed": "2570.00", "known_expected": "2520.00", "computable_variance": "50.00", "comparison_complete": false}
+      ]
+    }
+  },
+  "exceptions": [
+    {"code": "variance", "message": "Billed total is outside the symmetric inclusive tolerance.", "entity_type": "shipment", "entity_id": "LG-D02", "shipment_id": "LG-D02", "owner": "freight-review", "next_action": "Review the calculated and billed charges; do not authorize payment."},
+    {"code": "missing-pod", "message": "No POD revision is eligible at the snapshot cutoff.", "entity_type": "shipment", "entity_id": "LG-D03", "shipment_id": "LG-D03", "owner": "freight-review", "next_action": "Request overdue POD evidence from the export owner."}
+  ]
+}

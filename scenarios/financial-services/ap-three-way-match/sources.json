@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "ms-ap-invoice-matching",
+      "title": "Accounts payable invoice matching overview",
+      "url": "https://learn.microsoft.com/dynamics365/finance/accounts-payable/accounts-payable-invoice-matching",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "The Three-way matching, Two-way price totals matching, and Related functionality sections; full primary page retrieved and read.",
+      "supported_claims": [
+        "Three-way matching compares invoice and PO prices and invoice quantities with selected product receipts.",
+        "The documented combined percentage-and-amount price-total configuration treats either exceeded tolerance as a discrepancy.",
+        "Matching discrepancies can remain available for review and correction."
+      ],
+      "limitations": "Product documentation, not a regulation or evidence of native execution. This sample's symmetric unit-price test, independent per-line cap, exact keys, thresholds and collision policy are invented. It does not reproduce cumulative last-invoice price-total matching, taxes, discounts, charges, currency conversion, posting or payment."
+    },
+    {
+      "id": "ms-vendor-invoices",
+      "title": "Vendor invoices overview",
+      "url": "https://learn.microsoft.com/dynamics365/finance/accounts-payable/vendor-invoices-overview",
+      "publisher": "Microsoft",
+      "accessed": "2026-09-14",
+      "scope": "Preventing invoice submission to workflow and Matching vendor invoices to product receipts; full primary page retrieved and read.",
+      "supported_claims": [
+        "Configured duplicate-number controls can prevent submission when a posted invoice already has that number.",
+        "Invoice matching can select partial quantities of product receipt lines.",
+        "An invoice can use receipts available through the current date rather than all ordered quantities."
+      ],
+      "limitations": "The synthetic canonical business key, all-incoming-duplicates hold, explicit cutoff, historical capacity checks and selection policy are sample controls, not universal Finance behavior. No workflow approval, source connection, invoice capture, posting or payment is performed."
+    }
+  ]
+}

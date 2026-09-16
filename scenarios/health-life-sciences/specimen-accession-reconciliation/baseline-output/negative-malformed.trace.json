@@ -1,0 +1,114 @@
+{
+  "events": [
+    {
+      "caption": "Load the supplied synthetic exports and record raw counts before any filtering or joins.",
+      "facts": {
+        "as_of": "2026-09-18T12:00:00Z",
+        "raw_rows": 2
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-accession-export",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "orders",
+              0
+            ],
+            [
+              "order_lines",
+              0
+            ],
+            [
+              "order_events",
+              1
+            ],
+            [
+              "receipts",
+              1
+            ],
+            [
+              "accessions",
+              0
+            ],
+            [
+              "test_catalog",
+              0
+            ],
+            [
+              "clarifications",
+              0
+            ]
+          ],
+          "title": "Raw input tables",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Input packet rejected with explicit diagnostics; no specimen decision or partial ledger.",
+      "facts": {
+        "diagnostics": 5,
+        "packet_rejected": true
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-reconciliation-records",
+      "tables": [
+        {
+          "columns": [
+            "path",
+            "code",
+            "message"
+          ],
+          "highlight_rows": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "order_events[1].effective_at",
+              "malformed-input",
+              "Input packet rejected: real whole-second UTC timestamp YYYY-MM-DDTHH:MM:SSZ required."
+            ],
+            [
+              "order_events[1].event_seq",
+              "malformed-input",
+              "Input packet rejected: integer in 1..1000000 required (boolean is not an integer)."
+            ],
+            [
+              "order_events[1].recorded_at",
+              "malformed-input",
+              "Input packet rejected: real whole-second UTC timestamp YYYY-MM-DDTHH:MM:SSZ required."
+            ],
+            [
+              "policy.accession_sla_minutes",
+              "malformed-input",
+              "Input packet rejected: integer in 0..10080 required (boolean is not an integer)."
+            ],
+            [
+              "receipts[1]",
+              "malformed-input",
+              "Input packet rejected: object with exactly the documented fields required."
+            ]
+          ],
+          "title": "Packet diagnostics",
+          "total_rows": 5
+        }
+      ]
+    }
+  ],
+  "input_sha256": "a19ff56f861b3097c72cc5453fcd3b7af510667454b7ca2661c1fdd9b635d2aa",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-03",
+  "schema_version": 1
+}

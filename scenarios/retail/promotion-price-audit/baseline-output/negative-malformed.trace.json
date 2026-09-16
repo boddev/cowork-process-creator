@@ -1,0 +1,101 @@
+{
+  "events": [
+    {
+      "caption": "Loaded the bundled source map and raw export counts. Null metadata means absent or invalid, never a default price or count.",
+      "facts": {
+        "as_of": "2099-09-01",
+        "audit_end": "2099-09-02",
+        "audit_start": "2099-09-01",
+        "tolerance_minor": 0
+      },
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "load-price-exports",
+      "tables": [
+        {
+          "columns": [
+            "role",
+            "logical_filename",
+            "record_count"
+          ],
+          "highlight_rows": [],
+          "rows": [
+            [
+              "stores",
+              "stores.json",
+              1
+            ],
+            [
+              "products",
+              "products.json",
+              1
+            ],
+            [
+              "base_prices",
+              "base-prices.json",
+              1
+            ],
+            [
+              "promotions",
+              "promotions.json",
+              1
+            ],
+            [
+              "promotion_scope",
+              "promotion-scope.json",
+              1
+            ],
+            [
+              "price_exceptions",
+              "price-exceptions.json",
+              0
+            ],
+            [
+              "observations",
+              "observed-prices.json",
+              1
+            ]
+          ],
+          "title": "Named export tables (all roles)",
+          "total_rows": 7
+        }
+      ]
+    },
+    {
+      "caption": "Rejected the first deterministic business validation error. No prices, joins or disposition counts were produced.",
+      "facts": {
+        "price_evaluation": "not-started",
+        "valid": false,
+        "validation_errors": 1
+      },
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate-pricing-records",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "path",
+            "message"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "INVALID_RATE",
+              "promotions.SYN-PROMO-BAD.value",
+              "Percent-off value must be an integer from 1 through 10000 basis points."
+            ]
+          ],
+          "title": "Input correction required",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "a344cab7a5ec7520e25cdb10f055ad60f854f520a9712b94b3783f017719cfb7",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "retail-03",
+  "schema_version": 1
+}

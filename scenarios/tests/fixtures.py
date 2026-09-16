@@ -61,6 +61,16 @@ def temporary_directory():
     return tempfile.TemporaryDirectory(prefix="scenario-test-", dir=root)
 
 
+def copy_scenario(source: Path, corpus: Path) -> Path:
+    """Copy the scenario and its CLI adapter without changing recorded evidence."""
+    root = corpus / source.parent.name / source.name
+    shutil.copytree(source, root)
+    shared = corpus / "_shared"
+    shared.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source.parents[1] / "_shared" / "scenario_support.py", shared / "scenario_support.py")
+    return root
+
+
 def make_scenario(corpus: Path) -> Path:
     root = corpus / "unit-industry" / "fixture"
     root.mkdir(parents=True)

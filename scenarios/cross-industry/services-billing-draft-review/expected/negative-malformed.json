@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "invalid-amount", "message": "expense-entries.json[EM].amount must be a nonnegative fixed-two-decimal string.", "owner": "input-provider", "project_id": null, "entry_type": null, "entry_id": null, "draft_id": null, "line_id": null, "action": "fix-input", "diagnostic_only": true}
+  ]
+}

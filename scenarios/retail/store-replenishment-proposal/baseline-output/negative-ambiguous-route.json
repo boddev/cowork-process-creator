@@ -1,0 +1,12 @@
+{
+  "exceptions": [
+    {
+      "code": "duplicate-key",
+      "message": "Duplicate routes key.",
+      "reference": "routes:SYN-STORE-Z|SYN-SKU-Z"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}

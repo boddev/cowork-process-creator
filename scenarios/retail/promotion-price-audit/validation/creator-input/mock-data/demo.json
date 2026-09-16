@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "as_of": "2099-10-11", "audit_start": "2099-10-10", "audit_end": "2099-10-12",
+    "tolerance_minor": 0, "rounding": "ROUND_HALF_UP",
+    "source_files": {
+      "stores": "stores.json", "products": "products.json", "base_prices": "base-prices.json",
+      "promotions": "promotions.json", "promotion_scope": "promotion-scope.json",
+      "price_exceptions": "price-exceptions.json", "observations": "observed-prices.json"
+    }
+  },
+  "exports": {
+    "stores.json": [
+      {"store_id": "SYN-STORE-01", "currency": "USD", "date_basis": "store-local-calendar"}
+    ],
+    "products.json": [
+      {"sku": "SYN-SKU-03-MUG", "unit": "EA"},
+      {"sku": "SYN-SKU-01-TEA", "unit": "EA"},
+      {"sku": "SYN-SKU-02-SOAP", "unit": "EA"}
+    ],
+    "base-prices.json": [
+      {"price_id": "SYN-BASE-SOAP", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-02-SOAP", "valid_from": "2099-10-01", "valid_to": "2099-10-20", "currency": "USD", "unit": "EA", "price_minor": 999},
+      {"price_id": "SYN-BASE-TEA", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "valid_from": "2099-10-01", "valid_to": "2099-10-20", "currency": "USD", "unit": "EA", "price_minor": 1999},
+      {"price_id": "SYN-BASE-MUG", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-03-MUG", "valid_from": "2099-10-01", "valid_to": "2099-10-20", "currency": "USD", "unit": "EA", "price_minor": 1999}
+    ],
+    "promotions.json": [
+      {"promotion_id": "SYN-PROMO-TEAEX", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 20, "mode": "exclusive", "type": "amount-off", "value": 300},
+      {"promotion_id": "SYN-PROMO-TEA50", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 20, "mode": "best-price", "type": "percent-off", "value": 5000},
+      {"promotion_id": "SYN-PROMO-TEA40", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 10, "mode": "best-price", "type": "percent-off", "value": 4000},
+      {"promotion_id": "SYN-PROMO-SOAP20", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 10, "mode": "compound", "type": "percent-off", "value": 2000},
+      {"promotion_id": "SYN-PROMO-SOAP25", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 10, "mode": "best-price", "type": "percent-off", "value": 2500},
+      {"promotion_id": "SYN-PROMO-SOAP10", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 10, "mode": "compound", "type": "percent-off", "value": 1000},
+      {"promotion_id": "SYN-PROMO-MUG50", "enabled": true, "valid_from": "2099-10-10", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "priority": 10, "mode": "best-price", "type": "percent-off", "value": 5000},
+      {"promotion_id": "SYN-PROMO-TEAFILTER", "enabled": false, "valid_from": "2099-10-01", "valid_to": "2099-10-10", "currency": "EUR", "unit": "CASE", "priority": 99, "mode": "exclusive", "type": "percent-off", "value": 9000}
+    ],
+    "promotion-scope.json": [
+      {"promotion_id": "SYN-PROMO-TEAEX", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-TEA50", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-TEA40", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-SOAP20", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-02-SOAP", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-SOAP25", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-02-SOAP", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-SOAP10", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-02-SOAP", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-MUG50", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-03-MUG", "line_type": "include"},
+      {"promotion_id": "SYN-PROMO-TEAFILTER", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "line_type": "exclude"},
+      {"promotion_id": "SYN-PROMO-TEAFILTER", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "line_type": "include"}
+    ],
+    "price-exceptions.json": [
+      {"exception_id": "SYN-EX-TEA", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "valid_from": "2099-10-11", "valid_to": "2099-10-12", "currency": "USD", "unit": "EA", "approved": true, "approval_reference": "SYN-APPROVAL-TEA", "price_minor": 1550}
+    ],
+    "observed-prices.json": [
+      {"observation_id": "SYN-OBS-04", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "observed_on": "2099-10-11", "currency": "USD", "unit": "EA", "observed_minor": 1550},
+      {"observation_id": "SYN-OBS-03", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-03-MUG", "observed_on": "2099-10-10", "currency": "USD", "unit": "EA", "observed_minor": 999},
+      {"observation_id": "SYN-OBS-01", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-01-TEA", "observed_on": "2099-10-10", "currency": "USD", "unit": "EA", "observed_minor": 1699},
+      {"observation_id": "SYN-OBS-02", "store_id": "SYN-STORE-01", "sku": "SYN-SKU-02-SOAP", "observed_on": "2099-10-10", "currency": "USD", "unit": "EA", "observed_minor": 720}
+    ]
+  }
+}

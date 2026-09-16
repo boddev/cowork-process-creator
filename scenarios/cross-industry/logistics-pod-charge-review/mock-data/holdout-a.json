@@ -1,0 +1,40 @@
+{
+  "config": {"as_of": "2026-10-02T12:00:00Z", "absolute_tolerance": "2.00", "relative_tolerance": "0.01", "missing_pod_grace_hours": 12, "review_owner": "contract-review"},
+  "files": {
+    "shipments.json": [
+      {"shipment_id": "LG-A01", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A1", "currency": "USD", "planned_delivery_at": "2026-09-30T20:00:00-04:00", "shipped_units": 9},
+      {"shipment_id": "LG-A02", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A2", "currency": "USD", "planned_delivery_at": "2026-10-01T10:00:00Z", "shipped_units": 5},
+      {"shipment_id": "LG-A03", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A3", "currency": "USD", "planned_delivery_at": "2026-10-02T09:00:00Z", "shipped_units": 7}
+    ],
+    "pod-events.json": [
+      {"pod_id": "LG-POD-A01", "shipment_id": "LG-A01", "revision": 1, "recorded_at": "2026-10-01T01:00:00Z", "state": "delivered", "delivered_at": "2026-10-01T00:40:00Z", "received_by": "Receiver-A1", "delivered_units": 9, "gate_in_at": "2026-10-01T00:00:00Z", "gate_out_at": "2026-10-01T00:46:00Z"},
+      {"pod_id": "LG-POD-A02", "shipment_id": "LG-A02", "revision": 1, "recorded_at": "2026-10-01T11:00:00Z", "state": "delivered", "delivered_at": "2026-10-01T10:00:00Z", "received_by": "Receiver-A2", "delivered_units": 5, "gate_in_at": "2026-10-01T08:00:00Z", "gate_out_at": "2026-10-01T10:01:00Z"},
+      {"pod_id": "LG-POD-A03-R1", "shipment_id": "LG-A03", "revision": 1, "recorded_at": "2026-10-01T12:00:00Z", "state": "void", "delivered_at": null, "received_by": null, "delivered_units": null, "gate_in_at": null, "gate_out_at": null},
+      {"pod_id": "LG-POD-A03-R2", "shipment_id": "LG-A03", "revision": 2, "recorded_at": "2026-10-02T12:00:00Z", "state": "delivered", "delivered_at": "2026-10-02T08:50:00Z", "received_by": "Receiver-A3", "delivered_units": 7, "gate_in_at": "2026-10-02T08:00:00Z", "gate_out_at": "2026-10-02T09:00:00Z"},
+      {"pod_id": "LG-POD-A03-R3", "shipment_id": "LG-A03", "revision": 3, "recorded_at": "2026-10-02T12:00:01Z", "state": "void", "delivered_at": null, "received_by": null, "delivered_units": null, "gate_in_at": null, "gate_out_at": null}
+    ],
+    "rate-cards.json": [
+      {"rate_id": "LG-RATE-A01-NEW", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A1", "currency": "USD", "valid_from": "2026-10-01", "valid_to": "2026-11-01", "linehaul": "900.00", "fuel_fraction": "0.125", "free_wait_minutes": 45, "detention_block_minutes": 15, "detention_block_amount": "20.00", "detention_cap": "60.00"},
+      {"rate_id": "LG-RATE-A01-OLD", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A1", "currency": "USD", "valid_from": "2026-09-01", "valid_to": "2026-10-01", "linehaul": "850.00", "fuel_fraction": "0.10", "free_wait_minutes": 45, "detention_block_minutes": 15, "detention_block_amount": "20.00", "detention_cap": "60.00"},
+      {"rate_id": "LG-RATE-A02", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A2", "currency": "USD", "valid_from": "2026-10-01", "valid_to": "2026-11-01", "linehaul": "500.00", "fuel_fraction": "0.08", "free_wait_minutes": 45, "detention_block_minutes": 15, "detention_block_amount": "20.00", "detention_cap": "60.00"},
+      {"rate_id": "LG-RATE-A03", "carrier_id": "LG-CAR-A", "lane_id": "LG-LANE-A3", "currency": "USD", "valid_from": "2026-10-01", "valid_to": "2026-11-01", "linehaul": "700.00", "fuel_fraction": "0.10", "free_wait_minutes": 60, "detention_block_minutes": 30, "detention_block_amount": "25.00", "detention_cap": "100.00"}
+    ],
+    "carrier-invoices.json": [
+      {"invoice_id": "LG-INV-A1", "carrier_id": "LG-CAR-A", "currency": "USD", "invoice_date": "2026-10-02", "total": "2427.83"}
+    ],
+    "invoice-lines.json": [
+      {"line_id": "LG-L-A01-DT", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A01", "charge_code": "detention", "amount": "30.33"},
+      {"line_id": "LG-L-A01-FU", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A01", "charge_code": "fuel", "amount": "112.50"},
+      {"line_id": "LG-L-A01-LH", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A01", "charge_code": "linehaul", "amount": "900.00"},
+      {"line_id": "LG-L-A02-DT", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A02", "charge_code": "detention", "amount": "75.00"},
+      {"line_id": "LG-L-A02-FU", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A02", "charge_code": "fuel", "amount": "40.00"},
+      {"line_id": "LG-L-A02-LH", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A02", "charge_code": "linehaul", "amount": "500.00"},
+      {"line_id": "LG-L-A03-DT", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A03", "charge_code": "detention", "amount": "0.00"},
+      {"line_id": "LG-L-A03-FU", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A03", "charge_code": "fuel", "amount": "70.00"},
+      {"line_id": "LG-L-A03-LH", "invoice_id": "LG-INV-A1", "shipment_id": "LG-A03", "charge_code": "linehaul", "amount": "700.00"}
+    ],
+    "review-history.json": [
+      {"case_id": "LG-CASE-A03-POD", "shipment_id": "LG-A03", "issue_code": "missing-pod", "state": "evidence-requested", "updated_at": "2026-10-02T10:00:00Z", "owner": "delivery-desk"}
+    ]
+  }
+}
