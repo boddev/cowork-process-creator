@@ -13,6 +13,7 @@ the process, install the plugin, and try it with their own inputs.
 |---|---|
 | A self-contained example plugin | `examples\<short-kebab-name>`; see the [bill splitter](examples/bill-splitter/README.md) for a source-and-sample-data layout. |
 | A synthetic business scenario with reference results | `scenarios\<industry>\<short-kebab-name>`; follow the [scenario contract](scenarios/SCENARIO_CONTRACT.md) and [requirements below](#additional-requirements-for-business-scenarios). |
+| A recording-only process pilot (**Draft** automation) | `scenarios\<industry>\_recordings\<pilot>`; include a procedure, actual application footage, safe inputs/outputs, and provenance. Keep it separate from the synthetic scenario contract. |
 | A scenario plugin and results exported from Cowork | `output\<scenario-id>`, with the [creation, installation, and run records](scenarios/HOW_TO.md#future-authorized-native-procedure). |
 | Creator instructions, helper code, or generation patterns | The owning skill in `appPackage\skills`, with appropriate tests; read the [extension guide](docs/extensions.md). |
 | User-facing documentation | `README.md`, `docs\user-guide.md`, or the relevant example guide. Keep developer commands outside the normal end-user path. |
@@ -20,6 +21,13 @@ the process, install the plugin, and try it with their own inputs.
 Open an issue before proposing a new service, dependency, package format, or
 major change to the scenario contract. Creator is designed to use Cowork's
 existing facilities, not a separately deployed automation platform.
+
+Recording-only pilots are draft authoring inputs, not completed plugins or
+additional benchmark cases. They may use synthetic data or deliberately selected
+public source material with confirmed redistribution rights. Disclose the actor,
+cuts, redactions, source provenance, and missing automation deliverables. The
+existing underscore-directory exclusion keeps them out of the synthetic corpus;
+do not weaken that corpus's contract or report a recording as native execution.
 
 ## Required bundle for a completed example
 

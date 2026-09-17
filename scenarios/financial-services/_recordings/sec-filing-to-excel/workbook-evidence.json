@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sec-filing-to-excel",
+  "artifact": "workbook-evidence",
+  "generated_for": "delivery workbook lane of the SEC-filing-to-Excel recording pilot",
+  "nature_of_demonstration": {
+    "agent_driven_ui_demonstration": true,
+    "human_only_execution": false,
+    "native_cowork_execution": false,
+    "native_cowork_attempted": false,
+    "native_creation_install_invocation_evaluation": "not attempted",
+    "note": "An agent drove the real Excel desktop user interface and a real browser. This is not a native Cowork/Creator plugin run, and no native artifact was created, installed, invoked or evaluated.",
+    "postprocessing_not_filmed": "Sanitation and validation described here ran after the save, outside the recording. They are not claimed to be part of the filmed take."
+  },
+  "deliverables": [
+    {
+      "name": "initial.xlsx",
+      "role": "blank starting template actually opened for the session",
+      "sha256": "37839d32dc7aee489b78f899c71965f181f20890f9dd355788b5bddeb114834b"
+    },
+    {
+      "name": "completed.xlsx",
+      "role": "sanitized delivery copy of the saved workbook",
+      "sha256": "6b4a0a980fc09d6f9b586ad59f248b41fcdf14ccbd3b3a26420f5d38abe0e752"
+    },
+    {
+      "name": "sanitize_workbook.py",
+      "role": "metadata-only package sanitizer"
+    },
+    {
+      "name": "test_sanitize_workbook.py",
+      "role": "standard-library tests for the sanitizer"
+    },
+    {
+      "name": "validate_recording.py",
+      "role": "read-only validator of the saved workbook"
+    },
+    {
+      "name": "test_validate_recording.py",
+      "role": "standard-library tests for the validator"
+    },
+    {
+      "name": "workbook-evidence.json",
+      "role": "this file"
+    }
+  ],
+  "chain": {
+    "initial_template_sha256": "37839d32dc7aee489b78f899c71965f181f20890f9dd355788b5bddeb114834b",
+    "initial_template_note": "This is the actual file the session started from; it contains no amounts and no formulas.",
+    "saved_working_draft": {
+      "name": "ko-2024-working-draft.xlsx",
+      "sha256": "c9a06532b93531eff91f27aa14558dd7fc360fbdc4996ed008198e0ed7026db1",
+      "location": "kept privately outside the repository",
+      "committed": false,
+      "note": "Saved by Excel from the real user interface. Not modified by any tool in this folder."
+    },
+    "delivery_copy": {
+      "name": "completed.xlsx",
+      "sha256": "6b4a0a980fc09d6f9b586ad59f248b41fcdf14ccbd3b3a26420f5d38abe0e752"
+    }
+  },
+  "entered_amounts": {
+    "count": 12,
+    "units": "USD millions",
+    "all_match_source_checked_reference": true,
+    "all_entered_as_values_not_formulas": true,
+    "cells": [
+      {
+        "cell": "Statement!B5",
+        "metric": "Net Operating Revenues",
+        "year": 2024,
+        "entered_value": 47061.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C5",
+        "metric": "Net Operating Revenues",
+        "year": 2023,
+        "entered_value": 45754.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!B6",
+        "metric": "Cost of goods sold",
+        "year": 2024,
+        "entered_value": 18324.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C6",
+        "metric": "Cost of goods sold",
+        "year": 2023,
+        "entered_value": 18520.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!B7",
+        "metric": "Gross Profit",
+        "year": 2024,
+        "entered_value": 28737.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C7",
+        "metric": "Gross Profit",
+        "year": 2023,
+        "entered_value": 27234.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!B8",
+        "metric": "Selling, general and administrative expenses",
+        "year": 2024,
+        "entered_value": 14582.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C8",
+        "metric": "Selling, general and administrative expenses",
+        "year": 2023,
+        "entered_value": 13972.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!B9",
+        "metric": "Other operating charges",
+        "year": 2024,
+        "entered_value": 4163.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C9",
+        "metric": "Other operating charges",
+        "year": 2023,
+        "entered_value": 1951.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!B10",
+        "metric": "Operating Income",
+        "year": 2024,
+        "entered_value": 9992.0,
+        "matches_filing": true,
+        "is_formula": false
+      },
+      {
+        "cell": "Statement!C10",
+        "metric": "Operating Income",
+        "year": 2023,
+        "entered_value": 11311.0,
+        "matches_filing": true,
+        "is_formula": false
+      }
+    ]
+  },
+  "formulas": {
+    "count": 25,
+    "all_have_excel_written_cached_values": true,
+    "recomputed_independently_in_validator": true,
+    "not_calculated_or_rewritten_by_any_tool_here": true,
+    "cells": [
+      {
+        "cell": "Statement!D5",
+        "formula": "=B5-C5",
+        "cached_value": 1307.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E5",
+        "formula": "=IF(C5=0,\"Not meaningful\",D5/C5)",
+        "cached_value": 0.028565808453905668,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!D6",
+        "formula": "=B6-C6",
+        "cached_value": -196.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E6",
+        "formula": "=IF(C6=0,\"Not meaningful\",D6/C6)",
+        "cached_value": -0.010583153347732181,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!D7",
+        "formula": "=B7-C7",
+        "cached_value": 1503.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E7",
+        "formula": "=IF(C7=0,\"Not meaningful\",D7/C7)",
+        "cached_value": 0.055188367481824194,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!D8",
+        "formula": "=B8-C8",
+        "cached_value": 610.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E8",
+        "formula": "=IF(C8=0,\"Not meaningful\",D8/C8)",
+        "cached_value": 0.04365874606355568,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!D9",
+        "formula": "=B9-C9",
+        "cached_value": 2212.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E9",
+        "formula": "=IF(C9=0,\"Not meaningful\",D9/C9)",
+        "cached_value": 1.133777549974372,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!D10",
+        "formula": "=B10-C10",
+        "cached_value": -1319.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!E10",
+        "formula": "=IF(C10=0,\"Not meaningful\",D10/C10)",
+        "cached_value": -0.11661214746706745,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B12",
+        "formula": "=B5-B6",
+        "cached_value": 28737.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C12",
+        "formula": "=C5-C6",
+        "cached_value": 27234.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B13",
+        "formula": "=B12-B7",
+        "cached_value": 0.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C13",
+        "formula": "=C12-C7",
+        "cached_value": 0.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B14",
+        "formula": "=B12-B8-B9",
+        "cached_value": 9992.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C14",
+        "formula": "=C12-C8-C9",
+        "cached_value": 11311.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B15",
+        "formula": "=B14-B10",
+        "cached_value": 0.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C15",
+        "formula": "=C14-C10",
+        "cached_value": 0.0,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B17",
+        "formula": "=B12/B5",
+        "cached_value": 0.6106330082233696,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C17",
+        "formula": "=C12/C5",
+        "cached_value": 0.5952266468505486,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B18",
+        "formula": "=B14/B5",
+        "cached_value": 0.21232018019166612,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!C18",
+        "formula": "=C14/C5",
+        "cached_value": 0.24721335839489444,
+        "cached_value_present": true
+      },
+      {
+        "cell": "Statement!B20",
+        "formula": "=IF(COUNT(B5:C10)<12,\"Pending inputs\",IF(AND(B13=0,C13=0,B15=0,C15=0),\"Ties to filing\",\"Review difference\"))",
+        "cached_value": "Ties to filing",
+        "cached_value_present": true
+      }
+    ]
+  },
+  "validation": {
+    "validator": "validate_recording.py",
+    "target": "completed.xlsx",
+    "checks_run": 88,
+    "checks_failed": 0,
+    "status": "pass",
+    "read_only": true,
+    "macros_executed": false,
+    "checks_added_this_pass": [
+      "status-note-updated",
+      "review-row-complete",
+      "review-row-alignment"
+    ],
+    "note": "85 checks existed before this pass; three were added for the stale blank-state status note and Review row alignment, giving 88."
+  },
+  "sanitation": {
+    "method": "direct OPC package edit with zipfile; targeted XML substitutions verified by re-parsing with xml.dom.minidom",
+    "loaded_or_resaved_through_spreadsheet_library": false,
+    "formulas_replaced_or_recalculated": false,
+    "namespace_declarations_preserved": true,
+    "mc_ignorable_prefixes_still_declared": true,
+    "removed_parts": [
+      "xl/printerSettings/printerSettings1.bin"
+    ],
+    "review_row_style_normalised": true,
+    "disclosures": [
+      {
+        "part": "xl/workbook.xml",
+        "change": "removed mc:AlternateContent containing x15ac:absPath/@url",
+        "reason": "the url recorded the private local directory of the saving machine",
+        "affects_cell_data": false
+      },
+      {
+        "part": "xl/workbook.xml",
+        "change": "removed xr:revisionPtr",
+        "reason": "carried documentId and uidLastSave session identifiers",
+        "affects_cell_data": false
+      },
+      {
+        "part": "docProps/core.xml",
+        "change": "replaced cp:lastModifiedBy with a neutral role name",
+        "reason": "the element held a personal name",
+        "replaced_with": "Financial reporting pilot",
+        "previous_value_redacted": true,
+        "previous_value_length": 15,
+        "affects_cell_data": false
+      },
+      {
+        "part": "[Content_Types].xml",
+        "change": "removed <Default Extension=\"bin\"/>",
+        "reason": "the only .bin part, printerSettings1.bin, is removed from the delivery copy",
+        "affects_cell_data": false
+      },
+      {
+        "part": "xl/worksheets/_rels/sheet2.xml.rels",
+        "change": "removed the rId1 printerSettings relationship",
+        "reason": "its target part is removed from the delivery copy",
+        "affects_cell_data": false
+      },
+      {
+        "part": "xl/worksheets/sheet2.xml",
+        "change": "removed the dangling r:id attribute from pageSetup",
+        "reason": "the printerSettings relationship it referenced no longer exists",
+        "affects_cell_data": false,
+        "note": "only the r:id attribute was removed; pageSetup and all cell data are unchanged"
+      },
+      {
+        "part": "xl/worksheets/sheet4.xml",
+        "change": "Review!D5 cell style changed from s=\"73\" to s=\"72\"",
+        "reason": "a real cut and paste of the review row left D5 on a style whose border omits the top and bottom edges, so the row's box borders did not line up with A5:C5",
+        "observed": "style 73 uses fontId 16 Arial 14 with borderId 7 (left and right edges only); style 72 uses the same fontId 16 Arial 14 with borderId 2 (all four edges), which matches the surrounding template rows",
+        "font_was_already_correct": true,
+        "delivery_only_cosmetic_change": true,
+        "affects_cell_data": false,
+        "affects_cell_text": false
+      },
+      {
+        "part": "xl/printerSettings/printerSettings1.bin",
+        "change": "part removed from the delivery copy",
+        "reason": "printer settings blobs can embed device and environment details",
+        "affects_cell_data": false
+      }
+    ],
+    "residual_identity_markers": [],
+    "public_references_preserved": {
+      "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm": true,
+      "0000021344-25-000011": true
+    },
+    "cell_level_differences_vs_saved_original": [],
+    "cells_with_values": 329,
+    "formula_cells": 25,
+    "sheets": 5
+  },
+  "privacy": {
+    "private_usernames_in_this_file": false,
+    "absolute_paths_in_this_file": false,
+    "source_filing_committed": false,
+    "raw_recording_committed": false,
+    "recording_evidence_owner": "parent"
+  }
+}

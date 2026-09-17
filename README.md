@@ -57,12 +57,18 @@ for learning and evaluation; it is not necessarily an installable plugin.
 |---|---|---|
 | [Restaurant bill splitter](examples/bill-splitter/README.md) | Split receipt items, tax, and tip among diners, then create a workbook. | Draft: procedure, editable source, and sample calculations. No current plugin ZIP. |
 | [15 business scenarios](scenarios/VALIDATION_REPORT.md) | Manufacturing, health/life sciences, financial services, retail, and other business processes. | Procedures, demonstration videos, and synthetic test data. These are examples to learn from, not ready-made plugins. |
+| [SEC filing-to-Excel pilot](scenarios/financial-services/_recordings/sec-filing-to-excel/HOW_TO.md) | Download a public filing, copy its statement, enter twelve amounts and twenty-five formulas in desktop Excel, document source scope, and save a draft. | **Draft automation:** completed [3:18 real-application recording](scenarios/financial-services/_recordings/sec-filing-to-excel/demo/workflow.webm), blank/populated workbooks, and provenance. No native plugin or independent new-input run. |
 | [Developer examples](examples/offline) | Cost reports, priority checklists, exception ledgers, and connector metadata. | Reusable code patterns and test inputs for plugin developers. |
 
-For a business scenario, start with its `HOW_TO.md`. The accompanying video
+For one of the 15 synthetic business scenarios, start with its `HOW_TO.md`. The accompanying video
 illustrates a reference program running on synthetic data; it is not a
 recording of Cowork or a live business system. You can also browse the
 [combined procedure collection](scenarios/ALL_SCENARIOS_HOW_TO.md).
+
+The SEC-to-Excel pilot is separate: its edited, agent-operated browser/Excel
+footage shows actual work rather than rendered tables. Its guide links the
+workbooks and a local chaptered viewer. It neither replaces the three existing
+financial-services scenarios nor counts as a sixteenth synthetic scenario.
 
 ## Repository map
 

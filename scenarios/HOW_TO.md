@@ -39,6 +39,22 @@ traces, cases, evidence, staging, and actual baseline videos. Root `output`
 is reserved for actual native exports and their explicit native status.
 Unit-test fixtures never count toward the required 15 scenarios.
 
+## Real-application financial-services pilot
+
+The [SEC filing-to-Excel pilot](financial-services/_recordings/sec-filing-to-excel/HOW_TO.md)
+uses actual browser and desktop Excel recordings rather than the synthetic trace renderer
+below. The [3:18 video](financial-services/_recordings/sec-filing-to-excel/demo/workflow.webm)
+shows a real SEC download, source-table copy/paste, twelve numeric inputs, twenty-five
+live formulas, source-scope review and a local save. Its
+[viewer](financial-services/_recordings/sec-filing-to-excel/index.html) provides chapters,
+captions, provenance and the blank/completed workbooks.
+
+It is an edited, agent-driven UI demonstration of work to automate. It does not generate,
+install or invoke a native Cowork plugin. `_recordings` uses the existing corpus exclusion
+rule; it neither replaces the three financial-services baselines nor adds a sixteenth case.
+Its tests are included separately by `run_tests.py`. Its recording/editor dependencies
+are developer-only, not baseline or end-user runtime dependencies.
+
 ## Local baseline run
 
 Use the existing developer Python 3.11+ installation with its standard library.

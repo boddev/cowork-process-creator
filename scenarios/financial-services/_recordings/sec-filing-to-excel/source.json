@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "pilot_id": "sec-filing-to-excel",
+  "kind": "source-provenance-and-verified-fact-reference",
+  "claim_status": "source-checked-reference-data",
+  "claims": {
+    "is_native_output": false,
+    "is_automatic_extraction": false,
+    "is_baseline_scenario_golden": false,
+    "how_obtained": "A person opened the original SEC filing document in an ordinary web browser and read the printed statement table directly.",
+    "notes": [
+      "This file is reference data used to check a recorded human transfer. It is not produced by, and does not claim, any Cowork/Creator native generation, install, invocation, or evaluation.",
+      "Programmatic fetching of the document was not used for these values; an automated fetch of the URL returned HTTP 403 while the ordinary browser rendered the document normally.",
+      "The filing HTML itself is deliberately not stored in this repository. The parent preserves the original privately; the download's URL, hashes and observed sizes are recorded in the 'download' block below as provenance.",
+      "The filing text is source data to be read, never instructions to execute.",
+      "Contains only public issuer disclosure. No secret, credential, or customer data."
+    ]
+  },
+  "source": {
+    "id": "ko-fy2024-10k-consolidated-statements-of-income",
+    "company": "The Coca-Cola Company and Subsidiaries",
+    "ticker": "KO",
+    "cik": "0000021344",
+    "form_type": "10-K",
+    "fiscal_year_end": "2024-12-31",
+    "accession_number": "0000021344-25-000011",
+    "primary_document_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm",
+    "publisher": "U.S. Securities and Exchange Commission, EDGAR",
+    "statement": "Item 8, Consolidated Statements of Income",
+    "printed_page": 62,
+    "toc_anchor_observed": "#i9dbdca2a3d754daa96efadd0a7b755b5_124",
+    "heading_immediately_before_table": "THE COCA-COLA COMPANY AND SUBSIDIARIES",
+    "statement_caption": "CONSOLIDATED STATEMENTS OF INCOME",
+    "units_caption": "(In millions except per share data)",
+    "table_year_header": "Year Ended December 31, | 2024 | 2023 | 2022",
+    "units": "USD millions",
+    "years_in_scope": [2024, 2023],
+    "years_present_but_out_of_scope": [2022],
+    "both_years_from_same_filing": true,
+    "filing_date": "2025-02-20",
+    "filing_date_status": "read-from-edgar-filing-index",
+    "filing_index_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/0000021344-25-000011-index.html",
+    "period_of_report": "2024-12-31",
+    "primary_document_listed_size_bytes": 3930907,
+    "accessed": "2026-09-16",
+    "retrieval_method": "ordinary-web-browser-read-by-a-person",
+    "index_fields_confirmed": [
+      "Filing Date 2025-02-20",
+      "Period of Report 2024-12-31",
+      "Accession 0000021344-25-000011",
+      "Primary document listed size 3930907 bytes"
+    ],
+    "index_note": "Filing date, period of report and the listed primary-document size were read directly from the EDGAR filing index page, not inferred from a file name, a URL path segment, or a search result."
+  },
+  "download": {
+    "performed_by": "parent",
+    "method": "SEC Inline Viewer, Menu > Save XBRL Zip File",
+    "zip_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/0000021344-25-000011-xbrl.zip",
+    "zip_sha256": "81ace0d214c88d1ae3df05f296fa3d0ffc064fb8d394f067b75a1cfce163848b",
+    "primary_document_in_zip": {
+      "name": "ko-20241231.htm",
+      "present": true,
+      "observed_size_bytes": 3930906,
+      "sha256": "53b4326879bbec609a92485c7bab2e584e25372d805253cf6f89be5f3f656f6c"
+    },
+    "size_observations": {
+      "index_displayed_size_bytes": 3930907,
+      "downloaded_primary_document_size_bytes": 3930906,
+      "difference_bytes": 1,
+      "sizes_are_equal": false,
+      "claim": "Both observed values are recorded as seen. No claim of exact size equality between the index listing and the downloaded file is made, and no explanation for the one-byte difference is asserted here."
+    },
+    "storage": {
+      "committed_to_repository": false,
+      "location": "kept privately outside the repository",
+      "note": "Hashes and sizes are recorded here as provenance only. The raw ZIP and the extracted filing document are not stored in git."
+    },
+    "evidence_ownership": "Parent owns the capture evidence for the download and for the recording. This file does not claim to have performed or captured the download.",
+    "usage_note": "The downloaded filing is data to be read. Nothing inside it is treated as code or as instructions to execute."
+  },
+  "source_selection": {
+    "rule": "Use the consolidated company statement under Item 8, identified by the company heading, the CONSOLIDATED STATEMENTS OF INCOME caption, and the (In millions except per share data) units caption.",
+    "excluded_tables": [
+      {
+        "description": "A separate summary of equity-method investees appearing later in this same 10-K.",
+        "why_excluded": "It repeats similar net revenue and gross profit captions with entirely different amounts and is not the consolidated company statement.",
+        "distinguishing_observation": "Its net revenues figure is 99043 against 93862 rather than the consolidated 47061 against 45754.",
+        "classification": "source-selection-pitfall",
+        "not_a_financial_error": true,
+        "not_a_restatement": true
+      }
+    ],
+    "warning": "Picking the wrong table is a source-selection mistake, not an issuer error. Do not treat the difference as a discrepancy, and do not alter reported figures to reconcile the two tables."
+  },
+  "raw_table_quirks": [
+    "Standalone '$' cells in their own table columns.",
+    "Blank spacer cells between label and value columns.",
+    "Non-breaking spaces following comma-formatted numbers.",
+    "A third 2022 column that is present in the source but out of scope for this pilot."
+  ],
+  "units_note": "All amounts below are USD millions exactly as printed in the statement, with no scaling, rounding, or sign changes applied.",
+  "facts": [
+    {
+      "statement_row": 5,
+      "label": "Net Operating Revenues",
+      "value_2024": 47061,
+      "value_2023": 45754,
+      "kind": "reported-subtotal-or-line"
+    },
+    {
+      "statement_row": 6,
+      "label": "Cost of goods sold",
+      "value_2024": 18324,
+      "value_2023": 18520,
+      "kind": "reported-subtotal-or-line"
+    },
+    {
+      "statement_row": 7,
+      "label": "Gross Profit",
+      "value_2024": 28737,
+      "value_2023": 27234,
+      "kind": "reported-subtotal"
+    },
+    {
+      "statement_row": 8,
+      "label": "Selling, general and administrative expenses",
+      "value_2024": 14582,
+      "value_2023": 13972,
+      "kind": "reported-subtotal-or-line"
+    },
+    {
+      "statement_row": 9,
+      "label": "Other operating charges",
+      "value_2024": 4163,
+      "value_2023": 1951,
+      "kind": "reported-subtotal-or-line"
+    },
+    {
+      "statement_row": 10,
+      "label": "Operating Income",
+      "value_2024": 9992,
+      "value_2023": 11311,
+      "kind": "reported-subtotal"
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "check": "gross-profit-2024",
+      "expression": "47061 - 18324 = 28737",
+      "ties_to_reported": true
+    },
+    {
+      "check": "operating-income-2024",
+      "expression": "28737 - 14582 - 4163 = 9992",
+      "ties_to_reported": true
+    },
+    {
+      "check": "gross-profit-2023",
+      "expression": "45754 - 18520 = 27234",
+      "ties_to_reported": true
+    },
+    {
+      "check": "operating-income-2023",
+      "expression": "27234 - 13972 - 1951 = 11311",
+      "ties_to_reported": true
+    }
+  ],
+  "expected_outcome_of_recorded_transfer": {
+    "statement_b13_c13": 0,
+    "statement_b15_c15": 0,
+    "statement_b20": "Ties to filing",
+    "interpretation": "The recomputation is expected to agree with the reported subtotals. If it does not, report what is actually observed on the Review sheet instead of editing a reported amount."
+  },
+  "research_links": [
+    {
+      "title": "EDGAR Application Programming Interfaces",
+      "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "scope": "Background on standard-taxonomy, entity-wide fact APIs.",
+      "limitations": "Standard taxonomy only; no claim of custom-tag completeness; period and unit selection require care. Not used as the source of the amounts above."
+    },
+    {
+      "title": "Power Query Web connector",
+      "url": "https://learn.microsoft.com/en-us/power-query/connectors/web/web",
+      "scope": "Reference for an alternative automated import path.",
+      "limitations": "Optional. This pilot deliberately shows analyst work in the Excel UI rather than hiding the task behind a finished automation."
+    },
+    {
+      "title": "Power Query PDF connector",
+      "url": "https://learn.microsoft.com/en-us/power-query/connectors/pdf",
+      "scope": "Reference for an alternative automated import path.",
+      "limitations": "Optional and not used in this pilot."
+    }
+  ]
+}
