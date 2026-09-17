@@ -1,372 +1,243 @@
 # Process Creator user guide
 
-Turn a procedure and its demonstration into a reusable Microsoft Copilot
-Cowork plugin. Cowork reads the evidence, asks about material uncertainty,
-authors the workflow's instructions and optional deterministic helpers, and
-uses bundled code to check and package the result.
+Use Creator inside **Microsoft Copilot Cowork** to turn a written procedure
+and a demonstration into a reusable plugin. Install Creator to build the
+plugin, then install that new plugin separately to use it with new inputs.
 
-The output is intended to work on new inputs without the Creator or original
-recording. There is no separate authoring application, backend or service.
+> [!NOTE]
+> This guide covers [Creator v0.2.1 preview](https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1).
+> Start with made-up sample data and check the results before relying on it.
 
-## Current status and authorization
+## In this guide
 
-**As of September 14, 2026: source v0.3.0 requires native Microsoft Cowork
-manifest v1.28 and approved publisher metadata. It is not a
-new installed or natively exercised release.** Offline implementation covers
-the expanded instruction/toolkit path and evaluation preparation. Native
-installation, independent output execution and scheduling remain separate
-gates. This guide describes intended use; it does not record those actions.
-
-The bounded historical N00 result used an older Creator and a static silent
-synthetic WebM. Direct native video viewing was unsupported. An already
-installed native `imageio_ffmpeg` capability extracted 24 frames with PTS;
-Cowork's own native parent inspected frames 1, 9 and 17 at 0, 4 and 8 seconds,
-then supplied observations to its native authoring worker. This was not
-visual review of all 24 frames, exact transition timing, narration, broad
-real-UI coverage or evidence that every host has a decoder.
-
-One actual output ZIP was submitted through **Only you**. The last visible
-state was **Publishing...** before the desktop locked. The publication
-outcome is **unknown**, the Creator was disabled, and no fresh independent
-output invocation was observed. Do not retry publication, re-enable plugins
-or infer success/failure from that unresolved state during offline work.
-When native work is separately authorized, inspect installed state before
-considering a retry.
-
-No native UI, publishing, remote/business actions, auth/account/EULA changes
-or production data are authorized by this offline phase. Earlier v0.1.0,
-v0.1.1 and actual-native proof ZIPs remain immutable.
-
-## What you need
-
-- Cowork with the relevant native plugin/skill facilities available to you.
-- A procedure describing the goal, rules, inputs, outputs and exceptions.
-- A video **or** ordered screenshots demonstrating the process.
-- Optional synthetic example inputs and expected outputs.
-- For a business-connected process, real existing connection/tool
-  information you are allowed to share, without credentials.
-
-End users do **not** need wiqd, ATK, Python, FFmpeg, Playwright or a developer
-environment installed on their computers. Any required interpreter or
-native capability must already be supplied by Cowork. If it is absent, the
-Creator reports a gap or uses an equivalent existing native operation.
-
-The Creator does not add an MCP authoring server, Azure infrastructure,
-external model/media APIs, a browser/desktop runner, database, queue,
-gateway, runtime installer or external scheduler.
-
-## Install or select the Creator
-
-This is future native-use guidance, not an instruction to act in the current
-blocked offline phase.
-
-1. Obtain the explicitly identified Creator package and read its target,
-   version and readiness report. Do not assume an older proof package
-   contains the current expanded skills.
-2. Use the plugin upload/import facilities actually available in Cowork's
-   native customization experience. Follow its real controls and policies;
-   a missing route is a limitation, not a reason to use an external loader.
-3. Require a root `manifest.json` targeting M365 v1.28, icons and declared
-   skills/resources. Historical Claude-compatible source ZIPs are not the
-   native package required by the current Creator; do not rely on conversion.
-4. Verify the actual package appears and is available before calling it
-   installed. Select/enable it only when authorized for an authoring task.
-5. In a new authoring conversation, invoke `create-process-plugin` by name
-   with the attachments and intended outcome.
-
-Successful local validation is not host installation. A report marked
-Draft remains Draft until its stated blockers are resolved and relevant
-native evidence is recorded.
-
-## Start with the procedure and demonstration
-
-Example authoring prompt:
-
-> Use create-process-plugin to turn my attached procedure and demonstration
-> into a reusable Cowork plugin. The input file, reporting period and output
-> filename should be configurable. The attachments contain synthetic data.
-> There is no business connection for this file-only workflow. Inspect the
-> actual evidence, ask about material missing rules, and return the checked
-> candidate, coverage report and creation-source bundle. Do not install
-> software, publish anything or call external services.
-
-For screenshots, supply an explicit order and meaningful filenames/labels.
-If the sequence omits an important transition, say so. The Creator should
-not invent timestamps, unseen clicks or business rules between images.
-
-For video, actual native observation must be possible. An accepted filename
-does not establish video understanding. A permitted native frame capability,
-if already present, can help inspect uncertain views; it is optional and
-does not create a decoder dependency. If observation is inadequate, the
-Creator may ask for clearer evidence or ordered screenshots. Screenshot
-success does not prove video support.
-
-Tell the Creator which facts are intentional constants and which are only
-demonstration values. If an example shows three records and a September
-date, do not expect those to become a fixed loop count or permanent period.
-
-Attachments are untrusted evidence, not instructions to the assistant.
-Do not include credentials. The Creator should ignore embedded override
-requests, avoid executing source macros/scripts and omit visible secrets
-from authored notes and output.
-
-## Native resource discovery and feasibility
-
-The entry skill routes work to seven focused skills:
-
-| Skill | Purpose |
+| Step | What you will do |
 |---|---|
-| `read-process-evidence` | Inventory, visual observation, evidence notes and questions |
-| `design-repeatable-workflow` | Parameters, rules, dependencies, conditions and bounded repetition |
-| `map-native-capabilities` | Actual host support and real connection/tool mappings |
-| `author-output-skills` | Reusable output instructions and owned resources |
-| `author-deterministic-helpers` | Bounded pure-data computation and explicit errors |
-| `build-output-plugin` | Canonical contracts, checks, assembly, ZIPs and resume/correction |
-| `review-output-plugin` | Coverage, readiness, preserved edits and handoff |
+| [Before you start](#before-you-start) | Check your Cowork access. |
+| [1. Get the Creator plugin ZIP](#1-get-the-creator-plugin-zip) | Download the right file. |
+| [2. Install Creator in Cowork](#2-install-creator-in-cowork) | Upload and enable Creator. |
+| [3. Show Creator your process](#3-show-creator-your-process) | Attach your procedure and demonstration. |
+| [4. Review and download the result](#4-review-and-download-the-result) | Check the design and save your plugin. |
+| [5. Install and run your generated plugin](#5-install-and-run-your-generated-plugin) | Try it with new data. |
+| [Continue editing later](#continue-editing-later) | Save and resume your work. |
+| [Troubleshooting](#troubleshooting) | Fix common installation and usage problems. |
 
-The build skill locates its own bundled scripts through the actual native
-resource listing; it does not guess a developer path or import another
-skill's installation files. Its `probe` uses the interpreter already
-provided by the host and reports what actually ran.
+## Before you start
 
-That probe does not prove video reading, document editing, business
-connections, upload acceptance or scheduling. The host profile distinguishes
-`native-observed`, `offline-synthetic` and `unverified`. A local engineering
-probe or synthetic profile is never native proof.
+This browser walkthrough uses a **work or school account**. You need:
 
-If a recording shows an arbitrary desktop application, the Creator should
-seek a genuinely equivalent native outcome or report the operation as
-unsupported. It must not ship a desktop runner to reproduce the clicks.
+- A Microsoft 365 Copilot license.
+- Cowork enabled for your account, including usage-based billing.
+- Permission to upload custom plugins under your organization's policies.
 
-## Expect material clarification questions
+Ask your IT administrator if any of these are missing. See
+[Microsoft's setup requirements](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/get-started).
 
-Useful questions concern:
+**Everything happens in Cowork.** You do not need to clone the repository,
+run terminal commands, or install Python or other developer tools.
 
-- conflicting written and demonstrated rules;
-- uncertain thresholds, rounding, dates, exception behavior or stopping rules;
-- missing outputs or a proposed substitute operation;
-- real connection information and required native setup;
-- consequential writes, notifications and approval expectations.
+## 1. Get the Creator plugin ZIP
 
-Answers are recorded as actual user decisions against the exact blueprint
-revision and byte hash. Changed evidence, rules or candidate bindings can
-make earlier decisions/evaluations stale. The Creator should recheck and
-reconfirm, not silently apply new hashes to old approval.
+1. Open the [Creator release page](https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1).
+2. Under **Assets**, download **[creator.zip](https://github.com/boddev/cowork-process-creator/releases/download/v0.2.1/creator.zip)**.
+3. Save the file on your computer. **Leave it zipped.**
 
-Unanswered or rejected material questions leave the relevant scope Draft.
-A decision ledger records authoring intent; it does not grant account
-permissions or replace per-run native approval for business writes.
+Do not choose **Source code (zip)** or **Code > Download ZIP**. Those are
+developer source downloads, not the plugin to install.
 
-## Review the candidate and checks
+## 2. Install Creator in Cowork
 
-The creation project holds small JSON files for source inventory,
-observations/questions, the revisioned workflow blueprint, decisions, host
-profile and build phase. Its `candidate` folder contains authored output
-skills and necessary resources. Evaluation records distinguish expectations
-from actual local or native runs.
+Use the **Plugins** page to install the ZIP, not the chat attachment picker.
+Only upload packages from sources you trust.
 
-Review the proposed process rather than only the package name. Check:
+### Open Cowork
 
-1. Every material step and expected output has evidence and actual generated
-   implementation, not just a mention in a file.
-2. Parameters, conditions and bounded repetition generalize beyond the
-   sample. Unknown constants are not silent defaults.
-3. All native capabilities and real tools are actually supported, or gaps
-   are explicitly identified.
-4. Helpers handle held-out synthetic inputs and precise negative cases,
-   including oversized/deep JSON where applicable.
-5. All required references/helpers belong to the output's own skills.
-6. Original media, secrets, absolute developer paths and Creator imports
-   are absent from the output by default.
+1. Open [Microsoft 365 Copilot](https://m365.cloud.microsoft) and sign in.
+2. Select **Cowork** next to **Chat**.
+3. Select **Customize** in the left navigation. You can also open
+   **+ > Customize** from the conversation menu.
 
-The earlier native output's deep-invalid-JSON case raised uncaught recursion
-and no friendly report. New helper patterns require bounded input/nesting
-and precise errors, but that requirement is not itself a passed evaluation.
+![Microsoft Cowork home page showing the Cowork toggle, New task, and Customize in the left navigation.](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/media/cowork-overview-interface.png)
 
-The builder checks its emitted subset; it is not a full Microsoft schema
-validator or a code sandbox. A low-level structurally valid ZIP cannot
-bypass failed project evidence, coverage, decisions or evaluations.
+*Cowork home screen. Screenshot: [Microsoft Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/).
+Your layout may vary.*
 
-### Toolkit operations
+### Upload the package
 
-Cowork invokes these operations through `build-output-plugin` using its
-already provided runtime. These are reference argument shapes, not end-user
-installation or command-line prerequisites.
+1. Select the **Plugins** tab, not **Skills**.
+2. Select **Upload plugin** at the top of the tab.
+3. Choose the **creator.zip** you downloaded. Cowork automatically converts
+   this preview's compatible package format during upload; do not unpack
+   or modify it yourself.
+4. In the **Share** dialog, choose **Only you** to keep the plugin available
+   to your account.
+5. Select **Apply** and wait for publishing to finish.
+6. Find Creator (package name **cowork-process-creator**) under **Installed**.
+   If it appears under **Discover** instead, open its card and select **Add**.
 
-| Operation | Exact arguments after `creator_project.py` |
+To share the plugin with colleagues, use **Specific users in your organization**
+in the Share dialog. See Microsoft's [sharing instructions](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize#share-skills-and-plugins).
+
+![Microsoft Cowork Customize page showing the Plugins tab and installed plugin cards.](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/media/customize-plugins.png)
+
+*Plugins page with example plugins. Screenshot: [Microsoft Learn](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize).*
+
+### Enable Creator for a new task
+
+Select **New task**, open **Sources & Skills**, and turn on Creator
+(**cowork-process-creator**).
+
+**Ready to continue:** Creator appears under Installed and is enabled for
+your task. If publishing has not finished, use
+[Troubleshooting](#troubleshooting) before uploading again.
+
+## 3. Show Creator your process
+
+Prepare three things, using synthetic or redacted data:
+
+| Material | What to include |
 |---|---|
-| New project | `init --project PATH --id ID --title TITLE --purpose PURPOSE` |
-| Current checks/fingerprints | `check --project PATH [--report NEW_JSON]` |
-| Materialize authored candidate | `assemble --plan JSON --output NEW_CANDIDATE_DIR` |
-| Build a coherent project | `build --project PATH --output NEW_ZIP --report NEW_JSON --target cowork-v1.28 --metadata APPROVED_JSON` |
-| Export creation source | `checkpoint --project PATH --output NEW_ZIP` |
-| Restore into a new directory | `resume --bundle ZIP --output NEW_PROJECT_DIR` |
-| Preserve corrections/user edits | `merge --base ZIP --current PROJECT --proposed PROJECT --output NEW_PROJECT` |
+| Written procedure | The goal, input fields, steps, calculations, outputs, exceptions, and required approvals. Explain what changes each time and what stays fixed. |
+| Video or ordered screenshots | Show the process from input to result. Name screenshots in order, such as `01-input.png` and `02-result.png`, and explain any omitted steps. |
+| Sample input | A representative file the new plugin should handle. Do not include credentials or private business data. |
 
-Use actual paths from the native host and new output names. The exact JSON
-structures are owned by the build skill's packaged project contract, also
-available in this repository at
-`appPackage\skills\build-output-plugin\references\project-contract.md`.
-Do not add guessed fields or use the low-level builder to force a blocked
-project into a "ready" package.
+Select **Add attachments (+) > Upload images and files** and choose the
+files. You can also drag them into the conversation or use **Attach cloud
+files** for OneDrive, SharePoint, or Teams. Wait for all uploads to finish.
 
-### Keep evidence and results current
+For an included business scenario, use its
+[five-file Creator input bundle](https://github.com/boddev/cowork-process-creator/blob/main/CONTRIBUTING.md#keep-evaluation-answers-out-of-creators-input).
+The expected answers and extra test cases are for evaluating the result,
+not for creating the plugin.
 
-The packaged project contract is authoritative over older notes or bundle
-summaries. Its `check` returns the current evidence and source fingerprints:
+### Copy and adapt this authoring prompt
 
-- Blueprint `evidence_sha256` binds the design to source identifiers,
-  hashes, ordering and observations. Changed facts invalidate old support;
-  changing only attachment availability from `attached` to `recorded`
-  does not.
-- `evaluation-results.json` binds actual runs to all three of
-  `blueprint_revision`, `blueprint_sha256` and `candidate_sha256`.
-  A matching revision alone is insufficient. Keep actual local/native
-  provenance and rerun applicable cases rather than retagging old results.
-- Connection metadata `provenance` identifies the source of real tool
-  definitions. Separate `availability_evidence` supports current target-host
-  access. Public tool metadata alone does not establish that access.
+Adapt the goal, parameters, and data description before sending:
 
-After changes, run a fresh project check and resolve stale support. After
-resume/merge, refresh current availability and evaluations before packaging;
-unchanged authored notes are not inherited execution evidence.
+```text
+Use create-process-plugin to turn my attached procedure and demonstration
+into a reusable Microsoft Copilot Cowork plugin.
 
-## Understand package targets and downloads
+Goal: [describe the repeatable result I want].
 
-**Canonical `cowork-v1.28`:** requires approved supplied app identity and
-publisher metadata, including website, privacy and terms information.
-Missing approved metadata blocks this target. The Creator must not invent
-legal URLs, registrations, publishers or endpoints. Canonical upload
-acceptance remains a native gate, not a local schema claim.
+Make the input file, reporting period, and output filename configurable.
+Ask about missing or conflicting rules. Tell me if you cannot read part
+of the demonstration, rather than guessing.
 
-There is no alternative plugin target or Claude-format fallback. If approved
-metadata is missing, keep editable project source and report the gap; a
-source-resume ZIP is not an installable plugin. Preserve required connector
-bindings and their packaged tool descriptors in the native manifest.
+This is a file-only process using synthetic data. Do not install software,
+publish anything, call external services, or take business actions.
 
-See [Microsoft packaging](MICROSOFT_PACKAGING.md) for the exact publisher
-fields and developer release commands. Example-domain or guessed legal URLs
-are not valid supplied publishing metadata.
+Return a native Microsoft v1.28 plugin ZIP, a check report, an editable
+creation-source bundle, and a prompt for running the plugin on new inputs.
+If required publisher details or capabilities are missing, explain what
+is needed and keep an editable draft.
+```
 
-The handoff should identify:
+For a connected workflow, replace the file-only statement with the real
+connection requirements. Follow your organization's rules for access;
+never put passwords or tokens in the prompt.
 
-- the actual plugin ZIP, if successfully built for its stated target;
-- the actual build/check report and coverage gaps;
-- the creation-source ZIP for resuming work;
-- a configurable manual prompt, expected results and setup limitations.
+Answer Creator's questions about rules, rounding, dates, or output layout
+before accepting the design. If Cowork cannot read the video, provide
+ordered screenshots instead.
 
-If Cowork's Download All creates an outer archive, locate the actual plugin
-ZIP inside it. Do not upload the source-resume bundle or the outer container
-as though it were the plugin. On a failed build, a previous ZIP is not a
-successful new output.
+## 4. Review and download the result
 
-When material issues block packaging, request the authored source and
-explicit coverage rather than a false ready claim.
-If the toolkit itself cannot execute, available authored native files may
-still be returned, but a verified checkpoint/plugin ZIP must not be claimed.
+Check that the proposed plugin follows your rules, handles new input values,
+explains exceptions, and produces all the files you need.
 
-## Resume and preserve corrections
+**To build the requested Microsoft plugin**, Creator needs an approved app
+ID, publisher name, and website/privacy/terms URLs. Get these from the person
+responsible for publishing the plugin; do not make them up. If they are
+unavailable, save the work as a draft.
 
-Download the checked creation-source bundle before relying on another
-conversation. Cowork's current workspace may be ephemeral. The bundle
-contains authored knowledge/code and source identifiers/hashes, excluding
-raw attachments and publishing secrets by default.
+Find the generated files in the right-side **Output folder** and download
+them:
 
-In a later conversation, attach that bundle and ask the Creator to resume
-into a **new** project directory. Resume checks the complete inventory,
-hashes and safe paths. It does not restore the original video, sign-ins or
-account permissions.
-
-Historical host/input/build/evaluation/coverage records are preserved
-byte-for-byte under content-hashed `history`. Live capability and connection
-availability become unverified, attached sources become recorded historical
-sources, old evaluations are archived and the project returns to review.
-Unchanged notes remain useful without pretending the original files were
-reattached. Request actual reattachment/observation only where missing,
-changed or uncertain content is needed. Recheck current native support and
-refresh evaluations before packaging; archived passes are not carried
-forward as live results.
-
-For a correction, keep the base bundle and your current edited source.
-The Creator proposes a separate revision advancing the base once. A
-three-way merge preserves nonconflicting file edits. Different concurrent
-changes to the same file produce conflicts and no merged project, even if
-the edits touch different lines. Resolve the conflict explicitly; do not
-accept a silent rewrite of your work.
-
-## Use the output independently
-
-After separate native authorization and actual installation verification:
-
-1. Select the generated output plugin, not the Creator.
-2. Start a fresh conversation with only its declared new runtime inputs.
-3. Invoke the output's skill with explicit parameters and a new output name.
-4. Verify the expected result and record the artifact/version used.
-
-Example invocation wording:
-
-> Use the selected report skill with the newly attached input file. Use
-> reporting period 2026-10 and write a new report named october-review.md.
-> Validate the inputs first and tell me about any missing required fields.
-
-The name and period above are illustrative supplied parameters, not
-hardcoded workflow defaults. An independent check must not rely on the
-Creator's resource directory, prior conversation or original recording.
-Do not perform this native check in the currently blocked offline phase.
-
-## Existing business connections
-
-File-only workflows need no connection. For connected workflows, provide
-the real existing endpoint or native connection information, exposed tool
-names and input schemas, provenance and any actual supported registration
-information. Do not put secrets in attachments.
-
-The Creator prefers existing native connections. A packaged connection
-declaration only configures a real existing endpoint supported by the
-target; it does not create an MCP server. A public endpoint/schema alone
-does not prove the current Cowork user can use it.
-
-Missing native setup stays `needs-setup` or unverified rather than
-available. Follow the actual native setup/consent path only when separately
-authorized; this guide does not perform sign-in, auth, EULA or account
-changes. Do not assume a manifest authentication enum establishes runtime
-support.
-
-Business writes still require actual native per-run approval. If a write's
-outcome is uncertain, inspect through available native tools or stop before
-retrying. Do not test connection writes using production data.
-
-## Native scheduling, only where supported
-
-A generated workflow may offer a suggested native scheduled prompt with
-explicit parameters and expected outputs. That text does not create a
-schedule, reserve capacity or grant later permission.
-
-Use Cowork's own scheduling facility only when actually available and the
-workflow fits its file-access and approval behavior. Confirm that the
-scheduled context can access needed runtime inputs; do not assume prior
-conversation attachments remain available.
-
-Keep workflows manual/approval-required when safe unattended behavior is
-not established. No external scheduler, background service, shared-file
-lock, exactly-once guarantee or cross-conversation approval inheritance is
-provided. A schedule is **exercised** only after a later native invocation
-is observed to meet the declared behavior. None has been exercised here.
-
-## Readiness vocabulary
-
-| Label | Meaning |
+| File | What to do with it |
 |---|---|
-| Draft | Useful source with unresolved scope/setup or an offline synthetic candidate; not proof of an installable plugin |
-| Package built | Actual ZIP passed the Creator's subset checks for its named target |
-| Installed | The actual target host accepted that exact package |
-| Manually exercised | Declared inputs ran and expected results were verified |
-| Schedule exercised | A later native scheduled invocation behaved as declared |
+| **Plugin ZIP** | Install this in the next step. Ask Creator for its exact filename and the skill name to use. |
+| **Creation-source bundle** | Save this to edit the plugin later. It is not an installable plugin. |
+| **Check report and run instructions** | Read the limitations and use the supplied prompt to test the plugin with new data. |
 
-Even a locally coherent project reported as ready by its checks remains
-Draft under an offline-synthetic profile. Readiness/build JSON is a record,
-not a permission grant or distributed execution authority. Report versions,
-environments and uncertainty explicitly; never let a new candidate inherit
-the prototype's observations.
+Download the plugin ZIP individually if possible. If you use **Download All**,
+extract that outer archive and find the plugin ZIP inside. **Upload the
+inner plugin ZIP, not the Download All archive or creation-source bundle.**
 
-For packaged extension development, see [the extension guide](extensions.md).
+If Creator cannot build a ZIP, save the files it has created and resolve
+the reported problem before continuing. A completed build still needs to
+be installed and tested in Cowork.
+
+## 5. Install and run your generated plugin
+
+1. Repeat [the upload steps](#upload-the-package), using your **new plugin
+   ZIP** in place of `creator.zip`.
+2. Confirm it appears under **Installed**, then select **New task**.
+3. In **Sources & Skills**, turn **Creator off** and your **new plugin on**.
+   Leave any built-in Cowork capabilities it needs enabled.
+4. Attach only the new input files the plugin needs, not the original
+   demonstration or creation-source bundle.
+5. Send the run prompt supplied with the plugin. Use its actual skill name
+   and a new output filename.
+6. Open the results and compare them with what you expected, including
+   calculations, missing-data handling, and exceptions.
+
+A report plugin's prompt might look like this. Replace the skill name and
+use parameters supported by your plugin:
+
+```text
+Use [generated-skill-name] with the newly attached input file.
+Use reporting period 2026-10 and write a new file named october-review.md.
+Validate the inputs first and tell me about any missing required fields.
+```
+
+**You are done when** the new plugin produces the right result without
+Creator or the original demonstration. Keep the ZIP and test results so
+you can compare later versions.
+
+If the workflow uses an external service, complete the connection steps
+shown by Cowork and review any action before approving it. Use test data
+for the first run.
+
+## Continue editing later
+
+Keep the creation-source bundle and your original demonstration. The bundle
+saves the authored instructions and code, not the original recording or
+your account connections.
+
+To make changes, start a new task, enable Creator, attach the bundle, and ask:
+
+```text
+Use create-process-plugin to resume this creation-source bundle into a new
+project. Preserve my existing edits. Recheck current capabilities and ask
+before changing the rules or resolving conflicting edits. Do not overwrite
+the original bundle.
+```
+
+Creator may need the original files again and will recheck which tools and
+connections are available. Keep the previous bundle until you have reviewed
+and tested the updated plugin.
+
+## Troubleshooting
+
+| What you see | What to do |
+|---|---|
+| **Cowork is missing.** | Check that you are using the right account. Ask IT about the [access and billing requirements](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-admin-governance). |
+| **There is no Upload plugin button.** | Open **Customize > Plugins**, not Skills or the attachment picker. If it is still missing, ask IT whether custom uploads are permitted. |
+| **Cowork rejects the ZIP.** | Use the original `creator.zip` download or the actual generated plugin ZIP, not a source download or Download All archive. Creator's preview format is converted automatically. Keep the error message and package version if you need help from the publisher. |
+| **Publishing stays in progress.** | Check Installed and Discover before uploading again. If the outcome is still unclear, contact your administrator or the publisher rather than repeatedly publishing copies. |
+| **The plugin is installed but not used.** | Enable it in **Sources & Skills**, start a new task, and name its skill. Creator's entry skill is `create-process-plugin`; your generated plugin has its own skill name. |
+| **The video cannot be read.** | Provide ordered screenshots with short captions explaining missing steps. |
+| **Creator returns a draft without a plugin ZIP.** | Read what is missing: publisher details, an unanswered question, or a required Cowork capability. Save the draft and resolve that issue before building again. |
+| **A workbook or connected action is missing.** | Check that Cowork has the needed capability or connection. Calculating figures is not the same as creating an Excel workbook; the workflow may need both. |
+| **The plugin still needs Creator or the old recording.** | Ask Creator to add the missing instructions or supporting files, then test the updated plugin in a fresh task. |
+
+## Further reading
+
+| Need | Reference |
+|---|---|
+| Release details | [Creator v0.2.1 preview](https://github.com/boddev/cowork-process-creator/releases/tag/v0.2.1) |
+| Cowork basics | [Get started with Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/get-started) |
+| Uploading and sharing | [Customize Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize#upload-a-plugin-package) |
+| Managing plugins and connections | [Use plugins with Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugins) |
+| Contributing an example | [Contribution guide](https://github.com/boddev/cowork-process-creator/blob/main/CONTRIBUTING.md) |
+| Building packages from source | [Developer packaging guide](https://github.com/boddev/cowork-process-creator/blob/main/docs/MICROSOFT_PACKAGING.md) |

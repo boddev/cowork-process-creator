@@ -1,5 +1,10 @@
 # SEC filing to Excel - recorded transfer procedure
 
+**Draft automation; recording complete.** This is a finished demonstration of work
+to automate, not an installable Cowork plugin. A completed automation example still
+needs the actual Creator authoring prompt and clarification record, a native plugin
+ZIP with editable source, and an independent new-input run with expected results.
+
 A pilot demonstrating an ordinary analyst task in real applications: open a public
 SEC filing in a browser, copy a statement out of it, rebuild it in the Excel desktop application,
 type real formulas, check whether the recomputation ties to the reported subtotals, and save the
@@ -75,6 +80,20 @@ reusable native automation.
 * The Excel desktop application. Resolve first-run licence prompts with explicit user approval
   before recording; do not silently accept them on another person's behalf.
 * `initial.xlsx` from this folder, copied to a local working path outside the repository.
+
+## Attribution and redistribution
+
+The public financial source is [The Coca-Cola Company's FY2024 Form 10-K](https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm),
+filed with the U.S. Securities and Exchange Commission. The recording also depicts
+Google Chrome and Microsoft Excel; their interfaces and marks remain their owners'
+property. See [Microsoft's copyrighted-content permissions](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/permissions)
+for its standard screenshot conditions.
+
+The contributor confirmed the right to publish the included edited recording and
+poster before publication. The repository's [MIT License](../../../../LICENSE)
+covers its original code and documentation; it does not relicense product interfaces,
+issuer materials, or third-party marks. Source credits are not a blanket permission
+for other uses, and no endorsement by Microsoft, Google, Coca-Cola, or the SEC is implied.
 
 ## Step 1 - Select the correct source table
 

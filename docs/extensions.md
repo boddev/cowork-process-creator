@@ -1,13 +1,10 @@
 # Extending the Process Creator
 
-Extend the Creator with reviewed, packaged references, patterns, helpers and
-evaluation cases. Do not add a service or a runtime installation step.
-This guide is for maintainers; end users need only Cowork and the resources
-shipped in the Creator or generated output.
-
-The v0.3.0 source requires native Microsoft Cowork v1.28 output. New instructions,
-fixtures and local checks do not establish native installation, invocation,
-video support, business access or scheduling.
+This guide is for developers adding skills, references, code patterns,
+helpers, or evaluation cases to Creator. Start with the
+[contribution guide](https://github.com/boddev/cowork-process-creator/blob/main/CONTRIBUTING.md)
+for submission requirements. For installation and everyday use, see the
+[user guide](user-guide.md).
 
 ## Preserve the architecture boundary
 
@@ -131,18 +128,15 @@ service launchers, browser/desktop automation or general scheduling and
 execution machinery. Business operations remain native governed tools with
 actual metadata and per-run approvals.
 
-The earlier native output's uncaught `RecursionError` on deeply nested
-invalid JSON is a specific regression requirement. The new pattern should
-demonstrate bounded, useful failure behavior rather than treating any
-nonzero exit as sufficient. No code pattern is automatically safe merely
-because it is bundled; review it and exercise applicable cases.
+Include a regression test for deeply nested invalid JSON: the helper should
+return a useful error rather than an uncaught `RecursionError`. Check the
+diagnostic, not just a nonzero exit code.
 
 ## Validate the extension and its integration
 
 Use the repository's existing targeted tests and bundled validators; do not
 introduce an evaluation service, new test runtime or browser viewer as a
-product dependency. Local engineering checks are allowed in the provisional
-phase, with synthetic data and repository-local scratch files.
+product dependency. Use synthetic data and temporary test directories.
 
 1. **Structural checks:** exact frontmatter, matching names, existing owned
    references, allowed companion types, safe paths and package limits.
@@ -172,7 +166,7 @@ The toolkit checks the specific source/manifest subset it emits. Do not
 advertise full Microsoft schema coverage, sandboxing, transactional workflow
 execution, global locks or exactly-once business writes.
 
-### Preserve canonical freshness and history semantics
+### Keep evidence and results current
 
 Defer to the build skill's current project contract, not an older example
 or a locally invented equivalent schema:
@@ -236,22 +230,16 @@ locators; never equate extracted frames with visually reviewed frames.
 
 Record actual evaluation results only in the canonical hash/revision-bound
 project record with `environment: local` or `native`, and honest case states.
-Do not open native UI, an evaluation viewer, publish, call remote business
-systems or claim a Cowork benchmark in this offline phase.
+Keep local test results separate from runs observed in Cowork.
 
-## Release and handoff conservatively
+## Package and release an extension
 
-Ship changed resources as a new candidate version; preserve v0.1.0, v0.1.1
-and actual-native proof artifacts unchanged. Export source/resume bundles
-without raw attachments or publishing secrets by default.
+Ship changed resources as a new version. Preserve published packages and
+historical evidence; do not overwrite them. Export source/resume bundles
+without raw attachments or publishing secrets.
 
 Review the build target, version, dependencies, provenance and gaps. Use the
 separate labels Draft, Package built, Installed, Manually exercised and
 Schedule exercised. No new candidate inherits older prototype evidence.
-
-The historical Only-you publication remains unknown after the last
-`Publishing...` state, with the Creator disabled and no independent invocation.
-Only separately authorized native state inspection can resolve it; do not
-retry or alter accounts/plugins as an extension-development step.
 
 For the end-user workflow, see [the user guide](user-guide.md).

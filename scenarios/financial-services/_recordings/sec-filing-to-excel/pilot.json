@@ -19,6 +19,7 @@
   },
   "status": {
     "overall": "recorded-pilot-complete",
+    "automation": "draft",
     "workbook_template": "prepared",
     "source_provenance": "source-checked",
     "procedure": "documented",
@@ -33,6 +34,11 @@
     "native_invocation": "not-attempted",
     "native_evaluation": "not-attempted"
   },
+  "missing_for_completed_automation": [
+    "Actual Creator authoring prompt and clarification record",
+    "Native plugin ZIP with editable source",
+    "Independent new-input run and expected results"
+  ],
   "claims": {
     "recording_completed": true,
     "workbook_completed": true,
