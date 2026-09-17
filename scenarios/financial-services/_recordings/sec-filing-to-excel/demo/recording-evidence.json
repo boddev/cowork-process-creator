@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "kind": "edited-real-application-recording",
+  "actor": "agent-operated browser and desktop UI",
+  "capture_date": "2026-09-16",
+  "capture": {
+    "method": "Browser getDisplayMedia window selection and MediaRecorder",
+    "permission": "Explicit native window-picker consent",
+    "audio": false,
+    "uploads": false,
+    "raw_storage": "private, outside repository"
+  },
+  "sources": {
+    "browser": {
+      "file": "sec-source-browser.webm",
+      "sha256": "3ff6f37a1a15f74b567e25a53b31daac4312c4b9a83f6fab945451a4a4f9ee78",
+      "dimensions": [
+        2074,
+        1546
+      ],
+      "take": "A",
+      "application": "Chrome / SEC EDGAR"
+    },
+    "excel": {
+      "file": "sec-excel-work.webm",
+      "sha256": "cc0429a51ddb88c5a2beb28304613757ccbb5cd269c4b873d27e3ba9d762ed08",
+      "dimensions": [
+        3176,
+        1600
+      ],
+      "take": "B",
+      "application": "Microsoft Excel desktop"
+    }
+  },
+  "disclosures": [
+    "Actual browser and desktop Excel window recordings, operated by an agent through approved UI tools.",
+    "Two separate takes joined chronologically within each take. Setup, waits and navigation retries are omitted.",
+    "Selected intervals play at normal speed, resampled to 10 fps. No invented application screens, cell values, pointer motion or narration.",
+    "Excel crops remove unused right-hand columns and the account/profile area while retaining the formula bar, Save control and workbook title.",
+    "The blank template and source identity metadata were prepared before capture; amounts and formulas were entered through Excel during capture.",
+    "The review-note paste initially landed one column to the right. Its correction is retained, not presented as an issuer discrepancy.",
+    "Delivery-workbook metadata sanitization and disclosed formatting cleanup occurred after capture.",
+    "This demonstrates work to automate, not native Cowork creation, installation, invocation or evaluation."
+  ],
+  "output": {
+    "file": "workflow.webm",
+    "codec": "VP8",
+    "container": "WebM",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "fps": 10,
+    "frames": 1982,
+    "duration_seconds": 198.2,
+    "audio": false,
+    "bytes": 14063890,
+    "sha256": "3cb83c017c34b9e9b6f1288dfeb8d64b8e24e250e3cc61b64bbd9c89aff53149"
+  },
+  "editing": {
+    "recipe": "../edit.json",
+    "recipe_sha256": "a481213ae91a4790b506b2ab1dee906dbe380a1709033ceb0e94cb413c9228b9",
+    "script": "../assemble_recording.py",
+    "script_sha256": "251478a247c900c65a9c43b25a70f2ebf23c6f43acc67f4f9bf2c89cbdde7670",
+    "encoder": "ffmpeg-win64.exe",
+    "encoder_sha256": "5b8f3f59ba61685828939ff3c833109748adbdea2fff4b4ae570c9fc0fc1ff4d",
+    "time_mapping": "Requested source intervals passed to FFmpeg; output times use actual decoded frame counts at 10 fps. Boundary rounding follows CFR resampling.",
+    "application_pixels": "Decoded recorded pixels, cropped and scaled only; captions occupy a separate surrounding panel.",
+    "speed_changes": false,
+    "generated_application_frames": false
+  },
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Find the filing",
+      "start": 0.0,
+      "end": 15.4
+    },
+    {
+      "chapter": 2,
+      "title": "Download the original",
+      "start": 15.4,
+      "end": 35.9
+    },
+    {
+      "chapter": 3,
+      "title": "Choose the right table",
+      "start": 35.9,
+      "end": 65.7
+    },
+    {
+      "chapter": 4,
+      "title": "Transfer into Excel",
+      "start": 65.7,
+      "end": 88.2
+    },
+    {
+      "chapter": 5,
+      "title": "Build live calculations",
+      "start": 88.2,
+      "end": 139.2
+    },
+    {
+      "chapter": 6,
+      "title": "Document the review",
+      "start": 139.2,
+      "end": 161.5
+    },
+    {
+      "chapter": 7,
+      "title": "Mark the draft honestly",
+      "start": 161.5,
+      "end": 178.1
+    },
+    {
+      "chapter": 8,
+      "title": "Save the working draft",
+      "start": 178.1,
+      "end": 198.2
+    }
+  ],
+  "timeline": [
+    {
+      "source": "browser",
+      "start": 13,
+      "end": 29,
+      "crop": [
+        0,
+        0,
+        2074,
+        1546
+      ],
+      "chapter": 1,
+      "title": "Find the filing",
+      "action": "Open the FY2024 10-K from the SEC filing index.",
+      "target": "Resolve the issuer, accession and reporting period before collecting any values.",
+      "detail": "Coca-Cola (KO)\nFiled: 2025-02-20\nPeriod: 2024-12-31",
+      "take": "A",
+      "output_start": 0.0,
+      "output_end": 15.4,
+      "decoded_frames": 154,
+      "display_rectangle": [
+        76,
+        82,
+        1292,
+        964
+      ]
+    },
+    {
+      "source": "browser",
+      "start": 86,
+      "end": 99,
+      "crop": [
+        0,
+        0,
+        2074,
+        1546
+      ],
+      "chapter": 2,
+      "title": "Download the original",
+      "action": "Use Menu > Save XBRL Zip File in the SEC Inline Viewer.",
+      "target": "Retain the downloaded source, not just a search snippet or copied answer.",
+      "detail": "An actual accession ZIP was downloaded locally. Its fingerprint is in source.json.",
+      "take": "A",
+      "output_start": 15.4,
+      "output_end": 28.3,
+      "decoded_frames": 129,
+      "display_rectangle": [
+        76,
+        82,
+        1292,
+        964
+      ]
+    },
+    {
+      "source": "browser",
+      "start": 101,
+      "end": 109,
+      "crop": [
+        0,
+        0,
+        2074,
+        1546
+      ],
+      "chapter": 2,
+      "title": "Download the original",
+      "action": "Open the original HTML filing from the viewer.",
+      "target": "Keep a traceable source document for the spreadsheet update.",
+      "detail": "Original: ko-20241231.htm\nAccession: 0000021344-25-000011",
+      "take": "A",
+      "output_start": 28.3,
+      "output_end": 35.9,
+      "decoded_frames": 76,
+      "display_rectangle": [
+        76,
+        82,
+        1292,
+        964
+      ]
+    },
+    {
+      "source": "browser",
+      "start": 140,
+      "end": 151,
+      "crop": [
+        0,
+        0,
+        2074,
+        1546
+      ],
+      "chapter": 3,
+      "title": "Choose the right table",
+      "action": "Navigate to the consolidated income statement in Item 8.",
+      "target": "Distinguish the company statement from the separate equity-method investee summary.",
+      "detail": "Printed page 62\nUSD millions\n2024 and 2023 from this one filing",
+      "take": "A",
+      "output_start": 35.9,
+      "output_end": 46.2,
+      "decoded_frames": 103,
+      "display_rectangle": [
+        76,
+        82,
+        1292,
+        964
+      ]
+    },
+    {
+      "source": "browser",
+      "start": 172,
+      "end": 192,
+      "crop": [
+        0,
+        0,
+        2074,
+        1546
+      ],
+      "chapter": 3,
+      "title": "Choose the right table",
+      "action": "Select and copy the statement cells in the browser.",
+      "target": "Capture the source table, including its awkward formatting, before normalizing it.",
+      "detail": "The source also contains a 2022 column. The model uses only 2024 and 2023.",
+      "take": "A",
+      "output_start": 46.2,
+      "output_end": 65.7,
+      "decoded_frames": 195,
+      "display_rectangle": [
+        76,
+        82,
+        1292,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 139,
+      "end": 151,
+      "crop": [
+        0,
+        0,
+        2780,
+        1600
+      ],
+      "chapter": 4,
+      "title": "Transfer into Excel",
+      "action": "Paste the original table at Raw paste!A5.",
+      "target": "Keep a source trail while separating raw HTML cells from clean numeric inputs.",
+      "detail": "Real paste: dollar-sign cells, spacer columns and all three source years are retained.",
+      "take": "B",
+      "output_start": 65.7,
+      "output_end": 77.1,
+      "decoded_frames": 114,
+      "display_rectangle": [
+        24,
+        163,
+        1396,
+        802
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 475,
+      "end": 487,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 4,
+      "title": "Transfer into Excel",
+      "action": "Enter twelve numeric amounts into Statement!B5:C10.",
+      "target": "Map six metrics to the correct years without rescaling, rounding or changing signs.",
+      "detail": "Blue inputs on yellow cells\nB = 2024 | C = 2023\nUnits stay in USD millions",
+      "take": "B",
+      "output_start": 77.1,
+      "output_end": 88.2,
+      "decoded_frames": 111,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 622,
+      "end": 634,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 5,
+      "title": "Build live calculations",
+      "action": "Enter dollar and percentage change formulas.",
+      "target": "Calculate from cell references instead of typing the answers.",
+      "detail": "D5 = B5-C5\nE5 = IF(C5=0,\"Not meaningful\",D5/C5)\nContinue through row 10.",
+      "take": "B",
+      "output_start": 88.2,
+      "output_end": 100.0,
+      "decoded_frames": 118,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 690,
+      "end": 704,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 5,
+      "title": "Build live calculations",
+      "action": "Recompute gross profit and operating income, then compare to the filing.",
+      "target": "Expose transcription or reference errors rather than forcing a tie.",
+      "detail": "Gross profit = revenue - COGS\nOperating income = gross profit - SG&A - other charges\nZero differences display as dashes.",
+      "take": "B",
+      "output_start": 100.0,
+      "output_end": 113.8,
+      "decoded_frames": 138,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 798,
+      "end": 813,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 5,
+      "title": "Build live calculations",
+      "action": "Calculate gross and operating margins in Excel.",
+      "target": "Keep derived metrics live when source inputs change.",
+      "detail": "Gross margin: B12/B5\nOperating margin: B14/B5\nApply the same references to column C.",
+      "take": "B",
+      "output_start": 113.8,
+      "output_end": 127.8,
+      "decoded_frames": 140,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 820,
+      "end": 832,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 5,
+      "title": "Build live calculations",
+      "action": "Add the completeness and tie-out control.",
+      "target": "An incomplete transfer must not be reported as reconciled.",
+      "detail": "Count all 12 inputs first.\nThen test all four differences.\nObserved result: Ties to filing.",
+      "take": "B",
+      "output_start": 127.8,
+      "output_end": 139.2,
+      "decoded_frames": 114,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 1128,
+      "end": 1140,
+      "crop": [
+        0,
+        0,
+        2440,
+        1600
+      ],
+      "chapter": 6,
+      "title": "Document the review",
+      "action": "Record the source scope and pending human review.",
+      "target": "Preserve why this table and these periods were chosen.",
+      "detail": "This paste lands one column right of the headers. The next cut shows its correction.",
+      "take": "B",
+      "output_start": 139.2,
+      "output_end": 150.7,
+      "decoded_frames": 115,
+      "display_rectangle": [
+        24,
+        107,
+        1396,
+        914
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 1352,
+      "end": 1363,
+      "crop": [
+        0,
+        0,
+        2440,
+        1600
+      ],
+      "chapter": 6,
+      "title": "Document the review",
+      "action": "Move the review note into the correct columns.",
+      "target": "Check field alignment, not just whether text appeared somewhere on the sheet.",
+      "detail": "Company statement used;\ninvestee summary excluded.\nThis is not a discrepancy in the issuer's figures.",
+      "take": "B",
+      "output_start": 150.7,
+      "output_end": 161.5,
+      "decoded_frames": 108,
+      "display_rectangle": [
+        24,
+        107,
+        1396,
+        914
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 2010,
+      "end": 2018,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 7,
+      "title": "Mark the draft honestly",
+      "action": "Replace the template's initial pending-inputs note.",
+      "target": "Keep the narrative status consistent with the populated model.",
+      "detail": "New status:\nDraft populated from filing; pending human review.",
+      "take": "B",
+      "output_start": 161.5,
+      "output_end": 168.5,
+      "decoded_frames": 70,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 2026,
+      "end": 2036,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 7,
+      "title": "Mark the draft honestly",
+      "action": "Commit the updated status in the worksheet.",
+      "target": "A successful tie-out is not human approval of the financial analysis.",
+      "detail": "The original source citation remains below the status note.",
+      "take": "B",
+      "output_start": 168.5,
+      "output_end": 178.1,
+      "decoded_frames": 96,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 2070,
+      "end": 2080,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 8,
+      "title": "Save the working draft",
+      "action": "Return to the completed two-year statement.",
+      "target": "Review inputs, live calculations and the control together before saving.",
+      "detail": "12 reported amounts\n25 Excel formulas\nHuman review still pending",
+      "take": "B",
+      "output_start": 178.1,
+      "output_end": 187.1,
+      "decoded_frames": 90,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    },
+    {
+      "source": "excel",
+      "start": 2083,
+      "end": 2095,
+      "crop": [
+        0,
+        0,
+        2048,
+        1600
+      ],
+      "chapter": 8,
+      "title": "Save the working draft",
+      "action": "Use Excel's Save control and retain the local workbook.",
+      "target": "Persist the actual formulas and Excel's calculated results, not a picture of a table.",
+      "detail": "The title shows Saved to this PC.\nDelivery copy: completed.xlsx\nNo posting, payment or trading.",
+      "take": "B",
+      "output_start": 187.1,
+      "output_end": 198.2,
+      "decoded_frames": 111,
+      "display_rectangle": [
+        106,
+        82,
+        1232,
+        964
+      ]
+    }
+  ],
+  "native_cowork": {
+    "creation": "not-attempted",
+    "install": "not-attempted",
+    "invocation": "not-attempted",
+    "evaluation": "not-attempted"
+  }
+}

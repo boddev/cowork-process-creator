@@ -1,5 +1,19 @@
 # Financial services scenario research
 
+## Revised recording requirement (2026-09-16)
+
+Financial-services scenario videos must show actual work in real applications:
+downloading SEC documents, locating and copying source values, and modifying
+data and formulas in Excel. Each recording must expose its scenario's distinct
+procedure and resulting changes, not just present completed data on slides.
+Animated tables or an imitation Excel interface do not satisfy this requirement.
+
+The existing synthetic baseline videos remain calculation-trace evidence, not
+recordings of application work. This revised requirement does not claim that
+replacement recordings or native Creator execution have been completed.
+
+## Original research (2026-09-14)
+
 **Phase 1 only - proposed catalog entries, not implemented scenarios.**
 Research date: **2026-09-14**. The three processes below use only invented
 exports for **SYN-FIN Demonstration Company**, a fictional enterprise. No real

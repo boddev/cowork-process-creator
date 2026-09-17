@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SEC filing to Excel | Real application pilot</title>
+  <style>
+    :root { color-scheme: dark; font-family: Arial, sans-serif; background: #0c1727; color: #eef4ff; }
+    * { box-sizing: border-box; }
+    body { max-width: 1600px; margin: 0 auto; padding: 30px 24px 48px; }
+    .eyebrow { color: #70e2c3; letter-spacing: .14em; font-size: 12px; font-weight: 700; }
+    h1 { font-size: clamp(28px, 3vw, 46px); margin: 12px 0; }
+    .intro { max-width: 950px; color: #bfcee0; line-height: 1.6; }
+    a { color: #85e9d1; text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #85e9d1; outline-offset: 4px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 22px; margin-top: 26px; }
+    video { width: 100%; display: block; background: #000; border: 1px solid #29405b; border-radius: 10px; }
+    .meta, .disclosure { color: #adbed3; font-size: 13px; line-height: 1.6; }
+    .meta { margin-top: 12px; }
+    .chapter-heading { font-size: 13px; margin: 0 0 12px; color: #bfcee0; }
+    #chapters { display: grid; gap: 8px; }
+    button { width: 100%; text-align: left; padding: 11px 12px; background: #182638; color: #eef4ff; border: 1px solid #29405b; border-radius: 7px; cursor: pointer; font: inherit; font-size: 13px; }
+    button:hover, button[aria-current="step"] { background: #173c3c; border-color: #70e2c3; }
+    button span { color: #85e9d1; display: block; font-size: 11px; margin-bottom: 5px; }
+    .downloads { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0; }
+    .downloads a { border: 1px solid #36516d; padding: 10px 14px; border-radius: 7px; text-decoration: none; font-size: 13px; }
+    .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-top: 24px; border-top: 1px solid #29405b; }
+    h2 { font-size: 18px; }
+    p { line-height: 1.6; }
+    details { margin-top: 18px; }
+    summary { cursor: pointer; color: #bfcee0; }
+    #transcript p { max-width: 1000px; font-size: 14px; }
+    #media-error { color: #ffbd9e; }
+    @media (max-width: 1000px) {
+      .workspace, .notes { grid-template-columns: 1fr; }
+      #chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      body { padding: 20px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="eyebrow">FINANCIAL SERVICES / REAL APPLICATION RECORDING</div>
+  <h1>SEC filing to Excel</h1>
+  <p class="intro">A public filing is downloaded, its statement is copied into desktop Excel,
+    twelve source amounts are entered, and twenty-five live formulas turn them into a
+    two-year model. The draft is reviewed for source scope and saved locally.</p>
+  <div class="workspace">
+    <main>
+      <video id="workflow" controls playsinline preload="metadata" poster="demo/poster.jpg"
+        aria-label="Edited recording of actual SEC browser and Microsoft Excel work">
+        <source src="demo/workflow.webm" type="video/webm">
+        <track kind="captions" src="demo/captions.vtt" srclang="en" label="English task captions">
+        <track kind="chapters" src="demo/chapters.vtt" srclang="en" label="Workflow chapters">
+        If inline playback is unavailable, <a href="demo/workflow.webm">download the WebM recording.</a>
+      </video>
+      <p id="media-error" role="alert" hidden>The recording could not be loaded. Use the direct video download below.</p>
+      <div class="meta" id="metadata">Actual recorded pixels. Agent-operated UI. Two edited takes. Silent, with task captions.</div>
+    </main>
+    <nav aria-label="Video chapters">
+      <h2 class="chapter-heading">JUMP TO THE WORK</h2>
+      <div id="chapters"></div>
+    </nav>
+  </div>
+  <div class="downloads">
+    <a href="demo/workflow.webm" download>Download video</a>
+    <a href="completed.xlsx" download>Completed workbook</a>
+    <a href="initial.xlsx" download>Blank starting workbook</a>
+    <a href="HOW_TO.md">Procedure</a>
+    <a href="demo/recording-evidence.json">Recording provenance</a>
+    <a href="workbook-evidence.json">Workbook provenance</a>
+  </div>
+  <div class="notes">
+    <section>
+      <h2>The task, not a slide walkthrough</h2>
+      <p class="disclosure">The applications and cell changes are real. The template was prepared
+        before filming with no amounts or formulas. Financial inputs and formulas were entered
+        through Excel's UI during capture; Excel performed the calculations and saved their results.</p>
+      <p class="disclosure">Source:
+        <a href="https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/0000021344-25-000011-index.html" target="_blank" rel="noreferrer">The Coca-Cola Company's FY2024 10-K</a>,
+        filed February 20, 2025. Item 8, printed page 62; 2024 and 2023, USD millions.
+        <a href="source.json">Source details and download fingerprints</a>.</p>
+    </section>
+    <section>
+      <h2>What the recording does not claim</h2>
+      <p class="disclosure">This is an agent-driven UI demonstration of work to automate, not a
+        human-only take or a reusable Cowork automation. No native Creator generation, installation,
+        invocation or evaluation was attempted. The original 15 synthetic scenarios remain separate.</p>
+      <p class="disclosure">Setup, waits and navigation retries are cut. Account/profile UI is cropped
+        out; retained action intervals run at normal speed. There is no narration. The delivery
+        workbook has disclosed metadata sanitization and formatting cleanup, not filmed edits.
+        Human financial review is still pending.</p>
+    </section>
+  </div>
+  <details>
+    <summary>Read the task transcript and editing disclosures</summary>
+    <div id="transcript"></div>
+  </details>
+  <script src="demo/viewer-data.js"></script>
+  <script>
+    const video = document.getElementById("workflow");
+    const clock = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
+    const buttons = recordingEvidence.chapters.map(chapter => {
+      const button = document.createElement("button");
+      const time = document.createElement("span");
+      time.textContent = `${clock(chapter.start)} / STEP ${chapter.chapter}`;
+      button.append(time, document.createTextNode(chapter.title));
+      button.addEventListener("click", () => { video.currentTime = chapter.start; });
+      document.getElementById("chapters").append(button);
+      return button;
+    });
+    const updateChapter = () => {
+      recordingEvidence.chapters.forEach((chapter, index) => {
+        const current = video.currentTime >= chapter.start &&
+          (video.currentTime < chapter.end || video.ended && index === buttons.length - 1);
+        if (current) buttons[index].setAttribute("aria-current", "step");
+        else buttons[index].removeAttribute("aria-current");
+      });
+    };
+    video.addEventListener("timeupdate", updateChapter);
+    video.addEventListener("error", () => { document.getElementById("media-error").hidden = false; });
+    updateChapter();
+    document.getElementById("metadata").textContent =
+      `${clock(recordingEvidence.output.duration_seconds)} / 1920 x 1080 / 10 fps / ` +
+      "Actual recorded pixels. Agent-operated UI. Two edited takes. Silent, with task captions.";
+    const transcript = document.getElementById("transcript");
+    recordingEvidence.timeline.forEach(clip => {
+      const paragraph = document.createElement("p");
+      const label = document.createElement("strong");
+      label.textContent = `${clock(clip.output_start)} - ${clip.title}: `;
+      paragraph.append(label, document.createTextNode(`${clip.action} ${clip.target} ${clip.detail.replaceAll("\n", " ")}`));
+      transcript.append(paragraph);
+    });
+    recordingEvidence.disclosures.forEach(disclosure => {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = disclosure;
+      transcript.append(paragraph);
+    });
+  </script>
+</body>
+</html>

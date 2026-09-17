@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "sec-filing-to-excel",
+  "kind": "real-application-recording-pilot",
+  "title": "SEC filing to Excel - real application recording",
+  "industry": "financial-services",
+  "summary": "An agent demonstrates an analyst's SEC-to-Excel task in real applications: downloading a filing, copying its statement, entering twelve amounts and twenty-five formulas in desktop Excel, documenting source scope, and saving the draft.",
+  "corpus_relationship": {
+    "is_v1_baseline_scenario": false,
+    "counted_in_scenario_corpus": false,
+    "uses_scenario_json_contract": false,
+    "uses_native_five_file_staging_contract": false,
+    "existing_scenario_count_unchanged": 15,
+    "manifest_file": "pilot.json",
+    "note": "Deliberately outside the v1 synthetic JSON baseline contract. This is a distinct real-application demonstration and must not be reported as an additional passed baseline or native scenario.",
+    "path": "scenarios/financial-services/_recordings/sec-filing-to-excel",
+    "directory_naming": "Placed under the _recordings container because scenarios/_shared/contract.py discover() (lines 335-357) rejects any industry child directory without scenario.json. The leading underscore is that loader's existing exclusion rule and it does not descend into the container, so the pilot coexists with the fifteen scenarios without editing shared code, without a scenario.json, and without inventing baseline cases.",
+    "test_discovery_note": "run_tests.py separately includes nested financial-services recording-pilot tests. Corpus discovery remains unchanged, and ordinary tests require only the standard library."
+  },
+  "status": {
+    "overall": "recorded-pilot-complete",
+    "workbook_template": "prepared",
+    "source_provenance": "source-checked",
+    "procedure": "documented",
+    "validator": "saved-delivery-checked",
+    "browser_download": "completed",
+    "excel_session": "completed-and-saved",
+    "recording": "completed",
+    "recording_evidence": "recorded-and-fingerprinted",
+    "validator_run_against_saved_workbook": "passed-88-checks",
+    "native_creation": "not-attempted",
+    "native_install": "not-attempted",
+    "native_invocation": "not-attempted",
+    "native_evaluation": "not-attempted"
+  },
+  "claims": {
+    "recording_completed": true,
+    "workbook_completed": true,
+    "delivery_workbook_sanitized": true,
+    "financial_inputs_entered_through_excel_ui": true,
+    "background_financial_population": false,
+    "native_cowork_evidence_present": false,
+    "human_review_completed": false,
+    "note": "The edited window recording and sanitized delivery workbook are complete. Financial amounts and formulas were entered through actual UI during capture, and Excel's saved values are preserved. Human financial review remains pending; no native Cowork execution is claimed."
+  },
+  "delivery": {
+    "viewer": "index.html",
+    "video": "demo/workflow.webm",
+    "duration_seconds": 198.2,
+    "dimensions": [1920, 1080],
+    "fps": 10,
+    "chapters": 8,
+    "retained_intervals": 17,
+    "initial_workbook": "initial.xlsx",
+    "completed_workbook": "completed.xlsx",
+    "recording_evidence": "demo/recording-evidence.json",
+    "workbook_evidence": "workbook-evidence.json",
+    "edit_recipe": "edit.json",
+    "cross_check": "Opus 5, Max effort",
+    "actor": "agent-operated browser and desktop UI",
+    "narration": false,
+    "human_review_required": true
+  },
+  "owned_files": [
+    {
+      "path": "prepare_workbook.py",
+      "role": "developer-only generator of the blank recording template",
+      "runtime": "local python with openpyxl",
+      "side_effects": "writes only the explicit --output path"
+    },
+    {
+      "path": "initial.xlsx",
+      "role": "blank formatted template; every monetary and formula cell is empty",
+      "generated_by": "prepare_workbook.py",
+      "formula_count": 0
+    },
+    {
+      "path": "source.json",
+      "role": "source provenance and source-checked public fact reference table"
+    },
+    {
+      "path": "HOW_TO.md",
+      "role": "concrete manual procedure for the recorded work"
+    },
+    {
+      "path": "validate_recording.py",
+      "role": "read-only standard-library checker for the saved final workbook",
+      "runtime": "python standard library only",
+      "executes_macros": false,
+      "modifies_workbooks": false
+    },
+    {
+      "path": "test_validate_recording.py",
+      "role": "standard-library unit tests for the validator",
+      "third_party_imports": []
+    },
+    {
+      "path": "completed.xlsx",
+      "role": "sanitized delivery copy of the actual Excel-saved draft"
+    },
+    {
+      "path": "workbook-evidence.json",
+      "role": "native-save fingerprints, financial-content preservation and delivery sanitation disclosures"
+    },
+    {
+      "path": "sanitize_workbook.py",
+      "role": "metadata and disclosed style cleanup without recalculating or replacing financial cells"
+    },
+    {
+      "path": "test_sanitize_workbook.py",
+      "role": "standard-library sanitation regression tests"
+    },
+    {
+      "path": "edit.json",
+      "role": "explicit source intervals, crops, captions and editing disclosures"
+    },
+    {
+      "path": "assemble_recording.py",
+      "role": "developer-only editor of existing captured pixels; not a desktop runner",
+      "runtime": "existing Python, Pillow, Arial fonts and compatible FFmpeg"
+    },
+    {
+      "path": "test_assemble_recording.py",
+      "role": "standard-library edit-plan and public media fingerprint tests"
+    },
+    {
+      "path": "index.html",
+      "role": "chaptered player, transcript and artifact downloads"
+    },
+    {
+      "path": "serve_preview.py",
+      "role": "loopback-only, allowlisted public-asset server with video byte-range support"
+    },
+    {
+      "path": "test_serve_preview.py",
+      "role": "standard-library range and public-asset-boundary tests"
+    },
+    {
+      "path": "demo/",
+      "role": "edited WebM, poster, captions, chapters and recording provenance"
+    }
+  ],
+  "not_owned_here": [
+    "Original unedited window recordings, retained privately",
+    "Full downloaded filing HTML and ZIP, retained privately; public fingerprints are in source.json",
+    "Private original Excel working file; only its sanitized delivery copy is included",
+    "Native Cowork artifacts, which were not produced"
+  ],
+  "workbook_layout": {
+    "active_sheet": "Statement",
+    "sheets": ["Statement", "Raw paste", "Sources", "Review", "Guide"],
+    "prefilled": ["Statement!A1:E1", "Statement!A2:E2", "Statement!A4:E4", "Statement!A5:A10",
+                  "Statement!A12:A15", "Statement!A17:A18", "Statement!A20", "Statement!A22:A23"],
+    "empty_for_typed_inputs": ["Statement!B5:C10"],
+    "empty_for_typed_formulas": ["Statement!D5:E10", "Statement!B12:C15", "Statement!B17:C18",
+                                 "Statement!B20"],
+    "intended_formulas": {
+      "D5:D10": "=B5-C5",
+      "E5:E10": "=IF(C5=0,\"Not meaningful\",D5/C5)",
+      "B12": "=B5-B6",
+      "C12": "=C5-C6",
+      "B13": "=B12-B7",
+      "C13": "=C12-C7",
+      "B14": "=B12-B8-B9",
+      "C14": "=C12-C8-C9",
+      "B15": "=B14-B10",
+      "C15": "=C14-C10",
+      "B17": "=B12/B5",
+      "C17": "=C12/C5",
+      "B18": "=B14/B5",
+      "C18": "=C14/C5",
+      "B20": "=IF(COUNT(B5:C10)<12,\"Pending inputs\",IF(AND(B13=0,C13=0,B15=0,C15=0),\"Ties to filing\",\"Review difference\"))"
+    },
+    "formatting": {
+      "font": "Arial",
+      "data_point_size": 14,
+      "title_point_size": 16,
+      "freeze_panes": "Statement!B5",
+      "money_format": "#,##0;(#,##0);\"-\"",
+      "percent_format": "0.0%;(0.0%);\"-\"",
+      "input_style": "blue text on yellow fill",
+      "formula_style": "black text",
+      "cross_sheet_link_style": "green text (documented in the Guide legend; no cross-sheet formula exists in the blank template)",
+      "units": "declared in the column headers as ($mm)"
+    }
+  },
+  "commands": {
+    "prepare": "python -B prepare_workbook.py --output initial.xlsx",
+    "validate": "python -B validate_recording.py --workbook <saved-workbook.xlsx>",
+    "validate_json": "python -B validate_recording.py --workbook <saved-workbook.xlsx> --json",
+    "test": "python -B -m unittest discover -s scenarios\\financial-services\\_recordings\\sec-filing-to-excel -p \"test_*.py\" -v",
+    "test_from_this_folder": "python -B -m unittest discover -p \"test_*.py\" -v",
+    "preview": "python -B scenarios\\financial-services\\_recordings\\sec-filing-to-excel\\serve_preview.py"
+  },
+  "safety": {
+    "network_scope": "Public SEC pages through the browser; local capture and processing; loopback-only preview",
+    "installs": false,
+    "com_automation": false,
+    "approved_browser_and_desktop_ui_tools": true,
+    "office_license": "First-run Office agreement accepted with explicit user approval before filming",
+    "macro_execution": false,
+    "secret_or_customer_data": false,
+    "full_source_document_committed": false,
+    "human_review_required": true,
+    "no_posting_payment_trading_or_advice": true
+  }
+}

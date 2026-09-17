@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:15.400
+Find the filing: Open the FY2024 10-K from the SEC filing index.
+Resolve the issuer, accession and reporting period before collecting any values.
+
+00:00:15.400 --> 00:00:28.300
+Download the original: Use Menu > Save XBRL Zip File in the SEC Inline Viewer.
+Retain the downloaded source, not just a search snippet or copied answer.
+
+00:00:28.300 --> 00:00:35.900
+Download the original: Open the original HTML filing from the viewer.
+Keep a traceable source document for the spreadsheet update.
+
+00:00:35.900 --> 00:00:46.200
+Choose the right table: Navigate to the consolidated income statement in Item 8.
+Distinguish the company statement from the separate equity-method investee summary.
+
+00:00:46.200 --> 00:01:05.700
+Choose the right table: Select and copy the statement cells in the browser.
+Capture the source table, including its awkward formatting, before normalizing it.
+
+00:01:05.700 --> 00:01:17.100
+Transfer into Excel: Paste the original table at Raw paste!A5.
+Keep a source trail while separating raw HTML cells from clean numeric inputs.
+
+00:01:17.100 --> 00:01:28.200
+Transfer into Excel: Enter twelve numeric amounts into Statement!B5:C10.
+Map six metrics to the correct years without rescaling, rounding or changing signs.
+
+00:01:28.200 --> 00:01:40.000
+Build live calculations: Enter dollar and percentage change formulas.
+Calculate from cell references instead of typing the answers.
+
+00:01:40.000 --> 00:01:53.800
+Build live calculations: Recompute gross profit and operating income, then compare to the filing.
+Expose transcription or reference errors rather than forcing a tie.
+
+00:01:53.800 --> 00:02:07.800
+Build live calculations: Calculate gross and operating margins in Excel.
+Keep derived metrics live when source inputs change.
+
+00:02:07.800 --> 00:02:19.200
+Build live calculations: Add the completeness and tie-out control.
+An incomplete transfer must not be reported as reconciled.
+
+00:02:19.200 --> 00:02:30.700
+Document the review: Record the source scope and pending human review.
+Preserve why this table and these periods were chosen.
+
+00:02:30.700 --> 00:02:41.500
+Document the review: Move the review note into the correct columns.
+Check field alignment, not just whether text appeared somewhere on the sheet.
+
+00:02:41.500 --> 00:02:48.500
+Mark the draft honestly: Replace the template's initial pending-inputs note.
+Keep the narrative status consistent with the populated model.
+
+00:02:48.500 --> 00:02:58.100
+Mark the draft honestly: Commit the updated status in the worksheet.
+A successful tie-out is not human approval of the financial analysis.
+
+00:02:58.100 --> 00:03:07.100
+Save the working draft: Return to the completed two-year statement.
+Review inputs, live calculations and the control together before saving.
+
+00:03:07.100 --> 00:03:18.200
+Save the working draft: Use Excel's Save control and retain the local workbook.
+Persist the actual formulas and Excel's calculated results, not a picture of a table.
+

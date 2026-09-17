@@ -98,6 +98,15 @@ artifacts, not native Creator outputs: no scenario plugin has been generated,
 installed or independently invoked in Cowork. Root [output](output/README.md)
 contains only the blocked native status.
 
+The separate [SEC filing-to-Excel pilot](scenarios/financial-services/_recordings/sec-filing-to-excel/HOW_TO.md)
+now shows **real application work**: downloading Coca-Cola's SEC filing, copying the
+statement, entering twelve amounts and twenty-five formulas in desktop Excel, documenting
+source scope, and saving a draft. Use its [chaptered viewer](scenarios/financial-services/_recordings/sec-filing-to-excel/index.html),
+[3:18 video](scenarios/financial-services/_recordings/sec-filing-to-excel/demo/workflow.webm),
+or [completed workbook](scenarios/financial-services/_recordings/sec-filing-to-excel/completed.xlsx).
+This is edited, agent-operated browser/Excel footage, not a native Cowork execution or
+a sixteenth synthetic scenario. The original corpus and historical videos are preserved.
+
 ## Toolkit and source layout
 
 The owning `build-output-plugin` skill contains `creator_builder.py`,
