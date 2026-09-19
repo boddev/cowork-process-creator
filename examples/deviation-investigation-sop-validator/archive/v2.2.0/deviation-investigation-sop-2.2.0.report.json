@@ -1,0 +1,57 @@
+{
+  "artifact_kind": "compatible-source-export",
+  "builder_version": "0.2.1",
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "d0022a9909e41d30a4a1fac24585eca5656f76c74095f504692e73f6313f535e",
+      "size_bytes": 1373
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/SKILL.md",
+      "sha256": "30681d69b3f8cb09cda08c02b28d3023d76f39fcb4c2520bb7c7d08c82df0df4",
+      "size_bytes": 10560
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/references/contract.md",
+      "sha256": "8c1dedeadac0fc914e2da99143d4c8906e31ab2a712d6d82cc55c395820c15fc",
+      "size_bytes": 8494
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/references/document-mode.md",
+      "sha256": "a81734e8e84170c5567f45c83deb4a429e3820c0001c545242fcc400371621ca",
+      "size_bytes": 7211
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/scripts/extraction_to_packet.py",
+      "sha256": "d6b9087994db28c6f6c9b4eb10a3b80c077651b5920b9d9763da6edbe3adf6ba",
+      "size_bytes": 11528
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/scripts/markdown_review.py",
+      "sha256": "f8e6183e693fd8c44a3fff5b3fbdd8a92577413160eedbf49a43c4e3a7b4907c",
+      "size_bytes": 6373
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/scripts/sop_review.py",
+      "sha256": "7c9a4ec96db66cf74924c56f86a584da43f46fc8f08e703e41db433804ced9d2",
+      "size_bytes": 28270
+    },
+    {
+      "path": "skills/validate-deviation-investigation-sop/scripts/test_sop_review.py",
+      "sha256": "c6b2b0ceabe3d604349286e815db0347f08e72db6191d50b3e63193785783f7b",
+      "size_bytes": 43777
+    }
+  ],
+  "host_acceptance": "unverified",
+  "manual_invocation": "unverified",
+  "native_execution": "not_attested_by_builder",
+  "plugin": "deviation-investigation-sop",
+  "publishing_metadata": "not supplied or represented by this source format",
+  "scheduling": "not_exercised",
+  "sha256": "bfa013c13954e6d80c3737c7c7c9a8593985f0580fb4ad8de7945d32655aed9c",
+  "size_bytes": 119206,
+  "status": "Draft",
+  "target": "compatible-source",
+  "validation_scope": "Creator emitted source/manifest/descriptor subset; not the full Microsoft schema or a code sandbox"
+}

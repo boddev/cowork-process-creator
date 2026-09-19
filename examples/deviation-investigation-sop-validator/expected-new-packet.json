@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of_date": "2026-02-20",
+    "policy_id": "SYN-POLICY-DEV-03",
+    "packet_state": "review-only",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-H2",
+        "due_date": "2026-02-11",
+        "due_state": "completed-late",
+        "investigation_id": "SYN-INV-H2",
+        "opened_on": "2026-02-01",
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "reason_codes": [
+          "late-completion"
+        ],
+        "requirement_checks": [
+          {
+            "evidence_ids": [
+              "SYN-E-H2-APP"
+            ],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-H2-PRB"
+            ],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V1",
+            "state": "present"
+          }
+        ],
+        "review_state": "administratively-complete",
+        "selected_sop_version": 1,
+        "severity": "minor",
+        "source_status": "closed"
+      }
+    ],
+    "draft_review_queue": [
+      {
+        "rank": 1,
+        "deviation_id": "SYN-DEV-H2",
+        "priority": "medium",
+        "review_state": "administratively-complete",
+        "due_state": "completed-late",
+        "existing_task_ids": [],
+        "suppressed_reason_codes": [],
+        "draft_reason_codes": [
+          "late-completion"
+        ],
+        "approval_required": true,
+        "deviation_update_authorized": false
+      }
+    ],
+    "totals": {
+      "deviations": 1,
+      "reviews": 1,
+      "review_states": {
+        "administratively-complete": 1,
+        "sop-gap": 0,
+        "missing-investigation": 0,
+        "data-review": 0
+      },
+      "due_states": {
+        "on-track": 0,
+        "due-soon": 0,
+        "overdue": 0,
+        "completed-on-time": 0,
+        "completed-late": 1
+      },
+      "queue_rows": 1,
+      "queue_priorities": {
+        "high": 0,
+        "medium": 1,
+        "normal": 0
+      },
+      "requirement_checks": 2,
+      "exceptions": 1
+    },
+    "investigation_approval_authorized": false,
+    "deviation_closure_authorized": false
+  },
+  "exceptions": [
+    {
+      "code": "late-completion",
+      "subject": "SYN-DEV-H2",
+      "message": "Investigation SYN-INV-H2 completed 2026-02-15, after the due date 2026-02-11."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-07-09",
+  "policy": {"policy_id": "SYN-POLICY-DEV-02", "investigation_due_days": 10, "due_soon_days": 2, "max_rows_per_table": 100, "max_total_rows": 500},
+  "sop_versions": [
+    {"sop_version": 1, "effective_from": "2026-01-01", "effective_to": "2026-06-30"},
+    {"sop_version": 2, "effective_from": "2026-07-01", "effective_to": null}
+  ],
+  "requirements": [
+    {"requirement_id": "SYN-REQ-APPROVAL-V2", "sop_version": 2, "minimum_severity": "minor", "requirement_code": "approval-evidence", "evidence_type": "approval"},
+    {"requirement_id": "SYN-REQ-PROBLEM-V2", "sop_version": 2, "minimum_severity": "minor", "requirement_code": "problem-statement", "evidence_type": "problem-statement"},
+    {"requirement_id": "SYN-REQ-RCA-V2", "sop_version": 2, "minimum_severity": "major", "requirement_code": "root-cause-analysis", "evidence_type": "root-cause-analysis"}
+  ],
+  "deviations": [
+    {"deviation_id": "SYN-DEV-H1", "opened_on": "2026-07-01", "occurred_on": "2026-06-30", "department_code": "warehouse", "severity": "major", "owner_role_id": "SYN-ROLE-QA-WH", "status": "under-review"}
+  ],
+  "investigations": [
+    {"investigation_id": "SYN-INV-H1", "deviation_id": "SYN-DEV-H1", "sop_version": 2, "started_on": "2026-07-01", "completed_on": null}
+  ],
+  "evidence": [
+    {"evidence_id": "SYN-E-H1-APP", "investigation_id": "SYN-INV-H1", "evidence_type": "approval", "recorded_on": "2026-07-10", "source_ref": "SYN-REF-H1-APP"},
+    {"evidence_id": "SYN-E-H1-PRB", "investigation_id": "SYN-INV-H1", "evidence_type": "problem-statement", "recorded_on": "2026-07-02", "source_ref": "SYN-REF-H1-PRB"},
+    {"evidence_id": "SYN-E-H1-RCA", "investigation_id": "SYN-INV-H1", "evidence_type": "root-cause-analysis", "recorded_on": "2026-07-05", "source_ref": "SYN-REF-H1-RCA"},
+    {"evidence_id": "SYN-E-H1-RCA", "investigation_id": "SYN-INV-H1", "evidence_type": "root-cause-analysis", "recorded_on": "2026-07-05", "source_ref": "SYN-REF-H1-RCA"}
+  ],
+  "open_review_tasks": []
+}

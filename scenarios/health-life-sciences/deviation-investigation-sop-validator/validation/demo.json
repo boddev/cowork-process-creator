@@ -1,0 +1,234 @@
+{
+  "adapter_sha256": "f04f46629463246b171167cf6f207115f98e436c724c61a213c6e1a8c80be7ed",
+  "artifacts": {
+    "baseline_py_sha256": "cfa4e7b222ec665b6fb458a1f740bb305ef8f1647f07688e8c74389f4051200f",
+    "golden_sha256": "d7d9d502136f4605e568dc2981ba526c72ef702746b1307d23059cb92d75a09a",
+    "input_sha256": "cf58f9e990be98b3ccaac1fbe663f0689a01810d49cd0a898dd51a3a17c85337",
+    "result": "baseline-output/demo.json",
+    "result_sha256": "35591a2b3b3c7c95e0c2398fa4da3cc36634aac1a218251c45ae732eabd6fff7",
+    "trace": "baseline-output/demo.trace.json",
+    "trace_sha256": "620f068cf8c1cdd81bf2ad59fb34e263e2435d210fd36c1867259949c3b97f9c"
+  },
+  "baseline_import_audit": {
+    "imports": [
+      "__future__",
+      "collections",
+      "datetime",
+      "pathlib",
+      "re",
+      "scenario_support",
+      "sys"
+    ],
+    "limitation": "Trusted local code only; this is not a sandbox or proof of oracle independence.",
+    "status": "static_import_check_pass"
+  },
+  "case_id": "demo",
+  "documented": {
+    "case_rule_coverage": [
+      "source-quality-system",
+      "source-investigation-review",
+      "input-safety",
+      "version-selection",
+      "requirement-expansion",
+      "evidence-matching",
+      "due-date-review",
+      "task-deduplication",
+      "review-boundary",
+      "deterministic-output"
+    ],
+    "failure_modes": [],
+    "golden_derivation": "SOP version 1 applies to all three deviations. SYN-DEV-001 is minor, age 20, on track, and has all three applicable evidence types. SYN-DEV-002 is major, age 41, overdue, and lacks approval and impact assessment; its existing impact task suppresses only that draft reason. SYN-DEV-003 is critical, age 29, due soon, has no investigation, and lacks all five applicable requirements. High-priority queue order is deviation ID. Counts and all nested evidence references were written manually.",
+    "steps": [
+      {
+        "id": "intake",
+        "kind": "input",
+        "rule_ids": [
+          "source-quality-system",
+          "input-safety"
+        ]
+      },
+      {
+        "id": "validate",
+        "kind": "validation",
+        "rule_ids": [
+          "input-safety",
+          "source-investigation-review"
+        ]
+      },
+      {
+        "id": "select-sop",
+        "kind": "join",
+        "rule_ids": [
+          "version-selection"
+        ]
+      },
+      {
+        "id": "join-evidence",
+        "kind": "join",
+        "rule_ids": [
+          "requirement-expansion",
+          "evidence-matching"
+        ]
+      },
+      {
+        "id": "evaluate-requirements",
+        "kind": "decision",
+        "rule_ids": [
+          "requirement-expansion",
+          "evidence-matching",
+          "due-date-review"
+        ]
+      },
+      {
+        "id": "classify-review",
+        "kind": "decision",
+        "rule_ids": [
+          "review-boundary",
+          "deterministic-output"
+        ]
+      },
+      {
+        "id": "collect-exceptions",
+        "kind": "exception",
+        "rule_ids": [
+          "task-deduplication",
+          "review-boundary"
+        ]
+      },
+      {
+        "id": "order-review",
+        "kind": "decision",
+        "rule_ids": [
+          "due-date-review",
+          "task-deduplication",
+          "deterministic-output"
+        ]
+      },
+      {
+        "id": "close-packet",
+        "kind": "output",
+        "rule_ids": [
+          "review-boundary",
+          "deterministic-output"
+        ]
+      }
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "command": [
+      "python.exe",
+      "-B",
+      "-I",
+      "baseline.py",
+      "--input",
+      "mock-data/demo.json",
+      "--output",
+      "<temporary>/result.json",
+      "--trace",
+      "<temporary>/trace.json"
+    ],
+    "cwd": "scenarios/health-life-sciences/deviation-investigation-sop-validator",
+    "path_recording": "Arguments are from the actual subprocess; interpreter basename, scenario-relative inputs and a labeled temporary-output token replace private machine paths.",
+    "platform": "win32",
+    "python_version": "3.14.6",
+    "returncode": 0,
+    "runtime": "trusted developer Python baseline; not Creator or Cowork",
+    "stderr": "",
+    "stdout": "",
+    "timeout_seconds": 30
+  },
+  "execution_duration_seconds": 0.764105,
+  "kind": "demo",
+  "local": {
+    "comparison": "pass",
+    "comparison_scope": "all object fields, required artifacts/rows, ordered arrays, exact decimal strings; no ignored fields",
+    "differences": []
+  },
+  "native": {
+    "comparison": "not_run",
+    "creation": "native_creation_blocked",
+    "declared": [],
+    "evidence_ids": {
+      "creation": null,
+      "installation": null,
+      "invocation": null
+    },
+    "independent_invocation": "not_run",
+    "installation": "not_run",
+    "observed": [],
+    "reason": "Approved Computer Use tools and an unlocked accessible session must both be restored, then parent-coordinated authorization is required. Do not use substitute channels. Old N00 was last Publishing... with unknown outcome and Creator disabled; inspect real Installed state before any retry."
+  },
+  "observed": {
+    "business_status": "completed_with_exceptions",
+    "steps": [
+      {
+        "kind": "input",
+        "sequence": 1,
+        "step_id": "intake"
+      },
+      {
+        "kind": "validation",
+        "sequence": 2,
+        "step_id": "validate"
+      },
+      {
+        "kind": "join",
+        "sequence": 3,
+        "step_id": "select-sop"
+      },
+      {
+        "kind": "join",
+        "sequence": 4,
+        "step_id": "join-evidence"
+      },
+      {
+        "kind": "decision",
+        "sequence": 5,
+        "step_id": "evaluate-requirements"
+      },
+      {
+        "kind": "decision",
+        "sequence": 6,
+        "step_id": "classify-review"
+      },
+      {
+        "kind": "exception",
+        "sequence": 7,
+        "step_id": "collect-exceptions"
+      },
+      {
+        "kind": "decision",
+        "sequence": 8,
+        "step_id": "order-review"
+      },
+      {
+        "kind": "output",
+        "sequence": 9,
+        "step_id": "close-packet"
+      }
+    ]
+  },
+  "provenance": "observed-local-baseline-subprocess",
+  "scenario_id": "hls-04",
+  "schema_version": 1,
+  "source_sha256": {
+    "HOW_TO.md": "1b0bdf9a7a2559cd375977cd5ad941224bd41fd37dc62198b29952d4f1482a6d",
+    "baseline.py": "cfa4e7b222ec665b6fb458a1f740bb305ef8f1647f07688e8c74389f4051200f",
+    "connections.json": "a22647c96d504ed6acbac5ba80bc1549ac14be7e5e96ad38137a5704e12da39d",
+    "expected/demo.json": "d7d9d502136f4605e568dc2981ba526c72ef702746b1307d23059cb92d75a09a",
+    "expected/holdout-a.json": "9a0f3336f8ac97ba2de38c4beb59f3c7cef895d8aaca87d3aacfbc902f76ec25",
+    "expected/holdout-b.json": "a99a0dc0c925cba2bd2d6ca7fb662ceffa4c3f38f6d6894e32ac5f228aad2391",
+    "expected/negative-contradictory.json": "0a371840e9f85afcc6c1d0fca524096b2aca828e88f9fbc47e1a8f92b0496e72",
+    "expected/negative-malformed.json": "5c38e1999163d467b28fed0b35c924aa6e5b7ce4d10e62b3e145c799884988b1",
+    "mock-data/demo.json": "cf58f9e990be98b3ccaac1fbe663f0689a01810d49cd0a898dd51a3a17c85337",
+    "mock-data/holdout-a.json": "4f7a2fa8d11ca85709337853883133fe52216f55ed5fedfacdba54facb0f4028",
+    "mock-data/holdout-b.json": "5aa30d9f541b78d3a92afd146a37e6b9bdc3102820e4abc0725273a6c49859d6",
+    "mock-data/negative-contradictory.json": "67c3588f2260f7671a46be0a91b89ddcdbc01792b28c61b36ab4294524b19888",
+    "mock-data/negative-malformed.json": "9b57d65009ccbb0004d5b2ab4fefeb925ae84bc669bd545624c03eb943189c37",
+    "scenario.json": "67095701570dbff2bc28da95202048e90eea36c0e8faae251f42777ae586797c",
+    "sources.json": "751721c36be755df1c2aab44695c1837110026b4779ab00f3898f8016805964c",
+    "workflow.json": "c28327bfb89bd8205028f5c364f3c70911f04434fed242320d747317f8d67f66"
+  },
+  "state": "baseline_pass"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-18",
+  "plugin": "deviation-investigation-sop",
+  "source_version": "2.2.0",
+  "required_host": "Microsoft Copilot Cowork",
+  "candidate_format": "creator-plugin-1",
+  "connections": 0,
+  "package": {
+    "artifact_kind": "compatible-source-export",
+    "filename": "deviation-investigation-sop-2.2.0-source.zip",
+    "path": "archive/v2.2.0/deviation-investigation-sop-2.2.0-source.zip",
+    "report": "archive/v2.2.0/deviation-investigation-sop-2.2.0.report.json",
+    "sha256": "bfa013c13954e6d80c3737c7c7c9a8593985f0580fb4ad8de7945d32655aed9c",
+    "size_bytes": 119206,
+    "committed": true,
+    "current_preview_distributable": true,
+    "canonical_microsoft_package": false
+  },
+  "source_subset_checks": {
+    "status": "passed",
+    "checks": 126,
+    "scope": "Creator emitted source and deterministic tests; not the full authoring project evidence check."
+  },
+  "host_acceptance": {
+    "status": "accepted",
+    "version": "2.2.0",
+    "format": "compatible-source",
+    "observed_on": "2026-09-18",
+    "scope": "Accepted and enabled in the contributor's Cowork environment; not a claim of organization-wide or canonical v1.28 acceptance."
+  },
+  "manual_invocation": {
+    "status": "passed",
+    "mode": "document",
+    "fixture": "documents/sample-deviation-report.docx plus documents/sample-sop-checklist.docx",
+    "result_status": "completed_with_exceptions",
+    "review_state": "administratively-complete",
+    "due_state": "completed-late",
+    "reason_code": "late-completion",
+    "exceptions": 1,
+    "outputs": [
+      "final-v2-2-packet.json",
+      "final-v2-2-review.md"
+    ]
+  },
+  "independent_fixture": "expected-new-packet.json",
+  "canonical_packaging": {
+    "status": "blocked_pending_approved_publishing_metadata",
+    "required_fields": [
+      "app_id",
+      "developer.name",
+      "developer.websiteUrl",
+      "developer.privacyUrl",
+      "developer.termsOfUseUrl"
+    ]
+  },
+  "scheduling": "not_exercised"
+}

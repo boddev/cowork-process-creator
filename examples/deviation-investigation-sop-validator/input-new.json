@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-02-20",
+  "policy": {"policy_id": "SYN-POLICY-DEV-03", "investigation_due_days": 10, "due_soon_days": 2, "max_rows_per_table": 100, "max_total_rows": 500},
+  "sop_versions": [{"sop_version": 1, "effective_from": "2026-01-01", "effective_to": null}],
+  "requirements": [
+    {"requirement_id": "SYN-REQ-APPROVAL-V1", "sop_version": 1, "minimum_severity": "minor", "requirement_code": "approval-evidence", "evidence_type": "approval"},
+    {"requirement_id": "SYN-REQ-PROBLEM-V1", "sop_version": 1, "minimum_severity": "minor", "requirement_code": "problem-statement", "evidence_type": "problem-statement"}
+  ],
+  "deviations": [
+    {"deviation_id": "SYN-DEV-H2", "opened_on": "2026-02-01", "occurred_on": "2026-01-31", "department_code": "packaging", "severity": "minor", "owner_role_id": "SYN-ROLE-QA-PACK", "status": "closed"}
+  ],
+  "investigations": [
+    {"investigation_id": "SYN-INV-H2", "deviation_id": "SYN-DEV-H2", "sop_version": 1, "started_on": "2026-02-02", "completed_on": "2026-02-15"}
+  ],
+  "evidence": [
+    {"evidence_id": "SYN-E-H2-APP", "investigation_id": "SYN-INV-H2", "evidence_type": "approval", "recorded_on": "2026-02-15", "source_ref": "SYN-REF-H2-APP"},
+    {"evidence_id": "SYN-E-H2-PRB", "investigation_id": "SYN-INV-H2", "evidence_type": "problem-statement", "recorded_on": "2026-02-03", "source_ref": "SYN-REF-H2-PRB"}
+  ],
+  "open_review_tasks": []
+}

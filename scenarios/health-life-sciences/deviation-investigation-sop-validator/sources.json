@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "hls-dev-fda-quality-systems",
+      "title": "Quality Systems Approach to Pharmaceutical Current Good Manufacturing Practice Regulations",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/quality-systems-approach-pharmaceutical-current-good-manufacturing-practice-regulations",
+      "publisher": "U.S. Food and Drug Administration",
+      "accessed": "2026-09-18",
+      "scope": "FDA landing-page description of a modern quality-systems and risk-management approach consistent with drug CGMP requirements.",
+      "supported_claims": ["Quality-system review and risk management are relevant administrative concepts for pharmaceutical manufacturing records.", "Guidance does not replace applicable CGMP requirements."],
+      "limitations": "It does not prescribe this scenario's checklist, due dates, priorities, schemas, evidence codes, or automated compliance conclusion."
+    },
+    {
+      "id": "hls-dev-fda-oos",
+      "title": "Investigating Out-of-Specification Test Results for Pharmaceutical Production",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/investigating-out-specification-oos-test-results-pharmaceutical-production-level-2-revision",
+      "publisher": "U.S. Food and Drug Administration",
+      "accessed": "2026-09-18",
+      "scope": "FDA landing-page description of guidance for evaluating test results outside established specifications or acceptance criteria.",
+      "supported_claims": ["Investigation evidence can include evaluation of results outside established specifications.", "A structured review packet can preserve investigation evidence for qualified review."],
+      "limitations": "This scenario does not evaluate laboratory science, determine root cause, invalidate a result, disposition product, or implement the guidance's full content."
+    },
+    {
+      "id": "hls-dev-fda-data-integrity",
+      "title": "Data Integrity and Compliance With Drug CGMP: Questions and Answers",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers",
+      "publisher": "U.S. Food and Drug Administration",
+      "accessed": "2026-09-18",
+      "scope": "FDA landing-page description emphasizing reliable and accurate data and risk-based strategies for managing data-integrity risks.",
+      "supported_claims": ["Quality records used for review should preserve reliable and accurate evidence.", "Contradictory source records should remain visible rather than being silently overwritten."],
+      "limitations": "The source does not define this scenario's duplicate algorithm, exact identifiers, task queue, dates, or evidence sufficiency rules."
+    }
+  ]
+}

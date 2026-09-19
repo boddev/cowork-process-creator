@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "mock-exports-only",
+  "availability": "not-required",
+  "connections": [],
+  "note": "Synthetic exported-file inputs and native file outputs only. No Veeva tenant, Vault connection, endpoint, authentication, notification, deviation update, workflow transition, electronic signature, or quality-system write is required or claimed."
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "hls-04",
+  "title": "Deviation investigation SOP compliance review packet",
+  "industry": "health-life-sciences",
+  "workflow_family": "policy-requirement-evidence-validation",
+  "description": "Compare synthetic deviation-investigation exports with an invented versioned SOP checklist and prepare an administrative gap register and draft review queue.",
+  "owner_role": "Quality investigation reviewer",
+  "risk_level": "high",
+  "procedure": "HOW_TO.md",
+  "sources": "sources.json",
+  "workflow": "workflow.json",
+  "connections": "connections.json",
+  "baseline": "baseline.py",
+  "video": "demo/baseline.webm",
+  "sample_policy": {
+    "synthetic_only": true,
+    "no_live_actions": true,
+    "description": "The checklist, due dates, priorities, evidence types, and decision precedence are invented sample policy. Administrative completeness is not investigation approval, deviation closure, product disposition, or a regulatory conclusion."
+  },
+  "golden_provenance": {
+    "method": "independent-manual-derivation",
+    "author": "Health and life sciences scenario owner",
+    "description": "All five expected results and case derivations were authored from HOW_TO.md before baseline execution. Dates, applicable SOP versions, required evidence, reason codes, queue order, and totals were calculated manually; no baseline output supplied expected values."
+  },
+  "cases": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "input": "mock-data/demo.json",
+      "expected": "expected/demo.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["source-quality-system", "source-investigation-review", "input-safety", "version-selection", "requirement-expansion", "evidence-matching", "due-date-review", "task-deduplication", "review-boundary", "deterministic-output"],
+      "failure_modes": [],
+      "derivation": "SOP version 1 applies to all three deviations. SYN-DEV-001 is minor, age 20, on track, and has all three applicable evidence types. SYN-DEV-002 is major, age 41, overdue, and lacks approval and impact assessment; its existing impact task suppresses only that draft reason. SYN-DEV-003 is critical, age 29, due soon, has no investigation, and lacks all five applicable requirements. High-priority queue order is deviation ID. Counts and all nested evidence references were written manually."
+    },
+    {
+      "id": "holdout-a",
+      "kind": "holdout",
+      "input": "mock-data/holdout-a.json",
+      "expected": "expected/holdout-a.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["input-safety", "version-selection", "requirement-expansion", "evidence-matching", "due-date-review", "deterministic-output"],
+      "failure_modes": [],
+      "derivation": "A deviation opened exactly on 2026-07-01 selects SOP version 2, not version 1. At as_of 2026-07-09 its 2026-07-11 due date is due soon. Identical root-cause evidence rows collapse. Approval evidence recorded on 2026-07-10 is future evidence, so approval remains missing and the deviation requires review."
+    },
+    {
+      "id": "holdout-b",
+      "kind": "holdout",
+      "input": "mock-data/holdout-b.json",
+      "expected": "expected/holdout-b.json",
+      "expected_status": "completed_with_exceptions",
+      "covers": ["version-selection", "requirement-expansion", "evidence-matching", "due-date-review", "review-boundary", "deterministic-output"],
+      "failure_modes": [],
+      "derivation": "The closed minor deviation has both version-1 requirements and is administratively complete. It opened 2026-02-01, was due 2026-02-11 under the ten-day sample policy, and completed 2026-02-15, so late completion remains a review reason without changing the completeness classification or approving the investigation."
+    },
+    {
+      "id": "negative-malformed",
+      "kind": "negative",
+      "input": "mock-data/negative-malformed.json",
+      "expected": "expected/negative-malformed.json",
+      "expected_status": "rejected",
+      "covers": ["input-safety"],
+      "failure_modes": ["malformed-input"],
+      "derivation": "The as_of_date 2026-02-30 is not a real Gregorian date. The packet is rejected before joins with one invalid-field exception and empty outputs."
+    },
+    {
+      "id": "negative-contradictory",
+      "kind": "negative",
+      "input": "mock-data/negative-contradictory.json",
+      "expected": "expected/negative-contradictory.json",
+      "expected_status": "rejected",
+      "covers": ["input-safety", "evidence-matching"],
+      "failure_modes": ["contradictory-evidence"],
+      "derivation": "Two evidence rows share SYN-E-CONFLICT but assert different evidence types. A primary identifier cannot represent both facts, so the complete packet is rejected rather than selecting the first or last row."
+    }
+  ]
+}

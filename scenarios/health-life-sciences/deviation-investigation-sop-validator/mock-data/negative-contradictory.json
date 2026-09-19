@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-03-01",
+  "policy": {"policy_id": "SYN-POLICY-CONFLICT", "investigation_due_days": 30, "due_soon_days": 5, "max_rows_per_table": 100, "max_total_rows": 500},
+  "sop_versions": [{"sop_version": 1, "effective_from": "2026-01-01", "effective_to": null}],
+  "requirements": [{"requirement_id": "SYN-REQ-PROBLEM", "sop_version": 1, "minimum_severity": "minor", "requirement_code": "problem-statement", "evidence_type": "problem-statement"}],
+  "deviations": [{"deviation_id": "SYN-DEV-CONFLICT", "opened_on": "2026-02-01", "occurred_on": "2026-02-01", "department_code": "packaging", "severity": "minor", "owner_role_id": "SYN-ROLE-QA", "status": "open"}],
+  "investigations": [{"investigation_id": "SYN-INV-CONFLICT", "deviation_id": "SYN-DEV-CONFLICT", "sop_version": 1, "started_on": "2026-02-01", "completed_on": null}],
+  "evidence": [
+    {"evidence_id": "SYN-E-CONFLICT", "investigation_id": "SYN-INV-CONFLICT", "evidence_type": "problem-statement", "recorded_on": "2026-02-02", "source_ref": "SYN-REF-A"},
+    {"evidence_id": "SYN-E-CONFLICT", "investigation_id": "SYN-INV-CONFLICT", "evidence_type": "approval", "recorded_on": "2026-02-02", "source_ref": "SYN-REF-B"}
+  ],
+  "open_review_tasks": []
+}

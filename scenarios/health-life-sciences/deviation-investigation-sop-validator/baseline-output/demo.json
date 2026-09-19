@@ -1,0 +1,291 @@
+{
+  "exceptions": [
+    {
+      "code": "missing-approval-evidence",
+      "message": "Required evidence type approval is missing.",
+      "owner_role": "SYN-ROLE-QA-MFG",
+      "subject": "SYN-DEV-002"
+    },
+    {
+      "code": "missing-approval-evidence",
+      "message": "Required evidence type approval is missing.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "missing-immediate-correction",
+      "message": "Required evidence type immediate-correction is missing.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "missing-impact-assessment",
+      "message": "Required evidence type impact-assessment is missing.",
+      "owner_role": "SYN-ROLE-QA-MFG",
+      "subject": "SYN-DEV-002"
+    },
+    {
+      "code": "missing-impact-assessment",
+      "message": "Required evidence type impact-assessment is missing.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "missing-investigation",
+      "message": "No investigation record exists for the deviation.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "missing-problem-statement",
+      "message": "Required evidence type problem-statement is missing.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "missing-root-cause-analysis",
+      "message": "Required evidence type root-cause-analysis is missing.",
+      "owner_role": "SYN-ROLE-QA-LAB",
+      "subject": "SYN-DEV-003"
+    },
+    {
+      "code": "overdue-investigation",
+      "message": "Open investigation is past its sample-policy due date.",
+      "owner_role": "SYN-ROLE-QA-MFG",
+      "subject": "SYN-DEV-002"
+    }
+  ],
+  "outputs": {
+    "as_of_date": "2026-09-30",
+    "deviation_closure_authorized": false,
+    "draft_review_queue": [
+      {
+        "approval_required": true,
+        "deviation_id": "SYN-DEV-002",
+        "deviation_update_authorized": false,
+        "draft_reason_codes": [
+          "missing-approval-evidence",
+          "overdue-investigation"
+        ],
+        "existing_task_ids": [
+          "SYN-TASK-D2-IMPACT"
+        ],
+        "owner_role_id": "SYN-ROLE-QA-MFG",
+        "priority": "high",
+        "rank": 1,
+        "reason_codes": [
+          "missing-approval-evidence",
+          "missing-impact-assessment",
+          "overdue-investigation"
+        ]
+      },
+      {
+        "approval_required": true,
+        "deviation_id": "SYN-DEV-003",
+        "deviation_update_authorized": false,
+        "draft_reason_codes": [
+          "missing-approval-evidence",
+          "missing-immediate-correction",
+          "missing-impact-assessment",
+          "missing-investigation",
+          "missing-problem-statement",
+          "missing-root-cause-analysis"
+        ],
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE-QA-LAB",
+        "priority": "high",
+        "rank": 2,
+        "reason_codes": [
+          "missing-approval-evidence",
+          "missing-immediate-correction",
+          "missing-impact-assessment",
+          "missing-investigation",
+          "missing-problem-statement",
+          "missing-root-cause-analysis"
+        ]
+      }
+    ],
+    "investigation_approval_authorized": false,
+    "packet_state": "review-only",
+    "policy_id": "SYN-POLICY-DEV-01",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-001",
+        "due_date": "2026-10-10",
+        "due_state": "on-track",
+        "investigation_id": "SYN-INV-001",
+        "opened_on": "2026-09-10",
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "reason_codes": [],
+        "requirement_checks": [
+          {
+            "evidence_ids": [
+              "SYN-E-D1-APP"
+            ],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-D1-COR"
+            ],
+            "evidence_type": "immediate-correction",
+            "requirement_code": "immediate-correction",
+            "requirement_id": "SYN-REQ-CORRECTION-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-D1-PRB"
+            ],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V1",
+            "state": "present"
+          }
+        ],
+        "review_state": "administratively-complete",
+        "selected_sop_version": 1,
+        "severity": "minor",
+        "source_status": "under-review"
+      },
+      {
+        "deviation_id": "SYN-DEV-002",
+        "due_date": "2026-09-19",
+        "due_state": "overdue",
+        "investigation_id": "SYN-INV-002",
+        "opened_on": "2026-08-20",
+        "owner_role_id": "SYN-ROLE-QA-MFG",
+        "reason_codes": [
+          "missing-approval-evidence",
+          "missing-impact-assessment",
+          "overdue-investigation"
+        ],
+        "requirement_checks": [
+          {
+            "evidence_ids": [],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-D2-COR"
+            ],
+            "evidence_type": "immediate-correction",
+            "requirement_code": "immediate-correction",
+            "requirement_id": "SYN-REQ-CORRECTION-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [],
+            "evidence_type": "impact-assessment",
+            "requirement_code": "impact-assessment",
+            "requirement_id": "SYN-REQ-IMPACT-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-D2-PRB"
+            ],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-D2-RCA"
+            ],
+            "evidence_type": "root-cause-analysis",
+            "requirement_code": "root-cause-analysis",
+            "requirement_id": "SYN-REQ-RCA-V1",
+            "state": "present"
+          }
+        ],
+        "review_state": "sop-gap",
+        "selected_sop_version": 1,
+        "severity": "major",
+        "source_status": "open"
+      },
+      {
+        "deviation_id": "SYN-DEV-003",
+        "due_date": "2026-10-01",
+        "due_state": "due-soon",
+        "investigation_id": null,
+        "opened_on": "2026-09-01",
+        "owner_role_id": "SYN-ROLE-QA-LAB",
+        "reason_codes": [
+          "missing-approval-evidence",
+          "missing-immediate-correction",
+          "missing-impact-assessment",
+          "missing-investigation",
+          "missing-problem-statement",
+          "missing-root-cause-analysis"
+        ],
+        "requirement_checks": [
+          {
+            "evidence_ids": [],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [],
+            "evidence_type": "immediate-correction",
+            "requirement_code": "immediate-correction",
+            "requirement_id": "SYN-REQ-CORRECTION-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [],
+            "evidence_type": "impact-assessment",
+            "requirement_code": "impact-assessment",
+            "requirement_id": "SYN-REQ-IMPACT-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V1",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [],
+            "evidence_type": "root-cause-analysis",
+            "requirement_code": "root-cause-analysis",
+            "requirement_id": "SYN-REQ-RCA-V1",
+            "state": "missing"
+          }
+        ],
+        "review_state": "missing-investigation",
+        "selected_sop_version": 1,
+        "severity": "critical",
+        "source_status": "open"
+      }
+    ],
+    "totals": {
+      "deviation_count": 3,
+      "due_states": {
+        "completed-late": 0,
+        "completed-on-time": 0,
+        "due-soon": 1,
+        "on-track": 1,
+        "overdue": 1
+      },
+      "review_states": {
+        "administratively-complete": 1,
+        "data-review": 0,
+        "missing-investigation": 1,
+        "sop-gap": 1
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}
