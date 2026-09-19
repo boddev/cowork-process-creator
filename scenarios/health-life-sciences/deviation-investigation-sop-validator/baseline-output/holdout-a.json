@@ -1,0 +1,111 @@
+{
+  "exceptions": [
+    {
+      "code": "duplicate-record",
+      "message": "Collapsed identical duplicate source row.",
+      "owner_role": null,
+      "subject": "evidence:SYN-E-H1-RCA"
+    },
+    {
+      "code": "future-evidence",
+      "message": "Evidence SYN-E-H1-APP is after as_of_date and cannot satisfy a requirement.",
+      "owner_role": "SYN-ROLE-QA-WH",
+      "subject": "SYN-DEV-H1"
+    },
+    {
+      "code": "missing-approval-evidence",
+      "message": "Required evidence type approval is missing.",
+      "owner_role": "SYN-ROLE-QA-WH",
+      "subject": "SYN-DEV-H1"
+    }
+  ],
+  "outputs": {
+    "as_of_date": "2026-07-09",
+    "deviation_closure_authorized": false,
+    "draft_review_queue": [
+      {
+        "approval_required": true,
+        "deviation_id": "SYN-DEV-H1",
+        "deviation_update_authorized": false,
+        "draft_reason_codes": [
+          "future-evidence",
+          "missing-approval-evidence"
+        ],
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE-QA-WH",
+        "priority": "medium",
+        "rank": 1,
+        "reason_codes": [
+          "future-evidence",
+          "missing-approval-evidence"
+        ]
+      }
+    ],
+    "investigation_approval_authorized": false,
+    "packet_state": "review-only",
+    "policy_id": "SYN-POLICY-DEV-02",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-H1",
+        "due_date": "2026-07-11",
+        "due_state": "due-soon",
+        "investigation_id": "SYN-INV-H1",
+        "opened_on": "2026-07-01",
+        "owner_role_id": "SYN-ROLE-QA-WH",
+        "reason_codes": [
+          "future-evidence",
+          "missing-approval-evidence"
+        ],
+        "requirement_checks": [
+          {
+            "evidence_ids": [],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V2",
+            "state": "missing"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-H1-PRB"
+            ],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V2",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-H1-RCA"
+            ],
+            "evidence_type": "root-cause-analysis",
+            "requirement_code": "root-cause-analysis",
+            "requirement_id": "SYN-REQ-RCA-V2",
+            "state": "present"
+          }
+        ],
+        "review_state": "sop-gap",
+        "selected_sop_version": 2,
+        "severity": "major",
+        "source_status": "under-review"
+      }
+    ],
+    "totals": {
+      "deviation_count": 1,
+      "due_states": {
+        "completed-late": 0,
+        "completed-on-time": 0,
+        "due-soon": 1,
+        "on-track": 0,
+        "overdue": 0
+      },
+      "review_states": {
+        "administratively-complete": 0,
+        "data-review": 0,
+        "missing-investigation": 0,
+        "sop-gap": 1
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

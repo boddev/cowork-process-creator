@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "as_of_date": "2026-02-30",
+  "policy": {"policy_id": "SYN-POLICY-BAD", "investigation_due_days": 30, "due_soon_days": 5, "max_rows_per_table": 100, "max_total_rows": 500},
+  "sop_versions": [],
+  "requirements": [],
+  "deviations": [],
+  "investigations": [],
+  "evidence": [],
+  "open_review_tasks": []
+}

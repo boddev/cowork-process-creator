@@ -1,0 +1,89 @@
+{
+  "exceptions": [
+    {
+      "code": "late-completion",
+      "message": "Investigation completed after its sample-policy due date.",
+      "owner_role": "SYN-ROLE-QA-PACK",
+      "subject": "SYN-DEV-H2"
+    }
+  ],
+  "outputs": {
+    "as_of_date": "2026-02-20",
+    "deviation_closure_authorized": false,
+    "draft_review_queue": [
+      {
+        "approval_required": true,
+        "deviation_id": "SYN-DEV-H2",
+        "deviation_update_authorized": false,
+        "draft_reason_codes": [
+          "late-completion"
+        ],
+        "existing_task_ids": [],
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "priority": "medium",
+        "rank": 1,
+        "reason_codes": [
+          "late-completion"
+        ]
+      }
+    ],
+    "investigation_approval_authorized": false,
+    "packet_state": "review-only",
+    "policy_id": "SYN-POLICY-DEV-03",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-H2",
+        "due_date": "2026-02-11",
+        "due_state": "completed-late",
+        "investigation_id": "SYN-INV-H2",
+        "opened_on": "2026-02-01",
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "reason_codes": [
+          "late-completion"
+        ],
+        "requirement_checks": [
+          {
+            "evidence_ids": [
+              "SYN-E-H2-APP"
+            ],
+            "evidence_type": "approval",
+            "requirement_code": "approval-evidence",
+            "requirement_id": "SYN-REQ-APPROVAL-V1",
+            "state": "present"
+          },
+          {
+            "evidence_ids": [
+              "SYN-E-H2-PRB"
+            ],
+            "evidence_type": "problem-statement",
+            "requirement_code": "problem-statement",
+            "requirement_id": "SYN-REQ-PROBLEM-V1",
+            "state": "present"
+          }
+        ],
+        "review_state": "administratively-complete",
+        "selected_sop_version": 1,
+        "severity": "minor",
+        "source_status": "closed"
+      }
+    ],
+    "totals": {
+      "deviation_count": 1,
+      "due_states": {
+        "completed-late": 1,
+        "completed-on-time": 0,
+        "due-soon": 0,
+        "on-track": 0,
+        "overdue": 0
+      },
+      "review_states": {
+        "administratively-complete": 1,
+        "data-review": 0,
+        "missing-investigation": 0,
+        "sop-gap": 0
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "completed_with_exceptions"
+}

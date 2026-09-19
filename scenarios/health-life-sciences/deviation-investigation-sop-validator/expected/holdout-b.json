@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of_date": "2026-02-20",
+    "policy_id": "SYN-POLICY-DEV-03",
+    "packet_state": "review-only",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-H2",
+        "severity": "minor",
+        "source_status": "closed",
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "opened_on": "2026-02-01",
+        "due_date": "2026-02-11",
+        "due_state": "completed-late",
+        "selected_sop_version": 1,
+        "investigation_id": "SYN-INV-H2",
+        "review_state": "administratively-complete",
+        "reason_codes": ["late-completion"],
+        "requirement_checks": [
+          {"requirement_id": "SYN-REQ-APPROVAL-V1", "requirement_code": "approval-evidence", "evidence_type": "approval", "state": "present", "evidence_ids": ["SYN-E-H2-APP"]},
+          {"requirement_id": "SYN-REQ-PROBLEM-V1", "requirement_code": "problem-statement", "evidence_type": "problem-statement", "state": "present", "evidence_ids": ["SYN-E-H2-PRB"]}
+        ]
+      }
+    ],
+    "draft_review_queue": [
+      {
+        "rank": 1,
+        "deviation_id": "SYN-DEV-H2",
+        "priority": "medium",
+        "owner_role_id": "SYN-ROLE-QA-PACK",
+        "reason_codes": ["late-completion"],
+        "existing_task_ids": [],
+        "draft_reason_codes": ["late-completion"],
+        "approval_required": true,
+        "deviation_update_authorized": false
+      }
+    ],
+    "totals": {
+      "deviation_count": 1,
+      "review_states": {"data-review": 0, "missing-investigation": 0, "sop-gap": 0, "administratively-complete": 1},
+      "due_states": {"overdue": 0, "due-soon": 0, "on-track": 0, "completed-late": 1, "completed-on-time": 0}
+    },
+    "investigation_approval_authorized": false,
+    "deviation_closure_authorized": false
+  },
+  "exceptions": [
+    {"code": "late-completion", "message": "Investigation completed after its sample-policy due date.", "subject": "SYN-DEV-H2", "owner_role": "SYN-ROLE-QA-PACK"}
+  ]
+}

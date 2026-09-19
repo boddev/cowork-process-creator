@@ -1,0 +1,106 @@
+{
+  "events": [
+    {
+      "caption": "Synthetic export inventory",
+      "facts": {},
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "sop_versions",
+              0
+            ],
+            [
+              "requirements",
+              0
+            ],
+            [
+              "deviations",
+              0
+            ],
+            [
+              "investigations",
+              0
+            ],
+            [
+              "evidence",
+              0
+            ],
+            [
+              "open_review_tasks",
+              0
+            ]
+          ],
+          "title": "Synthetic export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Rejected invalid synthetic export",
+      "facts": {},
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "subject"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "invalid-field",
+              "as_of_date"
+            ]
+          ],
+          "title": "Rejected invalid synthetic export",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Rejection exception",
+      "facts": {},
+      "kind": "exception",
+      "sequence": 3,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "subject"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "invalid-field",
+              "as_of_date"
+            ]
+          ],
+          "title": "Rejection exception",
+          "total_rows": 1
+        }
+      ]
+    }
+  ],
+  "input_sha256": "9b57d65009ccbb0004d5b2ab4fefeb925ae84bc669bd545624c03eb943189c37",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-04",
+  "schema_version": 1
+}

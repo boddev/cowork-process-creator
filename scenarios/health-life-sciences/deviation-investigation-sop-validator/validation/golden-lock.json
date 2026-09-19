@@ -1,0 +1,37 @@
+{
+  "cases": {
+    "demo": {
+      "derivation": "SOP version 1 applies to all three deviations. SYN-DEV-001 is minor, age 20, on track, and has all three applicable evidence types. SYN-DEV-002 is major, age 41, overdue, and lacks approval and impact assessment; its existing impact task suppresses only that draft reason. SYN-DEV-003 is critical, age 29, due soon, has no investigation, and lacks all five applicable requirements. High-priority queue order is deviation ID. Counts and all nested evidence references were written manually.",
+      "expected_sha256": "d7d9d502136f4605e568dc2981ba526c72ef702746b1307d23059cb92d75a09a",
+      "input_sha256": "cf58f9e990be98b3ccaac1fbe663f0689a01810d49cd0a898dd51a3a17c85337"
+    },
+    "holdout-a": {
+      "derivation": "A deviation opened exactly on 2026-07-01 selects SOP version 2, not version 1. At as_of 2026-07-09 its 2026-07-11 due date is due soon. Identical root-cause evidence rows collapse. Approval evidence recorded on 2026-07-10 is future evidence, so approval remains missing and the deviation requires review.",
+      "expected_sha256": "9a0f3336f8ac97ba2de38c4beb59f3c7cef895d8aaca87d3aacfbc902f76ec25",
+      "input_sha256": "4f7a2fa8d11ca85709337853883133fe52216f55ed5fedfacdba54facb0f4028"
+    },
+    "holdout-b": {
+      "derivation": "The closed minor deviation has both version-1 requirements and is administratively complete. It opened 2026-02-01, was due 2026-02-11 under the ten-day sample policy, and completed 2026-02-15, so late completion remains a review reason without changing the completeness classification or approving the investigation.",
+      "expected_sha256": "a99a0dc0c925cba2bd2d6ca7fb662ceffa4c3f38f6d6894e32ac5f228aad2391",
+      "input_sha256": "5aa30d9f541b78d3a92afd146a37e6b9bdc3102820e4abc0725273a6c49859d6"
+    },
+    "negative-contradictory": {
+      "derivation": "Two evidence rows share SYN-E-CONFLICT but assert different evidence types. A primary identifier cannot represent both facts, so the complete packet is rejected rather than selecting the first or last row.",
+      "expected_sha256": "0a371840e9f85afcc6c1d0fca524096b2aca828e88f9fbc47e1a8f92b0496e72",
+      "input_sha256": "67c3588f2260f7671a46be0a91b89ddcdbc01792b28c61b36ab4294524b19888"
+    },
+    "negative-malformed": {
+      "derivation": "The as_of_date 2026-02-30 is not a real Gregorian date. The packet is rejected before joins with one invalid-field exception and empty outputs.",
+      "expected_sha256": "5c38e1999163d467b28fed0b35c924aa6e5b7ce4d10e62b3e145c799884988b1",
+      "input_sha256": "9b57d65009ccbb0004d5b2ab4fefeb925ae84bc669bd545624c03eb943189c37"
+    }
+  },
+  "policy": "Independent author declaration; frozen before the first local baseline execution. Not native proof.",
+  "provenance": {
+    "author": "Health and life sciences scenario owner",
+    "description": "All five expected results and case derivations were authored from HOW_TO.md before baseline execution. Dates, applicable SOP versions, required evidence, reason codes, queue order, and totals were calculated manually; no baseline output supplied expected values.",
+    "method": "independent-manual-derivation"
+  },
+  "scenario_id": "hls-04",
+  "schema_version": 1
+}

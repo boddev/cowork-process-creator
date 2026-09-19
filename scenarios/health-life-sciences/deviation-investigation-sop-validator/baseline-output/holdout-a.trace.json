@@ -1,0 +1,306 @@
+{
+  "events": [
+    {
+      "caption": "Synthetic export inventory",
+      "facts": {},
+      "kind": "input",
+      "sequence": 1,
+      "step_id": "intake",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "raw_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "sop_versions",
+              2
+            ],
+            [
+              "requirements",
+              3
+            ],
+            [
+              "deviations",
+              1
+            ],
+            [
+              "investigations",
+              1
+            ],
+            [
+              "evidence",
+              4
+            ],
+            [
+              "open_review_tasks",
+              0
+            ]
+          ],
+          "title": "Synthetic export inventory",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Validated and deduplicated records",
+      "facts": {},
+      "kind": "validation",
+      "sequence": 2,
+      "step_id": "validate",
+      "tables": [
+        {
+          "columns": [
+            "table",
+            "unique_rows"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "sop_versions",
+              2
+            ],
+            [
+              "requirements",
+              3
+            ],
+            [
+              "deviations",
+              1
+            ],
+            [
+              "investigations",
+              1
+            ],
+            [
+              "evidence",
+              3
+            ],
+            [
+              "open_review_tasks",
+              0
+            ]
+          ],
+          "title": "Validated and deduplicated records",
+          "total_rows": 6
+        }
+      ]
+    },
+    {
+      "caption": "Applicable SOP versions",
+      "facts": {},
+      "kind": "join",
+      "sequence": 3,
+      "step_id": "select-sop",
+      "tables": [
+        {
+          "columns": [
+            "deviation_id",
+            "sop_version"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-DEV-H1",
+              2
+            ]
+          ],
+          "title": "Applicable SOP versions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Requirement and evidence matches",
+      "facts": {},
+      "kind": "join",
+      "sequence": 4,
+      "step_id": "join-evidence",
+      "tables": [
+        {
+          "columns": [
+            "deviation_id",
+            "requirements",
+            "present"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-DEV-H1",
+              3,
+              2
+            ]
+          ],
+          "title": "Requirement and evidence matches",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Requirement decisions",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 5,
+      "step_id": "evaluate-requirements",
+      "tables": [
+        {
+          "columns": [
+            "deviation_id",
+            "due_state",
+            "missing"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-DEV-H1",
+              "due-soon",
+              1
+            ]
+          ],
+          "title": "Requirement decisions",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Deviation review classifications",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 6,
+      "step_id": "classify-review",
+      "tables": [
+        {
+          "columns": [
+            "deviation_id",
+            "review_state"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "SYN-DEV-H1",
+              "sop-gap"
+            ]
+          ],
+          "title": "Deviation review classifications",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Administrative exceptions",
+      "facts": {},
+      "kind": "exception",
+      "sequence": 7,
+      "step_id": "collect-exceptions",
+      "tables": [
+        {
+          "columns": [
+            "code",
+            "subject"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "duplicate-record",
+              "evidence:SYN-E-H1-RCA"
+            ],
+            [
+              "future-evidence",
+              "SYN-DEV-H1"
+            ],
+            [
+              "missing-approval-evidence",
+              "SYN-DEV-H1"
+            ]
+          ],
+          "title": "Administrative exceptions",
+          "total_rows": 3
+        }
+      ]
+    },
+    {
+      "caption": "Draft review queue",
+      "facts": {},
+      "kind": "decision",
+      "sequence": 8,
+      "step_id": "order-review",
+      "tables": [
+        {
+          "columns": [
+            "rank",
+            "deviation_id",
+            "priority"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              1,
+              "SYN-DEV-H1",
+              "medium"
+            ]
+          ],
+          "title": "Draft review queue",
+          "total_rows": 1
+        }
+      ]
+    },
+    {
+      "caption": "Review-only packet totals",
+      "facts": {
+        "packet_state": "review-only"
+      },
+      "kind": "output",
+      "sequence": 9,
+      "step_id": "close-packet",
+      "tables": [
+        {
+          "columns": [
+            "measure",
+            "value"
+          ],
+          "highlight_rows": [
+            0
+          ],
+          "rows": [
+            [
+              "deviations",
+              1
+            ],
+            [
+              "queue_rows",
+              1
+            ],
+            [
+              "exceptions",
+              3
+            ]
+          ],
+          "title": "Review-only packet totals",
+          "total_rows": 3
+        }
+      ]
+    }
+  ],
+  "input_sha256": "4f7a2fa8d11ca85709337853883133fe52216f55ed5fedfacdba54facb0f4028",
+  "provenance": "synthetic-local-baseline",
+  "scenario_id": "hls-04",
+  "schema_version": 1
+}

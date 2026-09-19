@@ -1,0 +1,12 @@
+{
+  "schema_version": "creator-plugin-1",
+  "name": "deviation-investigation-sop",
+  "title": "Deviation SOP Validator",
+  "version": "2.2.0",
+  "summary": "Review one synthetic deviation investigation against a versioned SOP checklist.",
+  "description": "Validate one synthetic deviation-investigation record from either a canonical JSON export or an attached Word report plus SOP checklist. The review checks administrative evidence presence and timing, writes JSON and Markdown outputs, and remains review-only. Document mode requires confirmation of an exact fingerprinted extraction before deterministic validation. No quality-system connection, approval, closure, task creation, scientific assessment, or regulatory determination is included.",
+  "skills": [
+    "validate-deviation-investigation-sop"
+  ],
+  "connectors": []
+}

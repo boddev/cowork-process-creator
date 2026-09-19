@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "rejected",
+  "outputs": {},
+  "exceptions": [
+    {"code": "contradictory-evidence", "message": "Conflicting rows share a primary identifier.", "subject": "evidence:SYN-E-CONFLICT", "owner_role": null}
+  ]
+}

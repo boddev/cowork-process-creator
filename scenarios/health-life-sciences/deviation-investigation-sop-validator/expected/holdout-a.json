@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exceptions",
+  "outputs": {
+    "as_of_date": "2026-07-09",
+    "policy_id": "SYN-POLICY-DEV-02",
+    "packet_state": "review-only",
+    "reviews": [
+      {
+        "deviation_id": "SYN-DEV-H1",
+        "severity": "major",
+        "source_status": "under-review",
+        "owner_role_id": "SYN-ROLE-QA-WH",
+        "opened_on": "2026-07-01",
+        "due_date": "2026-07-11",
+        "due_state": "due-soon",
+        "selected_sop_version": 2,
+        "investigation_id": "SYN-INV-H1",
+        "review_state": "sop-gap",
+        "reason_codes": ["future-evidence", "missing-approval-evidence"],
+        "requirement_checks": [
+          {"requirement_id": "SYN-REQ-APPROVAL-V2", "requirement_code": "approval-evidence", "evidence_type": "approval", "state": "missing", "evidence_ids": []},
+          {"requirement_id": "SYN-REQ-PROBLEM-V2", "requirement_code": "problem-statement", "evidence_type": "problem-statement", "state": "present", "evidence_ids": ["SYN-E-H1-PRB"]},
+          {"requirement_id": "SYN-REQ-RCA-V2", "requirement_code": "root-cause-analysis", "evidence_type": "root-cause-analysis", "state": "present", "evidence_ids": ["SYN-E-H1-RCA"]}
+        ]
+      }
+    ],
+    "draft_review_queue": [
+      {
+        "rank": 1,
+        "deviation_id": "SYN-DEV-H1",
+        "priority": "medium",
+        "owner_role_id": "SYN-ROLE-QA-WH",
+        "reason_codes": ["future-evidence", "missing-approval-evidence"],
+        "existing_task_ids": [],
+        "draft_reason_codes": ["future-evidence", "missing-approval-evidence"],
+        "approval_required": true,
+        "deviation_update_authorized": false
+      }
+    ],
+    "totals": {
+      "deviation_count": 1,
+      "review_states": {"data-review": 0, "missing-investigation": 0, "sop-gap": 1, "administratively-complete": 0},
+      "due_states": {"overdue": 0, "due-soon": 1, "on-track": 0, "completed-late": 0, "completed-on-time": 0}
+    },
+    "investigation_approval_authorized": false,
+    "deviation_closure_authorized": false
+  },
+  "exceptions": [
+    {"code": "duplicate-record", "message": "Collapsed identical duplicate source row.", "subject": "evidence:SYN-E-H1-RCA", "owner_role": null},
+    {"code": "future-evidence", "message": "Evidence SYN-E-H1-APP is after as_of_date and cannot satisfy a requirement.", "subject": "SYN-DEV-H1", "owner_role": "SYN-ROLE-QA-WH"},
+    {"code": "missing-approval-evidence", "message": "Required evidence type approval is missing.", "subject": "SYN-DEV-H1", "owner_role": "SYN-ROLE-QA-WH"}
+  ]
+}

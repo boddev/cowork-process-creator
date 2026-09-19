@@ -1,0 +1,13 @@
+{
+  "exceptions": [
+    {
+      "code": "invalid-field",
+      "message": "Expected a real Gregorian date in YYYY-MM-DD.",
+      "owner_role": null,
+      "subject": "as_of_date"
+    }
+  ],
+  "outputs": {},
+  "schema_version": 1,
+  "status": "rejected"
+}
